@@ -1,0 +1,87 @@
+﻿
+<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px 0 10px 0;">
+                        <div class="container">
+                            <form class="form-horizontal form-label-left" *ngIf="showAddButton">
+                                <div class="form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <atpar-text [(ngModel)]="equipmentIDSearch" [name]="txtequipmentID" [validations]="'except_less_greater_symbols'" [id]="'equipmentTypeSearch'" [ngModelOptions]="{standalone: true}" [placeholder]="' Equipment Type / Description'"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <button type="button" class="btn btn-purple sbtn" name="btnGo" (click)="BindGrid()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                        <button type="button" class="btn btn-purple sbtn" name="btnAdd" (click)="addEquipment()">Add Equipment &nbsp;<i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col-xs-12" *ngIf="table">
+                            <div class="container">
+                                <atpar-datatable [value]="lstDepts" [paginator]="true" [pageLinks]="3" [rows]="pageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column field="" header="Action" [style]="{'width':'5%','text-align':'center'}">
+                                        <template let-dept="rowData" pTemplate="body">
+                                            <i class="fa fa-pencil fa-bg bg-red" (click)="edit(dept)" style="cursor:pointer;" [title]="'Edit'"></i>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="ORG_GROUP_ID" header="Org Group ID" sortable="custom" (sortFunction)="customSort($event)"  [filter]="true" filterPlaceholder="Search" [style]="{'width':'10%'}"></p-column>
+                                    <p-column field="ITEM_TYPE" header="Equipment Type" [sortable]="true"  [filter]="true" filterPlaceholder="Search" [style]="{'width':'18%'}"></p-column>
+                                    <p-column field="ITEM_TYPE_DESCR" header="Description" [sortable]="true"   [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="ITEM_TYPE_INDICATOR_DESC" header="Indicator" [filter]="true" filterPlaceholder="Search" [style]="{'width':'11%'}">
+                                        <template pTemplate="filter" let-col>
+                                            <atpar-select [options]="statusList" [id]="'ddlIndicator'" [style]="{'width':'100%'}" (onChange)="filterStatus($event.value,col.field,col.filterMatchMode)" [(ngModel)]="statusType"></atpar-select>
+                                        </template>
+                                    </p-column>
+
+                                </atpar-datatable>
+                            </div>
+                        </div>
+                        <div class="col-md-12" *ngIf="form">
+                            <form class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Org Group ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <label *ngIf="blnShowOrgGroupLabel" class="control-label lbl-left">{{orgGrpId}}</label>
+                                        <atpar-select [options]="lstOrgGroups" [id]="'ddllstOrgGroups'" [required]="true" [(ngModel)]="selectedOrgGroupId" [ngModelOptions]="{standalone: true}" filter="filter" *ngIf="blnShowOrgGroupDD" (onChange)="ddlOrgGpChange()" [isfocus]="blnShowOrgGroupDD"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Equipment Type</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtEquipment'" [name]="txtEquipment" [(ngModel)]="newItem.ITEM_TYPE" *ngIf="showTextBox && !blnShowOrgGroupLabel" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=30,everything_nospace'" [title]="'Equipment Type can only have letters(a-z),(A-Z),numbers(0-9),the underscore(_)....'" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                        <atpar-text [id]="'txtEquipment'" [name]="txtEquipment" [(ngModel)]="newItem.ITEM_TYPE" *ngIf="showTextBox && blnShowOrgGroupLabel" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=30,everything_nospace'" [title]="'Equipment Type can only have letters(a-z),(A-Z),numbers(0-9),the underscore(_) ...'" (bindModelDataChange)="bindModelDataChange($event)" [isFocused]="'true'"></atpar-text>
+                                        <label class="control-label lbl-left" *ngIf="showEquipmentTypelbl">{{equipmentType}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Description</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtDesc'" [name]="txtDesc" [(ngModel)]="newItem.ITEM_TYPE_DESCR" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=50,everything_except_space_as_fstchar'" (bindModelDataChange)="bindModelDataChange($event)" *ngIf="showTextBox" [title]="'Dept Desc - Allows any character A-Z,a-z,0-9,!,#,$...'"></atpar-text>
+                                        <atpar-text [id]="'txtDesc'" [name]="txtDesc" [(ngModel)]="newItem.ITEM_TYPE_DESCR" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=50,everything_except_space_as_fstchar'" (bindModelDataChange)="bindModelDataChange($event)" *ngIf="!showTextBox" [isFocused]="'true'" [title]="'Dept Desc - Allows any character A-Z,a-z,0-9,!,#,$...'"></atpar-text>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Indicator</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <label class="control-label lbl-left" *ngIf="showIndicatorlbl">{{Indicator}}</label>
+                                        <atpar-select [id]="'ddlIndicator'" *ngIf="!showIndicatorlbl" [required]="true" [options]="ddlIndicatorList" [(ngModel)]="selectedIndicator" [style]="{'width':'100%'}" [ngModelOptions]="{standalone: true}" (onChange)="ddlIndicatorChange()"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-5 col-xs-12">
+                                    <button class="btn btn-purple sbtn" type="button" (click)="saveOrUpdateReasonCode()" [disabled]="loading">{{Title}} &nbsp;<i class="fa fa-{{bindSymbal}}"></i></button>
+                                    <button class="btn btn-purple sbtn" type="button" (click)="close()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+</div>

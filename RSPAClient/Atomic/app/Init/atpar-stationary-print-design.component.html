@@ -1,0 +1,71 @@
+﻿<div id="main" class="content-page">
+    <div class="page-header-title">
+        <h4 class="page-title"><a (click)="homeurl()">Administration ></a>  Stationary Print Design</h4>
+    </div>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border" *ngIf="true">
+            <br>
+            <div class="panel panel-default" style="border: 1px solid #eee;">
+                <div class="panel-body" style="padding:20px;">
+                    <form class="form-horizontal form-label-left">
+                        <div class="col-xs-12">
+                            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-5">
+                                    <label for="">Product</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-select [options]="cities" [required]="true" [id]="'ddlOrg'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-5">
+                                    <label for="">Printer Type</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-select [options]="cities" [required]="true" [id]="'ddlPrintertype'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-5">
+                                    <label for="" class=""> Report Type</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-select [options]="cities" [required]="true" [id]="'ddlReporttype'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-5">
+                                    <label for="">No.of Header Rows</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-select [options]="cities" [id]="'ddlHeaderrows'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-5">
+                                    <label for=""> No.of Header Columns</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-select [options]="cities" [id]="'ddlHeadercols'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-5">
+                                    <label for="" class=""> No.of Details Columns</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-select [options]="cities" [id]="'ddlDetailscols'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                </div>
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-12 col-md-2 form-group">
+                                <button class="btn btn-purple sbtn">Get Report &nbsp; <i class="fa fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

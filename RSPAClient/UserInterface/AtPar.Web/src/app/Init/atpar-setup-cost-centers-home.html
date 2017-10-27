@@ -1,0 +1,55 @@
+﻿<div id="main" class="content-page">
+    <div class="content">
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px 0 10px 0;">
+                        <div class="container">
+                            <form class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <atpar-text [(ngModel)]="pCostCenterSearch" [name]="txtCostCentersearch" [id]="'costCenterSearch'" [ngModelOptions]="{standalone: true}"  [placeholder]="'Cost Center Code / Description'"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <button type="button" class="btn btn-purple sbtn" name="btnGo" (click)="BindGrid()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                        <button type="button" class="btn btn-purple sbtn" name="btnAdd" (click)="addCostCenter()">Add &nbsp;<i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <br>
+                        <div class="container">
+                            <div *ngIf="isVisible" class="col-xs-12">
+                                <atpar-datatable [value]="costCentersData"   [style]="{'width':'100%'}" #dt [paginator]="true" [pageLinks]="3" [rows]="pazeSize" [rowsPerPageOptions]="[10,20, 30, 40, 50, 60, 70, 80, 90, 100]" [responsive]="true">
+                                    <p-column header="Action" [style]="{'width':'4%','text-align':'center'}">
+                                        <template pTemplate="filter" let-col>
+                                        </template>
+                                        <template let-col let-costcenter="rowData" pTemplate="body">
+                                         <i class="fa fa-pencil fa-bg bg-red" (click)="editCostCenter(costcenter)" title="Edit" style="cursor:pointer;"></i>
+                                        </template>
+
+                                    </p-column>
+                                    <p-column header="Org Group ID" field="ORG_ID" sortable="custom" (sortFunction)="customSort($event)"  [filter]="true" filterPlaceholder="Search" [style]="{'width':'10%'}"> </p-column>
+                                    <p-column header="Cost Center Code" field="COST_CENTER_CODE"sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search" [style]="{'width':'20%'}"></p-column>
+                                    <p-column header="Description" field="DESCRIPTION" sortable="custom" (sortFunction)="customSort($event)"  [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="Department" field="DEPTNAME"  sortable="custom" [filter]="true" (sortFunction)="customSort($event)" filterPlaceholder="Search" [style]="{'width':'20%'}"></p-column>
+                                    <p-column field="STATUS" header="Status" [filter]="true" [style]="{'width': '8%','overflow':'visible','text-align':'center'}" filterMatchMode="equals">
+                                        <template pTemplate="filter" let-col>
+                                            <atpar-select-grid [options]="statusList" [id]="'ddlOrgGroup'" [style]="{'width':'100%'}"  [(ngModel)]="statusType" 
+                                                          (onChange)="dataFilter($event.value,col.field,col.filterMatchMode)"></atpar-select-grid>
+                                        </template>
+                                        <template let-col let-costcenter="rowData" pTemplate="body">
+                                            <atpar-switch [(ngModel)]="costcenter.STATUS" [checked]="costcenter[col.field]" (click)="updateCostCenterStatus(costcenter)" style="cursor:pointer;"></atpar-switch>
+                                        </template>
+                                    </p-column>
+                                </atpar-datatable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-growl [value]="msgs" sticky="sticky"></atpar-growl>

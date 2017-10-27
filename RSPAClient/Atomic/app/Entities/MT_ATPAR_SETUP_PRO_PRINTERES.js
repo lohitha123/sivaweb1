@@ -1,0 +1,8 @@
+"use strict";
+var MT_ATPAR_SETUP_PRO_PRINTERES = (function () {
+    function MT_ATPAR_SETUP_PRO_PRINTERES() {
+    }
+    return MT_ATPAR_SETUP_PRO_PRINTERES;
+}());
+exports.MT_ATPAR_SETUP_PRO_PRINTERES = MT_ATPAR_SETUP_PRO_PRINTERES;
+//# sourceMappingURL=MT_ATPAR_SETUP_PRO_PRINTERES.js.map

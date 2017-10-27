@@ -1,0 +1,35 @@
+﻿<div id="main" class="content-page">
+    <div class="page-header-title">
+        <h4 class="page-title"><a (click)="homeurl()">Administration ></a>Order Prefix</h4>
+    </div>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="panel panel-default" [ngClass]="{'border-panel': page === true}" style="border: 1px solid #eee;">
+                    <div class="panel-body">
+                        <div class="col-xs-12 table-responsive" *ngIf="true">
+                            <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                <!--<p-column expander="true" styleClass="col-icon"></p-column>-->
+                                <p-column field="BEG_SEQ" header="Prefix" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column header="Select" [filter]="true">
+                                    <template pTemplate="filter" let-col>
+                                        
+                                    </template>
+                                    <template let-col let-ven="rowData" pTemplate type="body">
+                                        <atpar-switch></atpar-switch>
+                                    </template>
+                                </p-column>                                
+                                <!--<p-footer></p-footer>-->
+                            </atpar-datatable>
+                            <br>
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn"><i class="fa fa-check"></i> &nbsp; Submit </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

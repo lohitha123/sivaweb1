@@ -1,0 +1,19 @@
+ [			
+      {
+        "SERIAL_ID": "S1",
+        "LOT_ID": "L1", 
+        "QTY": "1",          
+        "EXP_DATE": "12/5/2017 12:00:00 AM",
+        "UNIT_OF_MEASURE": "EA",
+        "ISSUE_UOM": "EA"                                   
+      },
+	  	  
+      {
+        "SERIAL_ID": "S2",
+        "LOT_ID": "L2", 
+        "QTY": "1",          
+        "EXP_DATE": "12/5/2017 12:00:00 AM",
+        "UNIT_OF_MEASURE": "EA",
+        "ISSUE_UOM": "EA"      
+      }	  	   
+]

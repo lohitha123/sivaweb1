@@ -1,0 +1,947 @@
+[
+      {
+        "BUSINESS_UNIT": "AUS01",
+        "DESCR": "AUSTRALIA OPERATIONS",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "AUS01",
+        "DESCR": "AUSTRALIA OPERATIONS",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "AUS10",
+        "DESCR": "Australia BU - Class",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "BELTC",
+        "DESCR": "Beltane Corporation",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "BLG01",
+        "DESCR": "BELGIUM OPERATIONS",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "BLG01",
+        "DESCR": "BELGIUM OPERATIONS",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "BLGE1",
+        "DESCR": "BELGIUM - EURO BASE CURRENCY",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "BUY01",
+        "DESCR": "Dean Jones & Bishop",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "BUY02",
+        "DESCR": "DS Telecommunications",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "BUY03",
+        "DESCR": "Choice Industries",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "BUY04",
+        "DESCR": "Jean Paul Inc",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "BUY05",
+        "DESCR": "Le Groupe D'international",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "BUY06",
+        "DESCR": "TR Services Financiers",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "BUY07",
+        "DESCR": "Walton Bros",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "BUY08",
+        "DESCR": "Selectronic Corporation",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "CAN01",
+        "DESCR": "CANADA OPERATIONS",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "CAN01",
+        "DESCR": "CANADA OPERATIONS",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "CAN02",
+        "DESCR": "Canadian Operations -CAN02",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "CHE01",
+        "DESCR": "Switzerland 1",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "CHE01",
+        "DESCR": "Switzerland 1",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "DEU01",
+        "DESCR": "GERMANY OPERATIONS",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "DEU01",
+        "DESCR": "GERMANY OPERATIONS",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "DEU02",
+        "DESCR": "GERMANY SAUCE INTERNATIONAL",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "DEU02",
+        "DESCR": "GERMANY SAUCE INTERNATIONAL",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "DEUE1",
+        "DESCR": "GERMANY - EURO BASE CURRENCY",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "EGV01",
+        "DESCR": "EDUC & GVT - BU 1",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "EGV02",
+        "DESCR": "EDUC & GVT - BU 2",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "EGV03",
+        "DESCR": "PSU Medical Center",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "EGV04",
+        "DESCR": "EDUC & GVT - BU 4",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "EGV05",
+        "DESCR": "EDUC & GVT - BU 5",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "EGV06",
+        "DESCR": "EDUC & GVT - BU 6",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "FED01",
+        "DESCR": "FEDERAL - BU 1",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "FED02",
+        "DESCR": "FEDERAL - BU 2",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "FRA01",
+        "DESCR": "FRANCE OPERATIONS",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "FRA02",
+        "DESCR": "FRANCE OPERATIONS",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "FRA03",
+        "DESCR": "FRANCE OPERATIONS - SOUTH",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "FRA05",
+        "DESCR": "FRANCE BIKE/OUTDOOR",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "FRAE1",
+        "DESCR": "FRANCE - EURO BASE CURRENCY",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "FRFS1",
+        "DESCR": "EUR Funding Source BU 1",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "GBR01",
+        "DESCR": "BRITAIN OPERATIONS",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "GBR01",
+        "DESCR": "BRITAIN OPERATIONS",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "GBR02",
+        "DESCR": "UK BIKE/OUTDOOR INTERNATIONAL",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "GBR03",
+        "DESCR": "UK BIKE MFG/OUTDOOR",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "IN001",
+        "DESCR": "Tool Depot - West",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "IN002",
+        "DESCR": "Tool Depot - East",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "IND01",
+        "DESCR": "India BU 1",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "IND01",
+        "DESCR": "India BU 1",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "IND02",
+        "DESCR": "India BU 2",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "IND03",
+        "DESCR": "India BU 3",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "IND03",
+        "DESCR": "India BU 3",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "IND04",
+        "DESCR": "IND04",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "IND05",
+        "DESCR": "IND05",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "INDCW",
+        "DESCR": "INDCW",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "INVMI",
+        "DESCR": "Cycling Accessories DC West",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "ITL01",
+        "DESCR": "ITALIAN OPERATIONS",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "ITLE1",
+        "DESCR": "ITALY - EURO BASE CURRENCY",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "JPN01",
+        "DESCR": "JAPAN OPERATIONS",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "JPN01",
+        "DESCR": "JAPAN OPERATIONS",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "KK002",
+        "DESCR": "Commitment Control Testing FS",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "KK003",
+        "DESCR": "Commitment Control Testing",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "LCTES",
+        "DESCR": "test",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "LUX01",
+        "DESCR": "LUX01",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "LUX01",
+        "DESCR": "LUX01",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "NLD01",
+        "DESCR": "NETHERLANDS OPERATIONS",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "NLD01",
+        "DESCR": "NETHERLANDS OPERATIONS",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "NLD02",
+        "DESCR": "FRANCE OPERATIONS - NLD WHS",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "NLDB1",
+        "DESCR": "NLD - balanced by Fund / OperU",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "NLDB2",
+        "DESCR": "NLD - balanced by Fund / OperU",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "NLDB3",
+        "DESCR": "NLD - balanced by Fund / OperU",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "NLDE1",
+        "DESCR": "NETHERLANDS - EURO BASE CURR.",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "PSL01",
+        "DESCR": "PS Lab 01",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "PSL02",
+        "DESCR": "PS Lab 02",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "PSL03",
+        "DESCR": "PS Lab 03",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "PSL04",
+        "DESCR": "PS Lab 04",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "PSL05",
+        "DESCR": "PS Lab 05",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "PSL06",
+        "DESCR": "PS Lab 06",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "PSL07",
+        "DESCR": "PS Lab 07",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "PSL08",
+        "DESCR": "PS Lab 08",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "PSL09",
+        "DESCR": "PS Lab 09",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "PSL10",
+        "DESCR": "PS Lab 10",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "PSL11",
+        "DESCR": "PS Lab 11",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "PSL12",
+        "DESCR": "PS Lab 12",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "PSL13",
+        "DESCR": "PS Lab 13",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "PSL14",
+        "DESCR": "PS Lab 14",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "PSL15",
+        "DESCR": "PS Lab 15",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "PSLAB",
+        "DESCR": "PeopleSoft Laboratories",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "SPN01",
+        "DESCR": "SPAIN OPERATIONS",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "SPN01",
+        "DESCR": "SPAIN OPERATIONS",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "SPN02",
+        "DESCR": "SPAIN - EURO BASE CURRENCY",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "STKRM",
+        "DESCR": "Hospital Stockrm",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "STKRM",
+        "DESCR": "Hospital Stockrm",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US001",
+        "DESCR": "US001 NEW YORK OPERATIONS",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US001",
+        "DESCR": "US001 NEW YORK OPERATIONS",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US002",
+        "DESCR": "US002 MASSACHUSETTS OPERATIONS",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US002",
+        "DESCR": "US002 MASSACHUSETTS OPERATIONS",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US003",
+        "DESCR": "US003 CALIFORNIA OPERATIONS",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US003",
+        "DESCR": "US003 CALIFORNIA OPERATIONS",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US004",
+        "DESCR": "US004 ILLINOIS OPERATIONS",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US004",
+        "DESCR": "US004 ILLINOIS OPERATIONS",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US005",
+        "DESCR": "US005 FLORIDA OPERATIONS",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US005",
+        "DESCR": "US005 FLORIDA OPERATIONS",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US006",
+        "DESCR": "US006 OREGON OPERATIONS",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US006",
+        "DESCR": "US006 OREGON OPERATIONS",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US007",
+        "DESCR": "US007 OPERATIONS",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US007",
+        "DESCR": "US007 OPERATIONS",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US008",
+        "DESCR": "COLORADO BIKE MFG/OUTDOOR",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US009",
+        "DESCR": "LA BIKE MFG/OUTDOOR",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US010",
+        "DESCR": "PHOENIX BIKE/OUTDOOR",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US011",
+        "DESCR": "SAN FRANCISCO BIKE/OUTDOOR",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US012",
+        "DESCR": "NEW HAMPSHIRE SAUCE/BOTTLING",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US012",
+        "DESCR": "NEW HAMPSHIRE SAUCE/BOTTLING",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US013",
+        "DESCR": "VERMONT SAUCE AND DELIVERY",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US014",
+        "DESCR": "California Creamery",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US015",
+        "DESCR": "PLEASANTON HEALTH",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US015",
+        "DESCR": "PLEASANTON HEALTH",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US016",
+        "DESCR": "MAINTENANCE INVENTORY",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US100",
+        "DESCR": "US100 OPERATIONS",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US200",
+        "DESCR": "CRMCO APPLIANCES",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US200",
+        "DESCR": "CRMCO APPLIANCES",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US201",
+        "DESCR": "CRMCO Appliance WHS 1",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US202",
+        "DESCR": "CRMCO APPLIANCE WHS2",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US300",
+        "DESCR": "CRMCO HARDWARE/SOFTWARE",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US300",
+        "DESCR": "CRMCO HARDWARE/SOFTWARE",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US301",
+        "DESCR": "CRMCO H/S WAREHOUSE 1",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US302",
+        "DESCR": "CRM H/S WAREHOUSE 2",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US400",
+        "DESCR": "CRMCO FITNESS TRUCK CENTER",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US400",
+        "DESCR": "CRMCO FITNESS TRUCK CENTER",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US401",
+        "DESCR": "FITNESS DISTRIBUTION CENTER 1",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US402",
+        "DESCR": "FITNESS DISTRIBUTION CENTER 2",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "USBC1",
+        "DESCR": "USA - BALANCED BY OPER. UNIT",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "USBC2",
+        "DESCR": "USA - BALANCED BY OPER. UNIT",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "USBC3",
+        "DESCR": "USA - BALANCED BY OPER. UNIT",
+        "BU_TYPE": "P",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "VMI01",
+        "DESCR": "VMI Non-Consigned Customers",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "VMI02",
+        "DESCR": "VMI Consigned Customers",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "BUSINESS_UNIT": "WHSE",
+        "DESCR": "Hospital Warehouse",
+        "BU_TYPE": "I",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0"
+      }
+    ]

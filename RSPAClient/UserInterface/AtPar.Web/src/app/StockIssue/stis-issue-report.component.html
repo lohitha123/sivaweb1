@@ -1,0 +1,181 @@
+﻿
+<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body">
+                        <!--style="padding:10px 0 0 0;"-->
+                        <form class="form-horizontal form-label-left" novalidate>
+                            <div class="col-xs-12">
+                                <div class="pull-right" *ngIf="showGrid">
+                                    <ul class="list-inline">
+                                        <li class="no-padding">
+                                            <i class="fa fa-envelope-o fa-bg-lg bg-blue" aria-hidden="true" style="cursor:pointer" id="imgMail" title="Send mail" (click)="onSendMailIconClick($event)"></i>&nbsp;
+                                        </li>
+                                        <li class="no-padding">
+                                            <i class="fa fa-print fa-bg-lg bg-blue" aria-hidden="true" style="cursor:pointer" id="imgPrint" title="Print" (click)="onPrintClick($event)"></i>&nbsp;
+                                        </li>
+                                        <li class="no-padding">
+                                            <i class="fa fa-file-excel-o fa-bg-lg bg-blue" aria-hidden="true" style="cursor:pointer" id="imgExcel" title="Excel Format" (click)="onExportToExcelClick($event)"></i>&nbsp;
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Org Group ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <label class="control-label lbl-left" *ngIf="!showOrgDropdown">{{orgGroupId}}</label>
+                                        <atpar-select [options]="lstOrgGroupIds" *ngIf="showOrgDropdown" [required]="true" [id]="'ddlMasterOrgGrp'" [(ngModel)]="orgGroupId" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlOrgGroup_SelectedIndexChanged($event)"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Business Unit</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstBusinessUnits" [id]="'ddlBusinessUnit'" [(ngModel)]="businessUnit" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">User ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstUsers" [id]="'ddlUser'" [(ngModel)]="userID" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Status</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstStatus" [(ngModel)]="status" [id]="'ddlStatus'" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Item ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="itemID" [name]="txtItemID" [id]="'txtItemID'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label"> Item Description</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="itemDesc" [name]="txtDesc" [id]="'txtDesc'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Patient ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="patientID" [name]="txtPatient" [id]="'txtPatient'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Dept ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="deptID" [name]="txtDepID" [id]="'txtDepID'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Issue To User</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="issueUser" [name]="txtUser" [id]="'txtUser'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label"> Issue To Location</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="issueLocation" [name]="txtLocation" [id]="'txtLocation'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">From Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <p-calendar [showIcon]="true" [id]="'FromDatePicker'" [(ngModel)]="fromDate" [placeholder]="'From Date'" [dateFormat]="'mm/dd/yy'" [required]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [yearNavigator]="true"  yearRange="1950:2050"></p-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">To Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <p-calendar [showIcon]="true" [id]="'ToDatePicker'" [(ngModel)]="toDate" [placeholder]="'To Date'" [dateFormat]="'mm/dd/yy'" [required]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [yearNavigator]="true"  yearRange="1950:2050"></p-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="btnGo_Click()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <br />
+                        <div style="clear:both;"></div>
+                        <br />
+                        <div class="col-xs-12 help_txt" style="margin:14px;" *ngIf="showGrid">
+                            <span class="text-primary" style="float:left">
+                                Issue Report for {{strUserID}} between {{strFromDate}} and {{strToDate}}
+                            </span>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="container no-scrl" *ngIf="showGrid">
+
+                                <atpar-datatable [value]="lstIssueReport" scrollable="true" [paginator]="true" [pageLinks]="3" [rows]="pageSize" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column header="Issue Date-User" field="ISSUEDATE_USER" [style]="{'width':'200px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                        <!--<template let-col let-ven="rowData" pTemplate type="body">
+                                            {{ven.ISSUE_DATE}} - {{ven.USER_NAME}}
+                                        </template>-->
+                                    </p-column>
+                                    <p-column field="ISSUE_TO_LOCATION" header="Issue To Location" [style]="{'width':'120px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="ISSUE_TO_USER" header="Issue To User" [style]="{'width':'100px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="BUSINESS_UNIT" header="Business Unit" [style]="{'width':'100px','text-align':'center'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="DEPT_ID" header="Dept ID" [style]="{'width':'100px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="Item ID - Item Description" field="ITEMID_DESC" [style]="{'width':'200px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                        <!--<template let-col let-ven="rowData" pTemplate type="body">
+                                            {{ven.ITEM_ID}} - {{ven.ITEM_DESC}}
+                                        </template>-->
+                                    </p-column>
+                                    <p-column header="Qty - UOM" field="QTY_UOM" [style]="{'width':'100px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                        <!--<template let-col let-ven="rowData" pTemplate type="body">
+                                            {{ven.QTY}} - {{ven.UOM}}
+                                        </template>-->
+                                    </p-column>
+                                    <p-column field="PATIENT_ID" header="Patient ID" [style]="{'width':'100px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="ADJUST_TYPE" header="Adjustment Type" [style]="{'width':'115px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="STATUS" header="Status" [style]="{'width':'100px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'8%','text-align':'center'}"></p-column>
+
+                                    <!--<p-column field="SIGNATURE" header="Signature" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>-->
+                                    <p-column header ="Signature"  field="SIGNATURE"  [style]="{'width':'120px'}">
+                                        <template let-col let-ven ="rowData"  pTemplate="body">
+                                            <img src ="data:image/jpg;base64,{{ven.SIGNATURE}}" *ngIf="ven.SIGNATURE!=null ?true:false" class="img-responsive" />
+                                            </template> 
+                                            </p-column>
+
+                                </atpar-datatable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+
+<mail-dialog header="Enter Recipient`s Email Address" [width]="450" (onClose)="closeMailPopup()" [(visible)]="isMailDialog" [responsive]="true" showEffect="fade" [modal]="true">
+    <div class="ui-grid ui-grid-responsive ui-fluid">
+        <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="margin-top:2%;margin-right:-2%">
+                <span style="font-weight:600">To : </span>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <atpar-text [(ngModel)]="toMailAddr" [name]="txtToMailAddr" [id]="'txtToMailAddr'"></atpar-text>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                <span><button class="btn btn-purple sbtn" (click)="onSendMailClick()">Send &nbsp;<i class="fa fa-share-square-o" aria-hidden="true"></i></button> </span>
+            </div>
+        </div>
+    </div>
+</mail-dialog>
+
+

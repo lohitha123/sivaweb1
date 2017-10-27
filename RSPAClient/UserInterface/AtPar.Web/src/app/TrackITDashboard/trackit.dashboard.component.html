@@ -1,0 +1,7 @@
+﻿
+<div id="wrapper" class="enlarged forced" (click)="divClick()">
+    <trackit-topbar-cmp></trackit-topbar-cmp>
+    <section class="main-container no-margin" [ngClass]="{sidebarPushRight: isActive}" style="height:100%;overflow-y:scroll" (click)="onHomeClick()">
+        <router-outlet (navigateTo)="navigateToMessagePart($event)"></router-outlet>
+    </section>
+</div>

@@ -1,0 +1,286 @@
+﻿<div id="main" class="content-page" onload="DisableBackButton()">
+    <div class="content">
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border" *ngIf="displayImportDialog==false">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:10px 10px 0 0;">
+                        <button class="btn btn-purple sbtn pull-right" type="button" [disabled]="disableImport" (click)="goBackButton_Click(true)" *ngIf="!showManageEdit"> Import User &nbsp;<i class="fa fa-download"></i></button>
+                        <div class="col-md-12">
+                            <form class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">User ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtUserID'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'" [name]="txtUserID" [(ngModel)]="addUserData.USER_ID" *ngIf="!showManageEdit" [ngModelOptions]="{standalone: true}" [readonly]="isImportLDAPUser" [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                        <label class="control-label lbl-left" *ngIf="showManageEdit">{{addUserData.USER_ID}}</label>
+                                    </div>
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Password Required</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-switch (click)="swtPassword_Click()" [(ngModel)]="addUserData.PASSHASH_REQUIRED" [ngModelOptions]="{standalone: true}" [disabled]="isImportLDAPUser|| !enablePasswordRequired"></atpar-switch>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Check here if user is required to use password to access the application on the PDA. This should be checked for Server User
+                                    </div>
+                                </div>
+                                <div class="form-group" *ngIf="addUserData.PASSHASH_REQUIRED && showLdapPwdText">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Password <span class="text-red">*</span></label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="password" class="form-control" id="txtPassword" [(ngModel)]="addUserData.PASSWORD" maxlength="{{securityParams.PASSWD_MAX_LENGTH}}" [ngModelOptions]="{standalone: true}" [readonly]="isImportLDAPUser|| !enablePasswordRequired" />
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        {{strPwdComment}}
+                                    </div>
+                                </div>
+                                <div class="form-group" *ngIf="addUserData.PASSHASH_REQUIRED && showLdapPwdText">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Reconfirm Password <span class="text-red">*</span></label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="password" class="form-control" [(ngModel)]="addUserData.CPASSWORD" maxlength="{{securityParams.PASSWD_MAX_LENGTH}}" [ngModelOptions]="{standalone: true}" [readonly]="isImportLDAPUser|| !enablePasswordRequired" />
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group" *ngIf="showResetPwdDiv">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Password Reset Required</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-switch [(ngModel)]="addUserData.PWD_RESET_REQUIRED" [ngModelOptions]="{standalone: true}" [disabled]="isImportLDAPUser || !enableResetPwdRequired"></atpar-switch>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        Checking this will force the user to reset the password initially
+                                    </div>
+                                </div>
+                                <div class="form-group" *ngIf="showManageEdit">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Account Disabled</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-switch [(ngModel)]="addUserData.ACCOUNT_DISABLED" [ngModelOptions]="{standalone: true}" [disabled]="!chkAccDisable"></atpar-switch>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        Temporarily inactivate this user without deleting the user from the system
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Session Validity Time</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtToken'" [name]="txtToken" [(ngModel)]="addUserData.TOKEN_EXPIRY_PERIOD" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=4,numeric'" (bindModelDataChange)="bindModelDataChange($event)" [title]="'Value in minutes. Maximum length of 4 digits –use only numbers(1-9). Invalidates the user logged into the handheld device after this period of time. Forces user to re-login to communicate with the server'"></atpar-text>
+                                    </div>                                    
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Idle Time</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtIdleTime'" [name]="txtIdleTime" [(ngModel)]="addUserData.IDLE_TIME" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=4,numeric'" (bindModelDataChange)="bindModelDataChange($event)" [title]="'Idle time for the user in Minutes–use only numbers(1-9). Forces user to re-login into the PDA after this period of Inactive time'"></atpar-text>
+                                    </div>
+                                    <!--<div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        Idle time for the user in Minutes–use only numbers(1-9). Forces user to re-login into the PDA after this period of Inactive time
+                                    </div>-->
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtFirstName'" [name]="txtFirstName" [(ngModel)]="addUserData.FIRST_NAME" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=20,except_less_greater_symbols'" (bindModelDataChange)="bindModelDataChange($event)" [readonly]="isImportLDAPUser" [title]="'First name of the user –accepts everything except for < or>'"></atpar-text>
+                                    </div>                                   
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtLastName'" [name]="txtLastName" [(ngModel)]="addUserData.LAST_NAME" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=20,except_less_greater_symbols'" (bindModelDataChange)="bindModelDataChange($event)" [readonly]="isImportLDAPUser" [title]="'Last name of the user –accepts everything except for < or>'"></atpar-text>
+                                    </div>                                   
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Middle Initial</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtMName'" [name]="txtMName" [(ngModel)]="addUserData.MIDDLE_INITIAL" [ngModelOptions]="{standalone: true}" [validations]="'max=2,except_less_greater_symbols'" (bindModelDataChange)="bindModelDataChange($event)" [readonly]="isImportLDAPUser" [title]="'Middle initial of the user –accepts everything except for < or>'"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12"> Email ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtEmail'" [name]="txtEmail" [(ngModel)]="addUserData.EMAIL_ID" [ngModelOptions]="{standalone: true}" [validations]="'max=50,email'" (bindModelDataChange)="bindModelDataChange($event)" [readonly]="isImportLDAPUser" [title]="'Use the format userid@domainname.com'"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Phone 1</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtPhone1'" [name]="txtPhone1" [(ngModel)]="addUserData.PHONE1" [ngModelOptions]="{standalone: true}" [validations]="'phone,numeric,max=10'" (bindModelDataChange)="bindModelDataChange($event)" [readonly]="isImportLDAPUser"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Phone 2</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtPhone2'" [name]="txtPhone2" [(ngModel)]="addUserData.PHONE2" [ngModelOptions]="{standalone: true}" [validations]="'phone,numeric,max=10'" (bindModelDataChange)="bindModelDataChange($event)" [readonly]="isImportLDAPUser"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">FAX</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtFAX'" [name]="txtFAX" [(ngModel)]="addUserData.FAX" [ngModelOptions]="{standalone: true}" [validations]="'fax,numeric,max=10'" (bindModelDataChange)="bindModelDataChange($event)" [readonly]="isImportLDAPUser"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Pager</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtPager'" [name]="txtPager" [(ngModel)]="addUserData.PAGER" [ngModelOptions]="{standalone: true}" [validations]="'max=10,numeric'" (bindModelDataChange)="bindModelDataChange($event)" [readonly]="isImportLDAPUser"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Org Group ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [options]="dropdownOrgData" [style]="{'width':'100%'}" [id]="'ddldropdownOrgData'" [(ngModel)]="addUserData.ORG_GROUP_ID" [ngModelOptions]="{standalone: true}" [disabled]="!ddlOrgGroupEnable" filter="filter"></atpar-select>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        Select Organization Group
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Profile</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [options]="dropdownProfileData" [style]="{'width':'100%'}" [id]="'ddldropdownProfileData'" [(ngModel)]="addUserData.PROFILE_ID" [ngModelOptions]="{standalone: true}" [disabled]="!ddlProfileEnable" filter="filter"></atpar-select>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        Select Profile
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Upload Image</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <!--<input #file type="file" (change)="fileUpload($event)" id="btnFileUpload">-->
+                                        <div class="input-group image-preview ">
+                                            <input placeholder="No File Chosen" type="text" class="form-control image-preview-filename" disabled="disabled" title="{{userSelectedFile}}" [(ngModel)]="userSelectedFile" [ngModelOptions]="{standalone: true}" />
+                                            <!-- don't give a name === doesn't send on POST/GET -->
+                                            <span class="input-group-btn">
+                                                <!-- image-preview-clear button -->
+                                                <button type="button" class="btn btn-default image-preview-clear" style="display:none;"> <span class="glyphicon glyphicon-remove"></span> Clear </button>
+                                                <!-- image-preview-input -->
+                                                <div class="btn btn-default image-preview-input">
+                                                    <span class="glyphicon glyphicon-folder-open"></span> <span class="image-preview-input-title">Browse</span>
+                                                    <input type="file" id="FileUser" accept="image/*" (change)="fileUpload($event)" name="input-file-preview" />
+                                                    <!-- rename it -->
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        Upload Image
+                                    </div>
+                                </div>
+                                <div class="form-group" *ngIf="showManageEdit">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">LDAP User</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-switch [(ngModel)]="addUserData.LDAP_USER" [disabled]="true" [ngModelOptions]="{standalone: true}"></atpar-switch>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        Check this if user is LDAP User
+                                    </div>
+                                </div>
+                                <div class="form-group" *ngIf="isLdap">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12"> User DN</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        {{addUserData.USERDN}}
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        Current User DN
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-5 col-xs-12" *ngIf="!showManageEdit">
+                                    <button class="btn btn-purple sbtn" type="button" (click)="btnCreateSave_Click('Add')" [disabled]="disableButton">Create User &nbsp;<i class="fa fa-plus"></i></button>
+                                    <button class="btn btn-purple sbtn" type="button" *ngIf="showGoBack" (click)="btnGoBack_Click()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                </div>
+                                <div class="col-xs-12 col-md-6 col-md-offset-4 col-sm-6 col-sm-offset-5">
+                                    <button class="btn btn-purple sbtn" type="button" *ngIf="showManageEdit" (click)="btnCreateSave_Click('Edit')" [disabled]="disableButton">Update &nbsp;<i class="fa fa-check"></i></button>
+                                    <button class="btn btn-purple sbtn" type="button" *ngIf="showManageEdit && isLdap" (click)="btnRefreshUserDn_Click()">Refresh User DN & Save &nbsp;<i class="fa fa-refresh" aria-hidden="true"></i></button>
+                                    <button class="btn btn-purple sbtn" type="button" *ngIf="showGoBack && showManageEdit" (click)="btnGoBack_Click()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container x_panel no-border" *ngIf="displayImportDialog==true">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:20px;">
+                        <div class="col-xs-12">
+                            <form class="form-horizontal fomr-label-left">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-6 col-md-5">User ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <!--<input type="text" name="" id="input" class="form-control bdr-red" value="" required="required" pattern="" title="" [(ngModel)]="searchImpData.USER_ID" [ngModelOptions]="{standalone: true}">-->
+                                        <atpar-text [id]="'txtImpUserID'" [name]="txtImpUserID" [(ngModel)]="searchImpData.USER_ID" [ngModelOptions]="{standalone: true}" [validations]="'max=50'" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-6 col-md-5">First Name</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <!--<input type="text" name="" id="input" class="form-control bdr-red" value="" required="required" pattern="" title="" [(ngModel)]="searchImpData.FIRST_NAME" [ngModelOptions]="{standalone: true}">-->
+                                        <atpar-text [id]="'txtImpFirtName'" [name]="txtImpFirtName" [(ngModel)]="searchImpData.FIRST_NAME" [ngModelOptions]="{standalone: true}" [validations]="'max=50'" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-6 col-md-5"> Last Name </label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <!--<input type="text" name="" id="input" class="form-control bdr-red" value="" required="required" pattern="" title="" [(ngModel)]="searchImpData.LAST_NAME" [ngModelOptions]="{standalone: true}">-->
+                                        <atpar-text [id]="'txtImpLastName'" [name]="txtImpLastName" [(ngModel)]="searchImpData.LAST_NAME" [ngModelOptions]="{standalone: true}" [validations]="'max=50'" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="btnGo_Click(searchImpData)">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                    <button class="btn btn-purple sbtn" (click)="goBackButton_Click(false)"><i class="fa fa-arrow-left"></i> &nbsp; Go Back</button>
+                                </div>
+                            </form>
+                        </div>
+                        <br>
+                        <div class="col-xs-12 text-danger text-center">
+                            Note: LDAP Filter User ID or First Name or Last Name is mandatory
+                        </div>
+                        <div class="col-xs-12 table-responsive" *ngIf="lstLdapUserData.length>0">
+                            <button class="btn btn-purple sbtn pull-right" [disabled]="disableImport" (click)="btnImport_Click()">Import User &nbsp; <i class="fa fa-download"></i></button>
+                            <br>
+                            <atpar-datatable [value]="lstLdapUserData" [paginator]="true"  [pageLinks]="3"  [rows]="pazeSize" expandableRows="true"  [rowsPerPageOptions]="[10,20, 30, 40, 50, 60, 70, 80, 90, 100]" [globalFilter]="gb" [responsive]="true">
+                                <p-column header="Select One" [style]="{'text-align':'center','width':'6%'}" field="SELECTED_USER">
+                                    <template pTemplate type="body" let-col let-user="rowData">
+                                        <atpar-radioButton name="groupname" [check]="user.VALID_USER" checked="user[col.field]" (onClick)="rdBtnUser_Click($event,user)" [disabled]="user.USER_ID==''||user.FIRST_NAME==''||user.LAST_NAME==''"></atpar-radioButton>
+                                    </template>
+                                </p-column>
+                                <p-column header="User ID" field="USER_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column header="First Name" field="FIRST_NAME" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Last Name" field="LAST_NAME" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Middle Initial" field="MIDDLE_INITIAL" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Email ID" field="EMAIL_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Phone No" field="PHONE1" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="FAX" field="FAX" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="UserDN" field="USERDN" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                            </atpar-datatable>
+                            <div style="clear:both;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+</div>
+<!--<style>
+    .row-mt-1 {
+        margin-top: 1%;
+    }
+</style>-->
+<script>
+    
+    function DisableBackButton() {
+        alert('test');
+        //window.history.forward(1);
+        window.history.back();
+    }
+    setTimeout("DisableBackButton()", 0);
+    window.onunload = function () { null }
+</script>

@@ -1,0 +1,943 @@
+﻿<div id="main" class="content-page">
+    <div class="content">
+        <div class="">
+            <div class="page-header-title">
+                <h4 class="page-title"><a (click)="homeurl()">Administration ></a> Manager Profiles</h4>
+            </div>
+        </div>
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border">
+                <br>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="panel panel-default" [ngClass]="{'border-panel': page === true}">
+                        <!--   <div class="panel-heading" style="background:#f5f5f5;">
+                          <p><img src="assets/images/icons/app_icon_.png" alt="" height="25" width="29">&nbsp;&nbsp;Manage Profiles</p>
+                      </div> -->
+                        <div class="panel-body" style="padding:20px;" *ngIf="page">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-md-2">
+                                    <label for="">Profile Id</label>
+                                </div>
+                                <div class="col-xs-12 col-md-4">
+                                    <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlProfiles'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                </div>
+                                <div class="col-xs-12 col-md-2 hidden-xs">
+                                    <button class="btn btn-purple sbtn " (click)="go()">Go &nbsp;<i class="fa fa-arrow-right"></i></button>&nbsp;
+                                    <button class="btn btn-purple sbtn " (click)="create()">Create</button>
+                                </div>
+                                <div class="col-xs-12 hidden-sm hidden-md hidden-lg" style="margin-top:10px">
+                                    <button class="btn btn-purple sbtn col-xs-5" (click)="go()" style="margin-right:4px;">Go&nbsp;<i class="fa fa-arrow-right"></i></button>
+                                    <button class="btn btn-purple sbtn col-xs-5" (click)="create()">Create</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default" style="border: 1px solid #eee;" *ngIf="content">
+                        <div class="panel-body">
+                            <div class="container">
+                                <div class="col-xs-12 form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="col-xs-12 col-md-5">
+                                            <label for=""> Profile Id</label>
+                                        </div>
+                                        <div class="col-xs-12 col-md-7">
+                                            <input type="text" name="" id="input" class="form-control bdr-red" value="" required="required" pattern="" title="" placeholder="PR-POU Batch Profile">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="col-xs-12 col-md-5">
+                                            <label for=""> Profile Description</label>
+                                        </div>
+                                        <div class="col-xs-12 col-md-7">
+                                            <input type="text" name="" id="input" class="form-control bdr-red" value="" required="required" pattern="" title="" placeholder="PR-POU Batch Profile">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-xs-12">
+                                <div class="page-content">
+                                    <div class="container">
+                                        <div class="well well-sm ">
+                                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                                <h4 class="text-center">Manage Applications</h4>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                                <h3 class="text-center"></h3>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                                <h4 class="text-center">Web All | None</h4>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                                <h4 class="text-center">HHT All | None</h4>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="col-md-12 col-xs-12 col-sm-6">
+                                                <div class="panel panel-default no-radius">
+                                                    <div class="panel-heading box-class">
+                                                        <div class="from-group">
+                                                            <h4><img src="../../assets/img/app_icon.png" alt=""> &nbsp;AtPar</h4>
+                                                            <ul class="list-inline text-center">
+                                                                <li>
+                                                                    Web
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                                <li>
+                                                                    HHT
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel-body box-body">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <a (click)="popup()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Parameters</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup2()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Menu Access</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup3()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Screen Display</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="col-md-12 col-xs-12 col-sm-6">
+                                                <div class="panel panel-default no-radius">
+                                                    <div class="panel-heading box-class">
+                                                        <div class="from-group">
+                                                            <h4><img src="../../assets/img/recieve.png" alt=""> &nbsp;Receiving</h4>
+                                                            <ul class="list-inline text-center">
+                                                                <li>
+                                                                    Web
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                                <li>
+                                                                    HHT
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel-body box-body">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <a (click)="popup()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Parameters</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup2()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Menu Access</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup3()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Screen Display</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="col-md-12 col-xs-12 col-sm-6">
+                                                <div class="panel panel-default no-radius">
+                                                    <div class="panel-heading box-class">
+                                                        <div class="from-group">
+                                                            <h4><img src="../../assets/img/cartCount.png" alt=""> &nbsp;Cart Count</h4>
+                                                            <ul class="list-inline text-center">
+                                                                <li>
+                                                                    Web
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                                <li>
+                                                                    HHT
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel-body box-body">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <a (click)="popup()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Parameters</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup2()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Menu Access</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup3()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Screen Display</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="col-md-12 col-xs-12 col-sm-6">
+                                                <div class="panel panel-default no-radius">
+                                                    <div class="panel-heading box-class">
+                                                        <div class="from-group">
+                                                            <h4><img src="../../assets/img/cartCount.png" alt=""> &nbsp;Cycle Count</h4>
+                                                            <ul class="list-inline text-center">
+                                                                <li>
+                                                                    Web
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                                <li>
+                                                                    HHT
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel-body box-body">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <a (click)="popup()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Parameters</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup2()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Menu Access</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup3()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Screen Display</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="col-md-12 col-xs-12 col-sm-6">
+                                                <div class="panel panel-default no-radius">
+                                                    <div class="panel-heading box-class">
+                                                        <div class="from-group">
+                                                            <h4><img src="../../assets/img/deliver.png" alt=""> &nbsp;Deliver</h4>
+                                                            <ul class="list-inline text-center">
+                                                                <li>
+                                                                    Web
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                                <li>
+                                                                    HHT
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel-body box-body">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <a (click)="popup()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Parameters</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup2()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Menu Access</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup3()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Screen Display</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="col-md-12 col-xs-12 col-sm-6">
+                                                <div class="panel panel-default no-radius">
+                                                    <div class="panel-heading box-class">
+                                                        <div class="from-group">
+                                                            <h4><img src="../../assets/img/pick.png" alt=""> &nbsp;Pick Plan</h4>
+                                                            <ul class="list-inline text-center">
+                                                                <li>
+                                                                    Web
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                                <li>
+                                                                    HHT
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel-body box-body">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <a (click)="popup()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Parameters</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup2()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Menu Access</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup3()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Screen Display</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="col-md-12 col-xs-12 col-sm-6">
+                                                <div class="panel panel-default no-radius">
+                                                    <div class="panel-heading box-class">
+                                                        <div class="from-group">
+                                                            <h4><img src="../../assets/img/putAway.png" alt=""> &nbsp;Putawy</h4>
+                                                            <ul class="list-inline text-center">
+                                                                <li>
+                                                                    Web
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                                <li>
+                                                                    HHT
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel-body box-body">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <a (click)="popup()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Parameters</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup2()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Menu Access</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup3()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Screen Display</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="col-md-12 col-xs-12 col-sm-6">
+                                                <div class="panel panel-default no-radius">
+                                                    <div class="panel-heading box-class">
+                                                        <div class="from-group">
+                                                            <h4><img src="../../assets/img/stockIssue.png" alt=""> &nbsp;Stock Issue</h4>
+                                                            <ul class="list-inline text-center">
+                                                                <li>
+                                                                    Web
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                                <li>
+                                                                    HHT
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel-body box-body">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <a (click)="popup()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Parameters</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup2()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Menu Access</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup3()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Screen Display</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="col-md-12 col-xs-12 col-sm-6">
+                                                <div class="panel panel-default no-radius">
+                                                    <div class="panel-heading box-class">
+                                                        <div class="from-group">
+                                                            <h4><img src="../../assets/img/binToBin.png" alt=""> &nbsp;Bin 2 Bin</h4>
+                                                            <ul class="list-inline text-center">
+                                                                <li>
+                                                                    Web
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                                <li>
+                                                                    HHT
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel-body box-body">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <a (click)="popup()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Parameters</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup2()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Menu Access</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup3()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Screen Display</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="col-md-12 col-xs-12 col-sm-6">
+                                                <div class="panel panel-default no-radius">
+                                                    <div class="panel-heading box-class">
+                                                        <div class="from-group">
+                                                            <h4><img src="../../assets/img/pointOfUse.png" alt=""> &nbsp;Point of use</h4>
+                                                            <ul class="list-inline text-center">
+                                                                <li>
+                                                                    Web
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                                <li>
+                                                                    HHT
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel-body box-body">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <a (click)="popup()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Parameters</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup2()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Menu Access</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup3()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Screen Display</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="col-md-12 col-xs-12 col-sm-6">
+                                                <div class="panel panel-default no-radius">
+                                                    <div class="panel-heading box-class">
+                                                        <div class="from-group">
+                                                            <h4><img src="../../assets/img/trackIt.png" alt=""> &nbsp;Track It</h4>
+                                                            <ul class="list-inline text-center">
+                                                                <li>
+                                                                    Web
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                                <li>
+                                                                    HHT
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel-body box-body">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <a (click)="popup()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Parameters</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup2()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Menu Access</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup3()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Screen Display</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="col-md-12 col-xs-12 col-sm-6">
+                                                <div class="panel panel-default no-radius">
+                                                    <div class="panel-heading box-class">
+                                                        <div class="from-group">
+                                                            <h4><img src="../../assets/img/assetManagement.png" alt=""> &nbsp;Asset Management</h4>
+                                                            <ul class="list-inline text-center">
+                                                                <li>
+                                                                    Web
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                                <li>
+                                                                    HHT
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel-body box-body">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <a (click)="popup()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Parameters</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup2()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Menu Access</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup3()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Screen Display</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 col-xs-12">
+                                            <div class="col-md-12 col-xs-12 col-sm-6">
+                                                <div class="panel panel-default no-radius">
+                                                    <div class="panel-heading box-class">
+                                                        <div class="from-group">
+                                                            <h4><img src="../../assets/img/atparx.png" alt=""> &nbsp;AtParX</h4>
+                                                            <ul class="list-inline text-center">
+                                                                <li>
+                                                                    Web
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                                <li>
+                                                                    HHT
+                                                                    <input type="checkbox">
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel-body box-body">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <a (click)="popup()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Parameters</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup2()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Menu Access</a>
+                                                            </li>
+                                                            <li>
+                                                                <a (click)="popup3()"> <i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;Screen Display</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4 col-xs-offset-4 col-md-3 col-md-offset-5">
+                                        <button class="btn btn-purple small">Save &nbsp;<i class="fa fa-check"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default" style="border: 1px solid #eee;" *ngIf="display">
+                        <div class="panel-body" style="padding:20px;">
+                            <div class="col-xs-12 table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Parameter</th>
+                                            <th class="text-center">Value</th>
+                                            <th class="text-center">Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Allow users to do only put away of cart items</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text">[Unchecking this will enable the user to do counting and put away. Checking this will restrict the user to do only put away. If parameter "put away of cart items" is unchecked, this parameter does not have any value.]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Allow Qty. greater than Par Value</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text">[Checking this will allow users to enter the count quantity greater than par value]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Allow access to Carts allocated to Group Users</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text">[Checking this will allow complete access to carts allocated to other users in the group, the activity information still is captured for the user who does the actual count]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Disable bulk label printing</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text"> [Checking this will disable the bulk label printing option]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ignore modified Cart Definitions on Upload</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text"> [Checking this will ignore errors on modified Cart Definitions while loading the counts into PeopleSoft Interface tables]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Charge Capture</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text"> [Checking this will allow the users to Capture Charges on the handheld from Patient Charge Cards]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Default Input</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text">[Checking this will default the value to "0" in case of Count Option and to Par Value in case of Request Option on the HHT]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Select Default Printer Friendly Name</td>
+                                            <td class="text-center">
+                                                <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlProfiles'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                            </td>
+                                            <td class="desc-text">[Selected printer friendly name for the default printer that will be used for label printing]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Delete Cart Items after upload</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text">[Checking this will delete the cart profile (items data) on the HHT after the counts are uploaded to the server]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Display FOQ / Max / Par value</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text">[Checking this will display FOQ or Max or Par value of the item, Un checking will allow the user to do Blind Counting on the item screen]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Edit par value </td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text">
+                                                [Checking this will allow handheld users to edit the Par value on the HHT and the Server users to edit the Par value in the Optimization Report. Audit trail is maintained for all the changes]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ignore Putaway qty</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text">
+                                                [Checking this will allow the Putaway Qty greater than Order Qty.Unchecking this will enable the system to generate an error when putaway Qty is greater than Order Qty.]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Item Count High%</td>
+                                            <td class="text-center">
+                                                <input type="text" name="" id="input" class="form-control bdr-purple" value="" required="required" pattern="" title="">
+                                            </td>
+                                            <td class="desc-text">[If Item Order % (Qty Ordered / Par Value) value greater than this % value , the transaction will be captured for reporting]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Item Count Low%</td>
+                                            <td class="text-center">
+                                                <input type="text" name="" id="input" class="form-control bdr-purple" value="" required="required" pattern="" title="">
+                                            </td>
+                                            <td class="desc-text">
+                                                [If Item Order % (Qty Ordered / Par Value) value lower than this % value , the transaction will be captured for reporting]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Type Code for Item NDC</td>
+                                            <td class="text-center">
+                                                <input type="text" name="" id="input" class="form-control bdr-purple" value="" required="required" pattern="" title="">
+                                            </td>
+                                            <td class="desc-text">[Type Code used for downloading the Item NDC from PeopleSoft]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Type Code for Item UPN </td>
+                                            <td class="text-center">
+                                                <input type="text" name="" id="input" class="form-control bdr-purple" value="" required="required" pattern="" title="">
+                                            </td>
+                                            <td class="desc-text">[Type Code used for downloading the Item UPN from PeopleSoft]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Select a printer</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text">
+                                                [Checking this will allow users to select an alternate printer for printing labels on the HHT]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mandatory Count</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text">
+                                                [Checking this will make it mandatory for the HHT user to enter Counts for all the items in the Cart / Par Location]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Print Cart header and items barcode</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text">
+                                                [Checking this will enable printing Cart Header and Items barcode labels from Status screen after user confirmation]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Putaway of Cart Items</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text">
+                                                [Checking this will allow the users to do put away of cart items.]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Default Count Option (Count/Request)</td>
+                                            <td>
+                                                <atpar-radioButton name="groupname" value="" label="Count"></atpar-radioButton>
+                                                <br>
+                                                <atpar-radioButton name="groupname" value="" label="Request"></atpar-radioButton>
+                                                <br>
+                                                <atpar-radioButton name="groupname" value="" label="None"></atpar-radioButton>
+                                            </td>
+                                            <td class="desc-text">
+                                                [Checking this will allow users to select an alternate printer for printing labels on the HHT]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ability to Select count option on HHT</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text">
+                                                [Checking this will enable the user to select the Count Option at the time of counting on the handheld]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Max. allowable Count/Request Quantity</td>
+                                            <td class="text-center">
+                                                <input type="text" name="" id="input" class="form-control bdr-purple" value="" required="required" pattern="" title="">
+                                            </td>
+                                            <td class="desc-text">
+                                                [Checking this will allow the users to do put away of cart items.]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Max. allowable number of digits</td>
+                                            <td class="text-center">
+                                                <input type="text" name="" id="input" class="form-control bdr-purple" value="" required="required" pattern="" title="">
+                                            </td>
+                                            <td class="desc-text">
+                                                [Force user to count/request qty less than number of digits set(this includes numbers and decimal) ]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>To default all the counts</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text">
+                                                [Checking this parameter will allow the user to default count all the items]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Silent Scan</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text">
+                                                [Checking this will mute the scan beep of (Symbol) device(s) ]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sort By Column</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text">
+                                                [Checking this will allow the user to sort the columns on the HHT]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Super User</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text">
+                                                [Allows user to view, modify, upload, delete other users data on handheld]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Display warning message when quantity is greater than selected option</td>
+                                            <td>
+                                                <atpar-radioButton name="groupname" value="" label="None"></atpar-radioButton>
+                                                <br>
+                                                <atpar-radioButton name="groupname" value="" label="Par Qty"></atpar-radioButton>
+                                                <br>
+                                                <atpar-radioButton name="groupname" value="" label="Min Qty"></atpar-radioButton>
+                                                <br>
+                                                <atpar-radioButton name="groupname" value="" label="Max Qty"></atpar-radioButton>
+                                            </td>
+                                            <td class="desc-text">
+                                                [Display warning message when quantity is greater than selected option]
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br>
+                                <div class="col-xs-12 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn">Save &nbsp;<i class="fa fa-check"></i></button>
+                                    <button class="btn btn-purple sbtn" (click)="hideDialog()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default" style="border: 1px solid #eee;" *ngIf="display2">
+                        <div class="panel-body" style="padding:20px;">
+                            <div class="col-xs-12 table-responsive">
+                                <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column expander="true" styleClass="col-icon"></p-column>
+                                    <p-column field="" header="Select" [filter]="true">
+                                        <template pTemplate="filter" let-col>
+                                            <ul class="list-inline">
+                                                <li>
+                                                    <a href="">All</a>
+                                                </li> |
+                                                <li>
+                                                    <a href="">None</a>
+                                                </li>
+                                            </ul>
+                                        </template>
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <atpar-switch></atpar-switch>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="MENU_NAME" header="Menu Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="MENU_SUB_GROUP" header="Menu Sub Groups" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                    <p-column field="MENU_SEQ_NO" header="Menu Secquence" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                    <template let-employee pTemplate="rowexpansion">
+                                        <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
+                                            <div class="ui-grid-row">
+                                                <div class="ui-grid-col-3" style="text-align:center">
+                                                    <i class="fa fa-search" (click)="showCar(employee)" style="cursor:pointer;float:left;margin-top:40px"></i>
+                                                </div>
+                                                <div class="ui-grid-col-9">
+                                                    <div class="ui-grid ui-grid-responsive ui-grid-pad">
+                                                        <div class="ui-grid-row">
+                                                            <div class="ui-grid-col-2"><span class="datatablespan">Substitute Item</span></div>
+                                                            <div class="ui-grid-col-10">{{employee.SUBSTITUTE_ITEM_ID}}</div>
+                                                        </div>
+                                                        <div class="ui-grid-row">
+                                                            <div class="ui-grid-col-2"><span class="datatablespan">Description</span></div>
+                                                            <div class="ui-grid-col-10">{{employee.ITEM_DESCR}}</div>
+                                                        </div>
+                                                        <div class="ui-grid-row">
+                                                            <div class="ui-grid-col-2"><span class="datatablespan">Current Status</span></div>
+                                                            <div class="ui-grid-col-10">{{employee.STATUS}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
+                                    <!--<p-footer></p-footer>-->
+                                </atpar-datatable>
+                                <br>
+                                <div class="col-xs-12 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn">Save &nbsp;<i class="fa fa-check"></i></button>
+                                    <button class="btn btn-purple sbtn" (click)="hideDialog()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default" style="border: 1px solid #eee;" *ngIf="display3">
+                        <div class="panel-body" style="padding:20px;">
+                            <div class="col-xs-12 col-md-6 col-md-offset-3">
+                                <div class="col-xs-12 col-md-3">
+                                    <label for="">Screen Name</label>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <atpar-select [options]="cities" [required]="true" [id]="'ddlScrname'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                </div>
+                                <div style="clear:both;margin-bottom:10px;"></div>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="col-xs-12 table-responsive">
+                                <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column expander="false" styleClass="col-icon"></p-column>
+                                    <p-column field="" header="Display Column" [filter]="true">
+                                        <template pTemplate="filter" let-col>
+                                            <ul class="list-inline">
+                                                <li>
+                                                    <a href="">All</a>
+                                                </li> |
+                                                <li>
+                                                    <a href="">None</a>
+                                                </li>
+                                            </ul>
+                                        </template>
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <atpar-switch></atpar-switch>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="COLUMN_HEADER" header="Column Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="FIELD_NAME" header="Label">
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <input type="text" name="" id="input" class="form-control bdr-red" value="" required="required" pattern="" title="">
+                                        </template>
+                                    </p-column>
+                                    <p-column field="COLUMN_ORDER" header="Order">
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <input type="text" name="" id="input" class="form-control bdr-red" value="" required="required" pattern="" title="">
+                                        </template>
+                                    </p-column>
+                                    <p-column field="COLUMN_WIDTH" header="Width">
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <input type="text" name="" id="input" class="form-control bdr-red" value="" required="required" pattern="" title="">
+                                        </template>
+                                    </p-column>
+                                    <p-column field="MANDATORY_TOGGLE" header="Toggle Description">
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <input type="text" name="" id="input" class="form-control bdr-red" value="" required="required" pattern="" title="">
+                                        </template>
+                                    </p-column>
+                                    <p-column field="TOGGLE_FIELD" header="Toggle Order">
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <input type="text" name="" id="input" class="form-control bdr-red" value="" required="required" pattern="" title="">
+                                        </template>
+                                    </p-column>s
+                                    <template let-employee pTemplate="rowexpansion">
+                                        <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
+                                            <div class="ui-grid-row">
+                                                <div class="ui-grid-col-3" style="text-align:center">
+                                                    <i class="fa fa-search" (click)="showCar(employee)" style="cursor:pointer;float:left;margin-top:40px"></i>
+                                                </div>
+                                                <div class="ui-grid-col-9">
+                                                    <div class="ui-grid ui-grid-responsive ui-grid-pad">
+                                                        <div class="ui-grid-row">
+                                                            <div class="ui-grid-col-2"><span class="datatablespan">Column Name</span></div>
+                                                            <div class="ui-grid-col-10">{{employee.COLUMN_HEADER}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
+                                    <!--<p-footer></p-footer>-->
+                                </atpar-datatable>
+                                <div style="clear:both;"></div>
+                                <br>
+                                <div class="col-xs-12 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn">Save &nbsp;<i class="fa fa-check"></i></button>
+                                    <button class="btn btn-purple sbtn" (click)="hideDialog()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                </div>
+                            </div>
+                            <!-- <p class="text-danger">* Mandatory</p> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

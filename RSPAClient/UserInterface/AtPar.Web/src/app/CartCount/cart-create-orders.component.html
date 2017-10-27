@@ -1,0 +1,96 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border" *ngIf="true">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px;">
+                        <div class="form-horizontal form-label-left">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Org Group ID </label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <label *ngIf="!isShowOrgGroupDD" class="control-label lbl-left">{{orgGrpId}}</label>
+                                        <atpar-select [options]="lstOrgGroups" *ngIf="isShowOrgGroupDD" [id]="'lstOrgGroups'" [(ngModel)]="selectedOrgGroupId" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlOrgGrpIdChanged($event)" [required]="true"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Business Unit / Company</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstBUnits" [id]="'ddlOrglstBUnits'" [(ngModel)]="selectedBUnit" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlBUnitChanged($event)" [required]="true"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Cart ID / Par Location</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-ac-server [(ngModel)]="cartID" [mandatory]="'true'" [id]="'cartID'" [suggestions]="lstFilterCartIDs" (completeMethod)="fillCartIDsAuto($event)" field="name" [size]="30" [minLength]="1" [ngModelOptions]="{standalone: true}"></atpar-ac-server>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-md-4 col-sm-6 col-sm-offset-5 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="onGoClick()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12" *ngIf="showGrid">
+                            <div class="container">
+                                <ul class="list-inline">
+                                    <li class="no-padding">
+                                        <strong>Transaction ID : </strong><span class="text-primary"> {{transID}}</span>
+                                    </li>
+                                    <li class="pull-right no-padding">
+                                        <strong>Latest Counts : </strong><span class="text-primary"> </span>
+                                    </li>
+                                </ul>
+                                <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <p style="float:left"><strong>Transaction ID : </strong><span class="text-primary"> {{transID}}</span></p>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <p style="font-weight:bold;float:right"><strong>Latest Counts : </strong><span class="text-primary"> </span></p>
+        </div>-->
+
+                                
+                                    <div class="no-scrl">
+                                        <atpar-datatable [value]="lstCartItemDetails" [style]="{'width':'100%'}" scrollable="true" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPage" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" resizableColumns="true">
+                                            <p-column field="ROWINDEX" header="SNO" sortable="custom" [filter]="true" filterPlaceholder="Search" *ngIf="false"></p-column>
+                                            <p-column field="" header="*" *ngIf="false"></p-column>
+                                            <p-column field="ChkValue" header="ChkValue" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search" *ngIf="false" [style]="{'width':'30px'}"></p-column>
+                                            <p-column field="INV_ITEM_ID" header="Item ID" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search" [style]="{'width':'180px'}"></p-column>
+                                            <p-column field="CUST_ITEM_ID" header="Custom Item NO" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search" [style]="{'width':'160px'}"> </p-column>
+                                            <p-column field="COMPARTMENT" header="Compartment" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search" [style]="{'width':'150px'}"> </p-column>
+                                            <p-column field="ITEM_DESCR" header="Description" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search" [style]="{'width':'300px'}"></p-column>
+                                            <p-column field="ITEM_PRICE" header="Price ($)" sortable="custom" (sortFunction)="customSort1($event)" [filter]="true" filterPlaceholder="Search" [style]="{'width':'120px','text-align':'center'}"> </p-column>
+                                            <p-column field="INVENTORY_ITEM" header="Item Type" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search" [style]="{'width':'120px'}"> </p-column>
+                                            <p-column field="OPTIMAL_QTY" header="Par Value" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search" [style]="{'width':'120px','text-align':'center'}"></p-column>
+                                            <p-column field="UOM" header="UOM" sortable="custom" (sortFunction)="customSort($event)"  [filter]="true" filterPlaceholder="Search" [style]="{'width':'100px'}"></p-column>
+                                            <p-column header="Count Qty" field="COUNTQTY" [style]="{'width':'112px'}" [sortable]="true" >
+                                                <template let-cartcount="rowData" pTemplate type="body">
+                                                    <atpar-text-grid [(ngModel)]="cartcount.COUNTQTY" [ngModelOptions]="{standalone: true}" [name]="cartcount.INV_ITEM_ID" [validations]="cartcount.validationRules" [id]="cartcount.INV_ITEM_ID"></atpar-text-grid>
+                                                    <!--<input type="text" class="form-control bdr-purple" [(ngModel)]="cartcount.COUNTQTY" />-->
+                                                </template>
+                                            </p-column>
+                                            <p-column field="DATE_1" header="{{date1Header}}" *ngIf="showDate1Column" [style]="{'width':'120px','text-align':'center'}"></p-column>
+                                            <p-column field="DATE_2" header="{{date2Header}}" *ngIf="showDate2Column" [style]="{'width':'120px','text-align':'center'}"></p-column>
+                                            <p-column field="DATE_3" header="{{date3Header}}" *ngIf="showDate3Column" [style]="{'width':'120px','text-align':'center'}"></p-column>
+                                            <p-column field="DATE_4" header="{{date4Header}}" *ngIf="showDate4Column" [style]="{'width':'120px','text-align':'center'}"></p-column>
+                                            <p-column field="DATE_5" header="{{date5Header}}" *ngIf="showDate5Column" [style]="{'width':'120px','text-align':'center'}"></p-column>
+                                            <p-column field="ReplnCtrl" header="ReplnCtrl" *ngIf="false"></p-column>
+                                            <p-column field="ReplnCtrl" header="ReplnCtrl" *ngIf="false" [sortable]="true"></p-column>
+                                        </atpar-datatable>
+                                    </div>
+                                
+                            </div>
+                            <div class="clear"></div>
+                            <br>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="onSubmitClick()">Submit&nbsp; <i class="fa fa-check"></i></button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <atpar-growl [value]="msgs" sticky="sticky"></atpar-growl>
+</div>

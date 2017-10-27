@@ -1,0 +1,10 @@
+"use strict";
+var MT_ATPAR_CONFIGURATION_SECTION_DTLS = (function () {
+    function MT_ATPAR_CONFIGURATION_SECTION_DTLS() {
+        this.MinLength = 2;
+        this.MaxLength = 10;
+    }
+    return MT_ATPAR_CONFIGURATION_SECTION_DTLS;
+}());
+exports.MT_ATPAR_CONFIGURATION_SECTION_DTLS = MT_ATPAR_CONFIGURATION_SECTION_DTLS;
+//# sourceMappingURL=MT_ATPAR_CONFIGURATION_SECTION_DTLS.js.map

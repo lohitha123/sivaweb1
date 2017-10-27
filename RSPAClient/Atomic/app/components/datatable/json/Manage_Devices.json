@@ -1,0 +1,26 @@
+[
+      {
+        "DEVICE_ID": "device1",
+        "DESCRIPTION": "device1",
+        "MAC_ADDRESS": "45789631256",
+        "STATUS": "true",
+        "STATUS_VALUE": "Active",
+        "CHANGESTATUS": "InActivate"
+      },
+      {
+        "DEVICE_ID": "device2",
+        "DESCRIPTION": "device2",
+        "MAC_ADDRESS": "9160988028",
+        "STATUS": "false",
+        "STATUS_VALUE": "Inactive",
+        "CHANGESTATUS": "Activate"
+      },
+      {
+        "DEVICE_ID": "device3",
+        "DESCRIPTION": "device3",
+        "MAC_ADDRESS": "789456123",
+        "STATUS": "true",
+        "STATUS_VALUE": "Active",
+        "CHANGESTATUS": "InActivate"
+      }
+    ]

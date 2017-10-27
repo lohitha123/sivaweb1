@@ -1,0 +1,97 @@
+﻿<div id="main" class="content-page">
+    <div class="page-header-title">
+        <h4 class="page-title"><a (click)="homeurl()">Administration ></a>Setup Item Attributes</h4>
+    </div>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:20px;">
+                        <div class="col-xs-12">
+                            <form class="form-horizontal form-label-left" *ngIf="page">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Org ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-text [(ngModel)]="newItem.OrgIdx" [name]="txtOrgIdx" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'OrgIdx'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Department</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-select [options]="cities" [required]="true" [id]="'ddlDep'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Location Type</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-select [options]="cities" [required]="true" [id]="'ddlOrggroupid'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Business Unit/Company</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-select [options]="cities" [required]="true" [id]="'ddlBunits'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Location</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-text [(ngModel)]="newItem.LocationID1" [name]="txtLocationID1" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'LocationID1'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Item ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-text [(ngModel)]="newItem.LocationName" [name]="txtLocationName" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'LocationName'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="go()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-xs-12 table-responsive" *ngIf="pop">
+                            <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                <p-column expander="true" styleClass="col-icon"></p-column>
+                                <p-column field="ITEM_ID" header="Item Id" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="BUSINESS_UNIT" header="Business Units" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="LOCATION" header="Location" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="LOCATION_DESCR" header="Location Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="DEPT_ID" header="Allocated Department" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="Par_UOM" header="Par UOM" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="DEPT_ID" header="Issue UOM" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-text [(ngModel)]="newItem.Iss" [name]="txtIss" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Iss'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </template>
+                                </p-column>
+                                <p-column field="DEPT_ID" header="Conversion Rate" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-text [(ngModel)]="newItem.CS" [name]="txtCS" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'CS'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </template>
+                                </p-column>
+                                <p-column header="Lot">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-switch></atpar-switch>
+                                    </template>
+                                </p-column>
+                                <p-column header="Serial">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-switch></atpar-switch>
+                                    </template>
+                                </p-column>
+                            </atpar-datatable>
+                            <br>
+                            <div class="col-xs-12 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn">Save &nbsp;<i class="fa fa-check"></i></button>
+                                <!--  <button class="btn btn-purple sbtn" (click)="hideDialog()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

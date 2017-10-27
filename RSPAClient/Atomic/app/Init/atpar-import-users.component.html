@@ -1,0 +1,107 @@
+﻿<div id="main" class="content-page">
+    <div class="page-header-title">
+        <h4 class="page-title"><a (click)="homeurl()">Administration ></a> Import User</h4>
+    </div>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="panel panel-default" style="border: 1px solid #eee;">
+                <div class="panel-body">
+                    <form class="form-horizontal form-label-left">
+                        <div class="form-group">
+                            <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Search Filter </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <atpar-text [(ngModel)]="newItem.Search" [name]="txtSearch" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Search'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                <!--  <div class="dropdown">
+                                    <p>Use only numbers (0-9)</p>
+                                </div> -->
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                [Entered search string will be appended to search string provided in Ldap Configuration E.g. cn=user,sn=a* ]
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> Entry Limit </label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <atpar-text [(ngModel)]="newItem.Entry" [name]="txtEntry" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Entry'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                <!--   <div class="dropdown">
+                                    <p>Use only numbers (0-9)</p>
+                                </div> -->
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                [Max. No of records to retrieve, this will override entry limit setup in Ldap configuration use only numbers(0-9).]
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-5">
+                            <!--  <button class="btn btn-purple sbtn">Assign</button> -->
+                            <button class="btn btn-purple sbtn" (click)="go()"> Go &nbsp;<i class="fa fa-arrow-right"></i> </button>
+                        </div>
+                    </form>
+                    <br>
+                    <div class="col-xs-12 table-responsive" *ngIf="table">
+                        <!--<button class="btn btn-purple sbtn pull-right" (click)="import()"><i class="fa fa-download"></i> &nbsp;Import User</button>-->
+                        <br>
+                        <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true" resizableColumns="true">
+                            <p-column expander="true" styleClass="col-icon"></p-column>
+                            <p-column header="User ID" field="USER_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                            <p-column header="First Name" field="FIRST_NAME" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                            <p-column header="Last Name" field="LAST_NAME" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                            <p-column header="Middle Name" field="" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                            <p-column header="User Dn" field="USERDN" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                            <p-column header="Select" [style]="{'width':'100px'}">
+                                <template pTemplate="filter" let-col>
+                                    <ul class="list-inline">
+                                        <li>
+                                            <a href="">All</a>
+                                        </li> |
+                                        <li>
+                                            <a href="">None</a>
+                                        </li>
+                                    </ul>
+                                </template>
+                                <template let-col let-ven="rowData" pTemplate type="body">
+                                    <atpar-switch></atpar-switch>
+                                </template>
+                            </p-column>
+                            <template let-employee pTemplate="rowexpansion">
+                                <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
+                                    <div class="ui-grid-row">
+                                        <div class="ui-grid-col-3" style="text-align:center">
+                                            <i class="fa fa-search" (click)="showCar(employee)" style="cursor:pointer;float:left;margin-top:40px"></i>
+                                        </div>
+                                        <div class="ui-grid-col-9">
+                                            <div class="ui-grid ui-grid-responsive ui-grid-pad">
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-2"><span class="datatablespan">User id</span></div>
+                                                    <div class="ui-grid-col-10">{{employee.USER_ID}}</div>
+                                                </div>
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-2"><span class="datatablespan">First Name</span> </div>
+                                                    <div class="ui-grid-col-10">{{employee.FIRST_NAME}}</div>
+                                                </div>
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-2"><span class="datatablespan">Last Name</span> </div>
+                                                    <div class="ui-grid-col-10">{{employee.LAST_NAME}}</div>
+                                                </div>
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-2"><span class="datatablespan">Printer Name</span> </div>
+                                                    <div class="ui-grid-col-10">{{employee.STATUS}}</div>
+                                                </div>
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-2"><span class="datatablespan">Current Status</span> </div>
+                                                    <div class="ui-grid-col-10">{{employee.CHANGESTATUS}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                            <!--<p-footer></p-footer>-->
+                        </atpar-datatable>
+                        <div style="clear:both;"></div>
+                    </div>                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

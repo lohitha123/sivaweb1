@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<project name="DataBuild" default="buildall" basedir="." xmlns="http://nant.sf.net/schemas/nant-0.85.win32.net-1.0.xsd">
+	<description>Build File for Dotnet portion of the atpar server</description>
+	
+	<include buildfile="..\..\Headers\nantincludes.include" />
+	
+	<target name="AtPar.Data" description="compiles the source code">
+	<echo message="Compiling AtPar Data Mapping Repos Code........" />
+	    <nant buildfile="Atpar.Data.Mapping/Atpar.Data.Mapping.build" target="build" /> 
+		<echo message="Compiling AtPar Data Repos Code........" />
+	    <nant buildfile="AtPar.Data/AtPar.Data.build" target="build" />		
+		<echo message="Compiling AtPar Init Repos Code........" />
+		<echo message="Compiling AtPar Common Repos Code........" />
+	    <nant buildfile="AtPar.Common.Repos/AtPar.Common.Repos.build" target="build" />	
+	    <nant buildfile="AtPar.Init.Repos/AtPar.Init.Repos.build" target="build" /> 
+		<echo message="Compiling AtPar AssetManagement Repos Code........" />
+	    <nant buildfile="AtPar.AssetManagement.Repos/AtPar.AssetManagement.Repos.build" target="build" /> 
+		<echo message="Compiling AtPar BinToBin Repos Code........" />
+	    <nant buildfile="AtPar.BinToBin.Repos/AtPar.BinToBin.Repos.build" target="build" /> 
+		<echo message="Compiling AtPar CartCount Repos Code........" />
+	    <nant buildfile="AtPar.CartCount.Repos/AtPar.CartCount.Repos.build" target="build" /> 
+		<echo message="Compiling AtPar CycleCount Repos Code........" />
+	    <nant buildfile="AtPar.CycleCount.Repos/AtPar.CycleCount.Repos.build" target="build" />
+		
+		<echo message="Compiling AtPar Deliver Repos Code........" />	    
+	    <nant buildfile="AtPar.Deliver.Repos/AtPar.Deliver.Repos.build" target="build" /> 
+		<echo message="Compiling AtPar ParManagement Repos Code........" />
+	    <nant buildfile="AtPar.ParManagement.Repos/AtPar.ParManagement.Repos.build" target="build" /> 
+		<echo message="Compiling AtPar Pharmacy Repos Code........" />
+	    <nant buildfile="AtPar.Pharmacy.Repos/AtPar.Pharmacy.Repos.build" target="build" /> 
+		<echo message="Compiling AtPar PickPlan Repos Code........" />
+	    <nant buildfile="AtPar.PickPlan.Repos/AtPar.PickPlan.Repos.build" target="build" /> 
+		<echo message="Compiling AtPar POU Repos Code........" />
+	    <nant buildfile="AtPar.POU.Repos/AtPar.POU.Repos.build" target="build" /> 
+		<echo message="Compiling AtPar Putaway Repos Code........" />
+	    <nant buildfile="AtPar.Putaway.Repos/AtPar.Putaway.Repos.build" target="build" /> 
+		<echo message="Compiling AtPar Receiving Repos Code........" />
+	    <nant buildfile="AtPar.Receiving.Repos/AtPar.Receiving.Repos.build" target="build" /> 
+		<echo message="Compiling AtPar RFID Repos Code........" />
+	    <nant buildfile="AtPar.RFID.Repos/AtPar.RFID.Repos.build" target="build" /> 
+		<echo message="Compiling AtPar StockIssue Repos Code........" />
+	    <nant buildfile="AtPar.StockIssue.Repos/AtPar.StockIssue.Repos.build" target="build" /> 
+		<echo message="Compiling AtPar TrackIT Repos Code........" />
+	    <nant buildfile="AtPar.TrackIT.Repos/AtPar.TrackIT.Repos.build" target="build" /> 
+ 
+		
+	</target>
+
+	<target name="buildall" description="compiles the source code">	
+		<echo message="Building ${asminfo.product} ${asminfo.product.version}"/>	
+		   
+		<call target="AtPar.Data" />
+	</target>
+
+</project>

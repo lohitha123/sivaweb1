@@ -1,0 +1,10 @@
+[
+  {
+    "REASON_CODE": "reason1",
+    "DESCRIPTION": "desc1"
+  },
+  {
+    "REASON_CODE": "reason2",
+    "DESCRIPTION": "desc2"
+  }
+]

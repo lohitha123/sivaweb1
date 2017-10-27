@@ -1,0 +1,479 @@
+﻿
+<style>
+    .ml-m15{
+        margin-left:-15px;
+    }
+    .text-align
+    {
+        left:-11px;
+    }
+    .align-calender
+    {
+        left:9px;
+    }
+</style>
+<div id="main" class="content-page">
+
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:10px 0px 10px 0px;">
+
+                        <form class="form-horizontal form-label-left" *ngIf="page">
+
+                            <div class="col-xs-12 col-lg-12 col-sm-12 col-md-12">
+                                <div class="first-line">
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-6 col-sm-6"> Org Group ID</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <label *ngIf="blnShowOrgGroupLabel" class="control-label lbl-left">{{orgGrpIDData}}</label>
+                                            <atpar-select [options]="lstOrgGroups" [id]="'ddllstOrgGroups'" [required]="true" [(ngModel)]="selectedOrgGroupId" [ngModelOptions]="{standalone: true}" filter="filter" *ngIf="blnShowOrgGroupDD" (onChange)="ddlOrgGrpIdChanged()"></atpar-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-6 col-sm-6">Item ID/Asset ID</label>
+                                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                                <atpar-ac-server [(ngModel)]="selectedItemAsset"
+                                                                 [ngModelOptions]="{standalone: true}"
+                                                                 [mandatory]="'true'"
+                                                                 [id]="'itemidassetid'"
+                                                                 [suggestions]="lstFilteredItems" (completeMethod)="fillItemsAuto($event)"></atpar-ac-server>
+
+                                            </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-6 col-sm-6">Description/Comments</label>
+                                        <div class="col-xs-12 col-md-6 col-sm-6">
+                                            <atpar-text [(ngModel)]="enteredDescription" [name]="txtenteredDescription" [validations]="'except_less_greater_symbols'" [id]="'txtenteredDescription'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-1 form-group">
+                                        <button class="btn btn-purple sbtn" (click)="search()">Search &nbsp; <i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                                <div  class="second-line">
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-6 col-sm-6">Equipment Type</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <atpar-select [options]="lstEquipmentTypes" [(ngModel)]="selectedEquipmentType" [id]="'ddlEquipmentType'" filter="filter" (onChange)="ddlEquipmentTypeChanged()" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                        </div>                                       
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                          <label for="" class="control-label col-xs-12 col-md-5 col-sm-6 ml-m15">Item ID/Asset ID</label>
+                                          <div class="col-xs-12 col-md-7 col-sm-6">
+                                              <atpar-select [options]="lstItemDetails" (onChange)="ddlItemIDsChanged()" [(ngModel)]="selectedItemID" [id]="'ddlItemIDs'" filter="filter" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                          </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                         <button class="btn btn-purple sbtn" (click)="btnGo_Click()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>                                   
+                                        <button class="btn btn-purple sbtn" (click)="addNewItem()">Add New Item &nbsp; <i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </form>
+
+                        <div class="col-xs-12 table-responsive ">
+                            <div class="col-xs-12 table-responsive ">
+                                <div class="container" *ngIf="showCommentsGrid">
+
+                                    <atpar-datatable [value]="tkitEquipmentItemDetailsList" [paginator]="true" [pageLinks]="3" (filteredData)="filterdata($event)" [rows]="pazeSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+
+
+                                        <p-column field="" header="Action" [style]="{'width':'4%','text-align':'center'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <i style="cursor:pointer" title="Edit" class="fa fa-pencil fa-bg bg-red" (click)="editItemDetails(ven)"></i>
+                                            </template>
+                                        </p-column>
+
+                                        <p-column field="ITEM_TYPE" header="Equipment Type" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+
+                                        <p-column field="ITEM_ID" header="ItemID" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                            <!--<template let-ven="rowData" pTemplate="body">
+                                                <a style="cursor:pointer" (click)="add()">{{ven.ITEM_ID}}</a>
+                                            </template>-->
+                                        </p-column>
+
+                                        <p-column field="ITEM_DESCR" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+
+
+                                        <p-column field="COMMENTS" header="Comments" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+
+                                    </atpar-datatable>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-12" *ngIf="showitemdetailsFields">
+                            <form class="form-horizontal form-label-left">
+                                <div class="pull-left col-md-4">
+                                    <label for="test_step_element_id" class="control-label col-md-4 col-sm-4 col-xs-12">Equipment Type</label>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <label class="control-label lbl-left">Operation Table</label>
+                                    </div>
+                                </div>
+                                <button *ngIf="showAddSerailbutton" class="btn btn-purple sbtn pull-right" (click)="addNewserials()" style="margin-right:10px;">Add Serial &nbsp; <i class="fa fa-plus"></i></button>
+                                <br>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="test_step_element_id" class="control-label col-md-6 col-sm-6 col-xs-12">Item ID</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <atpar-text [id]="'txtItemDvalue'"
+                                                            [name]="txtItemDvalue"
+                                                            [disabled]="newItem.Disable"
+                                                            [(ngModel)]="newItem.ITEM_ID"
+                                                            [ngModelOptions]="{standalone: true}"
+                                                            [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'"
+                                                            [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"
+                                                            (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="test_step_element_id" class="control-label col-md-6 col-sm-6 col-xs-12">Storage Location</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <atpar-text [id]="'txtStoragelocation'"
+                                                            [name]="txtStoragelocation"
+                                                            [(ngModel)]="newItem.STORAGE_LOCATION"
+                                                            [ngModelOptions]="{standalone: true}"
+                                                            [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'"
+                                                            [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"
+                                                            (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" *ngIf="showMfrColumn">
+                                            <label for="test_step_element_id" class="control-label col-md-6 col-sm-6 col-xs-12">Manufacturer</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <atpar-text [id]="'txtManu'"
+                                                            [name]="txtManu"
+                                                            [(ngModel)]="newItem.MANUFACTURER"
+                                                            [ngModelOptions]="{standalone: true}"
+                                                            [validations]="'max=16,alpha_numeric_underscore_nospace'"
+                                                            [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="test_step_element_id" class="control-label col-md-6 col-sm-6 col-xs-12">Owner</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                                <atpar-select [options]="lstOwnerDetails" (onChange)="ddlOwnerChanged()" [(ngModel)]="selectedOwner" [id]="'ddlOWNER'" filter="filter" [ngModelOptions]="{standalone: true}"></atpar-select>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="test_step_element_id" class="control-label col-md-6 col-sm-6 col-xs-12">Comments</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <textarea [id]="'txtcomments'" name="txtcomments" [(ngModel)]="newItem.COMMENTS" class="form-control" style="resize: none; z-index: 3; position: relative; line-height: 20px; font-size: 14px; transition: none; background: transparent !important;">{{newItem.COMMENTS}}</textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" *ngIf="showDestructionColumn">
+                                            <label for="test_step_element_id" class="control-label col-md-6 col-sm-6 col-xs-12">Destruction / Max Storage Date</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+
+
+                                                <p-calendar [showIcon]="true"
+                                                            [id]="'MaxStorageDater'"
+                                                            [(ngModel)]="newItem.DESTRUCTION_DATE"
+                                                            [required]="true"
+                                                            [monthNavigator]="true"
+                                                            [yearNavigator]="true"
+                                                            yearRange="2000:2030"
+                                                            [placeholder]="'From Date'"
+                                                            [readonlyInput]="true"
+                                                            (onFocus)="onfocusToCalendar($event)"
+                                                            [ngModelOptions]="{standalone: true}"
+                                                            [dateFormat]="'mm/dd/yy'"></p-calendar>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="test_step_element_id" class="control-label col-md-4 col-sm-6 col-xs-12">Description</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <atpar-text [id]="'txtDescription'"
+                                                            [name]="txtDescription"
+                                                            [(ngModel)]="newItem.ITEM_DESCR"
+                                                            [ngModelOptions]="{standalone: true}"
+                                                            [validations]="'mandatory,max=50,everything_except_space_as_fstchar'"
+                                                            [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"
+                                                            (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" *ngIf="showVendorColumn">
+                                            <label for="test_step_element_id" class="control-label col-md-4 col-sm-6 col-xs-12">Vendor</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <atpar-select [options]="lstVendorDetails" (onChange)="ddlvendorChanged()" [(ngModel)]="selectedVendor" [id]="'ddlVENDOR'" filter="filter" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                                <!--<atpar-text [id]="'txtvendor'"
+                                                            [name]="txtvendor"
+                                                            [(ngModel)]="newItem.VENDOR"
+                                                            [ngModelOptions]="{standalone: true}"
+                                                            [validations]="'max=16,alpha_numeric_underscore_nospace'"
+                                                            [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>-->
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="test_step_element_id" class="control-label col-md-4 col-sm-6 col-xs-12">Owner Type</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                                <atpar-select [options]="lstOwnerType" (onChange)="ddlOwnerTypeChanged()" [(ngModel)]="selectedOwnerType" [id]="'ddlOWNERTYPE'"  [ngModelOptions]="{standalone: true}"></atpar-select>
+
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" *ngIf="showDepartmentsColumn">
+                                            <label for="test_step_element_id" class="control-label col-md-4 col-sm-6 col-xs-12">Requesting Department</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                                <atpar-multiSelect [options]="lstDeptDetails" [(ngModel)]="selectedDeptIDs" (onChange)="ddlDeptIDChanged()" [id]="'ddldd'"  [ngModelOptions]="{standalone: true}"></atpar-multiSelect>
+                                            </div>
+                                            <!--<atpar-listbox [options]="lstDeptDetails" [(ngModel)]="selectedDeptIDs" (onChange)="ddlDeptIDChanged()"   multiple="multiple" [id]="'ddldd'"  checkbox="checkbox" filter="filter" [ngModelOptions]="{standalone: true}"></atpar-listbox>-->
+                                            <!--<atpar-multiSelect [options]="lstDeptDetails" [(ngModel)]="selectedDeptIDs" (onChange)="ddlDeptIDChanged()"  [id]="'ddldd'"   [ngModelOptions]="{standalone: true}"></atpar-multiSelect>-->
+
+                                        </div>
+
+
+                                        <div class="form-group" *ngIf="showImageColumn">
+                                            <label for="test_step_element_id" class="control-label col-md-4 col-sm-6 col-xs-12">Image</label>
+
+
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                                <img *ngIf="newItem.showImage" [src]="newItem.IMAGE_PATH" style="width:20px; height:20px">
+
+                                                <div class="input-group image-preview ">
+                                                    <input class="form-control image-preview-filename" disabled="disabled" placeholder="No File Chosen" type="text" title="{{userSelectedFile}}" [(ngModel)]="userSelectedFile" [ngModelOptions]="{standalone: true}">
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default image-preview-clear" style="display:none;" type="button"> <span class="glyphicon glyphicon-remove"></span> Clear </button>
+                                                        <div class="btn btn-default image-preview-input">
+                                                            <span class="glyphicon glyphicon-folder-open"></span> <span class="image-preview-input-title">Browse</span>
+                                                            <input type="file" id="FileImage" accept="image/*" (change)="fileUpload($event)" name="input-file-preview" />
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        
+                                            <div class="form-group">
+                                                <label for="test_step_element_id" class="control-label col-md-4 col-sm-6 col-xs-12" *ngIf="showQuantityColumn">Quantity</label>
+                                                <label for="test_step_element_id" class="control-label col-md-4 col-sm-6 col-xs-12" *ngIf="showQuantityLabel">Quantity</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <atpar-text [id]="'txtQuantity'" [name]="txtQuantity"
+                                                                [(ngModel)]="newItem.ITEM_QTY"
+                                                                [ngModelOptions]="{standalone: true}"
+                                                                [validations]="'mandatory,max=16,numeric'"
+                                                                [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"
+                                                                (bindModelDataChange)="bindModelDataChange($event)"
+                                                                 *ngIf="showQuantityColumn">
+
+                                                    </atpar-text>
+                                                    <label for="test_step_element_id" *ngIf="showQuantityLabel" class="control-label">{{newItem.ITEM_QTY}}</label>
+
+                                                </div>
+                                            </div>
+
+                                            <!--<div class="form-group" >
+                                                <label for="test_step_element_id" class="control-label col-md-6 col-sm-6 col-xs-12 pull-right">Quantity</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                </div>
+                                            </div>-->
+                                            <div class="form-group">
+                                                <label for="test_step_element_id" class="control-label col-md-4 col-sm-6 col-xs-12">Inactivate Item</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <atpar-switch [(ngModel)]="newItem.ITEM_INACTIVATED" (change)="ItemActiveInActive(newItem,$event)" [ngModelOptions]="{standalone: true}"></atpar-switch>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <br>
+
+
+                                    <div class="container" *ngIf="showlotserialsgrid">
+                                        <atpar-datatable [value]="tkitEqItmLotSerailList" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+
+                                            <p-column field="" header="Action" [style]="{'width':'4%','text-align':'center'}">
+                                                <template let-ven="rowData" pTemplate="body">
+                                                    <i class="fa fa-pencil fa-bg bg-red" style="cursor:pointer;" title="Edit" (click)="editserial(ven)"></i>
+                                                </template>
+                                            </p-column>
+
+                                            <p-column field="SERIAL_NO" [style]="{'width':'16%'}" header="Serial #" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                            <p-column field="LOT_NO" header="Lot #" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                            <p-column field="ASSET_ID" header="Assets ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                            <p-column field="USER_FIELD_1" header="User Field" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+
+                                            <p-column field="SERVICE_DT_TIME" header="Next Service Date-Time(HH:MM)" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+
+                                            <p-column field="STATUS" header="Status" [filter]="true" [style]="{'width': '9%','overflow':'visible','text-align':'center'}" filterMatchMode="equals">
+                                                <template pTemplate="filter" let-col>
+                                                    <atpar-select [options]="ddlStatusType" [(ngModel)]="statusType" [style]="{'width':'100%'}" [id]="'ddlddlStatusType'" [required]="false"
+                                                                  (onChange)="dataFilter($event.value,col.field,col.filterMatchMode)" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                                </template>
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <atpar-switch [(ngModel)]="ven.STATUS" (change)="selectedLotSerialAvailability(ven,$event)"  [ngModelOptions]="{standalone: true}"></atpar-switch>
+                                                </template>
+                                            </p-column>
+                                        </atpar-datatable>
+                                    </div>
+
+
+                                    <div class="col-md-5 col-md-offset-4  col-sm-8 col-sm-offset-2 col-xs-12">
+                                        <button *ngIf="additemflag" class="btn btn-purple sbtn" type="button" [disabled]="disableButton" (click)="createandprint()">Create and Print-label &nbsp;<i class="fa fa-print"></i></button>
+                                        <button *ngIf="edititemflag" class="btn btn-purple sbtn" type="button" [disabled]="disableButton" (click)="updateandprint()">Update and Print-label &nbsp;<i class="fa fa-print"></i></button>
+                                        <button *ngIf="additemflag" class="btn btn-purple sbtn" type="button" [disabled]="disableButton" (click)="create()">Create &nbsp;<i class="fa fa-plus"></i></button>
+                                        <button *ngIf="edititemflag" class="btn btn-purple sbtn" type="button" [disabled]="disableButton" (click)="update()">Update &nbsp;<i class="fa fa-check"></i></button>
+                                        <button class="btn btn-purple sbtn" type="button" (click)="gobackFromItemdetails()"><i class="fa fa-arrow-left"></i>&nbsp; Go Back </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+                        <!--adding lot serails of equipment type-->
+
+                        <form class="form-horizontal form-label-left" *ngIf="showLotSerialFields">
+                            <div class="form-group">
+                                <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Serial ID</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-text [id]="'txtSD1'"
+                                                [name]="txtSD1"
+                                                [(ngModel)]="newItemLotSerial.SERIAL_NO"
+                                                [ngModelOptions]="{standalone: true}"
+                                                [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'"
+                                                [disabled]="newItemLotSerial.Disable"
+                                                [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"
+                                                (bindModelDataChange)="bindModelDataChange($event)">
+
+                                    </atpar-text>
+                                    <label class="control-label lbl-left" *ngIf="showManageEdit">{{addUserData.USER_ID}}</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Lot ID</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-text [id]="'txtLD1'"
+                                                [name]="txtLD1"
+                                                [(ngModel)]="newItemLotSerial.LOT_NO"
+                                                [ngModelOptions]="{standalone: true}"
+                                                [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'"
+                                                [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"
+                                                (bindModelDataChange)="bindModelDataChange($event)">
+
+                                    </atpar-text>
+                                    <label class="control-label lbl-left" *ngIf="showManageEdit">{{addUserData.USER_ID}}</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Assets ID</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 text-align">
+                                    <div class="col-md-6">
+                                        <atpar-text [id]="'txtAssetId1'"
+                                                    [name]="txtAssetId1"
+                                                    [(ngModel)]="newItemLotSerial.ASSET_IDPART1"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    [validations]="'max=4,alpha_numeric_underscore_nospace'"
+                                                    [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"
+                                                    (bindModelDataChange)="bindModelDataChange($event)">
+
+                                        </atpar-text>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <atpar-text [id]="'txtAssetId'"
+                                                    [name]="txtAssetId"
+                                                    [disabled]="true"
+                                                    [(ngModel)]="newItemLotSerial.ASSET_ID"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    [validations]="'max=9,alpha_numeric_underscore_nospace'"
+                                                    [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"
+                                                    (bindModelDataChange)="bindModelDataChange($event)"
+                                                    [style]="{'width':'135px'}">
+
+                                        </atpar-text>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="test_step_element_id"
+                                       class="control-label col-md-3 col-sm-3 col-xs-12">UserField</label>
+
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-text [id]="'txtUserf'"
+                                                [name]="txtUserf"
+                                                [(ngModel)]="newItemLotSerial.USER_FIELD_1"
+                                                [ngModelOptions]="{standalone: true}"
+                                                [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'"
+                                                [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"
+                                                (bindModelDataChange)="bindModelDataChange($event)">
+
+
+                                    </atpar-text>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Next Service Date</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 text-align">
+                                        <p-calendar [showIcon]="true"
+                                                    [id]="'nextservicedate'"
+                                                    [(ngModel)]="newItemLotSerial.SERVICE_DT_TIME  "
+                                                    [required]="true"
+                                                    [monthNavigator]="true"
+                                                    [yearNavigator]="true"
+                                                    yearRange="2000:2030"
+                                                    [placeholder]="'From Date'"
+                                                    [readonlyInput]="true"
+                                                    (onFocus)="onfocusToCalendar($event)"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    [dateFormat]="'mm/dd/yy'"></p-calendar>
+
+                                        <!--<input [ngModel]="item.value | useMyPipeToFormatThatValue"
+                                        (ngModelChange)="item.value=$event" name="inputField" type="text" />-->
+
+
+
+
+
+
+
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 align-calender">
+                                        <atpar-calendar [(ngModel)]="newItemLotSerial.SERVICE_DT_TIME"
+                                                        [timeOnly]="true"
+                                                        [hourFormat]="12"
+                                                        [ngModelOptions]="{standalone: true}"></atpar-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                </div>
+                            </div>
+                            <br />
+                            <div class="col-md-7 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
+                                <button *ngIf="addserailflag" class="btn btn-purple sbtn" type="button" [disabled]="disablelotserailButton" (click)="createLotSerials()">Add &nbsp;<i class="fa fa-plus"></i></button>
+                                <button *ngIf="editserailflag" class="btn btn-purple sbtn" type="button" [disabled]="disablelotserailButton" (click)="updateLotSerials()">Update &nbsp;<i class="fa fa-check"></i></button>
+                                <button class="btn btn-purple sbtn" type="button" (click)="gobackFromAddEditSerial()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

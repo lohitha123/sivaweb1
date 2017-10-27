@@ -1,0 +1,797 @@
+ [
+      {
+        "ORG_ID": "CRM01",
+        "SHIPTO_ID": "US201",
+        "EFF_STATUS": "A",
+        "DESCR": "CRM APPLIANCE WHS 1",
+        "CHK_VALUE": "1",
+        "USER_ID": "Anil  Client(C), support  ser111(SUPPORT)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "1"
+      },
+      {
+        "ORG_ID": "CRM01",
+        "SHIPTO_ID": "US202",
+        "EFF_STATUS": "A",
+        "DESCR": "CRM APPLANCE  WHS 2",
+        "CHK_VALUE": "1",
+        "USER_ID": "Anil  Client(C), support  ser111(SUPPORT)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "1"
+      },
+      {
+        "ORG_ID": "FEDRL",
+        "SHIPTO_ID": "EGV01",
+        "EFF_STATUS": "A",
+        "DESCR": "EGV01 - New York,  NY",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "FEDRL",
+        "SHIPTO_ID": "EGV02",
+        "EFF_STATUS": "A",
+        "DESCR": "EGV02 - Boston, MA",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "FEDRL",
+        "SHIPTO_ID": "EGV03",
+        "EFF_STATUS": "A",
+        "DESCR": "EGV03 - Pleasanton, CA",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "FEDRL",
+        "SHIPTO_ID": "EGV04",
+        "EFF_STATUS": "A",
+        "DESCR": "EGV04 - Chicago, IL",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "FEDRL",
+        "SHIPTO_ID": "EGV05",
+        "EFF_STATUS": "A",
+        "DESCR": "EGV05 - Miami,  FL",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "FEDRL",
+        "SHIPTO_ID": "EGV06",
+        "EFF_STATUS": "A",
+        "DESCR": "EGV06 - Portland, OR",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "FEDRL",
+        "SHIPTO_ID": "FED01",
+        "EFF_STATUS": "A",
+        "DESCR": "FED01",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "ALBERTA",
+        "EFF_STATUS": "A",
+        "DESCR": "Alberta - Canada",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "AUS01",
+        "EFF_STATUS": "A",
+        "DESCR": "AUSTRALIA OPERATIONS",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "B.COLUMBIA",
+        "EFF_STATUS": "A",
+        "DESCR": "British Columbia",
+        "CHK_VALUE": "1",
+        "USER_ID": "Anil  Client(C), support  ser111(SUPPORT)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "1"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "BLG01",
+        "EFF_STATUS": "A",
+        "DESCR": "BELGIUM OPERATIONS",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "BUY01",
+        "EFF_STATUS": "A",
+        "DESCR": "Dean Jones & Bishop",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "BUY02",
+        "EFF_STATUS": "A",
+        "DESCR": "ES Telecommunications",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "BUY03",
+        "EFF_STATUS": "A",
+        "DESCR": "Choice Industries",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "BUY04",
+        "EFF_STATUS": "A",
+        "DESCR": "Jean Paul Inc",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "BUY05",
+        "EFF_STATUS": "A",
+        "DESCR": "Le Groups D'international",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "BUY06",
+        "EFF_STATUS": "A",
+        "DESCR": "TR Services Financiers",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "BUY07",
+        "EFF_STATUS": "A",
+        "DESCR": "Walton Bros",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "BUY08",
+        "EFF_STATUS": "A",
+        "DESCR": "Selectronic Corporation",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "CAN01",
+        "EFF_STATUS": "A",
+        "DESCR": "CANADA OPERATIONS",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "CHE01",
+        "EFF_STATUS": "A",
+        "DESCR": "Switzerland 1",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "DEU01",
+        "EFF_STATUS": "A",
+        "DESCR": "GERMANY OPERATIONS",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "DEU02",
+        "EFF_STATUS": "A",
+        "DESCR": "Germany - Baden Wurttemberg",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "EGV01",
+        "EFF_STATUS": "A",
+        "DESCR": "EGV01 - New York, NY",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "EGV02",
+        "EFF_STATUS": "A",
+        "DESCR": "EGV02 - Boston, MA",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "EGV03",
+        "EFF_STATUS": "A",
+        "DESCR": "EGV03 - Pleasanton, CA",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "EGV04",
+        "EFF_STATUS": "A",
+        "DESCR": "EGV04 - Chicago, IL",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "EGV05",
+        "EFF_STATUS": "A",
+        "DESCR": "EGV05 - Miami,  FL",
+        "CHK_VALUE": "0",
+        "USER_ID": "Anil  Client(C)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "EGV06",
+        "EFF_STATUS": "A",
+        "DESCR": "EGV06 - Portland, OR",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "FED01",
+        "EFF_STATUS": "A",
+        "DESCR": "FED01 - New York,  NY",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "FRA01",
+        "EFF_STATUS": "A",
+        "DESCR": "FRANCE OPERATIONS",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "FRA03",
+        "EFF_STATUS": "A",
+        "DESCR": "France - Rhone",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "FRA05",
+        "EFF_STATUS": "A",
+        "DESCR": "France - Calvados",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "GBR001",
+        "EFF_STATUS": "A",
+        "DESCR": "Great Britian - London",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "GBR002",
+        "EFF_STATUS": "A",
+        "DESCR": "Great Britian - London",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "GBR003",
+        "EFF_STATUS": "A",
+        "DESCR": "UK - Gloucestershire",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "GBR01",
+        "EFF_STATUS": "A",
+        "DESCR": "GREAT BRITIAN OPERATIONS",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "GBR02",
+        "EFF_STATUS": "A",
+        "DESCR": "UK - London",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "GBR03",
+        "EFF_STATUS": "A",
+        "DESCR": "Great Britian-Gloucestershire",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "IND01",
+        "EFF_STATUS": "A",
+        "DESCR": "India 1",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "IND02",
+        "EFF_STATUS": "A",
+        "DESCR": "India 2",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "IND03",
+        "EFF_STATUS": "A",
+        "DESCR": "India 3",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "IND04",
+        "EFF_STATUS": "A",
+        "DESCR": "India 4",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "IND05",
+        "EFF_STATUS": "A",
+        "DESCR": "India 5",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "INDCW",
+        "EFF_STATUS": "A",
+        "DESCR": "India - Location (State KAR)",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "ITL01",
+        "EFF_STATUS": "A",
+        "DESCR": "Italy - Napoli",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "JPN01",
+        "EFF_STATUS": "A",
+        "DESCR": "JAPAN OPERATIONS",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "JPN02",
+        "EFF_STATUS": "A",
+        "DESCR": "JPN02 - Sapporo",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "LUX01",
+        "EFF_STATUS": "A",
+        "DESCR": "Luxembourg 1",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "MANITOBA",
+        "EFF_STATUS": "A",
+        "DESCR": "Manitoba",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "NEWBRUNSW",
+        "EFF_STATUS": "A",
+        "DESCR": "New Brunswick",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "NEWFOUNDLD",
+        "EFF_STATUS": "A",
+        "DESCR": "Newfoundland",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "NLD01",
+        "EFF_STATUS": "A",
+        "DESCR": "NETHERLANDS OPERATIONS",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "NOTAX",
+        "EFF_STATUS": "A",
+        "DESCR": "LOC For NO taxes",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "NOVASCOTIA",
+        "EFF_STATUS": "A",
+        "DESCR": "Nova Scotia",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "NRTH TERR",
+        "EFF_STATUS": "A",
+        "DESCR": "Northern Territories",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "ONTARIO",
+        "EFF_STATUS": "A",
+        "DESCR": "Ontario",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "PR.EDWRD",
+        "EFF_STATUS": "A",
+        "DESCR": "Prince Edward Island",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "QUEBEC",
+        "EFF_STATUS": "A",
+        "DESCR": "Quebec",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "SASKATCHWN",
+        "EFF_STATUS": "A",
+        "DESCR": "Saskatchewan",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "SPN01",
+        "EFF_STATUS": "A",
+        "DESCR": "SPAIN OPERATIONS",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "STKRM",
+        "EFF_STATUS": "A",
+        "DESCR": "Hospital Stockroom",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "US001",
+        "EFF_STATUS": "A",
+        "DESCR": "USA - New York",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "US002",
+        "EFF_STATUS": "A",
+        "DESCR": "USA - New Jersey",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "US003",
+        "EFF_STATUS": "A",
+        "DESCR": "USA - California",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "US004",
+        "EFF_STATUS": "A",
+        "DESCR": "USA - Illinois",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "US005",
+        "EFF_STATUS": "A",
+        "DESCR": "USA - Florida",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "US006",
+        "EFF_STATUS": "A",
+        "DESCR": "USA - Oregon",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "US008",
+        "EFF_STATUS": "A",
+        "DESCR": "USA - Colorado",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "US009",
+        "EFF_STATUS": "A",
+        "DESCR": "USA - Los Angeles",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "US010",
+        "EFF_STATUS": "A",
+        "DESCR": "USA - Phoenix",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "US011",
+        "EFF_STATUS": "A",
+        "DESCR": "USA - San Francisco",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "US012",
+        "EFF_STATUS": "A",
+        "DESCR": "USA-New Hampshire",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "US013",
+        "EFF_STATUS": "A",
+        "DESCR": "USA - Vermont",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "US014",
+        "EFF_STATUS": "A",
+        "DESCR": "USA - New Orlaans",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "US015",
+        "EFF_STATUS": "A",
+        "DESCR": "USA - Pleasanton",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "US016",
+        "EFF_STATUS": "A",
+        "DESCR": "USA - NY Maint INV",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "US017",
+        "EFF_STATUS": "A",
+        "DESCR": "USA - Boston",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "US120",
+        "EFF_STATUS": "A",
+        "DESCR": "CRM APPLIANCE WHS 1",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "WHSE",
+        "EFF_STATUS": "A",
+        "DESCR": "Hospital Warehouse",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "YUKON",
+        "EFF_STATUS": "A",
+        "DESCR": "Yukon Territories",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHR02",
+        "SHIPTO_ID": "DEU02",
+        "EFF_STATUS": "A",
+        "DESCR": "Germany - Baden Wurttemberg",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "SHR02",
+        "SHIPTO_ID": "US012",
+        "EFF_STATUS": "A",
+        "DESCR": "USA-New Hampshire",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      }
+]

@@ -1,0 +1,419 @@
+﻿<div id="main" class="content-page"> 
+        <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border">
+                <br>
+                <div class="">
+                    <div class="panel panel-default" style="border: 1px solid #eee;">
+                        <div class="panel-body" style="padding:0px 0 10px 0;">
+                            <form class="form-horizontal form-label-left" *ngIf="form">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <atpar-text [(ngModel)]="pdeptsearch" [name]="txtDeptSearch" [id]="'deptSearch'" [validations]="'everything'" [ngModelOptions]="{standalone: true}" [placeholder]="'Dept ID / Dept Name'"></atpar-text>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-4">
+                                            <button type="button" class="btn btn-purple sbtn" name="btnGo" (click)="go()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                            <button type="button" class="btn btn-purple sbtn" name="btnAdd" (click)="addDept()"> Add Department &nbsp;<i class="fa fa-plus"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <br>
+                            <div class="col-xs-12" *ngIf="pop">
+                                <div class="container">
+                                    <atpar-datatable [value]="lstDBData" #dt [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                        <p-column [style]="{'width':'4%','text-align':'center'}" header="Action">
+                                            <template let-rowData="rowData" pTemplate="body">
+                                                <i class="fa fa-pencil fa-bg bg-blue" (click)="editDept(rowData)" style="cursor:pointer;text-align:center;" title="Edit" name="btnEditOrgGroupLst"></i>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="ORG_GROUP_ID" header="Org Group ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'10%'}"></p-column>
+                                        <p-column field="DEPT_ID" header="Dept ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'20%'}"></p-column>
+                                        <p-column field="DEPT_NAME" header="Dept Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"[style]="{'width':'25%'}"></p-column>
+                                        <p-column field="PHONE" header="Phone" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'8%'}"></p-column>
+                                        <p-column field="ATTN_TO" header="Attention to" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'25%'}"></p-column>
+                                        <p-column field="STATUS" header="Status" [filter]="true" [style]="{'width': '8%','overflow':'visible','text-align':'center'}" filterMatchMode="equals">
+                                            <template pTemplate="filter" let-col>
+                                                <atpar-select-grid [options]="database" [(ngModel)]="statusType" [style]="{'width':'100%'}" [id]="'ddldatabase'" [required]="false" (onChange)="dataFilter($event.value,col.field,col.filterMatchMode)"></atpar-select-grid>
+                                            </template>
+                                            <template let-col let-deptObj="rowData" pTemplate="body">
+                                                <atpar-switch [checked]=deptObj[col.field]  [(ngModel)]="deptObj[col.field]" (click)="changeStatus(deptObj)"></atpar-switch>
+                                            </template>
+                                        </p-column>
+                                    </atpar-datatable>
+                                </div>
+                            </div>
+                            <form class="form-horizontal form-label-left" *ngIf="!form">
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Org Group ID</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <label *ngIf="blnShowOrgGroupLabel" class="control-label lbl-left">{{orgGrpId}}</label>
+                                            <atpar-select [options]="lstOrgGroups" [id]="'ddllstOrgGroups'" [required]="true" [(ngModel)]="selectedOrgGroupId" [ngModelOptions]="{standalone: true}" filter="filter" *ngIf="blnShowOrgGroupDD" [isfocus]="blnShowOrgGroupDD" (onChange)="ddlOrgGroupIdChange()"></atpar-select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Dept ID</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.DEPT_ID" *ngIf="!isEditMode && blnShowOrgGroupDD" [name]="txtDepartmentID" [required]="true" [validations]="'mandatory,alpha_numeric_underscore_nospace,max=50'" [id]="'DepartmentID'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" [title]="'Use only letters(A-Z),(a-z), numbers (0-9),the underscore (_) and no spaces'"></atpar-text>
+                                            <atpar-text [(ngModel)]="newItem.DEPT_ID" *ngIf="!isEditMode && !blnShowOrgGroupDD" [name]="txtDepartmentID" [required]="true" [isFocused]="'true'" [validations]="'mandatory,alpha_numeric_underscore_nospace,max=50'" [id]="'DepartmentID'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" [title]="'Use only letters(A-Z),(a-z), numbers (0-9),the underscore (_) and no spaces'"></atpar-text>
+                                            <label *ngIf="isEditMode" class="control-label lbl-left">{{newItem.DEPT_ID}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Dept Name</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.DEPT_NAME" [name]="txtDeptName" *ngIf="isEditMode" [isFocused]="'true'" [required]="true" [validations]="'mandatory,everything_except_space_as_fstchar,max=50'" [id]="'DepartmentName'" (bindModelDataChange)="bindModelDataChange($event)" [ngModelOptions]="{standalone: true}" [title]="'Any character A-Z, a-z, 0-9,!,#, $ ....'"></atpar-text>
+                                            <atpar-text [(ngModel)]="newItem.DEPT_NAME" [name]="txtDeptName" *ngIf="!isEditMode" [required]="true" [validations]="'mandatory,everything_except_space_as_fstchar,max=50'" [id]="'DepartmentName'" (bindModelDataChange)="bindModelDataChange($event)" [ngModelOptions]="{standalone: true}" [title]="'Any character A-Z, a-z, 0-9,!,#, $ ....'"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Attention To</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.ATTN_TO" [name]="txtAttentionto" [validations]="'alpha_nospace,max=30'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'AttentionTo'" [ngModelOptions]="{standalone: true}" [title]="'Name of the user– use only letters (a-z)'"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Address 1</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.ADDRESS1" [name]="txtAddress1" [validations]="'alpha_numeric_hash_nospace,max=54'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'Address1'" [ngModelOptions]="{standalone: true}" [title]="'Use only A-Z, a-z, 0-9, #'"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Address 2</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.ADDRESS2" [name]="txtAddress2" [validations]="'alpha_numeric_hash_nospace,max=54'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'Address2'" [ngModelOptions]="{standalone: true}" [title]="'Use only A-Z, a-z, 0-9, #'"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">City</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.CITY" [name]="txtCity" [validations]="'alpha_numeric_underscore_nospace,max=30'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'City'" [ngModelOptions]="{standalone: true}" [title]="'Use only letters(A-Z),(a-z), numbers (0-9),the underscore (_) and no spaces'"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">State</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.STATE" [name]="txtState" [validations]="'alpha_nospace,max=20'" [id]="'State'" (bindModelDataChange)="bindModelDataChange($event)" [ngModelOptions]="{standalone: true}" [title]="'Use only letters(A-Z,a-z) and no spaces'"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Zip</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.ZIP" [name]="txtzip" [validations]="'alpha_numeric_underscore_space,max=9'" [id]="'Zip'" (bindModelDataChange)="bindModelDataChange($event)" [ngModelOptions]="{standalone: true}" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_) and spaces'"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Country</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.COUNTRY" [name]="txtCountry" [validations]="'everything,max=50'" [id]="'Country'" (bindModelDataChange)="bindModelDataChange($event)" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Phone</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.PHONE" [name]="txtPhone" [validations]="'numeric,max=10'" [id]="'Phone'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" [title]="'Use the format 1231231234'"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Fax</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.FAX" [name]="txtfax" [validations]="'numeric,max=10'" [id]="'Fax'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" [title]="'Use the format 1231231234'"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.E_MAIL" [name]="txtEmail" [validations]="'email'" [id]="'Email'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" [title]="'Use the format username@domainname.com'"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Alert notification Required</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-switch [(ngModel)]="newItem.ALERT_NOTIFY_REQ_STATUS" [ngModelOptions]="{standalone: true}"></atpar-switch>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Check this if alert notification is required when item is in stock out status
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Email alert notification</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.EMAIL_NOTIFY" [name]="txtEmailAlert" [validations]="'email'" [id]="'EmailAlert'" (bindModelDataChange)="bindModelDataChange($event)" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            If Alert Notification Required parameter is check enter an email address here in format username@domainname.com
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Exception Approval Required</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-switch [(ngModel)]="newItem.EXCP_APPROVAL_REQ_STATUS" [ngModelOptions]="{standalone: true}"></atpar-switch>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Check this if Exception Approval required when Item is not under contract
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Inventory Coordinator’s Email</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.INV_COORD_EMAIL" [name]="txtInveCordEmail" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'email'" [id]="'InveCordEmail'" [ngModelOptions]="{standalone: true}" [title]="'Use the format username@domainname.com'"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Exception Approver’s Email</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.EXCP_APPROVER_EMAIL" [name]="txtExcApprEmail" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'email'" [id]="'ExcApprEmail'" [ngModelOptions]="{standalone: true}" [title]="'Use the format username@domainname.com'"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Frequency for Sending Reminders</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.REMINDER_FREQ" [name]="txtFreqSendRem" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'numeric,max=4'" [id]="'FreqSendRem'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Frequency specified in minutes
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Email for Recall Notification</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.RECALL_NOTIFICATION_EMAIL" [name]="txtEmailRecalNotifi" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'email'" [id]="'EmailRecalNotification'" [ngModelOptions]="{standalone: true}" [title]="'Use the format username@domainname.com'"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Inventory Interface is enabled from @Par to MMIS</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-switch [(ngModel)]="newItem.INV_INTERFACE_ENABLE_STATUS" [ngModelOptions]="{standalone: true}"></atpar-switch>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Check this parameter if @Par is going to create replenishment request decrement/increment inventory in MMIS system
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Billing is enabled in @Par</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-switch [(ngModel)]="newItem.BILLING_ENABLE_STATUS" [ngModelOptions]="{standalone: true}"></atpar-switch>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Check this parameter if @Par is going to send an HL7 message to organization billing system
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Default Printer</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.DEFAULT_PRINTER" [name]="txtDefaultPrinter" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'alpha_numeric_underscore_hyphen_dot_backslash_space,max=30'" [title]="'Alpha Numeric and Special Chars(_,-,.,/) and space Max Length 50'" [id]="'DefaultPrinter'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Enter network printer address to print shipping labels
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Default for Distribution Type</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.DEFAULT_DISTRIBUTION_TYPE" [name]="txtDefaultDistributionType" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'alpha_numeric_underscore_space,max=30'" [id]="'DefaultDistributionType'" [title]="'Alpha Numerics and Underscore and space Max Length 30'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Enter valid distribution type (PeopleSoft only)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Default for Destination Location</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.DEFAULT_DESTINATION_LOCATION" [name]="txtDefaultDestinationLoc" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'alpha_numeric_underscore_space,max=30'" [title]="'Alpha Numerics and Underscore and Space Max Length 30'" [id]="'DefaultDestinationLoc'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Enter valid destination location where item is issued to
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Category Code for PO Generation</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.CATEGORY_CODE" [name]="txtCategoryCodePOGen" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'alpha_numeric_underscore_space,max=50'" [title]="'Alpha Numerics and Underscore and Space Max Length 50'" [id]="'CategoryCodePOGen'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Category Code for PO Generation for Bill Only /Consigned Items
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Business Unit to create Bill Only PO’s</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.BILLONLY_BUSINESS_UNIT" [name]="txtBusinessUnitBillPO" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'alpha_numeric_underscore_space,max=50'" [title]="'Alpha Numerics and Underscore and Space Max Length 50'" [id]="'BusinessUnitBillPO'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                           Define the Business Unit used to create Bill Only PO’s
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Valid Location to create Bill Only PO’s</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.BILLONLY_LOCATION" [name]="txtValidLocBillPO" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'ALPHA_NUMERIC_UNDERSCORE_HYPHEN_BACKSLASH,max=50'" [title]="'Alpha Numerics Special Chars(_,-,/) and Space Max Length 50'" [id]="'ValidLocBillPO'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Define a valid Location that can be used to create Bill Only PO’s
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Send Low Stock Email Alerts</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-switch [(ngModel)]="newItem.SEND_LOWSTOCK_EMAIL_ALERTS_STATUS" [ngModelOptions]="{standalone: true}"></atpar-switch>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            If Checked Low Stock alerts will be sent to Email ID setup under "Email ID for Low Stock Alerts"
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Email ID for Low Stock Alerts</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.EMAILID_FOR_LOWSTOCK_ALERTS" [name]="txtEmailLowStockAlerts" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'email'" [title]="'Should Follow Email Pattern'" [id]="'EmailLowStockAlerts'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Email ID to which low stock alerts to be sent
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12"> Send Product Expiration Alerts</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-switch [(ngModel)]="newItem.SEND_PRODUCT_EXP_EMAIL_ALERTS_STATUS" [ngModelOptions]="{standalone: true}"></atpar-switch>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Send Product Expiration Alerts
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Email for Product Expiration Alerts</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.EMAILID_FOR_PRODUCT_EXP_ALERTS" [name]="txtEmailProductExpirationAlerts" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'email'" [title]="'Should Email Pattern'" [id]="'EmailProductExpirationAlerts'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Email ID to send Production Expiration Alerts
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Limit Number of Case Cart Picks to download</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.NO_OF_CASES_DOWNLOAD" [name]="txtLimitNumCaseCartPicksDownload" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'numeric,max=4'" [title]="'Numerics Only and Max Length 4'" [id]="'LimitNumCaseCartPicksDownload'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            The maximum number of Case Cart Picks a user can download at a time, 0 means no limit
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Duration for Tracking Expiration</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.DURATION_TRACKING_EXP" [name]="txtDurationTrackingExpiration" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'numeric,max=3'" [title]="'Numerics Only and Max Length 3'" [id]="'DurationTrackingExpiration'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Default Duration for Tracking Expiration
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Percentage of Optimum quantity</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.PERCENTAGE_OPTIMUM_QTY" [name]="txtPercentageOptimumQuantity" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'numeric,max=3'" [title]="'Numerics Only and Max Length 3'" [id]="'PercentageOptimumQuantity'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            If quantity on hand goes below this percentage user receive email alerts
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Pre Pick QA Process required</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-switch [(ngModel)]="newItem.PREPICK_QA_PROCESS_REQUIRED" [ngModelOptions]="{standalone: true}"></atpar-switch>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            This will allow the user to review and edit the cases synced from OR system. Users can download the reviewed cases for picking the items from HHT
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Buyer ID for PO Generation</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.BUYER_ID" [name]="txtBuyerPOGenerations" [validations]="'everything,max=100'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'BuyerPOGenerations'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Buyer ID for PO Generation for Bill Only /Consigned Items
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Auto Putaway is enabled</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-switch [(ngModel)]="newItem.AUTO_PUTAWAY_ENABLED_STATUS" [ngModelOptions]="{standalone: true}"></atpar-switch>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            This will auto putaway the stock and increment the inventory at the POU locations when a PO is received for a POU location or when an order is picked that is going to a POU location
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Allow users to select item locations while recording consumption</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-switch [(ngModel)]="newItem.ALLOW_LOC_SELECT" [ngModelOptions]="{standalone: true}"></atpar-switch>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Checking this will allow the users to select the item locations from popup while recording consumption
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Case Picking Stage</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-radioButton name="CASE_PICK_STATUS" [ngModelOptions]="{standalone: true}" value="1" [(ngModel)]="newItem.CASE_PICK_STATUS" label="Primary"></atpar-radioButton>
+                                            <br>
+                                            <atpar-radioButton name="CASE_PICK_STATUS" [ngModelOptions]="{standalone: true}" value="2" [(ngModel)]="newItem.CASE_PICK_STATUS" label="Finish"></atpar-radioButton>
+                                            <br>
+                                            <atpar-radioButton name="CASE_PICK_STATUS" [ngModelOptions]="{standalone: true}" value="0" [(ngModel)]="newItem.CASE_PICK_STATUS" label="None"></atpar-radioButton>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                           Select the stage of picking for the department
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12"> Enable Auto case pick</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-switch [(ngModel)]="newItem.AUTO_CASE_PICK_STATUS" [ngModelOptions]="{standalone: true}"></atpar-switch>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Checking this will pick the cases automatically with the sequence defined for the carts/locations and open quantities, otherwise case will be in Open/Ready status.
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Default Implant Type</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.DEFAULT_IMPLANT_TYPE" [name]="txtDefaultImplantType" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'everything,max=50'" [id]="'DefaultImplantType'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            [Selected Implant type for the department will be defaulted on Record Consumption – Add details screen]
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12"> Bill Only & Consign Implemented</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-switch [(ngModel)]="newItem.BILL_ONLY_CONSIGN_IMPLMENTED" [ngModelOptions]="{standalone: true}"></atpar-switch>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            [Checking this parameter will allow the department user to select Bill Only or Consign option while adding an item to the transaction.]
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Storage area for Issue/Pick</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="newItem.STORAGE_AREA" [name]="txtStorageAreaForIssuePick" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'everything,max=5'" [id]="'StorageAreaForIssuePick'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Entered Storage area related items will be allowed to use from the allocated business unit
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                        <button class="btn btn-purple small" *ngIf="!isEditMode" (click)="saveDept()" [disabled]="btnSaveEnableDisable">Save &nbsp;<i class="fa fa-floppy-o"></i> </button>
+                                        <button class="btn btn-purple small" *ngIf="isEditMode" (click)="updateDept()" [disabled]="btnUpdateEnableDisable">Update &nbsp;<i class="fa fa-check"></i> </button>
+                                        <button class="btn btn-purple small" (click)="close()"><i class="fa fa-arrow-left"> &nbsp;</i>Go Back</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   
+</div>
+

@@ -1,0 +1,123 @@
+﻿<style>
+    .no-shadow {
+        box-shadow: none !important;
+    }
+
+    .bdr-1 {
+        border: 1px solid #eee !important;
+    }
+
+    .panel-green {
+        border-color: #4af94a !important;
+    }
+
+    .panel-blue {
+        border-color: #79ebfd !important;
+    }
+
+    .panel-pink {
+        border-color: #de60f5 !important;
+    }
+
+    .scrl-pnl {
+        height: auto;
+        overflow: hidden;
+        overflow: auto;
+        max-height: 450px;
+    }
+
+    .ui-datatable tbody tr td .form-control, table tbody tr td .form-control {
+        height: auto !important;
+        margin-top: -10px;
+    }
+
+    .table-inner-style, tbody tr td {
+        padding: 15px;
+    }
+</style>
+<div id="main" class="content-page"  style="margin-left: 0px;  margin-top: -80px;">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border" *ngIf="true">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px">
+                        <form class="form-horizontal form-label-left">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Select Status</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <span class="mandatory">*</span>
+                                        <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlErpsyss'" filter="filter" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">From Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <span class="mandatory">*</span>
+                                        <p-calendar [showIcon]="true" [id]="'FromDatePicker'" [(ngModel)]="date1" [placeholder]="'From Date'" [minDate]="minDateValue1" [readonlyInput]="true" (onSelect)="selectDate1($event)" (onFocus)="onfocusFromCalendar($event)" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">To Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <span class="mandatory">*</span>
+                                        <p-calendar [showIcon]="true" [id]="'ToDatePicker'" [(ngModel)]="date2" [placeholder]="'To Date'" [minDate]="minDateValue2" [readonlyInput]="true" (onSelect)="selectDate2($event)" (onFocus)="onfocusToCalendar($event)" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-4 form-group">
+                                    <button class="btn btn-purple sbtn" (click)="go()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                            <div class="col-xs-12" *ngIf="pop">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Select Request</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <span class="mandatory">*</span>
+                                        <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlErpsys1'" filter="filter" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <button class="btn btn-purple sbtn" (click)="show()">Show Details</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="col-xs-12" *ngIf="table">
+                            <div class="container">
+                                <p class="text-dark col-md-3 col-sm-6"><strong>Request Number:</strong>1004</p>
+                                <p class="text-dark col-md-3 col-sm-6"><strong>Request Date:</strong>7/17/2017 11:26:00 Pm</p>
+                                <p class="text-dark col-md-12"><strong>Order comments:</strong> Need item urgently</p>
+                                <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                    <!--<p-column expander="true" styleClass="col-icon"></p-column>-->
+                                    <p-column field="IMAGE" header="Image"></p-column>
+                                    <p-column field="ITEM_ID" header="ItemID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="ITEM_DESCRIPTION" header="Item Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="REQUEST_QTY" header="Request Qty" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'8%'}"></p-column>
+                                    <p-column field="DELIVER_LOCATION" header="Deliver Location" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="STATUS" header="Status" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'6%'}"></p-column>
+                                    <p-column field="" header="Change Return Date">
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <p-calendar [showIcon]="true" [id]="'FromDatePicker'" [(ngModel)]="date1" [minDate]="minDateValue1" [readonlyInput]="true" (onSelect)="selectDate1($event)" (onFocus)="onfocusFromCalendar($event)" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="" header="Remove" [style]="{'width':'5%'}">
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <atpar-switch></atpar-switch>
+                                        </template>
+                                    </p-column>
+                                </atpar-datatable>
+                                <br>
+                                <div class="col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-5 col-xs-12">
+                                    <button class="btn btn-purple sbtn" type="button">Update Items &nbsp;<i class="fa fa-check"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

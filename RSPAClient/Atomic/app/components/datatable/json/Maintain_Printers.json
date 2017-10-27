@@ -1,0 +1,47 @@
+ [
+      {
+        "APP_ID": "2",
+        "APP_NAME": "Cart Count",
+        "PRINTER_NAME": "ZEBRA QL 320 Plus",
+        "PRINTER_CODE": "ZQL320PLUS",
+        "IP_ADDRESS": "192.168.176.205",
+        "PORT_NO": "21110",
+        "FRIENDLY_NAME": "printer1",
+        "STATUS": "1",
+        "USER_ID": "SUPPORT",
+        "NETWORK_TYPE": "Mobile",
+        "FUNCTIONALITY": "Par Location",
+        "LABEL_TYPE": "1",
+        "MODEL": "M1"
+      },
+      {
+        "APP_ID": "2",
+        "APP_NAME": "Cart Count",
+        "PRINTER_NAME": "ZEBRA QL 320 Plus",
+        "PRINTER_CODE": "ZQL320PLUS",
+        "IP_ADDRESS": "192.168.176.205",
+        "PORT_NO": "21110",
+        "FRIENDLY_NAME": "printer2",
+        "STATUS": "0",
+        "USER_ID": "SUPPORT",
+        "NETWORK_TYPE": "Mobile",
+        "FUNCTIONALITY": "Par Item",
+        "LABEL_TYPE": "2",
+        "MODEL": "M1"
+      },
+      {
+        "APP_ID": "2",
+        "APP_NAME": "Cart Count",
+        "PRINTER_NAME": "ZEBRA QL 320 Plus",
+        "PRINTER_CODE": "ZQL320PLUS",
+        "IP_ADDRESS": "192.168.177.171",
+        "PORT_NO": "21110",
+        "FRIENDLY_NAME": "pritner",
+        "STATUS": "1",
+        "USER_ID": "SUPPORT",
+        "NETWORK_TYPE": "Mobile",
+        "FUNCTIONALITY": "Par Item",
+        "LABEL_TYPE": "2",
+        "MODEL": "M2"
+      }
+    ]

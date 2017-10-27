@@ -1,0 +1,244 @@
+﻿<div id="main" class="content-page">
+    <div class="page-header-title">
+        <h4 class="page-title"><a (click)="homeurl()">Administration ></a>User Status Report</h4>
+    </div>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:20px;">
+                        <form class="form-horizontal form-label-left" *ngIf="page">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">User ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-text [(ngModel)]="newItem.OrgId1" [name]="txtOrgId1" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'OrgId1'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">First Name</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-text [(ngModel)]="newItem.Status" [name]="txtStatus" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Status'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Last Name</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-text [(ngModel)]="newItem.LocationID1" [name]="txtLocationID1" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'LocationID1'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Status</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-select [options]="cities" [id]="'ddlOrg'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <button class="btn btn-purple sbtn" (click)="go()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                    <!--<button class="btn btn-purple sbtn" (click)="add()"><i class="fa fa-plus"></i> &nbsp; Add</button>-->
+                                </div>
+                            </div>
+                        </form>
+                        <div class="col-xs-12 table-responsive" *ngIf="pop">
+                            <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                <!--<p-column expander="true" styleClass="col-icon"></p-column>-->
+                                <p-column field="USER_ID" header="User ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="FIRST_NAME" header="First Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="LAST_NAME" header="Last Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="CREATE_DATE" header="Create date" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <!--<p-column field="DEPT_ID" header="Allocated Department" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>-->
+                                <p-column header="Action">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-switch></atpar-switch>
+                                    </template>
+                                </p-column>
+                                <p-column header="Action">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <i class="fa fa-pencil fa-bg bg-blue" (click)="edit()"></i>
+                                    </template>
+                                </p-column>
+                            </atpar-datatable>
+                        </div>
+                        <form class="form-horizontal form-label-left" *ngIf="editform">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">User ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.Pid" [name]="txtPid" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Pid'" [ngModelOptions]="{standalone: true}" [readonly]="true"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Use only A-Z,a-z,0-9,#]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Password Required</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-switch></atpar-switch>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Check here if user is required to use password to access the application on the PDA. This should be checked for Server User]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Password</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.Pss" [name]="txtPss" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Pss'" [ngModelOptions]="{standalone: true}" [readonly]="true"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Password should be between 3 to 8 characters. Complexity of the password is Any Characters.]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">ReConfirm Password</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.rPss" [name]="txtrPss" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'rPss'" [ngModelOptions]="{standalone: true}" [readonly]="true"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Password should be between 3 to 8 characters. Complexity of the password is Any Characters.]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Password Reset Required</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-switch></atpar-switch>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Checking this will force the user to reset the password initially]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Account Disabled</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-switch></atpar-switch>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Temporarily inactivate this user without deleting the user from the system]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Session Validity Time</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.ss" [name]="txtss" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'ss'" [ngModelOptions]="{standalone: true}" [readonly]="true"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Value in minutes. Maximum length of 4 digits –use only numbers(1-9). Invalidates the user logged into the handheld device after this period of time. Forces user to re-login to communicate with the server.]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Idle Time</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.ss" [name]="txtss" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'ss'" [ngModelOptions]="{standalone: true}" [readonly]="true"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Idle time for the user in Minutes–use only numbers(1-9). Forces user to re-login into the PDA after this period of Inactive time ]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.Fname" [name]="txtFname" *ngIf="!isEditMode" [isFocused]="'true'" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Fname'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [ Any character A-Z,a-z,0-9,!,', #,$...]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.Lname" [name]="txtLname" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Lname'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [ Any character A-Z,a-z,0-9,!,', #,$...]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Middle Initial</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.Mname" [name]="txtMname" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Mname'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Use only A-Z,a-z,0-9,#]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Email ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.Email" [name]="txtEmail" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Email'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Use the format userid@domainname.com]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Phone 1</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.ph1" [name]="txtph1" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'ph1'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Phone 2</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.ph2" [name]="txtph2" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'ph2'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Fax</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.ph3" [name]="txtph3" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'ph3'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Pager</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.ph4" [name]="txtph4" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'ph4'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Org Group</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [options]="cities" [id]="'ddlOrg'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Select Organization Group]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Profile</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [options]="cities" [id]="'ddlProduct'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Select Profile]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">LDAP User</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-switch></atpar-switch>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Check this if user is LDAP User]
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-4">
+                                    <button class="btn btn-purple small"><i class="fa fa-check"></i> &nbsp; Save </button>
+                                    <button class="btn btn-purple small" (click)="close()"><i class="fa fa-arrow-left"> &nbsp;</i>Go Back</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

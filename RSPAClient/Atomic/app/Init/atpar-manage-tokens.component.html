@@ -1,0 +1,69 @@
+﻿<div id="main" class="content-page">
+    <div class="page-header-title">
+        <h4 class="page-title"><a (click)="homeurl()">Administration ></a> Manage Tokens</h4>
+    </div>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="panel panel-default" [ngClass]="{'border-panel': page === true}" style="border: 1px solid #eee;">
+                    <div class="panel-body">
+                        <div class="col-xs-12 form-group">
+                            <div class="col-xs-3 col-sm-2 col-md-1">
+                                <atpar-switch (click)="go()"></atpar-switch>
+                            </div>
+                            <div class="col-xs-9 col-sm-2 col-md-1">
+                                <label for=""> Expired List</label>
+                            </div>
+                        </div>
+                    <br>
+                    <br>
+                    <div class="col-xs-12 table-responsive" *ngIf="pop">
+                        <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                            <p-column expander="true" styleClass="col-icon"></p-column>
+                            <p-column field="USER_ID" header="User ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                            <p-column field="REQUEST_TIME" header="Login Time" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                            <p-column field="EXPIRY_TIME" header="Token Expiry Time" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                            <p-column header="Delete All" [filter]="true">
+                                <template pTemplate="filter" let-col>
+                                    <br>
+                                    <i class="fa fa-trash-o fa-bg bg-blue" (click)="deleteall()"></i>
+                                </template>
+                                <template let-col let-ven="rowData" pTemplate type="body">
+                                    <i class="fa fa-trash-o fa-bg bg-blue" (click)="delete()"></i>
+                                </template>
+                            </p-column>
+                            <template let-employee pTemplate="rowexpansion">
+                                <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
+                                    <div class="ui-grid-row">
+                                        <div class="ui-grid-col-3" style="text-align:center">
+                                            <i class="fa fa-search" (click)="showCar(employee)" style="cursor:pointer;float:left;margin-top:40px"></i>
+                                        </div>
+                                        <div class="ui-grid-col-9">
+                                            <div class="ui-grid ui-grid-responsive ui-grid-pad">
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-2"><span class="datatablespan">Token</span></div>
+                                                    <div class="ui-grid-col-10">{{employee.ACCESS_TOKEN}}</div>
+                                                </div>
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-2"><span class="datatablespan">Device</span></div>
+                                                    <div class="ui-grid-col-10">{{employee.DEVICE_ID}}</div>
+                                                </div>
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-2"><span class="datatablespan">Product Access</span></div>
+                                                    <div class="ui-grid-col-10">{{employee.PRODUCTS_ACCESS}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                            <!--<p-footer></p-footer>-->
+                        </atpar-datatable>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

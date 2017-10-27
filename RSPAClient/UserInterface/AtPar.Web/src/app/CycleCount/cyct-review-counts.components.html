@@ -1,0 +1,160 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="" *ngIf="showDropDowns">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px;">
+                        <form class="form-horizontal form-label-left">
+                            <div class="col-xs-12" >
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Org Group ID </label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <!--<atpar-text [(ngModel)]="newItem.LocationID1" [name]="txtLocationID1" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'LocationID1'" [ngModelOptions]="{standalone: true}" [readonly]="true"></atpar-text>-->
+                                        <label *ngIf="blnShowOrgGroupLabel" class="control-label lbl-left">{{orgGrpIDData}}</label>
+                                        <atpar-select [options]="lstOrgGroups" [id]="'ddllstOrgGroups'" [required]="true" [(ngModel)]="selectedOrgGroupId" [ngModelOptions]="{standalone: true}" filter="filter" *ngIf="blnShowOrgGroupID" (onChange)="ddlOrgGrpIdChanged()"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Business Unit</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstBunit" [id]="'ddlSts'" [(ngModel)]="selectedBunit" (onChange)="ddlBUnitChanged()" [required]="true" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">User ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstUsers" [id]="'ddlSts12'" [(ngModel)]="selectedUser" (onChange)="ddlUsersChanged()" [required]="true" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Event ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstEvents" [id]="'ddlSts1'" [(ngModel)]="selectedEvent" (onChange)="ddlEventIDChanged()" [required]="true" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Assign To</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstRecntUsers" [id]="'ddlStsr1'" [(ngModel)]="selectedRecntUser"  [disabled]="!blnRecntUsers" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-4 form-group">
+                                    <button class="btn btn-purple sbtn" (click)="btnGo_Click()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <div style="clear:both;"></div>
+                        <div class="col-xs-12 no-scrl" *ngIf="showgrid">
+                            <div class="container">
+                                <span class="text-danger">User {{_strUserId}} has reviewed this event on {{_strDateTime}} ({{_strDateTime | date:'EEEE'}})</span><br />
+                                <span class="text-dark" title="{{lblEventAllocUsersToolTip}}">User allocated to count / recount this event : {{lblEventAllocUsers}}</span>
+                                <br /><br />
+                                <ul class="list-inline">
+                                    <li>Status Legend</li>
+                                    <li><i class="fa fa-square" style="color:black;"></i> &nbsp;Normal</li>
+                                    <li><i class="fa fa-square" style="color:green;"></i> &nbsp; Consigned</li>
+                                    <li><i class="fa fa-square" style="color:brown;"></i> &nbsp; Lot/Serial</li>
+                                    <li class="pull-right">
+                                        <ul class="list-inline">
+                                            <li class="no-padding">
+                                                <i class="fa fa-envelope-o fa-bg-lg bg-blue" aria-hidden="true" style="cursor:pointer" id="imgMail" title="Send mail" (click)="onSendMailIconClick($event)"></i>&nbsp;
+                                            </li>
+                                            <li class="no-padding">
+                                                <i class="fa fa-print fa-bg-lg bg-blue" aria-hidden="true" style="cursor:pointer" id="imgPrint" title="Print" (click)="onPrintClick($event)"></i>&nbsp;
+                                            </li>
+                                            <li class="no-padding">
+                                                <i class="fa fa-file-excel-o fa-bg-lg bg-blue" aria-hidden="true" style="cursor:pointer" id="imgExcel" title="Excel Format" (click)="onExportToExcelClick($event)"></i>&nbsp;
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <br />
+                                <div [innerHtml]="totalItems"></div>
+                                <br />
+                                <atpar-datatable [value]="lstEventDetails" [paginator]="true" [pageLinks]="3" [rows]="pageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true"  [scrollable]="true">
+                                    <p-column field="INV_ITEM_ID" header="Item ID" [filter]="true" filterPlaceholder="Search" [style]="{'width':'150px'} "></p-column>
+                                    <p-column field="CUST_ITEM_NO" header="Custom Item No" [filter]="true" filterPlaceholder="Search" [style]="{'width':'100px'} "></p-column>
+                                    <p-column field="INV_LOT_ID" header="Lot #" [filter]="true" filterPlaceholder="Search" [style]="{'width':'64px'} "></p-column>
+                                    <p-column field="SERIAL_ID" header="Serial #" [filter]="true" filterPlaceholder="Search" [style]="{'width':'70px'} "></p-column>
+                                    <p-column field="MFG_ITEM_ID" header="Mfg Item ID" [filter]="true" filterPlaceholder="Search" [style]="{'width':'120px'} "></p-column>
+                                    <p-column field="DESCRIPTION" header="Description" [filter]="true" filterPlaceholder="Search" [style]="{'width':'350px'} ">
+                                    </p-column>
+                                    <p-column field="STORLOC" header="Storage Location" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'150px'}"></p-column>
+                                    <p-column field="UNIT_OF_MEASURE" header="UOM" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'62px'} "></p-column>
+                                    <p-column field="COUNT_QTY" header="Count Qty" [sortable]="true" [style]="{'width':'98px'} ">
+                                        <template let-col let-ven="rowData" pTemplate type="body">
+                                            <atpar-text [(ngModel)]="ven.COUNT_QTY" name="txtLocatio" *ngIf="!isEditMode" [validations]="'numeric_dot,max=10,min=0'" [id]="ven.INV_ITEM_ID" [style]="{'text-align':'left','padding-right':'6px','color':(ven.rowClsStyle=='ui-datatable-brown')?'brown':(ven.rowClsStyle=='ui-datatable-green')?'green':'black'}"
+                                                        [ngModelOptions]="{standalone: true}" [disabled]="hdnProfEditTxt=='N'?true:false" (bindModelDataChange)="bindModelDataChange(ven)"></atpar-text>
+                                            <!--(focusEventEmiter)="focusEvent($event,ven)"-->
+                                            <!--<input type="number" class="form-control" [(ngModel)]="ven[col.field]==-1?'':ven[col.field]" name="txtLocatio" *ngIf="!isEditMode" max="10" min="0" id="'Locatio'" (focus)="focusEvent(ven[col.field])"  (blur)="focusOutEvent(ven)" [ngModelOptions]="{standalone: true}" [readonly]="hdnProfEditTxt=='N'?true:false" />-->
+                                        </template>
+                                    </p-column>
+                                    <p-column field="SYS_QTY" header="Sys Qty" sortable="custom" (sortFunction)="customSort($event,'SYS_QTY')" [filter]="true" filterPlaceholder="Search" [style]="{'width':'84px'} "></p-column>
+                                    <!--<p-column field="" header="Selected Count" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>-->
+                                    <p-column field="CntDiff1" header="Diff Count Qty" [filter]="true" filterPlaceholder="Search" [style]="{'width':'100px'} ">
+                                        <!--<template let-col let-ven="rowData" pTemplate type="body">
+                    <atpar-text [(ngModel)]="ven[col.field]" [name]="txtLocatio" *ngIf="!isEditMode" [validations]="'numeric_10'" [id]="'Locatio'" [ngModelOptions]="{standalone: true}" [readonly]="hdnProfEditTxt"></atpar-text>
+                </template>-->
+                                    </p-column>
+                                    <p-column field="Valdiffp" header="Diff Count Qty (%)" [filter]="true" filterPlaceholder="Search" [style]="{'width':'130px'} ">
+
+                                    </p-column>
+                                    <p-column field="ITEM_PRICE" header="Price($) / Item" sortable="custom" (sortFunction)="customSort($event,'ITEM_PRICE')" [filter]="true" filterPlaceholder="Search" [style]="{'width':'100px'} "></p-column>
+                                    <p-column field="Valdiffd" header="Value Diff" sortable="custom" (sortFunction)="customSort($event,'Valdiffs')" [filter]="true" filterPlaceholder="Search" [style]="{'width':'90px'}"></p-column>
+                                    <p-column field="RECOUNTCHECK_FLAG" header="Re Count" [style]="{'width':'56px','text-align':'center'}">
+                                        <template pTemplate="filter" let-ven>
+                                            <atpar-switch [(ngModel)]="rctFlag" [checked]="rctFlag" (click)="switch_Click()"></atpar-switch>
+                                        </template>
+                                        <template pTemplate="filter" type="body" let-col let-ven="rowData">
+                                            <atpar-switch [(ngModel)]="ven[col.field]" [checked]="ven[col.field]" (click)="switch_changed()" [disabled]="!ven['checkEnable']"></atpar-switch>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="USERNAME" header="Count User" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'145px'} "></p-column>
+                                    <p-column field="RECOUNT_USER_NAME" header="Recount User" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'145px'} "></p-column>
+                                </atpar-datatable>
+                                <br>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="btnSubmit_Click()">Submit &nbsp;<i class="fa fa-check"></i></button>
+                                <button class="btn btn-purple sbtn" (click)="btnSend_Click()" *ngIf="btnUpload">Send/Upload &nbsp;<i class="fa fa-upload"></i></button>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <mail-dialog header="Enter Recipient`s Email Address" [width]="450" (onClose)="closeMailPopup()" [(visible)]="isMailDialog" [responsive]="true" showEffect="fade" [modal]="true">
+            <div class="ui-grid ui-grid-responsive ui-fluid">
+                <div class="row">
+                    <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="margin-top:2%;margin-right:-2%">
+                        <span style="font-weight:600">To : </span>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <atpar-text [(ngModel)]="toMailAddr" [name]="txtToMailAddr" [id]="'txtToMailAddr'"></atpar-text>
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                        <span><button class="btn btn-purple sbtn" (click)="onSendMailClick()">Send &nbsp;<i class="fa fa-share-square-o" aria-hidden="true"></i></button> </span>
+                    </div>
+                </div>
+            </div>
+        </mail-dialog>
+        <!--<mail-dialog header="Enter Recipient`s Email Address" [width]="450" (onClose)="closeMailPopup()" [(visible)]="isMailDialog" [responsive]="true" showEffect="fade" [modal]="true">
+            <div class="ui-grid ui-grid-responsive ui-fluid">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                        <span>To : </span>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-8 col-xs-8">
+                        <atpar-text [(ngModel)]="toMailAddr" [name]="txtToMailAddr" [id]="'txtToMailAddr'"></atpar-text>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                        <span><button class="btn btn-purple sbtn" (click)="onSendMailClick()">Send &nbsp;<i class="fa fa-share-square-o" aria-hidden="true"></i></button> </span>
+                    </div>
+                </div>
+            </div>
+        </mail-dialog>-->     
+        <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+    </div>
+</div>

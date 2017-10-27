@@ -1,0 +1,57 @@
+ [
+      {
+        "CARRIER_ID": "BSP",
+        "DESCR": "BSP Freight",
+        "LOCAL_FLAG": "N"
+      },
+      {
+        "CARRIER_ID": "CUSTPICKUP",
+        "DESCR": "Customers Carrier",
+        "LOCAL_FLAG": "N"
+      },
+      {
+        "CARRIER_ID": "DHL",
+        "DESCR": "DHL",
+        "LOCAL_FLAG": "N"
+      },
+      {
+        "CARRIER_ID": "FAST",
+        "DESCR": "Fast Delivery Ltd.",
+        "LOCAL_FLAG": "N"
+      },
+      {
+        "CARRIER_ID": "FEDEX",
+        "DESCR": "Federal Express",
+        "LOCAL_FLAG": "N"
+      },
+      {
+        "CARRIER_ID": "ONEDAY",
+        "DESCR": "One Day Delivery",
+        "LOCAL_FLAG": "N"
+      },
+      {
+        "CARRIER_ID": "STD",
+        "DESCR": "Standard Delivery Company",
+        "LOCAL_FLAG": "N"
+      },
+      {
+        "CARRIER_ID": "SURFACE",
+        "DESCR": "Surface Delivery Inc.",
+        "LOCAL_FLAG": "N"
+      },
+      {
+        "CARRIER_ID": "UNITED",
+        "DESCR": "United Trucking Co.",
+        "LOCAL_FLAG": "N"
+      },
+      {
+        "CARRIER_ID": "UPS",
+        "DESCR": "United Parcel Service",
+        "LOCAL_FLAG": "N"
+      },
+      {
+        "CARRIER_ID": "USPS",
+        "DESCR": "US Postal Service",
+        "LOCAL_FLAG": "N"
+      }
+]

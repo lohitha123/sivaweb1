@@ -1,0 +1,242 @@
+﻿<style>
+    ul > li {
+        cursor: pointer;
+    }
+
+
+    .modal-content > .modal-header {
+        border-bottom: 0px !important;
+        background-color: #fff !important;
+    }
+
+    .navbar-collapse > ul > li > a {
+        padding: 3px 10px;
+        color: #6c276a !important;
+        font-size: 12px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 0;
+        border-top-right-radius: 8px;
+        border-top-left-radius: 8px;
+        margin-left: 3px;
+    }
+
+    .nav > li {
+        border-radius: 0 !important;
+    }
+
+    .navbar-collapse > .nav > li > a {
+        text-decoration: none;
+        border-bottom: 2px solid #6c276a;
+        background-color: #fff;
+        color: #6c276a !important;
+    }
+
+        .navbar-collapse > .nav > li > a:hover {
+            text-decoration: none;
+            border-bottom: 2px solid #fe7500;
+            background: #fe7500;
+            color: #fff !important;
+        }
+
+            .navbar-collapse > .nav > li > a:hover > img {
+                filter: brightness(0) invert(1) !important;
+            }
+
+    .img-white {
+        filter: brightness(0) invert(1) !important;
+    }
+
+    .img-default {
+        filter: brightness(100%) invert(0);
+    }
+
+    .navbar-collapse > .nav > .active > a {
+        text-decoration: none;
+        border-bottom: 2px solid #fe7500;
+        background: #fe7500;
+        color: #fff !important;
+    }
+
+        .navbar-collapse > .nav > .active > a > img {
+            filter: brightness(0) invert(1) !important;
+        }
+
+    .navbar-collapse > .nav > li > a > img {
+    }
+
+    .navbar-collapse > .nav > .active > a > img {
+        filter: brightness(100%) invert(0);
+    }
+
+    .modal-hdng-text {
+        font-size: 1.5em !important;
+        color: #6c276a !important;
+    }
+
+    .modal-hdng-icons {
+        margin-top: 7px !important;
+        color: #6c276a !important;
+    }
+
+    .navbar-collapse > .nav > li > a i {
+        font-size: 14px;
+        margin-top: 0px;
+    }
+
+    @media screen and (max-width: 767px) {
+        .navbar-collapse > ul > li > a {
+            margin: 0 3px 3px 3px;
+        }
+    }
+
+    .pdf-icon {
+        font-size: 1.2em;
+        color: #6c276a;
+    }
+
+    .download-links li a.grid-link {
+        color: #6c276a !important;
+    }
+
+        .download-links li a.grid-link:hover {
+            color: #8a48bc !important;
+            cursor: pointer !important;
+        }
+
+    .count-badge {
+        background-color: #ededed !important;
+        color: #6c276a !important;
+        right: 20px !important;
+        top: 5px !important;
+        font-weight: 700;
+        font-size: 13px !important;
+    }
+
+    .notification-icon-box {
+        height: 45px;
+        width: 45px;
+        padding: 0px !important;
+        line-height: 35px !important;
+        text-align: center;
+        border-radius: 50%;
+        margin: 17px 5px;
+        border: 1px solid #6c276a !important;
+        font-size: 16px !important;
+    }
+
+    .nav > li > a i {
+        font-size: 20px;
+        margin-top: 11px;
+    }
+
+    .badge-icon {
+        position: absolute;
+        right: 11px !important;
+        top: 10px !important;
+        display: block;
+        height: 7px !important;
+        width: 7px !important;
+        padding: 0;
+        min-width: 1px;
+        border-radius: 50%;
+    }
+    .align-image {
+        width: 45px !important;
+        height: 45px !important;
+        box-shadow: 0px 0px 6px 1px #a6a6a6;
+    }
+</style>
+
+<div class="topbar">
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+    <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="">
+                <a class="logo pull-left" (click)="onAtPar()" style="cursor:pointer;"><img [src]="mhsatparicon" width="210" height="auto" title="Home"></a>
+                <div class="pull-left">
+                    <span class="clearfix"></span>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav navbar-right pull-right">
+                        <li class="dropdown hidden-xs" [ngClass]="{open : smallMenu === 'notify'}" title="Notifications">
+                            <a class="dropdown-toggle waves-effect waves-light notification-icon-box"> <i class="fa fa-bell" style="font-size:1.2em!important;"></i> <span class="badge badge-xs badge-danger badge-icon"></span> </a>
+                        </li>
+                        <li class="dropdown hidden-xs" [ngClass]="{open : smallMenu === 'cart'}" (click)="dropdownMenu('cart')" title="view cart">
+                            <a [routerLink]="['viewcart']" (click)="onViewCartClick()" class="dropdown-toggle waves-effect waves-light notification-icon-box"> <i class="fa fa-shopping-cart" style="font-size:1.7em!important;"></i> <span class="badge badge-xs count-badge">{{countvalue}}</span> </a>
+
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
+
+                                <img src="data:image/png;base64,{{user.IMAGE}}" alt="user-img" class="img-circle align-image" title="{{user.FIRST_NAME}} {{user.LAST_NAME}}" />
+                                <span class="profile-username">
+                                    Welcome <br />
+                                    <small>{{user.FIRST_NAME}} {{user.LAST_NAME}}</small>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a [routerLink]="['myprofile']" (click)="onMyProfileClick()"> My Profile</a></li>
+                                <li><a (click)="modal2.show('tkitHelp')">Help</a></li>
+                                <li><a (click)="onLogOut()"> Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="navbar-collapse" style="margin-top:0px; background-color:#6c276a;padding:3px 0px 0px 0px;">
+    <ul class="nav navbar-nav">
+        <li id="create" [routerLinkActive]="['active']"><a class="before-img" [routerLink]="['createrequest']" (click)="onCreateRequestClick()"><img [ngClass]="color1" src="../../../assets/images/trackit/createReq-P.png" width="25" /> &nbsp; Create Request</a></li>
+        <li id="request" [routerLinkActive]="['active']"><a class="before-img" [routerLink]="['requeststatus']" (click)="onRequestStatusClick()"><img [ngClass]="color2" src="../../../assets/images/trackit/reqStatus-P.png" width="25" />&nbsp; Request Status</a></li>
+        <li id="xyz" [routerLinkActive]="['active']"><a class="before-img" [routerLink]="['requestoritemvisibilityreport']" (click)="onRequestorItemReportClick()"><img [ngClass]="color3" src="../../../assets/images/trackit/itemReport-P.png" width="25" /> &nbsp; Requestor Item Visibility Report</a></li>
+    </ul>
+</div>
+
+<div class="">
+    <atpar-modal #modal2>
+        <div class="atpar-modal-header">
+            <ul class="list-inline text-center">
+                <li class="">
+                    <a class="text-primary text-center modal-hdng-text">TrackIT Help</a>
+                </li>
+                <li class="pull-right">
+                    <a (click)="modal2.hide()" class="class" href="javascript:void(0)"><span class="fa fa-close modal-hdng-icons"></span></a>
+                </li>
+            </ul>
+        </div>
+        <div class="atpar-modal-body">
+            <div class="container">
+                <div class="col-xs-12 col-md-10 col-md-offset-1 col-sm-12">
+                    <div class="clear visible-xs hidden-sm hidden-md hidden-lg"></div>
+                    <hr class="visible-xs hidden-sm hidden-md hidden-lg">
+                    <div class="clear"></div>
+                    <div class="col-xs-12 help-icons">
+                        <div class="col-xs-12 col-sm-2 col-md-2">
+                            <img src="../../../assets/images/icons/common/trackIt.png" alt="" class="img-responsive" width="60">
+                        </div>
+
+                        <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum magnam dolorem mollitia nesciunt inventore voluptate itaque repudiandae omnis suscipit beatae laudantium, enim sed quod aspernatur vitae pariatur, doloribus nam. Suscipit.</p>
+                        </div>
+                        <ul class="list-inline download-links">
+                            <li><a href="../Docs/AtParServerUserGuide-TrackIT.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Server User Guide</a></li>
+                            <li><a href="../Docs/AtParRequestorUserGuide-TrackIT.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Requestor User Guide</a></li>
+                            <li><a href="../Docs/AtParClientUserGuide-TrackIT.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Client User Guide</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="clear"></div>
+
+                </div>
+            </div>
+        </div>
+        <div class="atpar-modal-footer">
+        </div>
+    </atpar-modal>
+</div>
+
+
+
+

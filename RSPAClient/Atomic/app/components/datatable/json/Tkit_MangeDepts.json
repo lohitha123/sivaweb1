@@ -1,0 +1,14 @@
+ [
+     {
+        "ORG_GROUP_ID": "MHS-MHS",
+        "DEPARTMENT_ID": "dept1",
+        "DESCRIPTION": "dept1desc",
+        "ACTIVE/INACTIVE": "Active"
+      },
+      {
+        "ORG_GROUP_ID": "MHS-MHS",
+        "DEPARTMENT_ID": "dept1",
+        "DESCRIPTION": "dept1desc",
+        "ACTIVE/INACTIVE": "Active"
+      }       
+]

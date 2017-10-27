@@ -1,0 +1,141 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:10px 0px 10px 0;">
+                        <form class="form-horizontal form-label-left" *ngIf="filter">
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Cost Center</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-ac-server [(ngModel)]="codes" [id]="'CostCenter'" [name]="txtCostCenter" [suggestions]="lstDBDataSearch" (completeMethod)="searchAutoCompleteCode($event)" [ngModelOptions]="{standalone: true}"></atpar-ac-server>
+                                    <!--<atpar-text [(ngModel)]="codes" [name]="txtCostCenter" [isFocused]="'true'" [validations]="'alpha_numeric_space'" [id]="'CostCenter'" [ngModelOptions]="{standalone: true}"></atpar-text>-->
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-2 col-md-4 form-group">
+                                <button class="btn btn-purple sbtn" (click)="go()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                <button class="btn btn-purple sbtn" (click)="addCostCenterCode()">Add &nbsp;<i class="fa fa-plus"></i> </button>
+                            </div>
+                        </form>
+                        <div style="clear:both;"></div>
+                        <div class="col-xs-12 container" *ngIf="pop">
+                            <div class="container">
+                                <div class="col-lg-12 col-md-12 col-xs-12">
+                                    <span *ngIf="lstDBData.length > 0" class="text-primary pull-right">{{lstDBData.length}}  Code(s) Found</span>
+                                </div>
+                                
+                                <atpar-datatable [value]="lstDBData" #dt [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column header="Action" [style]="{'width':'8%','text-align':'center'}">
+                                        <template let-rowData="rowData" pTemplate="body">
+                                            <i class="fa fa-pencil fa-bg bg-red" style="cursor:pointer;" title="Edit" (click)="editCostCenterCode(rowData)"></i>&nbsp;
+                                            <i class="fa fa-trash fa-bg bg-red" style="cursor:pointer;" title="Delete" (click)="confirmDelete(rowData, true)"></i>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="COST_CENTER_CODE" header="Code" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="Assign Signatories">
+                                        <template let-rowData="rowData" pTemplate="body">
+                                            <span (click)="assignSignatories(rowData)" class="grid-link">Assign Signatories</span>
+                                        </template>
+                                    </p-column>
+                                </atpar-datatable>
+                            </div>
+                        </div>
+                        <div style="clear:both;"></div>
+
+                        <form class="form-horizontal form-label-left" *ngIf="form">
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Code</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="newItem.COST_CENTER_CODE" [name]="txtCode" [isFocused]="'true'" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'mandatory,ALPHA_NUMERIC_EXCEPT_FST_SPACE,max=50'" [id]="'Code'" [ngModelOptions]="{standalone: true}" [title]="'Use only A-Z,a-z,0-9,max 50 characters'"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                                <button class="btn btn-purple sbtn" *ngIf="!isEditMode" (click)="saveSignatoryCode()" [disabled]="disableButton">Save &nbsp; <i class="fa fa-floppy-o"></i></button>
+                                <button class="btn btn-purple sbtn" *ngIf="isEditMode" (click)="saveSignatoryCode()" [disabled]="disableButton">Update &nbsp;<i class="fa fa-check"></i> </button>
+                                <button class="btn btn-purple sbtn" (click)="goCancel()">Cancel &nbsp;<i class="fa fa-close"></i> </button>
+                            </div>
+                        </form>
+                        <div style="clear:both;"></div>
+
+                        <div class="col-xs-12 table-responsive" *ngIf="table">
+                            <button class="btn btn-purple sbtn pull-right" (click)="edit()">Add &nbsp;<i class="fa fa-plus"></i> </button>
+                            <br>
+                            <div class="container">
+                                <span class="text-primary">{{strData}}</span>
+                                <div *ngIf="tableData">
+                                    <br />
+                                    <div class="col-lg-12 col-md-12 col-xs-12">
+                                        <span *ngIf="lstSignDBData.length > 0" class="text-primary pull-right">{{lstSignDBData.length}}  Record(s) Found</span>
+                                    </div>
+
+                                    <atpar-datatable [value]="lstSignDBData" [style]="{'width':'100%'}" #dt [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                        <p-column header="Action" [style]="{'width':'4%','text-align':'center'}">
+                                            <template let-rowData="rowData" pTemplate="body">
+                                                <i class="fa fa-trash fa-bg bg-red" style="cursor:pointer;" (click)="confirmDelete(rowData, false)" title="Delete"></i>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="AUTH_USER_ID" header="User ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="FIRST_NAME" header="First Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="LAST_NAME" header="Last Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="MIDDLE_NAME" header="Middle Name" [sortable]="true" filterPlaceholder="Search" [style]="{'width':'9%'}"></p-column>
+                                    </atpar-datatable><br>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-md-offset-5 col-sm-6 col-sm-offset-5" *ngIf="table">
+                                <button class="btn btn-purple sbtn" (click)="goBack()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back </button>
+                            </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                        <form class="form-horizontal form-label-left" *ngIf="form2">
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">User ID</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="newItem.AUTH_USER_ID" [name]="txtAuthUserId" [validations]="'mandatory,ALPHA_NUMERIC_EXCEPT_FST_SPACE,max=50'" [title]="'Use only A-Z,a-z,0-9,max 50 characters'" [id]="'userID'" (bindModelDataChange)="bindModelDataChange($event)" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                    <!--Enter User ID Here-->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">First Name</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="newItem.FIRST_NAME" [name]="txtFirstName" [validations]="'mandatory,ALPHA_NUMERIC_EXCEPT_FST_SPACE,max=50'" [title]="'Use only A-Z,a-z,0-9,max 50 characters'" [id]="'fName'" (bindModelDataChange)="bindModelDataChange($event)" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                    <!--Enter First Name Here-->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Last Name</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="newItem.LAST_NAME" [name]="txtLastName" [validations]="'ALPHA_NUMERIC_EXCEPT_FST_SPACE,max=50'" [title]="'Use only A-Z,a-z,0-9,max 50 characters'" [id]="'txtLastName'" (bindModelDataChange)="bindModelDataChange($event)" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                    <!--Enter Last Name Here-->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Middle Name</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="newItem.MIDDLE_NAME" [name]="txtMiddleName" [validations]="'ALPHA_NUMERIC_EXCEPT_FST_SPACE,max=1'" [title]="'Use only A-Z,a-z,0-9,max 1 character'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'txtMiddleName'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                    <!--Enter Middle Name Here-->
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-4">
+                                <button class="btn btn-purple sbtn" (click)="saveAuthSignatoryCode()" [disabled]="disableButtonUser">Save &nbsp; <i class="fa fa-floppy-o"></i></button>
+                                <button class="btn btn-purple sbtn" (click)="close()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-section implementation">
+        <atpar-confirmdialog header="Confirmation" icon="fa fa-question-circle" width="425"></atpar-confirmdialog>
+    </div>
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+</div>

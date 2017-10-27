@@ -1,0 +1,305 @@
+﻿
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" style="height:auto;margin-left: -10px;"><img [src]="mhsicon" alt="" class="img-responsive" style="width:15%;margin:inherit;"></a>
+        </div>
+    </div>
+</nav>
+<br>
+<div class="scrl" style="height:100%;overflow:scroll!important">
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+    <div class="row">
+        <ul class="breadcrumb">
+            <li class="completed1"><a>Deliver </a></li>
+            <li class="completed"><a (click)="BreadCrumbMenu_Click()" style="cursor:pointer">Deliver Tracking Report</a></li>
+        </ul>
+    </div>
+    <div class="Container-fluid" style="margin-top: 1%;">
+        <div class="panel panel-default" style="border:1px solid #ddd!important;margin-bottom:100px!important;">
+            <div class="panel-body">
+                <form class="form-horizontal form-label-left" novalidate>
+                  
+                        <div class="col-xs-12">
+                            <div class="pull-right" id="tdExports" *ngIf="showGrid">
+                                <ul class="list-inline">
+                                    <li class="no-padding" style="cursor:pointer">
+                                        <i class="fa fa-envelope-o fa-bg-lg bg-blue" aria-hidden="true" id="imgMail" title="Send mail" (click)="onSendMailIconClick($event)"></i>&nbsp;
+                                    </li>
+                                    <li class="no-padding" style="cursor:pointer">
+                                        <i class="fa fa-print fa-bg-lg bg-blue" aria-hidden="true" id="imgPrint" title="Print" (click)="onPrintClick($event)"></i>&nbsp;
+                                    </li>
+                                    <li class="no-padding" style="cursor:pointer">
+                                        <i class="fa fa-file-excel-o fa-bg-lg bg-blue" aria-hidden="true" id="imgExcel" title="Excel Format" (click)="onExportToExcelClick($event)"></i>&nbsp;
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    <div class="col-xs-12">
+                        <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                            <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Tracking#</label>
+                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                <atpar-text [(ngModel)]="TrackingNo" [id]="'OrderNo'" [name]="'TrackingNo'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                            <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Order No </label>
+                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                <atpar-text [(ngModel)]="PoId" [id]="'OrderNo'" [name]="'OrderNo'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                            <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Dept ID </label>
+                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                <atpar-text [(ngModel)]="DeptId" [id]="'OrderNo'" [name]="'DeptId'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                            <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Vendor Name</label>
+                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                <atpar-text [(ngModel)]="VendorName" [id]="'OrderNo'" [name]="'VendorName'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                            <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">ItemID</label>
+                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                <atpar-text [(ngModel)]="ItemId" [id]="'OrderNo'" [name]="'ItemId'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                            <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Item Description</label>
+                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                <atpar-text [(ngModel)]="ItmDesc" [id]="'OrderNo'" [name]="'ItemDesc'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                            <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Carrier ID</label>
+                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                <atpar-text [(ngModel)]="Carrier" [id]="'OrderNo'" [name]="'CarrierId'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                            <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Location</label>
+                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                <atpar-text [(ngModel)]="Loc" [id]="'OrderNo'" [name]="'Location'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                            <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Location Description</label>
+                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                <atpar-text [(ngModel)]="LocDescr" [id]="'OrderNo'" [name]="'LocationDesc'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                            <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Status</label>
+                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                <atpar-select [options]="lstStatus" [id]="'ddlStatus'" [required]="true" [(ngModel)]="selectedStatus" [ngModelOptions]="{standalone: true}" [disabled]="blnStatus" (onChange)="ddlStatusChanged()"></atpar-select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                            <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Current Status</label>
+                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                <atpar-select [options]="lstCurrentStatus" [id]="'ddlCurrentStatus'" [required]="true" [(ngModel)]="selectedCurrStatus" [disabled]="blnCurrStatus" [ngModelOptions]="{standalone: true}" (onChange)="ddlCurrentStatusChanged()"></atpar-select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                            <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Recipient</label>
+                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                <atpar-text [(ngModel)]="DeliverTo" [id]="'OrderNo'" [name]="'Recipient'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-xs-12">
+
+                        <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                            <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Requestor</label>
+                            <div class="col-xs-12 col-sm-6 col-md-8">
+
+                                <atpar-text [(ngModel)]="Requestor" [id]="'OrderNo'" [name]="'Requestor'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                            <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">From Date</label>
+                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                <p-calendar [showIcon]="true" [id]="'fromDate'" [(ngModel)]="fromDate" [placeholder]="'From Date'" [dateFormat]="'mm/dd/yy'" [required]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [monthNavigator]="true"  [yearNavigator]="true"  yearRange="1950:2050"></p-calendar>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                            <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">To Date</label>
+                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                <p-calendar [showIcon]="true" [id]="'toDate'" [(ngModel)]="toDate" [placeholder]="'To Date'" [dateFormat]="'mm/dd/yy'" [required]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [monthNavigator]="true"  [yearNavigator]="true"  yearRange="1950:2050"></p-calendar>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                            <button class="btn btn-purple sbtn" (click)="BindDataGrid()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                            <div class="col-xs-12 col-sm-6 col-md-8">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="col-xs-12">
+
+
+                    </div>
+
+                    <div *ngIf="false">
+
+                        <div class="col-xs-12">
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Org Group ID </label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <label *ngIf="blnShowOrgGroupLabel" class="control-label lbl-left">{{orgGrpId}}</label>
+                                    <atpar-select [options]="lstOrgGroups" [id]="'ddllstOrgGroups'" [required]="true" [(ngModel)]="selectedOrgGrpId" [ngModelOptions]="{standalone: true}" filter="filter" *ngIf="blnShowOrgGroupDD" (onChange)="ddlOrgGrpIdChanged()"></atpar-select>
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-md-4 col-sm-6"> Delivered By </label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-select [options]="lstDeliverdBy" [id]="'ddlDeliverdBy'" [required]="false" [(ngModel)]="selectedDeliverBy" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </form>
+                <br />
+                <div class="col-xs-12 table-responsive no-scrl" id="Exportdiv" *ngIf="showGrid">
+                    <atpar-datatable [value]="deliverHeaders" [scrollable]="true" [paginator]="true" id="DelvTable" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true" (filteredData)="onDeliverFilterData($event)" resizableColumns="true">
+                        <p-column header="Transaction ID" field="TRANSACTION_ID" *ngIf="false"></p-column>
+                        <p-column expander="true" styleClass="col-icon" [style]="{'text-align':'center','width':'35px'}"></p-column>
+                        <p-column header="Order# - Line#" field="PO_ID" [style]="{'width':'150px'}">
+                            <template let-heddetail="rowData" pTemplate="body">
+                                <span style="float:left">{{heddetail.PO_ID}}</span>
+                                <span>-</span>
+                                <span>{{heddetail.LINE}}</span>
+                            </template>
+                        </p-column>
+                        <p-column header="External Tracking#" field="EXTTRACKING" [style]="{'width':'150px'}">
+                            <template let-heddetail="rowData" pTemplate="body">
+                                <p inColSpan colSpan="18" description="{{heddetail.DeliverMsg}}"></p>
+                            </template>
+                        </p-column>
+                        <p-column header="Internal Tracking# " field="INTTRACKING" [style]="{'width':'150px'}">
+                            
+                        </p-column>
+                        <p-column header="Item ID-Item Description" field="ItemID" [style]="{'width':'160px'}">
+                            <template let-heddetail="rowData" pTemplate="body">
+                                <span style="float:left">{{heddetail.ITEM_ID}}</span>
+                                <span>-</span>
+                                <span>{{heddetail.ITEM_DESC}}</span>
+                            </template>
+                        </p-column>
+                        <p-column header="Location" field="LOCATION" [style]="{'width':'150px'}"></p-column>
+                        <p-column header="Qty-UOM" field="QTY" [style]="{'width':'150px'}">
+                            <template let-heddetail="rowData" pTemplate="body">
+                                <span style="float:left">{{heddetail.QTY}}</span>
+                                <span>-</span>
+                                <span>{{heddetail.UOM}}</span>
+                            </template>
+                        </p-column>
+                        <p-column header="Mfg ItemID" field="MFG_ITEM_ID" [style]="{'width':'120px'}"></p-column>
+                        <p-column header="Dept ID" field="DEPT_ID" [style]="{'width':'120px'}"></p-column>
+                        <p-column header="Carrier" field="CARRIER_ID" [style]="{'width':'120px'}"></p-column>
+                        <p-column header="Receipt Date Time" field="RECEIPT_DATE" [style]="{'width':'150px'}"></p-column>
+                        <p-column header="Requestor" field="RECEPIENT" [style]="{'width':'120px'}"></p-column>
+                        <p-column header="Status (Event Time) " field="STATUS_MESSAGE" [style]="{'width':'200px'}">
+                            <template let-heddetail="rowData" pTemplate="body">
+                                <span style="float:left">
+                                    <strong>
+                                        {{heddetail.STATUS_MESSAGE}}
+                                    </strong>
+                                </span>
+                                <span>
+                                    <strong>
+                                        ({{heddetail.UPDATE_DATE}} )
+                                    </strong>
+                                </span>
+                            </template>
+                        </p-column>
+                        <p-column header="Current Owner " field="USER_ID" [style]="{'width':'150px'}"></p-column>
+                        <p-column header="PickUp User" field="RECEIVE_USERID" [style]="{'width':'120px'}"></p-column>
+                        <p-column header="Vendor Name" field="VENDOR" [style]="{'width':'120px'}"></p-column>
+                        <p-column header="Employee Name" field="RECEIVER_NAME" [style]="{'width':'120px'}"></p-column>
+                        <p-column header="Notes" field="ITEM_NOTES" [style]="{'width':'200px'}"></p-column>
+                        <template let-header pTemplate="rowexpansion">
+                            <atpar-datatable [value]="header.DETAILS" [paginator]="false" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                <p-column header="Event" field="EVENT_STATUS_MESSAGE" [style]="{'text-align':'center'}"></p-column>
+                                <p-column header="Event Date" field="EVENT_DATE" [style]="{'text-align':'center'}"></p-column>
+                                <p-column header="User" field="EVENT_USER" [style]="{'text-align':'center'}"></p-column>
+                                <p-column header="Delivery Location" field="DELIVERY_LOCATION" [style]="{'text-align':'center'}"></p-column>
+                                <p-column header="Signature" field="SIGNATURE" [style]="{'text-align':'center'}">
+                                    <template let-col let-ven="rowData" pTemplate="body">
+                                        <img src="data:image/jpg;base64,{{ven.SIGNATURE}}" *ngIf="ven.EVENT_STATUS_MESSAGE=='Delivered'?true:false">
+                                    </template>
+                                </p-column>
+                            </atpar-datatable>
+                        </template>
+                        <!--<div class="tableWidth">
+                            <template let-header pTemplate="rowexpansion">
+                                <atpar-datatable [value]="header.DETAILS" [paginator]="false" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                    <p-headerColumnGroup>
+                                        <p-row>
+                                            <p-column [colspan]="2" header="Event"></p-column>
+                                            <p-column [colspan]="2" header="Event Date"></p-column>
+                                            <p-column [colspan]="2" header="User"></p-column>
+                                            <p-column [colspan]="2" header="Delivery Location"></p-column>
+                                            <p-column [colspan]="2" header="Signature"></p-column>
+                                        </p-row>
+
+                                    </p-headerColumnGroup>
+
+                                    <p-column field="EVENT_STATUS_MESSAGE" [style]="{'text-align':'center'}" [colspan]="2"></p-column>
+                                    <p-column field="EVENT_DATE" [style]="{'text-align':'center'}" [colspan]="2"></p-column>
+                                    <p-column field="EVENT_USER" [style]="{'text-align':'center'}" [colspan]="2"></p-column>
+                                    <p-column field="DELIVERY_LOCATION" [style]="{'text-align':'center'}" [colspan]="2"></p-column>
+                                    <p-column field="SIGNATURE" [colspan]="2">
+                                        <template let-col let-ven="rowData" pTemplate="body">
+                                            <img src="data:image/jpg;base64,{{ven.SIGNATURE}}" *ngIf="ven.EVENT_STATUS_MESSAGE=='Delivered'?true:false">
+                                        </template>
+                                    </p-column>
+                                </atpar-datatable>
+                            </template>
+                        </div>-->
+                    </atpar-datatable>
+                </div>
+            </div>
+            <br />
+            <br />
+
+        </div>
+    </div>
+</div>
+
+<mail-dialog header="Enter Recipient`s Email Address" [width]="450" (onClose)="closeMailPopup()" [(visible)]="isMailDialog" [responsive]="true" showEffect="fade" [modal]="true">
+    <div class="ui-grid ui-grid-responsive ui-fluid">
+        <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="margin-top:2%;margin-right:-2%">
+                <span style="font-weight:600">To : </span>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <atpar-text [(ngModel)]="toMailAddr" [name]="txtToMailAddr" [id]="'txtToMailAddr'"></atpar-text>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                <span><button class="btn btn-purple sbtn" (click)="onSendMailClick()">Send &nbsp;<i class="fa fa-share-square-o" aria-hidden="true"></i></button> </span>
+            </div>
+        </div>
+    </div>
+</mail-dialog>
+

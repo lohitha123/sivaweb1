@@ -1,0 +1,66 @@
+[
+      {
+        "DEPARTMENT_ID": "11000",
+        "BUSINESS_UNIT": "US015",
+        "CART_ID": "COR-1",
+        "LOCATION_TYPE": "P",
+        "INV_INTERFACE_ENABLE": "Y",
+        "BILLING_ENABLE": "Y"
+      },
+      {
+        "DEPARTMENT_ID": "11000",
+        "BUSINESS_UNIT": "US015",
+        "CART_ID": "DEL-1",
+        "LOCATION_TYPE": "P",
+        "INV_INTERFACE_ENABLE": "Y",
+        "BILLING_ENABLE": "Y"
+      },
+      {
+        "DEPARTMENT_ID": "11000",
+        "BUSINESS_UNIT": "US015",
+        "CART_ID": "ICU-1",
+        "LOCATION_TYPE": "P",
+        "INV_INTERFACE_ENABLE": "Y",
+        "BILLING_ENABLE": "Y"
+      },
+      {
+        "DEPARTMENT_ID": "11000",
+        "BUSINESS_UNIT": "US015",
+        "CART_ID": "ICU-2",
+        "LOCATION_TYPE": "P",
+        "INV_INTERFACE_ENABLE": "Y",
+        "BILLING_ENABLE": "Y"
+      },
+      {
+        "DEPARTMENT_ID": "11000",
+        "BUSINESS_UNIT": "US015",
+        "CART_ID": "MS-1",
+        "LOCATION_TYPE": "P",
+        "INV_INTERFACE_ENABLE": "Y",
+        "BILLING_ENABLE": "Y"
+      },
+      {
+        "DEPARTMENT_ID": "11000",
+        "BUSINESS_UNIT": "US015",
+        "CART_ID": "MS-2",
+        "LOCATION_TYPE": "P",
+        "INV_INTERFACE_ENABLE": "Y",
+        "BILLING_ENABLE": "Y"
+      },
+      {
+        "DEPARTMENT_ID": "11000",
+        "BUSINESS_UNIT": "US015",
+        "CART_ID": "par1",
+        "LOCATION_TYPE": "A",
+        "INV_INTERFACE_ENABLE": "Y",
+        "BILLING_ENABLE": "Y"
+      },
+      {
+        "DEPARTMENT_ID": "11000",
+        "BUSINESS_UNIT": "US015",
+        "CART_ID": "par2",
+        "LOCATION_TYPE": "A",
+        "INV_INTERFACE_ENABLE": "Y",
+        "BILLING_ENABLE": "Y"
+      }
+]

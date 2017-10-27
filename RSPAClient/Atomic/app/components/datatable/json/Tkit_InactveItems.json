@@ -1,0 +1,10 @@
+ [
+      {
+        "ITEM_ID": "boxtypeitem2",
+        "EQUIPMENT_TYPE": "boxtype",
+        "DESCRIPTION": "itemdesc2",
+        "STORAGE_LOCATION": "LtestOrg1",
+        "DESTRUCTION_DATE": "07/18/2017",
+        "COMMENTS": ""      
+      }         
+    ]

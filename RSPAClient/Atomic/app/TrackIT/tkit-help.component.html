@@ -1,0 +1,455 @@
+﻿<!--<div>
+    <span>This is trackit View Cart screen.</span>
+</div>-->
+<style>
+    .ui-datatable tbody tr td .form-control,
+    table tbody tr td .form-control {
+        height: auto !important;
+        margin-top: -10px;
+    }
+
+    input[type=number].form-control {
+        line-height: 34px;
+    }
+
+    .table-condensed > thead > tr > th {
+        text-align: center;
+    }
+
+    .new-ht td .input-group .input-group-addon {
+        line-height: 0 !important;
+    }
+
+    .download-links li a {
+        text-decoration: underline;
+    }
+
+    .help-icons img {
+        float: right;
+    }
+
+    .help-page-content li h4 {
+        font-size: 24px;
+        font-weight: 100;
+    }
+
+    .top-heading-hr {
+        width: 5% !important;
+        border-bottom: 1px solid #6c276a;
+        margin-top: 0;
+    }
+
+    @media screen and (max-width:767px) {
+        .help-icons img {
+            float: initial;
+        }
+
+        .top-heading-hr {
+            width: 20%;
+            margin-top: 0;
+        }
+    }
+</style>
+<div id="main" class="content-page" style="margin-left:0px;">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <div class="panel panel-default" style="border: 1px solid #eee;">
+                <div class="panel-body" style="padding:20px 0px 10px 0px;">
+                    <!--<div class="row container">
+                        <p-accordion>
+                            <div class="col-md-6 col-md-offset-3">
+                                <p-accordionTab header="Administrator Guides" [selected]="true" icon="guide">
+                                    <a href="#" target="_blank">AtPar Handheld User Guide</a>
+                                </p-accordionTab>
+                                <p-accordionTab header="User Management" icon="manageUsers">
+                                    <a href="#" target="_blank">Server User Guide</a>
+                                </p-accordionTab>
+                                <p-accordionTab header="Cart Count" icon="cartCount">
+                                    <a href="#" target="_blank">Server User Guide</a><br>
+                                    <a href="#" target="_blank">Client User Guide</a><br>
+                                    <a href="#" target="_blank">Par Management User Guide</a>
+                                </p-accordionTab>
+                                <p-accordionTab header="Cycle Count" icon="cycleCount">
+                                    <a href="#" target="_blank">Server User Guide</a><br>
+                                    <a href="#" target="_blank">Client User Guide</a>
+                                </p-accordionTab>
+                                <p-accordionTab header="Receiving" icon="recieve">
+                                    <a href="#" target="_blank">Server User Guide</a><br>
+                                    <a href="#" target="_blank">Client User Guide</a>
+                                </p-accordionTab>
+                                <p-accordionTab header="Pick" icon="pick">
+                                    <a href="#" target="_blank">Server User Guide</a><br>
+                                    <a href="#" target="_blank">Client User Guide</a>
+                                </p-accordionTab>
+                                <p-accordionTab header="Deliver" icon="deliver">
+                                    <a href="#" target="_blank">Server User Guide</a><br>
+                                    <a href="#" target="_blank">Client User Guide</a>
+                                </p-accordionTab>
+                                </div>
+                                <div class="col-md-6">
+                                <p-accordionTab header="Putaway" icon="putAway">
+                                    <a href="#" target="_blank">Server User Guide</a><br>
+                                    <a href="#" target="_blank">Client User Guide</a>
+                                </p-accordionTab>
+                                <p-accordionTab header="TrackIT" icon="trackIt">
+                                    <a href="#" target="_blank">Server User Guide</a><br>
+                                    <a href="#" target="_blank">Requestor User Guide</a><br>
+                                    <a href="#" target="_blank">Client User Guide</a>
+                                </p-accordionTab>
+                                <p-accordionTab header="Stock Issue" icon="stockIssue">
+                                    <a href="#" target="_blank">Server User Guide</a><br>
+                                    <a href="#" target="_blank">Client User Guide</a>
+                                </p-accordionTab>
+                                <p-accordionTab header="Bin To Bin" icon="binToBin">
+                                    <a href="#" target="_blank">Server User Guide</a><br>
+                                    <a href="#" target="_blank">Client User Guide</a>
+                                </p-accordionTab>
+                                <p-accordionTab header="Point Of Use" icon="pointOfUse">
+                                    <a href="#" target="_blank">Server User Guide</a><br>
+                                    <a href="#" target="_blank">Client User Guide</a>
+                                </p-accordionTab>
+                                <p-accordionTab header="Asset Management" icon="assetManagement">
+                                    <a href="#" target="_blank">Server User Guide</a><br>
+                                    <a href="#" target="_blank">Client User Guide</a>
+                                </p-accordionTab>
+                                <p-accordionTab header="AtPaRx" icon="atparx">
+                                    <a href="#" target="_blank">Server User Guide</a><br>
+                                    <a href="#" target="_blank">Client User Guide</a>
+                                </p-accordionTab>
+                            </div>
+                        </p-accordion>
+                    </div>-->
+                    <div class="container">
+                        <h3 class="text-primary text-center">AtPar Help</h3>
+                        <hr class="top-heading-hr">
+                        <div class="col-xs-12 col-md-10 col-md-offset-1 col-sm-12">
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                                    <img src="../../assets/images/icons/common/admin-guide.png" alt="" class="img-responsive" width="60">
+                                </div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <h4 class="text-primary">Administrator Guides</h4>
+                                        </li>
+                                        <li>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt laborum illo perspiciatis nulla ea! Ad, culpa, consectetur nobis numquam beatae veritatis ut, est odio hic voluptates sed rem. Aliquid, necessitatibus.</p>
+                                        </li>
+                                        <li>
+                                            <ul class="list-inline download-links">
+                                                <li><a href="">AtPar Handheld User Guide</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clear visible-xs hidden-sm hidden-md hidden-lg"></div>
+                            <hr class="visible-xs hidden-sm hidden-md hidden-lg">
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                                    <img src="../../assets/images/icons/common/manageUsers.png" alt="" class="img-responsive" width="60">
+                                </div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <h4 class="text-primary">User Management</h4>
+                                        </li>
+                                        <li>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt laborum illo perspiciatis nulla ea! Ad, culpa, consectetur nobis numquam beatae veritatis ut, est odio hic voluptates sed rem. Aliquid, necessitatibus.</p>
+                                        </li>
+                                        <li>
+                                            <ul class="list-inline download-links">
+                                                <li><a href="">Server User Guide</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                            <hr>
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                                    <img src="../../assets/images/icons/common/cartCount.png" alt="" class="img-responsive" width="60">
+                                </div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <h4 class="text-primary">Cart Count</h4>
+                                        </li>
+                                        <li>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt laboriosam quod quis, sequi quisquam alias, officia cumque dolorem maiores perferendis minima placeat similique qui magnam. Nesciunt voluptatem aliquam, quod alias.</p>
+                                        </li>
+                                        <li>
+                                            <ul class="list-inline download-links">
+                                                <li><a href="">Server User Guide</a></li>
+                                                <li><a href="">Client User Guide</a></li>
+                                                <li><a href="">Par Management User Guide</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clear visible-xs hidden-sm hidden-md hidden-lg"></div>
+                            <hr class="visible-xs hidden-sm hidden-md hidden-lg">
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                                    <img src="../../assets/images/icons/common/cycleCount.png" alt="" class="img-responsive" width="60">
+                                </div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <h4 class="text-primary">Cycle Count</h4>
+                                        </li>
+                                        <li>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam, ullam atque deleniti iste velit eaque quaerat numquam explicabo quos optio alias nihil, laudantium fugiat totam quis sit! Ut excepturi, labore?</p>
+                                        </li>
+                                        <li>
+                                            <ul class="list-inline download-links">
+                                                <li><a href="">Server User Guide</a></li>
+                                                <li><a href="">Client User Guide</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                            <hr>
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                                    <img src="../../assets/images/icons/common/recieve.png" alt="" class="img-responsive" width="60">
+                                </div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <h4 class="text-primary">Receiving</h4>
+                                        </li>
+                                        <li>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore dolorem deleniti eius non aliquid, ullam tempore atque mollitia. Velit, libero. Sit placeat rem itaque illum quo aut qui architecto dolore.</p>
+                                        </li>
+                                        <li>
+                                            <ul class="list-inline download-links">
+                                                <li><a href="">Server User Guide</a></li>
+                                                <li><a href="">Client User Guide</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clear visible-xs hidden-sm hidden-md hidden-lg"></div>
+                            <hr class="visible-xs hidden-sm hidden-md hidden-lg">
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                                    <img src="../../assets/images/icons/common/pick.png" alt="" class="img-responsive" width="60">
+                                </div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <h4 class="text-primary">Pick</h4>
+                                        </li>
+                                        <li>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam possimus in nulla ratione nobis tempora dicta cupiditate magni explicabo suscipit modi dignissimos, culpa corporis consequuntur optio natus laborum vel quos.</p>
+                                        </li>
+                                        <li>
+                                            <ul class="list-inline download-links">
+                                                <li><a href="">Server User Guide</a></li>
+                                                <li><a href="">Client User Guide</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                            <hr>
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                                    <img src="../../assets/images/icons/common/deliver.png" alt="" class="img-responsive" width="60">
+                                </div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <h4 class="text-primary">Deliver</h4>
+                                        </li>
+                                        <li>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam possimus in nulla ratione nobis tempora dicta cupiditate magni explicabo suscipit modi dignissimos, culpa corporis consequuntur optio natus laborum vel quos.</p>
+                                        </li>
+                                        <li>
+                                            <ul class="list-inline download-links">
+                                                <li><a href="">Server User Guide</a></li>
+                                                <li><a href="">Client User Guide</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clear visible-xs hidden-sm hidden-md hidden-lg"></div>
+                            <hr class="visible-xs hidden-sm hidden-md hidden-lg">
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                                    <img src="../../assets/images/icons/common/putAway.png" alt="" class="img-responsive" width="60">
+                                </div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <h4 class="text-primary">Putaway</h4>
+                                        </li>
+                                        <li>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum eaque odio, vel ullam, voluptas odit quis. Recusandae sequi, impedit nobis eum rem rerum, culpa laudantium animi, nihil delectus consequuntur repudiandae.</p>
+                                        </li>
+                                        <li>
+                                            <ul class="list-inline download-links">
+                                                <li><a href="">Server User Guide</a></li>
+                                                <li><a href="">Client User Guide</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                            <hr>
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                                    <img src="../../assets/images/icons/common/trackIt.png" alt="" class="img-responsive" width="60">
+                                </div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <h4 class="text-primary">TrackIT</h4>
+                                        </li>
+                                        <li>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum magnam dolorem mollitia nesciunt inventore voluptate itaque repudiandae omnis suscipit beatae laudantium, enim sed quod aspernatur vitae pariatur, doloribus nam. Suscipit.</p>
+                                        </li>
+                                        <li>
+                                            <ul class="list-inline download-links">
+                                                <li><a href="">Server User Guide</a></li>
+                                                <li><a href="">Requestor User Guide</a></li>
+                                                <li><a href="">Client User Guide</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clear visible-xs hidden-sm hidden-md hidden-lg"></div>
+                            <hr class="visible-xs hidden-sm hidden-md hidden-lg">
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                                    <img src="../../assets/images/icons/common/stockIssue.png" alt="" class="img-responsive" width="60">
+                                </div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <h4 class="text-primary">Stock Issue</h4>
+                                        </li>
+                                        <li>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, quaerat. Ipsum eaque, assumenda consequatur. Fugiat eos, sequi iste provident error in impedit ex tempora qui quam? Corporis, amet. Magnam, provident.</p>
+                                        </li>
+                                        <li>
+                                            <ul class="list-inline download-links">
+                                                <li><a href="">Server User Guide</a></li>
+                                                <li><a href="">Client User Guide</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                            <hr>
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                                    <img src="../../assets/images/icons/common/binToBin.png" alt="" class="img-responsive" width="60">
+                                </div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <h4 class="text-primary">Bin to Bin </h4>
+                                        </li>
+                                        <li>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, quaerat. Ipsum eaque, assumenda consequatur. Fugiat eos, sequi iste provident error in impedit ex tempora qui quam? Corporis, amet. Magnam, provident.</p>
+                                        </li>
+                                        <li>
+                                            <ul class="list-inline download-links">
+                                                <li><a href="">Server User Guide</a></li>
+                                                <li><a href="">Client User Guide</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clear visible-xs hidden-sm hidden-md hidden-lg"></div>
+                            <hr class="visible-xs hidden-sm hidden-md hidden-lg">
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                                    <img src="../../assets/images/icons/common/pointOfUse.png" alt="" class="img-responsive" width="60">
+                                </div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <h4 class="text-primary">Point of Use</h4>
+                                        </li>
+                                        <li>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, quaerat. Ipsum eaque, assumenda consequatur. Fugiat eos, sequi iste provident error in impedit ex tempora qui quam? Corporis, amet. Magnam, provident.</p>
+                                        </li>
+                                        <li>
+                                            <ul class="list-inline download-links">
+                                                <li><a href="">Server User Guide</a></li>
+                                                <li><a href="">Client User Guide</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                            <hr>
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                                    <img src="../../assets/images/icons/common/assetManagement.png" alt="" class="img-responsive" width="60">
+                                </div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <h4 class="text-primary">Asset Management</h4>
+                                        </li>
+                                        <li>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, quaerat. Ipsum eaque, assumenda consequatur. Fugiat eos, sequi iste provident error in impedit ex tempora qui quam? Corporis, amet. Magnam, provident.</p>
+                                        </li>
+                                        <li>
+                                            <ul class="list-inline download-links">
+                                                <li><a href="">Server User Guide</a></li>
+                                                <li><a href="">Client User Guide</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clear visible-xs hidden-sm hidden-md hidden-lg"></div>
+                            <hr class="visible-xs hidden-sm hidden-md hidden-lg">
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                                    <img src="../../assets/images/icons/common/atparx.png" alt="" class="img-responsive" width="60">
+                                </div>
+                                <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <h4 class="text-primary">AtParX</h4>
+                                        </li>
+                                        <li>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, quaerat. Ipsum eaque, assumenda consequatur. Fugiat eos, sequi iste provident error in impedit ex tempora qui quam? Corporis, amet. Magnam, provident.</p>
+                                        </li>
+                                        <li>
+                                            <ul class="list-inline download-links">
+                                                <li><a href="">Server User Guide</a></li>
+                                                <li><a href="">Client User Guide</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--
+                            <div class="clear"></div>
+                            <hr> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

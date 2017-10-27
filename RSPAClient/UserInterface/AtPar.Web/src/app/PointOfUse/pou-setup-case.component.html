@@ -1,0 +1,156 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="panel panel-default" style="border: 1px solid #eee;">
+                <div class="panel-body" style="padding:0px;">
+                    <form class="form-horizontal form-label-left" *ngIf="searchFrom">
+                        <div class="col-xs-12">
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Physician</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-text [(ngModel)]="searchPhysicianNgModel" [name]="txtOrgId1" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_nospace'" [id]="'OrgId1'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Procedure Code</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-text [(ngModel)]="searchProcedureCodeNgModel" [name]="txtOrgId" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_nospace'" [id]="'OrgId'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <button class="btn btn-purple sbtn" (click)="btn_go()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                <button class="btn btn-purple sbtn" (click)="addSetupCase()" [disabled]="isDisabled">Add &nbsp;<i class="fa fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="col-xs-12 " *ngIf="showGrid">
+                        <div class="container">
+                            <div class="pull-right no-padding text-primary"> {{setupCaseCount}} </div>
+                            <atpar-datatable [value]="lstGridData" #dt [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="pageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                <p-column header="Action" [style]="{'width':'4%','text-align':'center'}">                                   
+                                    <template let-setupCase="rowData" pTemplate type="body">
+                                        <i class="fa fa-trash fa-bg bg-red" title="Delete" (click)="confirmDelete(setupCase)"></i>
+                                    </template>
+                                </p-column>
+                                <p-column field="CASE_ID" header="Case ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'10%'}"></p-column>
+                                <!--<p-column field="CASE_ID" header="Case ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>-->
+                                <p-column field="DESCRIPTION" header="Case Description" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'16%'}"></p-column>
+                                <p-column field="PHYSICIAN" header="Physician" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'14%'}"></p-column>
+                                <p-column field="PATIENT_ID" header="Patient Id" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'12%'}"></p-column>
+                                <p-column field="ROOM_NO" header="Room No" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'8%'}"></p-column>
+                                <p-column field="PREF_LIST_ID" header="Preference Card" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'12%'}"></p-column>
+
+                                <p-column field="PROCEDURE_ID" header="Procedure Code" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'12%'}"></p-column>
+                                <p-column field="PERFORM_DATE" header="Date" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'8%'}"></p-column>
+                                <p-column field="STATUS" header="Status" [filter]="true" filterPlaceholder="Search" [style]="{'width':'8%'}"></p-column>
+                            </atpar-datatable>
+                        </div>
+                    </div>
+                    <form class="form-horizontal form-label-left" *ngIf="addFrom">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Case ID</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-text [(ngModel)]="caseIDNgModel" [name]="Case_Id" 
+                                                [title]="'Accept alphabets(a-z),(A-Z),numbers(0-9)only,max 20 characters'"
+                                                
+                                                (bindModelDataChange)="bindModelDataChange($event)"
+                                                [validations]="'mandatory,alpha_numerics_nospace,max=20'" [id]="'CaseId'" [ngModelOptions]="{standalone: true}"
+                                                [isFocused]="'true'"></atpar-text>
+
+                                </div>
+                                <!--(bindModelDataChange)="bindModelDataChange($event)"-->
+                            </div>
+                            <div class="form-group">
+                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Case   Description</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-text [(ngModel)]="caseDescNgModel" [name]="caseDescription" (bindModelDataChange)="bindModelDataChange($event)"
+                                                [validations]="'mandatory'"
+                                                [id]="'caseDescription'" [ngModelOptions]="{standalone: true}" *ngIf="!disabled"></atpar-text>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Physician</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-select [options]="ddlPhysician" [(ngModel)]="physicianddlNgModel" [id]="'Physician'"
+                                                  (onChange)="ddlPhysicianIdChanged($event)"
+                                                  [ngModelOptions]="{standalone: true}" filter="filter" [required]="true"></atpar-select>
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Patient ID</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-text [(ngModel)]="patientIDNgModel" [name]="patientID" (bindModelDataChange)="bindModelDataChange($event)"
+                                                [validations]="'mandatory,alpha_numeric_underscore_hyphen_nospace'"
+                                                [id]="'patientID'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                                <!--(bindModelDataChange)="bindModelDataChange($event)"-->
+                            </div>
+
+                            <div class="form-group">
+                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12"> Room No</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-text [(ngModel)]="roomNoNgModel" [name]="roomNo" (bindModelDataChange)="bindModelDataChange($event)"
+                                                [validations]="'mandatory'"
+                                                [id]="'roomNo'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                                <!--(bindModelDataChange)="bindModelDataChange($event)"-->
+                            </div>
+                            <div class="form-group">
+                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Preference Card </label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-select [options]="ddlPreferencess" [(ngModel)]="preferenceCardNgModel" [id]="'preferencess'"
+                                                  [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlPreferencesIdChanged($event)" [required]="true"></atpar-select>
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">   Procedure Code</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-select [options]="ddlProcedure" [(ngModel)]="procedureCodeNgModel" [id]="'procedurecode'"
+                                                  (onChange)="ddlProcedureCodeChanged($event)"
+                                                  [ngModelOptions]="{standalone: true}" filter="filter" [required]="true"></atpar-select>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">  date</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <!--<p-calendar [(ngModel)]="setupCaseDate" [id]="'setupCaseDate'" [required]="true" [defaultDate]="archiveDate" (onChange)="formateDate()" [showIcon]="true" [ngModelOptions]="{standalone: true}"></p-calendar>-->
+
+                                    <p-calendar [showIcon]="true" [id]="'setupCaseDate'" [(ngModel)]="setupCaseDate" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2050" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [required]="true"  (onSelect)="Validate()" [dateFormat]="'mm/dd/yy'"></p-calendar>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">  Status</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-select [options]="ddlStatusType" [(ngModel)]="statusTypeNgModel" [id]="'status'" [ngModelOptions]="{standalone: true}"
+                                                  (onChange)="ddlStatusChanged($event)"
+                                                  [required]="true"></atpar-select>
+                                </div>
+
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple small" (click)="addCaseDetails()" [disabled]="saveButton">Save &nbsp;<i class="fa fa-floppy-o"></i></button>
+                                <button class="btn btn-purple small" (click)="close()"><i class="fa fa-arrow-left"></i>&nbsp; Go Back</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-section implementation">
+        <atpar-confirmdialog header="Confirmation" icon="fa fa-question-circle" width="425"></atpar-confirmdialog>
+    </div>
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+</div>

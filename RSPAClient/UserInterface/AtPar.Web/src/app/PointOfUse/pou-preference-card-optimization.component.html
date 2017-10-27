@@ -1,0 +1,792 @@
+﻿<div id="main" class="content-page">
+    <div class="content">
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px 10px;">
+                        <form class="form-horizontal form-label-left">
+                            <!--<div class="col-xs-12">
+                                <div class="form-group">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="tdExports" *ngIf="tdExports">
+                                        <i class="fa fa-file-excel-o fab-bg" aria-hidden="true" id="imgExcel" style="cursor:pointer;font-size:18px;float:right;margin-right:8px" title="Excel Format" (click)="onExportToExcelClick($event)"></i>&nbsp;
+                                        <i class="fa fa-envelope-o fa-bg" aria-hidden="true" id="imgMail" style="cursor:pointer;font-size:18px;float:right;margin-right:8px" title="Send mail" (click)="onSendMailIconClick($event)"></i>&nbsp;
+                                        <i class="fa fa-print fa-bg" aria-hidden="true" id="imgPrint" style="cursor:pointer;font-size:18px;float:right;margin-right:8px" title="Print" (click)="onPrintClick($event)"></i>&nbsp;
+
+                                    </div>
+                                </div>
+                            </div>-->
+                            <div class="col-xs-12">
+                                <br />
+                                <div class="pull-right" id="tdExports" *ngIf="tdExports">
+                                    <ul class="list-inline">
+                                        <li class="no-padding" style="cursor:pointer;">
+                                            <i class="fa fa-envelope-o fa-bg-lg bg-blue" aria-hidden="true" id="imgMail" title="Send mail" (click)="onSendMailIconClick($event)"></i>&nbsp;
+                                        </li>
+                                        <li class="no-padding" style="cursor:pointer;">
+                                            <i class="fa fa-print fa-bg-lg bg-blue" aria-hidden="true" id="imgPrint" title="Print" (click)="onPrintClick($event)"></i>&nbsp;
+                                        </li>
+                                        <li class="no-padding" style="cursor:pointer;">
+                                            <i class="fa fa-file-excel-o fa-bg-lg bg-blue" aria-hidden="true" id="imgExcel" title="Excel Format" (click)="onExportToExcelClick($event)"></i>&nbsp;
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="col-md-12 tab-btn">
+                            <h3 class="title-hero"> </h3>
+                            <div class="example-box-wrapper">
+                                <div>
+                                    <atpar-pou-tabs id="tbPrefCardOpt" [selectedTab]="activeTab" (enableSelectedTab)="enableSelectedTab($event)">
+                                        <atpar-tab tabTitle="By Speciality" [active]="tabSpeciality" (SelectedTab)="SelectedTab(tab)" (bindModelDataChange)="selectedTab($event)">
+                                            <!--<div class="col-xs-12">-->
+                                            <div class="container">
+                                                <div class="form-horizontal form-label-left">
+                                                    <div class="col-xs-12">
+                                                        <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                                            <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Select Range</label>
+                                                            <div class="col-xs-12 col-sm-7 col-md-8">
+                                                                <atpar-select [options]="lstRange" [(ngModel)]="selectedRange" [id]="'ddRange'" [ngModelOptions]="{standalone: true}" [required]="true" (onChange)="ddItemIDChanged($event)"></atpar-select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                                            <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Year</label>
+                                                            <div class="col-xs-12 col-sm-4 col-md-8">
+                                                                <atpar-yearviewcalender [(ngModel)]="selectedYear" [id]="DecadeView"  [showIcon]="true" [required]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}"></atpar-yearviewcalender>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-12 col-md-4 form-group" *ngIf="selectedRange!=0 && selectedRange!=8">
+                                                            <label for="" class="control-label col-xs-12 col-md-5 col-sm-5"> Select Half Year/Quarter/Month </label>
+                                                            <div class="col-xs-12 col-sm-6 col-md-7">
+                                                                <atpar-select [options]="lstHQM" [(ngModel)]="selectedHQM" [id]="'ddHQM'" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 col-md-4 col-sm-6 col-sm-offset-5 col-md-offset-5">
+                                                            <button class="btn btn-purple sbtn" (click)="onGoClick()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="container" *ngIf="showSpecialityGrid">
+                                                    <!--no-scrl-->
+                                                    <ul class="list-inline">
+                                                        <li class="pull-right no-padding">
+                                                            <span class="text-primary">{{lblResultCount}} Record(s) Found</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-xs-12 table-responsive" *ngIf="showSpecialityGrid">
+                                                   <!--<div class="container no-scrl">-->
+                                                    <atpar-datatable [value]="dvPrefOptBySpeciality" styleClass="ui-dt-summary-scrl" [paginator]="true" [pageLinks]="3" [rows]="prefOptBySpecialityRows" expandableRows="true" [rowsPerPageOptions]="[10,20, 30, 40, 50, 60, 70, 80, 90, 100]" [globalFilter]="gb" [responsive]="true">
+                                                        <p-headerColumnGroup>
+                                                            <p-row>
+                                                                <p-column field="SPECIALTY_DESCRIPTION" header="Speciality" rowspan="3" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'110px'}">
+                                                                </p-column>
+                                                                <p-column field="NO_OF_PROCEDURES" header="# Procedures" rowspan="3" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'80px'}">
+                                                                </p-column>
+                                                                <p-column field="NO_OF_PREF_LISTS" header="# Preference Cards" rowspan="3" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'80px'}">
+                                                                </p-column>
+                                                                <p-column field="EFFICIENCY_PERCENTAGE" header="Efficiency" rowspan="3" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'80px'}">
+                                                                </p-column>
+                                                                <p-column header="Total Picked" colspan="2" [style]="{'width':'250px'}">
+                                                                </p-column>
+                                                                <p-column header="Total Issued during case" colspan="4" [style]="{'width':'440px'}">
+                                                                </p-column>
+                                                                <p-column header="Total Returns" colspan="2" [style]="{'width':'250px'}">
+                                                                </p-column>
+                                                                <p-column header="Total Opened/Unused" colspan="2" [style]="{'width':'250px'}">
+                                                                </p-column>
+                                                                <p-column field="TOTAL_USAGE" header="Total Usage" rowspan="3" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'150px'}">
+                                                                </p-column>
+                                                            </p-row>
+                                                            <p-row>
+                                                                <p-column field="TOTAL_PICKED_QTY" header="Qty" rowspan="2" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'100px'}"></p-column>
+                                                                <p-column field="TOTAL_PICKED_VALUE" header="Value" rowspan="2" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'150px'}"></p-column>
+                                                                <p-column header="Existing" colspan="2" [style]="{'width':'220px'}"></p-column>
+                                                                <p-column header="New" colspan="2" [style]="{'width':'220px'}"></p-column>
+                                                                <p-column field="TOTAL_RETURN_QTY" header="Qty" rowspan="2" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'100px'}"></p-column>
+                                                                <p-column field="TOTAL_RETURN_VALUE" header="Value" rowspan="2" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'150px'}"></p-column>
+                                                                <p-column field="TOTAL_WASTED_QTY" header="Qty" rowspan="2" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'100px'}"></p-column>
+                                                                <p-column field="TOTAL_WASTED_VALUE" header="Value" rowspan="2" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'150px'}"></p-column>
+                                                            </p-row>
+                                                            <p-row>
+                                                                <p-column field="TOTAL_ISSUED_EXISTING_QTY" header="Qty" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'100px'}"></p-column>
+                                                                <p-column field="TOTAL_ISSUED_EXISTING_VALUE" header="Value" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'120px'}"></p-column>
+                                                                <p-column field="TOTAL_ISSUED_NEW_QTY" header="Qty" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'100px'}"></p-column>
+                                                                <p-column field="TOTAL_ISSUED_NEW_VALUE" header="Value" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'120px'}"></p-column>
+                                                            </p-row>
+                                                        </p-headerColumnGroup>
+
+                                                        <!--<p-column field="SPECIALTY_CODE"></p-column>-->
+                                                        <p-column field="SPECIALTY_DESCRIPTION" header="Speciality">
+                                                            <template let-col let-ven="rowData"  pTemplate="body">
+                                                                <a (click)="onSpecilaityItemClick(ven,$event)" style='color:blue;font-style:italic;'>
+                                                                    {{ven.SPECIALTY_DESCRIPTION}}
+                                                                </a>
+                                                            </template>
+                                                        </p-column>
+                                                        <p-column field="NO_OF_PROCEDURES" header="# Procedures" [style]="{'text-align':'center'}">
+                                                            <template let-col let-spec="rowData"  pTemplate="body">
+                                                                <span>{{spec.NO_OF_PROCEDURES|number:0}}</span>
+                                                            </template>
+                                                        </p-column>
+                                                        <p-column field="NO_OF_PREF_LISTS" header="# Preference Cards" [style]="{'text-align':'center'}">
+                                                            <template let-col let-spec="rowData"  pTemplate="body">
+                                                                <span>{{spec.NO_OF_PREF_LISTS|number}}</span>
+                                                            </template>
+                                                        </p-column>
+                                                        <p-column field="EFFICIENCY_PERCENTAGE" header="Efficiency" [style]="{'text-align':'right'}">
+                                                            <template let-col let-spec="rowData" pTemplate="body">
+                                                                <span>{{spec.EFFICIENCY_PERCENTAGE | number:'1.1-1'}}%</span>
+                                                            </template>
+                                                        </p-column>
+                                                        <p-column field="TOTAL_PICKED_QTY" header="Total Picked Qty" [style]="{'text-align':'center'}">
+                                                            <template let-col let-spec="rowData" pTemplate="body">
+                                                                <span>{{spec.TOTAL_PICKED_QTY | number}}</span>
+                                                            </template>
+                                                        </p-column>
+                                                        <p-column field="TOTAL_PICKED_VALUE" header="Total Picked Value" [style]="{'text-align':'right'}">
+                                                            <template let-col let-spec="rowData" pTemplate="body">
+                                                                <span>{{spec.TOTAL_PICKED_VALUE |currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                                            </template>
+                                                        </p-column>
+                                                        <p-column field="TOTAL_ISSUED_EXISTING_QTY" header="Total Issued Existing Qty" [style]="{'text-align':'center'}">
+                                                            <template let-col let-spec="rowData" pTemplate="body">
+                                                                <span>{{spec.TOTAL_ISSUED_EXISTING_QTY | number}}</span>
+                                                            </template>
+                                                        </p-column>
+                                                        <p-column field="TOTAL_ISSUED_EXISTING_VALUE" header="Total Issued Existing Value" [style]="{'text-align':'right'}">
+                                                            <template let-col let-spec="rowData" pTemplate="body">
+                                                                <span>{{spec.TOTAL_ISSUED_EXISTING_VALUE |currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                                            </template>
+                                                        </p-column>
+                                                        <p-column field="TOTAL_ISSUED_NEW_QTY" header="Total Issued New Qty" [style]="{'text-align':'center'}">
+                                                            <template let-col let-spec="rowData" pTemplate="body">
+                                                                <span>{{spec.TOTAL_ISSUED_NEW_QTY | number}}</span>
+                                                            </template>
+                                                        </p-column>
+                                                        <p-column field="TOTAL_ISSUED_NEW_VALUE" header="Total Issued New Value" [style]="{'text-align':'right'}">
+                                                            <template let-col let-spec="rowData" pTemplate="body">
+                                                                <span>{{spec.TOTAL_ISSUED_NEW_VALUE |currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                                            </template>
+                                                        </p-column>
+                                                        <p-column field="TOTAL_RETURN_QTY" header="Total Return Qty" [style]="{'text-align':'center'}">
+                                                            <template let-col let-spec="rowData" pTemplate="body">
+                                                                <span>{{spec.TOTAL_RETURN_QTY | number}}</span>
+                                                            </template>
+                                                        </p-column>
+                                                        <p-column field="TOTAL_RETURN_VALUE" header="Total Return Value" [style]="{'text-align':'right'}">
+                                                            <template let-col let-spec="rowData" pTemplate="body">
+                                                                <span>{{spec.TOTAL_RETURN_VALUE |currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                                            </template>
+                                                        </p-column>
+                                                        <p-column field="TOTAL_WASTED_QTY" header="Total Wasted Qty" [style]="{'text-align':'center'}">
+                                                            <template let-col let-spec="rowData" pTemplate="body">
+                                                                <span>{{spec.TOTAL_WASTED_QTY | number}}</span>
+                                                            </template>
+                                                        </p-column>
+                                                        <p-column field="TOTAL_WASTED_VALUE" header="Total Wasted Value" [style]="{'text-align':'right'}">
+                                                            <template let-col let-spec="rowData" pTemplate="body">
+                                                                <span>{{spec.TOTAL_WASTED_VALUE |currency:'USD':true:'1.0-0' | minusSignToParens}}</span>
+                                                            </template>
+                                                        </p-column>
+                                                        <p-column field="TOTAL_USAGE" header="Total Usage" [style]="{'text-align':'right'}">
+                                                            <template let-col let-spec="rowData" pTemplate="body">
+                                                                <span>{{spec.TOTAL_USAGE |currency:'USD':true:'1.0-0' | minusSignToParens}}</span>
+                                                            </template>
+                                                        </p-column>
+                                                    </atpar-datatable>
+                                                    <!--</div>-->
+                                                </div>
+                                            </div>
+                                            <!--</div>-->
+                                        </atpar-tab>
+
+                                        <atpar-tab tabTitle="By Procedure" [active]="tabProcedure" (SelectedTab)="SelectedTab(tab)">
+                                            <div class="form-horizontal form-label-left">
+                                                <div class="col-xs-12">
+                                                    <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                                        <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">Range:<span style="font-weight:bold !important">{{lblSelectedRange}}</span></label>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                                        <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">Year:<span style="font-weight:bold !important">{{selectedYear}}</span></label>
+                                                    </div>
+
+                                                    <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                                                        <label for="" class="control-label col-xs-12 col-md-6 col-sm-6">
+                                                            Specialty:<span style="font-weight:bold !important">{{lblSpecialityDesc}}&nbsp;({{lblSpeciality}})</span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group" *ngIf="showHQMValues">
+                                                        <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">
+                                                            {{lblSelectedHQM}}<span style="font-weight:bold !important">{{strSelectedHQM}}</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="clearfix"></div>
+                                            <div class="container" *ngIf="showProcedureGrid">
+                                                <ul class="list-inline">
+                                                    <li class="pull-right no-padding">
+                                                        <span class="text-primary">{{lblProcRowCount}} Record(s) Found</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="table table-responsive" *ngIf="showProcedureGrid">
+                                                <atpar-datatable [value]="dvPrefOptByProcedure" [expandedRows]="expandedItems" #dt styleClass="ui-dt-pref-scrl" [paginator]="true" [pageLinks]="3" [rows]="prefOptByProcRows" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                                    <p-headerColumnGroup type="header">
+                                                        <p-row>
+                                                            <p-column field="PROCEDURE_CODE" header="Procedure Code" rowspan="3" [style]="{'width':'120px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                            </p-column>
+                                                            <p-column field="PROCEDURE_DESCRIPTION" header="Procedure Description" rowspan="3" [style]="{'width':'160px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                            </p-column>
+                                                            <p-column field="NO_OF_PHYSICIANS" header="# Physicians" rowspan="3" [style]="{'width':'80px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                            </p-column>
+                                                            <p-column field="NO_OF_PROCEDURES" header="# Procedures" rowspan="3" [style]="{'width':'80px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                            </p-column>
+                                                            <p-column field="NO_OF_PREF_LISTS" header="# Preference Cards" rowspan="3" [style]="{'width':'80px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                            </p-column>
+                                                            <p-column field="EFFICIENCY_PERCENTAGE" header="Efficiency" rowspan="3" [style]="{'width':'80px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                            </p-column>
+                                                            <p-column header="Total Picked" colspan="2" [style]="{'width':'250px'}">
+                                                            </p-column>
+                                                            <p-column header="Total Issued during case" colspan="4" [style]="{'width':'440px'}">
+                                                            </p-column>
+                                                            <p-column header="Total Returns" colspan="2" [style]="{'width':'250px'}">
+                                                            </p-column>
+                                                            <p-column header="Total Opened/Unused" colspan="2" [style]="{'width':'250px'}">
+                                                            </p-column>
+                                                            <p-column field="TOTAL_USAGE" header="Total Usage" rowspan="3" [style]="{'width':'150px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                            </p-column>
+                                                        </p-row>
+                                                        <p-row>
+                                                            <p-column field="TOTAL_PICKED_QTY" header="Qty" rowspan="2" [style]="{'width':'100px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="TOTAL_PICKED_VALUE" header="Value" rowspan="2" [style]="{'width':'150px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column header="Existing" colspan="2" [style]="{'width':'220px'}"></p-column>
+                                                            <p-column header="New" colspan="2" [style]="{'width':'220px'}"></p-column>
+                                                            <p-column field="TOTAL_RETURN_QTY" header="Qty" rowspan="2" [style]="{'width':'100px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="TOTAL_RETURN_VALUE" header="Value" rowspan="2" [style]="{'width':'150px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="TOTAL_WASTED_QTY" header="Qty" rowspan="2" [style]="{'width':'100px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="TOTAL_WASTED_VALUE" header="Value" rowspan="2" [style]="{'width':'150px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+
+                                                        </p-row>
+                                                        <p-row>
+                                                            <p-column field="TOTAL_ISSUED_EXISTING_QTY" header="Qty" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'100px'}"></p-column>
+                                                            <p-column field="TOTAL_ISSUED_EXISTING_VALUE" header="Value" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'120px'}"></p-column>
+                                                            <p-column field="TOTAL_ISSUED_NEW_QTY" header="Qty" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'100px'}"></p-column>
+                                                            <p-column field="TOTAL_ISSUED_NEW_VALUE" header="Value" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'120px'}"></p-column>
+                                                        </p-row>
+                                                    </p-headerColumnGroup>
+
+                                                    <p-column field="PROCEDURE_CODE" header="Procedure Code">
+                                                        <template let-col let-row="rowData" pTemplate="body">
+                                                            <a (click)="onProcedureItemClick(row,$event)" style='color:blue;font-style:italic;'>
+                                                                {{row.PROCEDURE_CODE}}
+                                                            </a>
+                                                        </template>
+                                                    </p-column>
+
+                                                    <p-column field="PROCEDURE_DESCRIPTION" header="Procedure Description">
+                                                        <template let-col let-proc="rowData"  pTemplate="body">
+                                                            <span>{{proc.PROCEDURE_DESCRIPTION}}</span>
+                                                        </template>
+                                                    </p-column>
+
+                                                    <p-column field="NO_OF_PHYSICIANS" header="# Physicians" [style]="{'text-align':'center'}">
+                                                        <template let-col let-proc="rowData"  pTemplate="body">
+                                                            <span>{{proc.NO_OF_PHYSICIANS|number}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="NO_OF_PROCEDURES" header="# Procedures" [style]="{'text-align':'center'}">
+                                                        <template let-col let-proc="rowData"  pTemplate="body">
+                                                            <span>{{proc.NO_OF_PROCEDURES|number}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="NO_OF_PREF_LISTS" header="# Preference Cards" [style]="{'text-align':'center'}">
+                                                        <template let-col let-proc="rowData"  pTemplate="body">
+                                                            <span>{{proc.NO_OF_PREF_LISTS|number}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="EFFICIENCY_PERCENTAGE" header="Efficiency" [style]="{'text-align':'right'}">
+                                                        <template let-col let-proc="rowData" pTemplate="body">
+                                                            <span>{{proc.EFFICIENCY_PERCENTAGE | number:'1.1-1'}}%</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="TOTAL_PICKED_QTY" header="Total Picked Qty" [style]="{'text-align':'center'}">
+                                                        <template let-col let-proc="rowData"  pTemplate="body">
+                                                            <span>{{proc.TOTAL_PICKED_QTY|number}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="TOTAL_PICKED_VALUE" header="Total Picked Value" [style]="{'text-align':'right'}">
+                                                        <template let-col let-proc="rowData" pTemplate="body">
+                                                            <span>{{proc.TOTAL_PICKED_VALUE |currency:'USD':true:'1.0-0' | minusSignToParens}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="TOTAL_ISSUED_EXISTING_QTY" header="Total Issued Existing Qty" [style]="{'text-align':'center'}">
+                                                        <template let-col let-proc="rowData"  pTemplate="body">
+                                                            <span>{{proc.TOTAL_ISSUED_EXISTING_QTY|number}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="TOTAL_ISSUED_EXISTING_VALUE" header="Total Issued Existing Value" [style]="{'text-align':'right'}">
+                                                        <template let-col let-proc="rowData" pTemplate="body">
+                                                            <span>{{proc.TOTAL_ISSUED_EXISTING_VALUE |currency:'USD':true:'1.0-0' | minusSignToParens}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="TOTAL_ISSUED_NEW_QTY" header="Total Issued New Qty" [style]="{'text-align':'center'}">
+                                                        <template let-col let-proc="rowData"  pTemplate="body">
+                                                            <span>{{proc.TOTAL_ISSUED_NEW_QTY|number}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="TOTAL_ISSUED_NEW_VALUE" header="Total Issued New Value" [style]="{'text-align':'right'}">
+                                                        <template let-col let-proc="rowData" pTemplate="body">
+                                                            <span>{{proc.TOTAL_ISSUED_NEW_VALUE |currency:'USD':true:'1.0-0' | minusSignToParens}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="TOTAL_RETURN_QTY" header="Total Returns Qty" [style]="{'text-align':'center'}">
+                                                        <template let-col let-proc="rowData"  pTemplate="body">
+                                                            <span>{{proc.TOTAL_RETURN_QTY|number}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="TOTAL_RETURN_VALUE" header="Total Returns Value" [style]="{'text-align':'right'}">
+                                                        <template let-col let-proc="rowData" pTemplate="body">
+                                                            <span>{{proc.TOTAL_RETURN_VALUE |currency:'USD':true:'1.0-0' | minusSignToParens}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="TOTAL_WASTED_QTY" header="Total Wasted Qty" [style]="{'text-align':'center'}">
+                                                        <template let-col let-proc="rowData"  pTemplate="body">
+                                                            <span>{{proc.TOTAL_WASTED_QTY|number}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="TOTAL_WASTED_VALUE" header="Total Wasted Value" [style]="{'text-align':'right'}">
+                                                        <template let-col let-proc="rowData" pTemplate="body">
+                                                            <span>{{proc.TOTAL_WASTED_VALUE | currency:'USD':true:'1.0-0' | minusSignToParens}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="TOTAL_USAGE" header="Total Usage" [style]="{'text-align':'right'}">
+                                                        <template let-col let-proc="rowData" pTemplate="body">
+                                                            <span>{{proc.TOTAL_USAGE | currency:'USD':true:'1.0-0' | minusSignToParens}}</span>
+                                                        </template>
+                                                    </p-column>
+
+                                                    <template let-childGrid pTemplate="rowexpansion">
+                                                        <atpar-datatable [value]="childGrid.PHYSICIAN_DETAILS" [paginator]="false" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true" class="table table-bordered">
+
+                                                            <p-headerColumnGroup>
+                                                                <p-row>
+                                                                    <p-column field="PHYSICIAN_NAME" header="Physician Name" rowspan="3" [style]="{'width':'100px'}">
+                                                                    </p-column>
+                                                                    <p-column field="NO_OF_PROCEDURES" header="# Procedures" rowspan="3" [style]="{'width':'80px'}">
+                                                                    </p-column>
+                                                                    <p-column field="PREF_LIST_ID" header="Preference Card Name" rowspan="3" [style]="{'width':'100px'}">
+                                                                    </p-column>
+                                                                    <p-column field="EFFICIENCY_PERCENTAGE" header="Efficiency" rowspan="3" [style]="{'width':'80px'}">
+                                                                    </p-column>
+                                                                    <p-column header="Total Picked" colspan="2" [style]="{'width':'200px'}">
+                                                                    </p-column>
+                                                                    <p-column header="Total Issued during case" colspan="4" [style]="{'width':'400px'}">
+                                                                    </p-column>
+                                                                    <p-column header="Total Returns" colspan="2" [style]="{'width':'200px'}">
+
+                                                                    </p-column>
+                                                                    <p-column header="Total Opened/Unused" colspan="2" [style]="{'width':'200px'}">
+                                                                    </p-column>
+                                                                    <p-column field="TOTAL_USAGE" header="Total Usage" rowspan="3" [style]="{'width':'100px'}">
+                                                                    </p-column>
+                                                                </p-row>
+                                                                <p-row>
+                                                                    <p-column field="TOTAL_PICKED_QTY" header="Qty" rowspan="2" [style]="{'width':'80px'}"></p-column>
+                                                                    <p-column field="TOTAL_PICKED_VALUE" header="Value" rowspan="2" [style]="{'width':'120px'}"></p-column>
+                                                                    <p-column header="Existing" colspan="2" [style]="{'width':'200px'}"></p-column>
+                                                                    <p-column header="New" colspan="2" [style]="{'width':'200px'}"></p-column>
+                                                                    <p-column field="TOTAL_RETURN_QTY" header="Qty" rowspan="2" [style]="{'width':'80px'}"></p-column>
+                                                                    <p-column field="TOTAL_RETURN_VALUE" header="Value" rowspan="2" [style]="{'width':'120px'}"></p-column>
+                                                                    <p-column field="TOTAL_WASTED_QTY" header="Qty" rowspan="2" [style]="{'width':'80px'}"></p-column>
+                                                                    <p-column field="TOTAL_WASTED_VALUE" header="Value" rowspan="2" [style]="{'width':'120px'}"></p-column>
+
+                                                                </p-row>
+                                                                <p-row>
+                                                                    <p-column field="TOTAL_ISSUED_EXISTING_QTY" header="Qty" [style]="{'width':'100px'}"></p-column>
+                                                                    <p-column field="TOTAL_ISSUED_EXISTING_VALUE" header="Value" [style]="{'width':'120px'}"></p-column>
+                                                                    <p-column field="TOTAL_ISSUED_NEW_QTY" header="Qty" [style]="{'width':'100px'}"></p-column>
+                                                                    <p-column field="TOTAL_ISSUED_NEW_VALUE" header="Value" [style]="{'width':'120px'}"></p-column>
+                                                                </p-row>
+                                                            </p-headerColumnGroup>
+
+                                                            <p-column field="PHYSICIAN_NAME" header="Physician Name"></p-column>
+                                                            <p-column field="NO_OF_PROCEDURES" header="# Procedures" [style]="{'text-align':'center'}">
+                                                                <template let-col let-proc="rowData"  pTemplate="body">
+                                                                    <span>{{proc.NO_OF_PROCEDURES|number}}</span>
+                                                                </template>
+                                                            </p-column>
+                                                            <p-column field="PREF_LIST_ID" header="Preference Card Name">
+                                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                                    <a (click)="onPhysicianItemClick(ven,$event)" style='color:blue;font-style:italic;'>
+                                                                        {{ven.PREF_LIST_ID}}
+                                                                    </a>
+                                                                </template>
+                                                            </p-column>
+
+                                                            <p-column field="EFFICIENCY_PERCENTAGE" header="Efficiency" [style]="{'text-align':'right'}">
+                                                                <template let-col let-proc="rowData" pTemplate="body">
+                                                                    <span>{{proc.EFFICIENCY_PERCENTAGE | number:'1.1-1'}}%</span>
+                                                                </template>
+                                                            </p-column>
+                                                            <p-column field="TOTAL_PICKED_QTY" header="Total Picked Qty" [style]="{'text-align':'center'}">
+                                                                <template let-col let-proc="rowData"  pTemplate="body">
+                                                                    <span>{{proc.TOTAL_PICKED_QTY|number}}</span>
+                                                                </template>
+                                                            </p-column>
+                                                            <p-column field="TOTAL_PICKED_VALUE" header="Total Picked Value" [style]="{'text-align':'right'}">
+                                                                <template let-col let-proc="rowData" pTemplate="body">
+                                                                    <span>{{proc.TOTAL_PICKED_VALUE | currency:'USD':true:'1.0-0' | minusSignToParens}}</span>
+                                                                </template>
+                                                            </p-column>
+                                                            <p-column field="TOTAL_ISSUED_EXISTING_QTY" header="Total Issued Existing Qty" [style]="{'text-align':'center'}">
+                                                                <template let-col let-proc="rowData"  pTemplate="body">
+                                                                    <span>{{proc.TOTAL_ISSUED_EXISTING_QTY|number}}</span>
+                                                                </template>
+                                                            </p-column>
+                                                            <p-column field="TOTAL_ISSUED_EXISTING_VALUE" header="Total Issued Existing Value" [style]="{'text-align':'right'}">
+                                                                <template let-col let-proc="rowData" pTemplate="body">
+                                                                    <span>{{proc.TOTAL_ISSUED_EXISTING_VALUE | currency:'USD':true:'1.0-0' | minusSignToParens}}</span>
+                                                                </template>
+                                                            </p-column>
+                                                            <p-column field="TOTAL_ISSUED_NEW_QTY" header="Total Issued New Qty" [style]="{'text-align':'center'}">
+                                                                <template let-col let-proc="rowData"  pTemplate="body">
+                                                                    <span>{{proc.TOTAL_ISSUED_NEW_QTY|number}}</span>
+                                                                </template>
+                                                            </p-column>
+                                                            <p-column field="TOTAL_ISSUED_NEW_VALUE" header="Total Issued New Value" [style]="{'text-align':'right'}">
+                                                                <template let-col let-proc="rowData" pTemplate="body">
+                                                                    <span>{{proc.TOTAL_ISSUED_NEW_VALUE | currency:'USD':true:'1.0-0' | minusSignToParens}}</span>
+                                                                </template>
+                                                            </p-column>
+                                                            <p-column field="TOTAL_RETURN_QTY" header="Total Return Qty" [style]="{'text-align':'center'}">
+                                                                <template let-col let-proc="rowData"  pTemplate="body">
+                                                                    <span>{{proc.TOTAL_RETURN_QTY|number}}</span>
+                                                                </template>
+                                                            </p-column>
+                                                            <p-column field="TOTAL_RETURN_VALUE" header="Total Return Value" [style]="{'text-align':'right'}">
+                                                                <template let-col let-proc="rowData" pTemplate="body">
+                                                                    <span>{{proc.TOTAL_RETURN_VALUE | currency:'USD':true:'1.0-0' | minusSignToParens}}</span>
+                                                                </template>
+                                                            </p-column>
+                                                            <p-column field="TOTAL_WASTED_QTY" header="Total Wasted Qty" [style]="{'text-align':'center'}">
+                                                                <template let-col let-proc="rowData"  pTemplate="body">
+                                                                    <span>{{proc.TOTAL_WASTED_QTY|number}}</span>
+                                                                </template>
+                                                            </p-column>
+                                                            <p-column field="TOTAL_WASTED_VALUE" header="Total Wasted Value" [style]="{'text-align':'right'}">
+                                                                <template let-col let-proc="rowData" pTemplate="body">
+                                                                    <span>{{proc.TOTAL_WASTED_VALUE | currency:'USD':true:'1.0-0' | minusSignToParens}}</span>
+                                                                </template>
+                                                            </p-column>
+                                                            <p-column field="TOTAL_USAGE" header="Total Usage" [style]="{'text-align':'right'}">
+                                                                <template let-col let-proc="rowData" pTemplate="body">
+                                                                    <span>{{proc.TOTAL_USAGE | currency:'USD':true:'1.0-0' | minusSignToParens}}</span>
+                                                                </template>
+                                                            </p-column>
+
+                                                        </atpar-datatable>
+                                                    </template>
+
+                                                </atpar-datatable>
+                                            </div>
+                                        </atpar-tab>
+
+                                        <atpar-tab tabTitle="Optimization" [active]="tabOptimization" (SelectedTab)="SelectedTab(tab)">
+                                            <div class="col-xs-12">
+                                                <div class="col-xs-7">
+                                                    <div class="col-xs-12 col-sm-12 col-md-7 form-group">
+                                                        <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">Procedure Code:<span style="font-weight:bold !important">{{lblProcedure}}</span></label>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-5 form-group">
+                                                        <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">Range:<span style="font-weight:bold !important">{{lblSelectedRange}}</span></label>
+
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-7 form-group">
+                                                        <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">
+                                                            Preference Card Name:<span style="font-weight:bold !important">{{lblPrefCardName}}</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-5 form-group">
+                                                        <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">Year:<span style="font-weight:bold !important">{{selectedYear}}</span></label>
+
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-7 form-group">
+                                                        <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">Physician Name:<span style="font-weight:bold !important">{{lblPhysician}}</span></label>
+
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-5 form-group">
+                                                        <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">{{lblSelectedHQM}}<span style="font-weight:bold !important">{{strSelectedHQM}}</span></label>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-5" style="border-left: 1px solid #ccc;">
+                                                    <div class="col-xs-12 col-sm-12 col-md-9 form-group" style="display:flex;">
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remove:<img [src]="lessImg" style="padding-left:9px;" />
+                                                        <input [(ngModel)]="OptRemoveValue" [name]="txtRemove" [id]="'RemoveId'" style="width:60px; height:28px; margin-left:-3px;" type="text" class="form-control"><strong>&nbsp;%</strong>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-9 form-group" style="display:flex;">
+                                                        Add to Hold:&nbsp;&nbsp;<img [src]="addToHoldImg" />
+                                                        <input [(ngModel)]="OptHoldValue1" [name]="txtHold1" [id]="'HoldId1'" style="width:60px; height:28px; margin-left:-3px;" type="text" class="form-control"><strong>&nbsp;-&nbsp;</strong>
+                                                        <input [(ngModel)]="OptHoldValue2" [name]="txtHold2" [id]="'HoldId2'" style="width:60px;height:28px;" type="text" class="form-control"><strong>&nbsp;%</strong>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-3 form-group" style="margin-bottom:-3px !important;">
+                                                        <button class="btn btn-purple sbtn" (click)="onOptimizationGoClick()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                                    </div>
+
+                                                    <div class="col-xs-12 col-sm-12 col-md-9 form-group" style="display:flex; margin-bottom: 0px !important;">
+                                                        Add to Open:&nbsp;<img [src]="greaterImg" />
+                                                        <input [(ngModel)]="OptOpenValue" [name]="txtOpen" [id]="'OpenId'" style="width:60px; height:28px; margin-left:-3px;" type="text" class="form-control"><strong>&nbsp;%</strong>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div *ngIf="showOptimizationGrid">
+                                                <div class="col-xs-12" style="text-align:center;margin-top: 10px;">
+                                                    <table class="table table-bordered user-para-table" style='border:1px solid black; border-collapse:collapse;'>
+                                                        <thead>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th colspan="2">Open Items</th>
+                                                                <th colspan="2">Hold Items</th>
+                                                                <th>Total</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody *ngFor="let prefOptHeaderData of lstDetails">
+                                                            <tr>
+                                                                <td>Current</td>
+                                                                <td style="text-align:center!important;">{{prefOptHeaderData.CURRENT_OPEN_QTY|number}}</td>
+                                                                <td style="text-align:right!important;">{{prefOptHeaderData.CURRENT_OPEN_QTY_PRICE | currency:'USD':true:'1.0-0' | minusSignToParens}} &nbsp;</td>
+                                                                <td style="text-align:center!important;">{{prefOptHeaderData.CURRENT_HOLD_QTY|number}}</td>
+                                                                <td style="text-align:right!important;">{{prefOptHeaderData.CURRENT_HOLD_QTY_PRICE | currency:'USD':true:'1.0-0' | minusSignToParens}} &nbsp;</td>
+                                                                <td style="text-align:right!important;">{{prefOptHeaderData.CURRENT_OPEN_HOLD_TOTAL | currency:'USD':true:'1.0-0' | minusSignToParens}} &nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Optimized</td>
+                                                                <td style="text-align:center!important;">{{prefOptHeaderData.SUGGESTED_OPEN_QTY|number}}</td>
+                                                                <td style="text-align:right!important;">{{prefOptHeaderData.SUGGESTED_OPEN_QTY_PRICE |  currency:'USD':true:'1.0-0'}} &nbsp;</td>
+                                                                <td style="text-align:center!important;">{{prefOptHeaderData.SUGGESTED_HOLD_QTY|number}}</td>
+                                                                <td style="text-align:right!important;">{{prefOptHeaderData.SUGGESTED_HOLD_QTY_PRICE | currency:'USD':true:'1.0-0' | minusSignToParens}} &nbsp;</td>
+                                                                <td style="text-align:right!important;">{{prefOptHeaderData.SUGGESTED_OPEN_HOLD_TOTAL | currency:'USD':true:'1.0-0' | minusSignToParens}} &nbsp;</td>
+                                                            </tr>
+                                                            <tr style="font-weight:bold;">
+                                                                <td>Net Difference</td>
+                                                                <td style="text-align:center!important;">{{prefOptHeaderData.NET_DIFF_OPEN_QTY|number}}</td>
+                                                                <td style="text-align:right!important;"><span><img [src]="prefOptHeaderData.NET_DIFF_OPEN_QTY_IMG" /></span>{{prefOptHeaderData.NET_DIFF_OPEN_QTY_PRICE | currency:'USD':true:'1.0-0' | minusSignToParens}} &nbsp;</td>
+                                                                <td style="text-align:center!important;">{{prefOptHeaderData.NET_DIFF_HOLD_QTY|number}}</td>
+                                                                <td style="text-align:right!important;"><span><img [src]="prefOptHeaderData.NET_DIFF_HOLD_QTY_IMG" /></span>{{prefOptHeaderData.NET_DIFF_HOLD_QTY_PRICE | currency:'USD':true:'1.0-0' | minusSignToParens}} &nbsp;</td>
+                                                                <td style="text-align:right!important;"><span><img [src]="prefOptHeaderData.NET_DIFF_TOTAL_IMG" /></span>{{prefOptHeaderData.NET_DIFF_TOTAL | currency:'USD':true:'1.0-0' | minusSignToParens}}&nbsp;</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <div class="clearfix"></div>
+                                                <div class="container">
+                                                    <ul class="list-inline">
+                                                        <li class="pull-right no-padding">
+                                                            <span class="text-primary">{{lblOptRecsCount}} Record(s) Found</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                                <table id="tble" style="border:1px solid black; width:100%; font-weight:600">
+                                                    <tr>
+                                                        <td style="border:1px solid black;"><div style="background:#008000;width:10px;height:10px;outline:none;text-align:center; margin:5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New&nbsp;Items</div> </td>
+                                                        <td style="border:1px solid black;"><div style="background:#ff0000;width:10px;height:10px;outline:none;text-align:center; margin:5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Delete&nbsp;Items</div></td>
+                                                        <td style="border:1px solid black;"><div style="background:#1a7fc7;width:10px;height:10px;outline:none;text-align:center; margin:5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Move&nbsp;to&nbsp;hold</div></td>
+                                                        <td style="border:1px solid black;"><div style="background:#000000;width:10px;height:10px;outline:none;text-align:center; margin:5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No&nbsp;Change</div></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="table table-responsive" *ngIf="showOptimizationGrid">
+
+                                                <atpar-datatable [value]="prefOptDetailsData" styleClass="ui-dt-optimize-scrl" [paginator]="true" [pageLinks]="3" [rows]="prefOptimizeRows" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                                    <p-headerColumnGroup type="header">
+                                                        <p-row>
+                                                            <p-column field="ITEM_ID" header="Item Id" rowspan="2" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'100px'}">
+                                                            </p-column>
+                                                            <p-column field="ITEM_DESCRIPTION" header="Item Description" rowspan="2" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'250px'}">
+                                                            </p-column>
+                                                            <p-column field="ITEM_PRICE" header="Item Cost" rowspan="2" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'120px'}">
+                                                            </p-column>
+                                                            <p-column header="Current Quantity" colspan="2" [style]="{'width':'160px'}">
+                                                            </p-column>
+                                                            <p-column header="Usage" colspan="3" [style]="{'width':'240px'}">
+                                                            </p-column>
+                                                            <p-column header="Suggested Pref Qty" colspan="2" [style]="{'width':'160px'}">
+                                                            </p-column>
+                                                            <p-column header="Net Change(Qty)" colspan="2" [style]="{'width':'160px'}">
+                                                            </p-column>
+                                                            <p-column header="Net Change($)" colspan="2" [style]="{'width':'220px'}">
+                                                            </p-column>
+                                                        </p-row>
+                                                        <p-row>
+                                                            <p-column field="CURRENT_OPEN_QTY" header="Open" [style]="{'width':'80px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="CURRENT_HOLD_QTY" header="Hold" [style]="{'width':'80px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="MAX_USAGE" header="Max" [style]="{'width':'80px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="MIN_USAGE" header="Min" [style]="{'width':'80px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="USAGE_PER" header="Mean" [style]="{'width':'80px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="SUGGESTED_OPEN_QTY" header="Open" [style]="{'width':'80px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="SUGGESTED_HOLD_QTY" header="Hold" [style]="{'width':'80px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="NET_CHANGE_OPEN_QTY" header="Open" [style]="{'width':'80px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="NET_CHANGE_HOLD_QTY" header="Hold" [style]="{'width':'80px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="NET_CHANGE_OPEN_VALUE" header="Open" [style]="{'width':'110px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="NET_CHANGE_HOLD_VALUE" header="Hold" [style]="{'width':'110px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+
+                                                        </p-row>
+                                                    </p-headerColumnGroup>
+                                                 
+                                                    <p-column field="ITEM_ID" header="Item Id" [style]="{'text-align':'right'}">
+                                                        <template let-col let-opt="rowData"  pTemplate="body">  
+                                                            <span #x>{{SetLeftCellBorderColor(x,opt)}}{{opt.ITEM_ID}}</span>
+                                                            <!--<span [ngClass]="'leftCellBorder1'">{{opt.ITEM_ID|number}}</span>-->
+                                                            <!--<span #x [ngClass]="{leftCellBorder1: opt.COLORCODE==='leftCellBorder1'}" *ngIf="opt.COLORCODE==='leftCellBorder1'">{{opt.ITEM_ID|number}}</span>
+                                                            <span #x [ngClass]="{leftCellBorder2: opt.COLORCODE==='leftCellBorder2'}" *ngIf="opt.COLORCODE==='leftCellBorder2'">{{opt.ITEM_ID|number}}</span>
+                                                            <span #x [ngClass]="{leftCellBorder3: opt.COLORCODE==='leftCellBorder3'}" *ngIf="opt.COLORCODE==='leftCellBorder3'">{{opt.ITEM_ID|number}}</span>
+                                                            <span #x [ngClass]="{leftCellBorder4: opt.COLORCODE==='leftCellBorder4'}" *ngIf="opt.COLORCODE==='leftCellBorder4'">{{opt.ITEM_ID|number}}</span>-->
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="ITEM_DESCRIPTION" header="Item Description"></p-column>
+                                                    <p-column field="ITEM_PRICE" header="Item Cost" [style]="{'text-align':'right'}">
+                                                        <template let-col let-opt="rowData" pTemplate="body">
+                                                            <span>{{opt.ITEM_PRICE | currency:'USD':true:'1.0-0' | minusSignToParens}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="CURRENT_OPEN_QTY" header="Current Open Quantity" [style]="{'text-align':'center'}">
+                                                        <template let-col let-opt="rowData"  pTemplate="body">
+                                                            <span>{{opt.CURRENT_OPEN_QTY|number}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="CURRENT_HOLD_QTY" header="Current Hold Quantity" [style]="{'text-align':'center'}">
+                                                        <template let-col let-opt="rowData"  pTemplate="body">
+                                                            <span>{{opt.CURRENT_HOLD_QTY|number}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="MAX_USAGE" header="Max Usage" [style]="{'text-align':'center'}">
+                                                        <template let-col let-opt="rowData"  pTemplate="body">
+                                                            <span>{{opt.MAX_USAGE|number}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="MIN_USAGE" header="Min Usage" [style]="{'text-align':'center'}">
+                                                        <template let-col let-opt="rowData"  pTemplate="body">
+                                                            <span>{{opt.MIN_USAGE|number}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="USAGE_PER" header="Mean Usage" [style]="{'text-align':'right'}">
+                                                        <template let-col let-opt="rowData"  pTemplate="body">
+                                                            <span>{{opt.USAGE_PER| number:'1.1-1'}}%</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="SUGGESTED_OPEN_QTY" header="Suggested Open Qty" [style]="{'text-align':'center'}">
+                                                        <template let-col let-opt="rowData"  pTemplate="body">
+                                                            <span>{{opt.SUGGESTED_OPEN_QTY|number}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="SUGGESTED_HOLD_QTY" header="Suggested Hold Qty" [style]="{'text-align':'center'}">
+                                                        <template let-col let-opt="rowData"  pTemplate="body">
+                                                            <span>{{opt.SUGGESTED_HOLD_QTY|number}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="NET_CHANGE_OPEN_QTY" header="Net Change Open Qty" [style]="{'text-align':'center'}">
+                                                        <template let-col let-opt="rowData"  pTemplate="body">
+                                                            <span>{{opt.NET_CHANGE_OPEN_QTY|number}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="NET_CHANGE_HOLD_QTY" header="Net Change Hold Qty" [style]="{'text-align':'center'}">
+                                                        <template let-col let-opt="rowData"  pTemplate="body">
+                                                            <span>{{opt.NET_CHANGE_HOLD_QTY|number}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="NET_CHANGE_OPEN_VALUE" header="Net Change Open Value" [style]="{'text-align':'right'}">
+                                                        <template let-col let-opt="rowData" pTemplate="body">
+                                                            <span>{{opt.NET_CHANGE_OPEN_VALUE | currency:'USD':true:'1.0-0' | minusSignToParens}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column field="NET_CHANGE_HOLD_VALUE" header="Net Change Hold Value" [style]="{'text-align':'right'}">
+                                                        <template let-col let-opt="rowData" pTemplate="body">
+                                                            <span>{{opt.NET_CHANGE_HOLD_VALUE |currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                                        </template>
+                                                    </p-column>
+
+                                                </atpar-datatable>
+                                            </div>
+                                        </atpar-tab>
+                                    </atpar-pou-tabs>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <atpar-dialog header="Enter Recipient`s Email Address" [width]="450" [(visible)]="isMailDialog" [responsive]="true" showEffect="fade" [modal]="true">
+                <div class="ui-grid ui-grid-responsive ui-fluid">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                            <span>To : </span>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-8 col-xs-8">
+                            <atpar-text [(ngModel)]="toMailAddr" [validations]="'EMAIL'" [name]="txtToMailAddr" [id]="'txtToMailAddr'"></atpar-text>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                            <span><button class="btn btn-purple sbtn" (click)="onSendMailClick()">Send &nbsp;<i class="fa fa-share-square-o" aria-hidden="true"></i></button> </span>
+                        </div>
+                    </div>
+                </div>
+            </atpar-dialog>
+        </div>
+    </div>
+
+    <atpar-growl [value]="msgs" sticky="sticky"></atpar-growl>
+
+</div>
+<style>
+    .hiphen-addon {
+        padding: 3px !important;
+        background: transparent !important;
+        border: 0 !important;
+    }
+
+    .addon-btn-purple {
+        background: #6c276a !important;
+        color: #fff !important;
+        border: 1px solid #6c276a !important;
+        padding: 3px !important;
+    }
+
+   a:hover {
+        /*color: cornflowerblue !important;*/
+        color:rgba(108, 39, 106, 1);
+    }
+    .input-group-hiphen {
+        border-right: 0;
+        padding: 6px 4px;
+        font-size: 14px;
+        text-align: center;
+        background-color: #6c276a;
+        border-radius: 4px;
+        vertical-align: middle;
+        width: 1%;
+        display: table-cell;
+    }
+
+    .tbl-tabOpt {
+        border: none;
+        font-size: 12px !important;
+        color: #333 !important;
+        border-collapse: unset;
+        /*margin-top:10px;*/
+        border-spacing: 4px;
+    }
+</style>

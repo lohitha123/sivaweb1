@@ -1,0 +1,327 @@
+﻿<div id="main" class="content-page">
+    <div class="page-header-title">
+        <h4 class="page-title"><a (click)="homeurl()">Administration ></a>Department Location Workstation Allocation</h4>
+    </div>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:20px;">
+                        <form class="form-horizontal form-label-left">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6"> Org Group ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-text [(ngModel)]="newItem.OrgGroupId" [name]="txtOrgGroupId" [validations]="'except_less_greater_symbols'" [id]="'OrgGroupId'" [ngModelOptions]="{standalone: true}" [readonly]="true"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group ">
+                                    <label for=" " class="control-label col-xs-12 col-md-4 col-sm-6 ">Department</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 ">
+                                        <atpar-select [options]="cities " [required]="true " [id]="'ddlDepartment'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group ">
+                                    <label for=" " class="control-label col-xs-12 col-md-4 col-sm-6 ">Location Type</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 ">
+                                        <atpar-select [options]="cities " [required]="true" [id]=" 'ddlLocType' " [(ngModel)]="selectedCity " [ngModelOptions]="{standalone: true} " filter="filter "></atpar-select>
+                                    </div>
+                                </div>
+                                <div style="clear:both; "></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Business Unit/Company</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-select [options]="cities" [id]="'ddlBusiUnitComp'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Workstation ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-text [(ngModel)]="newItem.WorkSttnId" [name]="txtWorkSttnId" [validations]="'except_less_greater_symbols'" [id]="'WorkSttnId'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Display</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlDisplay'" [ngModelOptions]="{standalone: true}" filter="filter" ></atpar-select>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="go()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <div style="clear:both;"></div>
+                        <br>
+                        <div class="table-responsive" *ngIf="pop">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Workstation ID</th>
+                                        <th class="text-center">Workstation Description</th>
+                                        <th class="text-center" colspan="5">Locations</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="vertical-align:middle;">andoird</td>
+                                        <td style="vertical-align:middle;">andoird</td>
+                                              <td>
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">Business Unit</th>
+                                                        <th class="text-center">Location</th>
+                                                        <th class="text-center">Location Description
+                                                        </th>
+                                                        <th class="text-center">Assign</th>
+                                                        <th class="text-center">Priority</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>US015</td>
+                                                        <td>COR-1</td>
+                                                        <td>Coronary Care</td>
+                                                        <td>
+                                                            <atpar-switch></atpar-switch>
+                                                        </td>
+                                                        <td>
+                                                            <atpar-radioButton name="groupname1" value="" label="1"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname1" value="" label="2"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname1" value="" label="None"></atpar-radioButton>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>US015</td>
+                                                        <td>DEL-1</td>
+                                                        <td> Labor/Delivery</td>
+                                                        <td>
+                                                            <atpar-switch></atpar-switch>
+                                                        </td>
+                                                        <td>
+                                                            <atpar-radioButton name="groupname2" value="" label="1"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname2" value="" label="2"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname2" value="" label="None"></atpar-radioButton>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>US015 </td>
+                                                        <td>ICU-1</td>
+                                                        <td>Intensive Care Unit - East</td>
+                                                        <td>
+                                                            <atpar-switch></atpar-switch>
+                                                        </td>
+                                                        <td>
+                                                            <atpar-radioButton name="groupname3" value="" label="1"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname3" value="" label="2"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname3" value="" label="None"></atpar-radioButton>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>US015</td>
+                                                        <td>ICU-2</td>
+                                                        <td>Intensive Care Unit - West</td>
+                                                        <td>
+                                                            <atpar-switch></atpar-switch>
+                                                        </td>
+                                                        <td>
+                                                            <atpar-radioButton name="groupname4" value="" label="1"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname4" value="" label="2"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname4" value="" label="None"></atpar-radioButton>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>US015</td>
+                                                        <td>MS-1</td>
+                                                        <td> Med/Surg - 1 Floor East</td>
+                                                        <td>
+                                                            <atpar-switch></atpar-switch>
+                                                        </td>
+                                                        <td>
+                                                            <atpar-radioButton name="groupname5" value="" label="1"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname5" value="" label="2"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname5" value="" label="None"></atpar-radioButton>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>US015</td>
+                                                        <td>MS-2</td>
+                                                        <td>Med/Surg - 1 Floor West</td>
+                                                        <td>
+                                                            <atpar-switch></atpar-switch>
+                                                        </td>
+                                                        <td>
+                                                            <atpar-radioButton name="groupname6" value="" label="1"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname6" value="" label="2"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname6" value="" label="None"></atpar-radioButton>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>US015</td>
+                                                        <td> PARLCOATION1</td>
+                                                        <td> PARLCOATION1</td>
+                                                        <td>
+                                                            <atpar-switch></atpar-switch>
+                                                        </td>
+                                                        <td>
+                                                            <atpar-radioButton name="groupname7" value="" label="1"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname7" value="" label="2"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname7" value="" label="None"></atpar-radioButton>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>US015</td>
+                                                        <td> PARLCOATION2</td>
+                                                        <td> PARLCOATION2</td>
+                                                        <td>
+                                                            <atpar-switch></atpar-switch>
+                                                        </td>
+                                                        <td>
+                                                            <atpar-radioButton name="groupname8" value="" label="1"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname8" value="" label="2"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname8" value="" label="None"></atpar-radioButton>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="vertical-align:middle;">ios</td>
+                                        <td style="vertical-align:middle;">ios</td>
+                                        <td>
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">Business Unit</th>
+                                                        <th class="text-center">Location</th>
+                                                        <th class="text-center">Location Description
+                                                        </th>
+                                                        <th class="text-center">Assign</th>
+                                                        <th class="text-center">Priority</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>US015</td>
+                                                        <td>COR-1</td>
+                                                        <td>Coronary Care</td>
+                                                        <td>
+                                                            <atpar-switch></atpar-switch>
+                                                        </td>
+                                                        <td>
+                                                            <atpar-radioButton name="groupname9" value="" label="1"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname9" value="" label="2"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname9" value="" label="None"></atpar-radioButton>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>US015</td>
+                                                        <td>DEL-1</td>
+                                                        <td> Labor/Delivery</td>
+                                                        <td>
+                                                            <atpar-switch></atpar-switch>
+                                                        </td>
+                                                        <td>
+                                                            <atpar-radioButton name="groupname10" value="" label="1"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname10" value="" label="2"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname10" value="" label="None"></atpar-radioButton>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>US015 </td>
+                                                        <td>ICU-1</td>
+                                                        <td>Intensive Care Unit - East</td>
+                                                        <td>
+                                                            <atpar-switch></atpar-switch>
+                                                        </td>
+                                                        <td>
+                                                            <atpar-radioButton name="groupname11" value="" label="1"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname11" value="" label="2"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname11" value="" label="None"></atpar-radioButton>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>US015</td>
+                                                        <td>ICU-2</td>
+                                                        <td>Intensive Care Unit - West</td>
+                                                        <td>
+                                                            <atpar-switch></atpar-switch>
+                                                        </td>
+                                                        <td>
+                                                            <atpar-radioButton name="groupname12" value="" label="1"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname12" value="" label="2"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname12" value="" label="None"></atpar-radioButton>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>US015</td>
+                                                        <td>MS-1</td>
+                                                        <td> Med/Surg - 1 Floor East</td>
+                                                        <td>
+                                                            <atpar-switch></atpar-switch>
+                                                        </td>
+                                                        <td>
+                                                            <atpar-radioButton name="groupname13" value="" label="1"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname13" value="" label="2"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname13" value="" label="None"></atpar-radioButton>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>US015</td>
+                                                        <td>MS-2</td>
+                                                        <td>Med/Surg - 1 Floor West</td>
+                                                        <td>
+                                                            <atpar-switch></atpar-switch>
+                                                        </td>
+                                                        <td>
+                                                            <atpar-radioButton name="groupname14" value="" label="1"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname14" value="" label="2"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname14" value="" label="None"></atpar-radioButton>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>US015</td>
+                                                        <td> PARLCOATION1</td>
+                                                        <td> PARLCOATION1</td>
+                                                        <td>
+                                                            <atpar-switch></atpar-switch>
+                                                        </td>
+                                                        <td>
+                                                            <atpar-radioButton name="groupname15" value="" label="1"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname15" value="" label="2"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname15" value="" label="None"></atpar-radioButton>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>US015</td>
+                                                        <td> PARLCOATION2</td>
+                                                        <td> PARLCOATION2</td>
+                                                        <td>
+                                                            <atpar-switch></atpar-switch>
+                                                        </td>
+                                                        <td>
+                                                            <atpar-radioButton name="groupname16" value="" label="1"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname16" value="" label="2"></atpar-radioButton>
+                                                            <atpar-radioButton name="groupname16" value="" label="None"></atpar-radioButton>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="col-xs-12 col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-3">
+                                <button class="btn btn-purple sbtn"><i class="fa fa-check"></i>&nbsp; Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

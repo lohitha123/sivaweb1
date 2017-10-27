@@ -1,0 +1,85 @@
+﻿<!----------LeftBar Content-------------->
+<!--<leftbar-cmp [style.display]="getMenu()" [inputData]="data" ></leftbar-cmp>-->
+<!----------dashboard Content-------------->
+<div id="main" class="content-page" [style.margin]="getMargin()">
+    <!-- angular templating -->
+    <!-- this is where content will be injected -->
+    <div class="content">
+        <div>
+            <!--   <div class="page-header-title">
+                      <h4 class="page-title text-center">{{activeMenu}}</h4>
+                      <ul class="breadcrumb">
+                          <li class="completed"><a>Atpar</a></li>
+                          <li class="completed1"><a href="dashboard.html">{{activeMenu}}</a></li>
+                      </ul>
+                      <img class="ad-image" src="<MHS class="png"></MHS>">
+                  </div>
+                   -->
+            <div class="row">
+                <ul class="breadcrumb">
+                    <li class="completed1"><a>Atpar</a></li>
+                    <li class="completed"><a>{{activeMenu}}</a></li>
+                    <!--   <li class="completed1"><a href="#">Preference Card Optimization</a></li>
+                    <li class="completed" id="activemenu"><a href="#">Summary</a></li> -->
+                </ul>
+            </div>
+        </div>
+        <div class="page-content-wrapper ">
+            <div class="container">
+                <br>
+                <div class="row">
+                    <div class="col-md-11 col-md-offset-1">
+                        <div class="">
+                            <div class="panel panel-primary">
+                                <div class="panel-body" style="margin:20% 0 0 0;">
+                                    <div class="row" style="display:none;">
+                                        <div class="col-sm-12">
+                                            <span class="breadcrumb" style="padding: 8px 15px 8px 0;"><a> AtPar - Home</a></span>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                    <!--  <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6" *ngFor="let menu of mainMenu">
+                                   <div class="panel panel-fill panel-dashboard" [ngClass]="{active : activeMenu === menu.name }" (click)="activeButton(menu.name)">
+                                       <div class="panel-heading xyz">
+                                           <i class="fa {{menu.img}}" aria-hidden="true"></i>
+                                       </div>
+                                       <div class="panel-body" style="display: block; padding: 0px 10px;">
+                                           <h3 class="panel-title panel-dashboard-title">{{menu.name}}</h3>
+                                       </div>
+                                   </div>
+                               </div> -->
+                                    <!--new ui for the dashboard page-->
+                                    <div class="col-xs-12 col-sm-6 col-md-3 dash-card" *ngFor="let menu of mainMenu" >
+                                        <div class="panel panel-default db-blocks" [ngClass]="{active : activeMenu === menu.name }" (click)="activeButton(menu.name)">
+                                            <div class="panel-body home-pnl">
+                                                <img src="assets/images/{{menu.img}}.png" alt="" style="width:auto;">
+                                                <br>
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        <h4 class="text-center name-txt">{{menu.name}}</h4></li>
+                                                    <li>
+                                                        <p>Lorem ipsum dolor sit amet, conse ctetur rehenderit cum. Distinctio.</p>
+                                                    </li>
+                                                </ul>
+                                                <!--  <div class="col-xs-12">
+                                               <img src="assets/images/{{menu.img}}.png" alt="" class="img-responsive" style="width:30%;">
+                                           </div>
+                                           <div class="col-xs-12 name-txt">
+                                               <h4 class="text-primary ">{{menu.name}}</h4>
+                                           </div>
+                                           <div class="col-xs-12 desc-txt">
+                                               <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adcing...</p>
+                                           </div> -->
+                                            </div>
+                                            <div style="clear:both;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

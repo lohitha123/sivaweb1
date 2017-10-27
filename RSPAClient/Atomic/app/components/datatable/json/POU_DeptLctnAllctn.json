@@ -1,0 +1,226 @@
+[
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "STKRM",
+        "LOCATION": "PLHEMSTK",
+        "LOCATION_DESCR": "Hematology Stock Cart",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "STKRM",
+        "LOCATION": "PLICU",
+        "LOCATION_DESCR": "ICU PAR LEVEL",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "STKRM",
+        "LOCATION": "PLICUSTK",
+        "LOCATION_DESCR": "ICU Stock Par Level",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "STKRM",
+        "LOCATION": "PLICUSTK2",
+        "LOCATION_DESCR": "ICU Stock Cart 2",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "STKRM",
+        "LOCATION": "PLICUSTK3",
+        "LOCATION_DESCR": "ICU Stock Cart 3",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "STKRM",
+        "LOCATION": "PLOBGYN",
+        "LOCATION_DESCR": "OBGYN Par Level",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "STKRM",
+        "LOCATION": "PLOBGYN2",
+        "LOCATION_DESCR": "OBGYN Stock Cart 2",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "STKRM",
+        "LOCATION": "PLOBGYN3",
+        "LOCATION_DESCR": "OBGYN Stock Cart 3",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "STKRM",
+        "LOCATION": "PLOR1",
+        "LOCATION_DESCR": "OR Stock Cart 1",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "STKRM",
+        "LOCATION": "PLOR2",
+        "LOCATION_DESCR": "OR Stock Cart 2",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "STKRM",
+        "LOCATION": "PLORTHO",
+        "LOCATION_DESCR": "ORTHOPEDICS CART",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "STKRM",
+        "LOCATION": "PLORTHO2",
+        "LOCATION_DESCR": "ORTHOPEDICS CART",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "STKRM",
+        "LOCATION": "PlDERM",
+        "LOCATION_DESCR": "Dermatology Stock Cart",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "US012",
+        "LOCATION": "RES-1",
+        "LOCATION_DESCR": "Intensive Care Unit - East",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "US012",
+        "LOCATION": "RES-2",
+        "LOCATION_DESCR": "Intensive Care Unit - East",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "US012",
+        "LOCATION": "RES-3",
+        "LOCATION_DESCR": "Intensive Care Unit - East",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "US012",
+        "LOCATION": "RES-4",
+        "LOCATION_DESCR": "Intensive Care Unit - East",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "US015",
+        "LOCATION": "COR-1",
+        "LOCATION_DESCR": "Coronary Care",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "US015",
+        "LOCATION": "DEL-1",
+        "LOCATION_DESCR": "Labor/Delivery",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "US015",
+        "LOCATION": "ICU-1",
+        "LOCATION_DESCR": "Intensive Care Unit - East",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "US015",
+        "LOCATION": "ICU-2",
+        "LOCATION_DESCR": "Intensive Care Unit - West",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "US015",
+        "LOCATION": "MS-1",
+        "LOCATION_DESCR": "Med/Surg - 1 Floor East",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "US015",
+        "LOCATION": "MS-2",
+        "LOCATION_DESCR": "Med/Surg - 1 Floor West",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "US015",
+        "LOCATION": "RES-1",
+        "LOCATION_DESCR": "ICU Stock Cart 2",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "WHSE",
+        "LOCATION": "PL2DERM",
+        "LOCATION_DESCR": "Dermatology Stock Cart",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "WHSE",
+        "LOCATION": "PL2HEMATOLO",
+        "LOCATION_DESCR": "Hematology Stock Cart",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "WHSE",
+        "LOCATION": "PL2ICUSTK",
+        "LOCATION_DESCR": "ICU STOCK CART",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "ASSIGN_CART": "N",
+        "BUSINESS_UNIT": "WHSE",
+        "LOCATION": "PL2ICUSTK2",
+        "LOCATION_DESCR": "ICU STOCK CART 2",
+        "ACT_ASSIGN_CART": "N",
+        "LOCATION_TYPE": "P"
+      }
+]

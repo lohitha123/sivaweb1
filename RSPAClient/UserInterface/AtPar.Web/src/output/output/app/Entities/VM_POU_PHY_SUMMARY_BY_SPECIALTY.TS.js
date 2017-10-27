@@ -1,0 +1,8 @@
+"use strict";
+var VM_POU_PHY_SUMMARY_BY_SPECIALTY = (function () {
+    function VM_POU_PHY_SUMMARY_BY_SPECIALTY() {
+    }
+    return VM_POU_PHY_SUMMARY_BY_SPECIALTY;
+}());
+exports.VM_POU_PHY_SUMMARY_BY_SPECIALTY = VM_POU_PHY_SUMMARY_BY_SPECIALTY;
+//# sourceMappingURL=VM_POU_PHY_SUMMARY_BY_SPECIALTY.TS.js.map

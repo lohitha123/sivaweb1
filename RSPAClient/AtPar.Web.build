@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<project name="WebBuild" default="AtParBuild" basedir="." xmlns="http://nant.sf.net/schemas/nant-0.85.win32.net-1.0.xsd">
+	<description>Build File for Dotnet portion of the atpar server</description>
+	
+	<include buildfile="..\Headers\nantincludes.include" />	
+	<target name="AtPar.Web" description="compiles the source code">
+	<echo message="Compiling Common Code........" />
+	    <nant buildfile="Common/Common.build" target="buildall" />
+		<echo message="Compiling Core Code........" />
+	    <nant buildfile="Core/Core.build" target="buildall" />
+			<echo message="Building ${asminfo.product} ${asminfo.product.version}"/>	
+		
+		<echo message="Compiling Data Code........" />
+	    <nant buildfile="Data/Data.build" target="buildall" />
+		<echo message="Compiling Business Code........" />
+	    <nant buildfile="Business/Business.build" target="buildall" />
+		<echo message="Compiling WebApi Code........" />
+	    <nant buildfile="WebApi/WebApi.build" target="buildall" />
+		<echo message="Compiling UserInterface Code........" />
+	    <nant buildfile="UserInterface/UserInterface.build" target="buildall" />
+		<echo message="Compiling WebApi Code........" />
+	    <nant buildfile="WebApi/WebApi.build" target="buildall" />
+		<echo message="Compiling CommonLibs Code........" />
+	    <nant buildfile="CommonLibs/CommonLibs.build" target="buildall" />
+	</target>
+
+	<target name="AtParBuild" description="compiles the source code">	
+	
+	<call target="getHeadRevision" />   	   
+		<call target="AtPar.Web" />
+	</target>
+
+</project>

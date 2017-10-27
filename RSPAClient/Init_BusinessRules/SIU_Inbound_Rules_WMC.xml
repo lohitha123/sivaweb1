@@ -1,0 +1,17 @@
+<ROOT>
+<SIU_CASE_DATA>
+<field name="PATIENT_MRC" segment="PID" field_no="3" composite_field_no="1" mandatory="Y"/>
+<field name="CASE_ID" segment="ZCS" field_no="2" composite_field_no="" mandatory="Y"/>
+<field name="ROOM_ID" segment="ZCS" field_no="4" composite_field_no="" mandatory="N"/>
+<field name="PROCEDURE_ID" segment="ZCS" field_no="7" composite_field_no="" mandatory="Y"/>
+<field name="PERFORM_DATETIME" segment="ZCS" field_no="8" composite_field_no="" mandatory="Y"/>
+<field name="PERFORM_TIME" segment="ZCS" field_no="9" composite_field_no="" mandatory="N"/>
+<field name="PHYSICIAN_ID" segment="ZCS" field_no="3" composite_field_no="1" mandatory="Y"/>
+<field name="PHYSICIAN_FN" segment="ZCS" field_no="3" composite_field_no="3" mandatory="N"/>
+<field name="ITEM_ID" segment="RQD" field_no="2" composite_field_no="1" mandatory="Y"/>
+<field name="ITEM_DESC" segment="RQD" field_no="2" composite_field_no="2" mandatory="N"/>
+<field name="PICK_QUANTITY" segment="RQD" field_no="5" composite_field_no="2" mandatory="N"/>
+</SIU_CASE_DATA>
+</ROOT>
+
+

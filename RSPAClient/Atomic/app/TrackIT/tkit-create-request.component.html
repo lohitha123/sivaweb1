@@ -1,0 +1,198 @@
+﻿<!--<div>
+    <span>This is trackit Manage departments screen.</span>
+</div>-->
+<style>
+.ui-datatable tbody tr td .form-control, table tbody tr td .form-control {
+    height: auto !important;
+    margin-top: -10px;
+}
+input[type=number].form-control {
+    line-height:34px;
+}
+.table-condensed > thead> tr> th {
+    text-align: center;
+}
+.new-ht td .input-group .input-group-addon {
+         line-height:0!important;
+    }
+</style>
+<div id="main" class="content-page"  style="margin-left: 0px;  margin-top: -80px;">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:10px 0px 10px 0px;">
+                        <form class="form-horizontal form-label-left" *ngIf="page">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Equipment Type</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlErpsyss'" filter="filter" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-4 form-group">
+                                    <button class="btn btn-purple sbtn">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group pull-right">
+                                    <label for="" class="control-label col-xs-12 col-md-3 col-sm-6">Item ID/Description</label>
+                                    <div class="col-xs-12 col-md-6 col-sm-6">
+                                        <atpar-text [(ngModel)]="newItem.Item" [name]="txtItem" [validations]="'except_less_greater_symbols'" [id]="'Item'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-3">
+                                        <button class="btn btn-purple sbtn">Search &nbsp; <i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="col-xs-12" *ngIf="page">
+                            <div class="container">
+                                <table id="cart" class="table table-hover table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th width="20%">Due Date / Time</th>
+                                            <th width="20%">Return Date / Time</th>
+                                            <th width="6%">Quantity</th>
+                                            <th width="11%">Delivery Location</th>                                            
+                                            <th> </th>
+                                            <th> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="new-ht">
+                                            <td data-th="Product">
+                                                <div class="row">
+                                                    <div class="col-sm-4"><img src="http://placehold.it/100x100" alt="..." class="img-responsive" /></div>
+                                                    <div class="col-sm-8">
+                                                        <p><strong>Item ID:</strong>Injection</p>
+                                                        <p><strong>Comment:</strong> This item should store in cool place</p>
+                                                        <p><strong>Avalable:</strong>3</p>
+                                                        <p><strong>Assigned To : </strong>Patient Name</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td data-th="Due">
+                                                <div class="col-xs-12">
+                                                    <p-calendar [showIcon]="true" [id]="'FromDatePicker'" [(ngModel)]="date2" [placeholder]="'Due Date'" [minDate]="minDateValue1" [readonlyInput]="true" (onSelect)="selectDate1($event)" (onFocus)="onfocusFromCalendar($event)" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                                </div>
+                                                <div class="clear"></div>
+                                                <br>
+                                                <div class="col-xs-12 col-md-8">
+                                                    <input class="form-control time" type="time">
+                                                </div>
+                                            </td>                                           
+                                            <td data-th="Return">
+                                                <div class="col-xs-12">
+                                                    <p-calendar [showIcon]="true" [id]="'FromDatePicker'" [(ngModel)]="date2" [placeholder]="'Return Date'" [minDate]="minDateValue1" [readonlyInput]="true" (onSelect)="selectDate1($event)" (onFocus)="onfocusFromCalendar($event)" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                                </div>
+                                                <div class="clear"></div>
+                                                <br>
+                                                <div class="col-xs-12 col-md-8">
+                                                    <input class="form-control time" type="time">
+                                                </div>
+                                            </td>
+                                            <td data-th="Quantity">
+                                                <div class="input-group" style="width:150px;">
+                                                    <span class="input-group-addon"> <a class="text-default"> - </a></span>
+                                                    <atpar-text [id]="'txtDf'" [name]="txtDf" [(ngModel)]="newItem.Df" [ngModelOptions]="{standalone: true}" [validations]="'alpha_numeric_underscore_nospace'" [title]="'Use only numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                                    <span class="input-group-addon"> <a class="text-default"> + </a> </span>
+                                                </div>
+                                            </td>
+                                            <td data-th="Delivery Location">
+                                                <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlErpsys'" filter="filter" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                            </td>
+                                            <td class="actions" data-th="Patient">
+                                                <button class="btn btn-purple btn-lg" (click)="go()"><i class="fa fa-user-plus"></i></button>
+                                            </td>
+                                            <td class="actions" data-th="Cart">
+                                                <button class="btn btn-purple btn-lg"><i class="fa fa-shopping-cart"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr class="new-ht">
+                                            <td data-th="Product">
+                                                <div class="row">
+                                                    <div class="col-sm-4"><img src="http://placehold.it/100x100" alt="..." class="img-responsive" /></div>
+                                                    <div class="col-sm-8">
+                                                        <p><strong>Item ID:</strong>Bed side table</p>
+                                                        <p><strong>Comment:</strong> Bed side table for patient</p>
+                                                        <p><strong>Avalable:</strong>4</p>
+                                                        <p><strong>Assigned To : </strong>Patient Name</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td data-th="Due">
+                                                <div class="col-xs-12">
+                                                    <p-calendar [showIcon]="true" [id]="'FromDatePicker'" [(ngModel)]="date1" [placeholder]="'Due Date'" [minDate]="minDateValue1" [readonlyInput]="true" (onSelect)="selectDate1($event)" (onFocus)="onfocusFromCalendar($event)" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                                </div>
+                                                <div class="clear"></div>
+                                                <br>
+                                                <div class="col-xs-12 col-md-8">
+                                                    <input class="form-control time" type="time" min="1" max="5">
+                                                </div>
+                                            </td>                                            
+                                            <td data-th="Return">
+                                                <div class="col-xs-12">
+                                                    <p-calendar [showIcon]="true" [id]="'FromDatePicker'" [(ngModel)]="date1" [placeholder]="'Return Date'" [minDate]="minDateValue1" [readonlyInput]="true" (onSelect)="selectDate1($event)" (onFocus)="onfocusFromCalendar($event)" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                                </div>
+                                                <div class="clear"></div>
+                                                <br>
+                                                <div class="col-xs-12 col-md-8">
+                                                    <input class="form-control time" type="time" min="1" max="5">
+                                                </div>
+                                            </td>
+                                            <td data-th="Quantity">
+                                                <!--<input type="number" class="form-control text-center" value="1">-->
+                                                <div class="input-group" style="width:150px;">
+                                                    <span class="input-group-addon"> <a class="text-default"> - </a></span>
+                                                    <atpar-text [id]="'txtDf'" [name]="txtDf" [(ngModel)]="newItem.Df" [ngModelOptions]="{standalone: true}" [validations]="'alpha_numeric_underscore_nospace'" [title]="'Use only numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                                    <span class="input-group-addon"> <a class="text-default"> + </a> </span>
+                                                </div>
+                                            </td>
+                                            <td data-th="Delivery Location" class="text-center">
+                                                <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlErpsy1'" filter="filter" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                            </td>
+                                            <td class="actions" data-th="Patient">
+                                                <button class="btn btn-purple btn-lg" (click)="go()"><i class="fa fa-user-plus"></i></button>
+                                            </td>
+                                            <td class="actions" data-th="Cart">
+                                                <button class="btn btn-purple btn-lg"><i class="fa fa-shopping-cart"></i></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <!--<tfoot>
+                                        <tr>
+                                            <td colspan="6" class="hidden-xs"></td>
+                                            <td><a href="#" class="btn btn-purple sbtn">Continue &nbsp;<i class="fa fa-angle-right"></i></a></td>
+                                        </tr>
+                                    </tfoot>-->
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 table-responsive " *ngIf="pop">
+                            <div class="container">
+                                <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                    <!--<p-column expander="true" styleClass="col-icon"></p-column>-->
+                                    <p-column field="" header="Select">
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <atpar-switch></atpar-switch>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="DEPARTMENT" header="Department" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="PATIENT_NAME" header="Patient Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="PATIENT_MRC" header="Patient MRC" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="PATIENT_ACCOUNT" header="Patient Account#" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="BED/ROOM" header="Bed/Room#" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>                                    
+                                </atpar-datatable>
+                            </div>
+                            <br>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5 form-group">
+                                <button class="btn btn-purple sbtn" (click)="close()">Select &nbsp; <i class="fa fa-check"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

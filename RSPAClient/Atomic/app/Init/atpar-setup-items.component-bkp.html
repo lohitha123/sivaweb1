@@ -1,0 +1,694 @@
+﻿<div id="main" class="content-page">
+    <div class="content">
+        <div class="">
+            <div class="page-header-title">
+                <h4 class="page-title"><a (click)="homeurl()">Administration ></a> Setup Item</h4>
+            </div>
+        </div>
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border" *ngIf="container">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:20px;">
+                        <button class="btn btn-purple sbtn pull-right" (click)="add()"><i class="fa fa-plus"></i> Add Items</button>
+                        <br>
+                        <div class="col-xs-12">
+                            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-5">
+                                    <label for="">Item ID</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <input type="text" name="" id="input" class="form-control bdr-purple" value="" required="required" pattern="" title="">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-5">
+                                    <label for="">Description</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <input type="text" name="" id="input" class="form-control bdr-purple" value="" required="required" pattern="" title="">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-4">
+                                    <label for="" class="">Vendor</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlProfiles'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-5">
+                                    <label for="">Manufacturer</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <input type="text" name="" id="input" class="form-control bdr-purple" value="" required="required" pattern="" title="">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-5">
+                                    <label for="">Item Price Between</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bdr-purple" placeholder="" />
+                                        <span class="input-group-addon" style="border-left: 0; border-right: 0;">and</span>
+                                        <input type="text" class="form-control bdr-purple" placeholder="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <label for="" class="label-purple"> Substitute </label>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-3">
+                                    <atpar-switch></atpar-switch>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-1">
+                                <button class="btn btn-purple sbtn" (click)="go()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="col-xs-12 table-responsive" *ngIf="table1">
+                            <br>
+                            <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                <p-column expander="true" styleClass="col-icon"></p-column>
+                                <p-column field="ORG_GROUP_ID" header="Org Group ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="ITEM_ID" header="Item ID" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <span (click)="add()" style="cursor:pointer;">{{ven.ITEM_ID}}</span>
+                                        <!--<a routerLink="Categories"><span>{{ven.id}}</span></a>-->
+                                    </template>
+                                </p-column>
+                                <p-column header="Description" field="SHORT_DESCR" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Vendor" field="VENDOR_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Manufacturer" field="MANUFACTURER" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Procurement Price" field="ITEM_PRICE" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="UPC ID" field="UPC_CODE" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="CONV_FACTOR1" header="Packaging" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="STATUS" header="Current Status" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <!--<p-column header="Replenishment Type" field="Action" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>-->
+                                <p-column header="Action" [style]="">
+                                    <template let-ven="rowData" pTemplate="body">
+                                        <atpar-switch></atpar-switch>
+                                    </template>
+                                </p-column>
+                                <p-column header="Add Substitute Item" field="SUBSTITUTE_ITEM_FLG">
+                                    <template let-col let-ven="rowData" pTemplate type="body">
+                                        <span (click)="plus()" style="cursor:pointer;" *ngIf="ven.SUBSTITUTE_ITEM_FLG"><i class="fa fa-plus fa-bg bg-blue"></i></span>
+                                    </template>
+                                </p-column>
+                                <template let-employee pTemplate="rowexpansion">
+                                    <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
+                                        <div class="ui-grid-row">
+                                            <div class="ui-grid-col-3" style="text-align:center">
+                                                <i class="fa fa-search" (click)="showCar(employee)" style="cursor:pointer;float:left;margin-top:40px"></i>
+                                            </div>
+                                            <div class="ui-grid-col-9">
+                                                <div class="ui-grid ui-grid-responsive ui-grid-pad">
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Org Group ID</span></div>
+                                                        <div class="ui-grid-col-10">{{employee.ORG_GROUP_ID}}</div>
+                                                    </div>
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Item ID</span></div>
+                                                        <div class="ui-grid-col-10">{{employee.ITEM_ID}}</div>
+                                                    </div>
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Description</span> </div>
+                                                        <div class="ui-grid-col-10">{{employee.SHORT_DESCR}}</div>
+                                                    </div>
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">vendor</span> </div>
+                                                        <div class="ui-grid-col-10">{{employee.VENDOR_ID}}</div>
+                                                    </div>
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Procurement Price</span> </div>
+                                                        <div class="ui-grid-col-10">{{employee.ITEM_PRICE}}</div>
+                                                    </div>
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Manufacturer</span> </div>
+                                                        <div class="ui-grid-col-10">{{employee.MANUFACTURER}}</div>
+                                                    </div>
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">UPC ID</span> </div>
+                                                        <div class="ui-grid-col-10">{{employee.UPC_CODE}}</div>
+                                                    </div>
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Packaging</span> </div>
+                                                        <div class="ui-grid-col-10">{{employee.CONV_FACTOR1}}</div>
+                                                    </div>
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Current Status</span> </div>
+                                                        <div class="ui-grid-col-10">{{employee.STATUS}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                                <!--<p-footer></p-footer>-->
+                            </atpar-datatable>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container x_panel no-border" *ngIf="additem">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:20px;">
+                        <div class="row">
+                            <form class="form-horizontal form-label-left">
+                                <br>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Org Group ID </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control " placeholder="" value="MHS_MHS" class="form-control  bdr-red" disabled>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Item ID </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control " placeholder="" class="form-control  bdr-red">
+                                        <div class="dropdown">
+                                            <p>Use only letters (a-z)(A-Z)</p>
+                                            <p>Use only numbers (0-9)</p>
+                                            <p>Use only the underscore(_)</p>
+                                            <p>Use only dot (.) and no spaces</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Use only letters (a-z)(A-Z), numbers (0-9), the underscore(_), dot (.) and no spaces
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Lead Time </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control bdr-purple " placeholder="">
+                                        <div class="dropdown">
+                                            <p>Use only numbers (0-9)</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Use only numbers (0-9)</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> Short Description </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" placeholder="" class="form-control bdr-red">
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Any character A-Z, a-z, 0-9, !, ', #, $...
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Long Description </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control bdr-purple " placeholder="">
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Any character A-Z, a-z, 0-9, !, ', #, $...
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Vendor ID </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [options]="cities" [required]="true" [id]="'ddlOrg'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Cust. Item ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control " placeholder="" class="form-control bdr-purple">
+                                        <div class="dropdown">
+                                            <p>Use only letters (a-z)(A-Z)</p>
+                                            <p>Use only numbers (0-9)</p>
+                                            <p>Use only the underscore(_)</p>
+                                            <p>Use only dot (.) and no spaces</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Use only letters (a-z), numbers (0-9), the underscore(_) and no spaces
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Manufacturer </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control bdr-purple" placeholder="">
+                                        <div class="dropdown">
+                                            <p>Use only letters (a-z)(A-Z)</p>
+                                            <p>Use only numbers (0-9)</p>
+                                            <p>Use only the underscore(_),&amp;,-</p>
+                                            <p>Use only dot (.) and no spaces</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Use only letters (a-z), numbers (0-9), the underscore(_), &amp;, - and spaces
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> Manufacturer Item ID </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control bdr-purple" placeholder="">
+                                        <div class="dropdown">
+                                            <p>Use only letters (a-z)(A-Z)</p>
+                                            <p>Use only numbers (0-9)</p>
+                                            <p>Use only the underscore(_)</p>
+                                            <p>Use only dot (.) and no spaces</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Use only letters (a-z), numbers (0-9), the underscore(_) and no spaces
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> Vendor Item ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control " placeholder="" class="form-control  bdr-red">
+                                        <div class="dropdown">
+                                            <p>Use only letters (a-z)(A-Z)</p>
+                                            <p>Use only numbers (0-9)</p>
+                                            <p>Use only the underscore(_)</p>
+                                            <p>Use only dot (.) and no spaces</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Use only letters (a-z), numbers (0-9), the underscore(_) and no spaces
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">UOM (Procurement)</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control " placeholder="" class="form-control  bdr-red">
+                                        <div class="dropdown">
+                                            <p>Use only letters (a-z)(A-Z)</p>
+                                            <p> No spaces</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Use only letters (A-Z) and no spaces
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> UOM (Issue)</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control " placeholder="" class="form-control  bdr-red">
+                                        <div class="dropdown">
+                                            <p>Use only letters (a-z)(A-Z)</p>
+                                            <p> No spaces</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Use only letters (A-Z) and no spaces
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> UPC ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control bdr-purple " placeholder="">
+                                        <div class="dropdown">
+                                            <p>Use only letters (a-z)(A-Z)</p>
+                                            <p>Use only numbers (0-9)</p>
+                                            <p>Use only the underscore(_)</p>
+                                            <p>No spaces</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Use only letters (a-z), numbers (0-9), the underscore(_) and no spaces
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> GTIN</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control bdr-purple" placeholder="">
+                                        <div class="dropdown">
+                                            <p>Use only letters (a-z)(A-Z)</p>
+                                            <p>Use only numbers (0-9)</p>
+                                            <p>Use only the underscore(_)</p>
+                                            <p>No spaces</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Use only letters (a-z), numbers (0-9), the underscore(_) and no spaces
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> Procurement Price</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control bdr-purple" placeholder="">
+                                        <div class="dropdown">
+                                            <p>Use only letters (a-z)(A-Z)</p>
+                                            <p>Use only .(dot)</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Use only numbers (0-9) and .(dot)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Conversion Rate(Procurement)</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control " placeholder="" class="form-control  bdr-red">
+                                        <div class="dropdown">
+                                            <p>Use only letters (a-z)(A-Z)</p>
+                                            <p>Use only .(dot)</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Use only numbers (0-9) and dot(.)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 label-purple"> Lot Controlled</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-switch></atpar-switch>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Checking this will force the user to enter lot number while counting
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 label-purple">Serial Controlled</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-switch></atpar-switch>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Checking this will force the user to enter serial number while counting
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 label-purple">Implant Item</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-switch></atpar-switch>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Checking will make the item as Implant
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Charge Code</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control bdr-purple" placeholder="">
+                                        <div class="dropdown">
+                                            <p>Use only letters (a-z)(A-Z)</p>
+                                            <p>Use only numbers (0-9)</p>
+                                            <p>Use only the underscore(_)</p>
+                                            <p>No spaces</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Use only letters (a-z), numbers (0-9), the underscore(_) and no space
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 ">Replenishment Type</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [options]="cities" [required]="true" [id]="'ddlReplenish'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 label-purple"> Latex Free</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-switch></atpar-switch>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> Custom Item Desc</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control bdr-purple" placeholder="">
+                                        <div class="dropdown">
+                                            <p>Use only letters (a-z)(A-Z)</p>
+                                            <p>Use only numbers (0-9)</p>
+                                            <p>Use only !, ', #, $..</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Any character A-Z, a-z, 0-9, !, ', #, $...
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> Item Category</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control bdr-purple" placeholder="">
+                                        <div class="dropdown">
+                                            <p>Use only letters (a-z)(A-Z)</p>
+                                            <p>Use only numbers (0-9)</p>
+                                            <p>Use only !, ', #, $..</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Any character A-Z, a-z, 0-9, !, ', #, $...
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> User Field 1</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control bdr-purple" placeholder="">
+                                        <div class="dropdown">
+                                            <p>Use only letters (a-z)(A-Z)</p>
+                                            <p>Use only numbers (0-9)</p>
+                                            <p>Use only !, ', #, $..</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Any character A-Z, a-z, 0-9, !, ', #, $...
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> User Field 2</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control bdr-purple" placeholder="">
+                                        <div class="dropdown">
+                                            <p>Use only letters (a-z)(A-Z)</p>
+                                            <p>Use only numbers (0-9)</p>
+                                            <p>Use only !, ', #, $..</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Any character A-Z, a-z, 0-9, !, ', #, $...
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 label-purple"> Pharmacy Item</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-switch (click)="pharmacy()"></atpar-switch>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Pharmacy item is the items which are used for preparation of Medicine
+                                    </div>
+                                </div>
+                                <div class="form-group" *ngIf="pharma">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 label-purple"> Substitute Item</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-switch></atpar-switch>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Substitute item should be a pharmacy item and subsitute item will be added to main phamacy item when it is checked. When main pharmacy item is not available then substitute item will be used
+                                    </div>
+                                </div>
+                                <div class="form-group" *ngIf="pharma">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> Strength</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control bdr-purple" placeholder="">
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Drug Strength
+                                    </div>
+                                </div>
+                                <div class="form-group" *ngIf="pharma">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> Dosage Form</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control bdr-purple" placeholder="">
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Drug dosage form
+                                    </div>
+                                </div>
+                                <div class="form-group" *ngIf="pharma">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 label-purple">Everify</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-switch></atpar-switch>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Checking this will force two users to verify after the drug preparation
+                                    </div>
+                                </div>
+                                <div class="form-group" *ngIf="pharma">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> CIndex</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control bdr-purple " placeholder="">
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        Index for defining the Complexity, 1 being lowest
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="col-md-4 col-md-offset-5 col-sm-4 col-sm-offset-4 col-xs-12">
+                                    <button class="btn btn-purple sbtn">Add</button>&nbsp;
+                                    <button class="btn btn-purple sbtn" (click)="close()" id="back"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container x_panel no-border" *ngIf="addplus">
+                <div class="panel panel-default" style="border: 1px solid #eee;margin-top:20px;">
+                    <div class="panel-body">
+                        <button class="btn btn-purple sbtn pull-right" (click)="addsub();"><i class="fa fa-plus"></i> Add Items</button>
+                        <br>
+                        <div class="col-xs-12 table-responsive">
+                            <ul class="list-inline">
+                                <li class="col-xs-12 col-sm-6">Org Group Id: MHS INC</li>
+                                <li class="col-xs-12 col-sm-6">Item Id:MHS</li>
+                            </ul>
+                            <br>
+                            <br>
+                            <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                <p-column expander="true" styleClass="col-icon"></p-column>
+                                <p-column field="PRIORITY" header="Priority" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="SUBSTITUTE_ITEM_ID" header="Substitute Item" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="ITEM_DESCR" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="STATUS" header="Current Status" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <template let-employee pTemplate="rowexpansion">
+                                    <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
+                                        <div class="ui-grid-row">
+                                            <div class="ui-grid-col-3" style="text-align:center">
+                                                <i class="fa fa-search" (click)="showCar(employee)" style="cursor:pointer;float:left;margin-top:40px"></i>
+                                            </div>
+                                            <div class="ui-grid-col-9">
+                                                <div class="ui-grid ui-grid-responsive ui-grid-pad">
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Priority</span></div>
+                                                        <div class="ui-grid-col-10">{{employee.PRIORITY}}</div>
+                                                    </div>
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Substitute Item</span></div>
+                                                        <div class="ui-grid-col-10">{{employee.SUBSTITUTE_ITEM_ID}}</div>
+                                                    </div>
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Description</span></div>
+                                                        <div class="ui-grid-col-10">{{employee.STATUS}}</div>
+                                                    </div>
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Current Status</span></div>
+                                                        <div class="ui-grid-col-10">{{employee.ITEM_DESCR}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                                <!--<p-footer></p-footer>-->
+                            </atpar-datatable>
+                            <br>
+                            <div class="col-xs-12 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-5">
+                                <!--  <button class="btn btn-purple sbtn">Assign</button> -->
+                                <button class="btn btn-purple sbtn" (click)="close()"> <i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;" *ngIf="addsubitem">
+                    <div class="panel-body">
+                        <div class="col-md-6 col-md-offset-4">
+                            <form class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Item#</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control  bdr-purple" placeholder="">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-purple sbtn gbtn" type="button" (click)="lookup()"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Description</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control bdr-purple" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 col-xs-offset-4 col-md-6 col-md-offset-3">
+                                    <button class="btn btn-purple sbtn">Save &nbsp;<i class="fa fa-check"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container" *ngIf="lookupitem">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body">
+                        <atpar-datatable [value]="sale" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                            <p-column expander="true" styleClass="col-icon"></p-column>
+                            <p-column field="ITEM_ID" header="Item Id" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                            <p-column field="ORG_GROUP_NAME" header="Org Group Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                            <p-column field="SHORT_DESCR" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                            <p-column field="VENDOR_ID" header="Vendor Id" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                            <p-column field="VEND_ITEM_ID" header="Vendor Item Id" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                            <p-column field="PHARMACY_FLG" header="Pharmacy" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                            <!--<p-column field="STATUS" header="Current Status" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>-->
+                            <template let-employee pTemplate="rowexpansion">
+                                <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
+                                    <div class="ui-grid-row">
+                                        <div class="ui-grid-col-3" style="text-align:center">
+                                            <i class="fa fa-search" (click)="showCar(employee)" style="cursor:pointer;float:left;margin-top:40px"></i>
+                                        </div>
+                                        <div class="ui-grid-col-9">
+                                            <div class="ui-grid ui-grid-responsive ui-grid-pad">
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-2"><span class="datatablespan">Item Id</span></div>
+                                                    <div class="ui-grid-col-10">{{employee.ITEM_ID}}</div>
+                                                </div>
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-2"><span class="datatablespan">Org Group Name</span></div>
+                                                    <div class="ui-grid-col-10">{{employee.ORG_GROUP_NAME}}</div>
+                                                </div>
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-2"><span class="datatablespan">Description</span></div>
+                                                    <div class="ui-grid-col-10">{{employee.SHORT_DESCR}}</div>
+                                                </div>
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-2"><span class="datatablespan">Vendor Id</span></div>
+                                                    <div class="ui-grid-col-10">{{employee.VENDOR_ID}}</div>
+                                                </div>
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-2"><span class="datatablespan">Vendor Item Id</span></div>
+                                                    <div class="ui-grid-col-10">{{employee.VEND_ITEM_ID}}</div>
+                                                </div>
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-2"><span class="datatablespan">Pharmacy</span></div>
+                                                    <div class="ui-grid-col-10">{{employee.PHARMACY_FLG}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                            <!--<p-footer></p-footer>-->
+                        </atpar-datatable>
+                        <br>
+                        <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-5">
+                            <button class="btn btn-purple sbtn" (click)="lookupform()">Add</button>
+                            <button class="btn btn-purple sbtn" (click)="lookupform()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

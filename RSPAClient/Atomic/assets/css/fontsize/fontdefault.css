@@ -1,0 +1,30 @@
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: lighter;
+    margin: 10px 0;
+}
+
+h1 {
+    line-height: 43px;
+}
+
+h2 {
+    line-height: 35px;
+}
+
+h3 {
+    line-height: 30px;
+}
+
+h3 small {
+    color: #444444;
+}
+
+h4 {
+    line-height: 22px;
+}

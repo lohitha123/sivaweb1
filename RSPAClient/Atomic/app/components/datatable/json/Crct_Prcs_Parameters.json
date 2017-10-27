@@ -1,0 +1,14 @@
+ [
+      {
+        "ASSIGN_CART": "Y",
+        "BUSINESS_UNIT": "STKRM",
+        "CART_ID": "PLHEMSTK",
+        "SCHEDULER": "ch"
+      },
+      {
+        "ASSIGN_CART": "Y",
+        "BUSINESS_UNIT": "STKRM",
+        "CART_ID": "PLICU",
+        "SCHEDULER": "ch"
+      }
+]

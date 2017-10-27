@@ -1,0 +1,291 @@
+﻿<div id="main" class="content-page">
+    <div class="content">
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border" *ngIf="MOG">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;" *ngIf="menu">
+                    <div class="panel-body" style="padding:0px 0 10px 0;">
+                        <div class="form-horizontal form-label-left">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-5 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Org Group ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-ac-server [(ngModel)]="selectedorgGrpId" [suggestions]="orgGrpIdSearchLst" (completeMethod)="searchAutoCompleteOrgID($event)"></atpar-ac-server>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-5 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Name</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-ac-server [(ngModel)]="selectedorgGrpName" [suggestions]="orgGroNameSearchLst" (completeMethod)="searchAutoCompleteOrgName($event)"></atpar-ac-server>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-2 col-md-4 form-group">
+                                    <button class="btn btn-purple sbtn " (click)="btnGo_Clicked($event)" id="btnGo">Go &nbsp;<i class="fa fa-arrow-right"></i></button>
+                                    <button class="btn btn-purple sbtn " (click)="clicked($event)" id="add">Create &nbsp;<i class="fa fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="col-xs-12 table-responsive" *ngIf="orgGroupGrd">
+                            <div class="container">
+                                <atpar-datatable [value]="orgGroupLst" [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" 
+                                                 
+                                        [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                    <!--<p-column expander="true" styleClass="col-icon"></p-column>!pop-->
+                                    <p-column [style]="{'width':'4%','text-align':'center'}" header="Action">
+                                        <template let-rowData="rowData" pTemplate="body">
+                                            <i class="fa fa-pencil fa-bg bg-red" (click)="editOrgGroupLst(rowData)" style="cursor:pointer;" title="Edit" name="btnEditOrgGroupLst"></i>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="ORG_GROUP_ID" header="Org Group ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'10%'}"> </p-column>
+                                    <p-column field="ORG_GROUP_NAME" header="Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                    <p-column field="ORG_GROUP_ID" header="Assign Company/BUnits" [style]="{'width':'20%'}">
+                                        <template let-col let-ven="rowData" pTemplate="body">
+                                            <a (click)="lnkbtnBUnit_Click($event,ven)" id="lnkbtnBUnit" *ngIf="ven[col.field]!='All'">Assign Company/BUnits</a>
+                                        </template>
+                                    </p-column>
+                                    <p-column header="Assign Parameters" [style]="{'width':'20%'}">
+                                        <template let-col let-ven="rowData" pTemplate type="body">
+                                            <a (click)="lnkbtnParams_Click($event,ven)" id="lnkbtnParams"> Assign Parameters</a>
+                                        </template>
+                                    </p-column>
+                                    <template let-orgGroupLst pTemplate="rowexpansion">
+                                        <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
+                                            <div class="ui-grid-row">
+                                                <div class="ui-grid-col-3" style="text-align:center">
+                                                    <i class="fa fa-search" (click)="showCar(orgGroupLst)" style="cursor:pointer;float:left;margin-top:40px"></i>
+                                                </div>
+                                                <div class="ui-grid-col-9">
+                                                    <div class="ui-grid ui-grid-responsive ui-grid-pad">
+                                                        <div class="ui-grid-row">
+                                                            <div class="ui-grid-col-2"><span class="datatablespan">Org Group ID</span></div>
+                                                            <div class="ui-grid-col-10">{{orgGroupLst.ORG_GROUP_ID}}</div>
+                                                        </div>
+                                                        <div class="ui-grid-row">
+                                                            <div class="ui-grid-col-2"><span class="datatablespan">Name</span></div>
+                                                            <div class="ui-grid-col-10">{{orgGroupLst.ORG_GROUP_NAME}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
+                                    <!--<p-footer></p-footer>-->
+                                </atpar-datatable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default" style="border: 1px solid #eee;" *ngIf="pop">
+                    <div class="panel-body">
+                        <div class="col-md-6 col-md-offset-3">
+                            <form class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Org Group ID</label>
+                                    <div class="col-md-5 col-sm-3 col-xs-12">
+                                        <label id="lblOrgGrpId" class="control-label lbl-left" *ngIf="blnlblOrgGrpId">{{lblOrgGrpId}}</label>
+                                        <atpar-text [(ngModel)]="txtOrgGrpId" [ngModelOptions]="{standalone: true}" [name]="'txtOrgID'" [id]="'txtOrgGrpId'" [validations]="'mandatory,alpha_numeric_underscore_hyphen_nospace,max=20'" [title]="'Allows only Letters(a-z) Numbers(0-9) Underscore(_) Hyphen(-) and NoSpace'" [isFocused]="'true'" (bindModelDataChange)="bindModelDataChange($event)" *ngIf="!blnlblOrgGrpId"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Name</label>
+                                    <div class="col-md-5 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="txtOrgGrpName" [id]="'txtOrgGrpName'" [ngModelOptions]="{standalone: true}" [name]="'txtOrgGroupName'" [validations]="'mandatory,max=50'" [title]="'Allows any Characters'" (bindModelDataChange)="bindModelDataChange($event)" *ngIf="blnlblOrgGrpId" [isFocused]="'true'"></atpar-text>
+                                        <atpar-text [(ngModel)]="txtOrgGrpName" [id]="'txtOrgGrpName'" [ngModelOptions]="{standalone: true}" [name]="'txtOrgGroupName'" [validations]="'mandatory,max=50'" [title]="'Allows any Characters'" (bindModelDataChange)="bindModelDataChange($event)" *ngIf="!blnlblOrgGrpId"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 col-xs-offset-4 col-md-6 col-md-offset-3">
+                                    <button class="btn btn-purple sbtn" (click)="btn_SaveOrgGroupsInfo($event)" [disabled]="buttonEnableDisable">Save &nbsp;<i class="fa fa-floppy-o"></i></button>
+                                    <button class="btn btn-purple sbtn" (click)="clicked($event)" id="close"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                </div>
+                                <!--  <div class="col-xs-12 col-md-2 col-md-offset-5 form-group">
+                                    <button class="btn btn-purple small">Save &nbsp; <i class="fa fa-check"></i></button>
+                                    <button class="btn btn-purple small" (click)="clicked($event)" id="close"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                </div> -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--first popup starts-->
+            <div class="container x_panel no-border" *ngIf="lnkbtnBUnit">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:20px;">
+                        <br>
+                        <br>
+                        <div class="col-xs-12 table-responsive">
+                            <atpar-datatable [value]="mngOrgGrpBunitsLst" (filteredData)="filterMngOrgGrpBunitsLst($event)"
+                                             
+        [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true" *ngIf="grdMngOrgGrpBunits">
+                                <!--<!--<p-column expander="true" styleClass="col-icon"></p-column>-->
+                                <p-column field="CHK_VALUE" header="Select" [filter]="true" [style]="{'width': '7%','text-align':'center'}">
+                                    <template pTemplate="filter" let-col>
+                                        <ul class="list-inline li-all-none">
+                                            <li>
+                                                <span (click)="checkAll()" style="cursor:pointer">All</span>
+                                            </li> |
+                                            <li>
+                                                <span (click)="unCheckAll()" style="cursor:pointer">None</span>
+                                            </li>
+                                        </ul>
+                                    </template>
+                                    <template let-col let-ven="rowData" pTemplate="body">
+                                        <atpar-switch [checked]="ven[col.field]" (change)="orgGrpBUnitChkboxChanged(ven,$event)"></atpar-switch>
+                                    </template>
+                                </p-column>-->
+                                <p-column field="BUSINESS_UNIT" header="Business Unit" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search" [style]="{'width':'20%'}"> </p-column>
+                                <p-column field="Description" header="Description" sortable="custom" (sortFunction)="customSort($event)" filterPlaceholder="Search"> </p-column>
+                                <p-column field="BU_TYPE" header="Business Unit Type" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search" [style]="{'width':'12%'}"> </p-column>
+                                <template let-mngOrgGrpBunitsLst pTemplate="rowexpansion">
+                                    <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
+                                        <div class="ui-grid-row">
+                                            <div class="ui-grid-col-3" style="text-align:center">
+                                                <i class="fa fa-search" (click)="showCar(mngOrgGrpBunitsLst)" style="cursor:pointer;float:left;margin-top:40px"></i>
+                                            </div>
+                                            <div class="ui-grid-col-9">
+                                                <div class="ui-grid ui-grid-responsive ui-grid-pad">
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Business Unit</span></div>
+                                                        <div class="ui-grid-col-10">{{mngOrgGrpBunitsLst.BUSINESS_UNIT}}</div>
+                                                    </div>
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Description</span></div>
+                                                        <div class="ui-grid-col-10">{{mngOrgGrpBunitsLst.Description}}</div>
+                                                    </div>
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Business Unit</span></div>
+                                                        <div class="ui-grid-col-10">{{mngOrgGrpBunitsLst.BU_TYPE}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                                <!--<p-footer></p-footer>-->
+                            </atpar-datatable>
+                            <br>
+                            <div class="col-xs-12 col-md-4 col-md-offset-5 form-group">
+                                <button class="btn btn-purple sbtn" (click)="btnAssignBUints_Click($event)" *ngIf="grdMngOrgGrpBunits">Assign</button>
+                                <button class="btn btn-purple sbtn" (click)="clicked($event)" id="back" *ngIf="btnMngOrgGrpButton"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--first popup ends-->
+            <!--second popup code starts-->
+            <div class="container x_panel no-border" *ngIf="lnkbtnParams">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:20px;">
+                        <div class="form-horizontal form-label-left">
+
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2">
+                                <label for="" class="control-label col-xs-12 col-md-3 col-sm-4">Products</label>
+                                <div class="col-xs-12 col-sm-5 col-md-6">
+                                    <atpar-select [options]="ddlApps" [(ngModel)]="selectedApp" [id]="'ddlProducts'" [required]="true" [ngModelOptions]="{standalone: true}" (onChange)="app_selectChanged(ddlApps,$event)" [style]="{'width':'100%'}"></atpar-select>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <button class="btn btn-purple sbtn" (click)="clicked($event)" id="back" *ngIf="btnMngOrgGrpButton"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                </div>
+                                <div style="clear:both;margin-bottom: 10px;"></div>
+
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="col-xs-12 table-responsive" *ngIf="divOrgParamsData">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center display-top" style="width:25%;">Parameter</th>
+                                        <th class="text-center display-top" style="width:18%;">Value</th>
+                                        <th class="text-center display-top">Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let assignParameterLst of atParOrgGrpParametersLst">
+                                        <td>
+                                            <span id="{{assignParameterLst.PARAMETER_ID}}" [innerHTML]="assignParameterLst.SHORT_DESCR"></span>
+                                        </td>
+                                        <td>
+                                            <div [ngSwitch]="assignParameterLst.PARAMETER_TYPE" style="float:left;">
+                                                <div *ngSwitchCase="'TEXTBOX'">
+                                                    <div>
+                                                        <atpar-text-grid [(ngModel)]="assignParameterLst.PARAMETER_VALUE" [title]="assignParameterLst.Title" [ngModelOptions]="{standalone: true}" [name]="assignParameterLst.PARAMETER_ID" [validations]="assignParameterLst.validationRules" [id]="assignParameterLst.PARAMETER_ID"></atpar-text-grid>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'TEXT'">
+                                                    <div>                                                       
+                                                        <atpar-text-grid [(ngModel)]="assignParameterLst.PARAMETER_VALUE" [title]="assignParameterLst.Title" [ngModelOptions]="{standalone: true}" [name]="assignParameterLst.PARAMETER_ID" [validations]="assignParameterLst.validationRules" [id]="assignParameterLst.PARAMETER_ID"></atpar-text-grid>                                                      
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'TEXTAREA'">
+                                                    <div>
+                                                        <!--<div id="new_Er">-->
+                                                        <textarea id="assignParameterLst.PARAMETER_ID" class="form-control" [title]="assignParameterLst.Title" [(ngModel)]="assignParameterLst.PARAMETER_VALUE" name="assignParameterLst.PARAMETER_ID" rows="3" cols="200" style="resize:none;height:auto!important;margin-bottom:7px;"></textarea>
+                                                        <!--</div>-->
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'COMBOBOX'">
+                                                    <atpar-select [options]="assignParameterLst.DEFAULT_VALUE" [(ngModel)]="assignParameterLst.PARAMETER_VALUE" [SelectedLabel]="assignParameterLst.PARAMETER_VALUE" [id]="assignParameterLst.PARAMETER_ID" (onChange)="assignParameterDropDownChanged(assignParameterLst,$event)"></atpar-select>
+                                                </div>
+                                                <div *ngSwitchCase="'CHECKBOX'">
+                                                    <atpar-switch id="assignParameterLst.PARAMETER_ID" [(ngModel)]="assignParameterLst.PARAMETER_VALUE" [checked]="assignParameterLst.PARAMETER_VALUE" (change)="assignParameterChkBoxChanged(assignParameterLst,$event)" [disabled]="assignParameterLst.BLN_DISABLE"></atpar-switch>
+                                                </div>
+                                                <div *ngSwitchCase="'RADIO'">
+                                                    <div class="form-group">
+                                                        <ul class="list-unstyled" *ngFor="let val of assignParameterLst.MULTIPLE_VALUES.split(',')">
+                                                            <li>
+                                                                <atpar-radioButton name={{assignParameterLst.PARAMETER_ID}} [(ngModel)]="assignParameterLst.PARAMETER_VALUE" (onClick)="assignParameterRdbtnChanged(assignParameterLst,$event)" value="{{val}}" label="{{val}}">
+                                                                </atpar-radioButton>
+                                                            </li>
+                                                        </ul>
+                                                        <!--<table>
+                                                            <tr *ngFor="let val of assignParameterLst.MULTIPLE_VALUES.split(',')">
+                                                                <td>
+                                                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                                                        <atpar-radioButton name={{assignParameterLst.PARAMETER_ID}} [(ngModel)]="assignParameterLst.PARAMETER_VALUE" (onClick)="assignParameterRdbtnChanged(assignParameterLst,$event)" value="{{val}}" label="{{val}}">
+                                                                        </atpar-radioButton>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span id="{{assignParameterLst.PARAMETER_ID}}" [innerHTML]="assignParameterLst.LONG_DESCR"></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="col-xs-12 col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="btnSaveParams_Click()">Save &nbsp;<i class="fa fa-floppy-o"></i></button>
+                                <button class="btn btn-purple sbtn" (click)="clicked($event)" id="back"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Second popup code ends-->
+        </div>
+    </div>
+    <atpar-growl [value]="statusMsgs" sticky="sticky"></atpar-growl>
+</div>
+<style>
+    #new_Er {
+        position: relative;
+        top: 1.3em;
+        font-size: 12px;
+    }
+
+    .more_pd {
+        padding: 8px 8px 15px 8px !important;
+    }
+</style>

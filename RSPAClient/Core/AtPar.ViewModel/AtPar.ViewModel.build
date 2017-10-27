@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<project name="AtPar.ViewModel" default="build" basedir="." xmlns="http://nant.sf.net/schemas/nant-0.85.win32.net-1.0.xsd">
+	<description>Build File for AtPar.ViewModel</description>
+	<property name="basename" value="AtPar.ViewModel"/>
+	<property name="asminfo.file.name" value="${basename}.dll" />
+	<property name="asminfo.file.descr" value="ViewModel Component" />
+	
+	<include buildfile="..\..\..\Headers\nantincludes.include" />
+	
+  <target name="copyreqdbins" description="copy required binaries">
+  
+  </target>
+  <target name="deletereqdbins" description="delete required binaries">
+  
+  </target>
+	<target name="deploybin" description="deploy files to bin">
+		<copy todir="../../${Bin.OutputFolder}">
+		  <fileset basedir="${Bin.OutputFolder}">
+			<include name="${basename}.dll" />
+			<include name="${basename}.pdb" if="${debug == 'true'}"/>
+		  </fileset>
+		</copy>	
+			<copy todir="../${Bin.OutputFolder}">
+		  <fileset basedir=".">
+			<include name="*.dll" />
+		  </fileset>
+ 	    </copy>	
+				
+	</target>
+	
+	<target name="build" description="compiles the source code">
+		<call target="createoutfolder"/>	
+<call target="copyreqdbins"/>			
+		<call target="CreateAssemblyInfoCS"/>
+		
+		<csc target="library" output="${Bin.OutputFolder}\${basename}.dll" debug="${debug}" 							  							  
+							  doc="${Xml.Bin.OutputFolder}\${basename}.xml">
+							  
+							  <sources>
+								<include name="*.cs" />                             
+							  </sources>
+							  
+							  <references>
+								<include asis="true" name="System.dll"/>
+								<include asis="true" name="System.ComponentModel.DataAnnotations.dll"/>
+							  </references>
+		</csc>
+		
+		<call target="deploybin" />
+		<call target="clean" />
+	</target>
+</project>				  

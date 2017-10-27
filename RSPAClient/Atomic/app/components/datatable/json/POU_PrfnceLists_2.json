@@ -1,0 +1,42 @@
+[
+      {
+        "ITEM_ID": "000000000000030001",
+        "ITEM_DESCR": "Glove Exam",
+        "QUANTITY": "78",
+        "HOLD_QTY": "96",
+        "ITEM": "000000000000030001",
+        "CUST_ITEM_NO": "000000000000030001"
+      },
+      {
+        "ITEM_ID": "000000000000030007",
+        "ITEM_DESCR": "Glove, Exa",
+        "QUANTITY": "78",
+        "HOLD_QTY": "89",
+        "ITEM": "000000000000030007",
+        "CUST_ITEM_NO": "000000000000030007"
+      },
+      {
+        "ITEM_ID": "000000000000030028",
+        "ITEM_DESCR": "Pillow Dis",
+        "QUANTITY": "78",
+        "HOLD_QTY": "96",
+        "ITEM": "000000000000030028",
+        "CUST_ITEM_NO": "000000000000030028"
+      },
+      {
+        "ITEM_ID": "000000000000030036",
+        "ITEM_DESCR": "Table Exam",
+        "QUANTITY": "78",
+        "HOLD_QTY": "96",
+        "ITEM": "000000000000030036",
+        "CUST_ITEM_NO": "000000000000030036"
+      },
+      {
+        "ITEM_ID": "GL0000002",
+        "ITEM_DESCR": "Gloves Exa",
+        "QUANTITY": "42",
+        "HOLD_QTY": "5",
+        "ITEM": "GL0000002",
+        "CUST_ITEM_NO": "GL0000002"
+      }
+]

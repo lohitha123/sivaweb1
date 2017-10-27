@@ -1,0 +1,36 @@
+[
+      {
+        "DEPARTMENT_ID": "11000",
+        "BUSINESS_UNIT": "AUS01",
+        "DEPT_NAME": "dept",
+        "LOCATION": "parloc1",
+        "LOCATION_TYPE": "A",
+        "PRIORITY": "100"
+      },
+      {
+        "DEPARTMENT_ID": "11000",
+        "BUSINESS_UNIT": "US015",
+        "DEPT_NAME": "dept",
+        "LOCATION": "par1",
+        "LOCATION_TYPE": "A",
+        "PRIORITY": "100",
+        "DESCR": "parLocation1"
+      },
+      {
+        "DEPARTMENT_ID": "11000",
+        "BUSINESS_UNIT": "US015",
+        "DEPT_NAME": "dept",
+        "LOCATION": "par2",
+        "LOCATION_TYPE": "A",
+        "PRIORITY": "100",
+        "DESCR": "Parlocation2"
+      },
+      {
+        "DEPARTMENT_ID": "11000",
+        "BUSINESS_UNIT": "US015",
+        "DEPT_NAME": "dept",
+        "LOCATION": "parloc2",
+        "LOCATION_TYPE": "A",
+        "PRIORITY": "100"
+      }
+    ]

@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{508D4D8A-8D3C-4025-AC2D-ADFECC0CD4F4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AtPar.Init.Service</RootNamespace>
+    <AssemblyName>AtPar.Init.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AtParEncryptionServices">
+      <HintPath>..\..\CommonLibs\AtParEncryptionServices.dll</HintPath>
+    </Reference>
+    <Reference Include="AtPar_BusinessRules, Version=2.7.7793.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonLibs\AtPar_BusinessRules.dll</HintPath>
+    </Reference>
+    <Reference Include="Excel, Version=2.1.2.3, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ExcelDataReader.2.1.2.3\lib\net45\Excel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.1.0.0, Culture=neutral, PublicKeyToken=e44a2bc38ed2c13c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonLibs\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
+      <HintPath>..\..\CommonLibs\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Reflection.TypeExtensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Reflection.TypeExtensions.4.1.0\lib\net46\System.Reflection.TypeExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.DirectoryServices.Protocols" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddUserService.cs" />
+    <Compile Include="AllocateLocationGroupsService.cs" />
+    <Compile Include="AllocatePickingZonesService.cs" />
+    <Compile Include="AssignProfileService.cs" />
+    <Compile Include="AuditSetupService.cs" />
+    <Compile Include="BarcodeTranslationService.cs" />
+    <Compile Include="CarrierInformationService.cs" />
+    <Compile Include="ChangePasswordService.cs" />
+    <Compile Include="ConfigurationManagerService.cs" />
+    <Compile Include="DataArchivalService.cs" />
+    <Compile Include="ErrorReportService.cs" />
+    <Compile Include="ForgotPasswordService.cs" />
+    <Compile Include="LoginService.cs" />
+    <Compile Include="MaintainPrintersService.cs" />
+    <Compile Include="ManageDevicesService.cs" />
+    <Compile Include="ManageOrgGroupsService.cs" />
+    <Compile Include="ManageOrgIDService.cs" />
+    <Compile Include="ManageOrgParmsService.cs" />
+    <Compile Include="ManageProfilesService.cs" />
+    <Compile Include="ManageUsersService.cs" />
+    <Compile Include="ProcessSchedulerService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReleaseOrdersService.cs" />
+    <Compile Include="ReportsAdHocExtensionService.cs" />
+    <Compile Include="RouteService.cs" />
+    <Compile Include="SecurityConfigurationService.cs" />
+    <Compile Include="SetupLocationGroupsService.cs" />
+    <Compile Include="SetupLocationsService.cs" />
+    <Compile Include="SetupStorageLocationGroupsService.cs" />
+    <Compile Include="StationaryPrintDesignService.cs" />
+    <Compile Include="TokenService.cs" />
+    <Compile Include="UserParamsService.cs" />
+    <Compile Include="UserService.cs" />
+    <Compile Include="UserUploadAutomationService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\AtPar.Common\AtPar.Common.csproj">
+      <Project>{818012EF-D097-4D49-82E5-942BF9DFA79E}</Project>
+      <Name>AtPar.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\AtPar.POCOEntities\AtPar.POCOEntities.csproj">
+      <Project>{1b4a130c-2757-4b57-9db3-542732572656}</Project>
+      <Name>AtPar.POCOEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\AtPar.Repository.Interfaces\AtPar.Repository.Interfaces.csproj">
+      <Project>{5869ec8e-84bf-4b97-aa69-ef86af0508c1}</Project>
+      <Name>AtPar.Repository.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\AtPar.Service.Interfaces\AtPar.Service.Interfaces.csproj">
+      <Project>{2dcfc75b-61bb-4fb7-acb4-b18da5c3726b}</Project>
+      <Name>AtPar.Service.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\AtPar.ViewModel\AtPar.ViewModel.csproj">
+      <Project>{063c67cd-51cc-4864-ba19-e18c2af92a61}</Project>
+      <Name>AtPar.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.Data\AtPar.Data.csproj">
+      <Project>{d5da1a56-3932-4797-8acc-4e6f7356e74a}</Project>
+      <Name>AtPar.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtPar.Common.Service\AtPar.Common.Service.csproj">
+      <Project>{95316591-8009-4a44-b2cf-41101bb8df63}</Project>
+      <Name>AtPar.Common.Service</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

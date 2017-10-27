@@ -1,0 +1,1098 @@
+<?xml version="1.0"?>
+<project name="NantIncludes" basedir="." xmlns="http://nant.sf.net/schemas/nant-0.85.win32.net-1.0.xsd">
+
+<!-- http://www.xmllab.net/Products/NxsltTask/tabid/184/Default.aspx -->
+<loadtasks assembly="C:\Program Files\nant-0.92\bin\XmlLab.NxsltTasks.NAnt.dll" />
+
+<!-- enable debug mode binaries - for the compiler -->
+<property name="debug" value="false"/>
+<property name="HHT_Change" value="true"/>
+<property name="WEB_Change" value="true"/>
+<property name="Win32_Change" value="true"/>
+<property name="ADroid_Change" value="true"/>
+<property name="AIos_Change" value="true"/>
+<property name="AWinPhone_Change" value="true"/>
+
+<!-- Output Directories -->
+<property name="Bin.OutputFolder" value="$binout$"/>
+<property name="Web.OutputFolder" value="$webout$"/>
+<property name="WebBin.OutputFolder" value="$webout$/bin"/>
+<property name="WebService.OutputFolder" value="$webserviceout$"/>
+<property name="WebServiceBin.OutputFolder" value="$webserviceout$/bin"/>
+<property name="WCFService.OutputFolder" value="$WCFServiceout$"/>
+<property name="WCFServiceBin.OutputFolder" value="$WCFServiceout$/bin"/>
+<property name="build.dir.present" value="false" />
+<property name="Doc.OutputFolder" value="$docs$"/>
+<property name="Temp.Doc.OutputFolder" value="$temp$"/>
+<property name="Xml.Bin.OutputFolder" value="$xmlbinout$"/>
+<property name="Change.list.OutputFolder" value="$change_list$"/>
+<property name="installer.OutputFolder" value="$installer$"/>
+<property name="Scripts.OutputFolder" value="$scripts$"/>
+<property name="PatchFolder" value="$build$"/>
+<property name="PatchFolderPeopleSoft" value="$build$/PeopleSoft"/>
+<property name="PatchFolderMeditechCS" value="$build$/MeditechCS"/>
+<property name="PatchFolderOracleUHHS" value="$build$/UHHS"/>
+<property name="PatchFolderWeb" value="$build$/web"/>
+<property name="PatchFolderWebServices" value="$build$/webservices"/>
+<property name="PatchFolderWCFServices" value="$build$/WCFServices"/>
+<property name="legacy" value="$install$/bin"/>
+<property name="WebImages.OutputFolder" value="$webout$/images"/>
+<property name="WebResource.OutputFolder" value="$webout$/App_GlobalResources"/>
+
+<!-- Folder locations -->
+<property name="CommonBinaries" value="Commonbinaries"/>
+<property name="third.party.tools.location" value="ThirdPartyTools"/>
+
+<!-- Assembly File Info -->
+<property name="product.major.version" value="2" />
+<property name="product.minor.version" value="8" />
+<!-- <property name="product.build.version" value="" /> -->
+
+<!-- <property name="asminfo.product.version" value="${product.major.version}.${product.minor.version}.${product.revision.version}-${product.build.version}" />  -->
+ <property name="asminfo.product.version" value="${product.major.version}.${product.minor.version}" />
+<property name="asminfo.company.name" value="AtPar Inc" />
+<tstamp property="asminfo.build.year" pattern="yyyy" />
+<property name="asminfo.copyright" value="Copyright (c) ${asminfo.build.year} AtPar, Inc." />
+<property name="asminfo.product" value="AtPar Version " />
+<tstamp property="asminfo.build.date" pattern="yyyy/MM/dd HH:mm" />
+<property name="asminfo.guid" value="f98c8021-fbf1-44ff-a484-946152cefdb8" />
+
+<!-- SVN Date Properties -->
+<tstamp property="build.date" pattern="MMddyyyy" />
+
+
+<!-- SVN REPO Path  -->
+<property name="svn.repo.server" value="http://192.168.176.18/mhsi-svn" />
+<property name="svn.repo.name" value="AtPar_2_8_8" />
+<property name="svn.repo.name1" value="AtPar_2_6_8" />
+<property name="svn.repo.directory" value="branches" />
+<property name="svn.repo.version" value="${asminfo.product.version}" />
+<property name="svn.repo.path" value="${svn.repo.server}/${svn.repo.name1}/${svn.repo.directory}/${svn.repo.version}" />
+
+<!-- SVN Log Files -->
+<property name="svn.log.xml" value="log-out.xml" />
+<property name="svn.affected.xslt" value="headers/affected-files.xsl" />
+
+<!-- Installer files -->
+<property name="installed.files.list" value="Build/app_installer.csv" />
+<property name="installer.nsi" value="Build/Installer/AtPar2Patch.nsi" /> 
+
+
+<target name="clean" description="remove all generated files">
+  <delete dir="${Bin.OutputFolder}" verbose="false" failonerror="false"/>
+  <delete dir="${Web.OutputFolder}" verbose="false" failonerror="false"/>
+  <delete dir="${WebService.OutputFolder}" verbose="false" failonerror="false"/>
+  <delete dir="${WCFService.OutputFolder}" verbose="false" failonerror="false"/>
+  <delete dir="${Xml.Bin.OutputFolder}" verbose="false" failonerror="false"/>
+  <delete dir="${Change.list.OutputFolder}" verbose="false" failonerror="false"/>
+  <delete file="${svn.log.xml}" />
+  <delete dir="${Scripts.OutputFolder}" verbose="false" failonerror="false"/>
+  <delete dir="${WebImages.OutputFolder}" verbose="false" failonerror="false"/>
+   <delete dir="${WebResource.OutputFolder}" verbose="false" failonerror="false"/>
+</target>
+
+<target name="createoutfolder" description="if not already present create the outputfolder">
+
+    <if test="${directory::exists(Bin.OutputFolder)}">
+          <call target="clean"/> 
+    </if>
+   
+   <mkdir dir="${Bin.OutputFolder}"/>
+   <mkdir dir="${Web.OutputFolder}"/>
+   <mkdir dir="${WebBin.OutputFolder}"/>
+   <mkdir dir="${WebService.OutputFolder}"/>
+   <mkdir dir="${WebServiceBin.OutputFolder}"/>
+   <mkdir dir="${WCFService.OutputFolder}"/>
+   <mkdir dir="${WCFServiceBin.OutputFolder}"/>
+   <mkdir dir="${Xml.Bin.OutputFolder}"/>
+   <mkdir dir="${Change.list.OutputFolder}"/>
+   <mkdir dir="${Scripts.OutputFolder}"/>
+   <mkdir dir="${WebImages.OutputFolder}"/>
+   <mkdir dir="${WebResource.OutputFolder}"/>
+ 
+ </target>
+
+<target name="getproductoutput" description="get each products binout and webout folders">
+   <copy todir="../${Bin.OutputFolder}">
+     <fileset basedir="${Bin.OutputFolder}">
+         <include name="*.*" />
+      </fileset>
+   </copy>
+   <copy todir="../${Web.OutputFolder}">
+     <fileset basedir="${Web.OutputFolder}">
+         <include name="*.*" />
+      </fileset>
+   </copy>
+   <copy todir="../${WebBin.OutputFolder}">
+     <fileset basedir="${WebBin.OutputFolder}">
+         <include name="*.*" />
+      </fileset>
+   </copy>
+   <copy todir="../${WebService.OutputFolder}">
+     <fileset basedir="${WebService.OutputFolder}">
+         <include name="*.*" />
+      </fileset>
+   </copy>
+   <copy todir="../${WebServiceBin.OutputFolder}">
+     <fileset basedir="${WebServiceBin.OutputFolder}">
+         <include name="*.*" />
+      </fileset>
+   </copy>
+   <copy todir="../${WCFService.OutputFolder}">
+     <fileset basedir="${WCFService.OutputFolder}">
+         <include name="*.*" />
+      </fileset>
+   </copy>
+   <copy todir="../${WCFServiceBin.OutputFolder}">
+     <fileset basedir="${WCFServiceBin.OutputFolder}">
+         <include name="*.*" />
+      </fileset>
+   </copy>
+   <copy todir="../${Xml.Bin.OutputFolder}">
+     <fileset basedir="${Xml.Bin.OutputFolder}">
+         <include name="*.*" />
+      </fileset>
+   </copy>
+
+   <copy todir="../${Scripts.OutputFolder}">
+      <fileset basedir="${Scripts.OutputFolder}">
+         <include name="*.*" />
+      </fileset>
+   </copy>
+   <copy todir="../${WebImages.OutputFolder}">
+     <fileset basedir="${Web.OutputFolder}/images">
+         <include name="*.gif" />
+	 <include name="*.jpg" />
+      </fileset>
+   </copy>
+    <copy todir="../${WebResource.OutputFolder}">
+     <fileset basedir="${Web.OutputFolder}/App_GlobalResources">
+         <include name="Atpar_WebResources.resx" />
+      </fileset>
+   </copy>
+ 
+</target>
+
+
+    
+<target name="CreateAssemblyInfo">
+
+   <property name="assembly.title.attribute" value="${asminfo.file.name}" dynamic="true"/>
+    <if test="${debug == 'true'}">
+	  <property name="assembly.title.attribute" value="${asminfo.file.name + ' (Debug Build)'}" dynamic="true"/>
+	</if>
+	
+	<asminfo output="AssemblyInfo.vb" language="VB">
+		<imports>
+			<import namespace="System.Reflection" />
+			<import namespace="System.Runtime.InteropServices" />
+		</imports>
+		<attributes>
+			<attribute type="AssemblyTitleAttribute" value="${assembly.title.attribute}" />
+			<attribute type="AssemblyDescriptionAttribute" value="${asminfo.file.descr} ${asminfo.product.version} Built on: ${asminfo.build.date}" />
+			<attribute type="AssemblyConfigurationAttribute" value="" />
+			<attribute type="AssemblyCompanyAttribute" value="${asminfo.company.name}" />
+			<attribute type="AssemblyProductAttribute" value="${asminfo.product} ${asminfo.product.version}" />
+			<attribute type="AssemblyCopyrightAttribute" value="${asminfo.copyright}" />
+			<attribute type="AssemblyTrademarkAttribute" value="" />
+			<attribute type="AssemblyCultureAttribute" value="" />
+
+			<attribute type="ComVisibleAttribute" value="false" />
+
+			<attribute type="GuidAttribute" value="${asminfo.guid}" />
+
+			<!-- <attribute type="AssemblyVersionAttribute" value="${product.major.version}.${product.minor.version}.${product.revision.version}.${svn.head.revision}" /> -->
+			
+			<attribute type="AssemblyVersionAttribute" value="${product.major.version}.${product.minor.version}.${svn.head.revision}" />
+			
+		</attributes>
+	</asminfo>
+</target>
+
+<target name="CreateAssemblyInfoCS">
+
+   <property name="assembly.title.attribute" value="${asminfo.file.name}" dynamic="true"/>
+    <if test="${debug == 'true'}">
+	  <property name="assembly.title.attribute" value="${asminfo.file.name + ' (Debug Build)'}" dynamic="true"/>
+	</if>
+	
+	<asminfo output="AssemblyInfo.cs" language="CSharp">
+		<imports>
+			<import namespace="System.Reflection" />
+			<import namespace="System.Runtime.InteropServices" />
+		</imports>
+		<attributes>
+			<attribute type="AssemblyTitleAttribute" value="${assembly.title.attribute}" />
+			<attribute type="AssemblyDescriptionAttribute" value="${asminfo.file.descr} ${asminfo.product.version} Built on: ${asminfo.build.date}" />
+			<attribute type="AssemblyConfigurationAttribute" value="" />
+			<attribute type="AssemblyCompanyAttribute" value="${asminfo.company.name}" />
+			<attribute type="AssemblyProductAttribute" value="${asminfo.product} ${asminfo.product.version}" />
+			<attribute type="AssemblyCopyrightAttribute" value="${asminfo.copyright}" />
+			<attribute type="AssemblyTrademarkAttribute" value="" />
+			<attribute type="AssemblyCultureAttribute" value="" />
+
+			<attribute type="ComVisibleAttribute" value="false" />
+
+			<attribute type="GuidAttribute" value="${asminfo.guid}" />
+
+			<!-- <attribute type="AssemblyVersionAttribute" value="${product.major.version}.${product.minor.version}.${product.revision.version}.${svn.head.revision}" /> -->
+			
+			<attribute type="AssemblyVersionAttribute" value="${product.major.version}.${product.minor.version}.${svn.head.revision}" />
+			
+		</attributes>
+	</asminfo>
+</target>
+
+
+<target name="print_svn_missing_help">
+	<echo>If the build process hangs at this location, please run the following command in the same window to store SVN auth info, and then run nant again</echo>
+	<echo> svn info ${svn.repo.path}</echo>
+	       
+</target>
+
+<target name="getRevision">
+
+<property name="svn.info.log" value="out.txt" />
+
+<!-- make sure you install SVN client installables, and check this path -->
+
+
+			<choose> 
+        <when test="${directory::exists('C:\Program Files\CollabNet Subversion')}" > 
+                
+				   <exec 
+					program="svn.exe"
+					basedir="C:\Program Files\CollabNet Subversion"
+					commandline="--xml info ${svn.repo.path}"
+					output="${svn.info.log}"
+				   />
+				<xmlpeek
+					file="${svn.info.log}"
+					xpath="/info/entry/commit/@revision"
+					property="temp.revision.id">
+				</xmlpeek>
+
+        </when> 
+        <otherwise> 
+
+				   <exec 
+					program="svn.exe"
+					basedir="C:\Program Files\CollabNet\Subversion Client"
+					commandline="--xml info ${svn.repo.path}"
+					output="${svn.info.log}"
+				   />
+				<xmlpeek
+					file="${svn.info.log}"
+					xpath="/info/entry/commit/@revision"
+					property="temp.revision.id">
+				</xmlpeek>
+
+        </otherwise> 
+</choose> 
+
+
+       <exec 
+            program="svn.exe"
+	    basedir="C:\Program Files\CollabNet Subversion"
+	    commandline="--xml info ${svn.repo.path}"
+	    output="${svn.info.log}"
+       />
+	<xmlpeek
+	    file="${svn.info.log}"
+	    xpath="/info/entry/commit/@revision"
+	    property="temp.revision.id">
+	</xmlpeek>
+        
+	
+    <property name="svn.head.revision" value = "${temp.revision.id}"/>
+    <delete file="${svn.info.log}" />
+     
+    <echo message="Rev: ***********  ${svn.head.revision}   ************** "/>     
+
+</target>
+
+<target name="getHeadRevision"> 
+
+	<call target="print_svn_missing_help" />
+	<call target="getRevision" />
+  
+ 
+<if test="${HHT_Change =='true' or WEB_Change =='true' or Win32_Change =='true' or ADroid_Change =='true' or AIos_Change =='true' or AWinPhone_Change =='true'}" >
+
+<echo>  Increasing header revision to next value ${svn.head.revision}</echo>
+<property name="svn.head.revision" value = "${convert::to-int(svn.head.revision) + 1}"/>
+<echo> Increased Revision Number ${svn.head.revision} </echo>
+
+
+
+</if>
+
+	
+	
+<if test="${WEB_Change =='true'}" >
+<echo>/Obtaining HHT version</echo>	
+	  <xmlpoke
+    file="../Headers/Version.xml"
+    xpath="/root/product_version/WEB"
+    value="${asminfo.product.version}.${svn.head.revision}" />
+
+
+</if>
+
+<if test="${HHT_Change =='true'}" >
+<echo> HHT version</echo>
+  <xmlpoke
+    file="../Headers/Version.xml"
+    xpath="/root/product_version/HHT"
+    value="${asminfo.product.version}.${svn.head.revision}" />
+
+</if>
+
+<if test="${Win32_Change =='true'}" >
+<echo> Win32 version</echo>
+  <xmlpoke
+    file="../Headers/Version.xml"
+    xpath="/root/product_version/Win32"
+    value="${asminfo.product.version}.${svn.head.revision}" />
+
+</if>
+
+<if test="${ADroid_Change =='true'}" >
+<echo> Android version</echo>
+  <xmlpoke
+    file="../Headers/Version.xml"
+    xpath="/root/product_version/AHHT"
+    value="${asminfo.product.version}.${svn.head.revision}" />
+
+</if>
+
+<if test="${AIos_Change =='true'}" >
+<echo> IOS version</echo>
+  <xmlpoke
+    file="../Headers/Version.xml"
+    xpath="/root/product_version/IHHT"
+    value="${asminfo.product.version}.${svn.head.revision}" />
+
+</if>
+
+<if test="${AWinPhone_Change =='true'}" >
+<echo> WinPhone version</echo>
+  <xmlpoke
+    file="../Headers/Version.xml"
+    xpath="/root/product_version/WHHT"
+    value="${asminfo.product.version}.${svn.head.revision}" />
+
+</if>
+
+<copy file="../Headers/Version.xml" tofile="${Web.OutputFolder}/Version.xml" />   
+       
+
+</target>
+
+<target name="create_change_list">
+	
+	<call target="print_svn_missing_help" />
+	
+	<exec 
+        program="svn.exe"
+	    basedir="C:\Program Files\CollabNet Subversion"
+	    commandline="-v --xml log --stop-on-copy ${svn.repo.path}"
+	    output="${svn.log.xml}"
+       />
+	
+	<xmlpoke
+		file="${svn.affected.xslt}"
+		xpath="/xsl:stylesheet/xsl:variable[@name = 'currentbranch']"
+		value="/${svn.repo.directory}/${svn.repo.version}">
+	   <namespaces>
+	       <namespace prefix="xsl" uri="http://www.w3.org/1999/XSL/Transform" />
+	   </namespaces>
+	</xmlpoke>
+
+		
+	<nxslt 
+		style="${svn.affected.xslt}" 
+		in="${svn.log.xml}" 
+		destdir="${Change.list.OutputFolder}" 
+		multioutput="true"
+		/>
+	
+</target>
+
+<target name="GenerateServerDoc" description="Generates the Server Documentation">
+
+   <ifnot test="${directory::exists(Bin.OutputFolder)}">
+      <echo>Compile the Code</echo>
+      <fail message="Code did not compiled - exiting ..." />
+   </ifnot>
+
+<!--    Copy all the files into a temp directory to generate the document -->
+
+   <if test="${directory::exists(Temp.Doc.OutputFolder)}">
+      <delete dir="${Temp.Doc.OutputFolder}" verbose="false" failonerror="false"/>
+   </if>
+
+   <mkdir dir="${Temp.Doc.OutputFolder}"/>
+
+   <call target="docs_copybinstotemp" />
+
+
+   <if test="${directory::exists(Doc.OutputFolder)}">
+      <delete dir="${Doc.OutputFolder}" verbose="false" failonerror="false"/>
+   </if>
+   <call target="getRevision" />
+       <mkdir dir="${Doc.OutputFolder}"/>
+
+   <ndoc failonerror="false" verbose="true">
+      <assemblies >
+         <!-- <include name="${Temp.Doc.OutputFolder}\*.dll" />
+    	 <include name="${CommonBinaries}\log4net.dll" />  -->
+	 
+	 <include name="${Temp.Doc.OutputFolder}\*.exe" /> 
+	 <include name="${Temp.Doc.OutputFolder}\*.dll" /> 
+	 <include name="${CommonBinaries}\log4net.dll" /> 
+	 <exclude name="${Temp.Doc.OutputFolder}\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+	 <exclude name="${Temp.Doc.OutputFolder}\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
+	 <exclude name="${Temp.Doc.OutputFolder}\msxml2.dll" />
+	 <exclude name="${Temp.Doc.OutputFolder}\Interop.WS32Lib.dll" />
+	 <exclude name="${Temp.Doc.OutputFolder}\SAP.Connector.dll" />
+	 <exclude name="${Temp.Doc.OutputFolder}\SAP.Connector.Rfc.dll" />
+	 <exclude name="${Temp.Doc.OutputFolder}\SAPBAPIS.dll" />
+      </assemblies>
+  
+      <documenters>
+         <documenter name="MSDN">
+            <property name="OutputDirectory" value="${Doc.OutputFolder}"/>
+            <property name="OutputTarget" value="HTMLHelp" />
+            <property name="HtmlHelpName" value="Atpar Server ${asminfo.product.version}.${svn.head.revision}" />
+            <property name="IncludeFavorites" value="False" />
+            <property name="Title" value="Atpar Server ${asminfo.product.version}.${svn.head.revision} Documentation" />
+            <property name="ShowVisualBasic" value="True" />
+            <property name="CleanIntermediates" value="True" />
+
+	<!-- Change the following values to True to show the Missing statements-->
+
+            <property name="ShowMissingSummaries" value="False" /> 
+            <property name="ShowMissingRemarks" value="False"/>
+            <property name="ShowMissingParams" value="False"/>
+            <property name="ShowMissingReturns" value="False" />
+            <property name="ShowMissingValues" value="False" />  
+
+	    <property name="DocumentInheritedFrameworkMembers" value="False" />
+	    <property name="DocumentInternals" value="False" />
+            <property name="DocumentPrivates" value="True" />
+            <property name="DocumentProtected" value="True" />
+            <property name="DocumentEmptyNamespaces" value="True" />
+            <property name="IncludeAssemblyVersion" value="True" />
+            <property name="CopyrightText" value="Copyright (c) ${asminfo.build.year} AtPar, Inc." />
+           <property name="CopyrightHref" value="http://atparinc.com" />
+        </documenter>
+     </documenters>
+   </ndoc> 
+
+   <if test="${directory::exists(Temp.Doc.OutputFolder)}">
+      <delete dir="${Temp.Doc.OutputFolder}" verbose="false" failonerror="false"/> 
+   </if>
+</target>
+
+<target name="docs_copybinstotemp" description="copy required files to temp directory">
+   <copy todir="${Temp.Doc.OutputFolder}">
+      <fileset basedir="${Bin.OutputFolder}">
+         <include name="*.*" />
+      </fileset>
+   </copy>
+
+   <copy todir="${Temp.Doc.OutputFolder}">
+      <fileset basedir="${WebBin.OutputFolder}">
+         <include name="*.*" />
+      </fileset>
+   </copy>
+
+   <copy todir="${Temp.Doc.OutputFolder}">
+      <fileset basedir="${WebServiceBin.OutputFolder}">
+         <include name="*.*" />
+      </fileset>
+   </copy>
+   
+   <copy todir="${Temp.Doc.OutputFolder}">
+      <fileset basedir="${WCFServiceBin.OutputFolder}">
+         <include name="*.*" />
+      </fileset>
+   </copy>
+
+   <copy todir="${Temp.Doc.OutputFolder}">
+      <fileset basedir="${Xml.Bin.OutputFolder}">
+         <include name="*.*" />
+      </fileset>
+   </copy>
+
+</target>
+
+<target name="GenerateClientDoc" description="Generates the Server Documentation">
+
+   <ifnot test="${directory::exists(Bin.OutputFolder)}">
+      <echo>Compile the Code</echo>
+      <fail message="Code did not compiled - exiting ..." />
+   </ifnot>
+
+<!-- Copy all the files into a temp directory to generate the document-->
+
+   <if test="${directory::exists(Temp.Doc.OutputFolder)}">
+      <delete dir="${Temp.Doc.OutputFolder}" verbose="false" failonerror="false"/>
+   </if>
+
+   <mkdir dir="${Temp.Doc.OutputFolder}"/>
+
+  <copy todir="${Temp.Doc.OutputFolder}">
+      <fileset basedir="${Bin.OutputFolder}">
+         <include name="*.*" />
+      </fileset>
+   </copy> 
+
+<copy file="References/Microsoft.WindowsCE.Forms.dll" tofile="${Temp.Doc.OutputFolder}/Microsoft.WindowsCE.Forms.dll"/>
+
+   <if test="${directory::exists(Doc.OutputFolder)}">
+      <delete dir="${Doc.OutputFolder}" verbose="false" failonerror="false"/>
+   </if>
+   <call target="getRevision" /> 
+      <mkdir dir="${Doc.OutputFolder}"/>
+
+   <ndoc failonerror="false" verbose="true">
+      <assemblies >
+         <include name="${Temp.Doc.OutputFolder}\*.exe" />
+      </assemblies>
+  
+      <documenters>
+         <documenter name="MSDN">
+            <property name="OutputDirectory" value="${Doc.OutputFolder}"/>
+            <property name="OutputTarget" value="HTMLHelp" />
+            <property name="HtmlHelpName" value="Atpar Client ${asminfo.product.version}.${svn.head.revision}" />
+            <property name="IncludeFavorites" value="False" />
+            <property name="Title" value="Atpar Client ${asminfo.product.version}.${svn.head.revision} Documentation" />
+            <property name="ShowVisualBasic" value="True" />
+            <property name="CleanIntermediates" value="True" />
+
+	<!-- Change the following values to True to show the Missing statements-->
+
+            <property name="ShowMissingSummaries" value="False" /> 
+            <property name="ShowMissingRemarks" value="False"/>
+            <property name="ShowMissingParams" value="False"/>
+            <property name="ShowMissingReturns" value="False" />
+            <property name="ShowMissingValues" value="False" />  
+
+	    <property name="DocumentInheritedFrameworkMembers" value="False" />
+	    <property name="DocumentInternals" value="False" />
+            <property name="DocumentPrivates" value="True" />
+            <property name="DocumentProtected" value="True" />
+            <property name="DocumentEmptyNamespaces" value="True" />
+            <property name="IncludeAssemblyVersion" value="True" />
+            <property name="CopyrightText" value="Copyright (c) ${asminfo.build.year} AtPar, Inc." />
+           <property name="CopyrightHref" value="http://atparinc.com" />
+        </documenter>
+     </documenters>
+   </ndoc> 
+
+   <if test="${directory::exists(Temp.Doc.OutputFolder)}">
+     <!--  <delete dir="${Temp.Doc.OutputFolder}" verbose="false" failonerror="false"/> -->
+   </if>
+</target>
+
+
+<target name="create_installer" description="Creates an exe using NSIS">
+
+	<delete dir="${PatchFolder}" verbose="false" failonerror="false"/>
+	
+	
+	<mkdir dir="${PatchFolder}"/>
+	<mkdir dir="${PatchFolder}/web"/>
+	<mkdir dir="${PatchFolder}/webservices"/>
+	<mkdir dir="${PatchFolder}/WCFServices"/>
+	<mkdir dir="${PatchFolder}/PeopleSoft"/>
+	<mkdir dir="${PatchFolder}/PeopleSoft/FamilyA"/>
+	<mkdir dir="${PatchFolder}/PeopleSoft/FamilyB"/>
+	<mkdir dir="${PatchFolder}/PeopleSoft/FamilyC"/>
+	<mkdir dir="${PatchFolder}/PeopleSoft/FamilyD"/>
+	<mkdir dir="${PatchFolder}/Lawson"/>
+	<mkdir dir="${PatchFolder}/MeditechCS"/>
+	<mkdir dir="${PatchFolder}/UHHS"/>
+	<mkdir dir="${PatchFolder}/App_GlobalResources"/>
+	<foreach item="Line" in="${installed.files.list}" delim="," property="csv_artifact,csv_directory,csv_type,csv_family,csv_path">
+    
+		<if test="${string::get-length(csv_artifact) > 1}">
+
+			<if test="${csv_directory == 'PROGRAMDIR'}">
+
+				<if test="${csv_type == 'REG'}">
+					<copy file="Server/${classic.vb.location}/${csv_artifact}" tofile="${PatchFolder}/${csv_artifact}" />
+				</if>
+				<if test="${csv_type == 'SQL'}">
+					<copy file="Server/${Scripts.OutputFolder}/${csv_artifact}" tofile="${PatchFolder}/${csv_artifact}" />
+				</if>
+				<if test="${csv_artifact == 'MeditechBostonConf.xml'}">
+					<copy file="Server/${Bin.OutputFolder}/${csv_artifact}" tofile="${PatchFolder}/${csv_artifact}" />
+				</if>
+				<if test="${csv_artifact == 'JIT_CONFIG.XML'}">
+					<copy file="Server/${Bin.OutputFolder}/${csv_artifact}" tofile="${PatchFolder}/${csv_artifact}" />
+				</if>
+				<if test="${csv_type == 'ERP-SQL'}">
+					<copy file="Server/${Scripts.OutputFolder}/${csv_artifact}" tofile="${PatchFolder}/${csv_artifact}" />
+				</if>
+				<if test="${csv_type == 'REG-FLY'}">
+					<if test="${csv_family == '(A)'}">
+						<copy file="Server/${classic.vb.location}/${csv_artifact}" tofile="${PatchFolderPeopleSoft}/FamilyA/${csv_artifact}" />
+					</if>
+					<if test="${csv_family == '(B)'}">
+						<copy file="Server/${classic.vb.location}/${csv_artifact}" tofile="${PatchFolderPeopleSoft}/FamilyB/${csv_artifact}" />
+					</if>
+					<if test="${csv_family == '(C)'}">
+						<copy file="Server/${classic.vb.location}/${csv_artifact}" tofile="${PatchFolderPeopleSoft}/FamilyC/${csv_artifact}" />
+					</if>
+					<if test="${csv_family == '(D)'}">
+						<copy file="Server/${classic.vb.location}/${csv_artifact}" tofile="${PatchFolderPeopleSoft}/FamilyD/${csv_artifact}" />
+					</if>
+				</if>
+			</if>
+			<if test="${csv_directory == 'PROGRAMDIR_BIN'}">
+				<copy file="Server/${Bin.OutputFolder}/${csv_artifact}" tofile="${PatchFolder}/${csv_artifact}" />
+			</if>
+			<if test="${csv_directory == 'PROGRAMDIR_IMG'}">
+				<copy file="Server/${WebImages.OutputFolder}/${csv_artifact}" tofile="${PatchFolder}/${csv_artifact}" />
+			</if>
+			<if test="${csv_directory == 'PROGRAMDIR_WEB'}">
+				<!-- This condition is for copying the WebPages web.config file to patch folder -->
+			     <if test="${csv_type == 'COPY'}">
+				<if test="${csv_path == 'web\'}">
+					<copy file="Server/${Web.OutputFolder}/${csv_artifact}" tofile="${PatchFolderWeb}/${csv_artifact}" />
+				</if>
+				<if test="${csv_path == ''}">
+					<if test="${csv_artifact != 'Atpar_WebResources.resx'}">
+						<copy file="Server/${Web.OutputFolder}/${csv_artifact}" tofile="${PatchFolder}/${csv_artifact}" />
+					</if>
+					<if test="${csv_artifact == 'Atpar_WebResources.resx'}">
+						<copy file="Server/${WebResource.OutputFolder}/${csv_artifact}" tofile="${PatchFolderWeb}/App_GlobalResources/${csv_artifact}" />
+					</if>
+				</if>
+			     </if>
+			     <if test="${csv_type == 'XCOPY'}">
+				<if test="${csv_path == 'web\'}">
+					<copy file="Server/${Web.OutputFolder}/${csv_artifact}" tofile="${PatchFolderWeb}/${csv_artifact}" />
+				</if>
+				<if test="${csv_path == ''}">
+					<if test="${csv_artifact != 'Atpar_WebResources.resx'}">
+						<copy file="Server/${Web.OutputFolder}/${csv_artifact}" tofile="${PatchFolder}/${csv_artifact}" />
+					</if>
+					<if test="${csv_artifact == 'Atpar_WebResources.resx'}">
+						<copy file="Server/${WebResource.OutputFolder}/${csv_artifact}" tofile="${PatchFolder}/${csv_artifact}" />
+					</if>
+				</if>
+			     </if>
+			     <if test="${csv_type == 'DELETE'}">
+				<!-- do noting -->
+			     </if>
+
+			</if>
+			<if test="${csv_directory == 'PROGRAMDIR_WEBBIN'}">
+				<copy file="Server/${WebBin.OutputFolder}/${csv_artifact}" tofile="${PatchFolder}/${csv_artifact}" />	         	
+			</if>
+			<if test="${csv_directory == 'PROGRAMDIR_IF_WEBBIN_MISSING'}">
+				<if test="${csv_path == 'CommonBinaries\'}">
+					<copy file="Server/CommonBinaries/${csv_artifact}" tofile="${PatchFolder}/${csv_artifact}" />
+				</if>
+				<if test="${csv_path == ''}">
+					<copy file="Server/${WebBin.OutputFolder}/${csv_artifact}" tofile="${PatchFolder}/${csv_artifact}" />
+				</if>	
+			</if>
+			<if test="${csv_directory == 'PROGRAMDIR_WEBSERVICES'}">
+
+				<!-- This condition is for copying the WebServices web.config file to patch folder-->
+				<if test="${csv_path == 'webservices\'}">
+					<copy file="Server/${WebService.OutputFolder}/${csv_artifact}" tofile="${PatchFolderWebServices}/${csv_artifact}" />
+				</if>
+				<if test="${csv_path == ''}">
+					<copy file="Server/${WebService.OutputFolder}/${csv_artifact}" tofile="${PatchFolder}/${csv_artifact}" />
+				</if>
+			 </if>
+			
+			<if test="${csv_directory == 'PROGRAMDIR_WEBSERVICESBIN'}">
+				<copy file="Server/${WebServiceBin.OutputFolder}/${csv_artifact}" tofile="${PatchFolder}/${csv_artifact}" />
+									         	
+			</if>
+			<if test="${csv_directory == 'PROGRAMDIR_WCFSERVICES'}">
+
+				<!-- This condition is for copying the WCFServices web.config file to patch folder-->
+				<if test="${csv_path == 'WCFServices\'}">
+					<copy file="Server/${WCFService.OutputFolder}/${csv_artifact}" tofile="${PatchFolderWCFServices}/${csv_artifact}" />
+				</if>
+				<if test="${csv_path == ''}">
+					<copy file="Server/${WCFService.OutputFolder}/${csv_artifact}" tofile="${PatchFolder}/${csv_artifact}" />
+				</if>
+			 </if>
+			
+			<if test="${csv_directory == 'PROGRAMDIR_WCFSERVICESBIN'}">
+				<copy file="Server/${WCFServiceBin.OutputFolder}/${csv_artifact}" tofile="${PatchFolder}/${csv_artifact}" />
+									         	
+			</if>
+			<if test="${csv_directory == 'PROGRAMDIR_BINFLY'}">
+				<if test="${csv_family == 'CS'}">
+					<copy file="Server/${Bin.OutputFolder}/CS/${csv_artifact}" tofile="${PatchFolderMeditechCS}/${csv_artifact}" />
+				</if>
+				<if test="${csv_family == 'UHHS'}">
+					<copy file="Server/${Bin.OutputFolder}/UHHS/${csv_artifact}" tofile="${PatchFolderOracleUHHS}/${csv_artifact}"/>
+				</if>
+			</if>
+			<if test="${csv_directory == 'PROGRAMDIR_REDIST'}">
+				<!--<copy file="Client/${csv_artifact}" tofile="${PatchFolder}/${csv_artifact}" />-->
+				
+				<if test="${csv_artifact != 'AtParClient_ARM.CAB'}">
+					<copy file="Win32/AtPar-POU_Win32.exe" tofile="${PatchFolder}/AtPar-POU_Win32.exe" />
+				</if>
+				<if test="${csv_artifact == 'AtParClient_ARM.CAB'}">
+					<copy file="Client/${csv_artifact}" tofile="${PatchFolder}/${csv_artifact}" />
+				</if>
+			</if>
+			
+		</if>
+	</foreach>
+	<call target="getRevision" />
+	<copy file="Build/app_installer.csv" tofile="${PatchFolder}/app_installer.csv" />
+	<copy file="Build/app_installer.vbs" tofile="${PatchFolder}/app_installer.vbs" />
+	<copy file="Build/ModifyConf.vbs" tofile="${PatchFolder}/ModifyConf.vbs" />
+	<copy file="Meta/Change_Log_External.txt" tofile="${PatchFolder}/Change_Log_External.txt" />
+	
+	<ReplaceText FilePath="${PatchFolder}/Change_Log_External.txt" SearchPattern="--version--" ReplaceString="${svn.head.revision}"/>
+	<ReplaceText FilePath="${PatchFolder}/app_installer.vbs" SearchPattern="---REPLACE_APPVERSION---" ReplaceString="AtPar-${asminfo.product.version}.${svn.head.revision}-${build.date}"/>	
+	<ReplaceText FilePath="${PatchFolder}/app_installer.vbs" SearchPattern="---REPLACE_LOGFILENAME---" ReplaceString="patch-${asminfo.product.version}.${svn.head.revision}-${build.date}"/>	
+	<ReplaceText FilePath="${PatchFolder}/Change_Log_External.txt" SearchPattern="---REPLACE_APPVERSION---" ReplaceString="AtPar-${asminfo.product.version}.${svn.head.revision}-${build.date}"/>
+	
+
+		<tar destfile="${asminfo.product.version}.${svn.head.revision}-${build.date}.tar">
+		<fileset basedir="${PatchFolder}">
+			<include name="*.*" />
+			<include name="**/*" />
+		</fileset>
+	</tar>
+	<copy file="Build/installer/AtPar2Patch.nsi" tofile="AtPar2Patch.nsi" />
+	<copy file="Build/installer/tar.exe" tofile="tar.exe" />
+
+	<ReplaceText FilePath="AtPar2Patch.nsi" SearchPattern="---REPLACE_APPVERSION---" ReplaceString="${asminfo.product.version}.${svn.head.revision}-${build.date}"/>	
+
+
+	
+
+	<exec program="makensis" commandline="AtPar2Patch.nsi"/>
+	
+	<delete file="AtPar2Patch.nsi"/>
+	<delete file="tar.exe"/>
+	<delete dir="Server/${classic.vb.location}"/>
+	<delete dir="${Bin.OutputFolder}"/>
+	<delete dir="${Web.OutputFolder}"/>
+	<delete dir="${WebBin.OutputFolder}"/>
+	<delete dir="${WebService.OutputFolder}"/>
+	<delete dir="${WebServiceBin.OutputFolder}"/>
+	<delete dir="${WCFService.OutputFolder}"/>
+	<delete dir="${WCFServiceBin.OutputFolder}"/>
+	<delete dir="${Xml.Bin.OutputFolder}"/>
+	<delete dir="Server/${Change.list.OutputFolder}"/>
+	<delete dir="${Scripts.OutputFolder}"/>
+	<delete dir="${classic.vb.location}"/> 
+	<delete dir="${WebImages.OutputFolder}"/>
+	<delete dir="${WebResource.OutputFolder}"/>
+  
+</target>
+
+<script language="c#" prefix="AtParBuild" >
+		<imports>
+		<import namespace="System.Text.RegularExpressions" />
+		</imports>
+		<references>
+		<include name="System.dll" />
+		</references>
+		<code>
+		<![CDATA[
+		[TaskName("ReplaceText")]
+                public class TestTask : Task {
+
+                  private string _fp;
+				  private string _searchPattern;
+				  private string _replaceString;
+
+                [TaskAttribute("FilePath", Required=true)]
+                  public string FilePath {
+                      get { return _fp; }
+                      set { _fp = value; }
+                  }
+				[TaskAttribute("SearchPattern", Required=true)]
+                  public string SearchPattern {
+                      get { return _searchPattern; }
+                      set { _searchPattern = value; }
+                  }
+				[TaskAttribute("ReplaceString", Required=true)]
+                  public string ReplaceString {
+                      get { return _replaceString; }
+                      set { _replaceString = value; }
+                  }
+                  
+				  private int _replace(string _InpFile, string _SearchPattern, string _ReplaceStr) {
+					try {
+						string result = string.Empty;
+						TextReader reader = File.OpenText(_InpFile);
+						string filecontent = reader.ReadToEnd();
+						Regex rx = new Regex(_SearchPattern);
+						if(!rx.IsMatch(filecontent)) { return -1; }
+						result = Regex.Replace(filecontent, _SearchPattern, _ReplaceStr);
+						reader.Close();
+						reader = null;
+
+						if (result.Length > 0) {
+							TextWriter writer = new StreamWriter(_InpFile);
+							writer.Write(result);
+							writer.Flush();
+							writer.Close();
+							writer = null;
+		
+							return 0;
+						}
+						
+						return -1;
+					}
+					catch (Exception ex){
+						throw ex;
+					}
+					return -1;
+			     }
+                  protected override void ExecuteTask() {
+					try {
+						if(_replace(_fp, _searchPattern, _replaceString) == 0) {
+						Log(Level.Info,"Replaced String");
+						}else {
+							Log(Level.Info,"Could not replace string, " + _searchPattern + " probably not found");
+						}
+					}
+					catch(Exception ex) {
+					throw ex;
+					}
+                  }
+                }
+		]]>
+		</code>
+</script>
+
+<!-- combined CHM help file -->
+
+<target name="GenerateHelpDoc" description="Generates the Help Documentation both Server and Clinet">
+
+   <if test="${directory::exists(Temp.Doc.OutputFolder)}">
+      <delete dir="${Temp.Doc.OutputFolder}" verbose="false" failonerror="false"/>
+   </if>
+
+   <mkdir dir="${Temp.Doc.OutputFolder}"/>
+
+   <call target="docs_copybinstotemp1" />
+
+
+   <if test="${directory::exists(Doc.OutputFolder)}">
+      <delete dir="${Doc.OutputFolder}" verbose="false" failonerror="false"/>
+   </if>
+   <call target="getRevision" />
+       <mkdir dir="${Doc.OutputFolder}"/>
+
+   <ndoc failonerror="false" verbose="true">
+      <assemblies >
+ 
+	 <include name="${Temp.Doc.OutputFolder}\*.exe" /> 
+	 <!-- <include name="${Temp.Doc.OutputFolder}\*.dll" /> -->
+
+	<include name="${Temp.Doc.OutputFolder}\AtPar_BusinessRules.dll" />
+	<include name="${Temp.Doc.OutputFolder}\AtPar_BusinessRules_RemotingProxy.dll" />
+	<include name="${Temp.Doc.OutputFolder}\AtPar_WebPages.dll" />
+	<include name="${Temp.Doc.OutputFolder}\AtPar_WebServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\AtPar_WCFServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\AtParConfigurationServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\AtParConfigurationServices_RemotingProxy.dll" />
+	<include name="${Temp.Doc.OutputFolder}\AtparFileInterface.dll" />
+	<include name="${Temp.Doc.OutputFolder}\AtParLawson.dll" />
+	<include name="${Temp.Doc.OutputFolder}\Atpar_LoggingServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\AtparOracle.dll" />
+	<include name="${Temp.Doc.OutputFolder}\AtparPeoplesoft.dll" />
+	<include name="${Temp.Doc.OutputFolder}\AtparPMM.dll" />
+	<include name="${Temp.Doc.OutputFolder}\AtparSap.dll" />
+	<include name="${Temp.Doc.OutputFolder}\BinToBin_BusinessRules.dll" />
+	<include name="${Temp.Doc.OutputFolder}\BinToBin_BusinessRules_RemotingProxy.dll" />
+	<include name="${Temp.Doc.OutputFolder}\BinToBin_WebPages.dll" />
+	<include name="${Temp.Doc.OutputFolder}\BinToBin_WebServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\BinToBin_WCFServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\BinToBinPeoplesoft.dll" />
+	<include name="${Temp.Doc.OutputFolder}\CartCount_BusinessRules.dll" />
+	<include name="${Temp.Doc.OutputFolder}\CartCount_BusinessRules_RemotingProxy.dll" />
+	<include name="${Temp.Doc.OutputFolder}\CartCount_WebPages.dll" />
+	<include name="${Temp.Doc.OutputFolder}\CartCount_WebServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\CartCount_WCFServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\CartCountAtpar.dll" />
+	<include name="${Temp.Doc.OutputFolder}\CartCountLawson.dll" />
+	<include name="${Temp.Doc.OutputFolder}\CartCountOracle.dll" />
+	<include name="${Temp.Doc.OutputFolder}\CartCountMeditech_XML.dll" />
+	<include name="${Temp.Doc.OutputFolder}\CartCountMeditech_ASCII.dll" />
+	<include name="${Temp.Doc.OutputFolder}\CartCountPeoplesoft.dll" />
+	<include name="${Temp.Doc.OutputFolder}\CartCountPMM.dll" />
+	<include name="${Temp.Doc.OutputFolder}\CartCountSap.dll" />
+	<include name="${Temp.Doc.OutputFolder}\CycleCount_BusinessRules.dll" />
+	<include name="${Temp.Doc.OutputFolder}\CycleCount_BusinessRules_RemotingProxy.dll" />
+	<include name="${Temp.Doc.OutputFolder}\CycleCount_WebPages.dll" />
+	<include name="${Temp.Doc.OutputFolder}\CycleCount_WebServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\CycleCount_WCFServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\CycleCountPeoplesoft.dll" />
+	<include name="${Temp.Doc.OutputFolder}\CycleCountSap.dll" />
+	<include name="${Temp.Doc.OutputFolder}\Deliver_BusinessRules.dll" />
+	<include name="${Temp.Doc.OutputFolder}\Deliver_BusinessRules_RemotingProxy.dll" />
+	<include name="${Temp.Doc.OutputFolder}\Deliver_WebPages.dll" />
+	<include name="${Temp.Doc.OutputFolder}\Deliver_WebServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\Deliver_WCFServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\DeliverFileInterface.dll" />
+	<include name="${Temp.Doc.OutputFolder}\DeliverPeoplesoft.dll" />
+	<include name="${Temp.Doc.OutputFolder}\DotNetAtpar.dll" />
+	<include name="${Temp.Doc.OutputFolder}\DotNetCartCounts.dll" />
+	<include name="${Temp.Doc.OutputFolder}\DotNetCycleCount.dll" />
+	<include name="${Temp.Doc.OutputFolder}\DotNetDeliver.dll" />
+	<include name="${Temp.Doc.OutputFolder}\DotNetInventoryPeoplesoft.dll" />
+	<include name="${Temp.Doc.OutputFolder}\DotNetPickPlan.dll" />
+	<include name="${Temp.Doc.OutputFolder}\DotNetPutAway.dll" />
+	<include name="${Temp.Doc.OutputFolder}\DotNetReceiving.dll" />
+	<include name="${Temp.Doc.OutputFolder}\DotNetStockIssue.dll" />
+	<include name="${Temp.Doc.OutputFolder}\InventoryPeoplesoft.dll" />
+	<include name="${Temp.Doc.OutputFolder}\ParMngtBusinessRules.dll" />
+	<include name="${Temp.Doc.OutputFolder}\ParMngtBusinessRulesRemotingProxy.dll" />
+	<include name="${Temp.Doc.OutputFolder}\ParMngtWebPages.dll" />
+	<include name="${Temp.Doc.OutputFolder}\ParMngtWebServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\ParMngtWCFServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\PickPlan_BusinessRules.dll" />
+	<include name="${Temp.Doc.OutputFolder}\PickPlan_BusinessRules_RemotingProxy.dll" />
+	<include name="${Temp.Doc.OutputFolder}\PickPlan_WebPages.dll" />
+	<include name="${Temp.Doc.OutputFolder}\PickPlan_WebServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\PickPlan_WCFServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\PickPlanFileInterface.dll" />
+	<include name="${Temp.Doc.OutputFolder}\PickPlanMeditech.dll" />
+	<include name="${Temp.Doc.OutputFolder}\PickPlanPeoplesoft.dll" />
+	<include name="${Temp.Doc.OutputFolder}\POU_BusinessRules.dll" />
+	<include name="${Temp.Doc.OutputFolder}\ADT_RuleSet.dll" />
+	<include name="${Temp.Doc.OutputFolder}\POU_Billing.dll" />
+	<include name="${Temp.Doc.OutputFolder}\POU_BusinessRules_RemotingProxy.dll" />
+	<include name="${Temp.Doc.OutputFolder}\POU_WebPages.dll" />
+	<include name="${Temp.Doc.OutputFolder}\POU_WebServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\POU_WCFServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\PutAway_BusinessRules.dll" />
+	<include name="${Temp.Doc.OutputFolder}\PutAway_BusinessRules_RemotingProxy.dll" />
+	<include name="${Temp.Doc.OutputFolder}\PutAway_WebPages.dll" />
+	<include name="${Temp.Doc.OutputFolder}\PutAway_WebServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\PutAway_WCFServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\PutAwayPeoplesoft.dll" />
+	<include name="${Temp.Doc.OutputFolder}\ReadConfigFile.dll" />
+	<include name="${Temp.Doc.OutputFolder}\Receiving_BusinessRules.dll" />
+	<include name="${Temp.Doc.OutputFolder}\Receiving_BusinessRules_RemotingProxy.dll" />
+	<include name="${Temp.Doc.OutputFolder}\Receiving_WebPages.dll" />
+	<include name="${Temp.Doc.OutputFolder}\Receiving_WebServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\Receiving_WCFServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\ReceivingFileInterface.dll" />
+	<include name="${Temp.Doc.OutputFolder}\ReceivingMeditech.dll" />
+	<include name="${Temp.Doc.OutputFolder}\ReceivingPeoplesoft.dll" />
+	<include name="${Temp.Doc.OutputFolder}\ReceivingPMM.dll" />
+	<include name="${Temp.Doc.OutputFolder}\ReceivingSap.dll" />
+	<include name="${Temp.Doc.OutputFolder}\StockIssue_BusinessRules.dll" />
+	<include name="${Temp.Doc.OutputFolder}\StockIssue_BusinessRules_RemotingProxy.dll" />
+	<include name="${Temp.Doc.OutputFolder}\StockIssue_WebPages.dll" />
+	<include name="${Temp.Doc.OutputFolder}\StockIssue_WebServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\StockIssue_WCFServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\StockIssuePeoplesoft.dll" />
+	<include name="${Temp.Doc.OutputFolder}\StockIssueMeditech.dll" />
+	<include name="${Temp.Doc.OutputFolder}\POU_Billing.dll" />
+	<include name="${Temp.Doc.OutputFolder}\POU_BusinessRules.dll" />
+	<include name="${Temp.Doc.OutputFolder}\POU_BusinessRules_RemotingProxy.dll" />
+	<include name="${Temp.Doc.OutputFolder}\POU_WebPages.dll" />
+	<include name="${Temp.Doc.OutputFolder}\POU_WebServices.dll" />
+	<include name="${Temp.Doc.OutputFolder}\POU_WCFServices.dll" />
+        <include name="Server\${CommonBinaries}\log4net.dll" /> 
+	 <exclude name="${Temp.Doc.OutputFolder}\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+	 <exclude name="${Temp.Doc.OutputFolder}\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
+	 <exclude name="${Temp.Doc.OutputFolder}\msxml2.dll" />
+	 <exclude name="${Temp.Doc.OutputFolder}\Interop.WS32Lib.dll" />
+	 <exclude name="${Temp.Doc.OutputFolder}\SAP.Connector.dll" />
+	 <exclude name="${Temp.Doc.OutputFolder}\SAP.Connector.Rfc.dll" />
+	 <exclude name="${Temp.Doc.OutputFolder}\SAPBAPIS.dll" /> 
+
+      </assemblies>
+  
+      <documenters>
+         <documenter name="MSDN">
+            <property name="OutputDirectory" value="${Doc.OutputFolder}"/>
+            <property name="OutputTarget" value="HTMLHelp" />
+            <property name="HtmlHelpName" value="Atpar Server ${asminfo.product.version}.${svn.head.revision}" />
+            <property name="IncludeFavorites" value="False" />
+            <property name="Title" value="Atpar Server ${asminfo.product.version}.${svn.head.revision} Documentation" />
+            <property name="ShowVisualBasic" value="True" />
+            <property name="CleanIntermediates" value="True" />
+            <property name="ShowMissingSummaries" value="False" /> 
+            <property name="ShowMissingRemarks" value="False"/>
+            <property name="ShowMissingParams" value="False"/>
+            <property name="ShowMissingReturns" value="False" />
+            <property name="ShowMissingValues" value="False" />  
+
+	    <property name="DocumentInheritedFrameworkMembers" value="False" />
+	    <property name="DocumentInternals" value="False" />
+            <property name="DocumentPrivates" value="True" />
+            <property name="DocumentProtected" value="True" />
+            <property name="DocumentEmptyNamespaces" value="True" />
+            <property name="IncludeAssemblyVersion" value="True" />
+            <property name="CopyrightText" value="Copyright (c) ${asminfo.build.year} AtPar, Inc." />
+           <property name="CopyrightHref" value="http://atparinc.com" />
+        </documenter>
+     </documenters>
+   </ndoc>  
+
+   <if test="${directory::exists(Temp.Doc.OutputFolder)}">
+      <delete dir="${Temp.Doc.OutputFolder}" verbose="false" failonerror="false"/> 
+   </if>
+</target>
+
+<target name="docs_copybinstotemp1" description="copy required files to temp directory">
+
+<!-- Copying the executable and xml's of server code -->
+   <copy todir="${Temp.Doc.OutputFolder}">
+      <fileset basedir="Server/${Bin.OutputFolder}">
+         <include name="*.*" />
+      </fileset>
+   </copy>
+
+   <copy todir="${Temp.Doc.OutputFolder}">
+      <fileset basedir="Server/${WebBin.OutputFolder}">
+         <include name="*.*" />
+      </fileset>
+   </copy>
+
+   <copy todir="${Temp.Doc.OutputFolder}">
+      <fileset basedir="Server/${WebServiceBin.OutputFolder}">
+         <include name="*.*" />
+      </fileset>
+   </copy>
+   
+   <copy todir="${Temp.Doc.OutputFolder}">
+      <fileset basedir="Server/${WCFServiceBin.OutputFolder}">
+         <include name="*.*" />
+      </fileset>
+   </copy>
+
+   <copy todir="${Temp.Doc.OutputFolder}">
+      <fileset basedir="Server/${Xml.Bin.OutputFolder}">
+         <include name="*.*" />
+      </fileset>
+   </copy>     
+ <!-- Copying the executable of Client code  -->
+ <copy file="Client/References/Microsoft.WindowsCE.Forms.dll" tofile="${Temp.Doc.OutputFolder}/Microsoft.WindowsCE.Forms.dll"/>
+  <copy todir="${Temp.Doc.OutputFolder}">
+      <fileset basedir="Client/${Bin.OutputFolder}">
+         <include name="*.*" />
+      </fileset>
+   </copy>   
+
+</target>
+<!-- end of ... combined CHM help file -->
+
+</project>

@@ -1,0 +1,52 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px 0 10px 0;">
+                        <div class="container">
+                            <form class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <atpar-text [(ngModel)]="requestorSearch" [name]="txtRequestorIdSearch" [validations]="'except_less_greater_symbols'" [id]="'requestorIdSearch'" [ngModelOptions]="{standalone: true}" [placeholder]="'Requestor ID / First Name / Last Name'"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <button type="button" class="btn btn-purple sbtn" name="btnGo" (click)="BindGrid()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                        <button type="button" class="btn btn-purple sbtn" name="btnAdd" (click)="addRequestor()">Add Requestor &nbsp;<i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-xs-12" *ngIf="isVisible">
+                            <div class="container">
+                                <atpar-datatable [value]="requestorData" [paginator]="true" [pageLinks]="3" [rows]="pazeSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column field="" header="Action" [style]="{'width':'4%','text-align':'center'}">
+                                        <template let-requstorData="rowData" pTemplate="body">
+                                            <i class="fa fa-pencil fa-bg bg-red" title="Edit" (click)="editRequestor(requstorData)" style="cursor:pointer;"></i>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="ORG_GROUP_ID" header="Org Group ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'10%'}"></p-column>
+                                    <p-column field="REQUESTOR_ID" header="Requestor ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="FIRST_NAME" header="First Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="LAST_NAME" header="Last Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="MIDDLE_INIT" header="Middle Initial"  [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'10%'}"></p-column>
+                                    <p-column field="STATUS" header="Status" [filter]="true" [style]="{'width': '8%','overflow':'visible','text-align':'center'}" filterMatchMode="equals">
+                                        <template pTemplate="filter" let-col>
+                                               <atpar-select [options]="statusList" [(ngModel)]="statusType" [style]="{'width':'100%'}" [id]="'ddlddlStatusType'" [required]="false" (onChange)="dataFilter()"></atpar-select>
+                                        </template>
+                                        <template let-col let-requestor="rowData" pTemplate="body">
+                                            <atpar-switch  [checked] = "requestor.checkStatus"  (click)="updateRequestorStatus(requestor)"  style="cursor:pointer;"></atpar-switch>
+                                        </template>
+                                        
+                                    </p-column>
+                                </atpar-datatable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-growl [value]="msgs" sticky="sticky"></atpar-growl>

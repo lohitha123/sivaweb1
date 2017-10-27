@@ -1,0 +1,49 @@
+﻿<html>
+<head>
+
+    <base href="/" />
+
+    <title>AtPar Web</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="Images/logo_y.jpg">
+    <link href="assets/css/atparcomponents.css" rel="stylesheet" />
+    <link href="assets/css/omega/theme.css" rel="stylesheet" />
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- application css -->
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
+
+    <!-- color change css-->
+    <link href="/assets/css/default.css" rel="stylesheet" type="text/css" id="theme">
+    <!-- change fontfamily css-->
+    <link href="/assets/css/fontfamily/fontopenSans.css" rel="stylesheet" type="text/css" id="fontfamily">
+    <!-- change fontsize css-->
+    <link href="/assets/css/fontsize/fontsize-default.css" rel="stylesheet" type="text/css" id="fontsize">
+    <!-- Datetimepicker, Slider, Schedule -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+    <!-- Polyfill for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+
+    <!-- 2. Configure SystemJS -->
+    <script src="systemjs.config.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/2.0.0-alpha.46/http.dev.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/screenfull.js/3.2.1/screenfull.js"></script>
+    <script>
+        System.import('app').catch(function (err) { console.error(err); });
+    </script>
+
+</head>
+
+<body>
+    <my-app>Loading...</my-app>
+</body>
+
+</html>

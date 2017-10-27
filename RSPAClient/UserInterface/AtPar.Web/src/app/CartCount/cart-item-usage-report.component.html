@@ -1,0 +1,245 @@
+﻿<div id="main" class="content-page">
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px 0px 10px 0px;">
+                        <div class="col-xs-12" *ngIf="tdExports">
+                            <br />
+                            <div class="pull-right" id="tdExports">
+                                <ul class="list-inline">
+                                    <li class="no-padding">
+                                        <i class="fa fa-envelope-o fa-bg-lg bg-blue" aria-hidden="true" style="cursor:pointer" id="imgMail" title="Send mail" (click)="onSendMailIconClick($event)"></i>&nbsp;
+                                    </li>
+                                    <li class="no-padding">
+                                        <i class="fa fa-print fa-bg-lg bg-blue" aria-hidden="true" style="cursor:pointer" id="imgPrint" title="Print" (click)="onPrintClick($event)"></i>&nbsp;
+                                    </li>
+                                    <li class="no-padding">
+                                        <i class="fa fa-file-excel-o fa-bg-lg bg-blue" aria-hidden="true" style="cursor:pointer" id="imgExcel" title="Excel Format" (click)="onExportToExcelClick($event)"></i>&nbsp;
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>                        
+                        <form class="form-horizontal form-label-left">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Org Group ID </label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <label *ngIf="blnShowOrgGroupLabel" class="control-label lbl-left">{{orgGrpId}}</label>
+                                        <atpar-select [options]="lstOrgGroups" [id]="'ddllstOrgGroups'" [required]="true" [(ngModel)]="selectedOrgGroupId" [ngModelOptions]="{standalone: true}" filter="filter" *ngIf="blnShowOrgGroupDD" (onChange)="ddlOrgGrpIdChanged()"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Business Unit / Company</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstFilteredBUnits" [id]="'ddlOrg'" [(ngModel)]="selectedBunit" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Cart ID / Par Location</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="selectedParlocation" [id]="'ParlocationId'" [name]="'ParlocationId'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">                               
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Item ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="selectedItemId" [id]="'ItemId'" [name]="'ItemId'" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,alpha_numeric_dot_underscore_nospace'"></atpar-text>
+                                        <!--<atpar-ac-server [(ngModel)]="selectedItemId" [ngModelOptions]="{standalone: true}" [suggestions]="lstItemIds" [mandatory]="'true'" [id]="'ItemId'" (completeMethod)="fillItemIdsAuto($event)"></atpar-ac-server>-->
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">From Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <p-calendar [showIcon]="true" [id]="'fromDate'" [(ngModel)]="fromDate" [placeholder]="'From Date'" [dateFormat]="'mm/dd/yy'" [required]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [monthNavigator]="true"  [yearNavigator]="true"  yearRange="1950:2050"></p-calendar>
+                                        <!--<p-calendar [showIcon]="true" [id]="'FromDatePicker'" [(ngModel)]="fromDate" [required]="true" [placeholder]="'From Date'" [readonlyInput]="true" (onFocus)="onfocusFromCalendar($event)" [ngModelOptions]="{standalone: true}" [dateFormat]="'mm/dd/yy'"></p-calendar>-->
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">To Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <p-calendar [showIcon]="true" [id]="'toDate'" [(ngModel)]="toDate" [placeholder]="'To Date'" [dateFormat]="'mm/dd/yy'" [required]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [monthNavigator]="true"  [yearNavigator]="true"  yearRange="1950:2050"></p-calendar>
+
+                                        <!--<p-calendar [showIcon]="true" [id]="'ToDatePicker'" [(ngModel)]="toDate" [required]="true" [placeholder]="'To Date'" [readonlyInput]="true" (onFocus)="onfocusToCalendar($event)" [ngModelOptions]="{standalone: true}" [dateFormat]="'mm/dd/yy'"></p-calendar>-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>                             
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">                                   
+                              <button class="btn btn-purple sbtn" (click)="bindGrid()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>                               
+                            </div>                            
+                            <br/>
+                        </form>
+                        <div class="clear"></div>
+                        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-5">
+                            <span style="text-align:center!important">Note: Report is based on count exceptions </span>
+                        </div>
+                        <div *ngIf="showGrid" class="col-xs-12 ">
+                            <div class="container">
+                            <span class="text-primary" style="float:left">
+                                <strong>Item ID </strong>{{lstDBTableData[0].ITEM_ID}}
+                            </span>
+                            <span class="text-primary" style="float:right">
+                                <strong>Custom Item NO </strong>{{CustItemId}}
+                            </span>
+                            <br />
+                            <!--<div style="width:50%;margin-top:11%;margin-left:24%;">
+                                <span style="margin-left: 50%;">Physician Usage</span>
+                                <atpar-chart type="bar" [id]="'ChartId'" [data]="data1" [options]="option" [width]="40" [height]="40"></atpar-chart>
+                            </div>-->
+                            <br />
+                                <div class="clear"></div>
+                            <div class="table-responsive">
+                                <div class="">
+                                    <atpar-datatable [value]="lstDBTableData"  [style]="{'width':'100%'}"  expandableRows="true"  [globalFilter]="gb" [responsive]="true">
+                                        <p-column>
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <table style="border:none">
+                                                    <tr style="border:solid 1px">
+                                                        <td>BusinessUnit</td>
+                                                        <td><b>{{ven.BUSINESS_UNIT}}</b></td>
+                                                        <td>CartID/Par Location</td>
+                                                        <td><b>{{ven.CART_ID}}</b></td>
+                                                    </tr>
+                                                    <tr style="border:solid 1px">
+                                                       
+                                                        <td colspan="3">
+                                                            <atpar-chart type="line" [id]="'ChartId'" [data]="data"></atpar-chart>
+                                                        </td>
+                                                    
+                                                        <td valign="top">
+                                                            <table>
+
+                                                                <tr>
+                                                                    <td>
+                                                                        Date
+                                                                    </td>
+                                                                    <td>
+                                                                        Par Qty
+                                                                    </td>
+                                                                    <td>
+                                                                        Used Qty
+                                                                    </td>
+                                                                </tr>
+                                                                <tr *ngFor="let item of lstDBData">
+                                                                    <td *ngIf="ven.CART_ID==item.CART_ID">
+                                                                        {{item.COUNTDATEFORINSIDETABLE}}
+                                                                    </td>
+                                                                    <td *ngIf="ven.CART_ID==item.CART_ID">
+                                                                        {{item.PAR_QTY}}
+                                                                    </td>
+                                                                    <td *ngIf="ven.CART_ID==item.CART_ID">
+                                                                        {{item.ORDER_QTY}}
+                                                                    </td>
+                                                                </tr>
+
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="border:solid 1px">
+                                                        <td>
+
+                                                        </td>
+                                                        <td>
+                                                            Qty
+                                                        </td>
+                                                        <td>
+                                                            Item Description
+                                                        </td>
+                                                        <td>
+                                                            Date
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="border:solid 1px">
+                                                        <td>
+                                                            Min Item Usage
+                                                        </td>
+                                                        <td>
+                                                           <strong>
+                                                               {{ven.MIN_USAGE}}
+                                                            </strong> 
+                                                        </td>
+                                                        <td>
+                                                           <strong>{{ven.ITEM_DESC}}</strong> 
+                                                        </td>
+                                                        <td>
+                                                           <strong> {{ven.UPDATE_DATE}}</strong> 
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="border:solid 1px">
+                                                        <td>
+                                                            Max  Item Usage
+                                                        </td>
+                                                        <td>
+                                                           <strong>
+                                                               {{ven.MAX_USAGE}}
+                                                            </strong> 
+                                                        </td>
+                                                        <td>
+                                                           <strong>{{ven.ITEM_DESC}}</strong> 
+                                                        </td>
+                                                        <td>
+                                                            <strong>{{ven.UPDATE_DATE}}</strong>  
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="border:solid 1px">
+                                                        <td>
+                                                            Average Item Usage 
+                                                        </td>
+                                                        <td>
+                                                            <strong>{{ven.AVG_USAGE}} Per Day</strong> 
+                                                            
+                                                        </td>
+                                                        <td>
+
+                                                        </td>
+                                                        <td>
+
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                </table>
+                                            </template>
+                                        </p-column>
+                                    </atpar-datatable>
+                                </div>
+                                <br />
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<mail-dialog header="Enter Recipient`s Email Address" [width]="450" (onClose)="closeMailPopup()" [(visible)]="isMailDialog" [responsive]="true" showEffect="fade" [modal]="true">
+    <div class="ui-grid ui-grid-responsive ui-fluid">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                <span>To : </span>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-8 col-xs-8">
+                <atpar-text [(ngModel)]="toMailAddr" [name]="txtToMailAddr" [id]="'txtToMailAddr'"></atpar-text>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                <span><button class="btn btn-purple sbtn" (click)="onSendMailClick()">Send &nbsp;<i class="fa fa-share-square-o" aria-hidden="true"></i></button> </span>
+            </div>
+        </div>
+    </div>
+</mail-dialog>
+<style>
+    .modal-content {
+        top: 50% !important;
+    }
+
+    ul.right-images li img {
+        width: 60px !important;
+        cursor: pointer;
+    }
+</style>

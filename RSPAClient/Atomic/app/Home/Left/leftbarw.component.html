@@ -1,0 +1,65 @@
+﻿<div class="left side-menu">
+    <div class="sidebar-inner slimscrollleft">
+        <div id="sidebar-menu" class="sidenav">
+            <ul>
+                <li class="has_sub" (click)="cartDown()">
+                    <a href="javascript:void(0);" class="waves-effect dropdown-toggle"><img src="assets/images/icons/common/cartCount.png" width="20"><p> Cart Count</p><span class="caret"></span></a>
+                    <ul class="list-unstyled ax">
+                        <li><a>Setup Vendors</a></li>
+                        <li><a>Setup Items</a></li>
+                        <li><a>Audit Setup</a></li>
+                        <li><a>Setup Cost Centers</a></li>
+                        <li><a>Setup Location Groups</a></li>
+                        <li><a>Setup Locations</a></li>
+                        <li><a>Setup Storage Location Groups</a></li>
+                    </ul>
+                </li>
+                <ul class="list-unstyled ax mobile-off" *ngIf="isActivecc">
+                    <li><a>Setup Vendors</a></li>
+                    <li><a>Setup Items</a></li>
+                    <li><a>Audit Setup</a></li>
+                    <li><a>Setup Cost Centers</a></li>
+                    <li><a>Setup Location Groups</a></li>
+                    <li><a>Setup Locations</a></li>
+                    <li><a><i aria-hidden="true" class="fa fa-folder"></i>Reports</a></li>
+                </ul>
+                <li class="has_sub" (click)="cycledown()">
+                    <a class="waves-effect dropdown-toggle"><img src="assets/images/icons/common/cycleCount.png" width="20"><p> Cycle Count </p><span class="caret"></span></a>
+                    <ul class="list-unstyled ax">
+                        <li><a>Setup Vendors</a></li>
+                        <li><a>Setup Items</a></li>
+                        <li><a>Audit Setup</a></li>
+                    </ul>
+                </li>
+                <ul class="list-unstyled axmobile-off" *ngIf="isActivecy">
+                    <li><a>Setup Vendors</a></li>
+                    <li><a>Setup Items</a></li>
+                    <li><a>Audit Setup</a></li>
+                    <li><a><i aria-hidden="true" class="fa fa-folder"></i>Reports</a></li>
+                </ul>
+                <li class="has_sub">
+                    <a class="waves-effect dropdown-toggle"><img src="assets/images/icons/common/tools.png" width="20"><p> Tools</p> <span class="caret"></span></a>
+                    <ul class="list-unstyled ax">
+                        <li><a>User Status Report</a></li>
+                        <li><a>Error Report</a></li>
+                        <li><a>Maintain Printers</a></li>
+                    </ul>
+                </li>
+                <li class="has_sub" (click)="reportdown()">
+                    <a class="waves-effect dropdown-toggle"><img src="assets/images/icons/common/reports.png" width="20"><p> Reports</p> <span class="caret"></span></a>
+                    <ul class="list-unstyled ax">
+                        <li><a>User Status Report</a></li>
+                        <li><a>Error Report</a></li>
+                        <li><a>Maintain Printers</a></li>
+                    </ul>
+                </li>
+                <ul class="list-unstyled ax mobile-off" *ngIf="isActiver">
+                    <li><a>User Status Report</a></li>
+                    <li><a>Error Report</a></li>
+                    <li><a>Maintain Printers</a></li>
+                </ul>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

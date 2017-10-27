@@ -1,0 +1,62 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:10px 0 10px 0;">
+                        <form class="form-horizontal form-label-left" novalidate>
+
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">From Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <p-calendar [showIcon]="true" [id]="'FromDatePicker'" [(ngModel)]="fromDate" [placeholder]="'From Date'" [dateFormat]="'mm/dd/yy'" [required]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [yearNavigator]="true"  yearRange="1950:2050"></p-calendar>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">To Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <p-calendar [showIcon]="true" [id]="'ToDatePicker'" [(ngModel)]="toDate" [placeholder]="'To Date'" [dateFormat]="'mm/dd/yy'" [required]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [yearNavigator]="true"  yearRange="1950:2050"></p-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <button class="btn btn-purple sbtn" (click)="btnGo_Click()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 form-group">
+                                   AtPar Log files
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-1 form-group">
+                                    Debug Log
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-1 form-group">
+                                   <a (click)="getLogFile()" style="cursor:pointer">Download</a> 
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-2 form-group">
+                                    (Check if debug mode is on)
+                                </div>
+                            </div>
+                        </form>
+                        <br />
+                        <br />
+
+                        <br />
+                        <div class="col-xs-12" *ngIf="showGrid">
+                            <atpar-datatable [value]="lstErrorReport" scrollable="true" [paginator]="true" [pageLinks]="3" [rows]="pageSize" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                <p-column  field="ERROR_DT" header="Error Date" [style]="{'width':'200px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="ERROR_CODE" header="Error Code" [style]="{'width':'120px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="ERROR_MESSAGE" header="Error Message"  [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>  
+                            </atpar-datatable>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+
+

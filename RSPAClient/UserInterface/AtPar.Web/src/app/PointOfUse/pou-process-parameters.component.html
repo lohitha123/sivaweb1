@@ -1,0 +1,270 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px;">
+                        <form class="form-horizontal form-label-left" *ngIf="page">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Org ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="ddlOrgIdLst" [(ngModel)]="selectedOrgId" [id]="'ddlOrgId'" [ngModelOptions]="{standalone: true}" filter="filter"  (onChange)="ddlOrgId_SelectChanged(ddlOrgIdLst,$event)" [required]="true"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Department</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="ddlDeptLst" [(ngModel)]="selectedDept" [id]="'ddlDept'" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlDept_SelectChanged(ddlDeptLst,$event)"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Par Location</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-ac-server [(ngModel)]="txtCartId" [suggestions]="parLocationSearchLst" *ngIf="isEditMode" (completeMethod)="searchAutoCompleteParLocation($event)"  [ngModelOptions]="{standalone: true}" [disabled]="blnEnable"></atpar-ac-server>                                     
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" id="btnGo"  (click)="btnGo_Click()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="col-xs-12" *ngIf="tab">
+                            <div class="container">
+                                <atpar-tabs [selectedTab]="activeTab" (enableSelectedTab)="tabContainer_ActiveTabChanged($event)">
+                                    <atpar-tab tabTitle="Replenishment">
+                                        <div class="col-xs-12" *ngIf="tabReplenishment">
+                                            <atpar-datatable [value]="parRepProcessScheduleLst" [style]="{'width':'100%'}" (filteredData)="filterReplenishmentdata($event)" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                                <p-column field="CHK_VALUE" header="Select" [style]="{'width':'7%','text-align':'center'}">
+                                                    <template pTemplate="filter" let-col>
+                                                        <ul class="list-inline li-all-none">
+                                                            <li>
+                                                                <span (click)="selectAllReplenishmentLst()" style="cursor:pointer">All</span>
+                                                            </li> |
+                                                            <li>
+                                                                <span (click)="unSelectAllReplenishmentLst()" style="cursor:pointer">None</span>
+                                                            </li>
+                                                        </ul>
+                                                    </template>
+                                                    <template let-col let-ven="rowData" pTemplate type="body">
+                                                        <atpar-switch [checked]="ven[col.field]" (change)="parScheduleLstChkboxChanged(ven,$event)" [disabled]="ven.INV_INTERFACE_ENABLE == 'N'"></atpar-switch>
+                                                    </template>
+                                                </p-column>
+                                                <p-column field="ID" header="Location" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                    <template let-ven="rowData" pTemplate type="body">
+                                                        <span> {{ven.ID}}</span>
+                                                    </template>
+                                                </p-column>
+                                                <p-column field="SCHEDULE_ID" header="Inventory Schedule"  [style]="{'overflow':'visible'}" >
+                                                    <template let-ven="rowData" pTemplate type="body" >
+                                                        <atpar-select-grid [options]="ddlSchedIdLst" [disabled]="ven.INV_INTERFACE_ENABLE == 'N'" [(ngModel)]="ven.SCHEDULE_ID" [id]="'ven.ID'" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="inventoryScheduleChanged(ven,$event)"></atpar-select-grid>
+                                                    </template>
+                                                </p-column>
+                                                <p-column field="REPLENISH_FROM" header="Replenishment from" [style]="{'overflow':'visible'}" >
+                                                    <template let-ven="rowData" pTemplate type="body">
+                                                        <atpar-select-grid [options]="ddlReplenishLst" [(ngModel)]="ven.REPLENISH_FROM" [id]="'ddlRfnmts'" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="replenishmentFromChanged(ven,$event)"></atpar-select-grid>
+                                                    </template>
+                                                </p-column>
+                                                <p-column field="SOURCELOCATIONS" header="Source Locations" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                    <template let-ven="rowData" pTemplate type="body">
+                                                        <span>{{ven.SOURCELOCATIONS}}</span>
+                                                    </template>
+                                                </p-column>
+                                                <p-column header="Assign Source Locations" [style]="{'width':'14%','text-align':'center'}">
+                                                    <template let-ven="rowData" pTemplate type="body">
+                                                        <span style="cursor:pointer" class="grid-link" (click)="onClickLnkbtnAssignLoc(ven)">Assign Locations</span>
+                                                    </template>
+                                                </p-column>
+
+                                            </atpar-datatable>
+                                            <br />
+                                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-2 col-md-offset-5">
+                                                <button class="btn btn-purple" (click)="btnReplenishmentSubmit_Click()">Submit &nbsp;<i class="fa fa-check"></i></button>
+                                            </div>
+                                        </div>
+                                    </atpar-tab>
+                                    <atpar-tab tabTitle="Billing">
+                                        <div class="col-xs-12 " *ngIf="tabBilling">
+                                            <atpar-datatable [value]="parBillProcessScheduleLst" [style]="{'width':'100%'}" (filteredData)="filterBillData($event)" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                                <p-column header="Select" field="CHK_VALUE" [style]="{'width':'7%','text-align':'center'}">
+                                                    <template pTemplate="filter" let-col>
+                                                        <ul class="list-inline">
+                                                            <li>
+                                                                <span (click)="selectAllBillingLst()" style="cursor:pointer">All</span>
+                                                            </li> |
+                                                            <li>
+                                                                <span (click)="unSelectAllBillingLst()" style="cursor:pointer">None</span>
+                                                            </li>
+                                                        </ul>
+                                                    </template>
+                                                    <template let-col let-ven="rowData" pTemplate type="body">
+                                                        <atpar-switch [checked]="ven[col.field]" (change)="billingChkboxChanged(ven,$event)" [disabled]="ven.BILLING_ENABLE == 'N'"></atpar-switch>
+                                                    </template>
+                                                </p-column>
+                                                <p-column field="DEPT_NAME" header="Department" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                    <template let-ven="rowData" pTemplate type="body">
+                                                        <span>{{ven.DEPT_NAME}}</span>
+                                                    </template>
+                                                </p-column>
+                                                <p-column field="BILLING_OPTION" header="Billing Option">
+                                                    <template let-col let-ven="rowData" pTemplate type="body">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <atpar-radioButton [name]="ven.ORG_ID+ven.ID+ven.DEPT_NAME" [disabled]="ven.BILLING_ENABLE == 'N'" [(ngModel)]="ven.BILLING_OPTION" value=1 label="Real-time" (onClick)="rdbtnBillingOptionChanged(ven,$event)"></atpar-radioButton>
+                                                            </li>
+                                                            <li>
+                                                                <atpar-radioButton [name]="ven.ORG_ID+ven.ID+ven.DEPT_NAME" [disabled]="ven.BILLING_ENABLE == 'N'" [(ngModel)]="ven.BILLING_OPTION" value=2 label="Batch" (onClick)="rdbtnBillingOptionChanged(ven,$event)"></atpar-radioButton>
+                                                            </li>
+                                                            <br/>
+                                                            <li>
+                                                                <atpar-switch [checked]="ven.BlnReviewChargeValue" [disabled]="ven.BILLING_ENABLE == 'N'" [(ngModel)]="ven.BlnReviewChargeValue" *ngIf="ven.chkBillOption" (change)="chkBoxReviewChargeChanged(ven,reviewChargesValue)"></atpar-switch><span class="" *ngIf="ven.chkBillOption" style="cursor:pointer">Review Changes</span>
+                                                            </li><!--reviewChargesValue-->
+                                                        </ul>
+                                                    </template>
+                                                </p-column>
+                                                <p-column field="SCHEDULE_ID" header="Billing Schedule"  [style]="{'overflow':'visible'}" >
+                                                    <template let-ven="rowData" pTemplate type="body">
+                                                        <atpar-select-grid [options]="ddlBillingSchedIdLst" [disabled]="ven.BILLING_ENABLE == 'N'" [(ngModel)]="ven.SCHEDULE_ID" [id]="ven.ID" [ngModelOptions]="{standalone: true}" filter="filter" *ngIf="ven.blnBillScheduleId" (onChange)="ddlBillScheduleIdChanged(ven,$event)"></atpar-select-grid>
+                                                    </template>
+                                                </p-column>
+
+                                            </atpar-datatable>
+
+                                            <br />
+                                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-2 col-md-offset-5">
+                                                <button class="btn btn-purple" (click)="btnBillSubmit_Click()">Submit &nbsp;<i class="fa fa-check"></i></button>
+                                            </div>
+                                        </div>
+                                    </atpar-tab>
+                                    <atpar-tab tabTitle="Alerts">
+                                        <div class="col-xs-12" *ngIf="tabAlert">
+                                            <atpar-datatable [value]="schdAlerts" [style]="{'width':'100%'}" (filteredData)="filterAlertsData($event)" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                                <p-column header="Select" field="CHK_VALUE" [style]="{'width':'7%','text-align':'center'}">
+                                                    <template pTemplate="filter" let-col>
+                                                        <ul class="list-inline">
+                                                            <li>
+                                                                <span (click)="selectAllAlertLst()" style="cursor:pointer">All</span>
+                                                            </li> |
+                                                            <li>
+                                                                <span (click)="unSelectAllAlertLst()" style="cursor:pointer">None</span>
+                                                            </li>
+                                                        </ul>
+                                                    </template>
+                                                    <template let-col let-ven="rowData" pTemplate type="body">
+                                                        <atpar-switch [checked]="ven[col.field]" (change)="alertChkboxChanged(ven,$event)"></atpar-switch>
+                                                    </template>
+                                                </p-column>
+                                                <p-column field="DEPT_NAME" header="Department" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column field="LOW_STK_SCHEDULE_ID" header="Low Stock Alert Schedule"  [style]="{'overflow':'visible'}" >
+                                                    <template let-ven="rowData" pTemplate type="body">
+                                                        <atpar-select-grid [options]="ddlLowStockSchedId" [id]="'ddlSts'" [(ngModel)]="ven.LOW_STK_SCHEDULE_ID" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlLowStockSchedIdChanged(ven,$event)"></atpar-select-grid>
+                                                    </template>
+                                                </p-column>
+                                                <p-column field="EXP_SCHEDULE_ID" header="Expired /Expiring Alert Schedule"  [style]="{'overflow':'visible'}" >
+                                                    <template let-ven="rowData" pTemplate type="body">
+                                                        <!--selectedExpSchedId-->
+                                                        <atpar-select-grid [options]="ddlExpSchedId" [id]="'ddlExp'" [(ngModel)]="ven.EXP_SCHEDULE_ID" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlExpSchedIdChanged(ven,$event)"></atpar-select-grid>
+                                                    </template>
+                                                </p-column>
+                                                <p-column field="RECALL_SCHEDULE_ID" header="Recall Alert Schedule"  [style]="{'overflow':'visible'}">
+                                                    <template let-ven="rowData" pTemplate type="body">
+                                                        <!--selectedRecallSchedId-->
+                                                        <atpar-select-grid [options]="ddlRecallSchedId" [id]="'ddlRecall'" [(ngModel)]="ven.RECALL_SCHEDULE_ID" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlRecallSchedIdChanged(ven,$event)"></atpar-select-grid>
+                                                    </template>
+                                                </p-column>
+                                                <p-column field="BILLONLY_SCHEDULE_ID" header="Bill Only Email Alert Schedule"  [style]="{'overflow':'visible'}">
+                                                    <template let-ven="rowData" pTemplate type="body">
+                                                        <!--selectedBillOnlySchedId-->
+                                                        <atpar-select-grid [options]="ddlBillOnlySchedId" [id]="'ddlBill'" [(ngModel)]="ven.BILLONLY_SCHEDULE_ID" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlBillOnlySchedIdChanged(ven,$event)"></atpar-select-grid>
+                                                    </template>
+                                                </p-column>
+
+                                            </atpar-datatable>
+                                            <br />
+                                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-2 col-md-offset-5">
+                                                <button class="btn btn-purple" (click)="btnAlertSubmit_Click()">Submit &nbsp;<i class="fa fa-check"></i></button>
+                                            </div>
+                                        </div>
+                                    </atpar-tab>
+                                </atpar-tabs>
+                            </div>                           
+                        </div>
+                        <form class="form-horizontal form-label-left" *ngIf="form">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Org Group ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <label class="control-label lbl-left">{{lblOrgGrpId}}</label> 
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Location</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8 control-label lbl-left">
+                                        <span>{{lblLocGrpId}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Org ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="ddlAssignLocationOrgIdLst" [(ngModel)]="ddlSelectedAsgnLocOrgId" [id]="'ddlErp'" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlAssignLocationOrgIdChanged($event)"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Location</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="txtLocation" [name]="txtLoc" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Status'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Display</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="ddlDisplaySelectAllLst" [(ngModel)]="ddlDisplaySelectValue" [id]="'ddlDisplay'" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlDisplayChanged($event)"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <button class="btn btn-purple sbtn" (click)="btnAssignLocationGo()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="col-xs-12 table-responsive" *ngIf="table">
+                            <div class="container">
+                                <atpar-datatable [value]="assignLocationLst" (filteredData)="filterAssignLocData($event)" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column header="Select" field="CHK_VALUE" [style]="{'width':'7%','text-align':'center'}">
+                                        <template pTemplate="filter" let-col>
+                                            <ul class="list-inline">
+                                                <li>
+                                                    <span (click)="selectAllAssignLocLst()" style="cursor:pointer">All</span>
+                                                </li> |
+                                                <li>
+                                                    <span (click)="unSelectAllAssignLocLst()" style="cursor:pointer">None</span>
+                                                </li>
+                                            </ul>
+                                        </template>
+                                        <template let-col let-ven="rowData" pTemplate type="body">
+                                            <atpar-switch [checked]="ven[col.field]==1" (change)="assignLocChkboxChanged(ven,$event)" [disabled]="selectedRowReplenishment.ID == ven.LOCATION"></atpar-switch>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="BUSINESS_UNIT" header="Org ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="LOCATION" header="Location" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="LOCATION_DESCR" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                </atpar-datatable>
+                            </div>
+                            <br>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                            <button class="btn btn-purple sbtn" (click)="btnAssignLocs_Click()" *ngIf="table">Assign &nbsp; <i class="fa fa-check"></i></button>
+                            <button class="btn btn-purple sbtn" (click)="close()" *ngIf="form"><i class="fa fa-arrow-left"></i> &nbsp; Go Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-section implementation">
+            <atpar-confirmdialog header="Confirmation" icon="fa fa-question-circle" width="425"></atpar-confirmdialog>
+        </div>
+    </div>
+    <atpar-growl [value]="statusMsgs" sticky="sticky"></atpar-growl>
+</div>

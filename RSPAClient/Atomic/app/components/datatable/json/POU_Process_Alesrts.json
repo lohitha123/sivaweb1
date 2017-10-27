@@ -1,0 +1,12 @@
+ [
+      {
+        "ORG_GROUP_ID": "NOI",
+        "SCHEDULE_ID": "shedule1",
+        "DESCRIPTION": "shedule1"
+      },
+      {
+        "ORG_GROUP_ID": "NOI",
+        "SCHEDULE_ID": "shedule2",
+        "DESCRIPTION": "shedule2"
+      }
+    ]

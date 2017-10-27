@@ -1,0 +1,18 @@
+[
+      {
+        "SETCNTRLVALUE": "STKRM",
+        "LOCATION": "stkrm",
+        "TYPE": "P",
+        "LOCATION_NAME": "kmjik",
+        "STATUS": "Active",
+        "STATUS_ACTION": "InActivate"
+      },
+      {
+        "SETCNTRLVALUE": "STKRM",
+        "LOCATION": "testloc1",
+        "TYPE": "P",
+        "LOCATION_NAME": "Test Location One",
+        "STATUS": "Active",
+        "STATUS_ACTION": "InActivate"
+      }
+]

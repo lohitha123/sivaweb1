@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<project name="Atpar.Data.Mapping" default="build" basedir="." xmlns="http://nant.sf.net/schemas/nant-0.85.win32.net-1.0.xsd">
+	<description>Build File for Atpar.Data.Mapping</description>
+	<property name="basename" value="Atpar.Data.Mapping"/>
+	<property name="asminfo.file.name" value="${basename}.dll" />
+	<property name="asminfo.file.descr" value="Atpar Data Mapping" />
+	
+	<include buildfile="..\..\..\Headers\nantincludes.include" />
+	
+	<target name="copyreqdbins" description="copy required binaries">
+	 <copy file="../../$binout$/AtPar.POCOEntities.dll" tofile="AtPar.POCOEntities.dll"/>	
+	   <copy file="../../packages/EntityFramework.6.1.3/lib/net45/EntityFramework.dll" tofile="EntityFramework.dll"/>
+	   <copy file="../../packages/EntityFramework.6.1.3/lib/net45/EntityFramework.SqlServer.dll" tofile="EntityFramework.SqlServer.dll"/>	
+	   <copy file="../../packages\System.Data.Entity.Repository.2.0.0.1\lib\net45\System.Data.Entity.Repository.dll" tofile="System.Data.Entity.Repository.dll"/>
+	   
+	</target>
+	
+	
+	
+	<target name="deletereqdbins" description="delete required binaries">		
+		<delete file="EntityFramework.dll" />
+		<delete file="EntityFramework.SqlServer.dll" />
+		<delete file="AtPar.POCOEntities.dll" />
+		<delete file="System.Data.Entity.Repository.dll" />
+
+    </target>
+  
+	<target name="deploybin" description="deploy files to bin">
+		<copy todir="../../${Bin.OutputFolder}">
+		  <fileset basedir="${Bin.OutputFolder}">
+			<include name="${basename}.dll" />
+			<include name="${basename}.pdb" if="${debug == 'true'}"/>
+		  </fileset>
+		</copy>	
+		<copy todir="../${Bin.OutputFolder}">
+		  <fileset basedir=".">
+			<include name="*.dll" />
+		  </fileset>
+ 	    </copy>	
+				
+	</target>
+	
+	<target name="build" description="compiles the source code">
+		<call target="createoutfolder"/>	
+		<call target="copyreqdbins"/>			
+		<call target="CreateAssemblyInfoCS"/>
+		
+		<csc target="library" output="${Bin.OutputFolder}\${basename}.dll" debug="${debug}" 							  							  
+							  doc="${Xml.Bin.OutputFolder}\${basename}.xml">
+							  
+							  <sources>
+								<include name="*.cs" />                             
+							  </sources>
+							  
+							  <references>
+								<include asis="true" name="System.dll"/>
+								<include asis="true" name="System.Core.dll"/>
+								<include asis="true" name="System.Data.dll"/>
+								<include asis="true" name="System.Data.DataSetExtensions.dll"/>
+								<include asis="true" name="System.Net.Http.dll"/>
+								<include asis="true" name="System.Xml.dll"/>
+								<include asis="true" name="System.Xml.Linq.dll"/>	
+								<include asis="true" name="System.Data.Entity.Repository.dll"/>	
+
+								
+								<include asis="true" name="System.ComponentModel.DataAnnotations.dll"/>
+								<include asis="true" name="AtPar.POCOEntities.dll" />
+								<include asis="true" name="EntityFramework.dll" />
+								<include asis="true" name="EntityFramework.SqlServer.dll" />
+							  </references>
+		</csc>
+		
+		<call target="deploybin" />
+		<call target="deletereqdbins" />
+		<call target="clean" />
+	</target>
+</project>				  

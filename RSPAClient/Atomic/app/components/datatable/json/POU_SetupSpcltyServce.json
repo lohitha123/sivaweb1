@@ -1,0 +1,30 @@
+[
+      {        
+        "SCODE": "spec1",
+        "DESCRIPTION": "spec1",
+        "UPDATE_USER_ID": "SUPPORT",
+        "STATUS": "false"
+        
+      },
+      {       
+        "SCODE": "spec2",
+        "DESCRIPTION": "spec2",
+        "UPDATE_USER_ID": "SUPPORT",
+        "STATUS": "false"
+        
+      },
+      {      
+        "SCODE": "spec3",
+        "DESCRIPTION": "spec3",
+        "UPDATE_USER_ID": "SUPPORT",
+        "STATUS": "false"
+        
+      },
+      {        
+        "SCODE": "spec4",
+        "DESCRIPTION": "spec4",
+        "UPDATE_USER_ID": "SUPPORT",
+        "STATUS": "false"
+        
+      }
+]

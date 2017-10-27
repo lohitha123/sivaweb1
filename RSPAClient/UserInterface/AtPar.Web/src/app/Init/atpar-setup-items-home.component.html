@@ -1,0 +1,221 @@
+﻿<style>
+    #setup-val:hover {
+        color: #8a48bc !important;
+        cursor: pointer !important;
+    }
+
+    #no-mb .input-group .mb-10 {
+        margin-bottom: 0 !important;
+    }
+</style>
+<div id="main" class="content-page">
+    <div class="content">
+        <input type="hidden" name="hdnSubItems" value="hdnSubItems" [(ngModel)]="hdnSubItems">
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:10px 0px 10px 0;">
+                        <button class="btn btn-purple sbtn pull-right" (click)="addSetupItem()" style="margin-right:10px!important;"> Add Items &nbsp;<i class="fa fa-plus"></i></button>
+                        <br>
+                        <div class="form-horizontal form-label-left">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Item ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [id]="'txtItemId'" [(ngModel)]="selectedItemId" [ngModelOptions]="{standalone: true}" [name]="'txtItemId'"></atpar-text>
+                                        <!--<input type="text" name="" [(ngModel)]="selectedItemId" id="input" class="form-control bdr-purple" value="" required="required" pattern="" title="">-->
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Description</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="selectedDescription" [id]="'txtShortDesc'" [name]="'txtShortDesc'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        <!--<input type="text" name="" [(ngModel)]="selectedDescription" id="input" class="form-control bdr-purple" value="" required="required" pattern="" title="">-->
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Vendor</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstVendordata" [(ngModel)]="selectedVendor" [id]="'ddlvendors'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Manufacturer</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="selectedManufacturer" [id]="'txtManufacturer'" [name]="'txtManufacturer'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        <!--<input type="text" name="" [(ngModel)]="selectedManufacturer" id="input" class="form-control bdr-purple" value="" required="required" pattern="" title="">-->
+                                    </div>
+                                </div>
+                                <!--<div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-5">
+                                        <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">UPIC ID</label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <input type="text" name="" id="input" [(ngModel)]="selectedUpicId" class="form-control bdr-purple" value="" required="required" pattern="" title="">
+                                    </div>
+                                </div>-->
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Item Price Between</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8" id="no-mb">
+                                        <div class="input-group">
+                                            <atpar-text [(ngModel)]="selectedFromItemPrice" [id]="'txtFromItemPrice'" [name]="'txtFromItemPrice'" [ngModelOptions]="{standalone: true}" [validations]="'numeric_dot'"></atpar-text>
+                                            <!--<input type="text" class="form-control bdr-purple" [(ngModel)]="selectedFromItemPrice" placeholder="" />-->
+                                            <span class="input-group-addon" style="border-left: 0; border-right: 0;">and</span>
+                                            <atpar-text [(ngModel)]="selectedToItemPrice" [id]="'txtToItemPrice'" [name]="'txtToItemPrice'" [ngModelOptions]="{standalone: true}" [validations]="'numeric_dot'"></atpar-text>
+                                            <!--<input type="text" class="form-control bdr-purple" [(ngModel)]="selectedToItemPrice" placeholder="" />-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6"> Substitute </label>
+                                    <div class="col-xs-6 col-sm-6 col-md-8">
+                                        <atpar-switch [(ngModel)]="selectedSubItems"></atpar-switch>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5 ">
+                                    <button class="btn btn-purple sbtn" (click)="BindGrid()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </div>                        
+                        <div class="col-xs-12" *ngIf="gridShowHide">
+
+                            <div class="container">
+                                <atpar-datatable #dt [value]="lstSetupItemsData" [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPage" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+
+
+                                    <p-column [style]="{'text-align':'center','width':'4%'}" header="Action">
+                                        <template let-ven="rowData" pTemplate type="body">
+                                            <i class="fa fa-pencil fa-bg bg-red" title="Edit" (click)="UpdateSetupItem(ven)" style="cursor:pointer;"></i>
+                                        </template>
+                                    </p-column>
+
+
+
+                                    <p-column field="ORG_GROUP_ID" header="Org Group ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'10%'}"> </p-column>
+                                    <p-column field="ITEM_ID" header="Item ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'16%'}">
+                                        <!--<template let-item="rowData" pTemplate type="body">
+                                           <span (click)="UpdateSetupItem(item)" id="setup-val">{{item.ITEM_ID}}</span>
+                                        </template>-->
+
+                                    </p-column>
+                                    <p-column header="Description" field="SHORT_DESCR" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'24%'}"></p-column>
+                                    <p-column header="Vendor" field="VENDOR_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'8%'}"></p-column>
+                                    <p-column header="Manufacturer" field="MANUFACTURER" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'9%'}"></p-column>
+                                    <p-column header="UPC ID" field="UPC_CODE" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'8%'}"></p-column>
+                                    <p-column field="PACKAGING_STRING" header="Packaging String" [sortable]="true" filterPlaceholder="Search" [style]="{'width':'10%'}"></p-column>
+                                    <p-column header="Procurement Price ($)" field="ITEM_PRICE" [sortable]="true" filterPlaceholder="Search" [style]="{'width':'8%'}"></p-column>
+                                    <p-column header="Current Status" field="STATUS" [style]="{'width':'9%'}">
+                                        <template pTemplate="filter" let-col>
+                                            <atpar-select-grid [options]="currentStatusList" [id]="'ddlcurrentstatus'" [style]="{'width':'100%'}" (onChange)="dt.filter(($event.value),col.field,col.filterMatchMode)"></atpar-select-grid>
+                                        </template>
+                                    </p-column>
+                                    <p-column header="Status" field="STATUS_ACTIVE_INACTIVE" [filter]="true" [style]="{'width': '8%','overflow':'visible','text-align':'center'}" filterMatchMode="equals">
+                                        <template pTemplate="filter" let-col>
+                                            <atpar-select-grid [options]="statusList" [id]="'ddlstatus'" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"></atpar-select-grid>
+
+                                       </template>
+                                        <template let-col let-ven="rowData" pTemplate="body">
+                                            <atpar-switch [checked]="ven[col.field]" (change)="updateItemStatus(ven.ITEM_ID,$event)"></atpar-switch>
+                                        </template>
+                                    </p-column>
+
+                                    <!--<p-column header="Account Status" field="ACCOUNT_STATUS" [filter]="true" [style]="{'width': '9%','overflow':'visible','text-align':'center'}" filterMatchMode="equals">
+                                        <template pTemplate="filter" let-col>
+                                            <atpar-select [options]="ddlStatusType" [style]="{'width':'100%'}" [id]="'ddlStatusType'" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"></atpar-select>
+                                        </template>
+                                    </p-column>-->
+                                    <p-column header="Add Substitute Item" field="SUBSTITUTE_ITEM_FLG" [style]="{'width':'6%','text-align':'center'}">
+                                        <template let-col let-ven="rowData" pTemplate type="body">
+                                            <button class="btn btn-purple sbtn fa-bg bg-blue" type="button" *ngIf="ven.SUB_ITEM_FLG_STATUS" [disabled]="ven.isEnabled" (click)="addSubstituteItem(ven)" style="cursor:pointer;"><i class="fa fa-plus"></i></button>
+</template>
+                                    </p-column>
+                                </atpar-datatable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-growl [value]="msgs" sticky="sticky"></atpar-growl>
+<script type="text/javascript">
+    var sess_pollInterval = 60000;
+    var sess_expirationMinutes = 2;
+    var sess_warningMinutes = 1;
+    var sess_intervalID;
+    var sess_lastActivity;
+
+    function initSession() {
+        sess_lastActivity = new Date();
+        sessSetInterval();
+        $(document).bind('keypress.session', function (ed, e) {
+            sessKeyPressed(ed, e);
+        });
+    }
+
+    function sessSetInterval() {
+        sess_intervalID = setInterval('sessInterval()', sess_pollInterval);
+    }
+
+    function sessClearInterval() {
+        clearInterval(sess_intervalID);
+    }
+
+    function sessKeyPressed(ed, e) {
+        sess_lastActivity = new Date();
+    }
+
+    function sessLogOut() {
+        window.location.href = '/Home/LogOut';
+    }
+
+    function sessInterval() {
+        var now = new Date();
+        //get milliseconds of differneces
+        var diff = now - sess_lastActivity;
+        //get minutes between differences
+        var diffMins = (diff / 1000 / 60);
+
+        if (diffMins > 20) {
+            sessLogOut();
+        } else {
+            if (diffMins >= sess_warningMinutes) {
+                //wran before expiring
+                //stop the timer//this is main code
+                sessClearInterval();
+                //promt for attention
+                var active = confirm('Your session will expire in ' + (sess_expirationMinutes - sess_warningMinutes) +
+                    ' minutes (as of ' + now.toTimeString() + '), press OK to remain logged in ' +
+                    'or press Cancel to log off. \nIf you are logged off any changes will be lost.');
+                if (active == true) {
+                    now = new Date();
+                    diff = now - sess_lastActivity;
+                    diffMins = (diff / 1000 / 60);
+                    if (diffMins > sess_expirationMinutes) {
+                        sessLogOut();
+                    } else {
+                        initSession();
+                        sessSetInterval();
+                        sess_lastActivity = new Date();
+                    }
+                } else {
+                    sessLogOut();
+                }
+            }
+        }
+
+    }
+</script>
+<script>
+    
+    $(document).click(function (e) {
+        
+        initSession();
+        sessSetInterval();
+        sess_lastActivity = new Date();
+    });
+</script>

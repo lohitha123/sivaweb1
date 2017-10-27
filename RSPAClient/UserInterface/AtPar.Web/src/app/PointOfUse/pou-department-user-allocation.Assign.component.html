@@ -1,0 +1,117 @@
+﻿<style>
+    .page_Name {
+        color: #6c276a !important;
+        font-size: 11px;
+        height: 20px;
+        line-height: 20px;
+        font-family: Verdana, Geneva, sans-serif;
+        margin-bottom: 10px;
+    }
+</style>
+
+<div id="main" class="content-page">
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:10px 0 0 0;">
+                        <div class="col-md-12 col-xs-12 col-sm-12">
+                            <div class="container">
+                                <span class="page_Name text-primary"> {{pageName}}</span>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="col-xs-12 table-responsive" *ngIf="showHideGrid">
+                            <div class="container">
+                                <atpar-datatable [value]="lstDBData" [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                    <p-headerColumnGroup type="header">
+                                        <p-row>
+                                            <p-column header="Action" rowspan="3" [style]="{'width':'6%'}">
+                                            </p-column>
+                                            <p-column field="USER_ID" header="User ID" rowspan="3" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'20%'}">
+                                            </p-column>
+                                            <p-column field="USER_FULLNAME" header="User Name" [sortable]="true" [filter]="true" filterPlaceholder="Search" rowspan="3" [style]="{'width':'30%'}">
+                                            </p-column>
+                                            <!--<p-column colspan="2" header="Home Department"[style]="{'width':'20%'}">
+                                            </p-column>-->
+                                            <p-column header="Home Department" field="CURRENT_HOME_DEPT" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'14%'}">
+                                            </p-column>
+                                        </p-row>
+                                        <!--<p-row>
+                                            <p-column header="Current" field="CURRENT_HOME_DEPT" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'14%'}">
+                                            </p-column>
+                                            <p-column header="Assign" [style]="{'width':'4%'}">
+                                            </p-column>
+                                        </p-row>-->
+
+                                    </p-headerColumnGroup>
+
+                                    <p-column [style]="{'width':'8%','text-align':'center'}">
+                                        <template let-ven="rowData" pTemplate type="body">
+                                            <i class="fa fa-pencil fa-bg bg-blue" title="Edit" style="cursor:pointer" (click)="editUserAllocation(ven)"></i>&nbsp;
+                                            <i class="fa fa-trash fa-bg bg-red" title="Delete" style="cursor:pointer" (click)="DeallocateUserToDepartment(ven)"></i>
+                                        </template>
+                                    </p-column>
+
+                                    <p-column field="USER_ID">
+
+                                    </p-column>
+                                    <p-column field="USER_FULLNAME">
+
+                                    </p-column>
+                                    <p-column field="CURRENT_HOME_DEPT">
+
+                                    </p-column>
+                                    <!--<p-column>
+                                        <template let-ven="rowData" pTemplate type="body">
+                                            <atpar-switch class="input-group" [(ngModel)]="ven.checkvalue" [disabled]="ven.disabled" style="display:flex;justify-content:center;"></atpar-switch>
+                                        </template>
+                                    </p-column>-->
+                                </atpar-datatable>
+                            </div>
+                            <br />
+                            
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-5" *ngIf="showHideForGoback">
+                            <button class="btn btn-purple small" (click)="navigateToPOUUserAllocationHome()"><i class="fa fa-arrow-left"> &nbsp;</i>Go Back</button>
+                            <button class="btn btn-purple small" (click)="addUserAllocation()"> Add &nbsp;<i class="fa fa-plus"></i> </button>
+                        </div>
+                        <form class="form-horizontal form-label-left" *ngIf="addUserAlloc">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-4 col-sm-5 col-xs-12">User ID</label>
+                                    <div class="col-md-4 col-sm-5 col-xs-12">
+                                        <label *ngIf="blnShowUserIdLabel" class="control-label lbl-left">{{UserId}}</label>
+                                        <atpar-select [options]="lstUsers" [id]="'ddllstusers'" [required]="true" [(ngModel)]="selectedUserID" [ngModelOptions]="{standalone: true}" filter="filter" *ngIf="blnShowUserIdDD" [isfocus]="blnShowUserIdDD"></atpar-select>
+                                    </div>
+                                    <!--<div class="col-xs-12 col-sm-6 col-md-6">
+                                        please enter the User ID
+                                    </div>-->
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-4 col-sm-5 col-xs-12">Home Department</label>
+                                    <div class="col-md-4 col-sm-5 col-xs-12">
+                                        <atpar-switch class="input-group" [(ngModel)]="blnHomeDept" [ngModelOptions]="{standalone: true}"></atpar-switch>
+                                    </div>
+                                    <!--<div class="col-xs-12 col-sm-6 col-md-6">
+                                        please select 
+                                    </div>-->
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="SaveUserAllocation()"> save &nbsp; <i class="fa fa-floppy-o"></i></button>
+                                    <button class="btn btn-purple sbtn" (click)="close()">Close &nbsp; <i class="fa fa-times"></i> </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="content-section implementation">
+                    <atpar-confirmdialog header="Confirmation" icon="fa fa-question-circle" width="425"></atpar-confirmdialog>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

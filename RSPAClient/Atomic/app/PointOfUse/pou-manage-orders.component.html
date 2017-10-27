@@ -1,0 +1,143 @@
+﻿<div id="main" class="content-page">
+    <div class="page-header-title">
+        <h4 class="page-title"><a (click)="homeurl()">Administration ></a>Manage Orders</h4>
+    </div>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:20px;">
+                        <form class="form-horizontal form-label-left">
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4"> Company </label>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-text [(ngModel)]="newItem.Company" [name]="txtCompany" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Company'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Par Location</label>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-text [(ngModel)]="newItem.ParLocatio" [name]="txtParLocatio" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'ParLocatio'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Requisition No.</label>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-text [(ngModel)]="newItem.ParLocati" [name]="txtParLocati" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'ParLocati'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div style="clear:both;"></div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4"> Department</label>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-text [(ngModel)]="newItem.ParLocat" [name]="txtParLocat" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'ParLocat'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Vendor</label>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-text [(ngModel)]="newItem.ParLoca" [name]="txtParLoca" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'ParLoca'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Item ID</label>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-text [(ngModel)]="newItem.ParLoc" [name]="txtParLoc" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'ParLoc'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div style="clear:both;"></div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Status</label>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlProfiles'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">From Date</label>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <p-calendar [showIcon]="true" [id]="'FromDatePicker'" [(ngModel)]="date1" [placeholder]="'From Date'" [minDate]="minDateValue1" [readonlyInput]="true" (onSelect)="selectDate1($event)" (onFocus)="onfocusFromCalendar($event)" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">To Date</label>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <p-calendar [showIcon]="true" [id]="'ToDatePicker'" [(ngModel)]="date2" [placeholder]="'To Date'" [minDate]="minDateValue2" [readonlyInput]="true" (onSelect)="selectDate2($event)" (onFocus)="onfocusToCalendar($event)" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                </div>
+                            </div>
+                            <div style="clear:both;"></div>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="go()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                            </div>
+                        </form>
+                        <div style="clear:both;"></div>                        
+                        <div class="table table-responsive" *ngIf="pop">
+                            <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                <p-column expander="true" styleClass="col-icon"></p-column>
+                                <p-column header="Order ID" field="ORDER_NO" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Vendor" field="VENDOR_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Order Date" field="ORDER_DATE" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Company" field="" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Par Location" field="PAR_LOC_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Department" field="DEPARTMENT_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Select">
+                                    <template pTemplate="filter" let-col>
+                                        <ul class="list-inline">
+                                            <li>
+                                                <a href="">All</a>
+                                            </li> |
+                                            <li>
+                                                <a href="">None</a>
+                                            </li>
+                                        </ul>
+                                    </template>
+                                    <template let-col let-ven="rowData" pTemplate type="body">
+                                        <atpar-switch></atpar-switch>
+                                    </template>
+                                </p-column>
+                                <template let-employee pTemplate="rowexpansion">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Item ID</th>
+                                                <th class="text-center">Description</th>
+                                                <th class="text-center">UOM</th>
+                                                <th class="text-center">Price($)</th>
+                                                <th class="text-center">Requisition No.</th>
+                                                <th class="text-center">Order Qty</th>
+                                                <th class="text-center">Rcvd Qty</th>
+                                                <th class="text-center"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>000000000000030001</td>
+                                                <td>Glove Exam</td>
+                                                <td>HUN</td>
+                                                <td>8.75</td>
+                                                <td></td>
+                                                <td>
+                                                    <atpar-text [(ngModel)]="newItem.ParLoc01" [name]="txtParLoc01" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'ParLoc01'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                                </td>
+                                                <td>
+                                                    <atpar-text [(ngModel)]="newItem.ParLoc02" [name]="txtParLoc02" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'ParLoc02'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                                </td>
+                                                <td>
+                                                    <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlProfils'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </template>
+                            </atpar-datatable>
+                            <br>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="go()">Submit &nbsp; <i class="fa fa-check"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

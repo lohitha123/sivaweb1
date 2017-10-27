@@ -1,0 +1,20 @@
+[
+      {
+        "DROP_OFF_LOCATION_ID": "loc1",
+        "ORG_GROUP_ID": "NOI",
+        "LOCATION_DESC": "loc desc",
+        "STATUS": "true"
+      },
+      {
+        "DROP_OFF_LOCATION_ID": "loc2",
+        "ORG_GROUP_ID": "NOI",
+        "LOCATION_DESC": "loc2 dec",
+        "STATUS": "true"
+      },
+      {
+        "DROP_OFF_LOCATION_ID": "loc3",
+        "ORG_GROUP_ID": "NOI",
+        "LOCATION_DESC": "loc3 dec",
+        "STATUS": "true"
+      }
+]

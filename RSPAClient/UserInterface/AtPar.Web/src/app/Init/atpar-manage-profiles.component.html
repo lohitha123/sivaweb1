@@ -1,0 +1,634 @@
+﻿<style>
+    #mseover:hover {
+        color: #6c276a !important;
+        cursor: pointer !important;
+    }
+
+    .box-thumb {
+        min-height: 85px !important;
+        height: auto;
+    }
+
+    .label-right {
+        float: right;
+    }
+
+    table tbody tr td .mb-10 {
+        margin-bottom: 0 !important;
+    }
+/*.large-lable #label-custom {
+    width: 160px!important; 
+}*/
+    .er-label {
+        position: static !important;
+    }
+
+</style>
+
+
+<div id="main" class="content-page">
+    <div class="content">
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border">
+                <br>
+                <div class="">
+                    <div class="panel panel-default" style="border:1px solid #eee;" *ngIf="MOG">
+                        <div class="panel-body" style="padding:0px;">
+                            <div class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label for="" class="col-xs-12 col-md-2 control-label">Profile ID</label>
+                                    <div class="col-xs-12 col-md-3">
+                                        <atpar-select [options]="dropdownData" [id]="'ddldropdownData'" [filter]="true" [(ngModel)]="selectedOrgProfileId" [required]="true" (onChange)="ddlProfileChnage()"></atpar-select>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4 hidden-xs">
+                                        <button type="submit" class="btn btn-purple sbtn " (click)="go_Click()" id="go">Go &nbsp;<i class="fa fa-arrow-right"></i></button>
+                                        <button type="submit" class="btn btn-purple sbtn " (click)="create_Click($event)" id="create">Create  &nbsp;<i class="fa fa-plus"></i></button>
+                                    </div>
+                                    <div class="col-xs-12 hidden-sm hidden-md hidden-lg" style="margin-top:10px">
+                                        <button class="btn btn-purple sbtn col-xs-5" (click)="go_Click()" style="margin-right:4px;">Go &nbsp;<i class="fa fa-arrow-right"></i></button>
+                                        <button class="btn btn-purple sbtn col-xs-5" (click)="create_Click()">Create  &nbsp;<i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default" style="border:none!important;box-shadow:none!important;padding:0!important;" *ngIf="content">
+                        <div class="panel-body" style="padding:0px;">
+                            <div class="container" style="border:1px solid #eee;box-shadow:4px 4px 4px #c5c5c5!important;" *ngIf="MOG">
+                                <div class="col-xs-12 form-horizontal form-label-left">
+                                    <div class="col-xs-12 col-sm-6 col-md-5 form-group" *ngIf="desc">
+                                        <label for="" class="col-xs-12 col-md-4 col-sm-6 control-label"> Profile ID</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                            <atpar-text [(ngModel)]="paramProfileId" [id]="'txtParamProfileId'" [validations]="'mandatory,alpha_numeric_underscore_hyphen_nospace,max=30'" (bindModelDataChange)="bindModelDataChange($event)" [name]="txtParamProfileId" [title]="'Allows alphabets, numbers, underscore and hyphen'" [isFocused]="'true'"></atpar-text>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6 col-md-5 form-group">
+                                        <label for="" class="col-xs-12 col-md-4 col-sm-6 control-label"> Profile Description</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                            
+                                            <atpar-text [(ngModel)]="paraDescription" [id]="'txtParaDescription'" [validations]="'mandatory,alpha_numeric_underscore_hyphen_withspace,max=30'" (bindModelDataChange)="bindModelDataChange($event)" [name]="txtParaDescription" [title]="'Allows alphabets, numbers, underscore and hyphen'"></atpar-text>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div class="clear"></div>
+                                    <div class="page-content row">
+                                        <div class="well well-sm container">
+                                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                                <h4 class="text-center">Manage Profiles</h4>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                                <h3 class="text-center"></h3>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-3 m-t-13">
+                                                Web
+                                                <span (click)="webchkAll()" style="cursor:pointer;" id="mseover">All </span>&nbsp;|&nbsp;<span (click)="webchkNone()" style="cursor:pointer;" id="mseover"> None</span>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-3 m-t-13">
+                                                HHT
+                                                <span (click)="hhtchkall()" style="cursor:pointer;" id="mseover">All </span>&nbsp;|&nbsp;<span (click)="hhtchkNone()" style="cursor:pointer;" id="mseover"> None</span>
+
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                        <div *ngFor="let item1 of BindGrid">
+                                            <div class="">
+                                                <!--*ngFor="let item1 of item"-->
+                                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                                    <div class="col-md-12 col-xs-12 col-sm-12">
+                                                        <div class="panel panel-default no-radius textarea-pdng">
+                                                            <div class="panel-heading box-class">
+                                                                <div class="from-group">
+                                                                    <div *ngIf='false'>
+                                                                        {{item1.APP_ID}}
+                                                                    </div>
+                                                                    <h4><img [src]="appicon" alt=""> {{item1.APP_NAME}}</h4>
+                                                                    <div *ngIf='false'>
+                                                                        {{item1.SERVER_USER}}
+                                                                    </div>
+                                                                    <div *ngIf='false'>
+                                                                        {{item1.CLIENT_USER}}
+                                                                    </div>
+                                                                    <ul>
+                                                                        <div class="container">
+                                                                            <div class="col-xs-6">
+                                                                                <div class="col-xs-6" style="color:#333!important;margin-top:2px;">
+                                                                                    Web
+                                                                                </div>
+                                                                                <div class="col-xs-6">
+                                                                                    <input  type="checkbox" [checked]="item1.FLAG" [(ngModel)]="item1.FLAG" (click)="checkeddata(item1,$event)" [disabled]="item1.AtparHide" />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xs-6" *ngIf="item1.hhthide">
+                                                                                <div class="col-xs-6" style="color:#333!important;margin-top:2px;">
+                                                                                    HHT
+                                                                                </div>
+                                                                                <div class="col-xs-6">
+                                                                                    <input type="checkbox" [checked]="item1.ClientFLAG" [(ngModel)]="item1.ClientFLAG" (click)="checkedhhtdata(item1,$event)">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </ul>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="panel-body box-body box-thumb">
+                                                                <ul class="list-unstyled">
+                                                                    <li *ngIf="item1.paramDspHide" id="myElement">
+
+                                                                        <a href="{{item1.APP_ID}}" (click)="clicked(item1,$event)" id="paramDisplay" *ngIf="item1.displayparam"> <i class="fa fa-angle-right"></i>&nbsp;Parameters</a>
+
+                                                                        <a id="paramDisplay" *ngIf="!item1.displayparam" style="pointer-events:none;cursor:default;color:black!important;"> <i class="fa fa-angle-right"></i>&nbsp;Parameters</a>
+                                                                    </li>
+                                                                    <li *ngIf="item1.menuhide">
+                                                                        <a href="{{item1.APP_ID}}" (click)="clicked(item1,$event)" id="menuDisplay" *ngIf="item1.displaymenu"> <i class="fa fa-angle-right"></i>&nbsp;Menu Access</a>
+
+                                                                        <a id="menuDisplay" *ngIf="!item1.displaymenu" style="pointer-events:none;cursor:default;color:black!important;"> <i class="fa fa-angle-right"></i>&nbsp;Menu Access</a>
+
+                                                                    </li>
+                                                                    <li *ngIf="item1.paramDspHide">
+                                                                        <a href="{{item1.APP_ID}}" (click)="clicked(item1,$event)" *ngIf="item1.displayscreen" id="screenDisplay"> <i class="fa fa-angle-right"></i>&nbsp;Screen Display</a>
+
+                                                                        <!--<a href="{{item1.APP_ID}}" (click)="clicked(item1,$event)" *ngIf="!item1.displayscreen" id="screenDisplay" style="pointer-events:none;cursor:default;color:black!important;"> <i class="fa fa-angle-right"></i>&nbsp;Screen Display</a>-->
+                                                                        <a *ngIf="!item1.displayscreen" id="screenDisplay" style="pointer-events:none;cursor:default;color:black!important;"> <i class="fa fa-angle-right"></i>&nbsp;Screen Display</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div style="display:none;">
+                                                                {{item1.SERVER_USER}}
+                                                            </div>
+                                                            <div style="display:none;">
+                                                                {{item1.CLIENT_USER}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-md-2 col-md-offset-5 col-sm-6 col-sm-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="confirm()" [disabled]="saveloading">Save &nbsp;<i class="fa fa-floppy-o"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <div class="" style="border:1px solid #eee; box-shadow:4px 4px 4px #c5c5c5!important;" *ngIf="paramDisplay">
+                        <!--<div class="panel-heading" style="background:transparent;">
+                            <h4 class="page-title btn-link pull-left">Profile Parameters</h4>
+                        </div>-->
+                        <div style="text-align:center;">
+                            <!--<label style="color:black;">{{statusMsg}}</label>-->
+                        </div>
+                        <div class="panel-body" style="padding:10px 0 0 0;">
+                            <div class="col-xs-12 table-responsive">
+                                <table class="table table-bordered grid-pd-b">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" style="width:25%!important;">Parameter</th>
+                                            <th class="text-center" style="width:18%!important;">Value</th>
+                                            <th class="text-center">Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data of totallstParamItems">
+                                            <!--<td>{{data.VALIDATION}}</td> style="display:none;"-->
+                                            <td>{{data.SHORT_DESCR}}</td>
+                                            <td *ngIf='false'>{{data.PARAMETER_ID}}</td>
+                                            <td *ngIf='false'>{{data.PARAMETER_TYPE}}</td>
+                                            <td *ngIf='false'>{{data.PARAMETER_VALUE}}</td>
+                                            <td *ngIf='false'>{{data.VALIDATION}}</td>
+                                            <td *ngIf='false'>{{data.MULTIPLE_VALUES}}</td>
+                                            <td *ngIf='false'>{{data.REQUIRED_FLAG}}</td>
+                                            <td *ngIf='false'>{{data.MAX_VALUE}}</td>
+                                            <td>
+                                                <div [ngSwitch]="data.PARAMETER_TYPE">
+                                                    <div *ngSwitchCase="'TEXT'">
+                                                        <div>
+                                                            <div>
+                                                                <atpar-text-grid [(ngModel)]="data.PARAMETER_VALUE" [name]="textParamValue"
+                                                                            (bindModelDataChange)="bindModelDataChange($event)"
+                                                                            [validations]="data.VALIDATION" [id]="data.Id"></atpar-text-grid>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngSwitchCase="'TEXTBOX'">
+                                                        <div>
+
+                                                            <div>
+
+                                                                <atpar-text-grid [(ngModel)]="data.PARAMETER_VALUE" [name]="txtParamValue"
+                                                                                 (bindModelDataChange)="bindModelDataChange($event)"
+                                                                                 [validations]="data.VALIDATION" [id]="data.Id"></atpar-text-grid>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngSwitchCase="'CHECKBOX'">
+                                                        <div>
+
+                                                            <div>
+                                                                <atpar-switch [checked]="data.FLAG" [(ngModel)]="data.FLAG"></atpar-switch>
+
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngSwitchCase="'RADIO'" class="large-lable">
+                                                                <div *ngFor="let p of data.listrdo; let idx = index">
+                                                                    <atpar-large-radiobutton name={{data.PARAMETER_ID}}
+                                                                                       [(ngModel)]="data.PARAMETER_VALUE"
+                                                                                       value="{{p}}" label="{{p}}">
+                                                                    </atpar-large-radiobutton>
+
+                                                                </div>
+                                                    </div>
+
+
+                                                    <div *ngSwitchCase="'COMBOBOX'">
+                                                        <div>
+                                                            <div>
+                                                                <atpar-select [options]="dropdownparamData" [(ngModel)]="data.PARAMETER_VALUE" [id]="'ddldropdownparamData'" [ngModelOptions]="{standalone: true}" [autoWidth]="false"></atpar-select>
+
+
+                                                                <!--<atpar-select [options]="dropdownparamData" id="ddldropdownparamData" [(ngModel)]="data.PARAMETER_VALUE" [style]="{'width':'100%'}"></atpar-select>-->
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div *ngSwitchCase="'GRIDVIEW'">
+                                                        <div *ngIf="data.PARAMETER_ID == 'ALLOW_EDITING_CASE'">
+
+                                                            <table class="table table-bordered">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="text-center display-top"></th>
+                                                                        <th class="text-center display-top">Option</th>
+                                                                    </tr>
+                                                                </thead>
+
+                                                                <tbody>
+
+                                                                    <tr *ngFor="let paramData of  gridViewAllowEditingParamValues">
+
+                                                                        <td>
+                                                                            <div>
+                                                                                <atpar-switch id="paramData.PARAM_ID" [checked]="paramData.CHECKVALUE" [(ngModel)]="paramData.CHECKVALUE"></atpar-switch>
+                                                                            </div>
+
+                                                                        </td>
+                                                                        <td>
+                                                                            {{paramData.OPTION}}
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+
+                                                            </table>
+
+                                                        </div>
+
+                                                        <div *ngIf="data.PARAMETER_ID !='ALLOW_EDITING_CASE'">
+
+                                                            <table class="table table-bordered">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="text-center display-top"></th>
+                                                                        <th class="text-center display-top">Menu</th>
+                                                                        <th class="text-center display-top">Order</th>
+                                                                    </tr>
+                                                                </thead>
+
+                                                                <tbody>
+
+                                                                    <tr *ngFor="let parameterLst of gridViewParamValues">
+
+                                                                        <td>
+
+                                                                            <div>
+                                                                                <atpar-switch id="parameterLst.PARAM_ID" [checked]="parameterLst.CHECKVALUE" [(ngModel)]="parameterLst.CHECKVALUE"></atpar-switch>
+                                                                            </div>
+
+                                                                        </td>
+                                                                        <td>
+                                                                            {{parameterLst.MENU}}
+                                                                        </td>
+                                                                        <td>
+                                                                            <div>
+                                                                                <atpar-text [(ngModel)]="parameterLst.ORDER" [ngModelOptions]="{standalone: true}" [name]="parameterLst.PARAM_ID" [id]="parameterLst.PARAM_ID" (keyup)="onKey($event)"></atpar-text>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+
+                                                            </table>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="desc-text">
+
+                                                <span id="val1" [innerHTML]="data.LONG_DESCR"></span>
+                                                <!--<label *ngIf="strhide"> {{data.LONG_DESCR}}</label><br />
+
+                                                <label *ngIf="strhide1">
+                                                    {{data.LONG_DESCR1}}
+                                                </label>[disabled]="loading" style="display:{{parambtn}}"-->
+                                            </td>
+
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="Save_Click($event)" id="backparam" >Save &nbsp;<i class="fa fa-floppy-o"></i></button>
+                                    <button class="btn btn-purple sbtn" (click)="GobackData_Click()" id="cancelparam"> <i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default" style="border: 1px solid #eee;" *ngIf="menuDisplay">
+                        <div class="panel-body" style="padding:10px 0;">
+                            <div class="col-xs-12 table-responsive">
+                                <div class="container">
+                                    <atpar-datatable [value]="lstMenuItems" [style]="{'width':'100%'}" [rows]="recordsPerPageSize" [globalFilter]="gb" [rowsPerPageOptions]="[10,20, 30, 40, 50, 60, 70, 80, 90, 100]" (onRowSelect)="onRowSelect($event)" expandableRows="true" [paginator]="false" [pageLinks]="3" [responsive]="true">
+
+
+
+                                        <p-column header="Select" [filter]="true" [style]="{'width':'7%','text-align':'center'}">
+                                            <template pTemplate="filter" let-col>
+                                                <ul class="list-inline li-all-none">
+                                                    <li>
+                                                        <span (click)="menuchkAll()" style="cursor:pointer;">All </span>
+                                                    </li> |
+                                                    <li>
+                                                        <span (click)="menuchkNone()" style="cursor:pointer;"> None</span>
+                                                    </li>
+                                                </ul>
+                                            </template>
+                                            <template let-chk="rowData" pTemplate type="body">
+
+                                                <!--<input  type="checkbox" [checked]="chk.FLAG" id="chkvalue" (click)="checkedmenudata(chk,$event)" />-->
+                                                <!--<atpar-switch [checked]="chk.FLAG" id="chkvalue" (click)="checkedmenudata(chk,$event)"></atpar-switch>-->
+                                                <atpar-switch id="chkvalue" [checked]="chk.FLAG" [(ngModel)]="chk.FLAG" (click)="checkedmenudata(chk,$event)">{{chk.FLAG}}</atpar-switch>
+
+                                            </template>
+                                        </p-column>
+
+
+                                        <p-column header="Menu Name" field="MENU_NAME" [sortable]="true"></p-column>
+
+                                        <p-column header="Menu Sub Group" field="MENU_SUB_GROUP" [sortable]="true" [style]="{'width':'15%'}"></p-column>
+
+                                        <p-column [style]="{'width':'10%'}">
+
+                                            <template pTemplate type="header">
+                                                Menu Seq
+
+                                            </template>
+
+
+
+                                            <template let-data="rowData" pTemplate type="body">
+
+                                                <atpar-text-grid [(ngModel)]="data.MENU_SEQ_NO" [name]="txtMenuSeqNo"
+                                                                 (bindModelDataChange)="bindModelDataChange($event)"
+                                                                 [validations]="'mandatory,numeric'" [id]="data.Id" [title]="'Allows Numbers'"></atpar-text-grid>
+
+                                            </template>
+
+
+                                        </p-column>
+
+
+
+
+
+                                        <atpar-footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" atpar-button icon="fa-plus" style="float:left;display:none" (click)="showDialogToAdd()" label="Add"></button></div></atpar-footer>
+                                    </atpar-datatable>
+                                    <br />
+                                    <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                        <button class="btn btn-purple sbtn" (click)="Save_Click($event)" id="backmenu" [disabled]="menubtn"> Save &nbsp;<i class="fa fa-floppy-o"></i> </button>
+                                        <button class="btn btn-purple sbtn" (click)="GobackData_Click()" id="cancelmenu"> <i class="fa fa-arrow-left"></i> &nbsp;Go Back </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default" style="border: 1px solid #eee;" *ngIf="screenDisplay">
+                        <div class="panel-body" style="padding:0px;">
+                            <div class="form-horizontal form-label-left">
+                                <div class="col-xs-12 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Screen Name</label>
+                                    <div class="col-xs-12 col-md-3">
+                                        <atpar-select [options]="dropdowndisplayData" [id]="'ddldropdowndisplayData'" [(ngModel)]="selectedScreenDisplayId" (onChange)="drpchnage()" [required]="true"></atpar-select>
+                                    </div>
+                                    <div class="col-xs-12 col-md-3">
+                                        <button class="btn btn-purple sbtn" (click)="GobackData_Click()" id="cancelscreen"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 table-responsive" *ngIf="displaydataGrid">
+                                <div class="container">
+                                    <atpar-datatable [value]="totallstDisplayItems" [style]="{'width':'100%'}" [rows]="recordsPerPageSize" [globalFilter]="gb" [rowsPerPageOptions]="[10,20, 30, 40, 50, 60, 70, 80, 90, 100]" (onRowSelect)="onRowSelect($event)" expandableRows="true" [paginator]="false" [pageLinks]="3" [responsive]="true">
+
+
+
+                                        <p-column [style]="{'width':'5%','text-align':'center'}">
+
+                                            <template pTemplate type="header">
+                                                Display
+
+                                            </template>
+
+                                            <template let-chk="rowData" pTemplate type="body">
+                                                <!--<input  type="checkbox" [checked]="chk.FLAG" (click)="selectedRow(chk,$event)" id="chkvalue" style="margin-left:70px" />-->
+                                                <atpar-switch [checked]="chk.FLAG" id="chkvalue" [(ngModel)]="chk.FLAG" (click)="selectedRow(chk,$event)">{{chk.FLAG}}</atpar-switch>
+
+                                            </template>
+
+
+                                        </p-column>
+                                        <!--<p-column header="DEFAULT_DISPLAY_FIELD" field="DEFAULT_DISPLAY_FIELD" [ngStyle]="{'display':'none'}"></p-column>
+                                        <p-column header="TOGGLE_FIELD" field="TOGGLE_FIELD" [ngStyle]="{'display':'none'}"></p-column>
+                                        <p-column header="MANDATORY_TOGGLE" field="MANDATORY_TOGGLE" [ngStyle]="{'display':'none'}"></p-column>
+                                        <p-column header="DISPLAY_FIELD" field="DISPLAY_FIELD" [ngStyle]="{'display':'none'}"></p-column>-->
+                                        <!--<p-column header="Column Name" field="DEFAULT_COLUMN_HEADER" [sortable]="true" [style]="{'width':'30%'}"></p-column>-->
+
+                                        <p-column [style]="{'width':'30%'}" field="DEFAULT_COLUMN_HEADER" [sortable]="true">
+
+                                            <template pTemplate type="header">
+                                                Column Name
+
+                                            </template>
+
+                                            <template let-columnorder="rowData" pTemplate type="body">
+
+                                                <span style="color:red;" *ngIf="columnorder.mandryDisplay">*</span>
+                                                <span style="color:white;" *ngIf="!columnorder.mandryDisplay">&nbsp;</span>
+                                                <span>
+
+                                                    {{columnorder.DEFAULT_COLUMN_HEADER}}
+                                                </span>
+
+                                            </template>
+
+
+                                        </p-column>
+
+                                        <p-column [style]="{'width':'30%'}">
+
+                                            <template pTemplate type="header">
+                                                Label
+
+                                            </template>
+
+                                            <template let-header="rowData" pTemplate type="body">
+
+
+                                                <atpar-text-grid *ngIf="header.mandryDisplay" [(ngModel)]="header.COLUMN_HEADER" [name]="txtDspHeaderColumn"
+                                                                 (bindModelDataChange)="bindModelDataChange($event)"
+                                                                 [validations]="'alpha_numeric_space_dot_backslash'" [id]="header.headerID" [title]="'Allows Alphabets, numbers, spaces'"></atpar-text-grid>
+
+                                                <atpar-text-grid *ngIf="!header.mandryDisplay" [(ngModel)]="header.COLUMN_HEADER" [name]="txtDspHeaderColumn1"
+                                                                 (bindModelDataChange)="bindModelDataChange($event)"
+                                                                 [validations]="'alpha_numeric_space_dot_backslash'" [id]="header.headerID" [title]="'Allows Alphabets, numbers, spaces'"></atpar-text-grid>
+                                            </template>
+
+
+                                        </p-column>
+                                        <p-column [style]="{'width':'5%'}" field="COLUMN_ORDER" [sortable]="true">
+
+                                            <template pTemplate type="header">
+                                                Order
+
+                                            </template>
+
+                                            <template let-order="rowData" pTemplate type="body">
+
+                                                <atpar-text-grid *ngIf="order.mandryDisplay" [(ngModel)]="order.COLUMN_ORDER" [name]="txtDspOrderColumn"
+                                                                 (bindModelDataChange)="bindModelDataChange($event)"
+                                                                 [validations]="'numeric'" [id]="order.DspId" [title]="'Allows Numbers'"></atpar-text-grid>
+
+                                                <atpar-text-grid *ngIf="!order.mandryDisplay" [(ngModel)]="order.COLUMN_ORDER" [name]="txtDspOrderColumn1"
+                                                                 (bindModelDataChange)="bindModelDataChange($event)"
+                                                                 [validations]="'numeric'" [id]="order.DspId" [title]="'Allows Numbers'"></atpar-text-grid>
+                                            </template>
+
+
+                                        </p-column>
+                                        <p-column [style]="{'width':'5%'}">
+
+                                            <template pTemplate type="header">
+                                                Width
+
+                                            </template>
+
+                                            <template let-width="rowData" pTemplate type="body">
+
+                                                <atpar-text-grid *ngIf="width.mandryDisplay" [(ngModel)]="width.COLUMN_WIDTH" [name]="txtDspColumn"
+                                                                 (bindModelDataChange)="bindModelDataChange($event)"
+                                                                 [validations]="'numeric'" [id]="width.widthID" [title]="'Allows Numbers'"></atpar-text-grid>
+
+                                                <atpar-text-grid *ngIf="!width.mandryDisplay" [(ngModel)]="width.COLUMN_WIDTH" [name]="txtDspColumn1"
+                                                                 (bindModelDataChange)="bindModelDataChange($event)"
+                                                                 [validations]="'numeric'" [id]="width.widthID" [title]="'Allows Numbers'"></atpar-text-grid>
+                                            </template>
+
+
+                                        </p-column>
+                                        <p-column [style]="{'width':'15%'}">
+
+                                            <template pTemplate type="header">
+                                                Toggle Description
+
+                                            </template>
+
+                                            <template let-text="rowData" pTemplate type="body">
+
+                                                <div *ngIf="text.toggleTextValue">
+                                                    <atpar-text-grid *ngIf="text.mandryDisplay" [(ngModel)]="text.DEFAULT_TOGGLE_TEXT" [name]="txtDspToggleColumn"
+                                                                     (bindModelDataChange)="bindModelDataChange($event)"
+                                                                     [validations]="'alpha_numeric_space_dot_backslash'" [id]="text.toggleID" [title]="'Allows Alphabets, numbers, spaces'"></atpar-text-grid>
+
+                                                    <atpar-text-grid *ngIf="!text.mandryDisplay" [(ngModel)]="text.DEFAULT_TOGGLE_TEXT" [name]="txtDspToggleColumn1"
+                                                                     (bindModelDataChange)="bindModelDataChange($event)"
+                                                                     [validations]="'alpha_numeric_space_dot_backslash'" [id]="text.toggleID" [title]="'Allows Alphabets, numbers, spaces'"></atpar-text-grid>
+                                                </div>
+                                            </template>
+
+
+                                        </p-column>
+
+
+
+                                        <p-column [style]="{'width':'10%'}">
+
+                                            <template pTemplate type="header">
+                                                Toggle Order
+
+                                            </template>
+
+                                            <template let-tgorder="rowData" pTemplate type="body">
+
+                                                <div *ngIf="tgorder.toggleTextOrder">
+                                                    <atpar-text-grid *ngIf="tgorder.mandryDisplay" [(ngModel)]="tgorder.TOGGLE_ORDER" [name]="txtDspToggleOrderColumn"
+                                                                     (bindModelDataChange)="bindModelDataChange($event)"
+                                                                     [validations]="'numeric'" [id]="tgorder.toggleOrderID" [title]="'Allows Numbers'"></atpar-text-grid>
+
+                                                    <atpar-text-grid *ngIf="!tgorder.mandryDisplay" [(ngModel)]="tgorder.TOGGLE_ORDER" [name]="txtDspToggleOrderColumn1"
+                                                                     (bindModelDataChange)="bindModelDataChange($event)"
+                                                                     [validations]="'numeric'" [id]="tgorder.toggleOrderID" [title]="'Allows Numbers'"></atpar-text-grid>
+                                                </div>
+
+                                            </template>
+
+
+                                        </p-column>
+
+
+
+                                        <atpar-footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" atpar-button icon="fa-plus" style="float:left;display:none" (click)="showDialogToAdd()" label="Add"></button></div></atpar-footer>
+                                    </atpar-datatable>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <br />
+
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                <!--<button class="btn btn-purple small">Save</button>-->
+                                <button class="btn btn-purple sbtn" (click)="Save_Click($event)" id="backscreen" [disabled]="loading" *ngIf="btnscreen">Save &nbsp;<i class="fa fa-floppy-o"></i></button>
+                                <!--<button class="btn btn-purple sbtn" (click)="GobackData_Click()" id="cancelscreen" *ngIf="btnscreen"> <i class="fa fa-arrow-left"></i> &nbsp;Go Back </button>-->
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<atPar-spinner></atPar-spinner>-->
+<div style="z-index:9999!important;">
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+</div>
+<div class="content-section implementation">
+
+
+
+    <atpar-confirmdialog header="Confirmation" icon="fa fa-question-circle" width="425"></atpar-confirmdialog>
+
+</div>

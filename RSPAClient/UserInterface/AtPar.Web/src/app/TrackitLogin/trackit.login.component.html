@@ -1,0 +1,57 @@
+﻿<form class="form-horizontal login-form m-t-20" autocomplete="off" autocorrect="off" autocapitalize="off" name="form" (ngSubmit)="onSubmit(model.userID,model.password)" #f="ngForm" novalidate (keypress)="formKeyPressEvent($event)">
+    <div class="accountbg"></div>
+    <div class="wrapper-page" id="divlogin">
+        <div class="panel panel-color panel-primary panel-pages">
+            <div class="panel-body">
+                    <div class="col-xs-12">
+                        <img [src]="mhsicon" alt="" class="img-responsive" style="width:65%;margin:inherit;">
+                        <h3 class="">Requestor Sign In</h3>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <div class="input-wrap">
+                                    <label id="lblUserID" for="userID" *ngIf="f.submitted && userID.invalid && (model.userID=='' || model.userID==null || model.userID==undefined)" class="input-disturbed" [ngClass]="activeLblUserID">User ID</label>
+                                    <label id="lblUserID" for="userID" *ngIf="!userID.invalid && (userID.dirty || userID.touched)" [ngClass]="activeLblUserID">User ID</label>
+                                    <label id="lblUserID" for="userID" *ngIf="(!f.submitted || model.userID ) && userID.invalid" [ngClass]="activeLblUserID">User ID</label> 
+                                    <input id="txtUserID" type="text" class="form-control" name="userID" (focus)="onFocusUserName()" (click)="onFocusUserName()" [(ngModel)]="model.userID" #userID="ngModel" required autocomplete="off" autocorrect="off" autocapitalize="off" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <div class="input-wrap">
+                                    <label id="lblPassword" for="password" *ngIf="f.submitted && password.invalid && (model.password=='' || model.password==null || model.password==undefined)" class="input-disturbed" [ngClass]="activeLblPassword">Password</label>
+                                    <label id="lblPassword" for="password" *ngIf="!password.invalid && (password.dirty || password.touched)" [ngClass]="activeLblPassword">Password</label>
+                                    <label id="lblPassword" for="password" *ngIf="(!f.submitted || model.password)&& password.invalid" [ngClass]="activeLblPassword">Password</label>
+                                    <input id="txtPassword" (click)="onFocusPassword()" (focus)="onFocusPassword()" type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <div class="input-wrap">
+                                    <div *ngIf="trSystemId">
+                                        <atpar-select [options]="dropdownData" [(ngModel)]="selectedDB" [id]="'ddlOrgGroup'" [required]="true" [ngModelOptions]="{standalone:true}" (onChange)="onChange($event)"></atpar-select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4 pull-right">
+                            <button id="btnLogin" class="btn btn-primary btn-lg waves-effect waves-light" [disabled]="loading">Login &nbsp;<i class="fa fa-sign-in"></i></button>
+                        </div>
+
+
+                    </div>                
+            </div>
+        </div>
+        <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+    </div>
+</form>
+<style>
+    .waves-effect {
+        z-index: 0 !important;
+    }
+
+    .waves-light {
+        z-index: 0 !important;
+    }
+</style>

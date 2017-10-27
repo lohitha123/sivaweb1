@@ -1,0 +1,110 @@
+﻿<div id="main" class="content-page">
+    <div class="">       
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border">
+                <br />
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0 0 10px 0;">
+                        <div class="container">
+                            <form class="form-horizontal form-label-left" *ngIf="showAddButton">
+                                <div class="form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <atpar-text [(ngModel)]="pDeviceSearch" [name]="txtDevicesearch" [id]="'deviceSearch'" [validations]="'everything'" [ngModelOptions]="{standalone: true}" [placeholder]="'Device ID / Description'"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <button type="button" class="btn btn-purple sbtn" name="btnGo" (click)="BindDataGrid()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                        <button type="button" class="btn btn-purple sbtn" name="btnAdd" (click)="add()">  Add Device &nbsp;<i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!--<button class="btn btn-purple sbtn pull-right" (click)="add()" *ngIf="showAddButton"><i class="fa fa-plus"></i> Add Device</button>-->
+                        <br>
+                        <div class="col-xs-12" *ngIf="table">
+                            <div class="container">
+                                <atpar-datatable [value]="lstDevices" #dt [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="pageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                    <!--<p-column expander="true" styleClass="col-icon"></p-column>-->
+                                    <p-column header="Action" [style]="{'width':'4%','text-align':'center'}">
+                                        <template let-col let-rowData="rowData" pTemplate type="body">
+                                            <i class="fa fa-pencil fa-bg bg-red" title="Edit" (click)="edit(rowData)" style="cursor:pointer"></i>
+                                            <!--<i class="fa fa-trash-o fa-bg bg-red" (click)="delete()" style="cursor:pointer"></i>-->
+                                        </template>
+                                    </p-column>
+                                    <p-column header="Device ID" field="DEVICE_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'25%'}"></p-column>
+                                    <p-column header="Description" field="DESCRIPTION" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'50%'}"></p-column>
+                                    <p-column header="MAC Address" field="MAC_ADDRESS" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'14%'}"></p-column>
+                                    <!--<p-column header="Status" field="STATUS" [filter]="true" [style]="{'width': '150px','overflow':'visible'}" filterMatchMode="equals">
+                                        <template pTemplate="filter" let-col>
+                                            <atpar-select [options]="ddlStatusType" [id]="'ddlddlStatusType'" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"></atpar-select>
+                                        </template>
+                                        <template let-col let-device="rowData" pTemplate="body">
+                                            <label *ngIf="device[col.field]" style="color:black">Active</label>
+                                            <label *ngIf="!device[col.field]" style="color:black">Inactive</label>
+                                        </template>
+                                    </p-column>-->
+                                    <p-column header="Status" field="STATUS" [filter]="true" [style]="{'overflow':'visible','width': '8%','text-align':'center'}" filterMatchMode="equals">
+                                        <template let-col pTemplate="filter">
+                                            <atpar-select-grid [options]="ddlStatusType" [id]="'ddlddlStatusType'" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"></atpar-select-grid>
+                                        </template>
+                                        <template let-col let-device="rowData" pTemplate="body">
+                                            <atpar-switch [checked]=device[col.field] (click)="changeStatus(device)" style="margin-left:12%"></atpar-switch>
+                                        </template>
+                                    </p-column>
+
+
+                                </atpar-datatable>
+                                <div style="clear:both;"></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12" *ngIf="form">
+                            <form class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Device ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="deviceDetails.DEVICE_ID" [name]="'txtDEVICE_ID'"
+                                                    [validations]="'mandatory,alpha_numeric_with_underscore_plus_hyphen_equal,max=150'"
+                                                    [isFocused]="'true'"
+                                                    (bindModelDataChange)="bindModelDataChange($event)" [id]="'DEVICE_ID'" *ngIf="addDetails" [title]="'Please enter characters or numbers or underscore'"></atpar-text>                                                             
+
+                                        <label class="control-label lbl-left" *ngIf="editDetails">{{deviceDetails.DEVICE_ID}}</label>
+                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Description</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="deviceDetails.DESCRIPTION" [name]="'txtDESCRIPTION'" *ngIf="disabled" [isFocused]="'true'"
+                                                    [validations]="'mandatory,all_without_dot_underscore_comma_semicolon_slashes_squarebrackets_singlequote,max=255'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'DESCRIPTION'" [title]="helptext"></atpar-text>
+                                        <atpar-text [(ngModel)]="deviceDetails.DESCRIPTION" [name]="'txtDESCRIPTION'" *ngIf="!disabled"
+                                                    [validations]="'mandatory,all_without_dot_underscore_comma_semicolon_slashes_squarebrackets_singlequote,max=255'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'DESCRIPTION'" [title]="helptext"></atpar-text>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">MAC Address</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="deviceDetails.MAC_ADDRESS" [name]="'txtMAC_ADDRESS'"
+                                                    [validations]="'mandatory,all_without_dot_underscore_comma_semicolon_slashes_squarebrackets_singlequote,max=50'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'MAC_ADDRESS'" [title]="helptext"></atpar-text>
+
+                                    </div>
+                                </div>
+                                <div class="form-group" *ngIf="showDevStatus">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 label-purple"> Change Status</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-switch [(ngModel)]="deviceDetails.STATUS" name="STATUS" [id]="'ddlStatus'" [disabled]="disableDevStatus"></atpar-switch>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-5 col-xs-12">
+                                    <button class="btn btn-purple sbtn" (click)="saveDevice()" [disabled]="loading" *ngIf="mode=='Add'">Save &nbsp;<i class="fa fa-floppy-o"></i></button>&nbsp;
+                                    <button class="btn btn-purple sbtn" (click)="updateDevice()" [disabled]="loading" *ngIf="mode=='Edit'">Update &nbsp;<i class="fa fa-check"></i></button>&nbsp;
+                                    <button class="btn btn-purple sbtn" (click)="close()" id="back"><i class="fa fa-arrow-left"></i> &nbsp; Go Back</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+D:\SVN_Checkout\3.0_Web_Checkout2\RSPAClient\Core\AtPar.ViewModel\bin\Debug\AtPar.ViewModel.dll
+D:\SVN_Checkout\3.0_Web_Checkout2\RSPAClient\Core\AtPar.ViewModel\bin\Debug\AtPar.ViewModel.pdb
+D:\SVN_Checkout\3.0_Web_Checkout2\RSPAClient\Core\AtPar.ViewModel\obj\Debug\AtPar.ViewModel.dll
+D:\SVN_Checkout\3.0_Web_Checkout2\RSPAClient\Core\AtPar.ViewModel\obj\Debug\AtPar.ViewModel.pdb
+D:\RSPAClient\Core\AtPar.ViewModel\bin\Debug\AtPar.ViewModel.dll
+D:\RSPAClient\Core\AtPar.ViewModel\bin\Debug\AtPar.ViewModel.pdb
+D:\RSPAClient\Core\AtPar.ViewModel\obj\Debug\AtPar.ViewModel.csprojResolveAssemblyReference.cache
+D:\RSPAClient\Core\AtPar.ViewModel\obj\Debug\AtPar.ViewModel.csproj.CoreCompileInputs.cache
+D:\RSPAClient\Core\AtPar.ViewModel\obj\Debug\AtPar.ViewModel.dll
+D:\RSPAClient\Core\AtPar.ViewModel\obj\Debug\AtPar.ViewModel.pdb

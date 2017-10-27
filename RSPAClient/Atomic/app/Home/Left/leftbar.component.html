@@ -1,0 +1,245 @@
+﻿<!--<span class="mobile-menu-icon" (click)="mobileDisplay()" [ngClass]="{'mobile-menu-close': display === true }">
+    <i class="fa fa-bars fa-2x"></i>
+</span>  [ngClass]="{'mobile-menu-open': display === true }"-->
+<div>
+    <div class="sidebar-inner slimscrollleft">
+        <div id="sidebar-menu" class="sidenav">
+            <ul class="mobile-menu-lio" [ngClass]="{'mobile-menu-li': display === true }">
+                <li class="has_sub" (click)="configDown()">
+                    <a class="waves-effect dropdown-toggle"><img src="assets/images/icons/common/configuration.png"><p> Configuration </p> <span class="caret"></span></a>
+                    <!--<ul class="list-unstyled ax">
+                        <li style="cursor:pointer"><a routerLink="ConfigurationManager">Configuration Manager</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['AddUser']">Add Users</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['AssignProfiles']">Assign Profiles</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['SecurityConfiguration']">Security Configuration</a></li>
+                        <li style="cursor:pointer"><a routerLink="SetUpVendors">Setup Vendors</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['SetUpInventory']">Setup Inventory</a></li>
+                        <li [routerLinkActive]="['is-active']"><a routerLink="SetUpItems">Setup Items</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['AuditSetup']">Audit Setup</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['ManageTokens']">Manage Tokens</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['ManageUsers']">Manage Users</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['OrgParameters']">Org Parameters</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['ImportUsers']">Import Users</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['ManageDevices']">Manage Devices</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['StationaryPrintDesign']">Stationary Print Design</a></li>
+                        <li style="cursor:pointer"><a routerLink="SetupCostCenters">Setup Cost Centers</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['SetupLocationGroups']">Setup Location Groups</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['SetupStorageLocationGroups']">Setup Storage Location</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['SetupLocations']">Setup Locations</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['ManageProfiles']">Manage Profile</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['ManageOrgGroups']">Manage Org Groups</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['Maintainprinter']">Maintain Printers</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['UserParameter']">User Parameters</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['CriticalItem']">Critical Items </a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['AllocateCart']">Allocate Carts </a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['ProcessParameter']">Process Parameters </a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['carrierinformation']">Carrier Information </a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['releaseorders']">Release Orders </a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['allocateinventorybusinessunits']">Allocate Inventory Business Units</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['allocatedistributiontypes']">Allocate Distribution Types</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['createorders']">Create Orders</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['UserUploadAutomation']">User Upload Automation</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['ProcessScheduler']">Process Scheduler</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['DataArchival']">Data Archival</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['setupitemattributes']">Setup Item Attributes</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['departmentlocationallocation']">Department Location Allocation</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['departmentuserallocation']">Department User Allocation</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['setupdepartments']">Setup Departments</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['processes']">Processes</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['poucreateorders']">Create Orders</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['manageparlocation']">Manage Par Locations</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['setupparlocations']">Setup Par Locations</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['UserStatusReport']">User Status Reports</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['departmentlocationworkstationallocation']">Department Location Workstational Location</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['Tobininsetup']">To Bin Setup</a></li>
+                        <li [routerLinkActive]="['is-active']"><a><i aria-hidden="true" class="fa fa-folder"></i>Reports</a></li>
+                    </ul>-->
+                </li>
+                <ul class="list-unstyled ax" id="drop1">
+                    <li style="cursor:pointer" [routerLinkActive]="['is-active']"><a routerLink="ConfigurationManager">Configuration Manager</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['AddUser']">Add Users</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['AssignProfiles']">Assign Profiles</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['SecurityConfiguration']">Security Configuration</a></li>
+                    <li [routerLinkActive]="['is-active']"><a routerLink="SetUpVendors">Setup Vendors</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['SetUpInventory']">Setup Inventory</a></li>
+                    <li [routerLinkActive]="['is-active']"><a routerLink="SetupItems">Setup Items</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['OrgParameters']">Org Parameters</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['StationaryPrintDesign']">Stationary Print Design</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['Maintainprinter']">Maintain Printers</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['UserParameter']">User Parameters</a></li>
+                    <li [routerLinkActive]="['is-active']"><a routerLink="SetupCostCenters">Setup Cost Centers</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['SetupLocationGroups']">Setup Location Groups</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['SetupStorageLocationGroups']">Setup Storage Location</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['SetupLocations']">Setup Locations</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['CriticalItem']">Critical Items </a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['AllocateCart']">Allocate Carts </a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['ProcessParameter']">Process Parameters </a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['carrierinformation']">Carrier Information </a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['releaseorders']">Release Orders </a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['allocateinventorybusinessunits']">Allocate Inventory Business Units</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['allocatedistributiontypes']">Allocate Distribution Types</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['createorders']">Create Orders</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['UserUploadAutomation']">User Upload Automation</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['ProcessScheduler']">Process Scheduler</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['DataArchival']">Data Archival</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['setupitemattributes']">Setup Item Attributes</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['departmentlocationallocation']">Department Location Allocation</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['departmentuserallocation']">Department User Allocation</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['setupdepartments']">Setup Departments</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['processes']">Processes</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['poucreateorders']">Create Orders</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['manageparlocation']">Manage Par Locations</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['setupparlocations']">Setup Par Locations</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['UserStatusReport']">User Status Reports</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['departmentlocationworkstationallocation']">Department Location Workstational Location</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['Tobininsetup']">To Bin Setup</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['setupreasoncodes']">Setup Reason Code</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['managerequestor']">Manager Requestor</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['manageequipmentitems']">Manage Equipment Items</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['inactivateitems']">Inactivate Items</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['manageequipmenttype']">Manage Equipment Type</a></li>                    
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['checkinitems']">Checkinitems</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['checkoutitems']">Checkoutitems</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['createrequest']">Create Request</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['viewcart']">View Cart</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['userprofile']">User Profile</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['requestorstatus']">Requestor Status</a></li>
+                    <li [routerLinkActive]="['is-active']"><a><i aria-hidden="true" class="fa fa-folder"></i>Reports</a></li>
+                </ul>
+                <li class="has_sub" (click)="manguserDown()">
+                    <a class="waves-effect dropdown-toggle"><img src="assets/images/icons/common/manageUsers.png" width="20"><p> Manage Users</p> <span class="caret"></span></a>
+                    <!--<ul class="list-unstyled ax">
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['ChangePassword']">Change Password</a></li>
+                        <li [routerLinkActive]="['is-active']"><a>Setup Vendors</a></li>
+                        <li [routerLinkActive]="['is-active']"><a>Setup Items</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['AuditSetup']">Audit Setup</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['ImportUsers']">Import Users</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['ManageTokens']">Manage Tokens</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['ManageUsers']">Manage Users</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['ManageProfiles']">Manage Profile</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['ManageOrgGroups']">Manage Org Groups</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['ManageDevices']">Manage Devices</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['allocatebusinessunits']">Allocate Business Units</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['ptyreleaseorders']">Release Orders </a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['LocationGroupAllocation']">Allocate Location Groups</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['AccessPermission']">Access Permission</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['allocatelocationgroups']">Allocation Location Groups</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['managedepartments']">Manage Departments</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['departmentdeviceallocation']">Department Device Allocation</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['setupspecialty/service']">Setup Specialty/Service</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['setupreasons']">Setup Reasons</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['setupprocedures']">Setup Procedures</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['setupphysicians']">Setup Physician</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['splitevents']">Split Events</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['allocateevents']">Allocate Events</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['setupshiptoids']">Setup Ship To IDS</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['assignsignatories']">Assign Signatories</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['setupdropofflocations']">Setup Drop off Locations</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['releasepackages']">Release Packages</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['shiptoidallocationfordeliveryofstockitems']">ShipTo ID allocation for delivery of stock items</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['manageorders']">Manage Orders</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['maintainnoncartitems']">Maintain Non Cart Items</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['releasecases']">Release Cases</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['managecases']">Manage Cases</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['reviewcharges/credits']">Review Charges / Credits</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['allocatepickingzones']">Allocate Picking Zones</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['orderprefix']">Order Prefix</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['pickallocateinventorybusinessunits']">Allocate Inventory Business Units</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['allocatepriority']">Allocate Priority</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['pickreleaseorders']">Release Orders</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['processcounts']">Process Counts</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['pickallocatelocationgroups']">Allocate location groups</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['billonlyitemmaintenance']">Bill only item Maintenance</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['poucriticalitems']">Critical Items</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['preferencelists']">Preference Lists</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['setupcase']">Setup Case</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['paroptimizationreport']">Pra Optimization Report</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['manageconsigneditemorderreport']">manage consigned item order report</a></li>                        
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['reviewcounts']">Review Counts</a></li>
+                        <li [routerLinkActive]="['is-active']"><a [routerLink]="['po/nonporeceipts']">PO/Non Po Recepits</a></li>
+                        <li [routerLinkActive]="['is-active']"><a><i aria-hidden="true" class="fa fa-folder"></i>Reports</a></li>
+                    </ul>-->                   
+                </li>
+                <ul class="list-unstyled ax" id="drop2">
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['ChangePassword']">Change Password</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['ImportUsers']">Import Users</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['AuditSetup']">Audit Setup</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['ManageTokens']">Manage Tokens</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['ManageUsers']">Manage Users</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['ManageProfiles']">Manage Profile</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['ManageOrgGroups']">Manage Org Groups</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['ManageDevices']">Manage Devices</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['allocatebusinessunits']">Allocate Business Units</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['ptyreleaseorders']">Release Orders </a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['LocationGroupAllocation']">Allocate Location Groups</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['AccessPermission']">Access Permission</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['allocateshiptoids']">Allocation Ship Toids</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['managecarriers']">Manage Carriers</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['managedepartments']">Manage Departments</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['departmentdeviceallocation']">Department Device Allocation</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['setupspecialty/service']">Setup Specialty/Service</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['setupreasons']">Setup Reasons</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['setupprocedures']">Setup Procedures</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['setupphysicians']">Setup Physician</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['splitevents']">Split Events</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['allocateevents']">Allocate Events</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['setupshiptoids']">Setup Ship To IDS</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['assignsignatories']">Assign Signatories</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['setupdropofflocations']">Setup Drop off Locations</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['releasepackages']">Release Packages</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['shiptoidallocationfordeliveryofstockitems']">ShipTo ID allocation for delivery of stock items</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['manageorders']">Manage Orders</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['maintainnoncartitems']">Maintain Non Cart Items</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['releasecases']">Release Cases</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['managecases']">Manage Cases</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['reviewcharges/credits']">Review Charges / Credits</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['allocatepickingzones']">Allocate Picking Zones</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['orderprefix']">Order Prefix</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['pickallocateinventorybusinessunits']">Allocate Inventory Business Units</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['allocatepriority']">Allocate Priority</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['pickreleaseorders']">Release Orders</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['processcounts']">Process Counts</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['pickallocatelocationgroups']">Allocate location groups</a></li>                    
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['billonlyitemmaintenance']">Bill only item Maintenance</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['poucriticalitems']">Critical Items</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['preferencelists']">Preference Lists</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['setupcase']">Setup Case</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['paroptimizationreport']">Pra Optimization Report</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['manageconsigneditemorderreport']">Manage Consigned Item Order Report</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['reviewcounts']">Review Counts</a></li>
+                    <li [routerLinkActive]="['is-active']"><a [routerLink]="['po/nonporeceipts']">PO/Non Po Recepits</a></li>
+                    <li [routerLinkActive]="['is-active']"><a><i aria-hidden="true" class="fa fa-folder"></i>Reports</a></li>
+                </ul>
+                <li class="has_sub" (click)="toolDown()">
+                    <a class="waves-effect dropdown-toggle"><img src="assets/images/icons/common/tools.png" width="20"><p> Tools</p> <span class="caret"></span></a>
+                    <ul class="list-unstyled ax">
+                        <li [routerLinkActive]="['is-active']"><a>User Status Report</a></li>
+                        <li [routerLinkActive]="['is-active']"><a>Error Report</a></li>
+                        <li [routerLinkActive]="['is-active']"><a>Maintain Printers</a></li>
+                    </ul>
+                    <ul class="list-unstyled ax mobile-off" *ngIf="isActivet">
+                        <li [routerLinkActive]="['is-active']"><a>User Status Report</a></li>
+                        <li [routerLinkActive]="['is-active']"><a>Error Report</a></li>
+                        <li [routerLinkActive]="['is-active']"><a>Maintain Printers</a></li>
+                    </ul>
+                </li>
+
+                <li class="has_sub" (click)="reportDown()">
+                    <a class="waves-effect dropdown-toggle"><img src="assets/images/icons/common/reports.png" width="20"><p> Reports</p> <span class="caret"></span></a>
+                    <ul class="list-unstyled ax">
+                        <li [routerLinkActive]="['is-active']"><a>User Status Report</a></li>
+                        <li [routerLinkActive]="['is-active']"><a>Error Report</a></li>
+                        <li [routerLinkActive]="['is-active']"><a>Maintain Printers</a></li>
+                    </ul>
+                    <ul class="list-unstyled ax mobile-off" *ngIf="isActiver">
+                        <li [routerLinkActive]="['is-active']"><a>User Status Report</a></li>
+                        <li [routerLinkActive]="['is-active']"><a>Error Report</a></li>
+                        <li [routerLinkActive]="['is-active']"><a>Maintain Printers</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

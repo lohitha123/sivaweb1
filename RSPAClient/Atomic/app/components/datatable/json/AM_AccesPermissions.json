@@ -1,0 +1,122 @@
+[
+      {
+        "APP_ID": "11",
+        "SCREEN_NAME": "ASSET ITEMS",
+        "FIELD_NAME": "AREAID",
+        "FIELD_DESCR": "Area ID",
+        "DISPLAY_FLAG": "Y",
+        "EDIT_FLAG": "N",
+        "SCAN_ORDER": "10",
+        "MANDATORY_FLAG": "N",
+        "USER_ID": "SUPPORT",
+        "ROWINDEX": "0"
+      },
+      {
+        "APP_ID": "11",
+        "SCREEN_NAME": "ASSET ITEMS",
+        "FIELD_NAME": "CUSTODIAN",
+        "FIELD_DESCR": "Custodian",
+        "DISPLAY_FLAG": "Y",
+        "EDIT_FLAG": "N",
+        "SCAN_ORDER": "4",
+        "MANDATORY_FLAG": "N",
+        "USER_ID": "SUPPORT",
+        "ROWINDEX": "0"
+      },
+      {
+        "APP_ID": "11",
+        "SCREEN_NAME": "ASSET ITEMS",
+        "FIELD_NAME": "DEPTID",
+        "FIELD_DESCR": "Dept ID",
+        "DISPLAY_FLAG": "N",
+        "EDIT_FLAG": "N",
+        "SCAN_ORDER": "8",
+        "MANDATORY_FLAG": "N",
+        "USER_ID": "SUPPORT",
+        "ROWINDEX": "0"
+      },
+      {
+        "APP_ID": "11",
+        "SCREEN_NAME": "ASSET ITEMS",
+        "FIELD_NAME": "DESCR",
+        "FIELD_DESCR": "Description",
+        "DISPLAY_FLAG": "N",
+        "EDIT_FLAG": "N",
+        "SCAN_ORDER": "7",
+        "MANDATORY_FLAG": "N",
+        "USER_ID": "SUPPORT",
+        "ROWINDEX": "0"
+      },
+      {
+        "APP_ID": "11",
+        "SCREEN_NAME": "ASSET ITEMS",
+        "FIELD_NAME": "EMPID",
+        "FIELD_DESCR": "Emp ID",
+        "DISPLAY_FLAG": "N",
+        "EDIT_FLAG": "N",
+        "SCAN_ORDER": "9",
+        "MANDATORY_FLAG": "N",
+        "USER_ID": "SUPPORT",
+        "ROWINDEX": "0"
+      },
+      {
+        "APP_ID": "11",
+        "SCREEN_NAME": "ASSET ITEMS",
+        "FIELD_NAME": "LOC",
+        "FIELD_DESCR": "Location",
+        "DISPLAY_FLAG": "N",
+        "EDIT_FLAG": "N",
+        "SCAN_ORDER": "3",
+        "MANDATORY_FLAG": "N",
+        "USER_ID": "SUPPORT",
+        "ROWINDEX": "0"
+      },
+      {
+        "APP_ID": "11",
+        "SCREEN_NAME": "ASSET ITEMS",
+        "FIELD_NAME": "MANUFACTURER",
+        "FIELD_DESCR": "Manufacturer",
+        "DISPLAY_FLAG": "N",
+        "EDIT_FLAG": "N",
+        "SCAN_ORDER": "5",
+        "MANDATORY_FLAG": "N",
+        "USER_ID": "SUPPORT",
+        "ROWINDEX": "0"
+      },
+      {
+        "APP_ID": "11",
+        "SCREEN_NAME": "ASSET ITEMS",
+        "FIELD_NAME": "MODEL",
+        "FIELD_DESCR": "Model",
+        "DISPLAY_FLAG": "N",
+        "EDIT_FLAG": "N",
+        "SCAN_ORDER": "6",
+        "MANDATORY_FLAG": "N",
+        "USER_ID": "SUPPORT",
+        "ROWINDEX": "0"
+      },
+      {
+        "APP_ID": "11",
+        "SCREEN_NAME": "ASSET ITEMS",
+        "FIELD_NAME": "SERIALID",
+        "FIELD_DESCR": "Serial ID",
+        "DISPLAY_FLAG": "N",
+        "EDIT_FLAG": "N",
+        "SCAN_ORDER": "2",
+        "MANDATORY_FLAG": "N",
+        "USER_ID": "SUPPORT",
+        "ROWINDEX": "0"
+      },
+      {
+        "APP_ID": "11",
+        "SCREEN_NAME": "ASSET ITEMS",
+        "FIELD_NAME": "TAGNO",
+        "FIELD_DESCR": "Tag Number",
+        "DISPLAY_FLAG": "N",
+        "EDIT_FLAG": "N",
+        "SCAN_ORDER": "1",
+        "MANDATORY_FLAG": "N",
+        "USER_ID": "SUPPORT",
+        "ROWINDEX": "0"
+      }
+]

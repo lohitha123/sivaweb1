@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<project name="AtPar.Service.Interfaces" default="build" basedir="." xmlns="http://nant.sf.net/schemas/nant-0.85.win32.net-1.0.xsd">
+	<description>Build File for AtPar.Service.Interfaces</description>
+	<property name="basename" value="AtPar.Service.Interfaces"/>
+	<property name="asminfo.file.name" value="${basename}.dll" />
+	<property name="asminfo.file.descr" value="AtPar Service Interface Component" />
+	
+	<include buildfile="..\..\..\Headers\nantincludes.include" />
+	
+  	<target name="copyreqdbins" description="copy required binaries">
+	   
+	   <copy file="../../$binout$/AtPar.POCOEntities.dll" tofile="AtPar.POCOEntities.dll"/>
+	   <copy file="../../$binout$/AtPar.ViewModel.dll" tofile="AtPar.ViewModel.dll"/>
+	   <copy file="../../$binout$/AtPar.Common.dll" tofile="AtPar.Common.dll"/>
+	   <!--<copy file="../../$binout$/AtPar.Data.dll" tofile="AtPar.Data.dll"/>\
+	   <copy file="../../$binout$/Atpar.Data.Mapping.dll" tofile="Atpar.Data.Mapping.dll"/>
+	   <copy file="../../$binout$/AtPar.Repository.Interfaces.dll" tofile="AtPar.Repository.Interfaces.dll"/>-->
+	   	   
+	   <!--<copy file="../../packages/EntityFramework.6.1.3/lib/net45/EntityFramework.dll" tofile="EntityFramework.dll"/>
+	   <copy file="../../packages/EntityFramework.6.1.3/lib/net45/EntityFramework.SqlServer.dll" tofile="EntityFramework.SqlServer.dll"/>
+	   <copy file="../../packages/log4net.2.0.5/lib/net45-full/log4net.dll" tofile="log4net.dll"/>-->
+	   
+	</target>
+	
+	<target name="deletereqdbins" description="delete required binaries">
+		<delete file="AtPar.POCOEntities.dll" />
+		<delete file="AtPar.ViewModel.dll" />
+		<delete file="AtPar.Common.dll" />
+		<!--<delete file="AtPar.Data.dll" />
+		<delete file="Atpar.Data.Mapping.dll" />		
+		<delete file="AtPar.Repository.Interfaces.dll" />	
+		<delete file="EntityFramework.dll" />
+		<delete file="EntityFramework.SqlServer.dll" />	
+	    <delete file="log4net.dll" />-->			
+    </target>
+	  <target name="copyreqdcs" description="copy required cs source files">
+	  
+	  	  	<copy file="CartCount/IProcessParametersService.cs" tofile="IProcessParametersService.cs" />
+
+	  	  	  	<copy file="Common/IAllocateBUnitsService.cs" tofile="IAllocateBUnitsService.cs" />
+	  	  	  	<copy file="Common/ICommonService.cs" tofile="ICommonService.cs" />
+
+	<copy file="Init/IAddUserService.cs" tofile="IAddUserService.cs" />
+	<copy file="Init/IAllocateLocationGroupsService.cs" tofile="IAllocateLocationGroupsService.cs" />
+	<copy file="Init/IAssignProfileService.cs" tofile="IAssignProfileService.cs" />
+	<copy file="Init/IAuditSetupService.cs" tofile="IAuditSetupService.cs" />
+   
+     <copy file="Init/IBarcodeTranslationService.cs" tofile="IBarcodeTranslationService.cs" />
+	<copy file="Init/IConfigurationManagerService.cs" tofile="IConfigurationManagerService.cs" />
+	<copy file="Init/IForgotPasswordService.cs" tofile="IForgotPasswordService.cs" />
+  
+	<copy file="Init/ILoginService.cs" tofile="ILoginService.cs" />
+	<copy file="Init/IMaintainPrintersService.cs" tofile="IMaintainPrintersService.cs" />
+	<copy file="Init/IManageDevicesService.cs" tofile="IManageDevicesService.cs" />
+			<copy file="Init/IManageOrgGroupsService.cs" tofile="IManageOrgGroupsService.cs" />
+		<copy file="Init/IManageOrgIDService.cs" tofile="IManageOrgIDService.cs" />
+	 
+	 
+     <copy file="Init/IManageOrgParmsService.cs" tofile="IManageOrgParmsService.cs" />
+     <copy file="Init/IManageProfilesService.cs" tofile="IManageProfilesService.cs" />
+			<copy file="Init/IManageUsersService.cs" tofile="IManageUsersService.cs" />
+		<copy file="Init/IRouteService.cs" tofile="IRouteService.cs" />
+     <copy file="Init/ISecurityConfigurationService.cs" tofile="ISecurityConfigurationService.cs" />
+     <copy file="Init/ITokenService.cs" tofile="ITokenService.cs" />
+     <copy file="Init/IUserParamsService.cs" tofile="IUserParamsService.cs" />
+     <copy file="Init/IUserService.cs" tofile="IUserService.cs" />
+
+	 	  	<copy file="ParManagement/ICostCenterService.cs" tofile="ICostCenterService.cs" />
+	  	<copy file="ParManagement/ISetupItemsService.cs" tofile="ISetupItemsService.cs" />
+	  	<copy file="ParManagement/IVendorService.cs" tofile="IVendorService.cs" />
+
+			  	<copy file="PickPlan/IOrderPrefixService.cs" tofile="IOrderPrefixService.cs" />
+			  	<copy file="PickPlan/IAllocateBUnitsService.cs" tofile="IAllocateBUnitsService.cs" />
+
+							<copy file="Receiving/IInventoryBusinessUnitsService.cs" tofile="IInventoryBusinessUnitsService.cs" />
+
+							<copy file="StockIssue/IAllocateBUnitsService.cs" tofile="IAllocateBUnitsService.cs" />
+
+							<copy file="Putaway/IAllocateBUnitsService.cs" tofile="IAllocateBUnitsService.cs" />
+			<copy file="Putaway/IReleaseOrdersService.cs" tofile="IReleaseOrdersService.cs" />
+
+				<copy file="POU/IDepartmentUserAllocationService.cs" tofile="IDepartmentUserAllocationService.cs" />
+			  	<copy file="POU/IReleaseCasesService.cs" tofile="IReleaseCasesService.cs" />
+			  	<copy file="POU/ISpecialtyCodeService.cs" tofile="ISpecialtyCodeService.cs" />
+
+  </target>
+
+	<target name="deploybin" description="deploy files to bin">
+		<copy todir="../../${Bin.OutputFolder}">
+		  <fileset basedir="${Bin.OutputFolder}">
+			<include name="${basename}.dll" />
+			<include name="${basename}.pdb" if="${debug == 'true'}"/>
+		  </fileset>
+		</copy>	
+			<copy todir="../${Bin.OutputFolder}">
+			<fileset basedir="${Bin.OutputFolder}">
+			<include name="${basename}.dll" />
+			<include name="${basename}.pdb" if="${debug == 'true'}"/>
+		  </fileset>
+		  <!--<fileset basedir=".">
+			<include name="*.dll" />
+		  </fileset>-->
+ 	    </copy>	
+				
+	</target>
+	
+	
+	<target name="deletecopyreqdcs" description="delete required binaries">
+		<delete file="IAllocateBUnitsService.cs" />
+		<delete file="IProcessParametersService.cs" />
+		<delete file="ICommonService.cs" />
+		<delete file="IAddUserService.cs" />
+		<delete file="IAllocateLocationGroupsService.cs" />
+		<delete file="IAssignProfileService.cs" />
+		<delete file="IAuditSetupService.cs" />
+		<delete file="IBarcodeTranslationService.cs" />
+		<delete file="IConfigurationManagerService.cs" />
+		<delete file="IForgotPasswordService.cs" />
+		<delete file="ILoginService.cs" />
+		<delete file="IMaintainPrintersService.cs" />
+		<delete file="IManageDevicesService.cs" />
+		<delete file="IManageOrgGroupsService.cs" />
+		<delete file="IManageOrgIDService.cs" />
+		<delete file="IManageOrgParmsService.cs" />
+		<delete file="IManageProfilesService.cs" />
+		<delete file="IManageUsersService.cs" />
+		<delete file="IRouteService.cs" />
+		<delete file="ISecurityConfigurationService.cs" />
+		<delete file="ITokenService.cs" />
+		<delete file="IUserParamsService.cs" />
+		<delete file="IUserService.cs" />
+		<delete file="ICostCenterService.cs" />
+		<delete file="ISetupItemsService.cs" />
+		<delete file="IVendorService.cs" />
+		<delete file="IOrderPrefixService.cs" />
+		<delete file="IInventoryBusinessUnitsService.cs" />
+		<delete file="IReleaseOrdersService.cs" />
+		<delete file="IDepartmentUserAllocationService.cs" />
+		<delete file="IReleaseCasesService.cs" />
+		<delete file="ISpecialtyCodeService.cs" />
+
+    </target>
+	
+	<target name="build" description="compiles the source code">
+		<call target="createoutfolder"/>	
+<call target="copyreqdbins"/>		
+<!--<call target="copyreqdcs"/> -->
+		<call target="CreateAssemblyInfoCS"/>
+		
+		<csc target="library" output="${Bin.OutputFolder}\${basename}.dll" debug="${debug}" 							  							  
+							  doc="${Xml.Bin.OutputFolder}\${basename}.xml">
+							  
+							  <sources>
+								<include name="*.cs" />		
+								<include name="../../Core/AtPar.Service.Interfaces/Init/*.cs" /> 
+								<include name="../../Core/AtPar.Service.Interfaces/AssetManagement/*.cs" /> 
+								<include name="../../Core/AtPar.Service.Interfaces/BinToBin/*.cs" /> 
+								<include name="../../Core/AtPar.Service.Interfaces/CartCount/*.cs" /> 
+								<include name="../../Core/AtPar.Service.Interfaces/Common/*.cs" /> 
+								<include name="../../Core/AtPar.Service.Interfaces/CycleCount/*.cs" /> 
+								<include name="../../Core/AtPar.Service.Interfaces/Deliver/*.cs" /> 
+								<include name="../../Core/AtPar.Service.Interfaces/ParManagement/*.cs" /> 
+								<include name="../../Core/AtPar.Service.Interfaces/Pharmacy/*.cs" /> 
+								<include name="../../Core/AtPar.Service.Interfaces/PickPlan/*.cs" /> 
+								<include name="../../Core/AtPar.Service.Interfaces/POU/*.cs" /> 
+								<include name="../../Core/AtPar.Service.Interfaces/Putaway/*.cs" /> 
+								<include name="../../Core/AtPar.Service.Interfaces/Receiving/*.cs" /> 
+								<include name="../../Core/AtPar.Service.Interfaces/StockIssue/*.cs" /> 
+								<include name="../../Core/AtPar.Service.Interfaces/TrackIT/*.cs" /> 
+								<include name="../../Core/AtPar.Service.Interfaces/RFID/*.cs" /> 
+							  </sources>
+							  
+							  <references>							  
+								<include asis="true" name="System.dll"/>
+								<include asis="true" name="AtPar.POCOEntities.dll" />
+								<include asis="true" name="AtPar.ViewModel.dll" />
+								<include asis="true" name="AtPar.Common.dll" />
+								<include asis="true" name="Microsoft.CSharp.dll" />
+								<!--<include asis="true" name="AtPar.Data.dll" />
+								<include asis="true" name="AtPar.Repository.Interfaces.dll" />
+								<include asis="true" name="Atpar.Data.Mapping.dll" />																
+								<include asis="true" name="EntityFramework.dll" />
+								<include asis="true" name="EntityFramework.SqlServer.dll"/>
+								<include asis="true" name="log4net.dll" />-->
+							  </references>
+		</csc>
+		
+		<call target="deploybin" />
+		<call target="deletereqdbins" />
+		<call target="deletecopyreqdcs" />
+		<call target="clean" />
+	</target>
+</project>				  

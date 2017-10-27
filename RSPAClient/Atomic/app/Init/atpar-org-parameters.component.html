@@ -1,0 +1,175 @@
+﻿<div id="main" class="content-page">
+    <div class="content">
+        <div class="">
+            <div class="page-header-title">
+                <h4 class="page-title"><a (click)="homeurl()">Administration ></a> Org Parameters</h4>
+            </div>
+        </div>
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border">
+                <br>
+                <div class="col-xs-12 col-md-12 col-sm-12">
+                    <div class="panel panel-default" [ngClass]="{'border-panel': page === true}" style="border: 1px solid #eee;">
+                        <div class="panel-body" style="padding:20px;">
+                            <div class="col-xs-12 form-group">
+                                <div class="col-xs-12 col-md-2">
+                                    <label for=""> Org Group ID</label>
+                                </div>
+                                <div class="col-xs-12 col-md-4">
+                                    <atpar-text [(ngModel)]="newItem.OGI" [name]="txtOGI" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'OGI'"  [readonly]="true"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 form-group">
+                                <div class="col-xs-12 col-md-2">
+                                    <label for=""> Product</label>
+                                </div>
+                                <div class="col-xs-12 col-md-4">
+                                    <atpar-select [options]="cities" [required]="true" [id]="'ddlProduct'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                </div>
+                                <div class="col-xs-12 col-md-2 hidden-sm hidden-xs" style="margin-top: 0px;">
+                                    <button class="btn btn-purple sbtn " (click)="go()">Go &nbsp;<i class="fa fa-arrow-right"></i></button>
+                                </div>
+                                <div class="col-xs-12 col-md-2 hidden-lg hidden-md" style="margin-top: 10px;">
+                                    <button class="btn btn-purple sbtn " (click)="go()">Go &nbsp;<i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12" *ngIf="pop">
+                    <div class="panel panel-default" style="border:1px solid #eee;">
+                        <div class="panel-body" style="padding:20px;">
+                            <div class="col-xs-12 table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Parameter</th>
+                                            <th class="text-center">Value <span></span></th>
+                                            <th class="text-center">Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Allocation of Carts to Users Required</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text">[Unchecking this will allow any user to download Any Cart. Checking this will restrict the HHT user download only the carts allocated to the user]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Create Requisitions by Par Location for Non Stock Items</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text"> [Checking this will create Requisitions by Par Location for Non Stock Items instead of creating requisition by Vendor for a given Par Location]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Default Manufacturer Item ID</td>
+                                            <td>
+                                                <atpar-radioButton name="groupname" value="" label="VENDOR"></atpar-radioButton>
+                                                <br>
+                                                <atpar-radioButton name="groupname" value="" label="MANUFACTURER"></atpar-radioButton>
+                                            </td>
+                                            <td class="desc-text"> [Sets the Manufacturer Item ID to the selected option]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Display of last order quantity for kill type items</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text"> [Checking this will display the last order quantity and last order date for Kill type of items on HHT]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Display of Soft Input Panel (Keypad) for numeric</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text">[Checking this will automatically display the Soft Input Panel (Keypad) for numeric on Item details screen]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Display of Soft Input Panel (Keypad)</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text"> [Checking this will automatically display the Soft Input Panel (Keypad) on all screens except Item details]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Factor of safety percentage (%) for recommended par</td>
+                                            <td>
+                                                <atpar-text [(ngModel)]="newItem.FOS" [name]="txtFOS" [validations]="'except_less_greater_symbols'" [id]="'FOS'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                            </td>
+                                            <td class="desc-text">[Recommended Par will be calculated based on the Factor of safety, Recommended Par = Round (Average Usage * (1+Factor of Safety/100) ) ]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Create HL7 billing message/file</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text">[Checking this will send a HL7 billing message, unchecking will create a HL7 billing file in upload path.]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Item Description Option on HHT</td>
+                                            <td>
+                                                <atpar-radioButton name="groupname" value="" label="DESCRSHORT"></atpar-radioButton>
+                                                <br>
+                                                <atpar-radioButton name="groupname" value="" label="DESCR30"></atpar-radioButton>
+                                                <br>
+                                                <atpar-radioButton name="groupname" value="" label="DESCR60"></atpar-radioButton>
+                                                <br>
+                                                <atpar-radioButton name="groupname" value="" label="DESCR254"></atpar-radioButton>
+                                            </td>
+                                            <td class="desc-text">[Selected description value will be displayed]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Item Price Option on HHT</td>
+                                            <td style="width:250px!important;">
+                                                <atpar-radioButton name="groupname" value="" label="STANDARD_PRICE"></atpar-radioButton>
+                                                <br>
+                                                <atpar-radioButton name="groupname" value="" label="CURR_PURCHASE_COST"></atpar-radioButton>
+                                                <br>
+                                                <atpar-radioButton name="groupname" value="" label="AVG_COST"></atpar-radioButton>
+                                                <br>
+                                                <atpar-radioButton name="groupname" value="" label="ACTUAL_COST"></atpar-radioButton>
+                                            </td>
+                                            <td class="desc-text">[Selected Item Price will be displayed in the reports on the server]</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Use Packaging String for Labels</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text">
+                                                [Checking this will allow users to utilized Packaging String for labels]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Display of All option in Records per Page drop down</td>
+                                            <td>
+                                                <atpar-switch></atpar-switch>
+                                            </td>
+                                            <td class="desc-text">
+                                                [Checking this will display all option in Records per Page drop down list. Unchecking this option and setting 0 (zero) in My Profile - Records Per Page will default to 10, as there is no ALL option.]
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Truncate leading zeros</td>
+                                            <td class="text-center">
+                                                <atpar-text [(ngModel)]="newItem.TLZ" [name]="txtTLZ" [validations]="'except_less_greater_symbols'" [id]="'TLZ'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                            </td>
+                                            <td class="desc-text">[Checking this will truncate the leading zeros of a scanned Item ID]</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br>
+                                <div class="col-xs-12 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn">Save &nbsp;<i class="fa fa-check"></i></button>
+                                    <!--  <button class="btn btn-purple sbtn" (click)="hideDialog()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

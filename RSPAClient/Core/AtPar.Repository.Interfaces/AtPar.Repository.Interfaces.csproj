@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5869EC8E-84BF-4B97-AA69-EF86AF0508C1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AtPar.Repository.Interfaces</RootNamespace>
+    <AssemblyName>AtPar.Repository.Interfaces</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssetManagement\IAccessPermissionsRepository.cs" />
+    <Compile Include="CartCount\IActivityReportRepository.cs" />
+    <Compile Include="CartCount\IAllocateCartsRepository.cs" />
+    <Compile Include="CartCount\ICreateOrdersRepository.cs" />
+    <Compile Include="CartCount\ICriticalItemsRepository.cs" />
+    <Compile Include="CartCount\IItemUsageReportRepository.cs" />
+    <Compile Include="CartCount\IManageOrdersRepository.cs" />
+    <Compile Include="CartCount\IOptimizationReportRepository.cs" />
+    <Compile Include="CartCount\IOrderHistoryReportRepository.cs" />
+    <Compile Include="CartCount\IProcessParametersRepository.cs" />
+    <Compile Include="CartCount\IScheduleComplianceReportRepository.cs" />
+    <Compile Include="CartCount\ITwoBinAllocRepository.cs" />
+    <Compile Include="Common\IAtParApplicationTransactionsRepository.cs" />
+    <Compile Include="Common\ICommonRepository.cs" />
+    <Compile Include="Common\InvBUnitsRepository.cs" />
+    <Compile Include="CycleCount\IGetHeaderRepository.cs" />
+    <Compile Include="CycleCount\IItemExceptionReportRepository.cs" />
+    <Compile Include="CycleCount\IProcessCountsRepository.cs" />
+    <Compile Include="CycleCount\IReviewCountsRepository.cs" />
+    <Compile Include="CycleCount\ISplitEventsRepository.cs" />
+    <Compile Include="CycleCount\IAllocateEventsRepository.cs" />
+    <Compile Include="Deliver\IAssignSignatoriesRepository.cs" />
+    <Compile Include="Deliver\IDeliverAllocBURepository.cs" />
+    <Compile Include="Deliver\IDeliverShiptoIDsRepository.cs" />
+    <Compile Include="Deliver\IDeliverTrackRepository.cs" />
+    <Compile Include="Deliver\IDeliveryReportRepository.cs" />
+    <Compile Include="Deliver\IDropOffLocsRepository.cs" />
+    <Compile Include="Deliver\IExcludeLocsRepository.cs" />
+    <Compile Include="Deliver\IProductivityReportRepository.cs" />
+    <Compile Include="Deliver\IReleasePackagesRepository.cs" />
+    <Compile Include="Init\IErrorReportRepository.cs" />
+    <Compile Include="Init\IReportsAdHocExtensionRepository.cs" />
+    <Compile Include="PickPlan\IPickStatusReportRepository.cs" />
+    <Compile Include="POU\IBackOrderReportRepository.cs" />
+    <Compile Include="POU\ICaseReviewReportRepository.cs" />
+    <Compile Include="POU\ICostVarianceAnalysisRepository.cs" />
+    <Compile Include="POU\IDailyUserActivityReportRepository.cs" />
+    <Compile Include="POU\IExpirationTrackingReportRepository.cs" />
+    <Compile Include="POU\IItemUsageReportRepository.cs" />
+    <Compile Include="POU\ILotSerialTrackingReportRepository.cs" />
+    <Compile Include="POU\ILowStockReportRepository.cs" />
+    <Compile Include="POU\IParLocationComplianceDetailsReportRepository.cs" />
+    <Compile Include="POU\IParLocationComplianceSummaryReportRepository.cs" />
+    <Compile Include="POU\IParOptimizationReportRepository.cs" />
+    <Compile Include="POU\IPhysicianBenchMarkRepository.cs" />
+    <Compile Include="POU\IPhysicianUsageReportRepository.cs" />
+    <Compile Include="POU\IPrefCardOptimizationReportRepository.cs" />
+    <Compile Include="POU\IPrefCardPerformanceDetailsRepository.cs" />
+    <Compile Include="POU\IPrefCardPerformanceSummaryRepository.cs" />
+    <Compile Include="POU\IPreferenceCardOptRepository.cs" />
+    <Compile Include="POU\IQuantityOnHandReportRepository.cs" />
+    <Compile Include="POU\ITransactionHistoryReportRepository.cs" />
+    <Compile Include="Receiving\IParcelCountReportRepository.cs" />
+    <Compile Include="RFID\IRFIDConfigRepository.cs" />
+    <Compile Include="RFID\IRFIDEncodeRepository.cs" />
+    <Compile Include="StockIssue\IIssueReportRepository.cs" />
+    <Compile Include="TrackIT\ICommonTrackITRepository.cs" />
+    <Compile Include="TrackIT\ICreateRequestRepository.cs" />
+    <Compile Include="TrackIT\IDailyActivityreportRepository.cs" />
+    <Compile Include="TrackIT\IDeliveryReportRepository.cs" />
+    <Compile Include="TrackIT\IInactivateItemsRepository.cs" />
+    <Compile Include="TrackIT\IManageDepartmentsRepository.cs" />
+    <Compile Include="TrackIT\IManageEquipmentItemsRepository.cs" />
+    <Compile Include="TrackIT\IManageRequestorRepository.cs" />
+    <Compile Include="Init\IAddUserRepository.cs" />
+    <Compile Include="Init\IAllocateLocationGroupsRepository.cs" />
+    <Compile Include="Init\IAllocatePickingZonesRepository.cs" />
+    <Compile Include="Init\IAssignProfileRepository.cs" />
+    <Compile Include="Init\IAuditSetupRepository.cs" />
+    <Compile Include="Init\IBarcodeTranslationRepository.cs" />
+    <Compile Include="Init\ICarrierInformationRepository.cs" />
+    <Compile Include="Init\IChangePasswordRepository.cs" />
+    <Compile Include="Init\IConfigData.cs" />
+    <Compile Include="Init\IConfigurationManagerRepository.cs" />
+    <Compile Include="Init\IDataArchivalRepository.cs" />
+    <Compile Include="Init\IForgotPasswordRepository.cs" />
+    <Compile Include="Init\ILoginRepository.cs" />
+    <Compile Include="Init\IMaintainPrintersRepository.cs" />
+    <Compile Include="Init\IManageDevicesRepository.cs" />
+    <Compile Include="Init\IManageOrgGroupsRepository.cs" />
+    <Compile Include="Init\IManageOrgIDRepository.cs" />
+    <Compile Include="Init\IManageOrgParmsRepository.cs" />
+    <Compile Include="Init\IManageProfilesRepository.cs" />
+    <Compile Include="Init\IManageUsersRepository.cs" />
+    <Compile Include="Init\IProcessSchedulerRepository.cs" />
+    <Compile Include="Init\IReleaseOrdersRepository.cs" />
+    <Compile Include="Init\IRouteRepository.cs" />
+    <Compile Include="Init\ISecurityConfigurationRepository.cs" />
+    <Compile Include="Init\ISetupLocationGroupsRepository.cs" />
+    <Compile Include="Init\ISetupStorageLocationGroupsRepository.cs" />
+    <Compile Include="Init\IStationaryPrintDesignRepository.cs" />
+    <Compile Include="Init\ITokensRepository.cs" />
+    <Compile Include="Init\IUserParamsRepository.cs" />
+    <Compile Include="Init\IUserRepository.cs" />
+    <Compile Include="Init\IUserUploadAutomationRepository.cs" />
+    <Compile Include="ParManagement\ICostCenterRepository.cs" />
+    <Compile Include="ParManagement\IManageParLocationsRepository.cs" />
+    <Compile Include="ParManagement\ISetupInventoryRepository.cs" />
+    <Compile Include="ParManagement\ISetupItemsRepository.cs" />
+    <Compile Include="ParManagement\ISetupParLocationsRepository.cs" />
+    <Compile Include="ParManagement\IVendorRepository.cs" />
+    <Compile Include="PickPlan\IAllocatePriorityRepository.cs" />
+    <Compile Include="PickPlan\IOrderPrefixRepository.cs" />
+    <Compile Include="POU\IDeptLocWrkStationAllocationRepository.cs" />
+    <Compile Include="POU\ICreateOrdersRepository.cs" />
+    <Compile Include="POU\ICommonPOURepository.cs" />
+    <Compile Include="POU\IConsignmentItemsRepository.cs" />
+    <Compile Include="POU\IDepartmentLocationAllocationRepository.cs" />
+    <Compile Include="POU\IDepartmentRepository.cs" />
+    <Compile Include="POU\IDepartmentUserAllocationRepository.cs" />
+    <Compile Include="POU\IDepartmentDeviceAllocationRepository.cs" />
+    <Compile Include="POU\IBillonlyAndConsignedItemsRepository.cs" />
+    <Compile Include="POU\IManageCasesRepository.cs" />
+    <Compile Include="POU\IManageOrdersRepository.cs" />
+    <Compile Include="POU\IPreferenceListsRepository.cs" />
+    <Compile Include="POU\IPostPickQARepository.cs" />
+    <Compile Include="POU\IProcedureCodesRepository.cs" />
+    <Compile Include="POU\IProcessParameterRepository.cs" />
+    <Compile Include="POU\IReleaseCasesRepository.cs" />
+    <Compile Include="POU\IReasonCodesRepository.cs" />
+    <Compile Include="POU\IPhysicianRepository.cs" />
+    <Compile Include="POU\IReviewCharges-CreditsRepository.cs" />
+    <Compile Include="POU\ISetupCaseRepository.cs" />
+    <Compile Include="POU\ISetupCriticalItemsRepository.cs" />
+    <Compile Include="POU\ISetupItemAttributesRepository.cs" />
+    <Compile Include="POU\ISpecialtyCodesRepository.cs" />
+    <Compile Include="POU\IBillOnlyItemMaintenanceRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Putaway\IAllocateBUnitsRepository.cs" />
+    <Compile Include="Receiving\IInventoryBusinessUnitsRepository.cs" />
+    <Compile Include="Receiving\IManageCarriersRepository.cs" />
+    <Compile Include="Receiving\IPOorNONPOReceiptsRepository.cs" />
+    <Compile Include="Receiving\IShipToIDsRepository.cs" />
+    <Compile Include="StockIssue\IAllocateDestinationLocationsRepository.cs" />
+    <Compile Include="StockIssue\IDistributionTypesRepository.cs" />
+    <Compile Include="TrackIT\IManageEquipmentTypeRepository.cs" />
+    <Compile Include="TrackIT\IRequestStatusRepository.cs" />
+    <Compile Include="TrackIT\ISetupReasonCodesRepository.cs" />
+    <Compile Include="TrackIT\ITrackITLoginRepository.cs" />
+    <Compile Include="TrackIT\ITransactionReportRepository.cs" />
+    <Compile Include="TrackIT\IViewCartRepository.cs" />
+    <Compile Include="TrackIT\ICheckInCheckOutItemsRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BinToBin\" />
+    <Folder Include="Pharmacy\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\AtPar.Common\AtPar.Common.csproj">
+      <Project>{818012EF-D097-4D49-82E5-942BF9DFA79E}</Project>
+      <Name>AtPar.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.Data\AtPar.Data.csproj">
+      <Project>{D5DA1A56-3932-4797-8ACC-4E6F7356E74A}</Project>
+      <Name>AtPar.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtPar.POCOEntities\AtPar.POCOEntities.csproj">
+      <Project>{1b4a130c-2757-4b57-9db3-542732572656}</Project>
+      <Name>AtPar.POCOEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtPar.ViewModel\AtPar.ViewModel.csproj">
+      <Project>{063c67cd-51cc-4864-ba19-e18c2af92a61}</Project>
+      <Name>AtPar.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

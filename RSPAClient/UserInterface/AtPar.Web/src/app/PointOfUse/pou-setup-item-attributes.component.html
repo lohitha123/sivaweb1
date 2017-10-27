@@ -1,0 +1,110 @@
+﻿<div id="main" class="content-page">
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0 0 10px 0;">
+                        <div class="col-xs-12">
+                            <form class="form-horizontal form-label-left" *ngIf="page" novalidate>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Org Group ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <label *ngIf="blnShowOrgGroupLabel" class="control-label lbl-left">{{orgGrpIDData}}</label>
+                                        <atpar-select [options]="lstOrgGroups" [id]="'ddllstOrgGroups'" [required]="true" [(ngModel)]="selectedOrgGroupId" [ngModelOptions]="{standalone: true}" filter="filter" *ngIf="blnShowOrgGroupDD" (onChange)="ddlOrgGrpIdChanged()"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Department</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstDept" [required]="true" [id]="'ddlDept'" [(ngModel)]="selectedDeptID" [ngModelOptions]="{standalone: true}" filter="filter"  (onChange)="ddl_Changed()" [selectOnKeyPress]="true"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Location Type</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstLocType" [required]="true" [id]="'ddlLocType'" [(ngModel)]="selectedLocType" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddl_Changed()" [selectOnKeyPress]="true"></atpar-select>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Business Unit/Company</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstBunit" [id]="'ddlBunits'" [(ngModel)]="selectedBunit" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddl_Changed()"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Location</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="strCartID" [name]="txtLocationID1" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'LocationID1'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Item ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="strItemID" [name]="txtLocationName" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'LocationName'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="btn_go_Click()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-xs-12" *ngIf="showgrid">
+                            <div class="container">
+                                <div style="text-align:right;" class="text-primary">
+                                    {{lblcountmsg}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </div>
+
+                                <div class="table-responsive">
+                                    <atpar-datatable [value]="lstDBData" [paginator]="true" [pageLinks]="3" [rows]="pazeSize" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,100]" [responsive]="true">
+                                        <p-column field="ITEM_ID" header="Item Id" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="BUSINESS_UNIT" header="Business Units" [style]="{'width':'10%'}" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="LOCATION" header="Location" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="LOCATION_DESCR" header="Location Description" [style]="{'width':'13%'}" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="DEPT_ID" header="Allocated Department" [style]="{'width':'13%'}" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="PAR_UOM" header="Par UOM" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column *ngIf="showIssueUomColumn" header="Issue UOM">
+
+                                            <template let-ven="rowData" pTemplate="body">
+
+                                                <atpar-text-grid [(ngModel)]="ven.ISSUE_UOM" [name]="txtIss" (onchange)="issueUomOnchanged(ven,$event)"
+                                                                 (bindModelDataChange)="bindModelDataChange($event)" [convertToUpper]="true" [disabled]="ven.ISSUE_UOM_ID_VISIBLE" [validations]="'alpha_nospace'" [id]="ven.ISSUE_UOM_ID" [ngModelOptions]="{standalone: true}"></atpar-text-grid>
+
+                                            </template>
+                                        </p-column>
+
+                                        <p-column header="Conversion Rate">
+                                            <template let-ven="rowData" pTemplate="body">
+
+                                                <atpar-text-grid [(ngModel)]="ven.CONVERSION_FACTOR" (bindModelDataChange)="bindModelDataChange($event)" [disabled]="ven.CONVERSION_FACTOR_ID_VISIBLE" (onchange)="issueUomOnchanged(ven,$event)" [name]="txtCS" [validations]="'mandatory,numeric'" [id]="ven.CONVERSION_FACTOR_ID" [ngModelOptions]="{standalone: true}"></atpar-text-grid>
+
+                                            </template>
+                                        </p-column>
+                                        <p-column [style]="{ 'text-align':'center'}" header="Lot">
+                                            <template let-ven="rowData" pTemplate type="body">
+                                                <atpar-switch [disabled]="ven.lotvalue" (change)="selectedRowLotControlled(ven,$event)" style="cursor:pointer" [(ngModel)]="ven.LOT"></atpar-switch>
+                                            </template>
+                                        </p-column>
+                                        <p-column [style]="{ 'text-align':'center'}" header="Serial">
+                                            <template let-ven="rowData" pTemplate type="body">
+                                                <atpar-switch [disabled]="ven.serialvalue" (change)="selectedRowSerialControlled(ven,$event)" style="cursor:pointer;" [(ngModel)]="ven.SERIAL"></atpar-switch>
+                                            </template>
+                                        </p-column>
+                                    </atpar-datatable>
+
+                                    </div>
+                                </div>
+                            <br>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" [disabled]="loading" (click)="Save_Click()" >Save &nbsp;<i class="fa fa-floppy-o"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+ [
+      {
+        "CODE": "EXP_ITEM",
+        "DESCRIPTION": "Expired Item",
+        "UPDATE_USER_ID": "ADMIN",
+        "STATUS": "false"
+      },
+      {
+        "CODE": "Reason1",
+        "DESCRIPTION": "Reason1",
+        "UPDATE_USER_ID": "SUPPORT",
+        "STATUS": "false"
+      },
+      {
+        "CODE": "Reason2",
+        "DESCRIPTION": "Reason2",
+        "UPDATE_USER_ID": "SUPPORT",
+        "STATUS": "false"
+      },
+      {
+        "CODE": "Reason3",
+        "DESCRIPTION": "Reason3",
+        "UPDATE_USER_ID": "SUPPORT",
+        "STATUS": "false"
+      },
+      {
+        "CODE": "Reason4",
+        "DESCRIPTION": "Reason4",
+        "UPDATE_USER_ID": "SUPPORT",
+        "STATUS": "false"
+      },
+      {
+        "CODE": "RECALL_ITEM",
+        "DESCRIPTION": "Recall Item",
+        "UPDATE_USER_ID": "ADMIN",
+        "STATUS": "false"
+      }
+]

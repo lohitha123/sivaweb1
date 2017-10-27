@@ -1,0 +1,114 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;" *ngIf="page">
+                    <div class="panel-body" style="padding:0px;">
+                        <form class="form-horizontal form-label-left" >
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Org Group ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <!--<atpar-text [(ngModel)]="newItem.OrgID" [name]="txtOrgID" *ngIf="blnShowOrgGroupLabel" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'OrgID'" [ngModelOptions]="{standalone: true}" [readonly]="true"></atpar-text>-->
+
+                                        <label *ngIf="blnShowOrgGroupLabel" for="" class="control-label lbl-left">{{lblOrgGroupID}}</label>
+                                        <atpar-select [options]="ddlOrgGrpID" [id]="'ddllstOrgGroups'" [required]="true"
+                                                      [(ngModel)]="selOrgGrpId" [ngModelOptions]="{standalone: true}"
+                                                      filter="filter" *ngIf="blnShowOrgGroupID" (onChange)="ddlOrgGrpIdChanged()"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Business Unit</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="ddlBunit" [id]="'ddlOrg'" [(ngModel)]="selectedBUnit" [ngModelOptions]="{standalone: true}" filter="filter" [required]="true" (onChange)="ddlBUnitChanged()" ></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Event ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="ddlEvent" [id]="'ddlSts'" [(ngModel)]="selectedEvent" [ngModelOptions]="{standalone: true}" filter="filter" [required]="true" (onChange)="ddlEventChanged()" ></atpar-select>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="go()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <br>
+                        <!--below form-->
+                        <form class="form-horizontal form-label-left" *ngIf="pop">
+                            <div style="clear:both;"></div>
+                            <hr>
+                            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                                <div class="form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-3 col-sm-3">Event ID</label>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <!--<atpar-text [(ngModel)]="eventsSplit.EVENT_ID" [name]="txtEventID" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'EventID'" [ngModelOptions]="{standalone: true}" [readonly]="true"></atpar-text>-->
+                                        <label for="" class="control-label lbl-left">{{eventsSplit.EVENT_ID}}</label>
+                                    </div>
+                                    <!--<div class="col-xs-12 col-sm-6 col-md- help_txt">
+                                        Enter Event ID
+                                    </div>-->
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-3 col-sm-3">From Storage Location</label>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <!--<atpar-text [(ngModel)]="eventsSplit.FROM" [name]="txtFromStorageLoc" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'FromStorageLoc'" [ngModelOptions]="{standalone: true}" [readonly]="true"></atpar-text>-->
+                                        <label for="" class="control-label lbl-left">{{eventsSplit.FROM}}</label>
+                                    </div>
+                                    <!--<div class="col-xs-12 col-sm-6 col-md- help_txt">
+                                        Enter From Storage Location
+                                    </div>-->
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-3 col-sm-3">To Storage Location</label>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <!--<atpar-text [(ngModel)]="eventsSplit.TO" [name]="txtToStorageLoc" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'ToStorageLoc'" [ngModelOptions]="{standalone: true}" [readonly]="true"></atpar-text>-->
+                                        <label for="" class="control-label lbl-left">{{eventsSplit.TO}}</label>
+                                    </div>
+                                    <!--<div class="col-xs-12 col-sm-6 col-md- help_txt">
+                                        Enter To Storage Location
+                                    </div>-->
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-3 col-sm-3">No of Items</label>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <label for="" class="control-label lbl-left">{{eventsSplit.NO_OF_ITEMS}}</label>
+                                        <!--<atpar-text [(ngModel)]="eventsSplit.NO_OF_ITEMS" [name]="txtNoOfItems" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'NoOfItems'" [ngModelOptions]="{standalone: true}" [readonly]="true"></atpar-text>-->
+                                    </div>
+                                    <!--<div class="col-xs-12 col-sm-6 col-md- help_txt">
+                                        Enter No of Items
+                                    </div>-->
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-3 col-sm-3">Split Into</label>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <atpar-text [(ngModel)]="eventsSplit.PARENT_EVENT_ID" [name]="txtSplitInto" *ngIf="!isEditMode" [validations]="'mandatory,numeric,max=3'" [id]="'SplitInto'" [ngModelOptions]="{standalone: true}" [isFocused]="'true'"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md- help_txt">
+                                        Enter Split Into
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-3 col-sm-3">Sort By</label>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <atpar-select [options]="ddlSort" [id]="'ddlOrg'" [(ngModel)]="selectedSortValue" [ngModelOptions]="{standalone: true}" [required]="true"></atpar-select>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md- help_txt">
+                                        Select Sort By
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="splitEvents()" [disabled]= "!doSplit">Split &nbsp; <i class="fa fa-columns"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>            
+        </div>
+    </div>
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+</div>

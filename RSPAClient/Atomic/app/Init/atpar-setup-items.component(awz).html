@@ -1,0 +1,484 @@
+﻿<div id="main" class="content-page">
+    <div class="content">
+        <div class="">
+            <div class="page-header-title">
+                <h4 class="page-title"><a (click)="homeurl()">Administration ></a> Setup Items</h4>
+            </div>
+        </div>
+        <div class="page-content-wrapper">
+            <div class="container" *ngIf="container">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-heading" style="background:#f5f5f5;">
+                        <p><img src="assets/images/icons/app_icon_.png" alt="" height="25" width="29">&nbsp;&nbsp;Setup Items</p>
+                    </div>
+                    <div class="panel-body" style="padding:20px;">
+                        <button class="btn btn-success pull-right" (click)="add()"><i class="fa fa-plus"></i> Add Items</button>
+                        <br>
+                        <div class="col-xs-12">
+                            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-5">
+                                    <label for="">Item ID</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <input type="text" name="" id="input" class="form-control" value="" required="required" pattern="" title="">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-5">
+                                    <label for="">Description</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <input type="text" name="" id="input" class="form-control" value="" required="required" pattern="" title="">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-4">
+                                    <label for="">Vendor</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <select name="" class="form-control">
+                                        <option value="Select Profile">Select Profile</option>
+                                        <option value="">Vendor-1</option>
+                                        <option value="">Vendor-2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-5">
+                                    <label for="">Manufacturer</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <input type="text" name="" id="input" class="form-control" value="" required="required" pattern="" title="">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-5">
+                                    <label for="">UPIC ID</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <input type="text" name="" id="input" class="form-control" value="" required="required" pattern="" title="">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-5">
+                                    <label for="">Item Price Between</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="" />
+                                        <span class="input-group-addon" style="border-left: 0; border-right: 0;">and</span>
+                                        <input type="text" class="form-control" placeholder="" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-5">
+                                    <label for="">Vendor Item ID</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <input type="text" name="" id="input" class="form-control" value="" required="required" pattern="" title="">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-5">
+                                    <label for=""> Mfg ItemID</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <input type="text" name="" id="input" class="form-control" value="" required="required" pattern="" title="">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-5">
+                                    <label for=""> Cust. Item ID </label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <input type="text" name="" id="input" class="form-control" value="" required="required" pattern="" title="">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-2 form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-5">
+                                    <label for=""> Substitute </label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                    <atPar-switch></atPar-switch>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-1">
+                                <button class="btn btn-purple small" (click)="go()">Go</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="col-xs-12 table-responsive"*ngIf="table1">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Org Group ID</th>
+                                        <th class="text-center">Item ID</th>
+                                        <th class="text-center">Description</th>
+                                        <th class="text-center">Vendor</th>
+                                        <th class="text-center">Manufacturer</th>
+                                        <th class="text-center">Price <span class="text-danger">($)</span></th>
+                                        <th class="text-center">UPC ID</th>
+                                        <th class="text-center">Conversion Factor</th>
+                                        <th class="text-center">Current Status</th>
+                                        <th class="text-center">Action</th>
+                                        <th class="text-center">Add Substitute Item</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td data-label="Org Group ID">MHS</td>
+                                        <td data-label="Item ID"> Item1</td>
+                                        <td data-label="Description"> Item1</td>
+                                        <td data-label="Vendor"> vend11</td>
+                                        <td data-label="Manufacturer"></td>
+                                        <td data-label="Price($)" class="text-right">0.00</td>
+                                        <td data-label="UPC ID"></td>
+                                        <td data-label="Conversion Factor" class="text-right">1</td>
+                                        <td data-label="Current Status">Active</td>
+                                        <td data-label="Action"><a href="" class="text-danger">InActivate</a></td>
+                                        <td data-label="Add Substitute Item"></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="Org Group ID">MHS</td>
+                                        <td data-label="Item ID"> Item1</td>
+                                        <td data-label="Description"> Item1</td>
+                                        <td data-label="Vendor"> vend11</td>
+                                        <td data-label="Manufacturer"></td>
+                                        <td data-label="Price($)" class="text-right">0.00</td>
+                                        <td data-label="UPC ID"></td>
+                                        <td data-label="Conversion Factor" class="text-right">1</td>
+                                        <td data-label="Current Status">Active</td>
+                                        <td data-label="Action"><a href="" class="text-danger">InActivate</a></td>
+                                        <td data-label="Add Substitute Item"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="col-xs-4 col-xs-offset-4 col-md-2 col-md-offset-5">
+                                <button class="btn btn-purple small">Assign</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+            <div class="container" *ngIf="additem">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-heading" style="background:#f5f5f5;">
+                        <!--<p><img src="assets/images/icons/app_icon_.png" alt="" height="25" width="29">&nbsp;&nbsp;Setup Item</p>-->
+                        <ul class="row list-inline">
+                            <li class="col-xs-10"><img src="assets/images/icons/app_icon_.png" alt="" height="25" width="29">&nbsp;&nbsp;Setup Item</li>
+                            <li class="pull-right text-danger" (click)="close()" id="back"><i class="fa fa-times fa-2x" (click)="close()" id="back"></i></li>
+                        </ul>
+                    </div>
+                    <div class="panel-body" style="padding:20px;">
+                        <div class="row">
+                            <form class="form-horizontal form-label-left tab-form">
+                                <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
+                                    <div class="btn-group">
+                                        <button type="submit" class="btn btn-success">Add</button>
+                                        <button type="submit" class="btn btn-default">Go Back</button>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"><span class="text-danger">*</span>Org Group ID </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                    
+                                        <i class="fa fa-question tooltip_text" aria-hidden="true" data-toggle="tooltip" title="" atpar-tooltip="Check this parameter if Recall Management is implemented"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Lead Time </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"><span class="text-danger">*</span> Short Description </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> <span class="text-danger">*</span> Vendor ID </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <select name="" class="form-control">
+                                            <option value="Select Profile">Select Vendor</option>
+                                            <option value="">Vendor-1</option>
+                                            <option value="">Vendor-2</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"><span class="text-danger">*</span> Cust. Item ID</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Manufacturer </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> Manufacturer Item ID </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"><span class="text-danger">*</span> Vendor Item ID</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"><span class="text-danger">*</span> UOM (Procurement)</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"><span class="text-danger">*</span> UOM (Issue)</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> UPC ID</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> GTIN</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> Item Price [UOM Procurement]</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"><span class="text-danger">*</span> Conversion Factor</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> Lot Controlled</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <atPar-switch></atPar-switch>
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Serial Controlled</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <atPar-switch></atPar-switch>
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Implant Item</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <atPar-switch></atPar-switch>
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Charge Code</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"><span class="text-danger">*</span> Replenishment Type</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <select name="" class="form-control">
+                                            <option value="Select Profile">Select One</option>
+                                            <option value="">Stock</option>
+                                            <option value="">Nonstock</option>
+                                            <option value="">Stockless</option>
+                                            <option value="">Consignment</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> Latex Free</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <atPar-switch></atPar-switch>
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> Custom Item Desc</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> Item Category</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> User Field 1</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> User Field 2</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> Pharmacy Item</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <atPar-switch (click)="pharmacy()"></atPar-switch>
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group" *ngIf="pharma">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> Substitute Item</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <atPar-switch></atPar-switch>
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group" *ngIf="pharma">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> Strength</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group" *ngIf="pharma">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> Dosage Form</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group" *ngIf="pharma">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Everify</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <atPar-switch></atPar-switch>
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group" *ngIf="pharma">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> CIndex</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-11">
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1">
+                                        <i class="fa fa-question tooltip_text"></i>
+                                    </div>
+                                </div>
+                                <!--  <div class="ln_solid"></div> -->
+                                <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
+                                    <div class="btn-group">
+                                        <button type="submit" class="btn btn-success">Add</button>
+                                        <button type="submit" class="btn btn-default">Go Back</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

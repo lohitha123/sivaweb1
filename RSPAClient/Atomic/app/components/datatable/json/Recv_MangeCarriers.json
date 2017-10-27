@@ -1,0 +1,20 @@
+ [
+      {
+        "SEARCH_STRING": "test",
+        "START_POSITION": "1",
+        "CARRIER": "CarrierOne",
+        "STATUS": "true"
+      },
+      {
+        "SEARCH_STRING": "test2",
+        "START_POSITION": "2",
+        "CARRIER": "CarrierTwo",
+        "STATUS": "true"
+      },
+      {
+        "SEARCH_STRING": "test3",
+        "START_POSITION": "3",
+        "CARRIER": "CarrierThree",
+        "STATUS": "true"
+      }
+]

@@ -1,0 +1,86 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border" *ngIf="true">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px;">
+                        <form class="form-horizontal form-label-left" novalidate>
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Org Group ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <label id="lblOrgGrpId" class="control-label lbl-left" *ngIf="blnddlOrgGrpID">{{selectedOrgGrpName}}</label>
+                                        <atpar-select [options]="ddOrgGroupdata" [required]="true"  name="'ddlOrgGroup'" [id]="'ddlOrgGroup'" (onChange)="onChange($event)" [(ngModel)]="selectedOrgGrpId" [ngModelOptions]="{standalone: true}" filter="filter" *ngIf="showddlOrgGrpID"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Business Unit</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstBunit"   [id]="'lstBunit'" [required]="true"   [(ngModel)]="selectedBunit" (onChange)="onBunitChange($event)" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Location</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="location" [name]="'txtloc'"   [id]="'txtloc'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6"> Assign Priority</label>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <atpar-text [(ngModel)]="assignpriority" [name]="'txtPriority'" [validations]="'NUMBER,MAX=2,Mandatory'" [id]="'txtPriority'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-5 col-md-5">
+                                        <label class="control-label" for=""> to Selected records</label>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-2 form-group">
+                                    <button class="btn btn-purple sbtn" (click)="go()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="col-xs-12" *ngIf="pop">
+                            <div class="container">
+                                <atpar-datatable [value]="priorities" [paginator]="true" [pageLinks]="3" 
+                                                 [rows]="recordsperpage" expandableRows="true" 
+                                                 [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" 
+                                                 [globalFilter]="gb" [responsive]="true" (filteredData)="myfilterdata($event)">
+                                    <!--<p-column expander="true" styleClass="col-icon"></p-column>--> 
+                                    <p-column field="CHK_VALUE" [style]="{'width':'7%', 'text-align':'center'}" header="Select">
+                                        <template pTemplate="filter" let-col>
+                                            <ul class="list-inline li-all-none">
+                                                <li>
+                                                    <span (click)="checkAll()" style="cursor:pointer">All</span>
+                                                </li> |
+                                                <li>
+                                                    <span (click)="unCheckAll()" style="cursor:pointer">None</span>
+                                                </li>
+                                            </ul>
+                                        </template>
+                                        <template let-col let-allocate="rowData" pTemplate="body">
+                                            <atpar-switch [checked]=allocate[col.field] [(ngModel)]="allocate[col.field]" name="changeStatus" (change)="changeStatus(allocate,$event)"></atpar-switch>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="BUSINESS_UNIT" header="Business Unit" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'10%'}"> </p-column>
+                                    <p-column field="LOCATION" header="Location" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'16%'}"> </p-column>
+                                    <p-column field="DESCR" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'54%'}"> </p-column>
+                                    <p-column field="PRIORITY" header="Order" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'20%'}"> </p-column>
+
+                                    <!--<p-footer></p-footer>-->
+                                </atpar-datatable>
+                            </div>
+                            <br>
+                            <div class="col-xs-12 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" [disabled]="disableButton" (click)="saveAllocatePriorites()">Submit &nbsp;<i class="fa fa-check"></i></button>
+                                <!--  <button class="btn btn-purple sbtn" (click)="hideDialog()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl> 
+</div>

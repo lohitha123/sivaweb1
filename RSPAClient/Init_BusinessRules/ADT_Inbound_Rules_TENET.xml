@@ -1,0 +1,22 @@
+<ROOT>
+<ADT_PATIENT_DATA>
+<field name="MSA_ERROR_LENGTH" segment="MSA" field_no="0" composite_field_no="" events="All" mandatory="N" length="80"/>
+<field name="PATIENT_MRC" segment="PID" field_no="3" composite_field_no="1" events="All" mandatory="Y"/>
+<field name="PATIENT_FIRST_NAME" segment="PID" field_no="5" composite_field_no="2" events="All" mandatory="Y"/>
+<field name="PATIENT_MIDDLE_NAME" segment="PID" field_no="5" composite_field_no="3" events="All" mandatory="N"/>
+<field name="PATIENT_LAST_NAME" segment="PID" field_no="5" composite_field_no="1" events="All" mandatory="N"/>
+<field name="PATIENT_BEDNUMBER" segment="PV1" field_no="3" composite_field_no="3" events="A01,A02,A03,A04,A05,A08,A11,A12,A13,A17,A34,A35,A36" mandatory="N"/>
+<field name="PATIENT_DEPARTMENT" segment="PV1" field_no="3" composite_field_no="1" events="A01,A02,A03,A04,A05,A08,A11,A12,A13,A17,A34,A35,A36" mandatory="N"/>
+<field name="PATIENT_SEX" segment="PID" field_no="8" composite_field_no="" events="All" mandatory="Y"/>
+<field name="PATIENT_ACCOUNT_NUMBER" segment="PID" field_no="18" composite_field_no="1" events="All" mandatory="N"/>
+<field name="PATIENT_CLASS" segment="PV1" field_no="2" composite_field_no="" events="A01,A02,A03,A04,A05,A06,A07,A08,A11,A12,A13,A17,A34,A35,A36" mandatory="N"/>
+<field name="MESSAGE_DATETIME" segment="MSH" field_no="7" composite_field_no="" events="All" mandatory="Y"/>
+<field name="ADMIT_DATETIME" segment="PV1" field_no="44" composite_field_no="" events="A01,A02,A03,A04,A05,A08,A11,A12,A13,A17,A34,A35,A36" mandatory="Y"/>
+<field name="DISCHARGE_DATETIME" segment="PV1" field_no="45" composite_field_no="" events="A01,A02,A03,A04,A05,A08,A11,A12,A13,A17,A34,A35,A36" mandatory="N"/>
+<field name="ORG_ID" segment="MSH" field_no="4" composite_field_no="" events="All" mandatory="Y"/>
+<field name="PATIENT_VISIT_NUMBER" segment="PV1" field_no="19" composite_field_no="1" events="A01,A02,A03,A04,A05,A08,A11,A12,A13,A17,A34,A35,A36" mandatory="N"/>
+<field name="OLD_PATIENT_MRC" segment="MRG" field_no="1" composite_field_no="1" events="A34,A44" mandatory="Y"/>
+<field name="OLD_PATIENT_ACCOUNT_NUMBER" segment="MRG" field_no="3" composite_field_no="1" events="A44" mandatory="N"/>
+<field name="PATIENT_ROOM_NUMBER" segment="PV1" field_no="3" composite_field_no="2" events="A01,A02,A03,A04,A05,A08,A11,A12,A13,A17,A34,A35,A36" mandatory="N"/>
+</ADT_PATIENT_DATA>
+</ROOT>

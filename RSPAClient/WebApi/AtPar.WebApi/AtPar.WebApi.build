@@ -1,0 +1,259 @@
+<?xml version="1.0"?>
+<project name="AtPar.WebApi" default="build" basedir="." xmlns="http://nant.sf.net/schemas/nant-0.85.win32.net-1.0.xsd">
+	<description>Build File for AtPar.WebApi</description>
+	<property name="basename" value="AtPar.WebApi"/>
+	<property name="asminfo.file.name" value="${basename}.dll" />
+	<property name="asminfo.file.descr" value="WebApi Component" />
+	
+	<include buildfile="..\..\..\Headers\nantincludes.include" />
+	<target name="copyreqdbins" description="copy required binaries">  
+	  <copy file="../../$binout$/AtPar.Common.dll" tofile="AtPar.Common.dll"/>
+		<copy file="../../$binout$/AtPar.AssetManagement.WebApi.dll" tofile="AtPar.AssetManagement.WebApi.dll"/>	 
+		<copy file="../../$binout$/AtPar.CartCount.WebApi.dll" tofile="AtPar.CartCount.WebApi.dll"/>	 
+		<copy file="../../$binout$/AtPar.Common.dll" tofile="AtPar.Common.dll"/>
+		<copy file="../../$binout$/AtPar.CycleCount.WebApi.dll" tofile="AtPar.CycleCount.WebApi.dll"/>	 	   
+		<copy file="../../$binout$/AtPar.Data.dll" tofile="AtPar.Data.dll"/>
+		<copy file="../../$binout$/Atpar.Data.Mapping.dll" tofile="Atpar.Data.Mapping.dll"/>
+		   <copy file="../../$binout$/AtPar.POCOEntities.dll" tofile="AtPar.POCOEntities.dll"/>
+		   <copy file="../../$binout$/AtPar.Deliver.WebApi.dll" tofile="AtPar.Deliver.WebApi.dll"/>
+		   <copy file="../../$binout$/AtPar.Init.Repos.dll" tofile="AtPar.Init.Repos.dll"/>
+		   <copy file="../../$binout$/AtPar.Init.Service.dll" tofile="AtPar.Init.Service.dll"/>
+		   <copy file="../../$binout$/AtPar.Init.WebApi.dll" tofile="AtPar.Init.WebApi.dll"/>
+		   <copy file="../../$binout$/AtPar.ParManagement.WebApi.dll" tofile="AtPar.ParManagement.WebApi.dll"/>
+		   <copy file="../../$binout$/AtPar.Pharmacy.WebApi.dll" tofile="AtPar.Pharmacy.WebApi.dll"/>
+		   <copy file="../../$binout$/AtPar.PickPlan.WebApi.dll" tofile="AtPar.PickPlan.WebApi.dll"/>
+		   <copy file="../../$binout$/AtPar.POU.WebApi.dll" tofile="AtPar.POU.WebApi.dll"/>
+		   <copy file="../../$binout$/AtPar.Putaway.WebApi.dll" tofile="AtPar.Putaway.WebApi.dll"/>
+		   <copy file="../../$binout$/AtPar.Receiving.WebApi.dll" tofile="AtPar.Receiving.WebApi.dll"/>
+		   <copy file="../../$binout$/AtPar.RFID.WebApi.dll" tofile="AtPar.RFID.WebApi.dll"/>
+		   <copy file="../../$binout$/AtPar.Repository.Interfaces.dll" tofile="AtPar.Repository.Interfaces.dll"/>
+		   <copy file="../../$binout$/AtPar.Service.Interfaces.dll" tofile="AtPar.Service.Interfaces.dll"/>
+		   <copy file="../../$binout$/AtPar.StockIssue.WebApi.dll" tofile="AtPar.StockIssue.WebApi.dll"/>
+		   <copy file="../../$binout$/AtPar.TrackIT.WebApi.dll" tofile="AtPar.TrackIT.WebApi.dll"/>		   
+		   <copy file="../../packages/EntityFramework.6.1.3/lib/net45/EntityFramework.dll" tofile="EntityFramework.dll"/>
+		   <copy file="../../packages/EntityFramework.6.1.3/lib/net45/EntityFramework.SqlServer.dll" tofile="EntityFramework.SqlServer.dll"/>
+		   <copy file="../../packages/log4net.2.0.5/lib/net45-full/log4net.dll" tofile="log4net.dll"/>
+<copy file="../../packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll" tofile="Microsoft.AI.Agent.Intercept.dll"/>	
+<copy file="../../packages\Microsoft.ApplicationInsights.DependencyCollector.2.1.0\lib\net45\Microsoft.AI.DependencyCollector.dll" tofile="Microsoft.AI.DependencyCollector.dll"/>	
+<copy file="../../packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.1.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll" tofile="Microsoft.AI.PerfCounterCollector.dll"/>	
+<copy file="../../packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.1.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll" tofile="Microsoft.AI.ServerTelemetryChannel.dll"/>	
+<copy file="../../packages\Microsoft.ApplicationInsights.Web.2.1.0\lib\net45\Microsoft.AI.Web.dll" tofile="Microsoft.AI.Web.dll"/>	
+<copy file="../../packages\Microsoft.ApplicationInsights.WindowsServer.2.1.0\lib\net45\Microsoft.AI.WindowsServer.dll" tofile="Microsoft.AI.WindowsServer.dll"/>	
+<copy file="../../packages\Microsoft.ApplicationInsights.2.1.0\lib\net46\Microsoft.ApplicationInsights.dll" tofile="Microsoft.ApplicationInsights.dll"/>	
+<copy file="../../packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" tofile="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll"/>	
+<copy file="../../packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll" tofile="Microsoft.Practices.ServiceLocation.dll"/>	
+<copy file="../../packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll" tofile="Microsoft.Practices.Unity.Configuration.dll"/>
+<copy file="../../packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll" tofile="Microsoft.Practices.Unity.dll"/>	
+<copy file="../../packages\Unity.Mvc.4.0.1\lib\net45\Microsoft.Practices.Unity.Mvc.dll" tofile="Microsoft.Practices.Unity.Mvc.dll"/>	
+<copy file="../../packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll" tofile="Microsoft.Practices.Unity.RegistrationByConvention.dll"/>	
+<copy file="../../packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll" tofile="Microsoft.Web.Infrastructure.dll"/>
+<copy file="../../packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll" tofile="Newtonsoft.Json.dll"/>
+
+<copy file="../../packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll" tofile="System.Net.Http.Formatting.dll"/>
+<copy file="../../packages\System-Web-Helpers.dll.1.0.0\lib\Net40\System.Web.Helpers.dll" tofile="System.Web.Helpers.dll"/>
+<copy file="../../packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll" tofile="System.Web.Http.dll"/>
+<copy file="../../packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll" tofile="System.Web.Http.WebHost.dll"/>
+<copy file="../../packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll" tofile="System.Web.Mvc.dll"/>
+<copy file="../../packages\System.Web.Mvc.Extensions.1.1.1.2\lib\net45\System.Web.Mvc.Extensions.dll" tofile="System.Web.Mvc.Extensions.dll"/>
+<copy file="../../packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll" tofile="System.Web.Razor.dll"/>
+<copy file="../../packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll" tofile="System.Web.WebPages.Deployment.dll"/>
+<copy file="../../packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll" tofile="System.Web.WebPages.dll"/>
+<copy file="../../packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll" tofile="System.Web.WebPages.Razor.dll"/>
+
+<copy file="../../packages\Unity.WebAPI.5.2.3\lib\net45\Unity.WebApi.dll" tofile="Unity.WebApi.dll"/>
+<copy file="../../packages\UnityLog4NetExtension.2.0.1.0\lib\net45\UnityLog4NetExtension.dll" tofile="UnityLog4NetExtension.dll"/>
+<copy file="../../packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll" tofile="WebActivatorEx.dll"/>
+<copy file="../../packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll" tofile="System.Web.Http.Cors.dll"/>
+
+<copy file="../../packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll" tofile="System.Web.Cors.dll"/>
+
+packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll
+	</target>
+	
+	<target name="deletereqdbins" description="delete required binaries">
+		<delete file="AtPar.AssetManagement.WebApi.dll" />
+		<delete file="AtPar.CartCount.WebApi.dll" />
+		<delete file="AtPar.Common.dll" />
+		<delete file="AtPar.CycleCount.WebApi.dll" />
+		<delete file="AtPar.Data.dll" />
+		<delete file="Atpar.Data.Mapping.dll" />
+		<delete file="AtPar.POCOEntities.dll" />
+		<delete file="AtPar.Deliver.WebApi.dll" />
+		<delete file="AtPar.Init.Repos.dll" />
+		<delete file="AtPar.Init.Service.dll" />
+		<delete file="AtPar.Init.WebApi.dll" />
+		<delete file="AtPar.ParManagement.WebApi.dll" />
+		<delete file="AtPar.Pharmacy.WebApi.dll" />
+		<delete file="AtPar.PickPlan.WebApi.dll" />
+		<delete file="AtPar.POU.WebApi.dll" />
+		<delete file="AtPar.Putaway.WebApi.dll" />
+		<delete file="AtPar.Receiving.WebApi.dll" />
+		<delete file="AtPar.RFID.WebApi.dll" />
+		<delete file="AtPar.Repository.Interfaces.dll" />
+		<delete file="AtPar.Service.Interfaces.dll" />
+		<delete file="AtPar.StockIssue.WebApi.dll" />
+		<delete file="AtPar.TrackIT.WebApi.dll" />
+		<delete file="EntityFramework.dll" />
+		<delete file="EntityFramework.SqlServer.dll" />
+		<delete file="log4net.dll" />
+		<delete file="Microsoft.AI.Agent.Intercept.dll" />
+		<delete file="Microsoft.AI.DependencyCollector.dll" />
+		<delete file="Microsoft.AI.PerfCounterCollector.dll" />
+		<delete file="Microsoft.AI.ServerTelemetryChannel.dll" />
+		<delete file="Microsoft.AI.Web.dll" />
+		<delete file="Microsoft.AI.WindowsServer.dll" />
+		<delete file="Microsoft.ApplicationInsights.dll" />
+		<delete file="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+		<delete file="Microsoft.Practices.ServiceLocation.dll" />
+		<delete file="Microsoft.Practices.Unity.Configuration.dll" />
+		<delete file="Microsoft.Practices.Unity.dll" />
+		<delete file="Microsoft.Practices.Unity.Mvc.dll" />
+		<delete file="Microsoft.Practices.Unity.RegistrationByConvention.dll" />
+		<delete file="Microsoft.Web.Infrastructure.dll" />
+		<delete file="Newtonsoft.Json.dll" />
+		<delete file="System.Net.Http.Formatting.dll" />
+		<delete file="System.Web.Helpers.dll" />
+		<delete file="System.Web.Http.dll" />
+		<delete file="System.Web.Http.WebHost.dll" />
+		<delete file="System.Web.Mvc.dll" />
+		<delete file="System.Web.Razor.dll" />
+		<delete file="System.Web.WebPages.Deployment.dll" />
+		<delete file="System.Web.WebPages.dll" />
+		<delete file="System.Web.WebPages.Razor.dll" />		
+		<delete file="System.Net.Http.Formatting.dll" />
+		<delete file="System.Web.Helpers.dll" />
+		<delete file="System.Web.Http.dll" />
+		<delete file="System.Web.Http.WebHost.dll" />
+		<delete file="System.Web.Mvc.dll" />
+		<delete file="System.Web.Mvc.Extensions.dll" />
+		<delete file="System.Web.Razor.dll" />
+		<delete file="System.Web.WebPages.Deployment.dll" />
+		<delete file="System.Web.WebPages.dll" />
+		<delete file="System.Web.WebPages.Razor.dll" />
+		<delete file="Unity.WebApi.dll" />
+		<delete file="UnityLog4NetExtension.dll" />
+		<delete file="WebActivatorEx.dll" />
+				<delete file="System.Web.Http.Cors.dll" />
+					<delete file="System.Web.Cors.dll" />
+
+    </target>
+  
+	<target name="deploybin" description="deploy files to bin">
+		<copy todir="../../${Bin.OutputFolder}">
+		  <fileset basedir="${Bin.OutputFolder}">
+			<include name="${basename}.dll" />
+			<include name="${basename}.pdb" if="${debug == 'true'}"/>
+		  </fileset>
+		</copy>	
+		<copy todir="../../${Bin.OutputFolder}">
+		  <fileset basedir=".">
+			<include name="*.dll" />
+		  </fileset>
+ 	    </copy>	
+	</target>
+	
+	<target name="deployweb" description="deploy files to web">
+ 
+   
+ <copy todir="../../${Web.OutputFolder}">
+      <fileset basedir=".">
+       	<include name="*.config" />	
+        <include name="Global.asax" />
+		<include name="*.xml" />	
+		
+	 </fileset>
+	   
+  </copy>
+  
+  <copy todir="../../${Web.OutputFolder}/assets">
+      <fileset basedir="assets">
+       	<include name="**/*" />	
+	</fileset>
+  </copy> 
+    
+</target>
+	
+	<target name="build" description="compiles the source code">
+		<call target="createoutfolder"/>
+	    <call target="copyreqdbins"/>		
+		<call target="CreateAssemblyInfoCS"/>
+		
+		<csc target="library" output="${Bin.OutputFolder}\${basename}.dll" debug="${debug}" 							  							  
+							  doc="${Xml.Bin.OutputFolder}\${basename}.xml">
+							  
+							  <sources>
+								<include name="*.cs" />								
+								<include name="../../WebApi/AtPar.WebApi/App_Start/*.cs" />								 
+							  </sources>
+							  
+							  <references>	
+								<include asis="true" name="System.dll"/>
+								<include asis="true" name="System.Runtime.dll" />
+								<include asis="true" name="System.Net.Http.dll" />
+								<include asis="true" name="System.Configuration.dll"/>
+								<include asis="true" name="System.Data.dll"/>																  
+								<include asis="true" name="AtPar.AssetManagement.WebApi.dll" />
+								<include asis="true" name="AtPar.CartCount.WebApi.dll" />
+								<include asis="true" name="AtPar.Common.dll" />
+								<include asis="true" name="AtPar.CycleCount.WebApi.dll" />
+								<include asis="true" name="AtPar.Data.dll" />
+								<include asis="true" name="Atpar.Data.Mapping.dll" />
+								<include asis="true" name="AtPar.POCOEntities.dll" />
+								<include asis="true" name="AtPar.Deliver.WebApi.dll" />
+								<include asis="true" name="AtPar.Init.Repos.dll" />
+								<include asis="true" name="AtPar.Init.Service.dll" />
+								<include asis="true" name="AtPar.Init.WebApi.dll" />
+								<include asis="true" name="AtPar.ParManagement.WebApi.dll" />
+								<include asis="true" name="AtPar.Pharmacy.WebApi.dll" />
+								<include asis="true" name="AtPar.PickPlan.WebApi.dll" />
+								<include asis="true" name="AtPar.POU.WebApi.dll" />
+								<include asis="true" name="AtPar.Putaway.WebApi.dll" />
+								<include asis="true" name="AtPar.Receiving.WebApi.dll" />
+								<include asis="true" name="AtPar.RFID.WebApi.dll" />
+								<include asis="true" name="AtPar.Repository.Interfaces.dll" />
+								<include asis="true" name="AtPar.Service.Interfaces.dll" />
+								<include asis="true" name="AtPar.StockIssue.WebApi.dll" />
+								<include asis="true" name="AtPar.TrackIT.WebApi.dll" />
+								<include asis="true" name="EntityFramework.dll" />
+								<include asis="true" name="EntityFramework.SqlServer.dll" />
+								<include asis="true" name="log4net.dll" />
+								<include asis="true" name="Microsoft.AI.Agent.Intercept.dll" />
+								<include asis="true" name="Microsoft.AI.DependencyCollector.dll" />
+								<include asis="true" name="Microsoft.AI.PerfCounterCollector.dll" />
+								<include asis="true" name="Microsoft.AI.ServerTelemetryChannel.dll" />
+								<include asis="true" name="Microsoft.AI.Web.dll" />
+								<include asis="true" name="Microsoft.AI.WindowsServer.dll" />
+								<include asis="true" name="Microsoft.ApplicationInsights.dll" />
+								<include asis="true" name="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+								<include asis="true" name="Microsoft.Practices.ServiceLocation.dll" />
+								<include asis="true" name="Microsoft.Practices.Unity.Configuration.dll" />
+								<include asis="true" name="Microsoft.Practices.Unity.dll" />
+								<include asis="true" name="Microsoft.Practices.Unity.Mvc.dll" />
+								<include asis="true" name="Microsoft.Practices.Unity.RegistrationByConvention.dll" />
+								<include asis="true" name="Microsoft.Web.Infrastructure.dll" />								
+								<include asis="true" name="Newtonsoft.Json.dll" />	
+								<include asis="true" name="System.Net.Http.Formatting.dll" />								
+								<include asis="true" name="System.Web.Helpers.dll" />
+								<include asis="true" name="System.Web.Http.dll" />								
+								<include asis="true" name="System.Web.Http.WebHost.dll" />
+								<include asis="true" name="System.Web.Mvc.dll" />
+								<include asis="true" name="System.Web.Mvc.Extensions.dll" />								
+								<include asis="true" name="System.Web.Razor.dll" />
+								<include asis="true" name="System.Web.WebPages.Deployment.dll" />
+								<include asis="true" name="System.Web.WebPages.dll" />
+								<include asis="true" name="System.Web.WebPages.Razor.dll" />														
+							
+								<include asis="true" name="Unity.WebApi.dll" />
+								<include asis="true" name="UnityLog4NetExtension.dll" />
+								<include asis="true" name="WebActivatorEx.dll" />
+									<include asis="true" name="System.Web.Http.Cors.dll" />
+									<include asis="true" name="System.Web.Cors.dll" />
+
+							  </references>
+		</csc>
+		<call target="deployweb" />
+		<call target="deploybin" />
+		<call target="deletereqdbins" />
+		<call target="clean" />
+	</target>
+</project>				  

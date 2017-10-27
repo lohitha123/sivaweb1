@@ -1,0 +1,8 @@
+"use strict";
+var MT_ATPAR_USER_APP_PARAMETERS = (function () {
+    function MT_ATPAR_USER_APP_PARAMETERS() {
+    }
+    return MT_ATPAR_USER_APP_PARAMETERS;
+}());
+exports.MT_ATPAR_USER_APP_PARAMETERS = MT_ATPAR_USER_APP_PARAMETERS;
+//# sourceMappingURL=MT_ATPAR_USER_APP_PARAMETERS.js.map

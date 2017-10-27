@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<project name="CommonLibs" default="buildall" basedir="." xmlns="http://nant.sf.net/schemas/nant-0.85.win32.net-1.0.xsd">
+	<description>Build File for CommonLibs</description>
+	<property name="basename" value="CommonLibs"/>
+	<!--<property name="asminfo.file.name" value="${basename}.dll" />
+	<property name="asminfo.file.descr" value="CommonLibs Component" />-->
+	
+	<include buildfile="..\..\Headers\nantincludes.include" />
+	
+  	<target name="copyreqdbins" description="copy required binaries">
+	  <mkdir dir="../$binout$/roslyn"/>
+	    <copy file="../CommonLibs/roslyn/csc.exe" tofile="../$binout$/roslyn/csc.exe"/>
+		<copy file="../CommonLibs/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll" tofile="../$binout$/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll"/>
+		<copy file="../CommonLibs/roslyn/Microsoft.CodeAnalysis.CSharp.dll" tofile="../$binout$/roslyn/Microsoft.CodeAnalysis.CSharp.dll"/>
+		<copy file="../CommonLibs/roslyn/Microsoft.CodeAnalysis.dll" tofile="../$binout$/roslyn/Microsoft.CodeAnalysis.dll"/>
+		<copy file="../CommonLibs/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll" tofile="../$binout$/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll"/>
+		<copy file="../CommonLibs/roslyn/Microsoft.CSharp.Core.targets" tofile="../$binout$/roslyn/Microsoft.CSharp.Core.targets"/>
+		<copy file="../CommonLibs/roslyn/Microsoft.VisualBasic.Core.targets" tofile="../$binout$/roslyn/Microsoft.VisualBasic.Core.targets"/>
+		<copy file="../CommonLibs/roslyn/System.Collections.Immutable.dll" tofile="../$binout$/roslyn/System.Collections.Immutable.dll"/>
+		<copy file="../CommonLibs/roslyn/System.Reflection.Metadata.dll" tofile="../$binout$/roslyn/System.Reflection.Metadata.dll"/>
+		<copy file="../CommonLibs/roslyn/vbc.exe" tofile="../$binout$/roslyn/vbc.exe"/>
+		<copy file="../CommonLibs/roslyn/VBCSCompiler.exe" tofile="../$binout$/roslyn/VBCSCompiler.exe"/>
+		<copy file="../CommonLibs/roslyn/VBCSCompiler.exe.config" tofile="../$binout$/roslyn/VBCSCompiler.exe.config"/>
+		
+		<copy file="../CommonLibs/AtPar_BusinessRules.dll" tofile="../$binout$/AtPar_BusinessRules.dll"/>
+		<copy file="../CommonLibs/AtPar_BusinessRules_RemotingProxy.dll" tofile="../$binout$/AtPar_BusinessRules_RemotingProxy.dll"/>
+		<copy file="../CommonLibs/AtParEncryptionServices.dll" tofile="../$binout$/AtParEncryptionServices.dll"/>
+		<copy file="../CommonLibs/Microsoft.Practices.EnterpriseLibrary.Common.dll" tofile="../$binout$/Microsoft.Practices.EnterpriseLibrary.Common.dll"/>
+		<copy file="../CommonLibs/Microsoft.Practices.EnterpriseLibrary.Data.dll" tofile="../$binout$/Microsoft.Practices.EnterpriseLibrary.Data.dll"/>
+		<copy file="../CommonLibs/SharpCompress.dll" tofile="../$binout$/SharpCompress.dll"/>
+		<copy file="../CommonLibs/ReportPrinting.dll" tofile="../$binout$/ReportPrinting.dll"/>
+		<copy file="../CommonLibs/PocketNiceEngine.dll" tofile="../$binout$/PocketNiceEngine.dll"/>
+		<copy file="../CommonLibs/BarcodeDefns.dll" tofile="../$binout$/BarcodeDefns.dll"/>
+		<copy file="../CommonLibs/BarcodeLib.dll" tofile="../$binout$/BarcodeLib.dll"/>
+		<copy file="../CommonLibs/ErrorHandler.dll" tofile="../$binout$/ErrorHandler.dll"/>
+		<copy file="../CommonLibs/POU_BillOnlyWorkflow.dll" tofile="../$binout$/POU_BillOnlyWorkflow.dll"/>
+		<copy file="../CommonLibs/AtParVbUtilities.dll" tofile="../$binout$/AtParVbUtilities.dll"/>
+
+	</target>
+
+	<target name="buildall" description="compiles the source code">
+	<echo message="Building ${asminfo.product} ${asminfo.product.version}"/>
+		<!--<call target="createoutfolder"/>-->
+		
+<call target="copyreqdbins"/>	
+
+	
+	</target>
+</project>				  

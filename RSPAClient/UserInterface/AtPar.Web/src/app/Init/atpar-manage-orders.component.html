@@ -1,0 +1,218 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px;">
+                        <form class="form-horizontal form-label-left">
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4"> Company </label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-text [(ngModel)]="Company" [name]="txtCompany" [validations]="'everything'" [id]="'Company'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Par Location</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-text [(ngModel)]="ParLocation" [name]="txtParLocation" [validations]="'everything'" [id]="'ParLocatio'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Requisition No.</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-text [(ngModel)]="RequisitionNum" [name]="txtReqNo" [validations]="'everything'" [id]="'ParLocati'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div style="clear:both;"></div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4"> Department</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-text [(ngModel)]="Department" [name]="txtDepart" [validations]="'everything'" [id]="'ParLocat'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Vendor</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-text [(ngModel)]="Vendor" [name]="txtVendor" [validations]="'everything'" [id]="'ParLoca'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Item ID</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-text [(ngModel)]="ItemID" [name]="txtItemId" [validations]="'everything'" [id]="'ParLoc'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div style="clear:both;"></div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Status</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-select [options]="lstStatusOrders" [(ngModel)]="selectedStatus" [id]="'ddlStatus'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">From Date</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <p-calendar [showIcon]="true" [id]="'FromDatePicker'" [(ngModel)]="date1" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2050" [placeholder]="'From Date'" [readonlyInput]="true" [required]="true" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">To Date</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <p-calendar [showIcon]="true" [id]="'ToDatePicker'" [(ngModel)]="date2" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2050" [placeholder]="'To Date'" [readonlyInput]="true" [required]="true" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                </div>
+                            </div>
+                            <div style="clear:both;"></div>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="btngo_Click()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                            </div>
+                        </form>
+                        <div style="clear:both;"></div>
+                        <div class="col-xs-12 table" *ngIf="grdHide">
+                            <div class="container">
+                                <atpar-datatable [value]="BindGrid" [expandedRows]="expandedItems" [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="pageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column   [style]="{'width':'4%','text-align':'center'}" >
+                                        <template let-col let-row="rowData" pTemplate="body">
+                                            <a (click)="onProcedureItemClick(row,$event)" style='color:rgba(108, 39, 106, 1);font-weight:bold'> 
+                                                <!--{{row.ORDER_NO}}-->        
+                                                <!--<img src="../../Images/download1.png" />-->                                      <!--<span class="fa fa-fw ui-c fa-chevron-circle-right"></span>-->
+                                                <span class="ui-row-toggler fa fa-fw ui-c fa-chevron-circle-{{row.styleExpand}}" style="font-size:1.5em!important;color:#6c276a!important;" title="Details"></span>
+
+                                                <!--<span class="ui-row-toggler fa fa-fw ui-c fa-chevron-circle-down" style="font-size:1.5em!important;color:#6c276a!important;" title="Details" *ngIf="!showedit"></span>-->
+                                            </a>
+                                        </template>
+                                    </p-column>
+                                    <!--<p-column field="PROCEDURE_CODE" header="Procedure" expander="true">
+                                        <template let-col let-row="rowData" pTemplate="body">
+                                            <a (click)="onProcedureItemClick(row,$event)" style='color:rgba(108, 39, 106, 1);font-weight:bold'>
+                                                {{row.PROCEDURE_CODE}}
+                                            </a>
+                                        </template>
+                                    </p-column>-->
+
+                                    <p-column header="Order ID" field="ORDER_NO" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="Vendor" field="VENDOR_ID" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    
+                                    <!--<p-column field="ORDER_DATE" header="Order Date (MM/DD/YYYY HH24:MI:SS)" [filter]="true" filterPlaceholder="Search">
+                                        <template let-col let-item="rowData" pTemplate type="body">
+                                            <span>{{item[col.field] | date: 'dd/MM/yyyy HH:mm:ss'}}</span>
+                                        </template>
+                                    </p-column>-->
+
+                                    <p-column header="Order Date (MM/DD/YYYY HH24:MI:SS)" field="ORDER_DATE" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="Company" field="ORG_ID" [filter]="true" filterPlaceholder="Search" [style]="{'width':'10%'}"></p-column>
+                                    <p-column header="Par Location" field="PAR_LOC_ID" [filter]="true" filterPlaceholder="Search" [style]="{'width':'8%'}"></p-column>
+                                    <p-column header="Department" field="DEPARTMENT_ID" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <template let-mgdetails pTemplate="rowexpansion">
+                                        <atpar-datatable [value]="mgdetails.DETAILS" [style]="{'width':'100%'}" [paginator]="false" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true" *ngIf="grd">
+                                            <p-column header="Item ID" field="ITEM_ID" filterPlaceholder="Search"></p-column>
+                                            <p-column header="Description" field="DESCRIPTION" filterPlaceholder="Search"></p-column>
+                                            <p-column header="UOM" field="UOM" filterPlaceholder="Search"></p-column>
+                                            <p-column header="Price($)" field="PRICE" filterPlaceholder="Search"></p-column>
+                                            <p-column header="Requisition No." field="REQUISITION_NO" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+                                            <p-column header="Status" field="ORDER_STATUS" filterPlaceholder="Search"></p-column>
+                                            <p-column header="Order Qty" field="QTY" filterPlaceholder="Search"></p-column>
+                                            <p-column header="Rcvd Qty" field="QTY_RCVD" filterPlaceholder="Search"></p-column>
+                                        </atpar-datatable>
+                                        <atpar-datatable [value]="mgdetails.DETAILS" [style]="{'width':'100%','font-size':'60%'}" [paginator]="false" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true" *ngIf="Editgrd" >
+                                            <p-column header="Item ID" field="ITEM_ID" filterPlaceholder="Search"></p-column>
+                                            <p-column header="Description" field="DESCRIPTION" filterPlaceholder="Search"></p-column>
+                                            <p-column header="UOM" field="UOM" filterPlaceholder="Search" [style]="{'width':'5%'}"></p-column>
+                                            <p-column header="Price($)" field="PRICE" filterPlaceholder="Search" [style]="{'width':'12%'}"></p-column>
+                                            <p-column header="Requisition No." field="REQUISITION_NO" filterPlaceholder="Search" [style]="{'text-align':'center'}"></p-column>
+                                            <p-column [style]="{'width':'7%','text-align':'center'}">
+                                                <template pTemplate type="header">
+                                                    Order Qty
+                                                </template>
+                                                <template let-data="rowData" pTemplate type="body">
+                                                    <atpar-text [(ngModel)]="data.QTY" name="qty"
+                                                                (bindModelDataChange)="bindModelDataChange($event)"
+                                                                [validations]="'numeric_dot'" [id]="data.txtqty" [title]="'Allows Numbers'" [ngModelOptions]="{standalone: true}"></atpar-text>
+
+                                                </template>
+                                            </p-column>
+                                            <p-column [style]="{'width':'7%','text-align':'center'}">
+                                                <template pTemplate type="header">
+                                                    Rcvd Qty
+                                                </template>
+                                                <template let-data="rowData" pTemplate type="body">
+                                                    <atpar-text [(ngModel)]="data.QTY_RCVD" name="RCDqty"
+                                                                (bindModelDataChange)="bindModelDataChange($event)"
+                                                                [validations]="'numeric_dot'" [id]="data.txtRCDqty" [title]="'Allows Numbers'" [ngModelOptions]="{standalone: true}"></atpar-text>
+
+                                                </template>
+                                            </p-column>
+                                            <p-column [style]="{'width':'13%','overflow':'visible'}">
+                                                <template pTemplate type="header">
+                                                    Status
+                                                </template>
+                                                <template let-col let-data1="rowData" pTemplate type="body">
+                                                    <atpar-select-grid [options]="lstStatusOrders1" [(ngModel)]="data1.ORDER_STATUS" [id]="data1.txtstatus" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="itemChanged()"></atpar-select-grid>
+                                                </template>
+                                            </p-column>
+                                        </atpar-datatable>
+                                    </template>
+                                    <!--<template let-mgdetails pTemplate="rowexpansion">
+
+
+                                        <atpar-datatable [value]="mgdetails.DETAILS" [paginator]="false" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true" *ngIf="Editgrd">
+
+                                            <p-column header="Item ID" field="ITEM_ID" filterPlaceholder="Search"></p-column>
+                                            <p-column header="Description" field="DESCRIPTION" filterPlaceholder="Search"></p-column>
+                                            <p-column header="UOM" field="UOM" filterPlaceholder="Search"></p-column>
+                                            <p-column header="Price($)" field="PRICE" filterPlaceholder="Search"></p-column>
+                                            <p-column header="Requisition No." field="REQUISITION_NO" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+                                            <p-column [style]="{'width':'20%','text-align':'right'}">
+                                                <template pTemplate type="header">
+                                                    Order Qty
+
+                                                </template>
+                                                <template let-data="rowData" pTemplate type="body">
+                                                    <atpar-text [(ngModel)]="data.QTY" name="qty"
+                                                                (bindModelDataChange)="bindModelDataChange($event)"
+                                                                [validations]="'numeric'" [id]="data.txtqty" [title]="'Allows Numbers'" [ngModelOptions]="{standalone: true}"></atpar-text>
+
+                                                </template>
+                                            </p-column>
+                                            <p-column [style]="{'width':'10%','text-align':'right'}">
+                                                <template pTemplate type="header">
+                                                    Rcvd Qty
+                                                </template>
+                                                <template let-data="rowData" pTemplate type="body">
+                                                    <atpar-text [(ngModel)]="data.QTY_RCVD" name="RCDqty"
+                                                                (bindModelDataChange)="bindModelDataChange($event)"
+                                                                [validations]="'numeric'" [id]="data.txtRCDqty" [title]="'Allows Numbers'" [ngModelOptions]="{standalone: true}"></atpar-text>
+
+                                                </template>
+                                            </p-column>
+                                            <p-column [style]="{'width':'10%','overflow':'visible'}">
+                                                <template pTemplate type="header">
+
+                                                </template>
+                                                <template let-col let-data1="rowData" pTemplate type="body">
+                                                    <atpar-select [options]="lstStatusOrders" [(ngModel)]="data1.ORDER_STATUS" [id]="data1.txtstatus"  [ngModelOptions]="{standalone: true}"></atpar-select>
+                                                </template>
+                                            </p-column>
+                                        </atpar-datatable>
+                                    </template>-->
+                                </atpar-datatable>
+                            </div>
+                            <br>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="btnSubmit_Click()" *ngIf="btnShow">Submit &nbsp; <i class="fa fa-check"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+<style>
+    .atpar-datatable.table.table-bordered.inner-table .ui-datatable{
+        max-height:150px;   
+        overflow:hidden;
+        overflow-y:scroll;
+    }
+</style>

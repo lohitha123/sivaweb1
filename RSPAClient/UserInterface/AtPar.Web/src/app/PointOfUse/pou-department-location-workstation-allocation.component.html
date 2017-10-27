@@ -1,0 +1,128 @@
+﻿
+<div id="main" class="content-page">
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="panel panel-default" style="border: 1px solid #eee;">
+                <div class="panel-body" style="padding:0px;">
+                    <form class="form-horizontal form-label-left">
+                        <div class="col-xs-12">
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-md-4 col-sm-6"> Org Group ID</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <label *ngIf="blnShowOrgGroupLabel" class="control-label lbl-left">{{orgGrpIDData}}</label>
+                                    <atpar-select [options]="lstOrgGroups" [id]="'ddllstOrgGroups'" [required]="true" [(ngModel)]="selectedOrgGroupId" [ngModelOptions]="{standalone: true}" filter="filter" *ngIf="blnShowOrgGroupDD" (onChange)="ddlOrgGrpIdChanged()"></atpar-select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group ">
+                                <label for="" class="control-label col-xs-12 col-md-4 col-sm-6 ">Department</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-select [options]="lstDept" [required]="true" [id]="'ddlDept'" [(ngModel)]="selectedDeptID" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddl_Change()" [selectOnKeyPress]="true"></atpar-select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group ">
+                                <label for="" class="control-label col-xs-12 col-md-4 col-sm-6 ">Location Type</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-select [options]="lstLocType" [required]="true" [id]="'ddlLocType'" [(ngModel)]="selectedLocType" [ngModelOptions]="{standalone: true}" (onChange)="ddl_Change()" [selectOnKeyPress]="true" ></atpar-select>
+                                </div>
+                            </div>
+                            <div style="clear:both;"></div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Business Unit/Company</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-select [options]="lstBunit" [id]="'ddlBunits'" [(ngModel)]="selectedBunit" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddl_Change()"></atpar-select>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Display</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-select [options]="lstSearch" [id]="'ddlsearch'" [(ngModel)]="selectedSearch" [ngModelOptions]="{standalone: true}" (onChange)="ddl_Change()"></atpar-select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Workstation ID</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-ac-server [(ngModel)]="selectedWorkSationID" [ngModelOptions]="{standalone: true}" [suggestions]="lstFilteredWorkstationsIDs" (completeMethod)="fillWorkStationIDSAuto($event)"></atpar-ac-server>
+                                </div>
+                            </div>
+                            <div style="clear:both;"></div>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="btn_go_Click()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                    <div style="clear:both;"></div>
+                    <br>
+                    
+                    <br />
+                    <div class="col-xs-12" *ngIf="showgrid">
+                        <div class="container">
+                            <div style="text-align:right;" class="text-primary">
+                                {{lblcountmsg}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </div>
+                            <div class="table-responsive">
+                                <atpar-datatable [value]="lstDBData" [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="pazeSize" (filteredData)="myfilterdata($event)" [globalFilter]="gb" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [responsive]="true">
+
+                                    <p-column field="WORKSTATION_ID" header="Workstation ID" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search" [style]="{'width':'5%'}"></p-column>
+
+                                    <p-column field="WORKSTATION_DESCR" header="Workstation Description" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search" [style]="{'width':'10%'}"></p-column>
+
+                                    <p-column header="Locations" [style]="{'width':'30%'}">
+
+                                        <template let-ven="rowData" pTemplate="body">
+
+                                            <atpar-datatable [value]="ven.DETAILS" [responsive]="true">
+
+                                                <p-column field="BUSINESS_UNIT" header="Business Unit" [style]="{'width':'8%'}"></p-column>
+
+                                                <p-column field="CART_ID" header="Location" [style]="{'width':'10%'}"></p-column>
+
+                                                <p-column field="LOCATION_DESCR" header="Location Description" [style]="{'width':'13%'}"></p-column>
+
+                                                <p-column [style]="{ 'text-align':'center','width':'4%'}" header="Assign">
+
+                                                    <template let-vendetails="rowData" pTemplate type="body">
+                                                        <atpar-switch [(ngModel)]="vendetails.chkvalue" (change)="selectedRow(vendetails,$event)" [ngModelOptions]="{standalone: true}"></atpar-switch>
+                                                    </template>
+                                                </p-column>
+                                                <p-column header="Priority" [style]="{'width':'14%','text-align':'center'}">
+                                                    <template let-vendetails="rowData" pTemplate type="body">
+                                                        <ul class="list-inline">
+                                                            <li>
+                                                                <atpar-radioButton name="{{vendetails.CART_ID+vendetails.BUSINESS_UNIT+ven.WORKSTATION_ID}}" [(ngModel)]="vendetails.PRIORITY" value="1" label="1" (click)="changeStatus(vendetails,'1')"></atpar-radioButton>
+                                                            </li>
+                                                            <li>
+                                                                <atpar-radioButton name="{{vendetails.CART_ID+vendetails.BUSINESS_UNIT+ven.WORKSTATION_ID}}" [(ngModel)]="vendetails.PRIORITY" value="2" label="2" (click)="changeStatus(vendetails,'2')"></atpar-radioButton>
+                                                            </li>
+                                                            <li>
+                                                                <atpar-radioButton name="{{vendetails.CART_ID+vendetails.BUSINESS_UNIT+ven.WORKSTATION_ID}}" [(ngModel)]="vendetails.PRIORITY" value="100" label=" None" (click)="changeStatus(vendetails,'100')"></atpar-radioButton>
+                                                            </li>
+                                                        </ul>
+
+                                                    </template>
+                                                </p-column>
+                                            </atpar-datatable>
+
+
+                                        </template>
+                                    </p-column>
+                                </atpar-datatable>
+                            </div>
+
+
+                        </div>
+                        <br>
+                        <div class="col-xs-12 col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-5">
+                            <button class="btn btn-purple sbtn" (click)="Save_Click()">Save &nbsp;<i class="fa fa-floppy-o"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

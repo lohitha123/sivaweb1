@@ -1,0 +1,279 @@
+﻿<!--<div>
+    <span>This is trackit Manage equipment items screen.</span>
+</div>-->
+<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:10px 0px 10px 0px;">
+                        <form class="form-horizontal form-label-left" *ngIf="page">
+                            <!--<button class="btn btn-purple sbtn pull-right" (click)="add()" style="margin-right:10px;">Add Location &nbsp; <i class="fa fa-plus"></i></button>
+                            <br>-->
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Equipment Type</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlErpsyss'" filter="filter" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-2">
+                                        <button class="btn btn-purple sbtn" (click)="add()">Add New Item &nbsp; <i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                                    <div class="col-xs-12">
+                                        <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Item ID/Asset ID</label>
+                                        <div class="col-xs-12 col-md-6 col-sm-6">
+                                            <atpar-text [(ngModel)]="newItem.Item" [name]="txtItem" [validations]="'except_less_greater_symbols'" [id]="'Item'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <br>
+                                    <div class="col-xs-12">
+                                        <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Description/Comments</label>
+                                        <div class="col-xs-12 col-md-6 col-sm-6">
+                                            <atpar-text [(ngModel)]="newItem.Item" [name]="txtItem" [validations]="'except_less_greater_symbols'" [id]="'Item'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-2">
+                                            <button class="btn btn-purple sbtn" (click)="serach()">Search &nbsp; <i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                        <div class="col-xs-12 table-responsive " *ngIf="pop">
+                            <div class="container">
+                                <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column field="" header="" [style]="{'width':'6%'}">
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <i class="fa fa-pencil fa-bg bg-red" (click)="fedit()"></i>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="EQUIPMENT_TYPE" header="Equipment Type" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="ITEM_ID" header="Item ID" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <a style="cursor:pointer" (click)="add()">{{ven.ITEM_ID}}</a>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="DESCRIPTION" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="COMMENTS" header="Comments" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <!--<p-column header="Select">
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <atpar-switch></atpar-switch>
+                                        </template>
+                                    </p-column>-->
+                                </atpar-datatable>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12" *ngIf="form">
+                            <form class="form-horizontal form-label-left">
+                                <div class="pull-left col-md-4">
+                                    <label for="test_step_element_id" class="control-label col-md-4 col-sm-4 col-xs-12">Equipment Type</label>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <label class="control-label lbl-left">Operation Table</label>
+                                    </div>
+                                </div>
+                                <button class="btn btn-purple sbtn pull-right" (click)="addserial()" style="margin-right:10px;">Add Serial &nbsp; <i class="fa fa-plus"></i></button>
+                                <br>
+                                <div class="col-md-12 col-sm-12">
+                                <div class="col-lg-6 col-md-6 col-sm-12">                                    
+                                    <div class="form-group">
+                                        <label for="test_step_element_id" class="control-label col-md-4 col-sm-4 col-xs-12">Item ID</label>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <atpar-text [id]="'txtItemD1'" [name]="txtItemD1" [(ngModel)]="newItem.ItemD1" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="test_step_element_id" class="control-label col-md-4 col-sm-4 col-xs-12">Storage Location</label>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <atpar-text [id]="'txtSD'" [name]="txtSD" [(ngModel)]="newItem.SD" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="test_step_element_id" class="control-label col-md-4 col-sm-4 col-xs-12">Manufacturer</label>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <atpar-text [id]="'txtManu'" [name]="txtManu" [(ngModel)]="newItem.Manu" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="test_step_element_id" class="control-label col-md-4 col-sm-4 col-xs-12">Owner</label>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <atpar-text [id]="'txtOw'" [name]="txtOw" [(ngModel)]="newItem.Ow" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="test_step_element_id" class="control-label col-md-4 col-sm-4 col-xs-12">Comments</label>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <textarea class="form-control" style="resize: none; z-index: 3; position: relative; line-height: 20px; font-size: 14px; transition: none; background: transparent !important;"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="test_step_element_id" class="control-label col-md-4 col-sm-4 col-xs-12">Destruction/Max Storage Date</label>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <atpar-text [id]="'txtOwDE'" [name]="txtOwDE" [(ngModel)]="newItem.OwDE" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                        </div>
+                                    </div>                                                                        
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="test_step_element_id" class="control-label col-md-4 col-sm-4 col-xs-12">Description</label>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <atpar-text [id]="'txtDescription'" [name]="txtDescription" [(ngModel)]="newItem.Description" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+
+                                        </div>
+                                    </div>
+                                    <!--<div class="form-group">
+                                        <label for="test_step_element_id" class="control-label col-md-4 col-sm-4 col-xs-12">Asset ID</label>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <atpar-text [id]="'txtSD1'" [name]="txtSD1" [(ngModel)]="newItem.SD1" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                        </div>
+                                    </div>-->
+                                    <div class="form-group">
+                                        <label for="test_step_element_id" class="control-label col-md-4 col-sm-4 col-xs-12">Vendor</label>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <atpar-text [id]="'txtManu1'" [name]="txtManu1" [(ngModel)]="newItem.Manu1" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="test_step_element_id" class="control-label col-md-4 col-sm-4 col-xs-12">Owner Type</label>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlErpsys1'" filter="filter" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="test_step_element_id" class="control-label col-md-4 col-sm-4 col-xs-12">Requesting Department</label>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <atpar-text [id]="'txtManu1x'" [name]="txtManu1x" [(ngModel)]="newItem.Manu1x" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="test_step_element_id" class="control-label col-md-4 col-sm-4 col-xs-12">Image</label>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <div class="input-group image-preview ">
+                                                <input class="form-control image-preview-filename" disabled="disabled" placeholder="" type="text">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default image-preview-clear" style="display:none;" type="button"> <span class="glyphicon glyphicon-remove"></span> Clear </button>
+                                                    <div class="btn btn-default image-preview-input">
+                                                        <span class="glyphicon glyphicon-folder-open"></span> <span class="image-preview-input-title">Browse</span>
+                                                        <input accept="image/png, image/jpeg, image/gif" name="input-file-preview" type="file">
+                                                    </div>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="test_step_element_id" class="control-label col-md-4 col-sm-4 col-xs-12">Quantity</label>
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <atpar-text [id]="'txtD'" [name]="txtD" [(ngModel)]="newItem.D" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                        </div>
+                                        <label for="test_step_element_id" class="control-label col-md-2 col-sm-2 col-xs-12">Inactivate Item</label>
+                                        <div class="col-md-2 col-sm-2 col-xs-12">
+                                            <atpar-switch></atpar-switch>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="clear"></div>
+                                <br>
+                                <div class="container">
+                                    <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                        <p-column field="" header="" [style]="{'width':'6%'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <i class="fa fa-pencil fa-bg bg-red" (click)="editserial()"></i>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="ITEM_ID" header="Serial #" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="PAR_VALUE" header="Lot #" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="" header="Asset ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="OWNER" header="User Field" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="DESTRUCTION/MAX_STORAGE_DATE" header="Next Service Date-Time(HH:MM)" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="" header="Active/Inactive">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <atpar-switch></atpar-switch>
+                                            </template>
+                                        </p-column>
+                                    </atpar-datatable>
+                                </div>
+                                <div class="col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-5 col-xs-12">
+                                    <button *ngIf="!sedit" class="btn btn-purple sbtn" type="button" [disabled]="disableButton">Create and Print-label &nbsp;<i class="fa fa-print"></i></button>
+                                    <button *ngIf="sedit" class="btn btn-purple sbtn" type="button" [disabled]="disableButton">Update and Print-label &nbsp;<i class="fa fa-print"></i></button>
+                                    <button *ngIf="!sedit" class="btn btn-purple sbtn" type="button" (click)="close()">Create &nbsp;<i class="fa fa-plus"></i></button>
+                                    <button *ngIf="sedit" class="btn btn-purple sbtn" type="button" (click)="close()">Update &nbsp;<i class="fa fa-check"></i></button>
+                                    <button class="btn btn-purple sbtn" type="button" (click)="close()"><i class="fa fa-arrow-left"></i>&nbsp; Go Back </button>
+                                </div>
+                                </div>
+                            </form>
+                        </div>
+                        <form class="form-horizontal form-label-left" *ngIf="serial">
+                            <div class="form-group">
+                                <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Serial ID</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-text [id]="'txtSD1'" [name]="txtSD1" [(ngModel)]="newItem.SD1" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                    <label class="control-label lbl-left" *ngIf="showManageEdit">{{addUserData.USER_ID}}</label>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Lot ID</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-text [id]="'txtLD1'" [name]="txtLD1" [(ngModel)]="newItem.LD1" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                    <label class="control-label lbl-left" *ngIf="showManageEdit">{{addUserData.USER_ID}}</label>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Asset ID</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <span class="mandatory">*</span>
+                                    <div class="col-md-6 no-padding">
+                                        <atpar-text [id]="'txtSD1s'" [name]="txtSD1s" [(ngModel)]="newItem.SD1s" [ngModelOptions]="{standalone: true}" [validations]="'max=4,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6" style="padding-right: 0px;">
+                                        <atpar-text [id]="'txtSD1ss'" [name]="txtSD1ss" [(ngModel)]="newItem.SD1ss" [ngModelOptions]="{standalone: true}" [validations]="'max=9,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                    </div>                                                                        
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">UserField</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-text [id]="'txtUserf'" [name]="txtUserf" [(ngModel)]="newItem.Userf" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    Check here if user is required to use password to access the application on the PDA. This should be checked for Server User
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Next Service Date</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <p-calendar [showIcon]="true" [id]="'FromDatePicker'" [(ngModel)]="date1" [placeholder]="'From Date'" [minDate]="minDateValue1" [readonlyInput]="true" (onSelect)="selectDate1($event)" (onFocus)="onfocusFromCalendar($event)" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-4 col-md-offset-2">
+                                        <input class="form-control time" type="time">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-5 col-xs-12">
+                                <button *ngIf="!sedit" class="btn btn-purple sbtn" type="button" [disabled]="disableButton">Add &nbsp;<i class="fa fa-plus"></i></button>
+                                <button *ngIf="sedit" class="btn btn-purple sbtn" type="button" [disabled]="disableButton">Update &nbsp;<i class="fa fa-check"></i></button>
+                                <button class="btn btn-purple sbtn" type="button" (click)="goback()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

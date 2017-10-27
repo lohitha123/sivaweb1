@@ -1,0 +1,374 @@
+﻿<style>
+    .form-time-field {
+        padding: 6px 0 6px 5px !important;
+    }
+
+    .time-fld {
+        padding: 2px 0 2px 5px !important;
+    }
+</style>
+<div id="main" class="content-page">
+
+    <div class="">
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border">
+                <br>
+                <div class="" *ngIf="hideSChedule">
+                    <div class="panel panel-default" [ngClass]="{'border-panel': page === true}" style="border: 1px solid #eee;">
+                        <div class="panel-body" style="padding:0px;">
+                            <div class="col-xs-12">
+                                <div class="form-horizontal form-label-left">
+                                    <div class="form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-4 col-sm-6"> Schedule</label>
+                                        <div class="col-xs-12 col-md-3 col-sm-6">
+                                            <atpar-select [options]="lstSchedule" [required]="true" (onChange)="ddlSelectChangeScheduleID($event)" [id]="'ddlSchedule'" [(ngModel)]="selectedSchedule" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-4">
+                                            <button class="btn btn-purple sbtn" (click)="getSchedules(selectedSchedule)">Go &nbsp;<i class="fa fa-arrow-right"></i></button>
+                                            <button class="btn btn-purple sbtn" (click)="createSchedule()">Create &nbsp;<i class="fa fa-plus"></i></button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="" *ngIf="editTrue">
+                    <div class="panel panel-default" style="border:1px solid #eee;">
+                        <div class="panel-body" style="padding:0px;">
+                            <div class="col-xs-12">
+                                <form class="form-horizontal form-label-left">
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-6 col-sm-6">Org Group ID :</label>
+                                        <div class="col-xs-12 col-md-6 col-sm-6">
+                                            <label class="control-label lbl-left">{{schItem.ORG_GROUP_ID}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-6 col-sm-6">Schedule ID :</label>
+                                        <div class="col-xs-12 col-md-6 col-sm-6">
+                                            <label class="control-label lbl-left">{{schItem.SCHEDULE_ID}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-6 col-sm-6"> Schedule Description :</label>
+                                        <div class="col-xs-12 col-md-6 col-sm-6">
+                                            <label class="control-label lbl-left">{{schItem.DESCRIPTION}}</label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div style="clear:both;"></div>
+                            <br>
+                            <hr>
+                            <div class="col-xs-12 col-md-10 col-md-offset-2 col-sm-12">
+                                <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+                                    <atpar-radioButton id="rdbSpecificDays" [(ngModel)]="checkedSpecificDays" value={{checkedSpecificDays}} [ngModelOptions]="{standalone: true}" [disabled]="checkedIntervals" (keydown.enter)="checkedIntervals ? false : true" [name]="optradio" label="Run on specific Days / Times"></atpar-radioButton>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+                                    <atpar-radioButton id="rdbSpecificIntervals" [(ngModel)]="checkedIntervals" value={{checkedIntervals}} [ngModelOptions]="{standalone: true}" [disabled]="checkedSpecificDays" (keydown.enter)="checkedSpecificDays ? false : true" [name]="optradio" label="Run at specific intervals"></atpar-radioButton>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-xs-12">
+                                <div class="container" *ngIf="day1">
+                                    <div>
+                                        <span class="text-bold text-primary spBold">Run on specific Days / Times</span>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <br />
+                                    <atpar-datatable [value]="lstDBData" [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20, 30, 40, 50, 60, 70, 80, 90, 100]" [globalFilter]="gb" [responsive]="true">
+                                        <p-column [style]="{'width':'4%','text-align':'center'}" header="Action">
+                                            <template let-ven="rowData" pTemplate="body" field="SNo">
+                                                <ul class="list-inline no-margin">
+                                                    <li class="no-padding">
+                                                        <i class="fa fa-trash-o fa-bg bg-red" title="Delete" (click)="deleteRow($event,ven)" style="cursor:pointer;"></i>
+                                                    </li>
+                                                    <li class="no-padding">
+                                                        <i class="fa fa-plus fa-bg bg-blue" title="Add" (click)="addSchedule()" style="cursor:pointer;" *ngIf="ven.SNo==lstDBData.length"><span></span></i>
+                                                    </li>
+                                                </ul>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="CHK_MON" header="Mon" [style]="{'width':'4%','text-align':'center'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <input type="checkbox" value="" [(ngModel)]="ven.CHK_MON" (click)="daySelected($event,ven,'CHK_MON')" name="MON" [ngModelOptions]="{standalone: true}" />
+                                            </template>
+                                        </p-column>
+                                        <p-column field="CHK_TUE" header="Tue" [style]="{'width':'4%','text-align':'center'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <input type="checkbox" value="" name="TUE" [(ngModel)]="ven.CHK_TUE" (click)="daySelected($event,ven,'CHK_TUE')" [ngModelOptions]="{standalone: true}" />
+                                            </template>
+                                        </p-column>
+                                        <p-column field="CHK_WED" header="Wed" [style]="{'width':'4%','text-align':'center'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <input type="checkbox" value="" name="WED" [(ngModel)]="ven.CHK_WED" (click)="daySelected($event,ven,'CHK_WED')" [ngModelOptions]="{standalone: true}" />
+                                            </template>
+                                        </p-column>
+                                        <p-column field="CHK_THR" header="Thr" [style]="{'width':'4%','text-align':'center'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <input type="checkbox" name="THR" [(ngModel)]="ven.CHK_THR" (click)="daySelected($event,ven,'CHK_THR')" [ngModelOptions]="{standalone: true}" />
+                                            </template>
+                                        </p-column>
+                                        <p-column field="CHK_FRI" header="Fri" [style]="{'width':'4%','text-align':'center'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <input type="checkbox" value="" name="FRI" [(ngModel)]="ven.CHK_FRI" (click)="daySelected($event,ven,'CHK_FRI')" [ngModelOptions]="{standalone: true}" />
+                                            </template>
+                                        </p-column>
+                                        <p-column field="CHK_SAT" header="Sat" [style]="{'width':'4%','text-align':'center'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <input type="checkbox" value="" name="SAT" [(ngModel)]="ven.CHK_SAT" (click)="daySelected($event,ven,'CHK_SAT')" [ngModelOptions]="{standalone: true}" />
+                                            </template>
+                                        </p-column>
+                                        <p-column field="CHK_SUN" header="Sun" [style]="{'width':'3%','text-align':'center'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <input type="checkbox" value="" name="SUN" [(ngModel)]="ven.CHK_SUN" (click)="daySelected($event,ven,'CHK_SUN')" [ngModelOptions]="{standalone: true}" />
+                                            </template>
+                                        </p-column>
+                                        <p-column field="SCHEDULE_TIME" header="Time" [style]="{'width':'8%'}">
+                                            <template let-col let-ven="rowData" pTemplate="body">
+                                                <!--{{ven[col.field]}}-->
+                                                <div class="col-md-12 col-xs-12 col-sm-12">
+                                                    <span class="time-red">*</span>
+                                                    <atpar-calendar  name="'SCHEDULE_TIME'" (onSelect)="TimeChange($event)" [readonlyInput]="true" [timeOnly]="true"  [ngModelOptions]="{standalone: true}"  hourFormat="12" [(ngModel)]="ven[col.field]"></atpar-calendar >
+                                                    <!--<input type="time" name="'SCHEDULE_TIME'" class="form-control  time-fld without " value="{{ven[col.field]}}" placeholder="HH:mm" [(ngModel)]="ven[col.field]" [ngModelOptions]="{standalone: true}" (keyup)="txtTime_Keyup($event)" (click)="txtTime_Keyup($event)" />-->
+                                                </div>
+                                            </template>
+                                        </p-column>
+                                    </atpar-datatable>                                    <br />
+                                    <div class="col-md-offset-5 col-md-4 col-xs-12 col-sm-6 col-sm-offset-3">
+                                        <button class="btn btn-purple sbtn" (click)="btnSubmitSpecificDays(ven)" [disabled]="disableButton">Submit &nbsp;<i class="fa fa-check"></i></button>
+                                    </div>
+
+                                </div>
+                                <div>
+                                </div>
+                                <div *ngIf="inter1">
+                                    <div>
+                                        <span class="text-bold text-primary spBold">Run at specific intervals</span>
+                                    </div>
+                                    <br />
+                                    <form class="form-horizontal form-label-left ng-untouched ng-pristine ng-valid">
+                                        <div class="col-xs-12">
+                                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                                <label for="Start Time" class="col-xs-12 col-sm-6 col-md-6 control-label">Start Time &nbsp;<span class="text-red">*</span></label>
+                                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                                    <atpar-calendar  name="'SCHEDULE_TIME'" (onSelect)="TimeChange($event)" [readonlyInput]="true"  [timeOnly]="true"  [ngModelOptions]="{standalone: true}"  hourFormat="12" [(ngModel)]="strStartTime"></atpar-calendar >
+                                                    <!--<input type="time" class="form-control time form-time-field" [(ngModel)]="strStartTime" [ngModelOptions]="{standalone: true}" (keyup)="txtTime1_Keyup($event)" (click)="txtTime1_Keyup($event)" />-->
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                                <label for="Start Time" class="col-xs-12 col-sm-6 col-md-6 control-label">End Time &nbsp;<span class="text-red">*</span></label>
+                                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                                    <atpar-calendar  name="'SCHEDULE_TIME'" (onSelect)="TimeChange($event)"  [readonlyInput]="true" [timeOnly]="true"  [ngModelOptions]="{standalone: true}"  hourFormat="12" [(ngModel)]="strEndTime"></atpar-calendar >
+                                                    <!--<input type="time" class="form-control time form-time-field" [(ngModel)]="strEndTime" [ngModelOptions]="{standalone: true}" (keyup)="txtTime1_Keyup($event)" (click)="txtTime1_Keyup($event)" />-->
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-4 form-group repeat">
+                                                <label for="Start Time" class="col-xs-12 col-sm-6 col-md-6 control-label">Repeat</label>
+                                                <div class="col-xs-12 col-sm-6 col-md-6 input-group" id="rt-form">
+                                                    <span class="input-group-addon" style="background:none!important;border:0!important;font-size:inherit;">Every</span>
+                                                    <!--<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">-->
+                                                    <atpar-text [(ngModel)]="schCreItem.INTERVAL" [id]="'txtRepeatE'" [style]="{'text-align':'right','padding-right':'6px'}" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'mandatory,numeric'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                                    <span class="input-group-addon" style="background:none!important;border:0!important;">Mins</span>
+                                                </div>
+                                                <!--<div class="col-xs-12 col-sm-6 col-md-6" id="rt-form">
+                                                    <atpar-text [(ngModel)]="schCreItem.INTERVAL" required="true" [id]="'txtRepeatE'" [style]="{'text-align':'right','padding-right':'6px'}" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'mandatory,numeric'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <br>
+                                    <div class="col-md-offset-5 col-md-4 col-xs-12 col-sm-6 col-sm-offset-3">
+                                        <button class="btn btn-purple sbtn" (click)="createSubmitInterval()" [disabled]="disableButton">Submit &nbsp;<i class="fa fa-check"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="" *ngIf="createTrue">
+                    <div class="panel panel-default" style="border:1px solid #eee;">
+                        <div class="panel-body" style="padding:20px;">
+                            <div class="col-xs-12">
+                                <form class="form-horizontal form-label-left">
+                                    <div class="col-xs-12 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-3 col-sm-3">Org Group ID</label>
+                                        <div class="col-xs-12 col-md-3 col-sm-3">
+                                            <label class="control-label lbl-left" *ngIf="blnShowOrgGroupLabel">{{orgGroupString}}</label>
+                                            <atpar-select [options]="lstOrgGroupData" [id]="'ddllstOrgGroups'" [required]="true" (onChange)="ddlSelectChangeOrgID($event)" [(ngModel)]="schCreItem.ORG_GROUP_ID" [ngModelOptions]="{standalone: true}" *ngIf="blnShowOrgGroupDD" (bindModelDataChange)="bindModelDataChange($event)" [isfocus]="blnShowOrgGroupDD"></atpar-select>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-3 col-sm-3">Schedule ID</label>
+                                        <div class="col-xs-12 col-md-3 col-sm-3">
+                                            <atpar-text [(ngModel)]="schCreItem.SCHEDULE_ID" [name]="txtSID1" [validations]="'mandatory,alpha_numeric_underscore_hyphen_nospace'" [id]="'txtSID1'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" *ngIf="blnShowOrgGroupDD" [title]="'Accept alphabets(a-z),(A-Z),numbers(0-9),the underscore(_) ,hypen(_) characters only'"></atpar-text>
+                                            <atpar-text [(ngModel)]="schCreItem.SCHEDULE_ID" [name]="txtSID1" [validations]="'mandatory,alpha_numeric_underscore_hyphen_nospace'" [id]="'txtSID1'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" *ngIf="!blnShowOrgGroupDD" [isFocused]="'true'" [title]="'Accept alphabets(a-z),(A-Z),numbers(0-9),the underscore(_) ,hypen(_) characters only'"></atpar-text>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-3 col-sm-3"> Schedule Description</label>
+                                        <div class="col-xs-12 col-md-3 col-sm-3">
+                                            <atpar-text [(ngModel)]="schCreItem.DESCRIPTION" [name]="txtSD1" [validations]="'mandatory'" [id]="'txtSD1'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" ></atpar-text>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div style="clear:both;"></div>
+                            <br>
+                            <hr>
+                            <div class="col-xs-12 col-md-10 col-md-offset-2 col-sm-12">
+                                <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+                                    <atpar-radioButton id="rdbSpecificDays" (click)="days($event)" [(ngModel)]="checkedSpecificDays" value={{checkedSpecificDays}} [ngModelOptions]="{standalone: true}" [name]="optradio" label="Run on specific Days / Times"></atpar-radioButton>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+                                    <atpar-radioButton id="rdbSpecificIntervals" (click)="intervals($event)" [(ngModel)]="checkedIntervals" value={{checkedIntervals}} [ngModelOptions]="{standalone: true}" [name]="optradio" label="Run at specific intervals"></atpar-radioButton>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-xs-12">
+                                <div class="table" *ngIf="day2">
+                                    <div>
+                                        <span class="text-bold text-primary spBold">Run on specific Days / Times</span>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <br />
+                                    <atpar-datatable [value]="lstDBData" [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20, 30, 40, 50, 60, 70, 80, 90, 100]" [globalFilter]="gb" [responsive]="true">
+                                        <p-column [style]="{'width':'4%','text-align':'center'}" header="Action">
+                                            <template let-ven="rowData" pTemplate="body" field="SNo">
+                                                <ul class="list-inline no-margin">
+                                                    <li class="no-padding">
+                                                        <i class="fa fa-trash-o fa-bg bg-red" title="Delete" (click)="deleteRow($event,ven)" style="cursor:pointer;"></i>
+                                                    </li>
+                                                    <li class="no-padding">
+                                                        <i class="fa fa-plus fa-bg bg-blue" title="Add" (click)="addSchedule()" style="cursor:pointer;" *ngIf="ven.SNo==lstDBData.length"></i>
+                                                    </li>
+                                                </ul>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="CHK_MON" header="Mon" [style]="{'width':'4%','text-align':'center'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <input type="checkbox" value="" [(ngModel)]="ven.CHK_MON" (click)="daySelected($event,ven,'CHK_MON')" id="MON" name="MON" [ngModelOptions]="{standalone: true}" />
+                                            </template>
+                                        </p-column>
+                                        <p-column field="CHK_TUE" header="Tue" [style]="{'width':'4%','text-align':'center'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <input type="checkbox" value="" id="TUE" name="TUE" [(ngModel)]="ven.CHK_TUE" (click)="daySelected($event,ven,'CHK_TUE')" [ngModelOptions]="{standalone: true}" />
+                                            </template>
+                                        </p-column>
+                                        <p-column field="CHK_WED" header="Wed" [style]="{'width':'4%','text-align':'center'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <input type="checkbox" value="" id="WED" name="WED" [(ngModel)]="ven.CHK_WED" (click)="daySelected($event,ven,'CHK_WED')" [ngModelOptions]="{standalone: true}" />
+                                            </template>
+                                        </p-column>
+                                        <p-column field="CHK_THR" header="Thr" [style]="{'width':'4%','text-align':'center'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <input type="checkbox" name="THR" id="THR" [(ngModel)]="ven.CHK_THR" (click)="daySelected($event,ven,'CHK_THR')" [ngModelOptions]="{standalone: true}" />
+                                            </template>
+                                        </p-column>
+                                        <p-column field="CHK_FRI" header="Fri" [style]="{'width':'4%','text-align':'center'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <input type="checkbox" value="" name="FRI" id="FRI" [(ngModel)]="ven.CHK_FRI" (click)="daySelected($event,ven,'CHK_FRI')" [ngModelOptions]="{standalone: true}" />
+                                            </template>
+                                        </p-column>
+                                        <p-column field="CHK_SAT" header="Sat" [style]="{'width':'4%','text-align':'center'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <input type="checkbox" value="" name="SAT" [(ngModel)]="ven.CHK_SAT" (click)="daySelected($event,ven,'CHK_SAT')" [ngModelOptions]="{standalone: true}" />
+                                            </template>
+                                        </p-column>
+                                        <p-column field="CHK_SUN" header="Sun" [style]="{'width':'3%','text-align':'center'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <input type="checkbox" value="" name="SUN" id="SUN" [(ngModel)]="ven.CHK_SUN" (click)="daySelected($event,ven,'CHK_SUN')" [ngModelOptions]="{standalone: true}" />
+                                            </template>
+                                        </p-column>
+                                        <p-column field="SCHEDULE_TIME" header="Time" [style]="{'width':'8%'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <div class="col-md-12 col-xs-12 col-sm-12">
+                                                    <span class="time-red">*</span>
+                                                    <atpar-calendar  name="'SCHEDULE_TIME'" [readonlyInput]="true"  [timeOnly]="true"  [ngModelOptions]="{standalone: true}"  hourFormat="12" [(ngModel)]="ven.SCHEDULE_TIME" (onSelect)="TimeChange($event)"></atpar-calendar >
+                                                    <!--<input type="time" class="form-control  time-fld  without" placeholder="HH:mm" [(ngModel)]="ven.SCHEDULE_TIME" [ngModelOptions]="{standalone: true}" (keyup)="txtTime_Keyup($event)" (click)="txtTime_Keyup($event)" />-->
+                                                </div>
+                                            </template>
+                                        </p-column>
+                                    </atpar-datatable>
+                                </div>
+                                <br />
+                                <div class="col-md-offset-5 col-md-4 col-xs-12 col-sm-6 col-sm-offset-3">
+                                    <!--<button class="btn btn-purple sbtn" (click)="btnSubmitSpecificDays(ven)" *ngIf="day2" [disabled]="disableButton">Submit&nbsp;<i class="fa fa-check"></i></button>-->
+                                    <button class="btn btn-purple sbtn" (click)="btnSubmitSpecificDays(ven)" *ngIf="day2" [disabled]="disableButton">Submit&nbsp;<i class="fa fa-check"></i></button>
+                                    <button class="btn btn-purple sbtn" (click)="hideDialog()" *ngIf="blnSubmit==true"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                </div>
+                                <div *ngIf="inter2">
+                                    <div class="col-md-6 col-lg-6 col-xs-12 col-sm-12">
+                                        <span class="text-bold text-primary spBold">Run at specific intervals</span>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <br />
+                                    <form class="form-horizontal form-label-left ng-untouched ng-pristine ng-valid">
+                                        <div class="col-xs-12">
+                                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                                <label for="Start Time" class="col-xs-12 col-sm-6 col-md-6 control-label">Start Time &nbsp;<span class="text-red">*</span></label>
+                                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                                    <atpar-calendar  name="'SCHEDULE_TIME'" [readonlyInput]="true" [timeOnly]="true"  [ngModelOptions]="{standalone: true}"  hourFormat="12" [(ngModel)]="strStartTime" (onSelect)="TimeChange($event)"></atpar-calendar >
+                                                    <!--<input type="time" [(ngModel)]="strStartTime" (bindModelDataChange)="bindModelDataChange($event)" [ngModelOptions]="{standalone: true}" class="form-control time form-time-field" (keyup)="txtTime1_Keyup($event)" (click)="txtTime1_Keyup($event)" />-->
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                                <label for="Start Time" class="col-xs-12 col-sm-6 col-md-6 control-label">End Time &nbsp; <span class="text-red">*</span></label>
+                                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                                    <atpar-calendar  name="'SCHEDULE_TIME'" [readonlyInput]="true" [timeOnly]="true"  [ngModelOptions]="{standalone: true}"  hourFormat="12" [(ngModel)]="strEndTime" (onSelect)="TimeChange($event)"></atpar-calendar >
+                                                    <!--<input type="time" [(ngModel)]="strEndTime" [ngModelOptions]="{standalone: true}" class="form-control time form-time-field " (keyup)="txtTime1_Keyup($event)" (click)="txtTime1_Keyup($event)" />-->
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                                <label for="Start Time control-label" class="col-xs-12 col-sm-6 col-md-6 control-label">Repeat</label>
+                                                <div class="col-xs-12 col-sm-6 col-md-6 input-group">
+                                                    <span class="input-group-addon" style="background:none!important;border:0!important;font-size:inherit;">Every</span>
+                                                    <!--<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">-->
+                                                    <atpar-text [(ngModel)]="schCreItem.INTERVAL" required="true" [id]="'txtRepeat'" [style]="{'text-align':'right','padding-right':'6px'}" name="txtRepeat" [validations]="'mandatory,numeric'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                                     <span class="input-group-addon" style="background:none!important;border:0!important;">Mins</span>
+                                                </div>
+                                                <!--<div class="col-xs-12 col-sm-6 col-md-6">
+                                                    <atpar-text [(ngModel)]="schCreItem.INTERVAL" required="true" [id]="'txtRepeat'" [style]="{'text-align':'right','padding-right':'6px'}" name="txtRepeat" [validations]="'mandatory,numeric'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <br>
+                                </div>
+                                <div class="col-md-offset-5 col-md-4 col-xs-12 col-sm-6 col-sm-offset-3">
+                                    <!--<button class="btn btn-purple sbtn" (click)="createSubmitInterval()" *ngIf="inter2" [disabled]="disableButton">Submit &nbsp;<i class="fa fa-check"></i></button>-->
+                                    <button class="btn btn-purple sbtn" (click)="createSubmitInterval()" *ngIf="inter2" [disabled]="disableButton">Submit &nbsp;<i class="fa fa-check"></i></button>
+                                    <button class="btn btn-purple sbtn" (click)="hideDialog()" *ngIf="inter2"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-section implementation">
+        <atpar-confirmdialog header="Confirmation" icon="fa fa-question-circle" width="425"></atpar-confirmdialog>
+    </div>
+</div>
+<atpar-growl [value] ="growlMessage" sticky="sticky">
+    </atpar-growl>
+    <style>
+        .spBold {
+            font-weight: bold;
+        }
+        .repeat .mandatory{
+                left: -14px!important;
+        }
+    </style>

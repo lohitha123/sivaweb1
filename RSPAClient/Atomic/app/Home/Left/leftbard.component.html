@@ -1,0 +1,56 @@
+<div class="left side-menu">
+    <div class="sidebar-inner slimscrollleft">
+        <div id="sidebar-menu" class="sidenav">               
+           <ul>
+               <li class="has_sub" (click)="reciveDown()">
+                   <a class="waves-effect dropdown-toggle"><img src="assets/images/icons/common/recieve.png" width="20"><p>  Receiving  </p> <span class="caret"></span></a>
+                   <ul class="list-unstyled ax">
+                       <li><a>User Status Report</a></li>
+                       <li><a>Error Report</a></li>
+                       <li><a>Maintain Printers</a></li>
+                       <li><a><i aria-hidden="true" class="fa fa-folder"></i>Reports</a></li>
+                   </ul>
+               </li>
+               <ul class="list-unstyled ax mobile-off" *ngIf="isActiverec">
+                   <li><a>User Status Report</a></li>
+                   <li><a>Error Report</a></li>
+                   <li><a>Maintain Printers</a></li>
+                   <li><a><i aria-hidden="true" class="fa fa-folder"></i>Reports</a></li>
+               </ul>
+               <li class="has_sub" (click)="pickDown()">
+                   <a class="waves-effect"><img src="assets/images/icons/common/pick.png" width="18"><p> Pick </p> <span class="caret"></span></a>
+                   <ul class="list-unstyled ax">
+                       <li><a>User Status Report</a></li>
+                       <li><a>Error Report</a></li>
+                       <li><a>Maintain Printers</a></li>
+                       <li><a><i aria-hidden="true" class="fa fa-folder"></i>Reports</a></li>
+                   </ul>
+               </li>
+               <ul class="list-unstyled ax mobile-off" *ngIf="isActivep">
+                   <li><a>User Status Report</a></li>
+                   <li><a>Error Report</a></li>
+                   <li><a>Maintain Printers</a></li>
+                   <li><a><i aria-hidden="true" class="fa fa-folder"></i>Reports</a></li>
+               </ul>
+                <li class="has_sub">
+                    <a class="waves-effect dropdown-toggle"><img src="assets/images/icons/common/tools.png" width="20"><p> Tools</p> <span class="caret"></span></a>
+                    <ul class="list-unstyled ax">
+                        <li><a>User Status Report</a></li>
+                        <li><a>Error Report</a></li>
+                        <li><a>Maintain Printers</a></li>
+                    </ul>
+                </li>
+                <li class="has_sub">
+                     <a class="waves-effect dropdown-toggle"><img src="assets/images/icons/common/reports.png" width="20"><p> Reports</p> <span class="caret"></span></a>
+                    <ul class="list-unstyled ax">
+                        <li><a>User Status Report</a></li>
+                        <li><a>Error Report</a></li>
+                        <li><a>Maintain Printers</a></li>
+                    </ul>
+                </li>
+
+            </ul>     
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

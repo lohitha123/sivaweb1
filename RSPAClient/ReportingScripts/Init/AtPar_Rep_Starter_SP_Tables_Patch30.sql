@@ -1,0 +1,260 @@
+/*  --------------------------------------------------------------------------------------------
+	
+	Author  : Kranthi Varma P
+	Date    : 4/4/2017
+	Purpose : Creating tables for Izenda Config.
+ 	
+--------------------------------------------------------------------------------------------------	
+*/	
+
+
+IF object_id('ATPAR_REP_STARTER_SP_TABLES_PATCH30') IS NOT NULL
+DROP PROCEDURE ATPAR_REP_STARTER_SP_TABLES_PATCH30
+GO
+
+CREATE PROCEDURE ATPAR_REP_STARTER_SP_TABLES_PATCH30
+AS 
+
+BEGIN
+
+	DECLARE @intReturn int
+	SET @intReturn =0
+	
+	
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'__MigrationHistory') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+BEGIN
+CREATE TABLE [__MigrationHistory](
+	[MigrationId] [nvarchar](150) NOT NULL,
+	[ContextKey] [nvarchar](300) NOT NULL,
+	[Model] [varbinary](max) NOT NULL,
+	[ProductVersion] [nvarchar](32) NOT NULL,
+ CONSTRAINT [PK_dbo.__MigrationHistory] PRIMARY KEY CLUSTERED 
+(
+	[MigrationId] ASC,
+	[ContextKey] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+END
+
+SET ANSI_PADDING OFF
+
+SET ANSI_NULLS ON
+
+SET QUOTED_IDENTIFIER ON
+
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'AspNetRoles') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+BEGIN
+CREATE TABLE [AspNetRoles](
+	[Id] [nvarchar](128) NOT NULL,
+	[Name] [nvarchar](256) NOT NULL,
+ CONSTRAINT [PK_dbo.AspNetRoles] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+END
+
+
+SET ANSI_NULLS ON
+
+SET QUOTED_IDENTIFIER ON
+
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'AspNetUserClaims') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+BEGIN
+CREATE TABLE [AspNetUserClaims](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserId] [nvarchar](128) NOT NULL,
+	[ClaimType] [nvarchar](max) NULL,
+	[ClaimValue] [nvarchar](max) NULL,
+ CONSTRAINT [PK_dbo.AspNetUserClaims] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+END
+
+SET ANSI_NULLS ON
+
+SET QUOTED_IDENTIFIER ON
+
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'AspNetUserLogins') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+BEGIN
+CREATE TABLE [AspNetUserLogins](
+	[LoginProvider] [nvarchar](128) NOT NULL,
+	[ProviderKey] [nvarchar](128) NOT NULL,
+	[UserId] [nvarchar](128) NOT NULL,
+ CONSTRAINT [PK_dbo.AspNetUserLogins] PRIMARY KEY CLUSTERED 
+(
+	[LoginProvider] ASC,
+	[ProviderKey] ASC,
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+END
+
+SET ANSI_NULLS ON
+
+SET QUOTED_IDENTIFIER ON
+
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'AspNetUserRoles') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+BEGIN
+CREATE TABLE [AspNetUserRoles](
+	[UserId] [nvarchar](128) NOT NULL,
+	[RoleId] [nvarchar](128) NOT NULL,
+ CONSTRAINT [PK_dbo.AspNetUserRoles] PRIMARY KEY CLUSTERED 
+(
+	[UserId] ASC,
+	[RoleId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+END
+
+
+SET ANSI_NULLS ON
+
+SET QUOTED_IDENTIFIER ON
+
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'AspNetUsers') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+BEGIN
+CREATE TABLE [AspNetUsers](
+	[Id] [nvarchar](128) NOT NULL,
+	[Email] [nvarchar](256) NULL,
+	[EmailConfirmed] [bit] NOT NULL,
+	[PasswordHash] [nvarchar](max) NULL,
+	[SecurityStamp] [nvarchar](max) NULL,
+	[PhoneNumber] [nvarchar](max) NULL,
+	[PhoneNumberConfirmed] [bit] NOT NULL,
+	[TwoFactorEnabled] [bit] NOT NULL,
+	[LockoutEndDateUtc] [datetime] NULL,
+	[LockoutEnabled] [bit] NOT NULL,
+	[AccessFailedCount] [int] NOT NULL,
+	[UserName] [nvarchar](256) NOT NULL,
+	[TenantId] [int] NULL,
+ CONSTRAINT [PK_dbo.AspNetUsers] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+END
+
+
+SET ANSI_NULLS ON
+
+SET QUOTED_IDENTIFIER ON
+
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'Tenants') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+BEGIN
+CREATE TABLE [Tenants](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](max) NULL,
+ CONSTRAINT [PK_dbo.Tenants] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+END
+
+
+SET ANSI_NULLS ON
+
+
+CREATE UNIQUE NONCLUSTERED INDEX [RoleNameIndex] ON [AspNetRoles]
+(
+	[Name] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+SET ANSI_PADDING ON
+
+
+
+CREATE NONCLUSTERED INDEX [IX_UserId] ON [AspNetUserClaims]
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+SET ANSI_PADDING ON
+
+
+
+CREATE NONCLUSTERED INDEX [IX_UserId] ON [AspNetUserLogins]
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+SET ANSI_PADDING ON
+
+
+
+CREATE NONCLUSTERED INDEX [IX_RoleId] ON [AspNetUserRoles]
+(
+	[RoleId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+SET ANSI_PADDING ON
+
+
+
+CREATE NONCLUSTERED INDEX [IX_UserId] ON [AspNetUserRoles]
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+SET ANSI_PADDING ON
+
+
+
+CREATE UNIQUE NONCLUSTERED INDEX [UserNameIndex] ON [AspNetUsers]
+(
+	[UserName] ASC,
+	[TenantId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+
+
+ALTER TABLE [AspNetUserClaims]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [AspNetUsers] ([Id])
+ON DELETE CASCADE
+
+ALTER TABLE [AspNetUserClaims] CHECK CONSTRAINT [FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId]
+
+ALTER TABLE [AspNetUserLogins]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [AspNetUsers] ([Id])
+ON DELETE CASCADE
+
+ALTER TABLE [AspNetUserLogins] CHECK CONSTRAINT [FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId]
+
+ALTER TABLE [AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId] FOREIGN KEY([RoleId])
+REFERENCES [AspNetRoles] ([Id])
+ON DELETE CASCADE
+
+ALTER TABLE [AspNetUserRoles] CHECK CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId]
+
+ALTER TABLE [AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [AspNetUsers] ([Id])
+ON DELETE CASCADE
+
+ALTER TABLE [AspNetUserRoles] CHECK CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId]
+
+ALTER TABLE [AspNetUsers]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUsers_dbo.Tenants_TenantId] FOREIGN KEY([TenantId])
+REFERENCES [Tenants] ([Id])
+
+ALTER TABLE [AspNetUsers] CHECK CONSTRAINT [FK_dbo.AspNetUsers_dbo.Tenants_TenantId]
+
+
+
+
+
+RETURN @intReturn
+
+ERR_HANDLER:
+	SET @intReturn = 1
+	PRINT 'Failed in ATPAR_REP_STARTER_SP_TABLES_PATCH30 store procedure returning non zero value ' 
+	RETURN @intReturn
+
+END

@@ -1,0 +1,113 @@
+﻿<!--<div>
+    <span>this is setup items screen</span>
+</div>-->
+<div class="content-section implementation" style="margin-left:15%;margin-top:90px;">
+    <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none"> 
+        <div class="ui-helper-clearfix" style="width:50%; float:left;  margin-top: 5px;"><button type="button" atpar-button icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add"></button></div>       
+        <div class="icon-addon addon-md">
+            <input type="text" placeholder="Global Filter" class="form-control">
+            <label for="email" class="glyphicon glyphicon-search"></label>
+        </div>
+        <div class="clearfix">
+        </div>
+    </div>
+    <atpar-datatable [value]="sales"  [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb"  [responsive]="true" >
+        <p-column expander="true" styleClass="col-icon"></p-column>
+        <p-column field="id" header="EmployeeID" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+        <p-column header="Employee Name" field="name" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+        <p-column header="Emp Salary" field="salary" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+        <p-column header="Address" field="address" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+        <p-column [style]="">
+            <template let-ven="rowData" pTemplate="body">
+                <button type="button" atpar-button (click)="delete()" icon="fa-remove"></button>
+            </template>
+        </p-column>
+        <p-column [style]="">
+            <template let-ven="rowData" pTemplate="body">
+                <button type="button" atpar-button (click)="edit(ven)" icon="fa-edit"></button>
+            </template>
+        </p-column>
+        <template let-employee pTemplate="rowexpansion">
+            <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-3" style="text-align:center">
+                        <i class="fa fa-search" (click)="showCar(employee)" style="cursor:pointer;float:left;margin-top:40px"></i>
+
+                    </div>
+                    <div class="ui-grid-col-9">
+                        <div class="ui-grid ui-grid-responsive ui-grid-pad">
+                            <div class="ui-grid-row">
+                                <div class="ui-grid-col-2"><span class="datatablespan">Employee Id:</span></div>
+                                <div class="ui-grid-col-10">{{employee.id}}</div>
+                            </div>
+                            <div class="ui-grid-row">
+                                <div class="ui-grid-col-2"><span class="datatablespan">Employee Name:</span> </div>
+                                <div class="ui-grid-col-10">{{employee.name}}</div>
+                            </div>
+                            <div class="ui-grid-row">
+                                <div class="ui-grid-col-2"><span class="datatablespan">Employee Salary:</span> </div>
+                                <div class="ui-grid-col-10">{{employee.salary}}</div>
+                            </div>
+                            <div class="ui-grid-row">
+                                <div class="ui-grid-col-2"><span class="datatablespan">Employee Address:</span> </div>
+                                <div class="ui-grid-col-10">{{employee.address}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <!--<p-footer></p-footer>-->
+   </atpar-datatable>
+</div>
+
+<atpar-dialog header="Employee Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+
+    <div class="ui-grid ui-grid-responsive ui-fluid">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><span class="datatablespan">Emp id</span></div>
+            <div class="ui-grid-col-8"><input atpar-inputtext id="id"  /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><span class="datatablespan">Emp name</span></div>
+            <div class="ui-grid-col-8"><input atpar-inputtext id="name"  /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><span class="datatablespan">Salary</span></div>
+            <div class="ui-grid-col-8"><input atpar-inputtext id="salary"  />
+                
+            </div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><span class="datatablespan">Address</span></div>
+            <div class="ui-grid-col-8"><input atpar-inputtext id="address"  /></div>
+        </div>
+    </div>
+
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+            <button type="button" atpar-button icon="fa-close" (click)="delete()" label="Delete"></button>
+            <button type="button" atpar-button icon="fa-check" (click)="save()" label="Save"></button>
+        </div>
+    </p-footer>
+</atpar-dialog>
+<atpar-dialog header="Employee details" [(visible)]="dialogVisible" [responsive]="true" showEffect="fade" [modal]="true" width="250">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad" *ngIf="selectedEmployee">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><span class="datatablespan">Emp Id</span></div>
+            <div class="ui-grid-col-8">{{selectedEmployee.id}}</div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><span class="datatablespan">Emp Name</span></div>
+            <div class="ui-grid-col-8">{{selectedEmployee.name}}</div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><span class="datatablespan">Salary</span></div>
+            <div class="ui-grid-col-8">{{selectedEmployee.salary}}</div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><span class="datatablespan">Address</span></div>
+            <div class="ui-grid-col-8">{{selectedEmployee.address}}</div>
+        </div>
+    </div>
+</atpar-dialog>

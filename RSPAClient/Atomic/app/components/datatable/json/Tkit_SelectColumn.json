@@ -1,0 +1,72 @@
+[
+      {
+        "DEPARTMENT": "11000",
+        "PATIENT_NAME": "Jacob Mathews",
+        "PATIENT_MRC": "5020139131",
+        "PATIENT_ACCOUNT": "5020139131",
+        "BED/ROOM": "6J"      
+      }, 
+      {
+        "DEPARTMENT": "11000",
+        "PATIENT_NAME": "Emily Perkin",
+        "PATIENT_MRC": "5020139132",
+        "PATIENT_ACCOUNT": "5020139132",
+        "BED/ROOM": "6J"      
+      },
+      {
+        "DEPARTMENT": "11000",
+        "PATIENT_NAME": "Michael Spritz",
+        "PATIENT_MRC": "5020139133",
+        "PATIENT_ACCOUNT": "5020139133",
+        "BED/ROOM": "6J"      
+      },
+        {
+        "DEPARTMENT": "11000",
+        "PATIENT_NAME": "Emma Yu",
+        "PATIENT_MRC": "5020139134",
+        "PATIENT_ACCOUNT": "5020139134",
+        "BED/ROOM": "6J"      
+      },
+      {
+        "DEPARTMENT": "11000",
+        "PATIENT_NAME": "Jasper Yankowich",
+        "PATIENT_MRC": "5020139135",
+        "PATIENT_ACCOUNT": "5020139135",
+        "BED/ROOM": "7A"      
+      },
+      {
+        "DEPARTMENT": "11000",
+        "PATIENT_NAME": "Mary Waters",
+        "PATIENT_MRC": "5020139136",
+        "PATIENT_ACCOUNT": "5020139136",
+        "BED/ROOM": "7A"      
+      },
+      {
+        "DEPARTMENT": "11000",
+        "PATIENT_NAME": "Walter Kronk",
+        "PATIENT_MRC": "5020139137",
+        "PATIENT_ACCOUNT": "5020139137",
+        "BED/ROOM": "7A"      
+      },
+      {
+        "DEPARTMENT": "11000",
+        "PATIENT_NAME": "Harman Van Geld",
+        "PATIENT_MRC": "5020139138",
+        "PATIENT_ACCOUNT": "5020139138",
+        "BED/ROOM": "7L"      
+      },
+      {
+        "DEPARTMENT": "11000",
+        "PATIENT_NAME": "Maria Anders",
+        "PATIENT_MRC": "83938532",
+        "PATIENT_ACCOUNT": "83938532",
+        "BED/ROOM": "K3"      
+      },
+      {
+        "DEPARTMENT": "11000",
+        "PATIENT_NAME": "Ana Trujillo",
+        "PATIENT_MRC": "83938533",
+        "PATIENT_ACCOUNT": "83938533",
+        "BED/ROOM": "K4"      
+      }     
+    ]

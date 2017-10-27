@@ -1,0 +1,135 @@
+﻿<div id="main" class="content-page" [style.margin]="getMargin()">
+    <div class="content">
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px;">
+                        <div class="col-md-12">
+                            <form class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">User ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <label class="control-label lbl-left">{{model.USER_ID}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Session Validity Time</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="model.TOKEN_EXPIRY_PERIOD" [disabled]="isNotAdmin" [id]="'TOKEN_EXPIRY_PERIOD'" [name]="txtTokenExpiryPeriod" [validations]="'mandatory,numeric,max=4'" (bindModelDataChange)="bindModelDataChange($event)" [ngModelOptions]="{standalone: true}" [isFocused]="'true'" [title]="'Use only numbers(1-9)'"></atpar-text>
+
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        [Value in minutes - Invalidates the user logged into the handheld device after this period of time. Forces user to re-login to communicate with the server]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Idle Time</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="model.IDLE_TIME" [id]="'IDLE_TIME'" [disabled]="isNotAdmin" [name]="txtIdleTime" [validations]="'mandatory,numeric,max=4'" (bindModelDataChange)="bindModelDataChange($event)" [ngModelOptions]="{standalone: true}" [title]="'Use only numbers(1-9)'"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        [Idle time for the user in Minutes - use only number(0-9). Forces user to re-login into the handheld device after this period of Inactive time]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="model.FIRST_NAME" [id]="'FIRST_NAME'" [name]="txtFirstName" [disabled]="isLDAPUser" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'mandatory,EXCEPT_LESS_GREATER_SYMBOLS,max=20'" [title]="'First name of the user - accepts everything except < and >'"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="model.LAST_NAME" [id]="'LAST_NAME'" [name]="txtLastName" [disabled]="isLDAPUser" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'mandatory,EXCEPT_LESS_GREATER_SYMBOLS,max=20'" [title]="'Last name of the user - accepts everything except < and >'"></atpar-text>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Middle Initial</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="model.MIDDLE_INITIAL" [id]="'MIDDLE_INITIAL'" [name]="txtMiddleInitial" [disabled]="isLDAPUser" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'EXCEPT_LESS_GREATER_SYMBOLS,max=2'" [title]="'Middle Initial of the user - accepts everything except < and >'"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">
+                                        Email ID
+                                    </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="model.EMAIL_ID" [id]="'EMAIL_ID'" [name]="txtEmail_ID" [disabled]="isLDAPUser" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'email'" [title]="'Use the format userid@domainname.com'"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Phone 1</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="model.PHONE1" [id]="'PHONE1'" [name]="txtPhone1" [disabled]="isLDAPUser" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'numeric,max=12'" [title]="'Use the format 1231231234'"></atpar-text>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Phone 2</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="model.PHONE2" [id]="'PHONE2'" [name]="txtPhone2" [disabled]="isLDAPUser" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'numeric,max=12'" [title]="'Use the format 1231231234'"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">FAX</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="model.FAX" [id]="'FAX'" [name]="txtFax" [disabled]="isLDAPUser" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'numeric,max=12'" [title]="'Use the format 1231231234'"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Pager</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="model.PAGER" [id]="'PAGER'" [name]="txtPager" [disabled]="isLDAPUser" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'numeric,max=10'" [title]="'Use the format 1231231234'"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Records Per Page</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [options]="ddRecordsPerPage" [id]="'ddlddRecordsPerPage'" [required]="true" [(ngModel)]="model.RECORDS_PER_PAGE" [ngModelOptions]="{standalone:true}"></atpar-select>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                        [Default with 10 records per page]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">
+                                        Default Duration In Days
+                                    </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="model.DEFAULT_REPORT_DURATION" [id]="'DEFAULT_REPORT_DURATION'" [name]="txtDefaultDuration" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'mandatory,numeric,min=1,max=4'" [title]="'Use only numbers(1-9)'"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                        [This will effect the From and To Dates in all the Reports (Default 10 days)]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">
+                                        Org Group ID
+                                    </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <label class="control-label">{{model.ORG_GROUP_ID}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">
+                                        Profile
+                                    </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <label class="control-label">{{model.PROFILE_ID}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-5 col-xs-12">
+                                    <button type="button" class="btn btn-purple sbtn" (click)="updateUserDetails(model)" [disabled]="btnEnableDisable"> Submit &nbsp;<i class="fa fa-check"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-growl [value]="msgs" sticky="sticky"></atpar-growl>
+

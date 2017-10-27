@@ -1,0 +1,30 @@
+[
+      {
+        "PHYSICIAN_ID": "phy1",
+        "FIRST_NAME": "phy1",
+        "LAST_NAME": "phy1",
+        "MIDDLE_INITIAL": "phy1",
+        "STATUS": "false"
+      },
+      {
+        "PHYSICIAN_ID": "phy2",
+        "FIRST_NAME": "phy2",
+        "LAST_NAME": "phy2",
+        "MIDDLE_INITIAL": "phy2",
+        "STATUS": "false"
+      },
+      {
+        "PHYSICIAN_ID": "phy3",
+        "FIRST_NAME": "phy3",
+        "LAST_NAME": "phy3",
+        "MIDDLE_INITIAL": "phy3",
+        "STATUS": "false"
+      },
+      {
+        "PHYSICIAN_ID": "phy4",
+        "FIRST_NAME": "phy4",
+        "LAST_NAME": "phy4",
+        "MIDDLE_INITIAL": "phy4",
+        "STATUS": "false"
+      }
+]

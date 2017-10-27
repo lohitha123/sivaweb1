@@ -1,0 +1,31 @@
+[			
+      {
+        "SCH_NO": "1",
+        "SCH_QTY": "40", 
+        "RECEIVED_QTY": "0",    
+        "CARRIER": " ",
+        "LADING": "S5122017103124",
+        "UNIT_OF_MEASURE": "EA",
+        "ISSUE_UOM": "EA",             
+        "LOCATION": "",
+        "TRK#": " ",
+        "EXT_TRK#": " ",
+        "SHIPTO_ID": "GBR01", 
+         "PKGS": "1"                 
+      },
+	  	  
+      {
+        "SCH_NO": "2",
+        "SCH_QTY": "40", 
+        "RECEIVED_QTY": "0",    
+        "CARRIER": " ",
+        "LADING": " ",
+        "UNIT_OF_MEASURE": "EA",
+        "ISSUE_UOM": "EA",           
+        "LOCATION": "",
+        "TRK#": " ",
+        "EXT_TRK#": " ",
+        "SHIPTO_ID": "GBR01", 
+        "PKGS": "1"  
+      }	  	   
+]

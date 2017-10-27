@@ -1,0 +1,23 @@
+ [
+      {
+        "LOC_GROUP_ID": "anil",
+        "LOC_DESCR": "r",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "LOC_GROUP_ID": "kkk",
+        "LOC_DESCR": "oio9oo",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "LOC_GROUP_ID": "TestLocGrp1",
+        "LOC_DESCR": "Test Location Group1",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      }
+    ]

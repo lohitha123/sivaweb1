@@ -1,0 +1,128 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border" *ngIf="!displayImportUsersDialog">
+            <br>
+            <div class="panel panel-default" style="border: 1px solid #eee;">
+                <div class="panel-body" style="padding:0 0 10px 0;">
+                    <div class="col-xs-12">
+                        <form class="form-horizontal form-label-left">
+                            <div class="form-group">
+                                <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Search Filter </label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-text [id]="'txtFilterText'" [name]="txtFilterText" [(ngModel)]="searchImpUser.FilterText" [ngModelOptions]="{standalone: true}" [validations]="'everything'" (bindModelDataChange)="bindModelDataChange($event)" [title]="'Entered search string will be appended to search string provided in Ldap Configuration E.g. cn=user,sn=a*'"></atpar-text>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    Entered search string will be appended to search string provided in Ldap Configuration E.g. cn=user,sn=a* 
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> Entry Limit </label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-text [id]="'txtEntryLimit'" [name]="txtEntryLimit" [(ngModel)]="searchImpUser.EntryLimit" [ngModelOptions]="{standalone: true}" [validations]="'max=10,numeric'" (bindModelDataChange)="bindModelDataChange($event)" [title]="'Max. No of records to retrieve, this will override entry limit setup in Ldap configuration use only numbers(0-9).'"></atpar-text>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    Max. No of records to retrieve, this will override entry limit setup in Ldap configuration use only numbers(0-9).
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="btnGo_Click(searchImpUser)"> Go &nbsp;<i class="fa fa-arrow-right"></i> </button>                               
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-xs-12 help_txt" *ngIf="showStatusMessage">
+                        {{statusMessage}}
+                    </div>
+                    <div class="col-xs-12" *ngIf="isVisible">
+                        <div class="container">
+                            <button class="btn btn-purple sbtn pull-right" (click)="btnImportUser_Click(true)" [disabled]="lstLdapUser.length==0"> Import User &nbsp;<i class="fa fa-download"></i></button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-xs-12 table-responsive" *ngIf="isVisible">    
+                        <div class="container">
+                            <atpar-datatable [value]="lstLdapUserData" [paginator]="true" [pageLinks]="3" [rows]="pazeSize" expandableRows="true" [rowsPerPageOptions]="[10,20, 30, 40, 50, 60, 70, 80, 90, 100]" [globalFilter]="gb" [responsive]="true">
+                                <p-column header="Select" field="SELECTED_USER" [style]="{'width':'10%','text-align':'center'}">
+                                    <template pTemplate="filter" let-col>
+                                        <ul class="list-inline li-all-none">
+                                            <li>
+                                                <span (click)="chkAll_Click()" style="cursor:pointer">All</span>
+                                            </li> |
+                                            <li>
+                                                <span (click)="chkNone_Click()" style="cursor:pointer">None</span>
+                                            </li>
+                                        </ul>
+                                    </template>
+                                    <template let-col let-user="rowData" pTemplate type="body">
+                                        <atpar-switch [checked]="user[col.field]" [check]="user.VALID_USER" (change)="swtUser_Change($event,user)" [(ngModel)]="user[col.field]" [disabled]="user.USER_ID==''||user.FIRST_NAME==''||user.LAST_NAME==''"></atpar-switch>
+                                    </template>
+                                </p-column>
+                                <p-column header="User ID" field="USER_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="First Name" field="FIRST_NAME" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Last Name" field="LAST_NAME" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Middle Initial" field="MIDDLE_INITIAL" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Email ID" field="EMAIL_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'60px'}"></p-column>
+                                <p-column header="Phone No" field="PHONE1" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'60px'}"></p-column>
+                                <p-column header="FAX" field="FAX" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'60px'}"></p-column>
+                                <p-column header="User Dn" field="USERDN" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                            </atpar-datatable>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container x_panel no-border" *ngIf="displayImportUsersDialog">
+            <br>
+            <div class="panel panel-default" style="border: 1px solid #eee;">
+                <div class="panel-body" style="padding:0;">
+                    <div class="col-md-12">
+                        <form class="form-horizontal form-label-left">
+                            <div class="form-group">
+                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Session Validity Time</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-text [id]="'txtSession'" [name]="txtSession" [(ngModel)]="TOKEN_EXPIRY_PERIOD" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=4,numeric'" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    Value in minutes. Maximum length of 4 digits –use only numbers(1-9). Invalidates the user logged into the handheld device after this period of time. Forces user to re-login to communicate with the server.
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Idle Time</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-text [id]="'txtIdleTime'" [name]="txtIdleTime" [(ngModel)]="IDLE_TIME" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=4,numeric'" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    Idle time for the user in Minutes–use only numbers(1-9). Forces user to re-login into the PDA after this period of Inactive time
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Org Group ID</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-select [options]="dropdownOrgData" [style]="{'width':'100%'}" [id]="'ddldropdownOrgData'" [(ngModel)]="ORG_GROUP_ID" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    Select Organization Group
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Profile</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-select [options]="dropdownProfileData" [style]="{'width':'100%'}" [id]="'ddldropdownProfileData'" [(ngModel)]="PROFILE_ID" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    Select Profile
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-5">
+                                <button class="btn btn-purple sbtn" type="button" (click)="btnSaveLdap_Click()" [disabled]="disableButton">Save &nbsp;<i class="fa fa-floppy-o"></i></button>
+                                <button class="btn btn-purple sbtn " (click)="btnImportUser_Click(false)"><i class="fa fa-arrow-left"></i> &nbsp; Go Back</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+

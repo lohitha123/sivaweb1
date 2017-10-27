@@ -1,0 +1,36 @@
+[
+      {
+        "BUSINESS_UNIT": "STKRM",
+        "EVENT_ID": "20",
+        "NO_RECORDS": "91",
+        "FROM_STOR_LOC": "STKR01A01A",
+        "TO_STOR_LOC": "STKR01I01Z",
+        "COUNT_HDR_STATUS": "1",
+        "STATUSALLOCATED": "false",
+        "CHECKALLOCATED": "false",
+        "USER_ID": "Anil  Client(C)",
+        "ACTUAL_STATUSALLOCATED": "false"
+      },
+      {
+        "BUSINESS_UNIT": "STKRM",
+        "EVENT_ID": "8",
+        "NO_RECORDS": "2",
+        "FROM_STOR_LOC": "STKR01A01A",
+        "TO_STOR_LOC": "STKR01A01K",
+        "COUNT_HDR_STATUS": "1",
+        "STATUSALLOCATED": "false",
+        "CHECKALLOCATED": "false",
+        "ACTUAL_STATUSALLOCATED": "false"
+      },
+      {
+        "BUSINESS_UNIT": "STKRM",
+        "EVENT_ID": "7",
+        "NO_RECORDS": "4",
+        "FROM_STOR_LOC": "STKR01A01A",
+        "TO_STOR_LOC": "STKR01A01K",
+        "COUNT_HDR_STATUS": "1",
+        "STATUSALLOCATED": "false",
+        "CHECKALLOCATED": "false",
+        "ACTUAL_STATUSALLOCATED": "false"
+      }
+]

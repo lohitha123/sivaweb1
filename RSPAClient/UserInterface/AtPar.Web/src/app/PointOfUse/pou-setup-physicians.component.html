@@ -1,0 +1,148 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0 0 10px 0;">
+                        <form class="form-horizontal form-label-left" *ngIf="div1">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Physician ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="addPhysiciaId" [name]="addPhysiciaId" *ngIf="!isEditMode"
+                                                    [id]="'addPhysiciaId'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">First Name</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="addPhsysicianFname" [name]="addPhsysicianFname" *ngIf="!isEditMode"
+                                                    [id]="'addPhsysicianFname'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Last Name</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="addPhsysicianLname" [name]="addPhsysicianLname" *ngIf="!isEditMode"
+                                                    [id]="'addPhsysicianLname'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Middle Initial</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="addPhsysicianMname" [name]="addPhsysicianMname" *ngIf="!isEditMode"
+                                                    [id]="'addPhsysicianMname'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <button class="btn btn-purple sbtn" (click)="btn_go()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                    <button class="btn btn-purple sbtn" (click)="addPhysician()" *ngIf="showAddButton">Add &nbsp;<i class="fa fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </form>
+
+
+                        <div class="col-xs-12" *ngIf="showGrid">
+                            <div class="container">
+                                <div class="pull-right no-padding text-primary">{{physicianCount}}</div>
+                                <atpar-datatable [value]="lstGridData" [style]="{'width':'100%'}" #dt [paginator]="true" [pageLinks]="3" [rows]="pageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column header="Action" field="PHYSICIAN_ID" [style]="{'width':'4%','text-align':'center'}">
+                                        <template let-col let-rowData="rowData" pTemplate type="body">
+                                            <i class="fa fa-pencil fa-bg bg-blue" title="Edit" (click)="editPhysician(rowData)" style="cursor:pointer"></i>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="PHYSICIAN_ID" [style]="{'width':'25%'}" header="Physician ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="FIRST_NAME" header="First Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="MIDDLE_INITIAL" header="Middle Initial" [sortable]="true" [filter]="true"  filterPlaceholder="Search" [style]="{'width':'10%'}"></p-column>
+                                    <p-column field="LAST_NAME" header="Last Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>                                   
+
+                                    <p-column field="STATUS" header="Status" [filter]="true" [style]="{'width': '8%','overflow':'visible','text-align':'center'}" filterMatchMode="equals">
+                                        <template pTemplate="filter" let-col>
+                                            <atpar-select-grid [options]="ddlStatusType" [(ngModel)]="statusType" [style]="{'width':'100%'}" [id]="'ddlddlStatusType'" [required]="false" (onChange)="dataFilter($event.value,col.field,col.filterMatchMode)"></atpar-select-grid>
+                                        </template>
+                                        <template let-col let-Physiciandata="rowData" pTemplate="body">
+                                            <atpar-switch [checked]=Physiciandata[col.field] [(ngModel)]="Physiciandata[col.field]" name="changeStatus" (click)="confirm(Physiciandata)"></atpar-switch>
+                                        </template>
+                                    </p-column>
+
+                                </atpar-datatable>
+                            </div>
+                        </div>
+                        <div class="content-section implementation">
+                            <atpar-confirmdialog header="Confirmation" icon="fa fa-question-circle" width="425"></atpar-confirmdialog>
+                        </div>
+
+                        <form class="form-horizontal form-label-left" *ngIf="addFrom">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Physician ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="physiciansDetails.PHYSICIAN_ID" [name]="PHYSICIAN_ID"
+                                                    [validations]="'mandatory,alpha_numeric_underscore_hyphen_nospace,max=30'" [id]="'PHYSICIAN_ID'" [ngModelOptions]="{standalone: true}"
+                                                    [isFocused]="'true'" [title]="'Accept alphabets(a-z),(A-Z),numbers(0-9),the underscore(_) ,hypen(_) only, Allow max 30 characters'"
+                                                    [disabled]="disabled" *ngIf="!disabled" 
+                                                    (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                        <!--<atpar-text [(ngModel)]="physiciansDetails.PHYSICIAN_ID" [name]="PHYSICIAN_ID"
+                                                    [validations]="'mandatory,alpha_numeric_underscore_hyphen_nospace'" [id]="'PHYSICIAN_ID'" [ngModelOptions]="{standalone: true}"
+                                                    *ngIf="disabled"
+                                                    [disabled]="disabled"
+                                                    (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>-->
+                                        <label class="control-label lbl-left" *ngIf="disabled">{{physiciansDetails.PHYSICIAN_ID}}</label>
+                                    </div>
+                                    <!--<div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        Please enter
+                                    </div>-->
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="physiciansDetails.FIRST_NAME" [name]="FIRST_NAME" 
+                                                    [validations]="'mandatory,alpha_numeric_underscore_hyphen_dot_comma_squote_withspace,max=50'"
+                                                    (bindModelDataChange)="bindModelDataChange($event)" [title]="'Accept alphabets(a-z),(A-Z),numbers(0-9),the comma(,),(_),(.),(space),(single Quote) and with spaces'"
+                                                    [id]="'FIRST_NAME'" [ngModelOptions]="{standalone: true}" *ngIf="!disabled"></atpar-text>
+                                        <atpar-text [(ngModel)]="physiciansDetails.FIRST_NAME" [name]="FIRST_NAME"
+                                                    [validations]="'mandatory,alpha_numeric_underscore_hyphen_dot_comma_squote_withspace,max=50'"
+                                                    (bindModelDataChange)="bindModelDataChange($event)" [title]="'Accept alphabets(a-z),(A-Z),numbers(0-9),the comma(,),(_),(.),(space),(single Quote) and with spaces'"
+                                                    [id]="'FIRST_NAME'" [ngModelOptions]="{standalone: true}" [isFocused]="'true'" *ngIf="disabled"></atpar-text>
+                                    </div>
+                                    <!--<div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        Please enter
+                                    </div>-->
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="physiciansDetails.LAST_NAME" [name]="LAST_NAME" 
+                                                    [validations]="'mandatory,alpha_numeric_underscore_hyphen_dot_comma_squote_withspace,max=50'"
+                                                    (bindModelDataChange)="bindModelDataChange($event)" [title]="'Accept alphabets(a-z),(A-Z),numbers(0-9),the comma(,),(_),(.),(space),(single Quote) and with spaces'"
+                                                    [id]="'LAST_NAME'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Middle Initial</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="physiciansDetails.MIDDLE_INITIAL" [name]="MIDDLE_INITIAL"
+                                                    [validations]="'alpha_numeric_underscore_hyphen_dot_comma_squote_withspace,max=2'"  [title]="'Accept alphabets(a-z),(A-Z),numbers(0-9),the comma(,),(_),(.),(space_),(single Quote) and with spaces'"
+
+                                                    (bindModelDataChange)="bindModelDataChange($event)"
+                                                    [id]="'MIDDLE_INITIAL'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                     
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple small" (click)="saveOrUpdate()" *ngIf="mode=='Add'" [disabled]="loading">Save &nbsp; <i class="fa fa-floppy-o"></i></button>
+                                    <button class="btn btn-purple small" (click)="saveOrUpdate()" *ngIf="mode=='Edit'" [disabled]="loading">Update &nbsp; <i class="fa fa-check"></i></button>
+                                    <button class="btn btn-purple small" (click)="close()"><i class="fa fa-arrow-left"> &nbsp;</i>Go Back</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+        
+        </div>
+    </div>
+</div>
+<atpar-growl [value]="growlMessage" sticky=“sticky”></atpar-growl>
+

@@ -1,0 +1,115 @@
+﻿<div id="main" class="content-page">
+    <div class="page-header-title">
+        <h4 class="page-title"><a (click)="homeurl()">Administration ></a> Manage Device</h4>
+    </div>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="panel panel-default" style="border: 1px solid #eee;">
+                <div class="panel-body">
+                    <button class="btn btn-purple sbtn pull-right" (click)="edit()"><i class="fa fa-plus"></i> Add Device</button>
+                    <br>
+                    <div class="col-xs-12 table-responsive" *ngIf="table">
+                        <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                            <p-column expander="true" styleClass="col-icon"></p-column>
+                            <p-column header="Device ID" field="DEVICE_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                            <p-column header="Description" field="DESCRIPTION" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                            <p-column header="MAC Address" field="MAC_ADDRESS" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                            <p-column header="Status" field="STATUS" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                            <p-column header="Current Status" field="CHANGESTATUS" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                            <p-column header="Action">
+                                <template let-col let-ven="rowData" pTemplate type="body">
+                                    <i class="fa fa-pencil fa-bg bg-blue" (click)="edit()"></i>
+                                    <i class="fa fa-trash-o fa-bg bg-red" (click)="delete()"></i>
+                                </template>
+                            </p-column>
+                            <template let-employee pTemplate="rowexpansion">
+                                <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
+                                    <div class="ui-grid-row">
+                                        <div class="ui-grid-col-3" style="text-align:center">
+                                            <i class="fa fa-search" (click)="showCar(employee)" style="cursor:pointer;float:left;margin-top:40px"></i>
+                                        </div>
+                                        <div class="ui-grid-col-9">
+                                            <div class="ui-grid ui-grid-responsive ui-grid-pad">
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-2"><span class="datatablespan">App Name</span></div>
+                                                    <div class="ui-grid-col-10">{{employee.DEVICE_ID}}</div>
+                                                </div>
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-2"><span class="datatablespan">Printer Model</span> </div>
+                                                    <div class="ui-grid-col-10">{{employee.DESCRIPTION}}</div>
+                                                </div>
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-2"><span class="datatablespan">IP Address</span> </div>
+                                                    <div class="ui-grid-col-10">{{employee.MAC_ADDRESS}}</div>
+                                                </div>
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-2"><span class="datatablespan">Printer Name</span> </div>
+                                                    <div class="ui-grid-col-10">{{employee.STATUS}}</div>
+                                                </div>
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-2"><span class="datatablespan">Current Status</span> </div>
+                                                    <div class="ui-grid-col-10">{{employee.CHANGESTATUS}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                            <!--<p-footer></p-footer>-->
+                        </atpar-datatable>
+                        <div style="clear:both;"></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3" *ngIf="form">
+                        <form class="form-horizontal form-label-left">
+                            <br>
+                            <div class="form-group">
+                                <label for="test_step_element_id" class="control-label col-md-4 col-sm-3 col-xs-12">Device ID</label>
+                                <div class="col-md-5 col-sm-3 col-xs-12">
+                                    <atpar-text [(ngModel)]="newItem.DeviceID" [name]="txtDeviceID" *ngIf="!isEditMode"  [isFocused]="'true'"
+                                                [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'DeviceID'"  [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="test_step_element_id" class="control-label col-md-4 col-sm-3 col-xs-12">Description</label>
+                                <div class="col-md-5 col-sm-3 col-xs-12">
+                                    <atpar-text [(ngModel)]="newItem.Description" [name]="txtDescription" *ngIf="!isEditMode"
+                                                [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Description'"  [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    <div class="dropdown">
+                                        <p>Use only letters (a-z)(A-Z)</p>
+                                        <p>Use only numbers (0-9)</p>
+                                        <p>Use only the underscore(_)</p>
+                                        <p>Use only dot (.) and no spaces</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="test_step_element_id" class="control-label col-md-4 col-sm-3 col-xs-12">MAC Address</label>
+                                <div class="col-md-5 col-sm-3 col-xs-12">
+                                    <atpar-text [(ngModel)]="newItem.MAC" [name]="txtMAC" *ngIf="!isEditMode" 
+                                                [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'MAC'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    <div class="dropdown">
+                                        <p>Use only numbers (0-9)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="test_step_element_id" class="control-label col-md-4 col-sm-3 col-xs-12 label-purple"> Change Status</label>
+                                <div class="col-md-5 col-sm-3 col-xs-12">
+                                    <atpar-switch></atpar-switch>
+                                </div>
+                            </div>
+                            <br>                            
+                        </form>
+                        <div class="col-md-6 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-12">
+                            <button class="btn btn-purple sbtn">Save &nbsp;<i class="fa fa-check"></i></button>&nbsp;
+                            <button class="btn btn-purple sbtn" (click)="close()" id="back"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

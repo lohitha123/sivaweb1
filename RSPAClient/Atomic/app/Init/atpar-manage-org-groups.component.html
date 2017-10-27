@@ -1,0 +1,318 @@
+﻿<div id="main" class="content-page">
+    <div class="content">
+        <div class="">
+            <div class="page-header-title">
+                <h4 class="page-title"><a (click)="homeurl()">Administration ></a> Manager Org Groups</h4>
+            </div>
+        </div>
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border" *ngIf="MOG">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:20px;">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-5 col-md-4 form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <label for="">Org Group ID</label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <input type="text" name="" id="input" class="form-control bdr-purple" value="" required="required" pattern="" title="" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-5 col-md-4 form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <label for="">Name</label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <input type="text" name="" id="input" class="form-control bdr-purple" value="" required="required" pattern="" title="" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-2 col-md-2 form-group">
+                                    <button class="btn btn-purple sbtn " >Go &nbsp;<i class="fa fa-arrow-right"></i></button>
+                                    <button class="btn btn-purple sbtn " (click)="clicked($event)" id="add">Add</button>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="col-xs-12 table-responsive" *ngIf="!pop">
+                            <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                <p-column expander="true" styleClass="col-icon"></p-column>
+                                <p-column field="ORG_GROUP_ID" header="Org Group ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="ORG_GROUP_NAME" header="Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column header="Assign Company/BUnits" [style]="{'width':'200px'}">
+                                    <template let-ven="rowData" pTemplate="body">
+                                        <a (click)="clicked($event)" id="ACB" style="cursor:pointer;">Assign Company/BUnits</a>
+                                    </template>
+                                </p-column>
+                                <p-column header="Assign Parameters" [style]="{'width':'200px'}">
+                                    <template let-col let-ven="rowData" pTemplate type="body">
+                                        <a (click)="clicked($event)" id="AP" style="cursor:pointer;"> Assign Parameters</a>
+                                    </template>
+                                </p-column>
+                                <template let-employee pTemplate="rowexpansion">
+                                    <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
+                                        <div class="ui-grid-row">
+                                            <div class="ui-grid-col-3" style="text-align:center">
+                                                <i class="fa fa-search" (click)="showCar(employee)" style="cursor:pointer;float:left;margin-top:40px"></i>
+                                            </div>
+                                            <div class="ui-grid-col-9">
+                                                <div class="ui-grid ui-grid-responsive ui-grid-pad">
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Org Group ID</span></div>
+                                                        <div class="ui-grid-col-10">{{employee.ORG_GROUP_ID}}</div>
+                                                    </div>
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Name</span></div>
+                                                        <div class="ui-grid-col-10">{{employee.ORG_GROUP_NAME}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                                <!--<p-footer></p-footer>-->
+                            </atpar-datatable>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default" style="border: 1px solid #eee;" *ngIf="pop">
+                    <div class="panel-body">
+                        <div class="col-md-12 column">
+                            <form class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Org Group ID</label>
+                                    <div class="col-md-4 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control bdr-purple" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Name</label>
+                                    <div class="col-md-4 col-sm-3 col-xs-12">
+                                        <input type="text" class="form-control bdr-purple" placeholder="" value="">
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 col-xs-offset-4 col-md-6 col-md-offset-4">
+                                    <button class="btn btn-purple sbtn">Save &nbsp;<i class="fa fa-check"></i></button>
+                                    <button class="btn btn-purple sbtn" (click)="clicked($event)" id="close"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--first popup starts-->
+            <div class="container x_panel no-border" *ngIf="ACB">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:20px;">
+                        <br>
+                        <br>
+                        <div class="col-xs-12 table-responsive">
+                            <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                <p-column expander="true" styleClass="col-icon"></p-column>
+                                <p-column field="BUSINESS_UNIT" header="Business Unit" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="DESCR" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="BU_TYPE" header="Business Unit" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column header="Select" [filter]="true">
+                                    <template pTemplate="filter" let-col>
+                                        <ul class="list-inline">
+                                            <li>
+                                                <a href="">All</a>
+                                            </li> |
+                                            <li>
+                                                <a href="">None</a>
+                                            </li>
+                                        </ul>
+                                    </template>
+                                    <template let-ven="rowData" pTemplate="body">
+                                        <atpar-switch></atpar-switch>
+                                    </template>
+                                </p-column>
+                                <template let-employee pTemplate="rowexpansion">
+                                    <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
+                                        <div class="ui-grid-row">
+                                            <div class="ui-grid-col-3" style="text-align:center">
+                                                <i class="fa fa-search" (click)="showCar(employee)" style="cursor:pointer;float:left;margin-top:40px"></i>
+                                            </div>
+                                            <div class="ui-grid-col-9">
+                                                <div class="ui-grid ui-grid-responsive ui-grid-pad">
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Business Unit</span></div>
+                                                        <div class="ui-grid-col-10">{{employee.BUSINESS_UNIT}}</div>
+                                                    </div>
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Description</span></div>
+                                                        <div class="ui-grid-col-10">{{employee.DESCR}}</div>
+                                                    </div>
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Business Unit</span></div>
+                                                        <div class="ui-grid-col-10">{{employee.BU_TYPE}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                                <!--<p-footer></p-footer>-->
+                            </atpar-datatable>
+                            <br>
+                            <div class="col-xs-12 col-md-4 col-md-offset-5 form-group">
+                                <button class="btn btn-purple sbtn">Assign</button>
+                                <button class="btn btn-purple sbtn" (click)="clicked($event)" id="back"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--first popup ends-->
+            <!--second popup code starts-->
+            <div class="container x_panel no-border" *ngIf="AP">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:20px;">
+                        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+                            <div class="col-xs-12 col-sm-4 col-md-2">
+                                <label for="">Products</label>
+                            </div>
+                            <div class="col-xs-12 col-sm-8 col-md-6">
+                                <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlProducts'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                            </div>
+                            <div style="clear:both;margin-bottom: 10px;"></div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="col-xs-12 table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center display-top">Parameter</th>
+                                        <th class="text-center display-top">Value</th>
+                                        <th class="text-center display-top">Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Allocation of Carts to Users Required</td>
+                                        <td>
+                                            <atpar-switch></atpar-switch>
+                                        </td>
+                                        <td class="desc-text">[Unchecking this will allow any user to download Any Cart. Checking this will restrict the HHT user download only the carts allocated to the user]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Create Requisitions by Par Location for Non Stock Items</td>
+                                        <td>
+                                            <atpar-switch></atpar-switch>
+                                        </td>
+                                        <td class="desc-text">[Checking this will create Requisitions by Par Location for Non Stock Items instead of creating requisition by Vendor for a given Par Location]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Default Manufacturer Item ID</td>
+                                        <td>
+                                            <atpar-radioButton name="groupname" value="" label="VENDOR"></atpar-radioButton>
+                                            <br>
+                                            <atpar-radioButton name="groupname" value="" label="MANUFACTURER"></atpar-radioButton>
+                                        </td>
+                                        <td class="desc-text">[Sets the Manufacturer Item ID to the selected option]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Display of last order quantity for kill type items</td>
+                                        <td>
+                                            <atpar-switch></atpar-switch>
+                                        </td>
+                                        <td class="desc-text">[Checking this will display the last order quantity and last order date for Kill type of items on HHT]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Display of Soft Input Panel (Keypad) for numeric</td>
+                                        <td>
+                                            <atpar-switch></atpar-switch>
+                                        </td>
+                                        <td class="desc-text">[Checking this will automatically display the Soft Input Panel (Keypad) for numeric on Item details screen]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Display of Soft Input Panel (Keypad)</td>
+                                        <td>
+                                            <atpar-switch></atpar-switch>
+                                        </td>
+                                        <td class="desc-text">[Checking this will automatically display the Soft Input Panel (Keypad) on all screens except Item details]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Factor of safety percentage (%) for recommended par</td>
+                                        <td>
+                                            <input type="text" name="" id="input" class="form-control bdr-purple" value="" required="required" pattern="" title="">
+                                        </td>
+                                        <td class="desc-text"> [Recommended Par will be calculated based on the Factor of safety, Recommended Par = Round (Average Usage * (1+Factor of Safety/100) ) ]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Create HL7 billing message/file</td>
+                                        <td>
+                                            <atpar-switch></atpar-switch>
+                                        </td>
+                                        <td class="desc-text">[Selected description value will be displayed]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Item Description Option on HHT</td>
+                                        <td>
+                                            <atpar-radioButton name="groupname" value="" label="DESCRSHORT"></atpar-radioButton>
+                                            <br>
+                                            <atpar-radioButton name="groupname" value="" label="DESCR30"></atpar-radioButton>
+                                            <br>
+                                            <atpar-radioButton name="groupname" value="" label="DESCR60"></atpar-radioButton>
+                                            <br>
+                                            <atpar-radioButton name="groupname" value="" label="DESCR254"></atpar-radioButton>
+                                        </td>
+                                        <td class="desc-text">[Checking this will automatically display the Soft Input Panel (Keypad) for numeric on Item details screen]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Item Price Option on HHT</td>
+                                        <td style="width:250px;">
+                                            <atpar-radioButton name="groupname" value="" label="STANDARD_PRICE"></atpar-radioButton>
+                                            <br>
+                                            <atpar-radioButton name="groupname" value="" label="CURR_PURCHASE_COST"></atpar-radioButton>
+                                            <br>
+                                            <atpar-radioButton name="groupname" value="" label="AVG_COST"></atpar-radioButton>
+                                            <br>
+                                            <atpar-radioButton name="groupname" value="" label="ACTUAL_COST"></atpar-radioButton>
+                                        </td>
+                                        <td class="desc-text">
+                                            [Selected Item Price will be displayed in the reports on the server]
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Use Packaging String for Labels</td>
+                                        <td>
+                                            <atpar-switch></atpar-switch>
+                                        </td>
+                                        <td class="desc-text">[Checking this will allow users to utilized Packaging String for labels]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Display of All option in Records per Page drop down</td>
+                                        <td>
+                                            <atpar-switch></atpar-switch>
+                                        </td>
+                                        <td class="desc-text"> [Checking this will display all option in Records per Page drop down list. Unchecking this option and setting 0 (zero) in My Profile - Records Per Page will default to 10, as there is no ALL option.]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Truncate leading zeros</td>
+                                        <td>
+                                            <atpar-switch></atpar-switch>
+                                        </td>
+                                        <td class="desc-text">[Checking this will truncate the leading zeros of a scanned Item ID]</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                            <div class="col-xs-12 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn">Save &nbsp;<i class="fa fa-check"></i></button>
+                                <button class="btn btn-purple sbtn" (click)="clicked($event)" id="back"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Second popup code ends-->
+        </div>
+    </div>
+</div>

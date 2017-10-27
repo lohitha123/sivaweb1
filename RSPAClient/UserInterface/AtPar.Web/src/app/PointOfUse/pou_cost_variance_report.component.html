@@ -1,0 +1,623 @@
+﻿<div id="main" class="content-page">
+    <div class="content">
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px 10px;">
+                        <div class="form-group">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="tdExports" *ngIf="tdExports">
+                                <i class="fa fa-file-excel-o fa-bg-lg bg-blue" aria-hidden="true" id="imgExcel" style="cursor:pointer;font-size:18px;float:right;margin-right:8px" title="Excel Format" (click)="onExportToExcelClick($event)"></i>&nbsp;
+                                <i class="fa fa-envelope-o fa-bg-lg bg-blue" aria-hidden="true" id="imgMail" style="cursor:pointer;font-size:18px;float:right;margin-right:8px" title="Send mail" (click)="onSendMailIconClick($event)"></i>&nbsp;
+                                <i class="fa fa-print fa-bg-lg bg-blue" aria-hidden="true" id="imgPrint" style="cursor:pointer;font-size:18px;float:right;margin-right:8px" title="Print" (click)="onPrintClick($event)"></i>&nbsp;
+
+                            </div>
+                        </div>
+                        <atpar-pou-tabs [selectedTab]="activeTab" (enableSelectedTab)="enableSelectedTab($event)">
+                            <atpar-tab tabTitle="Variance by Speciality" (SelectedTab)="SelectedTab(tab)" [active]="VariancebySpecialityTab" (bindModelDataChange)="selectedTab($event)">
+                                <div class="form-horizontal form-label-left">
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Diagnosis</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                                <atpar-select [options]="lstVarianceType" [(ngModel)]="selectedVarianceType" [id]="'ddlVartn'" [filter]="true" [ngModelOptions]="{standalone: true}" [required]="true" (onChange)="ClearData()"></atpar-select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Select Range</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                                <atpar-select [options]="lstSltRnge" [(ngModel)]="selectedSltRnge" [filter]="true" [id]="'ddlSltRnge'" [ngModelOptions]="{standalone: true}" [required]="true" (onChange)="Yearsbind()"></atpar-select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Year</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                                <atpar-yearviewcalender [id]="DecadeView"  [showIcon]="true" [required]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [(ngModel)]="ddltyear"></atpar-yearviewcalender>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-12 col-sm-12 col-md-5 form-group" *ngIf="selectedSltRnge!='Y'&& selectedSltRnge!='Y1'">
+                                            <label for="" class="control-label col-xs-12 col-md-6 col-sm-6">Select Half year/Quarter/Month</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                <atpar-select [options]="lstSltHQM" [(ngModel)]="selectedSltHQM" [filter]="true" [id]="'ddlSltHQM'" [ngModelOptions]="{standalone: true}" [required]="true" (onChange)="ClearData()"></atpar-select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-12 col-md-4 col-sm-6 col-sm-offset-5 col-md-offset-5">
+                                            <button class="btn btn-purple sbtn" id="btnGetVarianceBySplt" (click)="btn_GetVarianceBySplt()" name="btnGetVarianceBySplt">Go &nbsp;<i class="fa fa-arrow-right"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 table-responsive" *ngIf="gvVarianceSpelty">
+                                    <div class="container">
+                                        <span class="pull-right text-primary text-center">
+                                            {{lstLength}}
+                                        </span>
+                                        <atpar-datatable [value]="lstCostVarianceBySplt" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true"
+                                                         [rowsPerPageOptions]="[10,20, 30, 40, 50, 60, 70, 80, 90, 100]"
+                                                         [globalFilter]="gb" [responsive]="true">
+                                            <p-headerColumnGroup>
+                                                <p-row>
+                                                    <p-column field="SPECIALTY_CODE" header="Specialty Code" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                    <p-column field="NO_OF_PROCEDURES" header="# Procedures" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                    <p-column field="TOTAL_SPEND" header="Total Spend" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                    <p-column field="TOTAL_VARIANCE" header="Extended Variance" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                    <p-column field="PERVARIANCE" header="%Variance" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                </p-row>
+                                                <p-row>
+                                                    <p-column header="Total:"></p-column>                                                   
+                                                    <p-column>
+                                                        <template pTemplate="header">
+                                                            <span>{{sumOfNoOfProceduers | number}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column [style]="{'text-align':'right'}">
+                                                        <template pTemplate="header">
+                                                            <span>{{sumOfTotalSpend | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column [style]="{'text-align':'right'}">
+                                                        <template pTemplate="header">
+                                                            <span>{{sumOfTotalVariance | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                                        </template>
+                                                    </p-column>
+                                                    <p-column [style]="{'text-align':'right'}">
+                                                        <template pTemplate="header">
+                                                            <span>{{variancePercent | number:'1.1-1'}}%</span>
+                                                        </template>
+                                                    </p-column>
+                                                </p-row>
+                                            </p-headerColumnGroup>
+                                            <p-column field="SPECIALTY_DESCRIPTION" header="Specialty Code" filterPlaceholder="Search">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <a (click)="onCaseDetailsClick(ven,$event)" style='color:blue;font-style:italic;'>{{ven.SPECIALTY_DESCRIPTION}}</a>
+                                                </template>
+                                            </p-column>
+
+                                            <p-column field="NO_OF_PROCEDURES" header="# Procedures" [style]="{'text-align':'center'}" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <span>{{ven.NO_OF_PROCEDURES | number }}</span>
+                                                </template>
+                                            </p-column>
+                                            <p-column field="TOTAL_SPEND" header="Total Spend" [style]="{'text-align':'right'}" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <span>{{ven.TOTAL_SPEND | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                                </template>
+                                            </p-column>
+                                            <p-column field="TOTAL_VARIANCE" header="Extended Variance" [style]="{'text-align':'right'}" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <span>{{ven.TOTAL_VARIANCE | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                                </template>
+                                            </p-column>
+                                            <p-column field="PERVARIANCE" header="%Variance" [style]="{'text-align':'right'}" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <span>{{ven.PERVARIANCE | number:'1.1-1'}}%</span>
+                                                </template>
+                                            </p-column>
+                                            <template pTemplate="filter" let-col>
+                                                <atpar-select-grid [options]="database" [(ngModel)]="statusType" [style]="{'width':'100%'}" [id]="'ddldatabase'" [required]="false" (onChange)="dataFilter($event.value,col.field,col.filterMatchMode)"></atpar-select-grid>
+                                            </template>
+                                        </atpar-datatable>
+                                    </div>
+                                </div>
+                            </atpar-tab>
+                            <atpar-tab tabTitle="Variance by {{ selectedVarianceType }}" (SelectedTab)="SelectedTab(tab)" id="Variance by ICD" [active]="VariancebyICDTab">
+                                <div class="form-horizontal form-label-left">
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">Range:<span style="font-weight:bold !important">{{selectedSltRngeLbl}}</span></label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-6 col-sm-6" style="font-weight:bold !important"></label>-->
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">Year:<span style="font-weight:bold !important">{{ddltyear}}</span></label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-6 col-sm-6" style="font-weight:bold !important"></label>-->
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-6 col-sm-6">
+                                                Specialty:<span style="font-weight:bold !important">{{VarnceSpecialityDescription}}({{VarnceSpecialityCode}})</span>
+                                            </label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-offset--2 col-md-8 col-sm-6" style="font-weight:bold !important">
+                                            </label>-->
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-3 form-group" *ngIf="showHalfyrlbl">
+                                            <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">
+                                                {{Hlfqtrmnthlbltxt}}<span style="font-weight:bold !important">{{Hlfqtrmnthlbl}}</span>
+                                            </label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-8 col-sm-6" style="font-weight:bold !important">
+                                                 {{Hlfqtrmnthlbl}}
+                                            </label>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<div class="col-xs-12 table-responsive">
+                                    <table class="table table-bordered user-para-table" style='border:1px solid black; border-collapse:collapse;'>
+                                        <tr style='font-size:12px;font-weight:bold' class="text-center">
+                                          {{VarnceSpecialityCode}}
+                                        </tr>
+                                    </table>
+                                </div>-->
+                                <div class="container" *ngIf="gvVarianceICD">
+                                    <ul class="list-inline">
+                                        <li class="pull-right no-padding">
+                                            <span class="text-primary">{{lstICDLength}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-xs-12 table-responsive" *ngIf="gvVarianceICD">
+                                    <atpar-datatable [value]="lstCostVarianceByDiagnsis" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true"
+                                                     [rowsPerPageOptions]="[10,20, 30, 40, 50, 60, 70, 80, 90, 100]"
+                                                     [globalFilter]="gb" [responsive]="true" styleClass="ui-datatable-scroll">
+
+                                        <p-headerColumnGroup>
+                                            <p-row>
+                                                <p-column field="CODE" header="{{ selectedVarianceType }} Code" [style]="{'width':'100px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column field="DESCRIPTION" header="{{ selectedVarianceType }} Description" [style]="{'width':'100px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column field="NO_OF_PHYSICIANS" header="# Physicians" [style]="{'width':'80px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column field="NO_OF_PROCEDURES" header="# Procedures" [style]="{'width':'80px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column field="MIN_USAGE" header="Avg.Min" [style]="{'width':'100px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column field="MAX_USAGE" header="Avg.Max" [style]="{'width':'100px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column field="TOTAL_VARIANCE" header="Extended Variance" [style]="{'width':'100px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column field="TOTAL_SPEND" header="Total Spend" [style]="{'width':'100px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column field="TOTAL_ANNUAL_SPEND" header="Total Spend Annualized" [style]="{'width':'100px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column field="PERVARIANCE" header="%Variance" [style]="{'width':'100px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                            </p-row>
+                                            <p-row>
+                                                <p-column header="Total:"></p-column>
+                                                <p-column></p-column>
+                                                <p-column></p-column>
+                                                <p-column>
+                                                    <template pTemplate="header">
+                                                        <span>{{totalDiag_Proceduers | number}}</span>
+                                                    </template>
+                                                </p-column>
+                                                <p-column></p-column>
+                                                <p-column></p-column>
+                                                <p-column [style]="{'text-align':'right'}">
+                                                    <template pTemplate="header">
+                                                        <span>{{totalDiag_Variance | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                                    </template>
+                                                </p-column>
+                                                <p-column [style]="{'text-align':'right'}">
+                                                    <template pTemplate="header">
+                                                        <span>{{totalDiag_Spend | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                                    </template>
+                                                </p-column>
+                                                <p-column [style]="{'text-align':'right'}">
+                                                    <template pTemplate="header">
+                                                        <span>{{totalDiag_AnnualSpend | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                                    </template>
+                                                </p-column>
+                                                <p-column [style]="{'text-align':'right'}">
+                                                    <template pTemplate="header">
+                                                        <span>{{diag_variancePercent | number:'1.1-1'}}%</span>
+                                                    </template>
+                                                </p-column>
+                                            </p-row>
+                                        </p-headerColumnGroup>
+
+                                        <p-column field="CODE" header="{{ selectedVarianceType }} Code">
+                                            <template let-col let-ven="rowData" pTemplate="body">
+                                                <a (click)="onVarianceByICDClick(ven,$event)" style='color:blue;font-style:italic;'>{{ven.CODE}}</a>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="DESCRIPTION" header="{{ selectedVarianceType }} Description"></p-column>
+                                        <p-column field="NO_OF_PHYSICIANS" [style]="{'text-align':'center'}" header="# Physicians">
+                                            <template let-col let-ven="rowData" pTemplate="body">
+                                                <span>{{ven.NO_OF_PHYSICIANS | number }}</span>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="NO_OF_PROCEDURES" header="# Procedures" [style]="{'text-align':'center'}">
+                                            <template let-col let-ven="rowData" pTemplate="body">
+                                                <span>{{ven.NO_OF_PROCEDURES | number }}</span>
+                                            </template>
+                                        </p-column>
+
+                                        <p-column field="MIN_USAGE" header="Avg.Min" [style]="{'text-align':'right'}">
+                                            <template let-col let-ven="rowData" pTemplate="body">
+                                                <span>{{ven.MIN_USAGE | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="MAX_USAGE" header="Avg.Max" [style]="{'text-align':'right'}">
+                                            <template let-col let-ven="rowData" pTemplate="body">
+                                                <span>{{ven.MAX_USAGE | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                            </template>
+                                        </p-column>
+
+                                        <p-column field="TOTAL_VARIANCE" header="Variance" [style]="{'text-align':'right'}">
+                                            <template let-col let-ven="rowData" pTemplate="body">
+                                                <span>{{ven.TOTAL_VARIANCE | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                            </template>
+                                        </p-column>
+
+                                        <p-column field="TOTAL_SPEND" header="Total Spend" [style]="{'text-align':'right'}">
+                                            <template let-col let-ven="rowData" pTemplate="body">
+                                                <span>{{ven.TOTAL_SPEND | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="TOTAL_ANNUAL_SPEND" header="Total Spend Annualized" [style]="{'text-align':'right'}">
+                                            <template let-col let-ven="rowData" pTemplate="body">
+                                                <span>{{ven.TOTAL_ANNUAL_SPEND | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="PERVARIANCE" header="%Variance" [style]="{'text-align':'right'}">
+                                            <template let-col let-ven="rowData" pTemplate="body">
+                                                <span>{{ven.PERVARIANCE | number:'1.1-1'}}%</span>
+                                            </template>
+                                        </p-column>
+
+                                        <template pTemplate="filter" let-col>
+                                            <atpar-select-grid [options]="database" [(ngModel)]="statusType" [style]="{'width':'100%'}" [id]="'ddldatabase'" [required]="false" (onChange)="dataFilter($event.value,col.field,col.filterMatchMode)"></atpar-select-grid>
+                                        </template>
+                                    </atpar-datatable>
+
+                                </div>
+                            </atpar-tab>
+                            <atpar-tab tabTitle="Physician Variance" (SelectedTab)="SelectedTab(tab)" [active]="VariancebyPhyTab">
+                                <div class="form-horizontal form-label-left">
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">Range:<span style="font-weight:bold !important">{{selectedSltRngeLbl}}</span></label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-6 col-sm-6" style="font-weight:bold !important"></label>-->
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">Year:<span style="font-weight:bold !important">{{ddltyear}}</span></label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-6 col-sm-6" style="font-weight:bold !important"></label>-->
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-6 col-sm-6">
+                                                Specialty:<span style="font-weight:bold !important">{{VarnceSpecialityDescription}}({{VarnceSpecialityCode}})</span>
+                                            </label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-offset--2 col-md-8 col-sm-6" style="font-weight:bold !important">
+                                            </label>-->
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-3 form-group" *ngIf="showHalfyrlbl">
+                                            <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">
+                                                {{Hlfqtrmnthlbltxt}}<span style="font-weight:bold !important">{{Hlfqtrmnthlbl}}</span>
+                                            </label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-8 col-sm-6" style="font-weight:bold !important">
+                                                {{Hlfqtrmnthlbl}}
+                                            </label>-->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 container" style="text-align:center;" *ngIf="pop">
+                                    <table class="table table-bordered user-para-table" style='border:1px solid black; border-collapse:collapse;'>
+                                        <tr>
+                                            <td width='15%' style='font-size:12px;font-weight:bold' class="text-center">No.of Physicians</td>
+                                            <td width='5%' class="text-center" style='font-size:12px'>{{DynamicDignsis.NO_OF_PHYSICIANS | number }} </td>
+                                            <td width='10%' style='font-size:12px;font-weight:bold' class="text-center">No.of Procedures</td>
+                                            <td class="text-center" width='10%' style='font-size:12px'>{{DynamicDignsis.NO_OF_PROCEDURES | number }}</td>
+                                            <td width='5%' style='font-size:12px; font-weight:bold' class="text-center">Min Avg</td>
+                                            <td width='5%' style='font-size:12px; font-weight:bold' class="text-center">Max Avg</td>
+                                            <td width='5%' style='font-size:12px; font-weight:bold' class="text-center">Extended Variance</td>
+                                        </tr>
+                                        <tr>
+                                            <td width='15%' style='font-size:12px; font-weight:bold' class="text-center">{{lblPhyvariance}}</td>
+                                            <td width='5%' style='font-size:12px;' class="text-left"><a style='color:blue;font-style:italic;' (click)="onVarianceByPhyClick(ven,$event)">{{DynamicDignsis.CODE}}</a></td>
+                                            <td width='10%' style='font-size:12px;font-weight:bold' class="text-center">{{lblPhyvarianceDesc}}</td>
+                                            <td width='10%' style='font-size:12px' class="text-left">{{DynamicDignsis.DESCRIPTION}}</td>
+                                            <td class="text-right" style='font-size:12px'>{{DynamicDignsis.MIN_USAGE | currency:'USD':true:'1.0-0' |  minusSignToParens}}</td>
+                                            <td style='font-size:12px' class="text-right">{{DynamicDignsis.MAX_USAGE | currency:'USD':true:'1.0-0' |  minusSignToParens}}</td>
+                                            <td style='font-size:12px' class="text-right">{{DynamicDignsis.TOTAL_VARIANCE | currency:'USD':true:'1.0-0' |  minusSignToParens}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div class="container" *ngIf="pop">
+                                    <ul class="list-inline">
+                                        <li class="pull-right no-padding">
+                                            <span class="text-primary">{{lstPhyvarianceLength}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-xs-12 table-responsive" *ngIf="pop">
+                                    <atpar-datatable [value]="lstCostVariaceByPhy" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true"
+                                                     [rowsPerPageOptions]="[10,20, 30, 40, 50, 60, 70, 80, 90, 100]"
+                                                     [globalFilter]="gb" [responsive]="true" styleClass="ui-datatable-scroll">
+                                        <p-headerColumnGroup>
+                                            <p-row>
+                                                <p-column field="PHYSICIAN_NAME" header="Physician" [style]="{'width':'100px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column field="NO_OF_PROCEDURES" header="# Procedures" [style]="{'width':'80px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column field="MIN_PROC_COST" header="Min Procedure Cost" [style]="{'width':'100px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column field="MAX_PROC_COST" header="Max Procedure Cost" [style]="{'width':'100px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column field="AVG_PROC_COST" header="Average Procedure Cost" [style]="{'width':'100px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column field="MIN_PROC_VARIANCE" header="Variance From Min Procedure Cost" [style]="{'width':'120px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column field="EXTENDED_VARIANCE" header="Extended Variance" [style]="{'width':'100px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                            </p-row>
+                                        </p-headerColumnGroup>
+
+                                        <p-column field="PHYSICIAN_NAME" header="Physician"></p-column>
+                                        <p-column field="NO_OF_PROCEDURES" header="# Procedures" [style]="{'text-align':'center'}">
+                                            <template let-col let-ven="rowData" pTemplate="body">
+                                                <span>{{ven.NO_OF_PROCEDURES | number }}</span>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="MIN_PROC_COST" header="Min Procedure Cost" [style]="{'text-align':'right'}">
+                                            <template let-col let-ven="rowData" pTemplate="body">
+                                                <span>{{ven.MIN_PROC_COST | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="MAX_PROC_COST" header="Max Procedure Cost" [style]="{'text-align':'right'}">
+                                            <template let-col let-ven="rowData" pTemplate="body">
+                                                <span>{{ven.MAX_PROC_COST| currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="AVG_PROC_COST" header="Average Procedure Cost" [style]="{'text-align':'right'}">
+                                            <template let-col let-ven="rowData" pTemplate="body">
+                                                <span>{{ven.AVG_PROC_COST | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="MIN_PROC_VARIANCE" header="Variance From Min Procedure Cost" [style]="{'text-align':'right'}">
+                                            <template let-col let-ven="rowData" pTemplate="body">
+                                                <span>{{ven.MIN_PROC_VARIANCE | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="EXTENDED_VARIANCE" header="Extended Variance" [style]="{'text-align':'right'}">
+                                            <template let-col let-ven="rowData" pTemplate="body">
+                                                <span>{{ven.EXTENDED_VARIANCE | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                            </template>
+                                        </p-column>
+                                        <template pTemplate="filter" let-col>
+                                            <atpar-select-grid [options]="database" [(ngModel)]="statusType" [style]="{'width':'100%'}" [id]="'ddldatabase'" [required]="false" (onChange)="dataFilter($event.value,col.field,col.filterMatchMode)"></atpar-select-grid>
+                                        </template>
+                                    </atpar-datatable>
+                                </div>
+                            </atpar-tab>
+                            <atpar-tab tabTitle="Spend by Item Category" (SelectedTab)="SelectedTab(tab)" [active]="SpendbyItemCateTab">
+                                <div class="form-horizontal form-label-left">
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">Range:<span style="font-weight:bold !important">{{selectedSltRngeLbl}}</span></label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-6 col-sm-6" style="font-weight:bold !important"></label>-->
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">Year:<span style="font-weight:bold !important">{{ddltyear}}</span></label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-6 col-sm-6" style="font-weight:bold !important"></label>-->
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-6 col-sm-6">
+                                                Specialty:<span style="font-weight:bold !important">{{VarnceSpecialityDescription}}({{VarnceSpecialityCode}})</span>
+                                            </label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-offset--2 col-md-8 col-sm-6" style="font-weight:bold !important">
+                                                </label>-->
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-3 form-group" *ngIf="showHalfyrlbl">
+                                            <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">
+                                                {{Hlfqtrmnthlbltxt}}<span style="font-weight:bold !important">{{Hlfqtrmnthlbl}}</span>
+                                            </label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-8 col-sm-6" style="font-weight:bold !important">
+                                            {{Hlfqtrmnthlbl}}
+                                             </label>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="showSpendByItmTab">
+                                    <div class="col-xs-12" style="text-align:center;">
+                                        <div class="col-xs-12 col-md-7 col-lg-7 col-sm-12 " *ngIf="pop">
+                                            <table class="table table-bordered user-para-table" style='border:1px solid black; border-collapse:collapse;'>
+                                                <tr>
+                                                    <td class="text-center" colspan='4' style='font-size:12px; font-family:Open Sans,sans-serif;color:#6c276a'>
+                                                        <span style="color:black;font-weight:bold;">{{lblPhyvariance}}:&nbsp;</span>
+                                                        <a style='color:blue;font-style:italic;' (click)="onVarianceByPhyDyClick(ven,$event)">{{DynamicDignsis.CODE}}</a>
+                                                        <span style="color:black;">&nbsp;({{DynamicDignsis.DESCRIPTION}})</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style='font-size:12px;font-weight:bold;' class="text-center">No.of Procedures</td>
+                                                    <td colspan='3' style='font-size:12px' class="text-center">{{DynamicDignsis.NO_OF_PROCEDURES | number}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td rowspan="2" style='font-size:12px; font-family:Open Sans,sans-serif;color:#000000;font-weight:bold;' class="text-center">Cost Per Case</td>
+                                                    <td style='font-size:12px; font-family:Open Sans,sans-serif;color:#000000;font-weight:bold;' class="text-center">Avg Min</td>
+                                                    <td style='font-size:12px; font-family:Open Sans,sans-serif;color:#000000;font-weight:bold;' class="text-center">Avg Max</td>
+                                                    <td style='font-size:12px; font-family:Open Sans,sans-serif;color:#000000;font-weight:bold;' class="text-center">Total Spend</td>
+                                                </tr>
+                                                <tr>
+                                                    <!--<td></td>-->
+                                                    <td style='font-size:12px' class="text-right">{{DynamicDignsis.MIN_USAGE | currency:'USD':true:'1.0-0' |  minusSignToParens}}</td>
+                                                    <td style='font-size:12px' class="text-right">{{DynamicDignsis.MAX_USAGE | currency:'USD':true:'1.0-0' |  minusSignToParens}}</td>
+                                                    <td class="text-right" style='font-size:12px'>{{DynamicDignsis.TOTAL_ANNUAL_SPEND | currency:'USD':true:'1.0-0' |  minusSignToParens}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style='font-size:12px; font-family:Open Sans,sans-serif;color:#000000;font-weight:bold;' class="text-center">Item Group</td>
+                                                    <td style='font-size:12px; font-family:Open Sans,sans-serif;color:#000000;font-weight:bold;' class="text-center">Total Spend</td>
+                                                    <td style='font-size:12px; font-family:Open Sans,sans-serif;color:#000000;font-weight:bold;' class="text-center">Percent</td>
+                                                    <td style='font-size:12px; font-family:Open Sans,sans-serif;color:#000000;font-weight:bold;' class="text-center">Item Count</td>
+                                                </tr>
+                                                <tr *ngFor="let dtls of lstCostVarianceItemHdrDtls">
+                                                    <td style='font-size:12px; font-family:Open Sans,sans-serif;' class="text-left">{{dtls.ITEM_GROUP}}</td>
+                                                    <td style='font-size:12px; font-family:Open Sans,sans-serif;' class="text-right">{{dtls.TOTAL_COST_ITEM_GROUP | currency:'USD':true:'1.0-0' |  minusSignToParens}}</td>
+                                                    <td style='font-size:12px; font-family:Open Sans,sans-serif;' class="text-right">{{dtls.TOTAL_COST_ITEM_GROUP / DynamicDignsis.TOTAL_ANNUAL_SPEND | percent:'1.1-1'}}</td>
+                                                    <td style='font-size:12px; font-family:Open Sans,sans-serif;' class="text-center">{{dtls.NO_OF_ITEMS_BY_ITEM_GROUP | number}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12">
+                                            <atpar-chart type="pie" [id]="'SpndItemChart'" [data]="lstChartData" [style]="{'float':'right'}"></atpar-chart>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-12 container" style="text-align:center; overflow:auto;" *ngIf="pop">
+
+                                        <table class="table table-bordered user-para-table" style='border:1px solid black; border-collapse:collapse;'>
+                                            <tr>
+                                                <td width='25%' style='font-size:12px; font-family:Open Sans,sans-serif; font-weight:bold;' class="text-center">Group</td>
+                                                <td style='font-size:12px; font-family:Open Sans,sans-serif;font-weight:bold;' class="text-center" width='25%' [attr.colspan]="lstCostVarianceSurHdrData.length">Total Cost By Group</td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="2" width='25%' style='font-size:12px;font-weight:bold;'>Physician/Total Cases</td>
+                                                <td *ngFor="let Lst of lstCostVariaceByPhy" width='20%' style='font-size:12px; font-family:Open Sans,sans-serif;font-weight:bold;' class="text-center">{{Lst.PHYSICIAN_NAME}}</td>
+                                            </tr>
+                                            <tr>
+                                                <!--<td width='25%' style='font-size:12px; font-family:Open Sans,sans-serif;font-weight:bold;' class="text-center">Group</td>-->
+                                                <td *ngFor="let dtls of lstCostVariaceByPhy" width='25%' style='font-size:12px' class="text-center">{{dtls.NO_OF_PROCEDURES | number}}</td>
+                                            </tr>
+
+                                            <tr *ngFor="let key of lstAny">
+                                                <td class="text-left" style='font-size:12px'>{{key.ITEM_GROUP}}</td>
+                                                <td *ngFor="let col of lstCostVariaceByPhy" class="text-right" style='font-size:12px'>{{key[col.PHYSICIAN_ID]==null?(0 | currency:'USD':true:'1.0-0' |  minusSignToParens):key[col.PHYSICIAN_ID] | currency:'USD':true:'1.0-0' |  minusSignToParens}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </atpar-tab>
+                            <atpar-tab tabTitle="Supply Details" (SelectedTab)="SelectedTab(tab)" [active]="SupplyDetailsTab">
+                                <div class="form-horizontal form-label-left">
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">Range:<span style="font-weight:bold !important">{{selectedSltRngeLbl}}</span></label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-6 col-sm-6" style="font-weight:bold !important"></label>-->
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">Year:<span style="font-weight:bold !important">{{ddltyear}}</span></label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-6 col-sm-6" style="font-weight:bold !important"></label>-->
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-6 col-sm-6">
+                                                Specialty:<span style="font-weight:bold !important">{{VarnceSpecialityDescription}}({{VarnceSpecialityCode}})</span>
+                                            </label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-offset--2 col-md-8 col-sm-6" style="font-weight:bold !important">
+                                            </label>-->
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-3 form-group" *ngIf="showHalfyrlbl">
+                                            <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">
+                                                {{Hlfqtrmnthlbltxt}}<span style="font-weight:bold !important">{{Hlfqtrmnthlbl}}</span>
+                                            </label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-8 col-sm-6" style="font-weight:bold !important">
+                                            {{Hlfqtrmnthlbl}}
+                                             </label>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="divsupplyDetails">
+                                    <table class="table table-bordered user-para-table" style='border:1px solid black; border-collapse:collapse;' *ngIf="Fifthtabtble">
+                                        <tr>
+                                            <td style='font-size:12px; font-family:Open Sans,sans-serif;color:#000000;font-weight:bold; width:15%;' colspan='2' class="text-center">{{lblPhyvariance}}</td>
+                                            <td colspan='3' style='font-size:12px' class="text-left">{{DynamicDignsis.CODE}}</td>
+                                            <td class="text-left" colspan='4' style='font-size:12px;'>{{DynamicDignsis.DESCRIPTION}}</td>
+                                            <td style='font-size:12px;color:#000000;font-weight:bold;' class="text-center">No.of Procedures</td>
+                                            <td colspan='3' style='font-size:12px' class="text-center">{{DynamicDignsis.NO_OF_PROCEDURES | number}}</td>
+                                            <td style='font-size:12px;color:#000000;font-weight:bold;' class="text-center">No.of Physicians</td>
+                                            <td width='5%' class="text-center" style='font-size:12px'>{{DynamicDignsis.NO_OF_PHYSICIANS | number }} </td>
+                                        </tr>
+                                    </table>
+                                    <div style="overflow:auto;">
+                                        <table class="table table-bordered user-para-table" style='border:1px solid black; border-collapse:collapse;' *ngIf="Fifthtabtble">
+                                            <tr>
+                                                <td width='25%' style='font-size:12px'></td>
+                                                <td *ngFor="let Lst of lstCostVariaceByPhy" width='20%' style='font-size:12px; font-family:Open Sans,sans-serif;color:#000000;font-weight:bold;' class="text-center">{{Lst.PHYSICIAN_NAME}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td width='25%' style='font-size:12px; font-family:Open Sans,sans-serif;color:#000000;font-weight:bold;' class="text-center">Group</td>
+                                                <td *ngFor="let Lstphy of lstCostVariaceByPhy" width='25%' style='font-size:12px' class="text-center">{{Lstphy.NO_OF_PROCEDURES | number}}</td>
+                                            </tr>
+                                            <tr *ngFor="let key of lstAny">
+                                                <td [attr.colspan]="lstCostVarianceSurHdrData.length+1" class="text-left" style='font-size:12px'>
+                                                    <a style='color: cornflowerblue; font-style:italic;' (click)="onSupplyDtlsByItemGrpClick(key,$event)">
+                                                        {{key.ITEM_GROUP}}
+                                                    </a>
+                                                    <!--<div style="width:99%;overflow-x:scroll">-->
+                                                    <table class="table table-bordered user-para-table" style='border:1px solid black;   border-collapse:collapse' *ngIf="key.SHOW_HIDE">
+                                                        <tr>
+                                                            <td style='font-size:12px; font-family:Open Sans,sans-serif;color:#000000;font-weight:bold;' class="text-left">POU Description</td>
+                                                            <td style='font-size:12px; font-family:Open Sans,sans-serif;color:#000000;font-weight:bold;' class="text-left">Item#</td>
+                                                            <td style='font-size:12px; font-family:Open Sans,sans-serif;color:#000000;font-weight:bold;' class="text-left">MFR Catalog</td>
+                                                            <td style='font-size:12px; font-family:Open Sans,sans-serif;color:#000000;font-weight:bold;' class="text-left">Unit Cost	</td>
+                                                            <td *ngFor="let Lst of lstCostVariaceByPhy" style='font-size:12px; font-family:Open Sans,sans-serif;color:#000000;font-weight:bold;' class="text-center">{{Lst.PHYSICIAN_NAME}}</td>
+                                                        </tr>
+                                                        <tr *ngFor="let key of lstItemData">
+                                                            <td class="text-left">{{key.ITEM_DESCRIPTION}}</td>
+                                                            <td class="text-right">{{key.ITEM_ID}}</td>
+                                                            <td class="text-right">{{key.MFR_CATALOG_NO}}</td>
+                                                            <td class="text-right">{{key.UNIT_COST==null?(0 | currency:'USD':true | minusSignToParens):key.UNIT_COST | currency:'USD':true | minusSignToParens}}</td>
+                                                            <td *ngFor="let col of lstCostVariaceByPhy" class="text-center" style='font-size:12px'>{{key[col.PHYSICIAN_ID]}}</td>
+                                                        </tr>
+                                                    </table>
+                                                    <!--</div>-->
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </atpar-tab>
+
+                        </atpar-pou-tabs>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+    <atpar-dialog header="Enter Recipient`s Email Address" [(visible)]="isMailDialog" [draggable]="false" [responsive]="true" width="500" showEffect="fade" [modal]="true">
+        <div class="ui-grid ui-grid-responsive ui-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    <span>To : </span>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-8 col-xs-8">
+                    <atpar-text [(ngModel)]="toMailAddr" [validations]="'EMAIL'" [name]="txtToMailAddr" [id]="'txtToMailAddr'"></atpar-text>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    <span><button class="btn btn-purple sbtn" (click)="onSendMailClick()">Send &nbsp;<i class="fa fa-share-square-o" aria-hidden="true"></i></button> </span>
+                </div>
+            </div>
+        </div>
+    </atpar-dialog>
+</div>
+<style>
+    .chart-section {
+        width:35%;
+        /*width: 25.8%;*/
+        border: 1px solid #ddd !important;
+    }
+
+    @media screen and (max-width:420px) {
+        .chart-section {
+            width: 80%;
+            border: 1px solid #ddd !important;
+            margin-bottom: 10px;
+        }
+    }
+
+    @media screen and (min-width:421px) and (max-width:600px) {
+        .chart-section {
+            width: 75%;
+            margin-bottom: 10px;
+        }
+    }
+
+    @media screen and (min-width:601) and (max-width:767) {
+        .chart-section {
+            width: 60%;
+            margin-bottom: 10px;
+        }
+    }
+
+    a:hover {
+        /*color: cornflowerblue !important;*/
+        color:rgba(108, 39, 106, 1);
+    }
+</style>

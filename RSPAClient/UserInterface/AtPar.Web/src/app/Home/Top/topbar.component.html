@@ -1,0 +1,490 @@
+﻿<style>
+    ul > li {
+        cursor: pointer;
+    }
+
+    .hand-cursor {
+        cursor: default !important;
+    }
+
+    .modal-body {
+        max-height: 300px !important;
+        overflow-y: scroll !important;
+    }
+
+    .atpar-modal-body > .row > .row > h3 {
+        border-bottom: 2px solid #f99240;
+        color: #6c276a;
+    }
+
+    .breadcrumb li a.login-link {
+        margin-right: 10px;
+    }
+
+        .breadcrumb li a.login-link:hover {
+            background: transparent !important;
+            color: #fff !important;
+        }
+
+        .breadcrumb li a.login-link:before {
+            border-left: 0 !important;
+        }
+
+            .breadcrumb li a.login-link:before:after {
+                border-left-color: transparent !important;
+            }
+
+        .breadcrumb li a.login-link:hover:after {
+            border-left-color: transparent !important;
+        }
+
+    .breadcrumb > li + li:before {
+        color: transparent !important;
+    }
+
+    .pdf-icon {
+        font-size: 1.2em;
+        color: #6c276a;
+    }
+
+    .download-links li a.grid-link {
+        color: #6c276a !important;
+    }
+
+        .download-links li a.grid-link:hover {
+            color: #8a48bc !important;
+            cursor: pointer !important;
+        }
+</style>
+<div class="topbar" (click)="onTopBarClick()">
+    <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+
+            <div class="">
+                <a class="logo pull-left" (click)="AtPar()" style="cursor:pointer;"><img [src]="mhsatparicon" width="210" height="auto" title="Home"></a>
+                <div class="pull-left">
+                    <span class="clearfix"></span>
+                </div>
+                <div *ngIf="isUserAllowed">
+                    <ul class="nav navbar-nav navbar-right pull-right">
+                        <li>
+                            <form class="navbar-form pull-right" role="search">
+                                <div class="form-group">
+                                    <atpar-ac-search [(ngModel)]="Menu" [suggestions]="lstMenuList" (onSelect)="SelectRoute(Menu)" (onEnter)="onEnterPress($event,Menu)" (completeMethod)="search($event)" field="name" [size]="30" placeholder="" [minLength]="1" [ngModelOptions]="{standalone: true}" (Keypress)="onMenuSearchKeyPress($event)" [attr.title]="(Menu == '' || Menu == null || Menu == undefined)? 'Search Menus':''"></atpar-ac-search>
+                                </div>
+                                <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+                            </form>
+                        </li>
+                        <li class="hidden-xs" style="cursor:auto"> <a class="waves-effect waves-light notification-icon-box text-default" style="cursor:auto"><i class="fa fa-header" aria-hidden="true"></i></a></li>
+                        <li class="dropdown hidden-xs" title="Notifications">
+                            <a data-target="#" class="dropdown-toggle waves-effect waves-light notification-icon-box" data-toggle="dropdown" aria-expanded="true"> <i class="fa fa-bell"></i> <span class="badge badge-xs badge-danger"></span> </a>
+                        </li>
+                        <li class="hidden-xs" title="Full Screen" (click)="onFullScreenClick($event)"> <a id="btn-fullscreen" class="waves-effect waves-light notification-icon-box"><i class="mdi mdi-fullscreen"></i></a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
+                                <img src="data:image/png;base64,{{user.IMAGE}}" alt="user-img" class="img-circle" title="{{user.FIRST_NAME}} {{user.LAST_NAME}}" />
+                                <span class="profile-username">
+                                    Welcome <br />
+                                    <small>{{user.FIRST_NAME}} {{user.LAST_NAME}}</small>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a routerLink="myprofile" (click)="onMyProfileClick()">My Profile</a></li>
+                                <li><a (click)="modal2.show('help')">Help</a></li>
+                                <li><a routerLink="changepassword" (click)="onChangepasswordClick()">Change Password</a></li>
+                                <li><a (click)="modal1.show()" href="javascript:void(0)"> About AtPar</a></li>
+                                <li><a routerLink="downloads" (click)="onDownloadsClick()">Downloads</a></li>
+                                <li (click)="logOut()"><a> Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+            <div class="row">
+
+                <ul class="breadcrumb" *ngIf="!showManageEdit">
+                    <li class="completed1" *ngIf="breadCrumbGroupName!=undefined && breadCrumbGroupName!=''"><a>{{breadCrumbGroupName}} </a></li>
+                    <li class="completed1"><a *ngIf="breadCrumbAppName!=undefined && breadCrumbAppName!=''" (click)="BreadCrumbProduct_Click()">{{breadCrumbAppName}} </a></li>
+                    <li class="completed1" *ngIf="breadCrumbsubGroupName!=undefined && breadCrumbsubGroupName!=''"><a>{{breadCrumbsubGroupName}} </a></li>
+                    <li *ngIf="breadCrumbMenuName!=undefined && breadCrumbMenuName!=''" class="completed"><a (click)="BreadCrumbMenu_Click()">{{breadCrumbMenuName}} {{breadCrumbSubMenuName}}</a></li>
+                    <li class="pull-right lgn"><a (click)="onLoginClick()" *ngIf="this.breadCrumbAppName=='Change Password'" class="login-link">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div [style.display]="getDispaly()"></div>
+
+<div>
+    <atpar-modal #modal1>
+        
+        <div class="atpar-modal-header">
+            <div class="pull-left">
+                <img src="../../../assets/images/MHSAtpar.png" width="110" />
+            </div>
+            <a (click)="modal1.hide()" class="class pull-right" href="javascript:void(0)"><span class="glyphicon glyphicon-remove"></span></a>
+        </div>
+        <div class="atpar-modal-body">
+            <div class="row container">
+                <div class="row" style="margin-left:25px;">
+                    <h3>About MHS@par</h3>
+                    <div class="col-md-6">
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        <p><strong> MHS@Par Version:</strong> 1.0.0.0 </p>
+                    </div>
+                    <div class="col-md-6" style="border-left: 1px solid #ccc;">
+                        <p *ngFor="let version of atParVersions">
+                            {{version}}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-button col-md-offset-5"> <button class="btn btn-purple" (click)="modal1.hide()"> Close </button> </div>
+            </div>
+        </div>
+        <div class="atpar-modal-footer">
+            <p class="text-center"> &copy; 2017 MHS@Par.All Rights Reserved</p>
+        </div>
+    </atpar-modal>
+</div>
+
+<div class="">
+    <atpar-modal #modal2>
+        <div class="atpar-modal-header">
+            <a (click)="modal2.hide()" class="class pull-right" href="javascript:void(0)"><span class="glyphicon glyphicon-remove"></span></a>
+        </div>
+        <div class="atpar-modal-body">
+            <div class="container">
+                <h3 class="text-primary text-center">AtPar Help</h3>
+                <hr class="top-heading-hr">
+                <div class="col-xs-12 col-md-10 col-md-offset-1 col-sm-12">
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                            <img src="../../../assets/images/icons/common/admin-guide.png" alt="" class="img-responsive" width="60">
+                        </div>
+                        <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h4 class="text-primary hand-cursor">Administrator Guides</h4>
+                                </li>
+                                <li>
+                                    <p class="hand-cursor">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt laborum illo perspiciatis nulla ea! Ad, culpa, consectetur nobis numquam beatae veritatis ut, est odio hic voluptates sed rem. Aliquid, necessitatibus.</p>
+                                </li>
+                                <li>
+                                    <ul class="list-inline download-links">
+                                        <li><a href="../Docs/AtParHandHeldUserGuide.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; AtPar Handheld User Guide</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clear visible-xs hidden-sm hidden-md hidden-lg"></div>
+                    <hr class="visible-xs hidden-sm hidden-md hidden-lg">
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                            <img src="../../../assets/images/icons/common/manageUsers.png" alt="" class="img-responsive" width="60">
+                        </div>
+                        <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h4 class="text-primary hand-cursor">User Management</h4>
+                                </li>
+                                <li>
+                                    <p class="hand-cursor">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt laborum illo perspiciatis nulla ea! Ad, culpa, consectetur nobis numquam beatae veritatis ut, est odio hic voluptates sed rem. Aliquid, necessitatibus.</p>
+                                </li>
+                                <li>
+                                    <ul class="list-inline download-links">
+                                        <li><a href="../Docs/AtParServerUserGuide.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Server User Guide</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <hr>
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                            <img src="../../../assets/images/icons/common/cartCount.png" alt="" class="img-responsive" width="60">
+                        </div>
+                        <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h4 class="text-primary hand-cursor">Cart Count</h4>
+                                </li>
+                                <li>
+                                    <p class="hand-cursor">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt laboriosam quod quis, sequi quisquam alias, officia cumque dolorem maiores perferendis minima placeat similique qui magnam. Nesciunt voluptatem aliquam, quod alias.</p>
+                                </li>
+                                <li>
+                                    <ul class="list-inline download-links">
+                                        <li><a href="../Docs/AtParServerUserGuide-CartCount.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Server User Guide</a></li>
+                                        <li><a href="../Docs/AtParClientUserGuide-CartCount.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Client User Guide</a></li>
+                                        <li><a href="../Docs/AtParServerUserGuide-ParManagement.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Par Management User Guide</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clear visible-xs hidden-sm hidden-md hidden-lg"></div>
+                    <hr class="visible-xs hidden-sm hidden-md hidden-lg">
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                            <img src="../../../assets/images/icons/common/cycleCount.png" alt="" class="img-responsive" width="60">
+                        </div>
+                        <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h4 class="text-primary hand-cursor">Cycle Count</h4>
+                                </li>
+                                <li>
+                                    <p class="hand-cursor">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam, ullam atque deleniti iste velit eaque quaerat numquam explicabo quos optio alias nihil, laudantium fugiat totam quis sit! Ut excepturi, labore?</p>
+                                </li>
+                                <li>
+                                    <ul class="list-inline download-links">
+                                        <li><a href="../Docs/AtParServerUserGuide-CycleCount.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Server User Guide</a></li>
+                                        <li><a href="../Docs/AtParClientUserGuide-CycleCount.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Client User Guide</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <hr>
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                            <img src="../../../assets/images/icons/common/recieve.png" alt="" class="img-responsive" width="60">
+                        </div>
+                        <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h4 class="text-primary hand-cursor">Receiving</h4>
+                                </li>
+                                <li>
+                                    <p class="hand-cursor">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore dolorem deleniti eius non aliquid, ullam tempore atque mollitia. Velit, libero. Sit placeat rem itaque illum quo aut qui architecto dolore.</p>
+                                </li>
+                                <li>
+                                    <ul class="list-inline download-links">
+                                        <li><a href="../Docs/AtParServerUserGuide-Receiving.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Server User Guide</a></li>
+                                        <li><a href="../Docs/AtParClientUserGuide-Receiving.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Client User Guide</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clear visible-xs hidden-sm hidden-md hidden-lg"></div>
+                    <hr class="visible-xs hidden-sm hidden-md hidden-lg">
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                            <img src="../../../assets/images/icons/common/pick.png" alt="" class="img-responsive" width="60">
+                        </div>
+                        <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h4 class="text-primary hand-cursor">Pick</h4>
+                                </li>
+                                <li>
+                                    <p class="hand-cursor">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam possimus in nulla ratione nobis tempora dicta cupiditate magni explicabo suscipit modi dignissimos, culpa corporis consequuntur optio natus laborum vel quos.</p>
+                                </li>
+                                <li>
+                                    <ul class="list-inline download-links">
+                                        <li><a href="../Docs/AtParServerUserGuide-Pick.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Server User Guide</a></li>
+                                        <li><a href="../Docs/AtParClientUserGuide-Pick.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Client User Guide</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <hr>
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                            <img src="../../../assets/images/icons/common/deliver.png" alt="" class="img-responsive" width="60">
+                        </div>
+                        <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h4 class="text-primary hand-cursor">Deliver</h4>
+                                </li>
+                                <li>
+                                    <p class="hand-cursor">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam possimus in nulla ratione nobis tempora dicta cupiditate magni explicabo suscipit modi dignissimos, culpa corporis consequuntur optio natus laborum vel quos.</p>
+                                </li>
+                                <li>
+                                    <ul class="list-inline download-links">
+                                        <li><a href="../Docs/AtParServerUserGuide-Deliver.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Server User Guide</a></li>
+                                        <li><a href="../Docs/AtParClientUserGuide-Deliver.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Client User Guide</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clear visible-xs hidden-sm hidden-md hidden-lg"></div>
+                    <hr class="visible-xs hidden-sm hidden-md hidden-lg">
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                            <img src="../../../assets/images/icons/common/putAway.png" alt="" class="img-responsive" width="60">
+                        </div>
+                        <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h4 class="text-primary hand-cursor">Putaway</h4>
+                                </li>
+                                <li>
+                                    <p class="hand-cursor">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum eaque odio, vel ullam, voluptas odit quis. Recusandae sequi, impedit nobis eum rem rerum, culpa laudantium animi, nihil delectus consequuntur repudiandae.</p>
+                                </li>
+                                <li>
+                                    <ul class="list-inline download-links">
+                                        <li><a href="../Docs/AtParServerUserGuide-Putaway.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Server User Guide</a></li>
+                                        <li><a href="../Docs/AtParClientUserGuide-Putaway.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Client User Guide</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <hr>
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                            <img src="../../../assets/images/icons/common/trackIt.png" alt="" class="img-responsive" width="60">
+                        </div>
+                        <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h4 class="text-primary hand-cursor">TrackIT</h4>
+                                </li>
+                                <li>
+                                    <p class="hand-cursor">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum magnam dolorem mollitia nesciunt inventore voluptate itaque repudiandae omnis suscipit beatae laudantium, enim sed quod aspernatur vitae pariatur, doloribus nam. Suscipit.</p>
+                                </li>
+                                <li>
+                                    <ul class="list-inline download-links">
+                                        <li><a href="../Docs/AtParServerUserGuide-TrackIT.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Server User Guide</a></li>
+                                        <li><a href="../Docs/AtParRequestorUserGuide-TrackIT.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Requestor User Guide</a></li>
+                                        <li><a href="../Docs/AtParClientUserGuide-TrackIT.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Client User Guide</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clear visible-xs hidden-sm hidden-md hidden-lg"></div>
+                    <hr class="visible-xs hidden-sm hidden-md hidden-lg">
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                            <img src="../../../assets/images/icons/common/stockIssue.png" alt="" class="img-responsive" width="60">
+                        </div>
+                        <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h4 class="text-primary hand-cursor">Stock Issue</h4>
+                                </li>
+                                <li>
+                                    <p class="hand-cursor">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, quaerat. Ipsum eaque, assumenda consequatur. Fugiat eos, sequi iste provident error in impedit ex tempora qui quam? Corporis, amet. Magnam, provident.</p>
+                                </li>
+                                <li>
+                                    <ul class="list-inline download-links">
+                                        <li><a href="../Docs/AtParServerUserGuide-StockIssue.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Server User Guide</a></li>
+                                        <li><a href="../Docs/AtParClientUserGuide-StockIssue.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Client User Guide</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <hr>
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                            <img src="../../../assets/images/icons/common/binToBin.png" alt="" class="img-responsive" width="60">
+                        </div>
+                        <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h4 class="text-primary hand-cursor">Bin to Bin </h4>
+                                </li>
+                                <li>
+                                    <p class="hand-cursor">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, quaerat. Ipsum eaque, assumenda consequatur. Fugiat eos, sequi iste provident error in impedit ex tempora qui quam? Corporis, amet. Magnam, provident.</p>
+                                </li>
+                                <li>
+                                    <ul class="list-inline download-links">
+                                        <li><a href="../Docs/AtParServerUserGuide-BinToBin.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Server User Guide</a></li>
+                                        <li><a href="../Docs/AtParClientUserGuide-BinToBin.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Client User Guide</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clear visible-xs hidden-sm hidden-md hidden-lg"></div>
+                    <hr class="visible-xs hidden-sm hidden-md hidden-lg">
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                            <img src="../../../assets/images/icons/common/pointOfUse.png" alt="" class="img-responsive" width="60">
+                        </div>
+                        <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h4 class="text-primary hand-cursor">Point of Use</h4>
+                                </li>
+                                <li>
+                                    <p class="hand-cursor">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, quaerat. Ipsum eaque, assumenda consequatur. Fugiat eos, sequi iste provident error in impedit ex tempora qui quam? Corporis, amet. Magnam, provident.</p>
+                                </li>
+                                <li>
+                                    <ul class="list-inline download-links">
+                                        <li><a href="../Docs/AtParServerUserGuide-PointOfUse.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Server User Guide</a></li>
+                                        <li><a href="../Docs/AtParClientUserGuide-PointOfUse.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Client User Guide</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <hr>
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                            <img src="../../../assets/images/icons/common/assetManagement.png" alt="" class="img-responsive" width="60">
+                        </div>
+                        <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h4 class="text-primary hand-cursor">Asset Management</h4>
+                                </li>
+                                <li>
+                                    <p class="hand-cursor">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, quaerat. Ipsum eaque, assumenda consequatur. Fugiat eos, sequi iste provident error in impedit ex tempora qui quam? Corporis, amet. Magnam, provident.</p>
+                                </li>
+                                <li>
+                                    <ul class="list-inline download-links">
+                                        <li><a href="../Docs/AtParServerUserGuide-AssetManagement.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Server User Guide</a></li>
+                                        <li><a href="../Docs/AtParClientUserGuide-AssetManagement.pdf" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Client User Guide</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clear visible-xs hidden-sm hidden-md hidden-lg"></div>
+                    <hr class="visible-xs hidden-sm hidden-md hidden-lg">
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="col-xs-12 col-sm-2 col-md-2 help-icons">
+                            <img src="../../../assets/images/icons/common/atparx.png" alt="" class="img-responsive" width="60">
+                        </div>
+                        <div class="col-xs-12 col-sm-10 col-md-10 help-page-content">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h4 class="text-primary hand-cursor">AtParX</h4>
+                                </li>
+                                <li>
+                                    <p class="hand-cursor">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, quaerat. Ipsum eaque, assumenda consequatur. Fugiat eos, sequi iste provident error in impedit ex tempora qui quam? Corporis, amet. Magnam, provident.</p>
+                                </li>
+                                <li>
+                                    <ul class="list-inline download-links">
+                                        <li><a href="" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Server User Guide</a></li>
+                                        <li><a href="" target="_blank" class="grid-link"><i class="fa fa-file-pdf-o pdf-icon" aria-hidden="true"></i> &nbsp; Client User Guide</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="atpar-modal-footer">
+        </div>
+    </atpar-modal>
+</div>
+<atpar-confirmdialog header="Confirmation" icon="fa fa-question-circle" width="425"></atpar-confirmdialog>

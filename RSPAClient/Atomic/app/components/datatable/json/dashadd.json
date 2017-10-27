@@ -1,0 +1,26 @@
+﻿[
+  {
+    "IMAGE": "c123",
+    "DEC": "Furniture One",
+    "ID": "3",
+    "QTY": "1",
+    "LOC": "LOC3",
+    "STATUS": "Upload"
+  },
+  {
+    "IMAGE": "c132",
+    "DEC": "Furniture One",
+    "ID": "3",
+    "QTY": "2",
+    "LOC": "LOC2",
+    "STATUS": "Load"
+  },
+  {
+    "IMAGE": "c234",
+    "DEC": "Furniture One",
+    "ID": "3",
+    "QTY": "3",
+    "LOC": "LOC1",
+    "STATUS": "Open"
+  }
+]

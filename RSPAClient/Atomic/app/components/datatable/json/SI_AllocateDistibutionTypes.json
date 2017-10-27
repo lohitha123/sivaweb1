@@ -1,0 +1,346 @@
+[
+      {
+        "DISTRIB_TYPE": "DPTRTRN",
+        "DESCR": "Department Retrun",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "RCTPERROR",
+        "DESCR": "Receipt Error",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "1",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "TRANSFER",
+        "DESCR": "IBU Transfer",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "2",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "14000",
+        "DESCR": "Administration",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "3",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "21101",
+        "DESCR": "Sales Administration",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "4",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "22001",
+        "DESCR": "Marketing",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "5",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "31000",
+        "DESCR": "Customer Service",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "6",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "41000",
+        "DESCR": "Engineering",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "7",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "42000",
+        "DESCR": "Manufacturing Support",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "8",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "43000",
+        "DESCR": "Research and Development",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "9",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "52000",
+        "DESCR": "Subcontracting",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "10",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "52100",
+        "DESCR": "Planning",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "11",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "53100",
+        "DESCR": "Assembly",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "12",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "53200",
+        "DESCR": "Final Assembly",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "13",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "53300",
+        "DESCR": "Final Inspection",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "14",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "54000",
+        "DESCR": "Quality Assurance",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "15",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "54600",
+        "DESCR": "Packaging",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "16",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "55100",
+        "DESCR": "Shipping",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "17",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "ADJ",
+        "DESCR": "Inventory Adjustment",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "18",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "ADM",
+        "DESCR": "Dept 14000 - Administration",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "19",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "ASSY",
+        "DESCR": "Assembly",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "20",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "BRD",
+        "DESCR": "Board Assemby",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "21",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "CUS",
+        "DESCR": "Dept 31000 - Customer Service",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "22",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "DROPSHIP",
+        "DESCR": "Drop Ship",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "23",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "ENG",
+        "DESCR": "Dept 41000 - Engineering",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "24",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "ENGINEER",
+        "DESCR": "Engineering",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "25",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "GAIN",
+        "DESCR": "Gain on IBU Transfer",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "26",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "IBU",
+        "DESCR": "Interbusiness Unit Trans/Recpt",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "27",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "IBUA",
+        "DESCR": "IBU Transfers/Recpts M04A",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "28",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "IBUB",
+        "DESCR": "IBU Transfers/Recpts M04B",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "29",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "IBUC",
+        "DESCR": "IBU Transfers/Recpts M04C",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "30",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "INSP",
+        "DESCR": "Inspection",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "31",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "ISS",
+        "DESCR": "Standard Inventory Issue",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "32",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "LOSS",
+        "DESCR": "Loss on IBU Transfer",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "33",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "MFG",
+        "DESCR": "Dept 42000 - Manufacturing Sup",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "34",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "MKT",
+        "DESCR": "Dept 22001 - Marketing",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "35",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "PPVF",
+        "DESCR": "Favorable PPV",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "36",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "PPVU",
+        "DESCR": "Unfavorable PPV",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "37",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "PRJ",
+        "DESCR": "Project Recpt",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "38",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "PROTOTYPE",
+        "DESCR": "Proto typing Expense",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "39",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "REC",
+        "DESCR": "Standard Inventory Receipt",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "40",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "SCR",
+        "DESCR": "Inventory Scrap",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "41",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "DISTRIB_TYPE": "SERVICE",
+        "DESCR": "Service",
+        "SETID": "SHARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "42",
+        "CHK_ALLOCATED": "0"
+      }
+]

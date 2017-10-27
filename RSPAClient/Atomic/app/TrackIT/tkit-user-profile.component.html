@@ -1,0 +1,191 @@
+﻿<style>
+.no-shadow {
+    box-shadow: none!important;
+}
+
+.bdr-1 {
+    border: 1px solid #eee!important;
+}
+
+.panel-green {
+    border-color: #4af94a !important;
+}
+
+.panel-blue {
+    border-color: #79ebfd !important;
+}
+
+.panel-pink {
+    border-color: #de60f5 !important;
+}
+
+.scrl-pnl {
+    height: auto;
+    overflow: hidden;
+    overflow: auto;
+    max-height:450px;
+}
+.ui-datatable tbody tr td .form-control, table tbody tr td .form-control {
+    height: auto !important;
+    margin-top: -10px;
+}
+    .table-inner-style , tbody tr td  {
+        padding:15px;
+    }
+</style>
+<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border" *ngIf="true">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px;">
+                        <div class="col-md-12" *ngIf="page">
+                            <form class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">User ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtD1'" [name]="txtD1" [(ngModel)]="newItem.D1" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Current Password</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtDp'" [name]="txtDp" [(ngModel)]="newItem.Dp" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">New Password</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtDpn'" [name]="txtDpn" [(ngModel)]="newItem.Dpn" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Confirm Password</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtDpc'" [name]="txtDpc" [(ngModel)]="newItem.Dpc" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtDf'" [name]="txtDf" [(ngModel)]="newItem.Df" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtDfl'" [name]="txtDfl" [(ngModel)]="newItem.Dfl" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtDfM'" [name]="txtDfM" [(ngModel)]="newItem.DfM" [ngModelOptions]="{standalone: true}" [validations]="'max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        
+                                    </div>
+                                </div>                                
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Email ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txteD'" [name]="txteD" [(ngModel)]="newItem.eD" [ngModelOptions]="{standalone: true}" [validations]="'max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Phone</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtDfnp'" [name]="txtDfnp" [(ngModel)]="newItem.Dfnp" [ngModelOptions]="{standalone: true}" [validations]="'max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Fax </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txteDf'" [name]="txteDf" [(ngModel)]="newItem.eDf" [ngModelOptions]="{standalone: true}" [validations]="'max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Pager</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtDfnpp'" [name]="txtDfnpp" [(ngModel)]="newItem.Dfnpp" [ngModelOptions]="{standalone: true}" [validations]="'max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Default Deliver Location</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlErpsy1'" filter="filter" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Records Per Page</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txteDr'" [name]="txteDr" [(ngModel)]="newItem.eDr" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Default Duration In Days</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txteDd'" [name]="txteDd" [(ngModel)]="newItem.eDd" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">No. of request for same EQ item</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txteDdeq'" [name]="txteDdeq" [(ngModel)]="newItem.eDdeq" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=16,alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-5 col-xs-12">
+                                    <button class="btn btn-purple sbtn" type="button" [disabled]="disableButton">Submit &nbsp;<i class="fa fa-check"></i></button>
+                                    <!--<button class="btn btn-purple sbtn" type="button" (click)="close()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>-->
+                                </div>
+                            </form>
+                        </div>
+                        <!--<div class="col-xs-12" *ngIf="pop">
+                            
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

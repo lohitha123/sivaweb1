@@ -1,0 +1,14 @@
+ [
+      {
+        "STORAGE_ZONE_ID": "Zone1",
+        "ORG_GROUP_ID": "NOI",
+        "STORAGE_ZONE_DESCR": "Zone One",
+        "STATUS": "true"
+      },
+      {
+        "STORAGE_ZONE_ID": "zone2",
+        "ORG_GROUP_ID": "NOI",
+        "STORAGE_ZONE_DESCR": "Zone two",
+        "STATUS": "true"
+      }
+]

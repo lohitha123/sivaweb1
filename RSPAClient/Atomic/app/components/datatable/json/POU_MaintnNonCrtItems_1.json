@@ -1,0 +1,72 @@
+ [
+      {
+        "DEPARTMENT_ID": "11000",
+        "BUSINESS_UNIT": "AUS01",
+        "DEPT_NAME": "dept",
+        "CART_ID": "parloc1",
+        "LOCATION_TYPE": "A"
+      },
+      {
+        "DEPARTMENT_ID": "11000",
+        "BUSINESS_UNIT": "US015",
+        "DEPT_NAME": "dept",
+        "CART_ID": "COR-1",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "DEPARTMENT_ID": "11000",
+        "BUSINESS_UNIT": "US015",
+        "DEPT_NAME": "dept",
+        "CART_ID": "DEL-1",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "DEPARTMENT_ID": "11000",
+        "BUSINESS_UNIT": "US015",
+        "DEPT_NAME": "dept",
+        "CART_ID": "ICU-1",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "DEPARTMENT_ID": "11000",
+        "BUSINESS_UNIT": "US015",
+        "DEPT_NAME": "dept",
+        "CART_ID": "ICU-2",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "DEPARTMENT_ID": "11000",
+        "BUSINESS_UNIT": "US015",
+        "DEPT_NAME": "dept",
+        "CART_ID": "MS-1",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "DEPARTMENT_ID": "11000",
+        "BUSINESS_UNIT": "US015",
+        "DEPT_NAME": "dept",
+        "CART_ID": "MS-2",
+        "LOCATION_TYPE": "P"
+      },
+      {
+        "DEPARTMENT_ID": "11000",
+        "BUSINESS_UNIT": "US015",
+        "DEPT_NAME": "dept",
+        "CART_ID": "par1",
+        "LOCATION_TYPE": "A"
+      },
+      {
+        "DEPARTMENT_ID": "11000",
+        "BUSINESS_UNIT": "US015",
+        "DEPT_NAME": "dept",
+        "CART_ID": "par2",
+        "LOCATION_TYPE": "A"
+      },
+      {
+        "DEPARTMENT_ID": "11000",
+        "BUSINESS_UNIT": "US015",
+        "DEPT_NAME": "dept",
+        "CART_ID": "parloc2",
+        "LOCATION_TYPE": "A"
+      }
+]

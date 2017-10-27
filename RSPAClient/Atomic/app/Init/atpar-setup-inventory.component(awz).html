@@ -1,0 +1,108 @@
+﻿<div id="main" class="content-page">
+    <div class="content">
+        <div class="">
+            <div class="page-header-title">
+                <h4 class="page-title"><a (click)="homeurl()">Administration ></a>Setup Inventory</h4>
+            </div>
+        </div>
+        <div class="page-content-wrapper">
+            <br>
+            <div class="container" *ngIf="container">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-heading" style="background:#f5f5f5;">
+                        <p><img src="assets/images/icons/app_icon_.png" alt="" height="25" width="29">&nbsp;&nbsp;Setup Inventory</p>
+                    </div>
+                    <div class="panel-body" style="padding:20px;">
+                        <p class="pull-left">Org Group ID    : MHS (MHS)</p>
+                        <button class="btn btn-success pull-right" (click)="add()"><i class="fa fa-plus"></i> Add Items</button>
+                        <br>
+                        <div class="col-xs-12">
+                            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-5">
+                                    <label for=""><span class="danger">*</span>Org ID  </label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                <div class="col-xs-12 col-sm-6 col-md-5">
+                                    <label for="">Item ID</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <input type="text" name="" id="input" class="form-control" value="" required="required" pattern="" title="">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-5">
+                                <div class="col-xs-12 col-sm-12 col-md-1">
+                                    <button class="btn btn-purple small" (click)="go()">Go</button>
+                                </div>    
+                            </div>                            
+                        </div>                       
+                        <div class="col-xs-12 table-responsive" *ngIf="table1">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Item ID</th>
+                                        <th class="text-center">Description</th>
+                                        <th class="text-center">Unit of Measure</th>
+                                        <th class="text-center">Def Stor Loc</th>
+                                        <th class="text-center">Alt Stor Loc 1</th>
+                                        <th class="text-center">Alt Stor Loc 2	</th>
+                                        <th class="text-center">Charge Code</th>
+                                        <th class="text-center">QOH</th>
+                                        <th class="text-center">Replenishment Type</th>
+                                        <th class="text-center">Current Status</th>
+                                        <th class="text-center">Action</th>                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td data-label="Org Group ID">MHS</td>
+                                        <td data-label="Item ID"> Item1</td>
+                                        <td data-label="Description"> Item1</td>
+                                        <td data-label="Vendor"> vend11</td>
+                                        <td data-label="Manufacturer"></td>
+                                        <td data-label="Price($)" class="text-right">0.00</td>
+                                        <td data-label="UPC ID"></td>
+                                        <td data-label="Conversion Factor" class="text-right">1</td>
+                                        <td data-label="Current Status">Active</td>
+                                        <td data-label="Action"><a href="" class="text-danger">InActivate</a></td>
+                                        <td data-label="Add Substitute Item"></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="Org Group ID">MHS</td>
+                                        <td data-label="Item ID"> Item1</td>
+                                        <td data-label="Description"> Item1</td>
+                                        <td data-label="Vendor"> vend11</td>
+                                        <td data-label="Manufacturer"></td>
+                                        <td data-label="Price($)" class="text-right">0.00</td>
+                                        <td data-label="UPC ID"></td>
+                                        <td data-label="Conversion Factor" class="text-right">1</td>
+                                        <td data-label="Current Status">Active</td>
+                                        <td data-label="Action"><a href="" class="text-danger">InActivate</a></td>
+                                        <td data-label="Add Substitute Item"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="col-xs-4 col-xs-offset-4 col-md-2 col-md-offset-5">
+                                <button class="btn btn-purple small">Assign</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container" *ngIf="additem">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-heading" style="background:#f5f5f5;">
+                        <ul class="row list-inline">
+                            <li class="col-xs-10"><img src="assets/images/icons/app_icon_.png" alt="" height="25" width="29">&nbsp;&nbsp;Setup Item</li>
+                            <li class="pull-right text-danger" (click)="close()" id="back"><i class="fa fa-times fa-2x" (click)="close()" id="back"></i></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

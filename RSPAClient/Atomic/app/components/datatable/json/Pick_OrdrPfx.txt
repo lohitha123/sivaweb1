@@ -1,0 +1,10 @@
+[
+      {
+        "BEG_SEQ": "MSR",
+        "CHK_VALUE": "0"
+      },
+      {
+        "BEG_SEQ": "HHT",
+        "CHK_VALUE": "0"
+      }
+    ]

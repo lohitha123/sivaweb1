@@ -1,0 +1,42 @@
+﻿<div id="wrapper" class="enlarged forced">
+    <topbar-cmp></topbar-cmp>
+    <!--left side bar menu--->
+    <span class="mobile-menu-icon" (click)="mobileDisplay()" id="menu-icon" [style.display]="getSideBar()">
+        <i class="fa fa-bars"></i>
+    </span>
+    <div class="left side-menu" style="width:150px;" [style.display]="getSideBar()" id="leftsidebar">
+        <leftbar-cmp [style.display]="getSideBar()" [inputData]="data"></leftbar-cmp>
+    </div>
+    <!--end left side bar menu--->
+    <span class="cogs-wrapper" (click)="settings()" [ngClass]="{'cogs-close': colorpalet === true }">
+        <i class="fa fa-cogs fa-2x" [ngClass]="{'fa-spin': colorpalet === true }"></i>
+    </span>
+    <div class="style-switcher" [ngClass]="{'cogs-open': colorpalet === true }">
+        <h6>Background Colors</h6>
+        <hr>
+        <ul class="color-selector">
+            <li (click)="blue()"><a class="blue-color"></a></li>
+            <li (click)="default()"><a class="purple-color"></a></li>
+            <li (click)="orange()"><a class="orange-color"></a></li>
+            <li (click)="green()"><a class="green-color"></a></li>
+        </ul>
+        <hr>
+        <ul class="color-selector">
+            <li (click)="font($event)" ><img src="../../assets/images/font-img/raleway.png" width="35" id="railway"/></li>
+            <li (click)="font($event)" ><img src="../../assets/images/font-img/openSans.png" width="35" id="openSans"/></li>
+            <li (click)="font($event)" ><img src="../../assets/images/font-img/monotype.png" width="35" id="monotype"/></li>
+            <li (click)="font($event)" ><img src="../../assets/images/font-img/neusa.png" width="35" id="neusa"/>
+            </li>
+        </ul>
+        <hr>
+        <ul class="color-selector">
+            <li (click)="fontsize($event)"><i id="small" class="fa fa-font" aria-hidden="true"></i></li>
+            <li (click)="fontsize($event)"><i id="fontdefault" class="fa fa-font" aria-hidden="true"></i></li>
+            <li (click)="fontsize($event)"><i id="large" class="fa fa-font" aria-hidden="true"></i></li>
+            <li (click)="fontsize($event)"><i id="exlarge" class="fa fa-font" aria-hidden="true"></i></li>
+        </ul>
+    </div>
+    <section id="main-section" class="main-container" [ngClass]="{sidebarPushRight: isActive}" style="overflow-y:scroll; height:100%;" >
+        <router-outlet (navigateTo)="navigateToMessagePart($event)"></router-outlet>
+    </section>
+</div>

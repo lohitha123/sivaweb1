@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<webpages>
+  <log4net>
+    <appender name="RemotingAppender" type="log4net.Appender.RemotingAppender">
+      <!-- The remoting URL to the remoting server object -->
+      <sink value="tcp://127.0.0.1:8085/APRemotingLogSink" />
+      <!-- Send all events, do not discard events when the buffer is full -->
+      <lossy value="false" />
+      <!-- The number of events to buffer before sending -->
+      <bufferSize value="1" />
+      <!-- Do not store event data that is slow to generate -->
+      <onlyFixPartialEventData value="true" />
+    </appender>
+    <root>
+      <level value="DEBUG" />
+      <appender-ref ref="RemotingAppender" />
+    </root>
+  </log4net>
+  <!-- Fields that are concatenated to form the Atpar Server address, the server address is created during the WebApplication Startup -->
+  <!-- if you change this value, please cause an event that will cause the Web site to recompile, you can do this by either editing the web.config file (with a blank space) -->
+  <!-- or restarting the Application Pool, or you could restart IIS (don't do this unless absolutely required) -->
+  <atpar_webservices moniker="http" servername="127.0.0.1" portno="80" />
+</webpages>

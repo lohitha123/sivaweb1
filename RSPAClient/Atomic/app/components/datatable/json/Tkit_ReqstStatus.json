@@ -1,0 +1,11 @@
+ [
+      {
+        "IMAGE": "",
+        "ITEM_ID": "boxtypeitem1",
+        "ITEM_DESCRIPTION": "itemdesc",
+        "REQUEST_QTY": "1",
+        "DELIVER_LOCATION": "",
+        "STATUS": "OPEN",       
+        "CHANGE_RETURN_DATE": "07/19/2017"
+      }
+    ]

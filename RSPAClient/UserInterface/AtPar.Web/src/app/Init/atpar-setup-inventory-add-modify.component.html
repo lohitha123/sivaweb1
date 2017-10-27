@@ -1,0 +1,153 @@
+﻿
+<div id="main" class="content-page">
+    <div class="content">
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px;">
+                        <div class="row" *ngIf="!isEditMode">
+                            <div class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Org Group ID </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12 ">
+                                        <label class="control-label lbl-left">{{orgGroupId}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Org ID </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12 ">
+                                        <label class="control-label lbl-left">{{orgId}}</label>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Item ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12 ">                                        
+                                       <atpar-ac-server [(ngModel)]="selectedItemId" [ngModelOptions]="{standalone: true}" [mandatory]="'true'" [suggestions]="filteredItems" (completeMethod)="filterItems($event)" [id]="'itemid'" [isfocus]="true" >
+                                       </atpar-ac-server>  
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 ">
+                                        <button class="btn btn-purple sbtn" type="button" style="margin-top:0px !important" (click)="getItemDetails()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                        <button class="btn btn-purple sbtn" style="margin-top:0px !important" (click)="goBack()"> <i class="fa fa-arrow-left"></i> &nbsp; Go Back</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="isEditMode || goClick">
+                            <div style="clear:both;"></div>
+                            <div class="form-horizontal form-label-left">
+                                <div style="clear:both;"></div>
+                                <div class="form-group" *ngIf="isEditMode">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Item ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12 control-label lbl-left">
+                                        {{newItem.INV_ITEM_ID}}
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Item Description</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12 control-label lbl-left">
+                                        <span>{{newItem.SHORT_DESCR}} </span>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">UOM</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.UOM" [name]="txtUom" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'mandatory,caps_alpha_nospace,max=5'" [id]="'uom'" [title]="'Use only letters (A-Z) and no spaces'" [isFocused]="'true'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Default Storage Location</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.STOR_LOC" [name]="txtdefalultloc" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'mandatory,everything_except_space_as_fstchar,max=50'" [id]="'defalultloc'" [title]="'Any character A-Z,a-z,0-9,!,#,$...'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Alt Storage Location 1</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.ALT_STOR_LOC1" [name]="txtalt1" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'everything,max=50'" [id]="'altLoc1'" [title]="'Any character A-Z,a-z,0-9,!,#,$...'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Alt Storage Location 2</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.ALT_STOR_LOC2" [name]="txtalt2" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'everything,max=50'" [id]="'altLoc2'" [title]="'Any character A-Z,a-z,0-9,!,#,$...'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Quantity on Hand</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.QUANTITY_ON_HAND" [name]="txtqoh" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'numeric,max=4'" [id]="'qoh'" [title]="'Use only numbers(0-9)'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Charge Code</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.CHARGE_CODE" [name]="txtCHARGE_CODE" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'alpha_numerics_nospace,max=50'" [id]="'chargecode'" [title]="'Any character A-Z,a-z,0-9'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Replenishment Type</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [id]="'replenishmentList'" [options]="replenishmentList" [style]="{'width':'100%'}" [(ngModel)]="newItem.REPLENISHMENT_TYPE"></atpar-select>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Status</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-switch [(ngModel)]="newItem.STATUS_VALUE" [checked]="(newItem.STATUS_VALUE)"></atpar-switch>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-5">
+                                    <button class="btn btn-purple sbtn" [disabled]="loading" (click)="submitInventoryData()">{{submitButtonTitle}} &nbsp; <i class="fa fa-check"></i></button>
+                                    <button class="btn btn-purple sbtn" *ngIf="isEditMode" (click)="goBack()"> <i class="fa fa-arrow-left"></i> &nbsp; Go Back</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<atpar-growl [value]="msgs" sticky="sticky"></atpar-growl>
+
+<style>
+    .input-group-btn:last-child > .btn, .input-group-btn:last-child > .btn-group {
+        margin-left: -15px !important;
+        margin-top: 32px !important;
+    }
+</style>

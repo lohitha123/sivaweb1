@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1B4A130C-2757-4B57-9DB3-542732572656}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AtPar.POCOEntities</RootNamespace>
+    <AssemblyName>AtPar.POCOEntities</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AspNetRole.cs" />
+    <Compile Include="AspNetUser.cs" />
+    <Compile Include="AspNetUserClaim.cs" />
+    <Compile Include="AspNetUserLogin.cs" />
+    <Compile Include="aspnet_Applications.cs" />
+    <Compile Include="aspnet_Paths.cs" />
+    <Compile Include="aspnet_PersonalizationAllUsers.cs" />
+    <Compile Include="aspnet_PersonalizationPerUser.cs" />
+    <Compile Include="aspnet_SchemaVersions.cs" />
+    <Compile Include="aspnet_Users.cs" />
+    <Compile Include="AtPar_Detail_Transaction_Entity.cs" />
+    <Compile Include="AtPar_Deviation_Entity.cs" />
+    <Compile Include="AtPar_Transaction_Entity.cs" />
+    <Compile Include="CompletedScope.cs" />
+    <Compile Include="InstanceState.cs" />
+    <Compile Include="IUT_RECV_Deviation_Details_Entity.cs" />
+    <Compile Include="IUT_RECV_Deviation_Header_Entity.cs" />
+    <Compile Include="IzendaReport.cs" />
+    <Compile Include="IzendaReportCategory.cs" />
+    <Compile Include="IzendaUser.cs" />
+    <Compile Include="IzendaUserPermission.cs" />
+    <Compile Include="IzendaUserRole.cs" />
+    <Compile Include="IzendaUserSecurityQuestion.cs" />
+    <Compile Include="MT_AP_INTERFACE_TYPE.cs" />
+    <Compile Include="MT_AP_ORDER_TBL_ID.cs" />
+    <Compile Include="MT_AP_PARAMETER_PROCESS.cs" />
+    <Compile Include="MT_ASMT_AUDIT_DETAIL.cs" />
+    <Compile Include="MT_ASMT_AUDIT_HEADER.cs" />
+    <Compile Include="MT_ATPAR_APP.cs" />
+    <Compile Include="MT_ATPAR_APP_GROUP.cs" />
+    <Compile Include="MT_ATPAR_APP_LABELS.cs" />
+    <Compile Include="MT_ATPAR_APP_LINKED_LABELS.cs" />
+    <Compile Include="MT_ATPAR_AUDIT.cs" />
+    <Compile Include="MT_ATPAR_AUDIT_INFO.cs" />
+    <Compile Include="MT_ATPAR_AUDIT_SCREEN_CONTROLS.cs" />
+    <Compile Include="MT_ATPAR_AUDIT_TEMP.cs" />
+    <Compile Include="MT_ATPAR_BARCODE_SYMBOLOGY.cs" />
+    <Compile Include="MT_ATPAR_CART_PREV_COUNTS.cs" />
+    <Compile Include="MT_ATPAR_CONFIGURATION_SECTION_DTLS.cs" />
+    <Compile Include="MT_ATPAR_DASHBOARD_DETAILS.cs" />
+    <Compile Include="MT_ATPAR_DASHBOARD_HEADER.cs" />
+    <Compile Include="MT_ATPAR_DETAIL_TRANSACTION.cs" />
+    <Compile Include="MT_ATPAR_DEVIATION.cs" />
+    <Compile Include="MT_ATPAR_DEVICE_DETAILS.cs" />
+    <Compile Include="MT_ATPAR_ENTERPRISE_SYSTEM_DETAILS.cs" />
+    <Compile Include="MT_ATPAR_ERROR_LOG.cs" />
+    <Compile Include="MT_ATPAR_HL7_MSGS_TRANSMISSION.cs" />
+    <Compile Include="MT_ATPAR_IBU_ALLOCATION.cs" />
+    <Compile Include="MT_ATPAR_ITEM_ATTRIBUTES.cs" />
+    <Compile Include="MT_ATPAR_ITEM_MFG_UPN.cs" />
+    <Compile Include="MT_ATPAR_JOB_SCHEDULES.cs" />
+    <Compile Include="MT_ATPAR_LABELS_DATA.cs" />
+    <Compile Include="MT_ATPAR_LATEST_VALUES.cs" />
+    <Compile Include="MT_ATPAR_LBL_PRINTERS.cs" />
+    <Compile Include="MT_ATPAR_LIST_VIEW.cs" />
+    <Compile Include="MT_ATPAR_LOC_GROUPS.cs" />
+    <Compile Include="MT_ATPAR_LOC_GROUP_ALLOCATION.cs" />
+    <Compile Include="MT_ATPAR_LOC_GROUP_MEMBERS.cs" />
+    <Compile Include="MT_ATPAR_LOGIN_HISTORY.cs" />
+    <Compile Include="MT_ATPAR_MENUS.cs" />
+    <Compile Include="MT_ATPAR_MESSAGE_TBL.cs" />
+    <Compile Include="MT_ATPAR_NOTES.cs" />
+    <Compile Include="MT_ATPAR_NOTES_SETUP.cs" />
+    <Compile Include="MT_ATPAR_OBJECTS.cs" />
+    <Compile Include="MT_ATPAR_ORG_GROUPS.cs" />
+    <Compile Include="MT_ATPAR_ORG_GROUP_BUNITS.cs" />
+    <Compile Include="MT_ATPAR_ORG_GROUP_PARAMETERS.cs" />
+    <Compile Include="MT_ATPAR_PARAM_MASTER.cs" />
+    <Compile Include="MT_ATPAR_PASSWD_HISTORY.cs" />
+    <Compile Include="MT_ATPAR_PATIENT_CACHE.cs" />
+    <Compile Include="MT_ATPAR_PHYSICAL_INVENTORY.cs" />
+    <Compile Include="MT_ATPAR_PRINT_FIELD_DEFAULTS.cs" />
+    <Compile Include="MT_ATPAR_PRINT_LABEL_DETAILS.cs" />
+    <Compile Include="MT_ATPAR_PRINT_LABEL_HEADER.cs" />
+    <Compile Include="MT_ATPAR_PRINT_OBJECTS_INFO.cs" />
+    <Compile Include="MT_ATPAR_PROCESS_TRANS_HISTORY.cs" />
+    <Compile Include="MT_ATPAR_PROFILE.cs" />
+    <Compile Include="MT_ATPAR_PROFILE_APP_ACL.cs" />
+    <Compile Include="MT_ATPAR_PROFILE_LIST_VIEW.cs" />
+    <Compile Include="MT_ATPAR_PROFILE_MENU.cs" />
+    <Compile Include="MT_ATPAR_PROFILE_PARAMETERS.cs" />
+    <Compile Include="MT_ATPAR_RECALL_INFO.cs" />
+    <Compile Include="MT_ATPAR_REPORTING_TABLES_LIST.cs" />
+    <Compile Include="MT_ATPAR_REPORTS_SETTINGS.cs" />
+    <Compile Include="MT_ATPAR_ROUTES.cs" />
+    <Compile Include="MT_ATPAR_SCHEDULE_DETAIL.cs" />
+    <Compile Include="MT_ATPAR_SCHEDULE_HEADER.cs" />
+    <Compile Include="MT_ATPAR_SECURITY_AUDIT.cs" />
+    <Compile Include="MT_ATPAR_SECURITY_PARAMS.cs" />
+    <Compile Include="MT_ATPAR_SETUP_PRO_PRINTERES.cs" />
+    <Compile Include="MT_ATPAR_SIGNATURE.cs" />
+    <Compile Include="MT_ATPAR_STATUS.cs" />
+    <Compile Include="MT_ATPAR_STORAGE_ZONE.cs" />
+    <Compile Include="MT_ATPAR_STORAGE_ZONES_ALLOCATION.cs" />
+    <Compile Include="MT_ATPAR_SYSTEM_DB.cs" />
+    <Compile Include="MT_ATPAR_SYSTEM_DEVICES.cs" />
+    <Compile Include="MT_ATPAR_TOKENS.cs" />
+    <Compile Include="MT_ATPAR_TRANSACTION.cs" />
+    <Compile Include="MT_ATPAR_TRANSACTION_ID_TBL.cs" />
+    <Compile Include="MT_ATPAR_UI_FIELDS.cs" />
+    <Compile Include="MT_ATPAR_UI_SETUP.cs" />
+    <Compile Include="MT_ATPAR_USER.cs" />
+    <Compile Include="MT_ATPAR_USER_ACL.cs" />
+    <Compile Include="MT_ATPAR_USER_ACL_DEFAULTS.cs" />
+    <Compile Include="MT_ATPAR_USER_APP_ACL.cs" />
+    <Compile Include="MT_ATPAR_USER_APP_PARAMETERS.cs" />
+    <Compile Include="MT_ATPAR_USER_GROUPS.cs" />
+    <Compile Include="MT_ATPAR_USER_ORG_GROUPS.cs" />
+    <Compile Include="MT_ATPAR_ZONE_STORAGE_LEVELS.cs" />
+    <Compile Include="MT_BTBN_DTL_TRANSACTION.cs" />
+    <Compile Include="MT_BTBN_INV_SYNC_DATA.cs" />
+    <Compile Include="MT_CRCT_CRITICAL_ITEMS.cs" />
+    <Compile Include="MT_CRCT_PAR_AUDIT.cs" />
+    <Compile Include="MT_CRCT_PAR_LOC_SCHEDULE_DETAILS.cs" />
+    <Compile Include="MT_CRCT_PUTAWAY_DETAIL.cs" />
+    <Compile Include="MT_CRCT_TWO_BIN_ALLOCATION.cs" />
+    <Compile Include="MT_CRCT_USER_ALLOCATION.cs" />
+    <Compile Include="MT_CRCT_USER_SCHEDULE.cs" />
+    <Compile Include="MT_CYCT_EVENT_ALLOCATION.cs" />
+    <Compile Include="MT_CYCT_EVENT_DETAIL.cs" />
+    <Compile Include="MT_CYCT_EVENT_DETAIL_MASTER.cs" />
+    <Compile Include="MT_CYCT_EVENT_HDR.cs" />
+    <Compile Include="MT_CYCT_EVENT_HDR_MASTER.cs" />
+    <Compile Include="MT_CYCT_EVENT_SUMMARY.cs" />
+    <Compile Include="MT_CYCT_ITEM_UOM.cs" />
+    <Compile Include="MT_CYCT_ITEM_UOM_MASTER.cs" />
+    <Compile Include="MT_DELV_BU_ALLOCATION.cs" />
+    <Compile Include="MT_DELV_COST_CENTER_AUTH_PERSON.cs" />
+    <Compile Include="MT_DELV_DELIVER_UPDATE.cs" />
+    <Compile Include="MT_DELV_DLVR_ATTEMPT.cs" />
+    <Compile Include="MT_DELV_EXCLUDE_LOC.cs" />
+    <Compile Include="MT_DELV_ITEM_TRIP.cs" />
+    <Compile Include="MT_DELV_ITEM_TRIP_DELETE.cs" />
+    <Compile Include="MT_DELV_ITEM_TRIP_MISC_EVENT.cs" />
+    <Compile Include="MT_DELV_LOC_ALLOCATION.cs" />
+    <Compile Include="MT_DELV_LOC_DETAILS.cs" />
+    <Compile Include="MT_DELV_RECV_SIGNATURE.cs" />
+    <Compile Include="MT_DELV_SHIPTO_ID_ALLOCATION.cs" />
+    <Compile Include="MT_PKPL_ALLOCATION.cs" />
+    <Compile Include="MT_PKPL_BU_ALLOCATION.cs" />
+    <Compile Include="MT_PKPL_DEVIATION_DETAILS.cs" />
+    <Compile Include="MT_PKPL_DEVIATION_HEADER.cs" />
+    <Compile Include="MT_PKPL_ORDER_PREFIX.cs" />
+    <Compile Include="MT_PKPL_PRIORITY.cs" />
+    <Compile Include="MT_POU_BILLONLY_ITEMS.cs" />
+    <Compile Include="MT_POU_CART_INVENTORY.cs" />
+    <Compile Include="MT_POU_CASE_CART_DETAILS.cs" />
+    <Compile Include="MT_POU_CASE_CART_HEADER.cs" />
+    <Compile Include="MT_POU_CASE_TRACK_HISTORY.cs" />
+    <Compile Include="MT_POU_CHARGECAPTURE_DETAILS.cs" />
+    <Compile Include="MT_POU_CHARGECAPTURE_HEADER.cs" />
+    <Compile Include="MT_POU_CHARGECAPTURE_RETURNS.cs" />
+    <Compile Include="MT_POU_COST_CENTER.cs" />
+    <Compile Include="MT_POU_COST_CENTER_ALLOCATIONS.cs" />
+    <Compile Include="MT_POU_CRITICAL_ITEMS.cs" />
+    <Compile Include="MT_POU_CYCT_DEVIATION_DETAILS.cs" />
+    <Compile Include="MT_POU_CYCT_DEVIATION_HEADER.cs" />
+    <Compile Include="MT_POU_DEPT.cs" />
+    <Compile Include="MT_POU_DEPT_CART_ALLOCATIONS.cs" />
+    <Compile Include="MT_POU_DEPT_CART_WORKSTATION_ALLOCATIONS.cs" />
+    <Compile Include="MT_POU_DEPT_USER_ALLOCATIONS.cs" />
+    <Compile Include="MT_POU_DEPT_WORKSTATIONS.cs" />
+    <Compile Include="MT_POU_EVENTS.cs" />
+    <Compile Include="MT_POU_INVENTORY_TRACK_HISTORY.cs" />
+    <Compile Include="MT_POU_NONCART_ITEMS.cs" />
+    <Compile Include="MT_POU_ORDER_DETAILS.cs" />
+    <Compile Include="MT_POU_ORDER_HEADER.cs" />
+    <Compile Include="MT_POU_PAR_LOC_PROCESS_SCHEDULE.cs" />
+    <Compile Include="MT_POU_PHYSICIAN.cs" />
+    <Compile Include="MT_POU_PREF_LIST_ALLOC.cs" />
+    <Compile Include="MT_POU_PREF_LIST_HEADER.cs" />
+    <Compile Include="MT_POU_PROCEDURE_CODE.cs" />
+    <Compile Include="MT_POU_PTWY_DEVIATION_DETAILS.cs" />
+    <Compile Include="MT_POU_PTWY_DEVIATION_HEADER.cs" />
+    <Compile Include="MT_POU_REASON_CODE.cs" />
+    <Compile Include="MT_POU_REPLEN_SOURCE_LOCATION.cs" />
+    <Compile Include="MT_POU_RPT_COST_VARIANCE_BY_REIMBURSEMENT_H.cs" />
+    <Compile Include="MT_POU_RPT_COST_VARIANCE_BY_REIMBURSEMENT_M.cs" />
+    <Compile Include="MT_POU_RPT_COST_VARIANCE_BY_REIMBURSEMENT_Q.cs" />
+    <Compile Include="MT_POU_RPT_COST_VARIANCE_BY_REIMBURSEMENT_Y.cs" />
+    <Compile Include="MT_POU_RPT_COST_VARIANCE_BY_SPECIALTY_H.cs" />
+    <Compile Include="MT_POU_RPT_COST_VARIANCE_BY_SPECIALTY_M.cs" />
+    <Compile Include="MT_POU_RPT_COST_VARIANCE_BY_SPECIALTY_Q.cs" />
+    <Compile Include="MT_POU_RPT_COST_VARIANCE_BY_SPECIALTY_Y.cs" />
+    <Compile Include="MT_POU_RPT_EXTENDED_VARIANCE_BY_SURGEON_H.cs" />
+    <Compile Include="MT_POU_RPT_EXTENDED_VARIANCE_BY_SURGEON_M.cs" />
+    <Compile Include="MT_POU_RPT_EXTENDED_VARIANCE_BY_SURGEON_Q.cs" />
+    <Compile Include="MT_POU_RPT_EXTENDED_VARIANCE_BY_SURGEON_Y.cs" />
+    <Compile Include="MT_POU_RPT_OPT_BY_PHYSICIAN_H.cs" />
+    <Compile Include="MT_POU_RPT_OPT_BY_PHYSICIAN_M.cs" />
+    <Compile Include="MT_POU_RPT_OPT_BY_PHYSICIAN_Q.cs" />
+    <Compile Include="MT_POU_RPT_OPT_BY_PHYSICIAN_Y.cs" />
+    <Compile Include="MT_POU_RPT_OPT_BY_PREFERENCE_H.cs" />
+    <Compile Include="MT_POU_RPT_OPT_BY_PREFERENCE_M.cs" />
+    <Compile Include="MT_POU_RPT_OPT_BY_PREFERENCE_Q.cs" />
+    <Compile Include="MT_POU_RPT_OPT_BY_PREFERENCE_Y.cs" />
+    <Compile Include="MT_POU_RPT_OPT_BY_PROCEDURE_H.cs" />
+    <Compile Include="MT_POU_RPT_OPT_BY_PROCEDURE_M.cs" />
+    <Compile Include="MT_POU_RPT_OPT_BY_PROCEDURE_Q.cs" />
+    <Compile Include="MT_POU_RPT_OPT_BY_PROCEDURE_Y.cs" />
+    <Compile Include="MT_POU_RPT_OPT_BY_SPECIALTY_H.cs" />
+    <Compile Include="MT_POU_RPT_OPT_BY_SPECIALTY_M.cs" />
+    <Compile Include="MT_POU_RPT_OPT_BY_SPECIALTY_Q.cs" />
+    <Compile Include="MT_POU_RPT_OPT_BY_SPECIALTY_Y.cs" />
+    <Compile Include="MT_POU_RPT_SPEND_BY_GROUP_H.cs" />
+    <Compile Include="MT_POU_RPT_SPEND_BY_GROUP_M.cs" />
+    <Compile Include="MT_POU_RPT_SPEND_BY_GROUP_Q.cs" />
+    <Compile Include="MT_POU_RPT_SPEND_BY_GROUP_Y.cs" />
+    <Compile Include="MT_POU_RPT_SUPPLY_COMPARISON_H.cs" />
+    <Compile Include="MT_POU_RPT_SUPPLY_COMPARISON_M.cs" />
+    <Compile Include="MT_POU_RPT_SUPPLY_COMPARISON_Q.cs" />
+    <Compile Include="MT_POU_RPT_SUPPLY_COMPARISON_Y.cs" />
+    <Compile Include="MT_POU_SPECIALTY_CODE.cs" />
+    <Compile Include="MT_POU_WORKFLOW_DETAILS.cs" />
+    <Compile Include="MT_PTWY_BU_ALLOCATION.cs" />
+    <Compile Include="MT_RECV_CARRIER.cs" />
+    <Compile Include="MT_RECV_DEVIATION_DETAILS.cs" />
+    <Compile Include="MT_RECV_DEVIATION_HEADER.cs" />
+    <Compile Include="MT_RECV_EDI_VENDOR.cs" />
+    <Compile Include="MT_RECV_INV_BU_ALLOCATION.cs" />
+    <Compile Include="MT_RECV_MANAGE_CARRIERS.cs" />
+    <Compile Include="MT_RECV_PARCEL_COUNTS_DETAIL.cs" />
+    <Compile Include="MT_RECV_PARCEL_COUNTS_SIGNATURE.cs" />
+    <Compile Include="MT_RECV_PO_BOXES.cs" />
+    <Compile Include="MT_RECV_SHIPTO_ID_ALLOCATION.cs" />
+    <Compile Include="MT_RPT_CRCT_TRANS_DETAILS.cs" />
+    <Compile Include="MT_RPT_FIELDS_LIST.cs" />
+    <Compile Include="MT_RPT_POU_FIELDS_LIST.cs" />
+    <Compile Include="MT_RPT_POU_PROCEDURE_PREF_SETUP_DETAIL.cs" />
+    <Compile Include="MT_RPT_POU_PROCEDURE_PREF_SETUP_HEADER.cs" />
+    <Compile Include="MT_RPT_POU_SETUP_DETAIL.cs" />
+    <Compile Include="MT_RPT_POU_SETUP_HEADER.cs" />
+    <Compile Include="MT_RPT_POU_TRANS_CASEHEADER.cs" />
+    <Compile Include="MT_RPT_POU_TRANS_DETAIL.cs" />
+    <Compile Include="MT_RPT_POU_TRANS_DETAIL2.cs" />
+    <Compile Include="MT_RPT_POU_TRANS_HEADER2.cs" />
+    <Compile Include="MT_RPT_POU_TRANS_ISSUERETURNHEADER.cs" />
+    <Compile Include="MT_STIS_BU_ALLOCATION.cs" />
+    <Compile Include="MT_STIS_DEST_LOC_ALLOCATION.cs" />
+    <Compile Include="MT_STIS_DETAILS.cs" />
+    <Compile Include="MT_STIS_DISTRIB_TYPE.cs" />
+    <Compile Include="MT_STIS_SIGNATURE.cs" />
+    <Compile Include="MT_STIS_UOM_SETUP.cs" />
+    <Compile Include="PAR_MNGT_COST_CENTER.cs" />
+    <Compile Include="PAR_MNGT_ITEM.cs" />
+    <Compile Include="PAR_MNGT_ITEM_STAGED.cs" />
+    <Compile Include="PAR_MNGT_ITEM_SUBSTITUTE.cs" />
+    <Compile Include="PAR_MNGT_ORDER_DETAILS.cs" />
+    <Compile Include="PAR_MNGT_ORDER_HEADER.cs" />
+    <Compile Include="PAR_MNGT_PAR_LOC_DETAILS.cs" />
+    <Compile Include="PAR_MNGT_PAR_LOC_HEADER.cs" />
+    <Compile Include="PAR_MNGT_VENDOR.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Receive_Deviation_Details_Entity.cs" />
+    <Compile Include="Receive_Deviation_Header_Entity.cs" />
+    <Compile Include="RF_BIN_LOC_MONITOR.cs" />
+    <Compile Include="RF_BIN_MAPPING.cs" />
+    <Compile Include="RF_EMPTY_BIN_DETAILS.cs" />
+    <Compile Include="RF_ITEM_LEVEL_MONITOR.cs" />
+    <Compile Include="RF_ITEM_MAPPING.cs" />
+    <Compile Include="RF_ITEM_USAGE_DETAILS.cs" />
+    <Compile Include="RF_READER_CONFIGURATION_DETAILS.cs" />
+    <Compile Include="RF_TAG_LATEST_VALUES.cs" />
+    <Compile Include="RF_TAG_READS.cs" />
+    <Compile Include="RM_CARRIER_INFORMATION.cs" />
+    <Compile Include="RM_ORG_UNITS.cs" />
+    <Compile Include="RM_PICK_ALT_LOCATIONS.cs" />
+    <Compile Include="RM_PKPL_DETAILS.cs" />
+    <Compile Include="RM_PKPL_HEADER.cs" />
+    <Compile Include="RM_RECV_PO_DETAIL.cs" />
+    <Compile Include="RM_RECV_PO_HEADER.cs" />
+    <Compile Include="RM_SHIPTO_IDS.cs" />
+    <Compile Include="RM_SHIP_TO_LOCACTION.cs" />
+    <Compile Include="RM_STIS_ALT_UOMS.cs" />
+    <Compile Include="RM_STIS_DETAILS.cs" />
+    <Compile Include="RM_STIS_HEADER.cs" />
+    <Compile Include="RM_USER_LOCATIONS.cs" />
+    <Compile Include="Tenant.cs" />
+    <Compile Include="TKIT_CART_MANAGER.cs" />
+    <Compile Include="TKIT_DEPT.cs" />
+    <Compile Include="TKIT_EQ_INDICATOR.cs" />
+    <Compile Include="TKIT_EQ_LOCATION.cs" />
+    <Compile Include="TKIT_ITEM_DEPT.cs" />
+    <Compile Include="TKIT_ITEM_INVENTORY.cs" />
+    <Compile Include="TKIT_ITEM_MASTER.cs" />
+    <Compile Include="TKIT_ITEM_TYPE.cs" />
+    <Compile Include="TKIT_ORDER_DETAILS.cs" />
+    <Compile Include="TKIT_ORDER_HEADER.cs" />
+    <Compile Include="TKIT_REASON_CODES.cs" />
+    <Compile Include="TKIT_REQUESTOR.cs" />
+    <Compile Include="TKIT_REQUESTOR_DEPT.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

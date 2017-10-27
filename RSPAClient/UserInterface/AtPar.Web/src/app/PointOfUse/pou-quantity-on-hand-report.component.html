@@ -1,0 +1,121 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border:1px #eee">
+                    <div class="panel-body" style="padding:0px 0 0 0">
+                        <form class="form-horizontal form-label-left" novalidate>
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-6 col-md-4"> Business Unit </label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstBunits" [id]="'ddllstBunits'" [(ngModel)]="selectedBunit" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlBUnitChanged()"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-6 col-md-4"> Par Location </label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstParLocation" [id]="'ddllstParLocations'" [(ngModel)]="selectedParLoc" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-4">Vendor</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <label class="control-label lbl-left" *ngIf="blnShowVendorlabel">{{lblVendorData}}</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-8" *ngIf="blnShowTxtVendor">
+                                            <atpar-ac-server [(ngModel)]="selectedvendorId" [id]="'txtVendorId'" [ngModelOptions]="{standalone: true}" [suggestions]="lstFilteredVendorIds" (completeMethod)="fillVendorIdsAuto($event)"></atpar-ac-server>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="clear:both"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-4">Item ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-ac-server [(ngModel)]="selectedItemId" [id]="'txtItemId'" [ngModelOptions]="{standalone: true}" [suggestions]="lstFilteredItemIds" (completeMethod)="fillItemIdsAuto($event)"></atpar-ac-server>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Serial Number</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="selectedSerialNo" [name]="txtSerialNo" [id]="'txtSerialNo'" [validations]="'max=50'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-12 col-md-8">Display Negative Inventory balance only</label>
+                                    <div>
+                                        <input type="checkbox" [(ngModel)]="checkBoxValue" [ngModelOptions]="{standalone: true}" />
+                                    </div>
+                                </div>
+                                <div style="clear:both"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Lot Number</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="selectedLotNo" [name]="txtLotNo" [id]="'txtLotNo'" [validations]="'max=50'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4  form-group">
+                                    <button class="btn btn-purple sbtn" (click)="btnGo_Click()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                                <span class="pull-right" *ngIf="isVisibleNoOfRecords">{{NoOfRecords}} Record(s) Found</span>
+                            </div>
+                            <br/><br/>
+                            <div >
+                                <span class="pull-right" *ngIf="isVisibleLblResult">Total On Hand Value at this location is: &nbsp;$ {{lblResult}}</span>
+                            </div>
+                        </form>
+                        <br/>
+                        <div class="col-xs-12 table-responsive" *ngIf="isVisible">
+                            <div class="container no-scrl">                                                             
+                                <atpar-datatable [value]="lstQtyOnHandHeaders"
+                                                 [paginator]="true" 
+                                                 [pageLinks]="3" 
+                                                 [rows]="rowsPerPage" 
+                                                 expandableRows="true" 
+                                                 [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]"
+                                                 [globalFilter]="gb"
+                                                 [responsive]="true" 
+                                                 (filteredData)="onChargesFilterData($event)" 
+                                                 [style]="{'width':'100%'}"
+                                                 scrollable="true">
+                                    <p-column expander="true" styleClass="col-icon" [style]="{'text-align':'center','width':'35px'}"></p-column>
+                                    <p-column header="par Location" field="CART_ID" [style]="{'width':'130px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="Item ID" field="ITEM_ID" [style]="{'width':'150px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="Descr" field="ITEM_DESCRIPTION" [style]="{'width':'150px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="Price($)" field="ITEM_PRICE" styleClass="text-right" [style]="{'width':'150px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="Par UOM" field="UOM" [style]="{'width':'150px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="Par Value" field="ITEM_QUANTITY_PAR" styleClass="text-right" [style]="{'width':'150px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="Value @ Par ($)" field="PAR_VALUE" styleClass="text-right" [style]="{'width':'150px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="Quantity On Hand" field="ACTUAL_QUANTITY" styleClass="text-right" [style]="{'width':'150px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="Value on Hand ($)" field="ON_HAND_VALUE" styleClass="text-right" [style]="{'width':'150px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="Today usage" field="TODAY_USAGE1" styleClass="text-right" [style]="{'width':'150px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="Compartment" field="COMPARTMENT" [style]="{'width':'120px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="" *ngIf="isVisiblelinkBtn" [style]="{'width':'63px'}">
+                                        <template let-stock="rowData" pTemplate type="body">
+                                            <a class="grid-link" id="lnkbtnItemID" (click)="onItemIDClick(stock)" style="cursor:pointer;color:#6c276a;">Usage</a>
+                                        </template>
+                                    </p-column>
+                                    <template let-expandRow pTemplate="rowexpansion">
+                                        <atpar-datatable [value]="expandRow.DETAILS" [style]="{'width':'100%'}" [paginator]="false" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                            <p-column header="Item ID" field="ITEM_ID" [style]="{'width':'40px','height':'30px'}"></p-column>
+                                            <p-column header="Lot No" field="ITEM_LOTNUMBER" [style]="{'width':'35px','height':'30px'}"></p-column>
+                                            <p-column header="Serial No" field="ITEM_SRNUMBER" [style]="{'width':'35px','height':'30px'}"></p-column>
+                                            <p-column header="On Hand Qty" field="ACTUAL_QUANTITY" styleClass="text-right" [style]="{'width':'30px','height':'30px'}"></p-column>
+                                            <p-column header="Today Usage" field="TODAY_USAGE" styleClass="text-right" [style]="{'width':'30px','height':'30px'}"></p-column>
+                                            <p-column header="Expiry Date" field="EXP_DATE" [style]="{'width':'30px','height':'30px'}"></p-column>
+                                            <p-column header="Compartment" field="COMPARTMENT" [style]="{'width':'30px','height':'30px'}"></p-column>
+                                        </atpar-datatable>
+                                    </template>
+                                                               
+                                </atpar-datatable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+</div>
+
+<!--[sortField]="CART_ID" [rowGroupMode]="rowspan"-->

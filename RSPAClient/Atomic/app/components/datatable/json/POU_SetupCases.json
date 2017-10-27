@@ -1,0 +1,112 @@
+[
+      {
+        "CASE_ID": "caseqa_1",
+        "DESCRIPTION": "caseqa_1",
+        "PHYSICIAN": "phy1",
+        "PREF_LIST_ID": "pref1",
+        "PROCEDURE_ID": "proc1",
+        "STATUS": "PARTIALLY PICKED",
+        "PATIENT_ID": "p01",
+        "PERFORM_DATE": "05/01/2017"
+      },
+      {
+        "CASE_ID": "caseqa_2",
+        "DESCRIPTION": "caseqa_2",
+        "PHYSICIAN": "phy1",
+        "PREF_LIST_ID": "pref1",
+        "PROCEDURE_ID": "proc1",
+        "STATUS": "PARTIALLY PICKED",
+        "PATIENT_ID": "p01",
+        "PERFORM_DATE": "05/01/2017"
+      },
+      {
+        "CASE_ID": "caseqa_3",
+        "DESCRIPTION": "caseqa_3",
+        "PHYSICIAN": "phy1",
+        "PREF_LIST_ID": "pref1",
+        "PROCEDURE_ID": "proc1",
+        "STATUS": "PARTIALLY PICKED",
+        "PATIENT_ID": "p01",
+        "PERFORM_DATE": "05/01/2017"
+      },
+      {
+        "CASE_ID": "caseqa_4",
+        "DESCRIPTION": "caseqa_4",
+        "PHYSICIAN": "phy1",
+        "PREF_LIST_ID": "pref1",
+        "PROCEDURE_ID": "proc1",
+        "STATUS": "PARTIALLY PICKED",
+        "PATIENT_ID": "p01",
+        "PERFORM_DATE": "05/01/2017"
+      },
+      {
+        "CASE_ID": "mycase",
+        "DESCRIPTION": "mycase",
+        "PHYSICIAN": "phy2",
+        "PREF_LIST_ID": "pref2",
+        "PROCEDURE_ID": "proc2",
+        "STATUS": "REVIEWED",
+        "PATIENT_ID": "p02",
+        "PERFORM_DATE": "05/01/2017"
+      },
+      {
+        "CASE_ID": "mycase1",
+        "DESCRIPTION": "mycase1",
+        "PHYSICIAN": "phy1",
+        "PREF_LIST_ID": "pref1",
+        "PROCEDURE_ID": "proc1",
+        "STATUS": "READY",
+        "PATIENT_ID": "p01",
+        "PERFORM_DATE": "05/01/2017"
+      },
+      {
+        "CASE_ID": "mycase2",
+        "DESCRIPTION": "mycase2",
+        "PHYSICIAN": "phy1",
+        "PREF_LIST_ID": "pref1",
+        "PROCEDURE_ID": "proc1",
+        "STATUS": "READY",
+        "PATIENT_ID": "p02",
+        "PERFORM_DATE": "05/01/2017"
+      },
+      {
+        "CASE_ID": "mycase3",
+        "DESCRIPTION": "mycase3",
+        "PHYSICIAN": "phy1",
+        "PREF_LIST_ID": "pref1",
+        "PROCEDURE_ID": "proc1",
+        "STATUS": "REVIEWED",
+        "PATIENT_ID": "p02",
+        "PERFORM_DATE": "05/01/2017"
+      },
+      {
+        "CASE_ID": "mycase4",
+        "DESCRIPTION": "mycase4",
+        "PHYSICIAN": "phy2",
+        "PREF_LIST_ID": "pref2",
+        "PROCEDURE_ID": "proc2",
+        "STATUS": "REVIEWED",
+        "PATIENT_ID": "p04",
+        "PERFORM_DATE": "05/01/2017"
+      },
+      {
+        "CASE_ID": "mycase5",
+        "DESCRIPTION": "mycase5",
+        "PHYSICIAN": "phy2",
+        "PREF_LIST_ID": "pref2",
+        "PROCEDURE_ID": "proc2",
+        "STATUS": "REVIEWED",
+        "PATIENT_ID": "p05",
+        "PERFORM_DATE": "05/01/2017"
+      },
+      {
+        "CASE_ID": "postpick_qa_Case",
+        "DESCRIPTION": "case1",
+        "PHYSICIAN": "phy1",
+        "PREF_LIST_ID": "pref1",
+        "PROCEDURE_ID": "proc1",
+        "STATUS": "READY",
+        "PATIENT_ID": "p01",
+        "PERFORM_DATE": "05/08/2017"
+      }
+]

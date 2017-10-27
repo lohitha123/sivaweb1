@@ -1,0 +1,1874 @@
+[
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Add User",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_atpar_add_user.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "5"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Assign Profiles",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_atpar_assign_profiles.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "7"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Audit Setup",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_atpar_audit_setup.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "8"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Change Password",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_atpar_change_pwd.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "14"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Configuration Manager",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_atpar_configure_system_from_db.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "1"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Data Archival",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_atpar_data_archival.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "27"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Define User Groups",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_atpar_definegroups.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "6"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Error Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "mt_error_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "13"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Import Users",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_atpar_import_users.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "5"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Maintain Printers",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_atpar_printers.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "29"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Manage Barcode Translations",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_atpar_barcode_translation.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "22"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Manage Devices",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_atpar_manage_devices.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "11"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Manage Org Groups",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_atpar_manage_org_groups.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "3"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Manage Org ID",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_modify_orgs.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "18"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Manage Profiles",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_atpar_manage_profiles.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "4"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Manage Tokens",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_atpar_tokens.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "9"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Manage Users",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_atpar_users.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "5"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Org Parameters",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_atpar_org_parameters.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "10"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Process Scheduler",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_processscheduler.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "26"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Security Configuration",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_atpar_security_configuration.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "2"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Setup Cost Centers",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_par_setup_cost_center.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "17"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Setup Items",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_par_setup_items.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "16"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Setup Location Groups",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_atpar_create_loc_groups.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "21"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Setup Locations",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_atpar_modify_Locations.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "24"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Setup Storage Location Groups",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_atpar_storage_location.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "25"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Setup Vendors",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_par_setup_vendors.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "15"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "Stationary Print Design",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_atpar_StationaryPrint_Report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "28"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "User Status Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "mt_user_status.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "12"
+      },
+      {
+        "APP_ID": "0",
+        "MENU_NAME": "User Upload Automation",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_user_upload_automation.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "20"
+      },
+      {
+        "APP_ID": "2",
+        "MENU_NAME": "Activity Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_atpar_activity_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "16"
+      },
+      {
+        "APP_ID": "2",
+        "MENU_NAME": "Allocate Carts",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_cart_allocation.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "3"
+      },
+      {
+        "APP_ID": "2",
+        "MENU_NAME": "Cart Averages Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_cart_average_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "6"
+      },
+      {
+        "APP_ID": "2",
+        "MENU_NAME": "Cart Detail Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_cart_detail_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "7"
+      },
+      {
+        "APP_ID": "2",
+        "MENU_NAME": "Cart Putaway Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_cart_putaway_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "14"
+      },
+      {
+        "APP_ID": "2",
+        "MENU_NAME": "Create Orders",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_cart_create_orders.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "7"
+      },
+      {
+        "APP_ID": "2",
+        "MENU_NAME": "Critical Items",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_cart_critical_items.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "2"
+      },
+      {
+        "APP_ID": "2",
+        "MENU_NAME": "Daily Activity",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_cart_daily_activity_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "11"
+      },
+      {
+        "APP_ID": "2",
+        "MENU_NAME": "Daily User Activity",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_cart_daily_user_activity_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "12"
+      },
+      {
+        "APP_ID": "2",
+        "MENU_NAME": "Item Exception Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_cart_exception_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "8"
+      },
+      {
+        "APP_ID": "2",
+        "MENU_NAME": "Item Usage Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_cart_item_usage.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "9"
+      },
+      {
+        "APP_ID": "2",
+        "MENU_NAME": "Optimization Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_cart_optimization_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "10"
+      },
+      {
+        "APP_ID": "2",
+        "MENU_NAME": "Order History Report",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_cart_review_send.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "4"
+      },
+      {
+        "APP_ID": "2",
+        "MENU_NAME": "Par Audit Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_cart_par_audit_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "15"
+      },
+      {
+        "APP_ID": "2",
+        "MENU_NAME": "Process Parameters",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_cart_current_processparameter.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "19"
+      },
+      {
+        "APP_ID": "2",
+        "MENU_NAME": "Schedule Compliance Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_cart_sched_compliance_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "5"
+      },
+      {
+        "APP_ID": "2",
+        "MENU_NAME": "Two Bin Allocation",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_cart_Two_Bin_Allocation.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "21"
+      },
+      {
+        "APP_ID": "2",
+        "MENU_NAME": "User Parameters",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_user_parameter.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "1"
+      },
+      {
+        "APP_ID": "2",
+        "MENU_NAME": "User Productivity Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_user_productivity_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "13"
+      },
+      {
+        "APP_ID": "3",
+        "MENU_NAME": "Activity Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_atpar_activity_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "5"
+      },
+      {
+        "APP_ID": "3",
+        "MENU_NAME": "Allocate Events",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_event_allocation.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "2"
+      },
+      {
+        "APP_ID": "3",
+        "MENU_NAME": "Allocate IBUs Manual Counts",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_cyct_allocation.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "2"
+      },
+      {
+        "APP_ID": "3",
+        "MENU_NAME": "Daily Activity",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_cyct_daily_activity_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "7"
+      },
+      {
+        "APP_ID": "3",
+        "MENU_NAME": "Daily User Activity",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_cyct_daily_user_activity_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "8"
+      },
+      {
+        "APP_ID": "3",
+        "MENU_NAME": "Event Summary Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_cyct_event_summary.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "9"
+      },
+      {
+        "APP_ID": "3",
+        "MENU_NAME": "Item Exception Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_cyct_count_excep_hrep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "6"
+      },
+      {
+        "APP_ID": "3",
+        "MENU_NAME": "Process Counts",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_cyct_processevents.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "4"
+      },
+      {
+        "APP_ID": "3",
+        "MENU_NAME": "Review Counts",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_cyct_review_counts.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "3"
+      },
+      {
+        "APP_ID": "3",
+        "MENU_NAME": "Split Events",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_cyct_splitevents.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "9"
+      },
+      {
+        "APP_ID": "3",
+        "MENU_NAME": "User Parameters",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_user_parameter.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "1"
+      },
+      {
+        "APP_ID": "4",
+        "MENU_NAME": "Activity Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_atpar_activity_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "6"
+      },
+      {
+        "APP_ID": "4",
+        "MENU_NAME": "Allocate Inventory Business Units",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_recv_inv_bunit_alloc.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "3"
+      },
+      {
+        "APP_ID": "4",
+        "MENU_NAME": "Allocate ShipToIDs",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_recv_shiptoid_alloc.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "5"
+      },
+      {
+        "APP_ID": "4",
+        "MENU_NAME": "ASN Discrepancy Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_recv_discrepancy_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "11"
+      },
+      {
+        "APP_ID": "4",
+        "MENU_NAME": "Carrier Information",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_carrier_info.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "2"
+      },
+      {
+        "APP_ID": "4",
+        "MENU_NAME": "Carrier Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_recv_carrier_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "7"
+      },
+      {
+        "APP_ID": "4",
+        "MENU_NAME": "Daily Activity",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_recv_daily_activity_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "8"
+      },
+      {
+        "APP_ID": "4",
+        "MENU_NAME": "Daily User Activity",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_recv_daily_user_activity_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "9"
+      },
+      {
+        "APP_ID": "4",
+        "MENU_NAME": "Deviation Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_recv_deviation_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "10"
+      },
+      {
+        "APP_ID": "4",
+        "MENU_NAME": "Lot/Serial Tracking Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_recv_lot_or_serial_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "12"
+      },
+      {
+        "APP_ID": "4",
+        "MENU_NAME": "Manage Carriers",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_recv_manage_carrier.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "14"
+      },
+      {
+        "APP_ID": "4",
+        "MENU_NAME": "Parcel Count Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_recv_parcel_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "13"
+      },
+      {
+        "APP_ID": "4",
+        "MENU_NAME": "PO/NON PO Receipts",
+        "MENU_SUB_GROUP": "Process",
+        "MENU_CODE": "mt_recv_po_or_nonpo_receipts.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "15"
+      },
+      {
+        "APP_ID": "4",
+        "MENU_NAME": "Release Orders",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_release_order.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "1"
+      },
+      {
+        "APP_ID": "4",
+        "MENU_NAME": "User Parameters",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_user_parameter.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "4"
+      },
+      {
+        "APP_ID": "5",
+        "MENU_NAME": "Activity Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_atpar_activity_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "7"
+      },
+      {
+        "APP_ID": "5",
+        "MENU_NAME": "Allocate Inventory Business Units",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_pkpl_bunit_alloc.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "3"
+      },
+      {
+        "APP_ID": "5",
+        "MENU_NAME": "Allocate Location Groups",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_location_groups_allocation.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "2"
+      },
+      {
+        "APP_ID": "5",
+        "MENU_NAME": "Allocate Picking Zones",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_zones_allocation.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "11"
+      },
+      {
+        "APP_ID": "5",
+        "MENU_NAME": "Allocate Priority",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_location_priority.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "4"
+      },
+      {
+        "APP_ID": "5",
+        "MENU_NAME": "Daily Activity",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_pkpl_daily_activity_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "8"
+      },
+      {
+        "APP_ID": "5",
+        "MENU_NAME": "Daily User Activity",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_pkpl_daily_user_activity_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "9"
+      },
+      {
+        "APP_ID": "5",
+        "MENU_NAME": "Deviation Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_pkpl_dev_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "10"
+      },
+      {
+        "APP_ID": "5",
+        "MENU_NAME": "Order Prefix",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_order_prefix.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "5"
+      },
+      {
+        "APP_ID": "5",
+        "MENU_NAME": "Pick Status Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_pkpl_status_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "12"
+      },
+      {
+        "APP_ID": "5",
+        "MENU_NAME": "Release Orders",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_release_order.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "6"
+      },
+      {
+        "APP_ID": "5",
+        "MENU_NAME": "User Parameters",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_user_parameter.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "1"
+      },
+      {
+        "APP_ID": "6",
+        "MENU_NAME": "Allocate Business Units",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_delv_bunit_alloc.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "2"
+      },
+      {
+        "APP_ID": "6",
+        "MENU_NAME": "Allocate Location Groups",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_location_groups_allocation.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "3"
+      },
+      {
+        "APP_ID": "6",
+        "MENU_NAME": "Assign Signatories",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_delv_assign_auth.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "9"
+      },
+      {
+        "APP_ID": "6",
+        "MENU_NAME": "Carrier Information",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_carrier_info.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "5"
+      },
+      {
+        "APP_ID": "6",
+        "MENU_NAME": "Daily Activity",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_deliver_daily_activity_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "6"
+      },
+      {
+        "APP_ID": "6",
+        "MENU_NAME": "Daily User Activity",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_deliver_daily_user_activity_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "7"
+      },
+      {
+        "APP_ID": "6",
+        "MENU_NAME": "Delivery Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_deliver_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "8"
+      },
+      {
+        "APP_ID": "6",
+        "MENU_NAME": "Exclude Locations",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_exclude_loc.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "4"
+      },
+      {
+        "APP_ID": "6",
+        "MENU_NAME": "Productivity Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "mt_deliver_productivity_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "13"
+      },
+      {
+        "APP_ID": "6",
+        "MENU_NAME": "Release Packages",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_delv_release_packages.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "11"
+      },
+      {
+        "APP_ID": "6",
+        "MENU_NAME": "Setup Drop off Locations",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_delv_setup_drop_off_locations.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "12"
+      },
+      {
+        "APP_ID": "6",
+        "MENU_NAME": "ShipTo ID allocation for delivery of stock items",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_deliver_shipto_id_alloc.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "10"
+      },
+      {
+        "APP_ID": "6",
+        "MENU_NAME": "User Parameters",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_user_parameter.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "1"
+      },
+      {
+        "APP_ID": "7",
+        "MENU_NAME": "Activity Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_atpar_activity_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "4"
+      },
+      {
+        "APP_ID": "7",
+        "MENU_NAME": "Allocate Business Units",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_ptwy_bunit_alloc.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "2"
+      },
+      {
+        "APP_ID": "7",
+        "MENU_NAME": "Daily Activity",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_ptwy_daily_activity_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "5"
+      },
+      {
+        "APP_ID": "7",
+        "MENU_NAME": "Daily User Activity",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_ptwy_daily_User_activity_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "6"
+      },
+      {
+        "APP_ID": "7",
+        "MENU_NAME": "Deviation Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_ptwy_Deviation_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "7"
+      },
+      {
+        "APP_ID": "7",
+        "MENU_NAME": "Release Orders",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_release_order.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "3"
+      },
+      {
+        "APP_ID": "7",
+        "MENU_NAME": "User Parameters",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_user_parameter.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "1"
+      },
+      {
+        "APP_ID": "9",
+        "MENU_NAME": "Allocate Location Groups",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_location_groups_allocation.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "1"
+      },
+      {
+        "APP_ID": "9",
+        "MENU_NAME": "Charge Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "mt_tkit_charge_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "15"
+      },
+      {
+        "APP_ID": "9",
+        "MENU_NAME": "Check In/Check Out Items",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_tkit_checkin_checkout.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "6"
+      },
+      {
+        "APP_ID": "9",
+        "MENU_NAME": "Daily Activity",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "mt_tkit_daily_activity_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "7"
+      },
+      {
+        "APP_ID": "9",
+        "MENU_NAME": "Daily User Activity",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "mt_tkit_daily_user_activity_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "8"
+      },
+      {
+        "APP_ID": "9",
+        "MENU_NAME": "Delivery Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "mt_tkit_deliver_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "9"
+      },
+      {
+        "APP_ID": "9",
+        "MENU_NAME": "Destruction Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "mt_tkit_destruction_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "10"
+      },
+      {
+        "APP_ID": "9",
+        "MENU_NAME": "Equipment Tracking Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "mt_tkit_equipment_tracking_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "13"
+      },
+      {
+        "APP_ID": "9",
+        "MENU_NAME": "Inactivate Items",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "mt_tkit_item_inactivate_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "11"
+      },
+      {
+        "APP_ID": "9",
+        "MENU_NAME": "Item Master Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "mt_tkit_item_master_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "12"
+      },
+      {
+        "APP_ID": "9",
+        "MENU_NAME": "Manage Departments",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_tkit_manage_depts.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "2"
+      },
+      {
+        "APP_ID": "9",
+        "MENU_NAME": "Manage Equipment Items",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_tkit_manage_equipment_items.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "5"
+      },
+      {
+        "APP_ID": "9",
+        "MENU_NAME": "Manage Equipment Type",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_tkit_manage_equipment_type.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "4"
+      },
+      {
+        "APP_ID": "9",
+        "MENU_NAME": "Manage Requestor",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_tkit_manage_requestor.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "3"
+      },
+      {
+        "APP_ID": "9",
+        "MENU_NAME": "New Item Audit Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "mt_tkit_newitem_audit_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "17"
+      },
+      {
+        "APP_ID": "9",
+        "MENU_NAME": "Setup Reason Codes",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_tkit_setup_reason_codes.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "16"
+      },
+      {
+        "APP_ID": "9",
+        "MENU_NAME": "Transaction Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "mt_tkit_transaction_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "14"
+      },
+      {
+        "APP_ID": "10",
+        "MENU_NAME": "Allocate Destination Locations",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_stis_allocatedestlocation_setup.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "7"
+      },
+      {
+        "APP_ID": "10",
+        "MENU_NAME": "Allocate Distribution Types",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_stis_allocate_dist_types_setup.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "8"
+      },
+      {
+        "APP_ID": "10",
+        "MENU_NAME": "Allocate Inventory Business Units",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_stis_inv_bunit_alloc.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "3"
+      },
+      {
+        "APP_ID": "10",
+        "MENU_NAME": "Daily Activity",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_stis_daily_activity_rep.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "4"
+      },
+      {
+        "APP_ID": "10",
+        "MENU_NAME": "Daily User Activity",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_stis_daily_user_activity_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "5"
+      },
+      {
+        "APP_ID": "10",
+        "MENU_NAME": "Issue Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_stis_issue_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "6"
+      },
+      {
+        "APP_ID": "10",
+        "MENU_NAME": "User Parameters",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_user_parameter.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "1"
+      },
+      {
+        "APP_ID": "11",
+        "MENU_NAME": "Access Permissions",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_asmt_access_permission.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "2"
+      },
+      {
+        "APP_ID": "11",
+        "MENU_NAME": "Allocate Location Groups",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_location_groups_allocation.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "1"
+      },
+      {
+        "APP_ID": "11",
+        "MENU_NAME": "Daily Activity",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_asmt_daily_activity_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "3"
+      },
+      {
+        "APP_ID": "11",
+        "MENU_NAME": "Daily User Activity",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_asmt_daily_user_activity_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "4"
+      },
+      {
+        "APP_ID": "11",
+        "MENU_NAME": "Exception Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_asmt_exception_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "6"
+      },
+      {
+        "APP_ID": "11",
+        "MENU_NAME": "Transaction History Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_asmt_transaction_history_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "5"
+      },
+      {
+        "APP_ID": "12",
+        "MENU_NAME": "Allocate Inventory Business Units",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_btbn_inv_bunit_alloc.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "2"
+      },
+      {
+        "APP_ID": "12",
+        "MENU_NAME": "User Parameters",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_user_parameter.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "1"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Activity Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_activity_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "30"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Back Order Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_back_order_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "19"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Bill Only Item Maintenance",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_billonly_item_maintenance.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "43"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Case Review Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_case_review_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "37"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Case Track Report",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "pou_CaseTrack_Report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "45"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Charge Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "reports.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "13"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Create Orders",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_create_orders.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "29"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Critical Items",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_setup_critical_items.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "24"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Daily User Activity Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_daily_user_activity_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "31"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Dash Board",
+        "MENU_SUB_GROUP": "Reports",
+        "MENU_CODE": "mt_atpar_dashboard.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "44"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Department Device Allocation",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_wks_departments.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "8"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Department Location Allocation",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_dept_cart_allocation.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "8"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Department Location Workstation Allocation",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_dept_cart_alloc.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "9"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Department User Allocation",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_user_departments.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "8"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Expiration Tracking Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_expiration_tracking_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "27"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Issues W/O Patient Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_issues_wo_patient_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "22"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Item Usage Analysis Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_item_usage_analysis_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "36"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Item Usage Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_item_usage_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "16"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Lot/Serial Tracking Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_item_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "15"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Low Stock Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_low_stock_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "28"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Maintain Non Cart Items",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_consignment_items_listcarts.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "12"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Manage Billonly & Consigned Items",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_manage_consigned_item_order_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "32"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Manage Cases",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_manage_cases.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "34"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Manage Orders",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_manage_orders.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "25"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Manage Par Location",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_par_AddModify_LocItems.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "8"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Non Catalog Purchases",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_noncatalog_purchases.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "32"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Par Location Compliance Detail Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_lost_charge_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "18"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Par Location Compliance Summary Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_compliance_summary_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "18"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Par Optimization Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_item_optimization_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "17"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Physician Usage Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_physician_usage_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "20"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Post Pick QA",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_post_pick_QA.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "33"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Pref Card Optimization Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_pref_card_optimization_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "41"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Pref Card Performance Details",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_pref_card_performance_details.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "40"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Pref Card Performance Management Summary",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_prefcard_pref_mgmt_summary.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "39"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Pref Card Performance Summary",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_prefcard_perf_summary.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "38"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Preference Lists",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "preference_lists.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "11"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Processes",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_current_processparameter.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "2"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Quantity On Hand Report ",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_qty_on_hand_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "21"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Release Cases",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_release_cases.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "35"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Review Charges/Credits",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_review_charges.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "14"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Setup Case",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_setup_case.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "5"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Setup Departments",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_pou_setup_dept.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "6"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Setup Item Attributes",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_setup_item_attributes.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "10"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Setup Par Locations",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_par_setup_locations.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "7"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Setup Physicians",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_physician.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "3"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Setup Procedures",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_setup_procedure_codes.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "5"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Setup Reasons",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_setup_reason_codes.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "4"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Setup Specialty/Service",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_setup_specialty_codes.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "4"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "Transaction History Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_transaction_history_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "33"
+      },
+      {
+        "APP_ID": "15",
+        "MENU_NAME": "User Parameters",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_user_parameter.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "1"
+      },
+      {
+        "APP_ID": "20",
+        "MENU_NAME": "Activity Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_activity_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "12"
+      },
+      {
+        "APP_ID": "20",
+        "MENU_NAME": "Create Orders",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_create_orders.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "10"
+      },
+      {
+        "APP_ID": "20",
+        "MENU_NAME": "Daily User Activity Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_daily_user_activity_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "13"
+      },
+      {
+        "APP_ID": "20",
+        "MENU_NAME": "Delivery Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "mt_pharmacy_deliver_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "17"
+      },
+      {
+        "APP_ID": "20",
+        "MENU_NAME": "Department Device Allocation",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_wks_departments.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "8"
+      },
+      {
+        "APP_ID": "20",
+        "MENU_NAME": "Department Location Allocation",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_dept_cart_alloc.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "9"
+      },
+      {
+        "APP_ID": "20",
+        "MENU_NAME": "Department User Allocation",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_user_departments.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "7"
+      },
+      {
+        "APP_ID": "20",
+        "MENU_NAME": "Expiration Tracking Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_expiration_tracking_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "15"
+      },
+      {
+        "APP_ID": "20",
+        "MENU_NAME": "Lot/Serial Tracking Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_item_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "14"
+      },
+      {
+        "APP_ID": "20",
+        "MENU_NAME": "Low Stock Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_low_stock_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "16"
+      },
+      {
+        "APP_ID": "20",
+        "MENU_NAME": "Manage Orders",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_manage_orders.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "11"
+      },
+      {
+        "APP_ID": "20",
+        "MENU_NAME": "Manage Par Location",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_par_AddModify_LocItems.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "5"
+      },
+      {
+        "APP_ID": "20",
+        "MENU_NAME": "Processes",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_current_processparameter.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "2"
+      },
+      {
+        "APP_ID": "20",
+        "MENU_NAME": "Productivity Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "mt_pharmacy_deliver_productivity_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "18"
+      },
+      {
+        "APP_ID": "20",
+        "MENU_NAME": "Quantity On Hand Report",
+        "MENU_SUB_GROUP": "Report",
+        "MENU_CODE": "pou_qty_on_hand_report.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "19"
+      },
+      {
+        "APP_ID": "20",
+        "MENU_NAME": "Setup Departments",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_pou_setup_dept.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "3"
+      },
+      {
+        "APP_ID": "20",
+        "MENU_NAME": "Setup Drop off Locations",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_delv_setup_drop_off_locations.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "6"
+      },
+      {
+        "APP_ID": "20",
+        "MENU_NAME": "Setup Par Locations",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_par_setup_locations.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "4"
+      },
+      {
+        "APP_ID": "20",
+        "MENU_NAME": "Setup Reasons",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "pou_setup_reason_codes.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "20"
+      },
+      {
+        "APP_ID": "20",
+        "MENU_NAME": "User Parameters",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_CODE": "mt_user_parameter.aspx",
+        "CHKSTATUS": "N",
+        "CHKHDNSTATUS": "N",
+        "MENU_SEQ_NO": "1"
+      }
+    ]

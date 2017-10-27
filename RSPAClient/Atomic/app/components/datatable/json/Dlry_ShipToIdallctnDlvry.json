@@ -1,0 +1,52 @@
+[
+      {
+        "ORG_GROUP_ID": "NOI",
+        "ORG_ID": "CRM01",
+        "SHIPTO_ID": "US201"
+      },
+      {
+        "ORG_GROUP_ID": "NOI",
+        "ORG_ID": "CRM01",
+        "SHIPTO_ID": "US202"
+      },
+      {
+        "ORG_GROUP_ID": "NOI",
+        "ORG_ID": "FEDRL",
+        "SHIPTO_ID": "EGV01"
+      },
+      {
+        "ORG_GROUP_ID": "NOI",
+        "ORG_ID": "FEDRL",
+        "SHIPTO_ID": "EGV02"
+      },
+      {
+        "ORG_GROUP_ID": "NOI",
+        "ORG_ID": "FEDRL",
+        "SHIPTO_ID": "EGV03"
+      },
+      {
+        "ORG_GROUP_ID": "NOI",
+        "ORG_ID": "FEDRL",
+        "SHIPTO_ID": "EGV04"
+      },
+      {
+        "ORG_GROUP_ID": "NOI",
+        "ORG_ID": "FEDRL",
+        "SHIPTO_ID": "EGV05"
+      },
+      {
+        "ORG_GROUP_ID": "NOI",
+        "ORG_ID": "FEDRL",
+        "SHIPTO_ID": "EGV06"
+      },
+      {
+        "ORG_GROUP_ID": "NOI",
+        "ORG_ID": "FEDRL",
+        "SHIPTO_ID": "FED01"
+      },
+      {
+        "ORG_GROUP_ID": "NOI",
+        "ORG_ID": "SHARE",
+        "SHIPTO_ID": "ALBERTA"
+      }
+   ]

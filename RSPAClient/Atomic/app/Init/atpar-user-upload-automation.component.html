@@ -1,0 +1,103 @@
+﻿<div id="main" class="content-page">
+    <div class="page-header-title">
+        <h4 class="page-title"><a (click)="homeurl()">Administration ></a> User Upload Automation</h4>
+    </div>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="panel panel-default" style="border: 1px solid #eee;">
+                <div class="panel-body">
+                    <form class="form-horizontal form-label-left">
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">User</label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <div class="input-group image-preview ">
+                                    <input placeholder="" type="text" class="form-control bdr-purple image-preview-filename" disabled="disabled">
+                                    <!-- don't give a name === doesn't send on POST/GET -->
+                                    <span class="input-group-btn">
+                                        <!-- image-preview-clear button -->
+                                        <button type="button" class="btn btn-default image-preview-clear" style="display:none;"> <span class="glyphicon glyphicon-remove"></span> Clear </button>
+                                        <!-- image-preview-input -->
+                                        <div class="btn btn-default image-preview-input">
+                                            <span class="glyphicon glyphicon-folder-open"></span> <span class="image-preview-input-title">Browse</span>
+                                            <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview" />
+                                            <!-- rename it -->
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-md-2 text-align-center">
+                                    <atpar-switch></atpar-switch>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12 text-align-center">
+                                    <a href="">User Template</a>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Profile</label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <div class="input-group image-preview ">
+                                    <input placeholder="" type="text" class="form-control bdr-purple image-preview-filename" disabled="disabled">
+                                    <!-- don't give a name === doesn't send on POST/GET -->
+                                    <span class="input-group-btn">
+                                        <!-- image-preview-clear button -->
+                                        <button type="button" class="btn btn-default image-preview-clear" style="display:none;"> <span class="glyphicon glyphicon-remove"></span> Clear </button>
+                                        <!-- image-preview-input -->
+                                        <div class="btn btn-default image-preview-input">
+                                            <span class="glyphicon glyphicon-folder-open"></span> <span class="image-preview-input-title">Browse</span>
+                                            <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview" />
+                                            <!-- rename it -->
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                 <div class="col-md-2 text-align-center">
+                                     <atpar-switch></atpar-switch>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12 text-align-center">
+                                    <a href="">Profile Template</a>
+                                </div>                                        
+                            </div>                           
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Org Group</label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <div class="input-group image-preview ">
+                                    <input placeholder="" type="text" class="form-control bdr-purple image-preview-filename" disabled="disabled">
+                                    <!-- don't give a name === doesn't send on POST/GET -->
+                                    <span class="input-group-btn">
+                                        <!-- image-preview-clear button -->
+                                        <button type="button" class="btn btn-default image-preview-clear" style="display:none;"> <span class="glyphicon glyphicon-remove"></span> Clear </button>
+                                        <!-- image-preview-input -->
+                                        <div class="btn btn-default image-preview-input">
+                                            <span class="glyphicon glyphicon-folder-open"></span> <span class="image-preview-input-title">Browse</span>
+                                            <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview" />
+                                            <!-- rename it -->
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-md-2 text-align-center">
+                                    <atpar-switch></atpar-switch>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12 text-align-center">
+                                    <a href="">Org Group Template</a>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="col-xs-12 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-5">
+                            <!--  <button class="btn btn-purple sbtn">Assign</button> -->
+                            <button class="btn btn-purple sbtn"> Load Now &nbsp;<i class="fa fa-cloud-upload"></i> </button>
+                        </div>
+                    </form>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

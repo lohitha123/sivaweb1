@@ -1,0 +1,14 @@
+ [
+      {
+        "REQUESTOR_ID": "REQ1",
+        "FIRST_NAME": "anil",
+        "LAST_NAME": "kumar",
+        "ORG_GROUP_ID": "MHS-MHS"
+      },
+      {
+        "REQUESTOR_ID": "REQ2",
+        "FIRST_NAME": "tarun",
+        "LAST_NAME": "kumar",
+        "ORG_GROUP_ID": "MHS-MHS"
+      }       
+]

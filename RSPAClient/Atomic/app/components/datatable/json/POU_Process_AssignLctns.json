@@ -1,0 +1,101 @@
+[
+      {
+        "BUSINESS_UNIT": "US015",
+        "LOCATION": "COR-1",
+        "LOCATION_DESCR": "Coronary Care",
+        "TYPE": "P",
+        "CHK_ALLOCATED": "0",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "PERFORM_ACTION": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US015",
+        "LOCATION": "DEL-1",
+        "LOCATION_DESCR": "Labor/Delivery",
+        "TYPE": "P",
+        "CHK_ALLOCATED": "0",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "1",
+        "PERFORM_ACTION": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US015",
+        "LOCATION": "ICU-1",
+        "LOCATION_DESCR": "Intensive Care Unit - East",
+        "TYPE": "P",
+        "CHK_ALLOCATED": "0",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "2",
+        "PERFORM_ACTION": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US015",
+        "LOCATION": "ICU-2",
+        "LOCATION_DESCR": "Intensive Care Unit - West",
+        "TYPE": "P",
+        "CHK_ALLOCATED": "0",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "3",
+        "PERFORM_ACTION": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US015",
+        "LOCATION": "MS-1",
+        "LOCATION_DESCR": "Med/Surg - 1 Floor East",
+        "TYPE": "P",
+        "CHK_ALLOCATED": "0",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "4",
+        "PERFORM_ACTION": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US015",
+        "LOCATION": "MS-2",
+        "LOCATION_DESCR": "Med/Surg - 1 Floor West",
+        "TYPE": "P",
+        "CHK_ALLOCATED": "0",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "5",
+        "PERFORM_ACTION": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US015",
+        "LOCATION": "RES-1",
+        "LOCATION_DESCR": "ICU Stock Cart 2",
+        "TYPE": "P",
+        "CHK_ALLOCATED": "0",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "6",
+        "PERFORM_ACTION": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US015",
+        "LOCATION": "par1",
+        "LOCATION_DESCR": "parLocation1",
+        "TYPE": "A",
+        "CHK_ALLOCATED": "0",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "7",
+        "PERFORM_ACTION": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US015",
+        "LOCATION": "par2",
+        "LOCATION_DESCR": "Parlocation2",
+        "TYPE": "A",
+        "CHK_ALLOCATED": "0",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "8",
+        "PERFORM_ACTION": "0"
+      },
+      {
+        "BUSINESS_UNIT": "US015",
+        "LOCATION": "parloc2",
+        "TYPE": "A",
+        "CHK_ALLOCATED": "0",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "9",
+        "PERFORM_ACTION": "0"
+      }
+]

@@ -1,0 +1,53 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0 0 10px 0;">
+                        <div class="col-xs-12">
+                            <form class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Org Group ID </label>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <label *ngIf="blnShowOrgGroupLabel" class="control-label lbl-left">{{orgGrpId}}</label>
+                                        <atpar-select [options]="lstOrgGroups" [id]="'ddllstOrgGroups'" [required]="true" [(ngModel)]="selectedOrgGroupId" [ngModelOptions]="{standalone: true}" filter="filter" *ngIf="blnShowOrgGroupDD" [isfocus]="blnShowOrgGroupDD" (onChange)="ddlOrgGpChange()"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Zone</label>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <atpar-text [(ngModel)]="selectedZone" [name]="txtZone" [validations]="'mandatory,alpha_numeric_dot_nospace,max=50'" [id]="'Zone'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" *ngIf="blnShowOrgGroupDD" [title]="'Use only letters(a-z),numbers (0-9),the dot(.) and no spaces'"></atpar-text>
+                                        <atpar-text [(ngModel)]="selectedZone" [name]="txtZone" [isFocused]="'true'" [validations]="'mandatory,alpha_numeric_dot_nospace,max=50'" [id]="'Zone'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" *ngIf="!blnShowOrgGroupDD" [title]="'Use only letters(a-z),numbers (0-9),the dot(.) and no spaces'"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-6 col-md-3">Description</label>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <atpar-text [(ngModel)]="selectedDescription" [name]="txtDescription" [validations]="'alpha_numeric_space'" [id]="'Description'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" [title]="'Use only letters(a-z),numbers (0-9) and spaces'"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" [disabled]="loading" (click)="createZones()">Save &nbsp; <i class="fa fa-floppy-o"></i></button>
+                                    <button class="btn btn-purple sbtn" (click)="navigateToStorageLocationsHome()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+
+
+
+
+
+
+
+
+
+
+

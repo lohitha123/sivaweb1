@@ -1,0 +1,455 @@
+ [
+      {
+        "INV_LOC_BUSINESS_UNIT": "AUS01",
+        "BUSINESS_UNIT": "AUS01",
+        "DESCR": "AUSTRALIA OPERATIONS",
+        "CHK_VALUE": "0",
+        "USER_ID": "server  s(S), server  server(SUPPORT)",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "AUS10",
+        "BUSINESS_UNIT": "AUS10",
+        "DESCR": "Australia BU - Class",
+        "CHK_VALUE": "0",
+        "USER_ID": "server  s(S), server  server(SUPPORT)",
+        "ROWINDEX": "1",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "BLG01",
+        "BUSINESS_UNIT": "BLG01",
+        "DESCR": "BELGIUM OPERATIONS",
+        "CHK_VALUE": "0",
+        "USER_ID": "server  s(S), server  server(SUPPORT)",
+        "ROWINDEX": "2",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "CAN01",
+        "BUSINESS_UNIT": "CAN01",
+        "DESCR": "CANADA OPERATIONS",
+        "CHK_VALUE": "0",
+        "USER_ID": "server  s(S), server  server(SUPPORT)",
+        "ROWINDEX": "3",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "CHE01",
+        "BUSINESS_UNIT": "CHE01",
+        "DESCR": "Switzerland 1",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "4",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "DEU01",
+        "BUSINESS_UNIT": "DEU01",
+        "DESCR": "GERMANY OPERATIONS",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "5",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "DEU02",
+        "BUSINESS_UNIT": "DEU02",
+        "DESCR": "GERMANY SAUCE INTERNATIONAL",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "6",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "FRA01",
+        "BUSINESS_UNIT": "FRA01",
+        "DESCR": "FRANCE OPERATIONS",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "7",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "FRA02",
+        "BUSINESS_UNIT": "FRA02",
+        "DESCR": "FRANCE OPERATIONS",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "8",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "FRA03",
+        "BUSINESS_UNIT": "FRA03",
+        "DESCR": "FRANCE OPERATIONS - SOUTH",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "9",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "FRA05",
+        "BUSINESS_UNIT": "FRA05",
+        "DESCR": "FRANCE BIKE/OUTDOOR",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "10",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "GBR01",
+        "BUSINESS_UNIT": "GBR01",
+        "DESCR": "BRITAIN OPERATIONS",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "11",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "GBR02",
+        "BUSINESS_UNIT": "GBR02",
+        "DESCR": "UK BIKE/OUTDOOR INTERNATIONAL",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "12",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "GBR03",
+        "BUSINESS_UNIT": "GBR03",
+        "DESCR": "UK BIKE MFG/OUTDOOR",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "13",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "IN001",
+        "BUSINESS_UNIT": "IN001",
+        "DESCR": "Tool Depot - West",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "14",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "IN002",
+        "BUSINESS_UNIT": "IN002",
+        "DESCR": "Tool Depot - East",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "15",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "IND01",
+        "BUSINESS_UNIT": "IND01",
+        "DESCR": "India BU 1",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "16",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "IND02",
+        "BUSINESS_UNIT": "IND02",
+        "DESCR": "India BU 2",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "17",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "IND03",
+        "BUSINESS_UNIT": "IND03",
+        "DESCR": "India BU 3",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "18",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "INDCW",
+        "BUSINESS_UNIT": "INDCW",
+        "DESCR": "INDCW",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "19",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "INVMI",
+        "BUSINESS_UNIT": "INVMI",
+        "DESCR": "Cycling Accessories DC West",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "20",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "JPN01",
+        "BUSINESS_UNIT": "JPN01",
+        "DESCR": "JAPAN OPERATIONS",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "21",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "LCTES",
+        "BUSINESS_UNIT": "LCTES",
+        "DESCR": "test",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "22",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "LUX01",
+        "BUSINESS_UNIT": "LUX01",
+        "DESCR": "LUX01",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "23",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "NLD01",
+        "BUSINESS_UNIT": "NLD01",
+        "DESCR": "NETHERLANDS OPERATIONS",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "24",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "NLD02",
+        "BUSINESS_UNIT": "NLD02",
+        "DESCR": "FRANCE OPERATIONS - NLD WHS",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "25",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "SPN01",
+        "BUSINESS_UNIT": "SPN01",
+        "DESCR": "SPAIN OPERATIONS",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "26",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "STKRM",
+        "BUSINESS_UNIT": "STKRM",
+        "DESCR": "Hospital Stockrm",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "27",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US001",
+        "BUSINESS_UNIT": "US001",
+        "DESCR": "US001 NEW YORK OPERATIONS",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "28",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US002",
+        "BUSINESS_UNIT": "US002",
+        "DESCR": "US002 MASSACHUSETTS OPERATIONS",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "29",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US003",
+        "BUSINESS_UNIT": "US003",
+        "DESCR": "US003 CALIFORNIA OPERATIONS",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "30",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US004",
+        "BUSINESS_UNIT": "US004",
+        "DESCR": "US004 ILLINOIS OPERATIONS",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "31",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US005",
+        "BUSINESS_UNIT": "US005",
+        "DESCR": "US005 FLORIDA OPERATIONS",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "32",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US006",
+        "BUSINESS_UNIT": "US006",
+        "DESCR": "US006 OREGON OPERATIONS",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "33",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US007",
+        "BUSINESS_UNIT": "US007",
+        "DESCR": "US007 OPERATIONS",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "34",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US008",
+        "BUSINESS_UNIT": "US008",
+        "DESCR": "COLORADO BIKE MFG/OUTDOOR",
+        "CHK_VALUE": "1",
+        "USER_ID": "client  c(C)",
+        "ROWINDEX": "35",
+        "CHK_ALLOCATED": "1"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US009",
+        "BUSINESS_UNIT": "US009",
+        "DESCR": "LA BIKE MFG/OUTDOOR",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "36",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US010",
+        "BUSINESS_UNIT": "US010",
+        "DESCR": "PHOENIX BIKE/OUTDOOR",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "37",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US011",
+        "BUSINESS_UNIT": "US011",
+        "DESCR": "SAN FRANCISCO BIKE/OUTDOOR",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "38",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US012",
+        "BUSINESS_UNIT": "US012",
+        "DESCR": "NEW HAMPSHIRE SAUCE/BOTTLING",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "39",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US013",
+        "BUSINESS_UNIT": "US013",
+        "DESCR": "VERMONT SAUCE AND DELIVERY",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "40",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US014",
+        "BUSINESS_UNIT": "US014",
+        "DESCR": "California Creamery",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "41",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US015",
+        "BUSINESS_UNIT": "US015",
+        "DESCR": "PLEASANTON HEALTH",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "42",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US016",
+        "BUSINESS_UNIT": "US016",
+        "DESCR": "MAINTENANCE INVENTORY",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "43",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US200",
+        "BUSINESS_UNIT": "US200",
+        "DESCR": "CRMCO APPLIANCES",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "44",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US201",
+        "BUSINESS_UNIT": "US201",
+        "DESCR": "CRMCO Appliance WHS 1",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "45",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US202",
+        "BUSINESS_UNIT": "US202",
+        "DESCR": "CRMCO APPLIANCE WHS2",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "46",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US300",
+        "BUSINESS_UNIT": "US300",
+        "DESCR": "CRMCO HARDWARE/SOFTWARE",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "47",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US301",
+        "BUSINESS_UNIT": "US301",
+        "DESCR": "CRMCO H/S WAREHOUSE 1",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "48",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US302",
+        "BUSINESS_UNIT": "US302",
+        "DESCR": "CRM H/S WAREHOUSE 2",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "49",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US400",
+        "BUSINESS_UNIT": "US400",
+        "DESCR": "CRMCO FITNESS TRUCK CENTER",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "50",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US401",
+        "BUSINESS_UNIT": "US401",
+        "DESCR": "FITNESS DISTRIBUTION CENTER 1",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "51",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "US402",
+        "BUSINESS_UNIT": "US402",
+        "DESCR": "FITNESS DISTRIBUTION CENTER 2",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "52",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "VMI01",
+        "BUSINESS_UNIT": "VMI01",
+        "DESCR": "VMI Non-Consigned Customers",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "53",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "VMI02",
+        "BUSINESS_UNIT": "VMI02",
+        "DESCR": "VMI Consigned Customers",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "54",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "INV_LOC_BUSINESS_UNIT": "WHSE",
+        "BUSINESS_UNIT": "WHSE",
+        "DESCR": "Hospital Warehouse",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "55",
+        "CHK_ALLOCATED": "0"
+      }
+    ]

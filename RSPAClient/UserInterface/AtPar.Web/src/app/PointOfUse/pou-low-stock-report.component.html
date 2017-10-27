@@ -1,0 +1,79 @@
+﻿<div id="main" class="content-page">
+
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="panel panel-default" style="border: 1px solid #eee;">
+                <div class="panel-body" style="padding:10px 0;">
+                    <div class="col-xs-12" *ngIf="showMainGrid">
+                        <div class="container">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="3">Low Stock Alerts</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:60px;"><i class="fa fa-{{exCrItemsSymbol}} fa-3x text-{{exCrItemsText}}" aria-hidden="true"></i></td>
+                                        <td style="width:180px;" class="text-center">Critical Items</td>
+                                        <td> <span (click)="onlbCrItemsBelowParclick()" class="grid-link">{{lbCrItemsBelowPar}}</span> out of <span class="grid-link" (click)="onlbCrItemsclick()">{{lbCrItems}}</span> Critical Items are at Low Stock</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fa fa-{{exAllItemsBelowParSymbol}} fa-3x text-{{exAllItemsBelowParText}}" aria-hidden="true"></i></td>
+                                        <td class="text-center">All Items</td>
+                                        <td><span class="grid-link" (click)="onlbAllItemsBelowParclick()"> {{lbAllItemsBelowPar}}</span> out of <span class="grid-link" (click)="onlbAllItemsclick()">{{lbAllItems}}</span> Items are at Low Stock</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fa fa-{{exStockOutItemsSymbol}} fa-3x text-{{exStockOutItemsText}}" aria-hidden="true"></i></td>
+                                        <td class="text-center">Stock Out Items</td>
+                                        <td> <span class="grid-link"  (click)="onlbStockOutItemsclick()"> {{lbStockOutItems}}</span> out of <span class="grid-link" (click)="onlbItemsclick()">  {{lbItems}} </span> Items are at Stock Out</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xs-12 table-responsive" *ngIf="showGrid">
+                        <div class="container">
+                            <span>{{bindLabelData}}</span>
+
+                            <br />
+                            <atpar-datatable [value]="lstDBData" [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="pazeSize" rowGroupMode="subheader" [globalFilter]="gb" [rowsPerPageOptions]="[10,20, 30, 40, 50, 60, 70, 80, 90, 100]" (filteredData)="filterdata($event)" [responsive]="true">
+                                <p-headerColumnGroup type="header">
+                                    <p-row>
+                                        <p-column [style]="{'width':'120px'}" rowspan="2" field="BUSINESS_UNIT" header="Business Unit" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                        <p-column [style]="{'width':'120px'}" rowspan="2" field="CART_ID" header="Par Location" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                        <p-column [style]="{'width':'150px'}" rowspan="2" field="ITEM_ID" header="Item ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column [style]="{'width':'120px'}" rowspan="2" field="DESCRIPTION" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                        <p-column [style]="{'width':'90px'}" rowspan="2" field="UOM" header="UOM" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                        <p-column [style]="{'width':'120px'}" rowspan="2" field="PAR_QUANTITY" header="Par Quantity" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                        <p-column [style]="{'width':'150px'}" rowspan="2" field="ITEM_QUANTITY_ON_HAND" header="Quantity On Hand" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                        <p-column [style]="{'width':'120px'}" rowspan="2" field="COMPARTMENT" header="Compartment" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                    </p-row>
+                                </p-headerColumnGroup>
+
+                                <p-column field="BUSINESS_UNIT"></p-column>
+                                <p-column field="CART_ID"></p-column>
+                                <p-column field="ITEM_ID">
+                                    <template let-stock="rowData" pTemplate type="body">
+                                        <a class="grid-link" id="lnkbtnItemID" (click)="onItemIDClick(stock)" style="cursor:pointer;color:#6c276a;">{{stock.ITEM_ID}}</a>
+                                    </template>
+                                </p-column>
+                                <p-column field="DESCRIPTION"></p-column>
+                                <p-column field="UOM"></p-column>
+                                <p-column field="PAR_QUANTITY"></p-column>
+                                <p-column [style]="{'text-align':'right'}" field="ITEM_QUANTITY_ON_HAND"></p-column>
+                                <p-column field="COMPARTMENT"></p-column>
+                            </atpar-datatable>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+

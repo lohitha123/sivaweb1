@@ -1,0 +1,43 @@
+<!----------dashboard Content-------------->
+<div id="main" class="content-page">
+    <span class="cogs-wrapper">
+        <i class="fa fa-cogs fa-2x"></i>
+    </span>
+    <div class="style-switcher">
+        <h6>Background Colors</h6>
+        <hr>
+        <ul class="color-selector">
+            <li><a class="blue-color" data-path="assets/css/default.css"></a></li>
+            <li><a class="purple-color" data-path="assets/css/BlueViolet.css"></a></li>
+        </ul>
+    </div>
+    <!-- angular templating -->
+    <!-- this is where content will be injected -->
+    <div class="content">
+        <div class="">
+            <div class="page-header-title">
+                <h4 class="page-title">warehouse</h4>
+                <!--<img class="ad-image" src="assets/images/MHS.png">-->
+            </div>
+        </div>
+        <div class="page-content-wrapper ">
+            <div class="container">
+                <div class="row">
+                    <!--------icon-------->
+                    <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6"  *ngFor="let wmenu of wareMenu">
+                        <div class="panel panel-fill panel-dashboard">
+                            <div class="panel-heading xyz">
+                                <img src="assets/images/icons/common/{{wmenu.img}}.png" class="img-responsive">
+                            </div>
+                            <div class="panel-body" style="display: block; padding: 0px 10px;">
+                                <h3 class="panel-title panel-dashboard-title">{{wmenu.name}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-------icon--------->                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!----------end of dashboard content--------------> 

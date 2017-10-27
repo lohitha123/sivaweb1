@@ -1,0 +1,83 @@
+<div class="accountbg"></div>
+<div class="wrapper-page">
+
+    <div class="panel panel-color panel-primary panel-pages">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3 class="text-muted text-center m-t-0"> AtPar Forgot Password</h3>
+                    <form action="login.html" class="form-horizontal forgot-password-form m-t-20" (ngSubmit)="f.form.valid && onSubmit(model,f) && userExist" #f="ngForm">
+                        <!--<div class="alert alert-info alert-dismissible">
+                            <button aria-hidden="true" class="close" data-dismiss="alert" type="button">×</button>
+                            Enter your <b>Email</b> and instructions will be sent to you!
+                        </div>-->
+                      
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <!--<div class="input-wrap">-->
+                                <div *ngIf="trSystemId">
+                                    <span id="Label1" class="SearchLabel">System ID</span>
+                                    <atpar-select [options]="values" [(ngModel)]="selectedValue" [id]="'ddlvalues'" [required]="true" [ngModelOptions]="{standalone:true}"></atpar-select>
+                                </div>
+                                <!--</div>-->
+                                <div class="input-wrap">
+                                    <label for="userID" *ngIf="!f.submitted || model.userID" [ngClass]="activelabel">User Name &nbsp;<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="userID" (focus)="labeluserid()" (click)="labeluserid()" [(ngModel)]="model.userID" #userID="ngModel" required autocomplete="off" autocorrect="off" autocapitalize="off" (blur)="onBlurUserid($event)" />
+                                </div>
+                                <div class="input-wrap" id="hint-question">
+                                    <label *ngIf="showHint">Hint Question : <span>{{hintQuestion}}</span> </label>
+                                </div>
+                                <div class="input-wrap">
+                                    <label for="hanswer" *ngIf="!f.submitted || model.hanswer" [ngClass]="activelabelH">Hint Answer &nbsp;<span class="text-danger">*</span></label>
+                                    <input type="password" class="form-control" name="hanswer" id="hanswer" (focus)="labelHint()" (click)="labelHint()" [(ngModel)]="model.hanswer" #HAnswer="ngModel" required autocomplete="off" autocorrect="off" autocapitalize="off" [disabled]="!userExist" />
+                               
+                                 </div>
+                                <div class="input-wrap">
+                                    <label for="npassword" *ngIf="!f.submitted || model.npassword" [ngClass]="activelabelN">New Password &nbsp;<span class="text-danger">*</span></label>
+                                    <input (click)="labelNewpass()" (focus)="labelNewpass()" type="password" class="form-control" name="npassword" [(ngModel)]="model.npassword" #npassword="ngModel" [disabled]="!userExist"  required />
+                                </div>
+                                <div class="input-wrap">
+                                    <label for="cpassword" *ngIf="!f.submitted || model.cpassword" [ngClass]="activelabelC">Confirm New Password &nbsp;<span class="text-danger">*</span></label>
+                                    <input (click)="labelCpass()" (focus)="labelCpass()" type="password" class="form-control" name="cpassword" [(ngModel)]="model.cpassword" #cpassword="ngModel" [disabled]="!userExist"  required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group text-center m-t-30 m-b-0">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-md-6">
+                                    <button class="btn btn-primary btn-block btn-lg waves-light" type="submit" [disabled]="!userExist">Submit</button>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <a [routerLink]="['']" class="btn btn-primary btn-block btn-lg  waves-light">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <atpar-growl [value] ="msgs" sticky="sticky"></atpar-growl>
+</div>
+
+<div class="hide">
+    <!--waves-effect-->
+</div>
+
+
+<style>
+    .div-Error {
+        background-color: rgba(208, 211, 212, 0.2);
+        margin-top: 1%;
+        width: 95%;
+        margin-left: 10px;
+        border-radius: 4px;
+        height: 38px;
+        padding-top: 10px;
+    }
+    @media (max-width: 620px) {
+        .form-group input {
+            font-size: 15px !important;
+        }
+    }
+</style>

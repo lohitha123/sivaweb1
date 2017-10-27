@@ -1,0 +1,247 @@
+﻿<style>
+    .no-shadow {
+        box-shadow: none !important;
+    }
+
+    .bdr-1 {
+        border: 1px solid #eee !important;
+    }
+
+    .panel-green {
+        box-shadow: 0 0 6px 0 hsla(0,0%,66%,.5) !important;
+        border: 1px solid #e1e1e1 !important;
+    }
+
+        .panel-green > .panel-body {
+            border-left: 10px solid #7cb82f;
+        }
+
+    .panel-blue {
+        /*border-color: #79ebfd !important;*/
+        box-shadow: 0 0 6px 0 hsla(0,0%,66%,.5) !important;
+        border: 1px solid #e1e1e1 !important;
+    }
+
+        .panel-blue > .panel-body {
+            border-left: 10px solid #00aeb3;
+        }
+
+    .panel-pink {
+        /*border-color: #de60f5 !important;*/
+        box-shadow: 0 0 6px 0 hsla(0,0%,66%,.5) !important;
+        border: 1px solid #e1e1e1 !important;
+    }
+
+        .panel-pink > .panel-body {
+            border-left: 10px solid #de60f5;
+        }
+
+    .scrl-pnl {
+        height: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+        max-height: 411px;
+    }
+
+    .ui-datatable tbody tr td .form-control, table tbody tr td .form-control {
+        height: auto !important;
+        margin-top: -10px;
+    }
+
+    .table-inner-style, tbody tr td {
+        padding: 12px;
+    }
+
+    .border-panel {
+        border-bottom: 1px solid #e1e1e1;
+    }
+
+    .ten-padding {
+        padding: 10px;
+    }
+
+    .thirty-padding {
+        padding: 25px 0;
+    }
+
+    .margin-border {
+        border-bottom: 1px solid #e1e1e1;
+        padding: 4px;
+    }
+
+    .new-ht td .input-group .input-group-addon {
+        line-height: 0 !important;
+    }
+    .lft-bdr{
+        border-left:1px solid #e1e1e1;
+    }
+      .disabled {
+        cursor: none;
+    }
+
+  @media screen and (max-width:767px){
+        .lft-bdr{
+            border-left:0!important;
+        }
+        .border-panel{
+            margin-left:1px;
+        }
+        .bdr-1 table tr td{
+            text-align:center!important;
+        }
+    }
+   @media screen and (min-width:768px) and (max-width:991px){
+        .lft-bdr{
+            border-left:0!important;
+        }
+        .border-panel{
+            margin-left:15px;
+        }
+       
+    }
+</style>
+<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border" *ngIf="true">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px;">
+                        <form class="form-horizontal form-label-left">
+                            <div class="col-xs-12 col-sm-12 col-md-5 form-group">
+                                <label for="" class="control-label col-xs-12 col-md-6 col-sm-6">Item ID/ Assets ID</label>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-ac-server [(ngModel)]="itemIdSearch" [mandatory]="'true'" [id]="'itemID'" [ngModelOptions]="{standalone: true}" [suggestions]="lstFilterItemIDs" (completeMethod)="fillItemIDsAuto($event)"></atpar-ac-server>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-5 form-group" *ngIf="hasSerialId">
+                                <label for="" class="control-label col-xs-12 col-md-6 col-sm-6">Serial #</label>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-ac-server [(ngModel)]="serialIdSearch" [mandatory]="'true'" [id]="'serialID'" [ngModelOptions]="{standalone: true}" [suggestions]="lstFilterSerialIDs" (completeMethod)="fillSerialIDsAuto($event)"></atpar-ac-server>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-2 form-group">
+                                <button class="btn btn-purple sbtn" (click)="go()" *ngIf="isGo">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                            </div>
+                        </form>
+                        <div class="col-xs-12" *ngIf="pop">
+                            <ul class="list-inline">
+                                <li><i class="fa fa-square" style="color:#7cb82f;"></i> &nbsp; Box Item</li>
+                                <li><i class="fa fa-square" style="color:#00aeb3;"></i>  &nbsp; Equipment Item</li>
+                                <li><i class="fa fa-square" style="color:#de60f5;"></i>  &nbsp; Furniture Item</li>
+                            </ul>
+                            <div class="panel panel-default no-shadow bdr-1">
+                                <div class="panel-body">
+                                    <div class="col-xs-12 col-md-5 col-sm-12">
+                                        <table class="table table-bordered table-inner-style qty-table">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Item ID</td>
+                                                    <td>{{itemDetails.ITEM_ID}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Asset ID</td>
+                                                    <td>{{itemDetails.ASSET_ID}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Description</td>
+                                                    <td>{{itemDetails.ITEM_DESCR}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Storage Location</td>
+                                                    <td>{{itemDetails.DELIVER_LOCATION}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Manufacturer</td>
+                                                    <td>{{itemDetails.MANUFACTURER}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Vendor</td>
+                                                    <td>{{itemDetails.VENDOR}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>System Qty</td>
+                                                    <td>{{itemDetails.itemQty}}</td>
+                                                </tr>
+                                                <tr class="new-ht">
+                                                    <td>Checkin Qty</td>
+                                                    <td>
+                                                        <div class="input-group" style="width:150px;">
+                                                            <span class="input-group-addon" [attr.disabled]="isDisabled" [style.cursor]="cursor" (click)="decreaseQuantity()"> <a class="text-default" (click)="decreaseQuantity()" [attr.disabled]="isDisabled" [style.cursor]="cursor"> - </a></span>
+                                                            <atpar-text [id]="'txtCheckinQty'" [name]="txtDf" [style]="{'height':'34px'}" [(ngModel)]="itemDetails.checkinQty" [ngModelOptions]="{standalone: true}" [validations]="'numeric,max=5'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'" [disabled]="isDisabled" [isFocused]="'true'"></atpar-text>
+                                                            <span class="input-group-addon" [attr.disabled]="isDisabled" [style.cursor]="cursor" (click)="increaseQuantity()"> <a class="text-default" (click)="increaseQuantity()" [attr.disabled]="isDisabled" [style.cursor]="cursor"> + </a> </span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr class="no-border">
+                                                    <td colspan="2">
+                                                        <button class="btn btn-purple sbtn pull-right" (click)="Add()">Add &nbsp; <i class="fa fa-plus"></i></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-xs-12 col-md-7 col-sm-12" *ngIf="isADD">
+                                        <div class="panel panel-default no-shadow bdr-1 scrl-pnl">
+                                            <div class="panel-body" style="padding:8px;">
+                                                <div class="col-xs-12" style="padding:0px" *ngFor="let itemDetails of checkOutItemsList">
+                                                    <div class={{this.itemDetails.color}}>
+                                                        <div class="panel-body no-padding">
+                                                            <div class="">
+                                                                <div class="col-md-3 col-xs-12 col-sm-3">
+                                                                    <div class="text-center thirty-padding" *ngIf="!itemDetails.isSerial">
+                                                                        <p>Item ID-Serial# : {{itemDetails.ITEM_ID}}</p>
+                                                                    </div>
+                                                                    <div class="text-center thirty-padding" *ngIf="itemDetails.isSerial">
+                                                                        <p>Item ID-Serial# : {{itemDetails.ITEM_ID}}-{{itemDetails.serialID}}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-12 col-md-5 col-sm-5 border-panel">
+                                                                    <div class="margin-border">
+                                                                        <p>Item Description : {{itemDetails.ITEM_DESCR}}</p>
+                                                                    </div>
+                                                                    <div class="">
+                                                                        <div class="col-xs-12 col-md-6 ten-padding">
+                                                                            <p>Assets Id : {{itemDetails.ASSET_ID}}</p>
+                                                                        </div>
+                                                                        <div class="col-xs-12 col-md-6 ten-padding lft-bdr">
+                                                                            <p>Storage Location : {{itemDetails.DELIVER_LOCATION}}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-12 col-md-3 col-sm-3">
+                                                                    <div class="text-center thirty-padding">
+                                                                        <p>Checkin qty : {{itemDetails.checkinQty}}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-12 col-md-1 col-sm-1" style="margin-top: 25px;margin-bottom:5px;">
+                                                                    <i class="fa fa-close fa-bg bg-red danger" (click)="deleteRow(itemDetails,$event)" style="cursor:pointer"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <button class="btn btn-purple sbtn pull-right" (click)="checkInOutItems()">Check In &nbsp; <i class="fa fa-check"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-growl [value]="msgs" sticky="sticky"></atpar-growl>
+<div class="content-section implementation">
+    <atpar-confirmdialog header="Confirmation" icon="fa fa-question-circle" width="425"></atpar-confirmdialog>
+</div>
+<style>
+  
+</style>

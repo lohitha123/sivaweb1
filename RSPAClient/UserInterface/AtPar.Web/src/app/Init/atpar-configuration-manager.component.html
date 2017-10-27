@@ -1,0 +1,264 @@
+<style>
+    textarea.log-form {
+        font-family: monospace !important;
+        color: #333 !important;
+    }
+  
+</style>
+
+<div id="main" class="content-page">
+    <div class="content">
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px 10px;">
+                        <div class="col-md-12 tab-btn">
+                            <h3 class="title-hero"> </h3>
+                            <div class="example-box-wrapper">
+                                <atpar-tabs [selectedTab]="activeTab" (selectedTabIndexChanged)="enableSelectedTab($event)">
+                                    <atpar-tab tabTitle="ERP System"  [active]="erpSYSTab"  (SelectedTab)="SelectedTab(tab)" (bindModelDataChange)="selectedTab($event)">
+                                        <atpar-div [configs]="TabName_Details" (bindModelDataChange)="bindModelDataChange($event)">
+                                        </atpar-div>
+                                    </atpar-tab>
+                                    <atpar-tab tabTitle="ERP Database" [active]="erpDBTab" (SelectedTab)="SelectedTab(tab)">
+                                        <atpar-div [configs]="ERP_Database" (bindModelDataChange)="bindModelDataChange($event)">
+                                        </atpar-div>
+                                        <!--<div class="col-md-12  form-group">
+                                            <div class="input-group col-md-12">
+                                                <span class="input-group-addon col-md-3 col-sm-3 col-xs-12" id="btnTestErpDatabase" (click)="btnTestErpDatabase_Click()">
+                                                    Test Connection
+                                                </span>
+                                                <textarea id="txtTestErpDatabase" class="form-control col-md-6 col-sm-6 col-xs-12"  [(ngModel)]="txtTestErpDatabase" name="erpText" rows="3" style="resize:none"></textarea>
+                                            </div>
+                                        </div>-->
+                                        <div class="form-group form-label-left col-md-8 col-md-offset-1 col-sm-12 col-xs-12">
+                                            <div class="clearfix"></div>
+                                            <button for="industry" class="btn btn-purple control-label btn-textarea col-md-3 col-sm-3 col-xs-12 label-rt no-margin" id="btnTestErpDatabase" (click)="btnTestErpDatabase_Click()">Test Connection</button>
+                                            <br class="hidden-sm hidden-md hidden-lg" />
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <div class="textarea-pdng">
+                                                    <textarea class="form-control" id="txtTestErpDatabase" [(ngModel)]="txtTestErpDatabase" name="erpText" rows="3" style="resize:none; z-index: 3; position: relative; font-size: 12px; transition: none; background: transparent !important;"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </atpar-tab>
+                                    <atpar-tab tabTitle="AtPar Database"  [active]="atpardbTab" (SelectedTab)="SelectedTab(tab)">
+                                        <atpar-div [configs]="AtPar_Database" (bindModelDataChange)="bindModelDataChange($event)">
+                                        </atpar-div>
+                                        <!--<div class="col-md-12  form-group">
+                                           <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 label-purple">Connection</label>
+
+                                            <div class="input-group col-md-12">
+                                                <span class="input-group-addon" id="btnTestAtparDatabase" value="Test Connection" (click)="btnTestAtparDatabase_Click()">
+                                                    Test Connection
+                                                </span>
+                                                <textarea id="txtAtparDatabase" class="form-control" [(ngModel)]="txtAtparDatabase" name="txtAtparDatabase" style="resize:none"></textarea>
+                                            </div>
+                                        </div>-->
+
+                                        <div class="form-group form-label-left col-md-8 col-md-offset-1 col-sm-12 col-xs-12">
+                                            <div class="clearfix"></div>
+                                            <button for="industry" class="btn btn-purple control-label btn-textarea col-md-3 col-sm-3 col-xs-12 label-rt no-margin" id="btnTestAtparDatabase" (click)="btnTestAtparDatabase_Click()">Test Connection</button>
+                                            <br class="hidden-sm hidden-md hidden-lg" />
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <div class="textarea-pdng">
+                                                    <textarea class="form-control" id="txtAtparDatabase" [(ngModel)]="txtAtparDatabase" name="txtAtparDatabase" rows="3" style="resize:none; z-index: 3; position: relative; font-size: 12px; transition: none; background: transparent !important;"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br /><br /><br />
+                                        <!--<div class="col-md-12  form-group">
+                                            <div class="input-group col-md-12">
+                                                <span class="input-group-addon" id="btnTestAtparDatabase" value="Test Archive Connection" (click)="btnTestArchiveDatabase_Click()">
+                                                    Archive Test Connection
+                                                </span>
+                                                <textarea id="txtArchAtparDatabase" class="form-control" [(ngModel)]="txtArchAtparDatabase" name="txtArchAtparDatabase" style="resize:none"></textarea>
+                                            </div>
+                                        </div>-->
+
+                                        <div class="form-group form-label-left col-md-8 col-md-offset-1 col-sm-12 col-xs-12">
+                                            <div class="clearfix"></div>
+                                            <button for="industry" class="btn btn-purple control-label btn-textarea col-md-3 col-sm-3 col-xs-12 label-rt no-margin" id="btnTestAtparDatabase" (click)="btnTestArchiveDatabase_Click()">Archieve Test Connection</button>
+                                            <br class="hidden-sm hidden-md hidden-lg" />
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <div class="textarea-pdng">
+                                                    <textarea class="form-control" id="txtArchAtparDatabase" [(ngModel)]="txtArchAtparDatabase" name="txtArchAtparDatabase" rows="3" style="resize:none; z-index: 3; position: relative; font-size: 12px; transition: none; background: transparent !important;"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </atpar-tab>
+                                    <atpar-tab tabTitle="AtPar System" [active]="atparSYSTab" (SelectedTab)="SelectedTab(tab)">
+                                        <atpar-div [configs]="recallTabData" [uploadFlag]="blnFileUpload" (fileUploadEvent)="fileChange($event)" (bindModelDataChange)="bindModelDataChange($event)">
+                                        </atpar-div>
+                                        <br />
+                                        <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offste-5">
+                                            <button id="btnRecallSubmit" class="btn btn-purple sbtn" (click)="btnRecallSubmit_Click()">Submit &nbsp; <i class="fa fa-check"></i></button>
+                                        </div>
+                                        <div style="clear:both"></div>
+                                        <hr style="border-color:#6c276a !important;" />
+                                        <label for=""><b class="text-primary">SSL Configuration</b></label>
+                                        <atpar-div [configs]="sslTabData" (bindModelDataChange)="bindModelDataChange($event)">
+                                        </atpar-div>
+                                        <br />
+                                        <div class="col-xs-12 col-sm-5 col-sm-offset-5 col-md-4 col-md-offste-5">
+                                            <button id="btnSSLSubmit" class="btn btn-purple sbtn" (click)="btnSSLSubmit_Click()">Submit &nbsp; <i class="fa fa-check"></i></button>
+                                        </div>
+                                    </atpar-tab>
+                                    <atpar-tab tabTitle="Email" [active]="emailTab"  (SelectedTab)="SelectedTab(tab)">
+                                        <atpar-div [configs]="Email" (bindModelDataChange)="bindModelDataChange($event)">
+                                        </atpar-div>
+                                    </atpar-tab>
+                                    <atpar-tab tabTitle="LDAP"  [active]="ldapTab" (SelectedTab)="SelectedTab(tab)">
+                                        <atpar-div [configs]="LDAP" (bindModelDataChange)="bindModelDataChange($event)">
+                                        </atpar-div>
+
+                                        <!--<div class="col-md-12 form-group">
+                                            <div class="input-group col-md-12">
+                                                <span class="input-group-addon" id="btnLDAPcon" (click)="btnLDAPcon_Click()" value="Test Connection">
+                                                    Test Connection
+                                                </span>
+                                                <textarea id="txtLDAPConnection" class="form-control" [(ngModel)]="txtLDAPConnection" name="erpText" rows="7" style="resize:none"></textarea>
+                                            </div>
+                                        </div>-->
+
+                                        <div class="form-group form-label-left col-md-8 col-md-offset-1 col-sm-12 col-xs-12">
+                                            <div class="clearfix"></div>
+                                            <button for="industry" class="btn btn-purple control-label btn-textarea col-md-3 col-sm-3 col-xs-12 label-rt no-margin" id="btnLDAPcon" (click)="btnLDAPcon_Click()">Test Connection</button>
+                                            <br class="hidden-sm hidden-md hidden-lg" />
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <div class="textarea-pdng">
+                                                    <textarea class="form-control" id="txtLDAPConnection" [(ngModel)]="txtLDAPConnection" name="erpText" rows="3" style="resize:none; z-index: 3; position: relative; font-size: 12px; transition: none; background: transparent !important;"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </atpar-tab>
+                                    <atpar-tab tabTitle="SSO" [active]="ssoTab" (SelectedTab)="SelectedTab(tab)">
+                                        <atpar-div [configs]="SSO" (bindModelDataChange)="bindModelDataChange($event)">
+                                        </atpar-div>
+                                    </atpar-tab>
+                                    <atpar-tab tabTitle="Log" (SelectedTab)="SelectedTab(tab)">
+                                        <div class="row">
+                                            <strong class="text-primary">Filter by User/Product </strong>
+                                            <textarea id="txtLogConfig" class="form-control log-form" name="txtLogConfig" [(ngModel)]="logxml" cols="95" rows="25">{{txtLogConfig}}</textarea>
+                                        </div>
+                                        <br />
+                                        <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                            <!--<input type="button" id="btnFilterSave"class="btn btn-primary btn-block btn-lg waves-effect waves-light" value="Save" (click)="onSubmit()" style="float:right">-->
+                                            <button id="btnFilterSave" class="btn btn-purple sbtn" (click)="btnFilterSave_Click()">Save &nbsp; <i class="fa fa-floppy-o"></i></button>
+                                            <button id="btnFilterReset" class="btn btn-purple sbtn" (click)="btnFilterReset_Click()"><i class="fa fa-reply"></i> &nbsp;Reset To Defaults</button>
+                                        </div>
+                                    </atpar-tab>
+                                    <atpar-tab tabTitle="HL7" (SelectedTab)="SelectedTab(tab)">
+                                        <atpar-div [configs]="HL7" (bindModelDataChange)="bindModelDataChange($event)">
+                                        </atpar-div>
+                                        <div class="col-md-12 form-group" *ngIf="ldabenable">
+                                            <!--<div class="input-group col-md-12">
+                                                <span class="input-group-addon" id="btnHL7con" (click)="btnHSMcon_Click()" value="Test Connection">
+                                                    Test Connection
+                                                </span>
+                                                <!--<button id="btnHL7con" class="btn btn-purple btn-block btn-lg waves-effect waves-light" (click)="btnHSMcon_Click()">Test Connection</button>-->
+                                            <!--<input type="button" class="btn btn-default btn-md col-md-5" id="btnHL7con" value="Test Connection" (click)="onSubmit()">
+                                                <textarea id="txtHSMConnection" class="form-control" name="Text1" [(ngModel)]="txtHSMConnection" cols="95" rows="3"></textarea>
+                                            </div>-->
+
+
+                                            <div class="form-group form-label-left col-md-8 col-md-offset-1 col-sm-12 col-xs-12">
+                                                <div class="clearfix"></div>
+                                                <button for="industry" class="btn btn-purple control-label btn-textarea col-md-3 col-sm-3 col-xs-12 label-rt no-margin" id="btnHL7con" (click)="btnHSMcon_Click()">Test Connection</button>
+                                                <br class="hidden-sm hidden-md hidden-lg" />
+                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                    <div class="textarea-pdng">
+                                                        <textarea class="form-control" id="txtHSMConnection" [(ngModel)]="txtHSMConnection" name="Text1" rows="3" style="resize:none; z-index: 3; position: relative; font-size: 12px; transition: none; background: transparent !important;"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </atpar-tab>
+                                    <atpar-tab tabTitle="Reports System" (SelectedTab)="SelectedTab(tab)">
+                                        <atpar-div [configs]="reportsConfigTabData" (bindModelDataChange)="bindModelDataChange($event)">
+                                        </atpar-div>
+                                        <div class="col-md-12  form-group">
+                                            <!--<label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 label-purple">Connection</label>-->
+                                            <!--<div class="input-group col-md-12">
+                                                    <span class="input-group-addon" id="btnTestAtparReportsDatabase" value="Test Connection" (click)="btnTestAtparReportsConfigDB_Click()">
+                                                        Test Connection
+                                                    </span>
+                                                    <textarea id="txtAtparReportsConfigDatabase" class="form-control" [(ngModel)]="txtAtparReportsConfigDatabase" name="txtAtparReportsConfigDatabase" style="resize:none"></textarea>
+                                                </div>-->
+
+                                            <div class="form-group form-label-left col-md-8 col-md-offset-1 col-sm-12 col-xs-12">
+                                                <div class="clearfix"></div>
+                                                <button for="industry" class="btn btn-purple control-label btn-textarea col-md-3 col-sm-3 col-xs-12 label-rt no-margin" id="btnTestAtparDatabase" (click)="btnTestAtparReportsConfigDB_Click()">Test Reports Config Connection</button>
+                                                <br class="hidden-sm hidden-md hidden-lg" />
+                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                    <div class="textarea-pdng">
+                                                        <textarea class="form-control" id="txtAtparReportsConfigDatabase" [(ngModel)]="txtAtparReportsConfigDatabase" name="txtAtparReportsConfigDatabase" rows="3" style="resize:none; z-index: 3; position: relative; font-size: 12px; transition: none; background: transparent !important;"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-12  form-group">
+                                            <!--<div class="input-group col-md-12">
+                                                <span class="input-group-addon" id="btnTestAtparDatabase" value="Test Starter API Connection" (click)="btnTestStarterApiDatabase_Click()">
+                                                    Starter API Test Connection
+                                                </span>
+                                                <textarea id="txtStarterAPIDatabase" class="form-control" [(ngModel)]="txtStarterAPIDatabase" name="txtStarterAPIDatabase" style="resize:none"></textarea>
+                                            </div>-->
+                                            <div class="form-group form-label-left col-md-8 col-md-offset-1 col-sm-12 col-xs-12">
+                                                <div class="clearfix"></div>
+                                                <button for="industry" class="btn btn-purple control-label btn-textarea col-md-3 col-sm-3 col-xs-12 label-rt no-margin" id="btnTestAtparDatabase" (click)="btnTestStarterApiDatabase_Click()">Test Reports API Connection</button>
+                                                <br class="hidden-sm hidden-md hidden-lg" />
+                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                    <div class="textarea-pdng">
+                                                        <textarea class="form-control" id="txtStarterAPIDatabase" [(ngModel)]="txtStarterAPIDatabase" name="txtStarterAPIDatabase" rows="3" style="resize:none; z-index: 3; position: relative; font-size: 12px; transition: none; background: transparent !important;"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </atpar-tab>
+                                    <atpar-tab tabTitle="Reports DataBase" (SelectedTab)="SelectedTab(tab)">
+                                        <atpar-div [configs]="reportsDBTabData" (bindModelDataChange)="bindModelDataChange($event)">
+                                        </atpar-div>
+                                        <div class="col-md-12  form-group">
+                                            <!--<label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 label-purple">Connection</label>-->
+                                            <!--<div class="input-group col-md-12">
+                                                <span class="input-group-addon" id="btnTestAtparReportsDatabase" value="Test Connection" (click)="btnTestAtparReportsDB_Click()">
+                                                    Test Connection
+                                                </span>
+                                                <textarea id="txtAtparReportsDatabase" class="form-control" [(ngModel)]="txtAtparReportsDatabase" name="txtAtparReportsDatabase" style="resize:none"></textarea>
+                                            </div>-->
+
+
+                                            <div class="form-group form-label-left col-md-8 col-md-offset-1 col-sm-12 col-xs-12">
+                                                <div class="clearfix"></div>
+                                                <button for="industry" class="btn btn-purple control-label btn-textarea col-md-3 col-sm-3 col-xs-12 label-rt no-margin" id="btnTestAtparReportsDatabase" (click)="btnTestAtparReportsDB_Click()">Test Reports Connection</button>
+                                                <br class="hidden-sm hidden-md hidden-lg" />
+                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                    <div class="textarea-pdng">
+                                                        <textarea class="form-control" id="txtAtparReportsDatabase" [(ngModel)]="txtAtparReportsDatabase" name="txtAtparReportsDatabase" rows="3" style="resize:none; z-index: 3; position: relative; font-size: 12px; transition: none; background: transparent !important;"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </atpar-tab>
+                                </atpar-tabs>
+                            </div>
+                            <!--<br />-->
+                            <div *ngIf="isVisible" class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                <button *ngIf="activeTab!='AtPar System' && activeTab!='Log'" id="btnErpSystem" class="btn btn-purple sbtn" (click)="onSubmit()">Submit &nbsp; <i class="fa fa-check"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <atpar-growl [value]="growlmsgs" sticky="sticky"></atpar-growl>
+    <!--old code-->
+</div>

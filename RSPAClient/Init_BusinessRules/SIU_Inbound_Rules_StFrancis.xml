@@ -1,0 +1,24 @@
+<ROOT>
+<SIU_CASE_DATA>
+<field name="PATIENT_MRC" segment="PID" field_no="3" composite_field_no="1" mandatory="Y"/>
+<field name="CASE_ID" segment="ORC" field_no="2" composite_field_no="" mandatory="Y"/>
+<field name="CASE_DESC" segment="ORC" field_no="2" composite_field_no="" mandatory="N"/>
+<field name="PICK_LIST_ID" segment="ORC" field_no="3" composite_field_no="" mandatory="N"/>
+<field name="ROOM_ID" segment="ORC" field_no="13" composite_field_no="2" mandatory="N"/>
+<field name="PROCEDURE_ID" segment="PR1" field_no="3" composite_field_no="" mandatory="Y"/>
+<field name="PROCEDURE_DESC" segment="PR1" field_no="4" composite_field_no="" mandatory="N"/>
+<field name="PERFORM_DATETIME" segment="ORC" field_no="9" composite_field_no="" mandatory="Y"/>
+<field name="PHYSICIAN_ID" segment="ORC" field_no="12" composite_field_no="1" mandatory="Y"/>
+<field name="PHYSICIAN_FN" segment="ORC" field_no="12" composite_field_no="3" mandatory="N"/>
+<field name="PHYSICIAN_LN" segment="ORC" field_no="12" composite_field_no="2" mandatory="N"/>
+<field name="PHYSICIAN_MN" segment="ORC" field_no="12" composite_field_no="4" mandatory="N"/>
+<field name="ITEM_ID" segment="RQD" field_no="3" composite_field_no="1" mandatory="Y"/>
+<field name="ITEM_DESC" segment="RQD" field_no="3" composite_field_no="2" mandatory="N"/>
+<field name="PICK_QUANTITY" segment="RQD" field_no="5" composite_field_no="1" mandatory="Y"/>
+<field name="HOLD_QUANTITY" segment="RQD" field_no="5" composite_field_no="2" mandatory="N"/>
+<field name="PREF_ID" segment="RQD" field_no="11" composite_field_no="" mandatory="Y" source="ATPAR"/>
+<field name="ITEM_INVENTORY" segment="RQD" field_no="7" composite_field_no="" mandatory="N"/>
+<field name="PROC_ID" segment="PR1" field_no="3" composite_field_no="" mandatory="Y"/>
+<field name="COST_CENTER_CODE" segment="ORC" field_no="13" composite_field_no="2" mandatory="N"/>
+</SIU_CASE_DATA>
+</ROOT>

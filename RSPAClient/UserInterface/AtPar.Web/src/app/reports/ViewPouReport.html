@@ -1,0 +1,33 @@
+﻿
+<div id="main" class="content-page">
+    <div class="content">
+
+        <div class="">
+            <div class="row">
+                <ul class="breadcrumb" >
+                    <li class="completed1"><a (click)="homeurl()">Reports </a></li>
+                    <li class="completed"><a>{{chVal}}</a></li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="page-content-wrapper">
+            <div class="container X_panel no_border">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:10px;">
+                        <div class="col-md-12">
+                            <form class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <iframe style="width: 100%; height: 100%; border: 1px solid #808080;" [src]='page'>
+                                    </iframe>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

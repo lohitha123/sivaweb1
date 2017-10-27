@@ -1,0 +1,67 @@
+﻿<div id="main" class="content-page">
+    <div class="content">
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px 0px 10px 0px;">
+                        <div class="col-md-12">
+                            <div class="form-horizontal form-label-left">
+                                <div class="form-group col-xs-12 col-md-4 col-sm-12">
+                                    <label for="test_step_element_id" class="control-label col-md-4 col-sm-6 col-xs-12">Org ID</label>
+                                    <div class="col-md-8 col-sm-6 col-xs-12">
+                                        <atpar-text [(ngModel)]="orgId" [id]="'txtorgId'" [name]="txtorgId">
+                                        </atpar-text>
+                                    </div>
+                                </div>
+                                <div class="form-group col-xs-12 col-md-4 col-sm-12">
+                                    <label for="test_step_element_id" class="control-label col-md-4 col-sm-6 col-xs-12">Org Name </label>
+                                    <div class="col-md-8 col-sm-6 col-xs-12">
+                                        <atpar-text [(ngModel)]="orgName" [id]="'txtorgName'" [name]="orgName">
+                                        </atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                    <button class="btn btn-purple sbtn" id="btnBindGrid" (click)="bindGrid()" name="btnbindGrid">Go &nbsp;<i class="fa fa-arrow-right"></i></button>
+                                    <button class="btn btn-purple sbtn" id="btnCreateNewOrg" (click)="createNewOrg()" name="btncreateNewOrg">Add &nbsp;<i class="fa fa-plus"></i> </button>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="col-md-12">
+                            <div *ngIf="isVisible" class="container">
+                                <atpar-datatable [value]="orgsDatas" [style]="{'width':'100%'}" #dt [paginator]="true" [pageLinks]="3" [rows]="pageSize" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [responsive]="true">
+                                    <p-column [style]="{'width':'4%','text-align':'center'}" header="Action">
+                                        <template let-rowData="rowData" pTemplate="body">
+                                            <i class="fa fa-pencil fa-bg bg-blue" title="Edit" (click)="editOrgId(rowData)" style="cursor:pointer;" name="btneditOrgId"></i>
+                                        </template>
+                                    </p-column>
+                                   <p-column header="Org ID" field="ORG_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'20%'}"> </p-column>
+                                    <p-column header="Org Name" field="ORG_NAME" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="ORG_TYPE_DISPLAY" header="Org Type"  [filter]="true" [style]="{'width': '10%','overflow':'visible','text-align':'center'}" filterMatchMode="equals">
+                                        <template pTemplate="filter" let-col>
+                                            <atpar-select-grid [options]="orgTypes" [(ngModel)]="selectedOgType" [style]="{'width':'100%'}" [id]="'ddlorgTypes'" [required]="false" 
+                                                          (onChange)="orgTypeDataFilter($event)"
+                                                           ></atpar-select-grid>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="STATUS" header="Status" [filter]="true" [style]="{'width': '8%','overflow':'visible','text-align':'center'}" filterMatchMode="equals">
+                                        <template pTemplate="filter" let-col>
+                                            <atpar-select-grid [options]="database" [(ngModel)]="statusType" [style]="{'width':'100%'}" [id]="'ddldatabase'" [required]="false" 
+                                                          (onChange)="dataFilter($event.value,col.field,col.filterMatchMode)"></atpar-select-grid>
+                                        </template>
+                                        <template let-col let-orgIdObj="rowData" pTemplate="body">
+                                            <atpar-switch style="cursor:pointer;" [checked]=orgIdObj[col.field] (click)="changeStatus(orgIdObj)"></atpar-switch>
+                                        </template>
+                                    </p-column>
+                                    
+                                </atpar-datatable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-growl [value]="msgs" sticky="sticky"></atpar-growl>

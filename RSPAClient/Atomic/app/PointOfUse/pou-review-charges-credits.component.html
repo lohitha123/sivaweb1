@@ -1,0 +1,375 @@
+﻿<div id="main" class="content-page">
+    <div class="page-header-title">
+        <h4 class="page-title"><a (click)="homeurl()">Administration ></a> Review Charges/Credits</h4>
+    </div>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:20px;">
+                        <form class="form-horizontal form-label-left" *ngIf="page">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Patient ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-text [(ngModel)]="newItem.PatientID" [name]="txtPatientID" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'PatientID'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Account ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-text [(ngModel)]="newItem.PatientI" [name]="txtPatientI" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'PatientI'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Exam ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-text [(ngModel)]="newItem.Statu" [name]="txtStatu" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Statu'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Comments</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-text [(ngModel)]="newItem.Stat" [name]="txtStat" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Stat'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Department</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlLoct'" [ngModelOptions]="{standalone: true}" filter="filter" [required]="true"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Status</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlLoc'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">From Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <p-calendar [showIcon]="true" [id]="'FromDatePicker'" [(ngModel)]="date1" [placeholder]="'From Date'" [minDate]="minDateValue1" [readonlyInput]="true" (onSelect)="selectDate1($event)" (onFocus)="onfocusFromCalendar($event)" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">To Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <p-calendar [showIcon]="true" [id]="'ToDatePicker'" [(ngModel)]="date2" [placeholder]="'To Date'" [minDate]="minDateValue2" [readonlyInput]="true" (onSelect)="selectDate2($event)" (onFocus)="onfocusToCalendar($event)" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <button class="btn btn-purple sbtn" (click)="go()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="clearfix"></div>
+                        <atpar-tabs *ngIf="page">
+                            <atpar-tab tabTitle="Changes">
+                                <div class="table table-responsive" *ngIf="pop">
+                                    <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                        <p-column expander="true" styleClass="col-icon"></p-column>
+                                        <p-column header="Date Of Service" field="CAPTURE_DATE_TIME" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column header="Patient ID/Name" field="PATIENT_NAME" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column header="User ID" field="USER_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column header="Account ID" field="ACCOUNT_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column header="Exam ID" field="" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column header="Comments" field="" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column header="Department" field="DEPARTMENT_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column header="Review">
+                                            <template pTemplate="filter" let-col>
+                                                <ul class="list-inline">
+                                                    <li>
+                                                        <a href="">All</a>
+                                                    </li> |
+                                                    <li>
+                                                        <a href="">None</a>
+                                                    </li>
+                                                </ul>
+                                            </template>
+                                            <template let-col let-ven="rowData" pTemplate type="body">
+                                                <atpar-switch></atpar-switch>
+                                            </template>
+                                        </p-column>
+                                        <p-column header="Action">
+                                            <template let-col let-ven="rowData" pTemplate type="body">
+                                                <i class="fa fa-plus fa-bg bg-blue"></i>
+                                                <i class="fa fa-pencil fa-bg bg-blue" (click)="add()"></i>
+                                            </template>
+                                        </p-column>
+                                        <template let-employee pTemplate="rowexpansion">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">Item ID</th>
+                                                        <th class="text-center">Line NO</th>
+                                                        <th class="text-center">Description</th>
+                                                        <!-- <th class="text-center" colspan="3">Quantity</th> -->
+                                                        <th class="text-center">Issue Qty</th>
+                                                        <th class="text-center">Charge Qty</th>
+                                                        <th class="text-center">Credit Qty</th>
+                                                        <th class="text-center">Lot Number</th>
+                                                        <th class="text-center">Serial Number Qty</th>
+                                                        <th class="text-center">Charge Code</th>
+                                                        <th class="text-center">Price($)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>000000000000030001</td>
+                                                        <td>2</td>
+                                                        <td>Glove Exam</td>
+                                                        <td>1.00</td>
+                                                        <td>1.00</td>
+                                                        <td>0.00</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </template>
+                                    </atpar-datatable>
+                                    <br>
+                                    <div class="col-xs-12 col-sm-6 col-sm-offset-3  col-md-4 col-md-offset-5">
+                                        <button class="btn btn-purple sbtn"><i class="fa fa-check"></i> &nbsp; Save Reviews</button>
+                                    </div>
+                                </div>
+                            </atpar-tab>
+                            <atpar-tab tabTitle="Credits">
+                                <div class="table table-responsive" *ngIf="pop">
+                                    <atpar-datatable [value]="sale" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                        <p-column expander="true" styleClass="col-icon"></p-column>
+                                        <p-column header="Date Of Service" field="CAPTURE_DATE_TIME" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column header="Patient ID/Name" field="PATIENT_NAME" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column header="User ID" field="USER_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column header="Account ID" field="ACCOUNT_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column header="Exam ID" field="" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column header="Comments" field="" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column header="Department" field="DEPARTMENT_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <!--<p-column header="Review">
+                                            <template pTemplate="filter" let-col>
+                                                <ul class="list-inline">
+                                                    <li>
+                                                        <a href="">All</a>
+                                                    </li> |
+                                                    <li>
+                                                        <a href="">None</a>
+                                                    </li>
+                                                </ul>
+                                            </template>
+                                            <template let-col let-ven="rowData" pTemplate type="body">
+                                                <atpar-switch></atpar-switch>
+                                            </template>
+                                        </p-column>-->
+                                        <p-column header="Action">
+                                            <template let-col let-ven="rowData" pTemplate type="body">
+                                                <!--<i class="fa fa-plus fa-bg bg-blue"></i>-->
+                                                <i class="fa fa-pencil fa-bg bg-blue" (click)="edit()"></i>
+                                            </template>
+                                        </p-column>
+                                        <template let-employee pTemplate="rowexpansion">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">Item ID</th>
+                                                        <th class="text-center">Line NO</th>
+                                                        <th class="text-center">Description</th>
+                                                        <!-- <th class="text-center">Quantity</th> -->
+                                                        <th class="text-center">Issue Qty</th>
+                                                        <th class="text-center">Charge Qty</th>
+                                                        <th class="text-center">Credit Qty</th>
+                                                        <th class="text-center">Lot Number</th>
+                                                        <th class="text-center">Serial Number Qty</th>
+                                                        <th class="text-center">Charge Code</th>
+                                                        <th class="text-center">Price($)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>000000000000030001</td>
+                                                        <td>2</td>
+                                                        <td>Glove Exam</td>
+                                                        <td>1.00</td>
+                                                        <td>1.00</td>
+                                                        <td>0.00</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </template>
+                                    </atpar-datatable>
+                                </div>
+                            </atpar-tab>
+                        </atpar-tabs>
+                        <!---form-->
+                        <form class="form-horizontal form-label-left" *ngIf="form">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Review</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-switch></atpar-switch>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Date of Service(DD/MM/YYYY)</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-calendar [(ngModel)]="date3" [showIcon]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}"></atpar-calendar>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Patient ID/Name</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.Locatio" [name]="txtLocatio" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Locatio'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Use only letters(A-Z),(a-z), numbers (0-9),the underscore (_),hyphen (-) and no spaces]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">User ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.Address" [name]="txtAddress" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Address'" [ngModelOptions]="{standalone: true}" [readonly]="true"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Use only letters(A-Z),(a-z), numbers (0-9),the underscore (_),hyphen (-) and no spaces]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Account ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.Locati" [name]="txtLocati" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Locati'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Use only letters(A-Z),(a-z), numbers (0-9),the underscore (_),hyphen (-) and no spaces]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Exam ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.Addr" [name]="txtAddr" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Addr'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Use only letters(A-Z),(a-z), numbers (0-9),the underscore (_),hyphen (-) and no spaces]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Comments</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.De" [name]="txtDe" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'De'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Use only letters(A-Z),(a-z), numbers (0-9),the underscore (_),hyphen (-) and no spaces]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Departments</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.D" [name]="txtD" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'D'" [ngModelOptions]="{standalone: true}" [readonly]="true"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Use only letters(A-Z),(a-z), numbers (0-9),the underscore (_),hyphen (-) and no spaces]
+                                    </div>
+                                </div>
+                                <div class="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn"><i class="fa fa-check"></i> &nbsp; Save</button>
+                                    <button class="btn btn-purple sbtn" (click)="close()"><i class="fa fa-arrow-left"> &nbsp;</i>Go Back</button>
+                                </div>
+                            </div>
+                        </form>
+                        <form class="form-horizontal form-label-left" *ngIf="editform">
+                            <div class="col-xs-12">
+                                <!--   <div class="form-group">
+                                  <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Review</label>
+                                  <div class="col-md-3 col-sm-3 col-xs-12">
+                                      <atpar-switch></atpar-switch>
+                                  </div>
+                                  <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                  </div>
+                              </div> -->
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Date of Service(DD/MM/YYYY)</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-calendar [(ngModel)]="date3" [showIcon]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}"></atpar-calendar>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Patient ID/Name</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.Locatio1" [name]="txtLocatio1" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Locatio1'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Use only letters(A-Z),(a-z), numbers (0-9),the underscore (_),hyphen (-) and no spaces]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">User ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.Address1" [name]="txtAddress1" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Address1'" [ngModelOptions]="{standalone: true}" [readonly]="true"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Use only letters(A-Z),(a-z), numbers (0-9),the underscore (_),hyphen (-) and no spaces]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Account ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.Locati2" [name]="txtLocati2" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Locati2'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Use only letters(A-Z),(a-z), numbers (0-9),the underscore (_),hyphen (-) and no spaces]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Exam ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.Addr3" [name]="txtAddr3" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Addr3'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Use only letters(A-Z),(a-z), numbers (0-9),the underscore (_),hyphen (-) and no spaces]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Comments</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.De4" [name]="txtDe4" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'De4'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Use only letters(A-Z),(a-z), numbers (0-9),the underscore (_),hyphen (-) and no spaces]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Departments</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.D5" [name]="txtD5" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'D5'" [ngModelOptions]="{standalone: true}" [readonly]="true"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Use only letters(A-Z),(a-z), numbers (0-9),the underscore (_),hyphen (-) and no spaces]
+                                    </div>
+                                </div>
+                                <div class="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn"><i class="fa fa-check"></i> &nbsp; Save</button>
+                                    <button class="btn btn-purple sbtn" (click)="close()"><i class="fa fa-arrow-left"> &nbsp;</i>Go Back</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

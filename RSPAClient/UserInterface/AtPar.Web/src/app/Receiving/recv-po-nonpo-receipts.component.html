@@ -1,0 +1,730 @@
+﻿<style>
+    .po-icon{
+        width:34px;
+        height:34px;
+        padding:11px;
+    }
+    #label-custom{
+        width:auto!important;
+    }
+    .fa-increment
+    {
+        padding:4px!important;
+    }
+</style>
+<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:10px 0px 10px 0;">
+                        <form class="form-horizontal form-label-left" *ngIf="page" novalidate>
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Business Unit / Company</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="ddlBusinessUnits" [(ngModel)]="selectedBUnits" [id]="'ddlBUnits'" [required]="true" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="bUnit_selectChanged(ddlBusinessUnits,$event)" [style]="{'width':'100%'}"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">ShipTo ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <label id="lblOrgGrpId" class="control-label lbl-left" *ngIf="blnlblOrgGrpId">{{lblOrgGrpId}}</label>
+                                        <atpar-text [(ngModel)]="txtShipId" [name]="txtShipId" [id]="'txtShipId'" [ngModelOptions]="{standalone: true}" [disabled]="blntxtShipIdDisable" *ngIf="!blnShipToId"></atpar-text>
+                                        <atpar-select [options]="ddlShipToId" [id]="'ddlShipToId'" [(ngModel)]="selectedShipToId" [ngModelOptions]="{standalone: true}" filter="filter" [disabled]="blntxtShipIdDisable" (onChange)="shipToId_selectChanged(ddlShipToId,$event)" *ngIf="blnShipToId"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Include All PO Lines</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-switch [checked]="chkIncludeAllPOLines" (change)="includeAllPoLinesChkChanged($event)"></atpar-switch>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">PO #</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="txtPONumber" [name]="txtPONumber" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'txtPONumber'" [ngModelOptions]="{standalone: true}"></atpar-text> <!--*ngIf="!isEditMode"-->
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">IUT</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="txtIUT" [name]="txtIUT" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'txtIUT'" [ngModelOptions]="{standalone: true}" [readonly]="txtIutIsEditMode"></atpar-text> <!--*ngIf="!isEditMode"-->
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6"> Invoice / Packing Slip</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="txtInvoice" [name]="txtInvoice" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'txtInvoice'" [ngModelOptions]="{standalone: true}"></atpar-text> <!--*ngIf="!isEditMode"-->
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6 pull-left">
+                                        <span class="text-redPo">*</span><span class="text-primary">PO or IUT No is mandatory</span>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6  col-md-5 ">
+                                        <button class="btn btn-purple sbtn" id="'btnGet'" [disabled]="btnGetEnableDisable" (click)="btnGet_Click()">Get &nbsp;<i class="fa fa-arrow-right"></i></button>
+                                       
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <a>
+                                        <i class="fa fa-plus fa-bg bg-red fa-increment" *ngIf="plus" style="cursor:pointer" (click)="plusShow()"></i>
+                                        <i class="fa fa-minus fa-bg bg-red fa-increment" *ngIf="minus" style="cursor:pointer" (click)="minusShow()"></i>
+                                    </a>
+                                </div>
+                                <div *ngIf="!plus">
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Item ID</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                            <atpar-text [(ngModel)]="txtItemId" [name]="txtItemId" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'txtItemId'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Vendor ID</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                            <atpar-text [(ngModel)]="txtVendorId" [name]="txtVendorId" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'txtVendorId'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Vendor Name</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                            <atpar-text [(ngModel)]="txtVendorName" [name]="txtVendorName" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'txtVendorName'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div style="clear:both;"></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">From Date</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                            <p-calendar [showIcon]="true" [id]="'FromDatePicker'" [dateFormat]="'mm/dd/yy'" [monthNavigator]="true" [yearNavigator]="true" yearRange="1700:2200" [(ngModel)]="txtFrmDate" [required]="true" [placeholder]="'From Date'" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">To Date</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                            <p-calendar [showIcon]="true" [id]="'ToDatePicker'" [monthNavigator]="true" [yearNavigator]="true" yearRange="1700:2200" [dateFormat]="'mm/dd/yy'" [(ngModel)]="txtToDate" [required]="true" [placeholder]="'To Date'" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label class="radio-inline">
+                                            <atpar-radioButton id="rbtnPODate" [name]="Date" [(ngModel)]="rbtnPODate" value={{rbtnPODate}} label="PO Date" [ngModelOptions]="{standalone: true}"></atpar-radioButton>
+                                          
+                                        </label>
+                                        <label class="radio-inline">
+                                            <atpar-radioButton id="rbtnDueDate" [name]="Date" [(ngModel)]="rbtnDueDate" value={{rbtnDueDate}} label="Due Date" [ngModelOptions]="{standalone: true}"></atpar-radioButton>
+                                         
+                                        </label>
+                                    </div>
+                                    <div style="clear:both;"></div>
+                                    <br />
+                                    <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-5 col-md-offset-5">
+                                        <button class="btn btn-purple sbtn" id="'btnPoSearch'" [disabled]="btnPoSearchEnableDisable" *ngIf="btnPoSearch" (click)="btnPoSearch_Click($event)">PO Search &nbsp; <i class="fa fa-search"></i></button>
+                                        <button class="btn btn-purple sbtn" id="''btnIUTSearch''" [disabled]="btnIUTSearchEnableDisable" *ngIf="btnIUTSearch" (click)="btnIutSearch_Click($event)">IUT Search &nbsp; <i class="fa fa-search"></i></button>
+                                        <button class="btn btn-purple sbtn" id="'btnNonPo'" [disabled]="btnNonPoEnableDisable" *ngIf="btnNonPo" (click)="btnNonPo_Click()">NON PO &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="col-xs-12 table-responsive" *ngIf="tbl">
+                            <form class="form-horizontal form-label-left">
+                                <div class="col-xs-12 col-sm-12 col-md-5 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Item ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <div class="input-group">
+                                            <atpar-ac-server [(ngModel)]="txtSerchItemId"
+                                                             [suggestions]="lstFilterItems" name="txtSerchItemId" id="txtSerchItemId"
+                                                             (completeMethod)="searchAutoCompleteItems($event)"></atpar-ac-server>                                           
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-purple btn-grp-ht" type="button" (click)="btnTxtSerchItemId_Click()"><i class="fa fa-search"></i></button>&nbsp;
+                                                <button type="button" class="btn btn-purple btn-grp-ht" (click)="btnTxtPreSerchItemId_Click()"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+                                                <button type="button" class="btn btn-purple btn-grp-ht" (click)="btnTxtNextSerchItemId_Click()"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Carrier ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="ddlCarrier" [(ngModel)]="selectedDdlCarrier" [id]="'ddlCarrier'" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlCarrier_selectChanged(ddlCarrier,$event)" [style]="{'width':'100%'}"></atpar-select>                                     
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Lading</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="txtLading" [name]="txtLading" [readonly]="txtLadingIsEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'txtLading'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-5 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Pkgs</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="txtPkgs" [name]="txtPkgs" [readonly]="txtPkgsIsReadonly" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'txtPkgs'" [ngModelOptions]="{standalone: true}"  (focusout)="txtPkgs_TextChanged($event)"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6" *ngIf="blnLblExtTrk">Ext Trk#</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="txtTrk" [name]="txtExtTrk" [readonly]="txtExtTrkIsEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'txtTrk'" *ngIf="blnTxtExtTrk" [ngModelOptions]="{standalone: true}" (focusout)="txtTrk_TextChanged($event)"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                    <ul class="list-inline">
+                                        <li>
+                                            <span  style="cursor:pointer"  (click)="receiveAll()"><i class="fa fa-check fa-1x fa-bg fa-bg-lg bg-blue po-icon"  *ngIf="blnImgCountAll" value="Count All" title="Receive All" ></i></span>
+                                        </li>
+                                        <li>
+                                            <span style="cursor:pointer" (click)="resetAll()"> <i class="fa fa-refresh fa-1x fa-bg fa-bg-lg bg-green po-icon" style="cursor:pointer" *ngIf="blnImgResetAll" value="Reset All" title="Reset All"></i></span>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </form>
+                            <div class="col-xs-12 table-responsive" *ngIf="true">
+                                <div class="container no-scrl">
+                                  <div>
+                                    <ul class="list-inline">
+                                        <li class="col-xs-12 col-md-2 col-sm-4">
+                                            <label for=""><strong>Receiver ID : </strong> <span class="text-primary"> {{lblReceiverId}}</span></label>
+                                        </li>
+                                        <li class="col-xs-12 col-md-2 col-sm-4">
+                                            <label for=""><strong> Buyer ID : </strong><span class="text-primary">{{lblBuyerId}}</span></label><!--Ford,Jane-->
+                                        </li>
+                                        <li class="col-xs-12 col-md-2 col-sm-4">
+                                            <label for=""><strong> Ph : </strong><span class="text-primary">{{lblPhoneValue}} </span></label>
+                                        </li>
+                                        <li class="pull-right">
+                                            <div class="btn-group" role="group">
+                                                <button type="button" class="btn btn-purple" (click)="btnSend_Click($event)">Send &nbsp;<i class="fa fa-share-square-o" aria-hidden="true"></i></button>
+                                                <button type="button" class="btn btn-purple" id="btnLot/Serial" [disabled]="btnLotSerialDisable" *ngIf="btnPntrLotSerialVisible" (click)="btnLotSerial_Click($event)">Lot / Serial &nbsp;<i class="fa fa-list-alt" aria-hidden="true"></i></button>
+                                                <button type="button" class="btn btn-purple" id="btnPrintHeader" [disabled]="btnPntrHeaderDisable" *ngIf="btnPntrHeaderVisible" (click)="btnPrntHed_Click($event)">Print Header &nbsp;<i class="fa fa-print" aria-hidden="true"></i></button>
+                                                <button type="button" class="btn btn-purple" id="btnPrintDetails" [disabled]="btnPntrDetailsDisable" *ngIf="btnPntrDetailsVisible" (click)="btnPrntDet_Click($event)">Print Details &nbsp;<i class="fa fa-print" aria-hidden="true"></i></button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                   </div>
+                                    <div class="clear"></div>
+                                    <br />   
+                                    <div>
+                                        <p style="cursor:pointer" [style.color]="gDisplayComments == 'Y' ? 'red' : 'black'" title="{{lblHdrCommentsToolTip}}">{{lblHdrComments}}</p>
+                                    </div>   
+                                    <!--PO items-->     
+                                    <atpar-datatable [value]="lstRecvSendPoLines" [scrollable]="true" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true" *ngIf="blnGrdRecvPoItems">
+
+                                        <p-column header="Action" field="RBFlAG" [style]="{'text-align':'center','width':'46px'}">
+                                            <template let-col let-poLineRowData="rowData" pTemplate type="body">                                              
+                                                <atpar-radioButton name="linedata" [(ngModel)]="selectedINVITEMID" value="{{poLineRowData.INV_ITEM_ID}}" (onClick)="grdRdbtnChanged($event)"></atpar-radioButton>
+                                            </template>
+                                        </p-column>
+                                        <p-column *ngFor="let scrField of receItemColumns" [field]="scrField.FIELD_NAME" [header]="scrField.COLUMN_HEADER" [sortable]="scrField.FIELD_NAME!='LINE_QTY'&&scrField.FIELD_NAME!='UNIT_OF_MEASURE'&&scrField.FIELD_NAME!='CARRIER_ID'&&scrField.FIELD_NAME!='EXT_TRK_NO'&&scrField.FIELD_NAME!='BILL_OF_LADING'&&scrField.FIELD_NAME!='NO_OF_BOXES'" [filter]="scrField.ISFILTER" [style]="{'text-align':'center','width':'146px'}">
+                                            <template let-col let-poLineRowData="rowData" pTemplate type="body" *ngIf="scrField.FIELD_NAME=='INV_ITEM_ID'">
+                                                <span *ngIf="!(poLineRowData.SCHED_COUNT>1)">{{poLineRowData.INV_ITEM_ID}}</span>
+                                                <a *ngIf="(poLineRowData.SCHED_COUNT>1)" style="color:purple;" class="grid-link text-primary" (click)="byschedule(poLineRowData)"><u>{{poLineRowData.INV_ITEM_ID}}</u></a>                                               
+                                            </template>
+                                            <template let-col let-poLineRowData="rowData" pTemplate type="body" *ngIf="scrField.FIELD_NAME=='LINE_QTY'">
+                                                <atpar-text [(ngModel)]="poLineRowData.QTY" [disabled]="(poLineRowData.TXTQTYFLAG==true)||(poLineRowData.SCHED_COUNT>1) || (poLineRowData.QTYDESABLEFLAG==true)" [name]="'txtRecvQty'" [validations]="'numeric,max=5'" [id]="'txtRecvQty'+poLineRowData.INV_ITEM_ID" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="txtRecvQty_TextChanged($event,poLineRowData)" (focusout)="txtCheckQty(poLineRowData,poLineRowData.QTY)"></atpar-text>                                               
+                                            </template>
+                                            <template let-col let-poLineRowData="rowData" pTemplate type="body" *ngIf="scrField.FIELD_NAME=='INV_ITEM_ID'">
+                                                <span *ngIf="!(poLineRowData.SCHED_COUNT>1)">{{poLineRowData.INV_ITEM_ID}}</span>
+                                                <a *ngIf="(poLineRowData.SCHED_COUNT>1)" style="color:purple;" class="grid-link text-primary" (click)="byschedule(poLineRowData)"><u>{{poLineRowData.INV_ITEM_ID}}</u></a>
+                                            </template>
+                                            <template let-col let-poLineRowData="rowData" pTemplate type="body" *ngIf="scrField.FIELD_NAME=='UNIT_OF_MEASURE'">
+                                                <atpar-select-grid [options]="poLineRowData.DDLUOMS" [(ngModel)]="poLineRowData.SELECTEDUOM" [disabled]="((poLineRowData.DDLUOMFLAG==true) || (poLineRowData.SCHED_COUNT>1))" [id]="poLineRowData.INV_ITEM_ID+poLineRowData.UNIT_OF_MEASURE" (onChange)="grdddlUOM_Changed(poLineRowData,$event)"></atpar-select-grid>
+                                            </template>
+                                            <template let-col let-poLineRowData="rowData" pTemplate type="body" *ngIf="scrField.FIELD_NAME=='CARRIER_ID'">
+                                                <atpar-select-grid [options]="grdDdlCarrier" [(ngModel)]="poLineRowData.CARRIER_ID" [disabled]="(poLineRowData.SCHED_COUNT>1)" [id]="poLineRowData.INV_ITEM_ID+poLineRowData.CARRIER_ID" [ngModelOptions]="{standalone: true}" (onChange)="grdDdlCarrier_Changed(poLineRowData,$event)"></atpar-select-grid>
+                                            </template>
+                                            <template let-col let-poLineRowData="rowData" pTemplate type="body" *ngIf="scrField.FIELD_NAME=='BILL_OF_LADING'">
+                                                <atpar-text [(ngModel)]="poLineRowData.BILL_OF_LADING" [disabled]="(poLineRowData.SCHED_COUNT>1)" [name]="txtBillOfLading" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'qtyx'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                            </template>
+                                            <template let-col let-poLineRowData="rowData" pTemplate type="body" *ngIf="scrField.FIELD_NAME=='LINE_NBR'">
+                                                <span *ngIf="!(poLineRowData.SCHED_COUNT>1)">{{poLineRowData.LINE_NBR}}</span>
+                                                <a *ngIf="(poLineRowData.SCHED_COUNT>1)" style="color:purple;" class="grid-link text-primary" (click)="byschedule(poLineRowData)"><u>{{poLineRowData.LINE_NBR}}</u></a>
+                                            </template>
+                                            <template let-col let-poLineRowData="rowData" pTemplate type="body" *ngIf="scrField.FIELD_NAME=='EXT_TRK_NO'">
+                                                <atpar-text [(ngModel)]="poLineRowData.EXT_TRK_NO" [disabled]="(poLineRowData.SCHED_COUNT>1)" [name]="'txtExTrk'" [validations]="''" [id]="'txtExTrk'+poLineRowData.INV_ITEM_ID" [ngModelOptions]="{standalone: true}" (focusout)="txtExtTrackNoUnFocus(poLineRowData)"></atpar-text>
+                                            </template>
+                                            <template let-col let-poLineRowData="rowData" pTemplate type="body" *ngIf="scrField.FIELD_NAME=='NO_OF_BOXES'">
+                                                <atpar-text [(ngModel)]="poLineRowData.NO_OF_BOXES" [name]="'txtNoofBoxes'" [disabled]="(poLineRowData.SCHED_COUNT>1)" [validations]="'numeric,max=3'" [id]="'txtNoofBoxes'+poLineRowData.INV_ITEM_ID" [ngModelOptions]="{standalone: true}" (focusout)="txtNoOfBoxUnFocus(poLineRowData)"></atpar-text>
+                                            </template>
+                                            <template let-col let-poLineRowData="rowData" pTemplate type="body" *ngIf="scrField.FIELD_NAME=='DESCR'">
+                                                 <p style="cursor:pointer" *ngIf="poLineRowData.DESCR.length>30" title="{{poLineRowData.DESCR_TOOLTIP}}">{{poLineRowData.DESCR}}</p>
+                                                <p *ngIf="poLineRowData.DESCR.length<=30" >{{poLineRowData.DESCR}}</p>
+                                            </template>
+                                            <template let-col let-row="rowData" pTemplate *ngIf="isShowColumn(scrField.FIELD_NAME,'ALL')">
+                                                <span>{{row[col.field]}}</span>
+                                            </template>
+                                        </p-column>
+                                    </atpar-datatable>                                     
+                                  
+                                </div>
+                                <!--IUT items-->
+                                <div class="container no-scrl">
+                                    <atpar-datatable [value]="lstRecvIutItems" [scrollable]="true" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true" *ngIf="blnGrdRecvIutItems">
+                                        <p-column header="Action" [style]="{'text-align':'center','width':'46px'}">
+                                            <template let-col let-iutRowData="rowData" pTemplate type="body">
+                                                <atpar-radioButton name="iutData" [(ngModel)]="selectedINVITEMID" value="{{iutRowData.ITEM_ID}}" (onClick)="grdRdbtnChanged($event)"></atpar-radioButton>&nbsp;
+                                            </template>
+                                        </p-column>                                           
+                                            <p-column *ngFor="let scrField of receIutItemColumns" [field]="scrField.FIELD_NAME" [header]="scrField.COLUMN_HEADER" [sortable]="scrField.FIELD_NAME!='CARRIER_ID'&&scrField.FIELD_NAME!='BILL_OF_LADING'" [filter]="scrField.ISFILTER" [style]="{'text-align':'center','width':'146px'}">                                                 
+                                                <template let-col let-iutRowData="rowData" pTemplate type="body" *ngIf="scrField.FIELD_NAME=='QTY'">
+                                                    <atpar-text [(ngModel)]="iutRowData.QTY" [name]="'txtRecvIutQty'" [validations]="'numeric,max=5'" [id]="'txtRecvQty'+iutRowData.ITEM_ID"  [ngModelOptions]="{standalone: true}"></atpar-text>
+                                                </template> 
+                                                <template let-col let-iutRowData="rowData" pTemplate type="body" *ngIf="scrField.FIELD_NAME=='CARRIER_ID'">
+                                                    <atpar-select-grid [options]="grdDdlCarrier" [(ngModel)]="iutRowData.CARRIER_ID" [id]="iutRowData.ITEM_ID+iutRowData.CARRIER_ID" [ngModelOptions]="{standalone: true}" (onChange)="iutGrdDdlCarrier_Changed(iutRowData,$event)" filter="filter"></atpar-select-grid>
+                                                </template>
+                                                <template let-col let-iutRowData="rowData" pTemplate type="body" *ngIf="scrField.FIELD_NAME=='BILL_OF_LADING'">
+                                                    <atpar-text [(ngModel)]="iutRowData.BILL_OF_LADING" [name]="txtBillOfLading" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'qtyx'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                                </template> 
+                                                <template let-col let-iutRowData="rowData" pTemplate *ngIf="scrField.FIELD_NAME != 'QTY' && scrField.FIELD_NAME != 'CARRIER_ID' && scrField.FIELD_NAME!= 'BILL_OF_LADING'">
+                                                    <span>{{iutRowData[col.field]}}</span>
+                                                </template>
+                                            </p-column>
+                                        </atpar-datatable>                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Scheduled Po-->
+                        <div *ngIf="bysch">
+                            <form class="form-horizontal form-label-left">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Carrier ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="ddlCarrier" [(ngModel)]="selectedSchdDdlCarrier" [id]="'ddlCarrier'" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlSchdCarrier_selectChanged(ddlCarrier,$event)" [style]="{'width':'100%'}"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Lading</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="txtLading" [name]="txtLading" [readonly]="txtLadingIsEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'txtLading'" [ngModelOptions]="{standalone: true}"></atpar-text>                                      
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Pkgs</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="txtPkgs" [name]="'txtPkgs'" [validations]="'numeric,max=5'" [id]="'txtPkgs'" [ngModelOptions]="{standalone: true}" (focusout)="txtSchdPkgs_TextChanged($event)"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Ext Trk#</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="txtSchdExTrk" [name]="txtTrk" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'txtTrk'" [ngModelOptions]="{standalone: true}" (focusout)="txtSchdTrk_TextChanged($event)"></atpar-text><!--[readonly]="txtExtTrkIsEditMode" *ngIf="blnTxtExtTrk"-->
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-4 form-group">
+                                    <div class="pull-right">                                        
+                                        <button type="button" class="btn btn-purple" id="btnLot/Serial" [disabled]="btnLotSerialDisable" *ngIf="btnPntrLotSerialVisible" (click)="btnLotSerial_Click($event)">Lot / Serial &nbsp;<i class="fa fa-list-alt" aria-hidden="true"></i></button>
+                                        <button class="btn btn-purple sbtn" (click)="print()">Print Details &nbsp;<i class="fa fa-print"></i></button>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <ul class="list-inline">
+                                        <li>
+                                            <span style="cursor:pointer" (click)="scheduleReceiveAll()" *ngIf="blnImgCountAll"><i class="fa fa-check fa-1x fa-bg fa-bg-lg bg-blue po-icon" value="Count All" title="Receive All"></i></span>
+                                        </li>
+                                        <li>
+                                            <span style="cursor:pointer" (click)="scheduleResetAll()" *ngIf="blnImgResetAll"> <i class="fa fa-refresh fa-1x fa-bg fa-bg-lg bg-green po-icon" style="cursor:pointer" value="Reset All" title="Reset All"></i></span>
+                                        </li>
+                                    </ul>
+                                </div> 
+                            </form>
+
+                            <div class="col-xs-12 table-responsive">
+                                <div class="container no-scrl">
+                                    <atpar-datatable [value]="dtScheduleItems" [paginator]="true" [scrollable]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                        <p-column header="Action" field="RBFlAG" [style]="{'text-align':'center','width':'46px'}">
+                                            <template let-col let-ven="rowData" pTemplate type="body">
+                                                <atpar-radioButton name="rbtn" [(ngModel)]="selectedSCHEDNBR" value="{{ven.SCHED_NBR}}" (onClick)="radioButtonChanged($event)"></atpar-radioButton>&nbsp;
+                                            </template>
+                                        </p-column>
+                                        <p-column *ngFor="let scrField of receSchdlItemColumns" [field]="scrField.FIELD_NAME" [header]="scrField.COLUMN_HEADER" [sortable]="false" [filter]="scrField.ISFILTER" [style]="{'text-align':'center','width':'146px'}">
+                                            <template let-col let-recShdRowData="rowData" pTemplate type="body" *ngIf="scrField.FIELD_NAME=='QTY'">
+                                                <atpar-text [(ngModel)]="recShdRowData.QTY" [name]="'txtRecvQty'" [disabled]="(recShdRowData.TXTQTYFLAG==true) || (recShdRowData.QTYDESABLEFLAG==true)" [validations]="'numeric,max=5'" [id]="'txtRecvQty'+recShdRowData.SCHED_NBR" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="txtSchdRecvQty_TextChanged($event,recShdRowData)" (focusout)="txtCheckQty(recShdRowData,recShdRowData.QTY)"></atpar-text>
+                                            </template>
+                                            <template let-col let-recShdRowData="rowData" pTemplate type="body" *ngIf="scrField.FIELD_NAME=='UNIT_OF_MEASURE'">
+                                                <atpar-select-grid [options]="recShdRowData.DDLUOMS" [disabled]="(recShdRowData.DDLUOMFLAG==true)" [id]="recShdRowData.INV_ITEM_ID+recShdRowData.UNIT_OF_MEASURE" (onChange)="grdddlUOM_Changed(recShdRowData,$event)"></atpar-select-grid> 
+                                            </template>
+                                            <template let-col let-recShdRowData="rowData" pTemplate type="body" *ngIf="scrField.FIELD_NAME=='CARRIER_ID'">
+                                                <atpar-select-grid [options]="grdDdlCarrier" [(ngModel)]="recShdRowData.CARRIER_ID" [id]="recShdRowData.INV_ITEM_ID+recShdRowData.CARRIER_ID" [ngModelOptions]="{standalone: true}" (onChange)="schdGrdDdlCarrier_Changed(recShdRowData,$event)"></atpar-select-grid>
+                                            </template>
+                                            <template let-col let-recShdRowData="rowData" pTemplate type="body" *ngIf="scrField.FIELD_NAME=='BILL_OF_LADING'">
+                                                <atpar-text [(ngModel)]="recShdRowData.BILL_OF_LADING" [name]="txtBillOfLading" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'txtBillOfLading'+recShdRowData.SCHED_NBR" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                            </template>
+                                            <template let-col let-recShdRowData="rowData" pTemplate type="body" *ngIf="scrField.FIELD_NAME=='EXT_TRK_NO'">
+                                                <atpar-text [(ngModel)]="recShdRowData.EXT_TRK_NO" [name]="txtEXTTRKNO" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'txtEXTTRKNO'" [ngModelOptions]="{standalone: true}" (focusout)="txtSchExtTrackNoUnFocus(recShdRowData)"></atpar-text>
+                                            </template>
+                                            <template let-col let-recShdRowData="rowData" pTemplate type="body" *ngIf="scrField.FIELD_NAME=='NO_OF_BOXES'">
+                                                <atpar-text [(ngModel)]="recShdRowData.NO_OF_BOXES" [name]="'txtNoofBoxes'" [disabled]="(recShdRowData.SCHED_COUNT>1)" [validations]="'numeric,max=3'" [id]="'txtNoofBoxes'+recShdRowData.SCHED_NBR" [ngModelOptions]="{standalone: true}" (focusout)="txtSchdNoOfBoxUnFocus(recShdRowData)"></atpar-text>                                                
+                                            </template>
+                                            <template let-col let-recShdRowData="rowData" pTemplate *ngIf="scrField.FIELD_NAME != 'QTY' && scrField.FIELD_NAME != 'CARRIER_ID' && scrField.FIELD_NAME!= 'BILL_OF_LADING'&& scrField.FIELD_NAME != 'UNIT_OF_MEASURE' && scrField.FIELD_NAME!= 'EXT_TRK_NO'&& scrField.FIELD_NAME!= 'NO_OF_BOXES'">
+                                                <span>{{recShdRowData[col.field]}}</span>
+                                            </template>
+                                        </p-column>
+                                    </atpar-datatable>                                 
+                                </div>
+                                <br>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="btnSchedulePo_Save('Save')">Save &nbsp;<i class="fa fa-floppy-o"></i></button>
+                                    <button class="btn btn-purple sbtn" (click)="goPage()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--PO Search---->
+                        <div class="col-xs-12 table-responsive" *ngIf="recvSearchPos">
+                            <div class="container">
+                                <atpar-datatable [value]="lstSeachItems" [style]="{'width':'100%'}" *ngIf="grdRecvSearchPos" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column header="Action" field="RBFlAG" [style]="{'text-align':'center','width':'4%'}">
+                                        <template let-col let-recvPosData="rowData" pTemplate type="body">
+                                            <atpar-radioButton name="groupname" value="{{recvPosData.RBFlAG}}" (onClick)="grdPoSearchRdbtnChanged(recvPosData,$event)"></atpar-radioButton>&nbsp;
+                                        </template>
+                                    </p-column>
+                                    <p-column field="BUSINESS_UNIT" header="B Unit" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="POID" header="PO ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="PODT" header="PO Date" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column><!--PO_DATE SHIPTO_ID  VENDOR_ID  RECEIVER_ID-->
+                                    <p-column field="SHPTID" header="Ship To ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="VNDRID" header="Vendor ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="RECVID" header="Reciver ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                </atpar-datatable>
+                            </div>
+                            <br>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="btnSearchPosGet_Click($event)">Get &nbsp;<i class="fa fa-arrow-right"></i></button><!--get()-->
+                                <button class="btn btn-purple sbtn" (click)="searchPoBack()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                            </div>
+                        </div>
+
+                        <!--IUT Search---->
+                        <div class="col-xs-12 table-responsive" *ngIf="recvIUTSearch">
+                            <div class="container">
+                                <atpar-datatable [value]="lstRecvSearchIuts" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column header="Action" field="RBFlAG" [style]="{'text-align':'center','width':'4%'}">
+                                        <template let-col let-recvIUTData="rowData" pTemplate type="body">
+                                            <atpar-radioButton name="groupname" value="{{recvIUTData.RBFlAG}}" (onClick)="grdrecvIUTDataRdbtnChanged(recvIUTData,$event)"></atpar-radioButton>&nbsp;
+                                        </template>
+                                    </p-column>
+                                    <p-column field="DESTIN_BU" header="Dest.BUnit"></p-column>
+                                    <p-column field="INTERUNIT_ID" header="Inter Unit ID"></p-column>
+                                    <p-column field="ORIG_BU" header="Source BUnit"></p-column>
+                                    <p-column field="SHIP_DTTM" header="Shipped Date"></p-column>
+                                </atpar-datatable>
+                            </div>
+                            <br>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="btnSearchIUTGet_Click($event)">Get &nbsp;<i class="fa fa-arrow-right"></i></button>
+                                <button class="btn btn-purple sbtn" (click)="iutSearchPoBack()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                            </div>
+                        </div>
+
+                        <!--Lot Serial data---->
+                        <div class="col-xs-12 table-responsive" *ngIf="lotserial">
+                            <button class="btn btn-purple sbtn pull-right" style="margin-right:10px;" (click)="btnLotSerialAdd_Click()">Add &nbsp;<i class="fa fa-plus"></i></button>
+                            <br>
+                            <div class="container"  *ngIf="lotserialGrid">
+                                <atpar-datatable [value]="lstFinalLotSerial" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                  
+                                    <p-column field="" header="Action" [style]="{'text-align':'center','width':'5%'}">
+                                        <template let-lotserial="rowData" pTemplate type="body">
+                                            <i class="fa fa-pencil fa-bg bg-blue" title="Edit" style="cursor:pointer;" (click)="btnLotSerialGrdEdit_Click(lotserial.LOT_ID,lotserial.SERIAL_ID,lotserial.QTY,lotserial.EXPIRY_DATE,lotserial.SELECTED_UOM,lotserial.ROWINDEX,lotserial)"></i>
+                                            <i class="fa fa-trash fa-bg bg-blue" title="Delete" style="cursor:pointer;" (click)="btnLotSerialDelete_Click(lotserial)"></i>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="SERIAL_ID" header="Serial ID" [sortable]="true" [style]="{'width':'25%'}"></p-column>
+                                    <p-column field="LOT_ID" header="Lot ID" [sortable]="true" [style]="{'width':'25%'}"></p-column>
+                                    <p-column field="QTY" header="Qty" [sortable]="true" [style]="{'width':'6%'}"></p-column>
+                                    <p-column field="EXPIRY_DATE" header="Exp Date" [sortable]="true" [style]="{'width':'14%'}"></p-column>
+                                    <p-column field="SELECTED_UOM" header="UOM" [sortable]="true" [style]="{'width':'6%'}"></p-column>
+                                    <p-column field="ROWINDEX" header="rowindex" [sortable]="true" *ngIf="false" [style]="{'width':'6%'}"></p-column>
+                                </atpar-datatable>
+                            </div>
+                            <br>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="btnLotSerialSave_Click()" *ngIf="lotserialGrid || lotSerialDeleteFlg">Save &nbsp;<i class="fa fa-floppy-o"></i></button>
+                                <button class="btn btn-purple sbtn" (click)="btnLotSerialGoBack_Click()" *ngIf="lotserial"><i class="fa fa-arrow-left"></i>&nbsp; Go Back</button>
+                            </div>
+                        </div>
+                        
+                        <form class="form-horizontal form-label-left" *ngIf="editform" novalidate>
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Serial ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="LotSerialentity.SERIAL_ID" [name]="txtLotserialSerialId" [readonly]="txtSerialIDIsEditMode" [isFocused]="'true'" [id]="'txtLotserialSerialId'" [ngModelOptions]="{standalone: true}" title="[ Allows alphabets,numerics,spaces and special characters]"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Lot ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="LotSerialentity.LOT_ID" [name]="txtLotserialLotId" [readonly]="txtLotIdIsEditMode" [id]="'txtLotserialLotId'" [ngModelOptions]="{standalone: true}" title="[Allows alphabets,numerics,spaces and special characters]"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Qty</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="LotSerialentity.QTY" [name]="txtLotserialQty" [readonly]="txtLotSerialQtyIsEditMode" [validations]="'mandatory,numeric,max=5'" [id]="'txtLotserialQty'" [ngModelOptions]="{standalone: true}" title="[Allows only numeric values]"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Exp Date</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <p-calendar [showIcon]="true" [id]="'txtLotserialExpDate'" [dateFormat]="'mm/dd/yy'" [(ngModel)]="txtLotserialExpDate" [placeholder]="'MM/DD/YYYY'" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                        <!--<atpar-text [(ngModel)]="txtLotserialExpDate" [name]="txtLotserialExpDate"[showTime]="true"[hourFormat]="12" [readonly]="txtLotserialExpDateIsEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'txtLotserialExpDate'" [ngModelOptions]="{standalone: true}" title="[ Any character A-Z,a-z,0-9,!,', #,$...]"></atpar-text>-->
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">UOM</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [options]="LotSerialentity.DDLUOMS" [(ngModel)]="LotSerialentity.SELECTED_UOM" [disabled]="ddlRecvUomEnable" [id]="'ddlErps'" filter="filter" [ngModelOptions]="{standalone: true}" (onChange)="LotSerial_selectChanged($event)"></atpar-select>
+                                        <!--selectedlotserialUOM-->
+                                     </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-4">
+                                    <button class="btn btn-purple small" (click)="btnLotSerialEditSave_Click()">Save  &nbsp;<i class="fa fa-floppy-o"></i></button>
+                                    <button class="btn btn-purple small" (click)="btnGoBackToLotSerial_Click()"><i class="fa fa-arrow-left"> &nbsp;</i>Go Back</button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!--Printer pop up---->
+                        <div class="col-xs-12 table-responsive" *ngIf="printtbl">
+                            <div class="container">
+                                <atpar-datatable [value]="lstPrintersDetails" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                  
+                                    <p-column header="Select" field="RBPRINTER" [style]="{'text-align':'center'}">
+                                        <template let-col let-printerRowData="rowData" pTemplate type="body">
+                                            <atpar-radioButton name="linedata" [(ngModel)]="selectedPrinterName" value="{{printerRowData.FRIENDLY_NAME}}" (onClick)="grdRbPrinterChanged(printerRowData,$event)"></atpar-radioButton>
+                                        </template>
+                                    </p-column>                                  
+                                    <p-column field="FRIENDLY_NAME" header="Printer Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="IP_ADDRESS" header="IP Address" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="LABEL_DESCRIPTION" header="labelDescription" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                </atpar-datatable>
+                            </div>
+                            <br>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="btnDetailPrint_Click()">Print &nbsp;<i class="fa fa-print"></i></button>
+                                <button class="btn btn-purple sbtn" (click)="printback()"><i class="fa fa-arrow-left"></i>&nbsp; Go Back</button>
+                            </div>
+                        </div>
+
+                        <!--ASNPO pop up---->
+                        <div class="col-xs-12 table-responsive" *ngIf="purchase">                          
+                            <ul class="list-unstyled">
+                                <li><label><strong>Multiple Receipts exists for this Purchase Order</strong></label></li>
+                                <li>Business Unit : <strong>{{selectedBUnits}}</strong></li>
+                                <li>PO ID : <strong>{{txtPONumber}}</strong></li>
+                            </ul>
+                            <br />
+                            <div class="container">
+                                <atpar-datatable [value]="lstAsnDetails" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column header="Action" field="ASNRBFLAG" [style]="{'text-align':'center','width':'4%'}">
+                                        <template let-AsnPoRowData="rowData" pTemplate type="body">
+                                            <atpar-radioButton name="rdbtnRecAsn" [(ngModel)]="selectedReceiverId" value="{{AsnPoRowData.RECEIVERID}}" (onClick)="asnGrdRdbtnChanged($event)"></atpar-radioButton>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="RECEIVERID" header="Receiver ID"></p-column>
+                                    <p-column field="RECPT_DATE" header="Receiver Date"></p-column>
+                                    <p-column field="INVOICE_NO" header="Invoice NO" *ngIf="gStrASNDownload == 'Invoice No'"></p-column>
+                                    <p-column field="PACKSLIP_NO" header="Pack Slip No" *ngIf="gStrASNDownload == 'Pack Slip No'"></p-column>
+                                </atpar-datatable>
+                            </div>
+                            <br>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="btnAsnGet_Click()">Get  &nbsp;<i class="fa fa-arrow-right"></i></button>
+                                <button class="btn btn-purple sbtn" (click)="btnAsnCancel_Click()">Cancel  &nbsp;<i class="fa fa-arrow-right"></i></button>
+                                <button class="btn btn-purple sbtn" (click)="btnAsnGetBack_Click()"><i class="fa fa-arrow-left"></i>&nbsp; Go Back</button>
+                            </div>
+                        </div>
+
+                        <!--Non Po-->
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="nonPO">
+                            <div class="">
+                                <div class="">
+                                    <form class="form-horizontal form-label-left">
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
+                                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12" *ngIf="lblTrackingNumber">Tracking Number</label>
+                                                <button class="btn btn-purple sbtn" (click)="btnTrackingNumber_Click()" *ngIf="btnTrackingNumber">Tracking Number</button>
+                                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                                    <atpar-text [(ngModel)]="poNewItem.TRACKING_NBR" [name]="txtTrackNo" [id]="'txtTrackNo'" [validations]="'mandatory'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Location</label>
+                                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                                    <atpar-text [(ngModel)]="poNewItem.LOCATION" [name]="txtLocation" [validations]="'max=30'" [id]="'txtLocation'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Loc Desc</label>
+                                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                                    <atpar-text [(ngModel)]="poNewItem.LOCDESCR" [name]="txtLocationDesc" [id]="'txtLocationDesc'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Recipient</label>
+                                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                                    <atpar-text [(ngModel)]="poNewItem.DELIVER_TO" [validations]="'max=40'" [name]="txtRecipient" [id]="'txtRecipient'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                                </div>
+                                                <div class="col-md-1 col-sm-1 col-xs-12 control-label lbl-left"><span style="cursor:pointer" (click)="btnRecipient_Click()"><i class="fa fa-flag fa-bg-lg bg-red"></i></span></div>
+                                                <div class="col-md-5 col-sm-5 col-xs-12 help_txt">
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">PKGS</label>
+                                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                                    <atpar-text [(ngModel)]="poNewItem.NO_OF_PACKAGES" [name]="txtPKGS" [validations]="'numeric,max=3'" [id]="'txtPKGS'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Vendor</label>
+                                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                                    <atpar-text [(ngModel)]="poNewItem.VENDOR_ID" [name]="txtVendor" [id]="'txtVendor'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Item Description</label>
+                                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                                    <atpar-text [(ngModel)]="poNewItem.DESCR" [name]="txtItemDescription" [id]="'ItemDescription'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">ShipTo ID</label>
+                                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                                    <atpar-text [(ngModel)]="poNewItem.SHIPTO_ID" [name]="txtShipId" [disabled]="blntxtShipIdDisable" [validations]="'mandatory'" [id]="'txtShipId'" [ngModelOptions]="{standalone: true}" *ngIf="!blnShipToId" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                                    <atpar-select [options]="ddlShipToId" [id]="'ddlShipToId'" [required]="true" [disabled]="blntxtShipIdDisable" [(ngModel)]="poNewItem.SHIPTO_ID" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="shipNonPoToId_selectChanged(ddlShipToId,$event)" *ngIf="blnShipToId"></atpar-select>
+                                                    <!--<atpar-select [options]="ddlShipToId" [style]="{'width':'100%'}" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'mandatory'" [id]="'ddlShipToID'" [(ngModel)]="poNewItem.SHIPTOID" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>-->
+                                               
+                                                 </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Dept ID</label>
+                                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                                    <atpar-text [(ngModel)]="poNewItem.DEPT_ID" [name]="txtDeptID" [id]="'txtDeptID'"
+                                                                [validations]="'max=50'"
+                                                                [ngModelOptions]="{standalone: true}"></atpar-text>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">PO ID</label>
+                                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                                    <atpar-text [(ngModel)]="poNewItem.PO_ID" [name]="txtPOID" [id]="'txtPOID'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Line #</label>
+                                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                                    <atpar-text [(ngModel)]="poNewItem.LINE_NBR" [name]="txtLine" [validations]="'numeric,max=3'" [id]="'txtLine'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Carrier ID</label>
+                                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                                    <atpar-select [options]="ddlNonPOCarrier" [style]="{'width':'100%'}" [id]="'ddlCarrierID'" [(ngModel)]="poNewItem.CARRIER_ID" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Package Type</label>
+                                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                                    <atpar-text [(ngModel)]="poNewItem.TYPE_OF_PACKAGE" [name]="txtPackageType" [validations]="'max=30'" [id]="'txtPackageType'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Comments</label>
+                                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                                    <atpar-text [(ngModel)]="poNewItem.COMMENTS" [name]="txtComments" [id]="'txtComments'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                                <button class="btn btn-purple sbtn" [disabled]="nonPoDisable" (click)="btnPrint_Click()">Print &nbsp;<i class="fa fa-print"></i></button>
+                                <button class="btn btn-purple sbtn" [disabled]="nonPoDisable" (click)="btnNonPoSend_Click()">Send &nbsp;<i class="fa fa-share-square-o"></i></button>
+                                <button class="btn btn-purple sbtn" [disabled]="nonPoDisable" (click)="btnNonPoSend_Click()">Save & New &nbsp;<i class="fa fa-floppy-o"></i></button>
+                                <button class="btn btn-purple sbtn" [disabled]="nonPoDisable" (click)="btnSaveNext_Click(save)">Save & Next &nbsp;<i class="fa fa-floppy-o"></i></button>
+                                <button class="btn btn-purple sbtn" (click)="btnGoBack_Click()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                              
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12" *ngIf="nonPOReceipts">
+                            <div class="container">
+                                <div class="" *ngIf="blnRecipients">
+                                    <atpar-datatable [value]="lstRecipients" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                        <!--<p-column expander="true" styleClass="col-icon"></p-column>-->
+                                        <p-column header="Action" [style]="{'text-align':'center','width':'4%'}">
+                                            <template let-ven="rowData" let-col let-row="rowIndex" pTemplate type="body">
+                                                <!--<atpar-radioButton name="{{ven.rowIndex}}" [(ngModel)]="ven.ACTIVEFLAG" (click)="changeStatus(ven,ven['COUNT_'+Myindex],ven['COUNT'+Myindex],coldata.RECIEPENTNAME)" value="{{ven['activeFlag_'+Myindex]}}" label="{{ven['COUNT_'+Myindex]}}"></atpar-radioButton>-->
+                                                <atpar-radioButton name="ven.RECIEPENTNAME" [(ngModel)]="ven.ACTIVEFLAG" value={{ven.ACTIVEFLAG}} (click)="changeStatus(ven)" [ngModelOptions]="{standalone: true}"></atpar-radioButton>
+                                            </template>
+                                        </p-column>                                    
+                                        <p-column field="RECIEPENTNAME" header="RECPNAME" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="LOCATION" header="LOCATION" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="PHONE_NO" header="PHONE" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="ADDRESS_1" header="ADDR" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="DEPT_ID" header="DEPTID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="LOC_DESCR" header="LOC_DESCR" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    </atpar-datatable>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="btnRecipientAdd_Click()" *ngIf="blnRecipients">Add &nbsp;<i class="fa fa-plus"></i></button>
+                                    <button class="btn btn-purple sbtn" (click)="btnGoBackRecipient_Click()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-section implementation">
+            <atpar-confirmdialog header="Confirmation" icon="fa fa-question-circle" width="425"></atpar-confirmdialog>
+        </div>
+    </div>
+</div>
+<div>
+<atpar-growl [value]="statusMsgs" sticky="sticky"></atpar-growl>
+</div>

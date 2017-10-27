@@ -1,0 +1,47 @@
+<div class="accountbg"></div>
+<div class="wrapper-page">
+    <div class="panel panel-color panel-primary panel-pages">
+        <div class="panel-body">
+            <div class="">
+                <!-- <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h3 class="text-center m-t-0 m-b-15 atpar-signin-logo"> <a href="index.html" class="logo logo-admin"><img src="assets/images/logo-admin-black.png" width="300" height="auto"></a></h3>
+                </div> -->
+                <div class="col-xs-12">
+                    <img src="assets/images/MHSAtpar.png" alt="" class="img-responsive" style="width:65%;margin:inherit;">
+                    <h3 class="">Requestor Sign In</h3>
+                    <form class="form-horizontal login-form " autocomplete="off" autocorrect="off" autocapitalize="off" name="form" (ngSubmit)="f.form.valid && onSubmit(model.userID,model.password)" #f="ngForm" novalidate >
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <div class="input-wrap">
+                                    <label id="lblUserID" for="userID" *ngIf="!f.submitted || model.userID" [ngClass]="activeLblUserID">Username</label> <label for="userID" *ngIf="f.submitted && !userID.valid" [ngClass]="activeLblUserID">Username is required </label>
+                                    <input id="txtUserID" type="text" class="form-control" name="userID" (focus)="onFocusUserName()" (click)="onFocusUserName()"
+                                           [(ngModel)]="model.userID" #userID="ngModel" required autocomplete="off" autocorrect="off" autocapitalize="off">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <div class="input-wrap">
+                                    <label id="lblPassword" for="password" *ngIf="!f.submitted || model.password" [ngClass]="activeLblPassword">Password</label><label for="password" *ngIf="f.submitted && !password.valid" [ngClass]="activeLblPassword">Password is required</label>
+                                    <input id="txtPassword" (click)="onFocusPassword()" (focus)="onFocusPassword()" type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <div class="input-wrap checkbox-wrap">
+                                    <!--<atpar-select></atpar-select>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group text-center">
+                            <div class="col-xs-12 col-sm-4 col-md-4 col-xs-12 col-sm-4 col-md-4 col-md-offset-4">
+                                <button class="btn btn-primary btn-lg waves-effect waves-light" (click)="login()">Login &nbsp;<i class="fa fa-sign-in"></i></button>
+                            </div>                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

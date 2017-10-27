@@ -1,0 +1,10 @@
+D:\SVN_Checkout\3.0_Web_Checkout2\RSPAClient\Core\AtPar.POCOEntities\bin\Debug\AtPar.POCOEntities.dll
+D:\SVN_Checkout\3.0_Web_Checkout2\RSPAClient\Core\AtPar.POCOEntities\bin\Debug\AtPar.POCOEntities.pdb
+D:\SVN_Checkout\3.0_Web_Checkout2\RSPAClient\Core\AtPar.POCOEntities\obj\Debug\AtPar.POCOEntities.dll
+D:\SVN_Checkout\3.0_Web_Checkout2\RSPAClient\Core\AtPar.POCOEntities\obj\Debug\AtPar.POCOEntities.pdb
+D:\RSPAClient\Core\AtPar.POCOEntities\bin\Debug\AtPar.POCOEntities.dll
+D:\RSPAClient\Core\AtPar.POCOEntities\bin\Debug\AtPar.POCOEntities.pdb
+D:\RSPAClient\Core\AtPar.POCOEntities\obj\Debug\AtPar.POCOEntities.csprojResolveAssemblyReference.cache
+D:\RSPAClient\Core\AtPar.POCOEntities\obj\Debug\AtPar.POCOEntities.csproj.CoreCompileInputs.cache
+D:\RSPAClient\Core\AtPar.POCOEntities\obj\Debug\AtPar.POCOEntities.dll
+D:\RSPAClient\Core\AtPar.POCOEntities\obj\Debug\AtPar.POCOEntities.pdb

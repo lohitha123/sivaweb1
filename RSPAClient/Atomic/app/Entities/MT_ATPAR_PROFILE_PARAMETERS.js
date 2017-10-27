@@ -1,0 +1,8 @@
+"use strict";
+var MT_ATPAR_PROFILE_PARAMETERS = (function () {
+    function MT_ATPAR_PROFILE_PARAMETERS() {
+    }
+    return MT_ATPAR_PROFILE_PARAMETERS;
+}());
+exports.MT_ATPAR_PROFILE_PARAMETERS = MT_ATPAR_PROFILE_PARAMETERS;
+//# sourceMappingURL=MT_ATPAR_PROFILE_PARAMETERS.js.map

@@ -1,0 +1,185 @@
+﻿<div id="main" class="content-page">
+    <div class="content">
+        <div class="page-content-wrapper">
+            <div class="page-content-wrapper">
+                <div class="container x_panel no-border">
+                    <br>
+                    <div class="panel panel-default" style="border: 1px solid #eee;">
+                        <div class="panel-body" style="padding:0px;">
+                            <div class="row">
+                                <form class="form-horizontal form-label-left" #form="ngForm" (ngSubmit)="updateSecurityParams()">
+                                    <div class="form-group">
+                                        <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Minimum password length</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="securityParams.PASSWD_MIN_LENGTH" [name]="'txtPASSWD_MIN_LENGTH'" [isFocused]="'true'"
+                                                        [validations]="'mandatory,numeric,max=2'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'PASSWD_MIN_LENGTH'"></atpar-text>
+
+                                            <!--<input type="text" class="form-control bdr-red" [(ngModel)]="securityParams.PASSWD_MIN_LENGTH" [id]="PASSWD_MIN_LENGTH" name="PASSWD_MIN_LENGTH" [required]="true">-->
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Minimum number of characters allowed
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Maximum password length</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <!--<input type="text" class="form-control bdr-red" [(ngModel)]="securityParams.PASSWD_MAX_LENGTH" [id]="PASSWD_MAX_LENGTH" name="PASSWD_MAX_LENGTH" [required]="true">-->
+                                            <atpar-text [(ngModel)]="securityParams.PASSWD_MAX_LENGTH" [name]="'txtPASSWD_MAX_LENGTH'"
+                                                        [validations]="'mandatory,numeric,max=2'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'PASSWD_MAX_LENGTH'"></atpar-text>
+
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Maximum number of characters allowed
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Password duration</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+
+                                            <atpar-text [(ngModel)]="securityParams.PASSWD_EXP_PERIOD" [name]="'txtPASSWD_EXP_PERIOD'"
+                                                        [validations]="'mandatory,numeric,max=9'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'PASSWD_EXP_PERIOD'"></atpar-text>
+
+                                            <!--<input type="text" class="form-control bdr-red" [(ngModel)]="securityParams.PASSWD_EXP_PERIOD" [id]="PASSWD_EXP_PERIOD" name="PASSWD_EXP_PERIOD" [required]="true">-->
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Duration in days of password validity
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Initial password reset required</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-switch [(ngModel)]="chkPassWdResetReq" name="chkPassWdResetReq"></atpar-switch>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Checking this will force the user to reset the password initially
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Maintain password history</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-switch [(ngModel)]="chkMaintainPassWdHistory" name="chkMaintainPassWdHistory"></atpar-switch>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Checking this will maintain the history of passwords for a user
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Check password history</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-switch [(ngModel)]="chkPassWdHistory" name="chkPassWdHistory"></atpar-switch>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Checking this will force the user to select a new password at reset
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="url_live_version" class="control-label col-md-3 col-sm-3 col-xs-12">
+                                            Allowed number of consecutive invalid login attempts
+                                        </label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+
+                                            <atpar-text [(ngModel)]="securityParams.ALLOWED_INVALID_LOGIN_ATTEMPTS" [name]="'txtALLOWED_INVALID_LOGIN_ATTEMPTS'"
+                                                        [validations]="'mandatory,numeric,max=9'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'ALLOWED_INVALID_LOGIN_ATTEMPTS'"></atpar-text>
+
+                                            <!--<input type="text" class="form-control bdr-red" [(ngModel)]="securityParams.ALLOWED_INVALID_LOGIN_ATTEMPTS" [id]="ALLOWED_INVALID_LOGIN_ATTEMPTS" name="ALLOWED_INVALID_LOGIN_ATTEMPTS" [required]="true">-->
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            User account will be disabled after selected number of invalid login attempts
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Complexity of password</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12 holder">
+                                            <!--
+                                            <atpar-select [options]="cities"></atpar-select><input type="password" class="form-control bdr-red">
+                                            <div class="dropdown">
+                                            <p>Any Character - A-Z, a-z, 0-9, ! @ # $…</p>
+                                            <p>Alphabets - A-Z, a-z</p>
+                                            <p>
+                                                Alphanumeric - Must contain combination of the following: A-Z, a-z and 0-9
+                                            </p>
+                                            <p>
+                                                Alphanumeric and Non Alphanumeric - Must contain combination of the following: A-Z, a-z, and 0-9 and ! @ # $
+                                            </p>
+                                            </div> -->
+                                            <atpar-select [options]="pswComplexity" [required]="true" [id]="'ddlComplexitypswd'" [(ngModel)]="securityParams.PASSWD_COMPLEXITY" name="PASSWD_COMPLEXITY" [autoWidth]="true"></atpar-select>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_text">
+                                            <ol start="0">
+                                                <li>Any Character - A-Z, a-z, 0-9, ! @ # $…</li>
+                                                <li>Alphabets - A-Z, a-z</li>
+                                                <li>Alphanumeric - Must contain combination of the following: A-Z, a-z and 0-9</li>
+                                                <li>Alphanumeric and Non Alphanumeric - Must contain combination of the following: A-Z, a-z, and 0-9 and ! @ # $…</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 ">Security maintenance Audit</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-switch [(ngModel)]="chkSecAudit" name="chkSecAudit"></atpar-switch>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Checking this will allow the system to maintain the security transactions history
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 ">Password required for HHT users</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-switch [(ngModel)]="chkPassWdReqHHT" name="chkPassWdReqHHT"></atpar-switch>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Checking this will force the users to setup password for HHT users
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Allow registered devices only</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-switch [(ngModel)]="chkRegisteredDevices" name="chkRegisteredDevices"></atpar-switch>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Checking this will force the users to setup Device
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Login history</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-select [options]="values" [required]="true" [id]="'ddlLoginhist'" [(ngModel)]="securityParams.LOGIN_HISTORY" name="LOGIN_HISTORY"></atpar-select>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_text">
+                                            <ol>
+                                                <li>Store Failed Login Attempts</li>
+                                                <li>Store All Login Attempts.</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">
+                                            Password expiry alert message for LDAP users
+                                        </label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+
+                                            <atpar-text [(ngModel)]="securityParams.LDAP_PASS_EXP_ALTMSG" [name]="'txtLDAP_PASS_EXP_ALTMSG'"
+                                                        [validations]="'mandatory,numeric,max=2'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'LDAP_PASS_EXP_ALTMSG'"></atpar-text>
+
+                                            <!--<input type="text" class="form-control bdr-red" [(ngModel)]="securityParams.LDAP_PASS_EXP_ALTMSG" [id]="LDAP_PASS_EXP_ALTMSG" name="LDAP_PASS_EXP_ALTMSG" [required]="true">-->
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            Alert message about the password expiry will be provided to LDAP user based on the no of days mentioned
+                                        </div>
+                                    </div>
+                                    <!-- <div class="ln_solid"></div> -->
+                                    <div class="col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-5 col-xs-12">
+                                        <button type="submit" class="btn btn-purple" [disabled]="loading">Submit &nbsp; <i class="fa fa-check"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <atpar-growl [value]="growlMsgs" sticky="sticky"></atpar-growl>
+
+</div>
+

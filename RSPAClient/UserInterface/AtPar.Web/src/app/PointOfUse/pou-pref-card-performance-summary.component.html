@@ -1,0 +1,129 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:10px 0 0 0;">
+                        <form class="form-horizontal form-label-left" novalidate>
+                            <div class="col-xs-12">
+                                <div class="pull-right" *ngIf="showGrid">
+                                    <ul class="list-inline">
+                                        <li class="no-padding">
+                                            <i class="fa fa-envelope-o fa-bg-lg bg-blue" aria-hidden="true" style="cursor:pointer" id="imgMail" title="Send mail" (click)="onSendMailIconClick($event)"></i>&nbsp;
+                                        </li>
+                                        <li class="no-padding">
+                                            <i class="fa fa-print fa-bg-lg bg-blue" aria-hidden="true" style="cursor:pointer" id="imgPrint" title="Print" (click)="onPrintClick($event)"></i>&nbsp;
+                                        </li>
+                                        <li class="no-padding">
+                                            <i class="fa fa-file-excel-o fa-bg-lg bg-blue" aria-hidden="true" style="cursor:pointer" id="imgExcel" title="Excel Format" (click)="onExportToExcelClick($event)"></i>&nbsp;
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Procedure</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-ac-server [(ngModel)]="selectedProcedure" [suggestions]="lstFilterdProcedure" [minLength]="1" (completeMethod)="filterProcedures($event)" [mandatory]="true" [id]="'acProcedure'" field="PROCEDURENAME" [ngModelOptions]="{standalone: true}"></atpar-ac-server>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Physician</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-ac-server [(ngModel)]="selectedPhysician" [suggestions]="lstFilterdPhysician" [minLength]="1" (completeMethod)="filterPhysicians($event)" [id]="'acPhysician'" field="PHYSICIAN" [ngModelOptions]="{standalone: true}"></atpar-ac-server>
+                                    </div>
+                                </div>
+                              
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">From Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <p-calendar [showIcon]="true" [id]="'FromDatePicker'" [(ngModel)]="fromDate" [placeholder]="'From Date'" [dateFormat]="'mm/dd/yy'" [required]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [yearNavigator]="true"  yearRange="1950:2050"></p-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">To Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <p-calendar [showIcon]="true" [id]="'ToDatePicker'" [(ngModel)]="toDate" [placeholder]="'To Date'" [dateFormat]="'mm/dd/yy'" [required]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [yearNavigator]="true"  yearRange="1950:2050"></p-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <button class="btn btn-purple sbtn" (click)="btnGo_Click()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+
+                            </div>
+                        </form>
+                        <br />
+                        <div class="col-xs-12" *ngIf="showGrid">
+                            <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-9">
+                                <atpar-chart type="horizontalBar" [id]="'myChart'" [data]="chartData" [options]="options" [width]="30" [height]="40" *ngIf="showCluster || showStack ||show3d"></atpar-chart>
+                                <atpar-chart type="line" [id]="'myChart'" [data]="chartData" [options]="options" [width]="30" [height]="40" *ngIf="showLine"></atpar-chart>
+                                <!--<atpar-chart type="horizontalBar" [id]="'myChart'" [data]="chartData" [options]="options" [width]="30" [height]="40" *ngIf="showStack"></atpar-chart>-->
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-2">
+                                <br />
+                                <br />
+                                <br />
+                                <ul class="list-unstyled right-images pull-right">
+                                    <li><img src="{{stackChartImag}}" title="Stacked bar chart" (click)="getChart('Stack')" /></li>
+                                    <br /><br />
+                                    <li><img src="{{chart3dImg}}" title="Stacked 3d bar chart" (click)="getChart('3D')"/></li>
+                                    <br /><br />
+                                    <li><img src="{{lineChartImg}}" title="Line chart" (click)="getChart('Line')"/></li>
+                                    <br /><br />
+                                    <li><img src="{{clusterImg}}" title="Clustered bar chart" (click)="getChart('Cluster')"/></li>
+                                    <br />
+                                </ul>
+                            </div>
+                        </div>                      
+                        <div style="clear:both;"></div>
+                        <br />
+                        <div class="col-xs-12">
+                            <div class="container no-scrl" *ngIf="showGrid">
+                                <atpar-datatable [value]="lstPrefSummary" scrollable="true" [paginator]="true" [pageLinks]="3" [rows]="pageSize" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column field="PERFORM_DATE" header="Case Date" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width': '100px'}"></p-column>
+                                    <p-column field="CASE_ID" header="Case ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"  [style]="{'width': '110px'}"></p-column>
+                                    <p-column field="CASE_DESC" header="Case Decription" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right','width': '110px'}"></p-column>
+                                    <p-column field="QAPREPICKADD" header="Added PrePick QA ($)" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right','width': '140px'}"></p-column>
+                                    <p-column field="PICKED" header="Picked ($)" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right','width': '100px'}"></p-column>
+                                    <p-column field="ADDEDDURINGPICK" header="Added during Pick ($)" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right','width': '140px'}"></p-column>
+                                    <p-column field="ISSUEDAFTERPICK" header="Issued after Pick ($)" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right','width': '140px'}"></p-column>
+                                    <p-column field="RETURNED" header="Returned ($)" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right','width': '110px'}"></p-column>
+                                    <p-column field="WASTED" header="Wasted ($)" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right','width': '110px'}"></p-column>
+                                    <p-column field="TOTALCONSUMED" header="Total Consumed ($)" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right','width': '130px'}"></p-column>
+
+                                </atpar-datatable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+<mail-dialog header="Enter Recipient`s Email Address" [width]="450" (onClose)="closeMailPopup()" [(visible)]="isMailDialog" [responsive]="true" showEffect="fade" [modal]="true">
+    <div class="ui-grid ui-grid-responsive ui-fluid">
+        <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="margin-top:2%;margin-right:-2%">
+                <span style="font-weight:600">To : </span>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <atpar-text [(ngModel)]="toMailAddr" [name]="txtToMailAddr" [id]="'txtToMailAddr'"></atpar-text>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                <span><button class="btn btn-purple sbtn" (click)="onSendMailClick()">Send &nbsp;<i class="fa fa-share-square-o" aria-hidden="true"></i></button> </span>
+            </div>
+        </div>
+    </div>
+</mail-dialog>
+<style>
+   
+
+    ul.right-images li img {
+        width: 60px !important;
+        cursor:pointer;
+    }
+</style>

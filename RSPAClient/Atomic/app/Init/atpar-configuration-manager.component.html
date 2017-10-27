@@ -1,0 +1,354 @@
+﻿<div id="main" class="content-page">
+    <div class="content">
+        <div class="">
+            <!--  <div class="page-header-title">
+               <h4 class="page-title"><a (click)="homeurl()">Administration ></a>  Configuration Manager</h4>
+           </div> -->
+            <div class="row">
+                <ul class="breadcrumb">
+                    <li class="completed1"><a>Administration </a></li>
+                    <li class="completed"><a>Configuration Manager</a></li>
+                    <!-- <li class="completed1"><a href="#">Preference Card Optimization</a></li>
+                    <li class="completed" id="activemenu"><a href="#">Summary</a></li> -->
+                </ul>
+            </div>
+        </div>
+        <div class="page-content-wrapper">
+            <div class="container">
+                <br>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <atpar-tabs>
+                                <atpar-tab tabTitle="ERP System">
+                                    <form class="form-horizontal form-label-left">
+                                        <div class="form-group">
+                                            <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 test_step_element_id_label">ERP System</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlErpsys'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                Enterprise system type to which AtPar is connecting
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="url_live_version" class="control-label col-md-3 col-sm-3 col-xs-12">ERP Version</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <input type="text" class="form-control bdr-purple" placeholder="">
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                Enterprise System Version No.
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Download From</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <input type="text" class="form-control bdr-purple">
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                Download From
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 ">Upload To</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlUpload'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                Upload To
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="url_live_version" class="control-label col-md-3 col-sm-3 col-xs-12">ERP Interface User ID </label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <input type="text" class="form-control bdr-purple" placeholder="">
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                Interface user id to communicate with enterprise system
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">ERP Interface Password</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12 holder">
+                                                <input type="password" class="form-control bdr-purple">
+                                                <div class="dropdown">
+                                                    <p>Password contain 8 letters</p>
+                                                    <br>
+                                                    <p>Password contain 2 characters</p>
+                                                    <br>
+                                                    <p>Password contain special charecters</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                Interface password to communicate with enterprise system
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">ERP Server address</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <input type="text" class="form-control bdr-purple">
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                Enterprise system address in format http://server name
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">ERP Portal Name</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <input type="text" class="form-control bdr-purple">
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                Enterprise system Portal name
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">ERP Node Name</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <input type="text" class="form-control bdr-purple">
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                Enterprise system Node name
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">ERP Webserver Port</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <input type="text" class="form-control bdr-purple">
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                Enterprise system Webserver Port
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">ERP Site Name</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <input type="text" class="form-control bdr-purple">
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                Enterprise system Site name
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Stock Issue Component Interface Name</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <input type="text" class="form-control bdr-purple">
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                Enterprise system Stock Issue Component Interface name
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12"> Express Putaway Component Interface Name</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <input type="text" class="form-control bdr-purple">
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                Express Putaway Component Interface Name
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12"> Enterprise system RMA Component Interface Name</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <input type="text" class="form-control bdr-purple">
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                Enterprise system RMA Component Interface Name
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Download Path</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <div class="input-group image-preview ">
+                                                    <input placeholder="" type="text" class="form-control bdr-purple image-preview-filename" disabled="disabled">
+                                                    <!-- don't give a name === doesn't send on POST/GET -->
+                                                    <span class="input-group-btn">
+                                                        <!-- image-preview-clear button -->
+                                                        <button type="button" class="btn btn-default image-preview-clear" style="display:none;"> <span class="glyphicon glyphicon-remove"></span> Clear </button>
+                                                    <!-- image-preview-input -->
+                                                    <div class="btn btn-default image-preview-input">
+                                                        <span class="glyphicon glyphicon-folder-open"></span> <span class="image-preview-input-title">Browse</span>
+                                                        <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview" />
+                                                        <!-- rename it -->
+                                                    </div>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                Directory from which data to be downloaded (Specific to file system type ERPs)
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Upload Path</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <div class="input-group image-preview ">
+                                                    <input placeholder="" type="text" class="form-control bdr-purple image-preview-filename" disabled="disabled">
+                                                    <!-- don't give a name === doesn't send on POST/GET -->
+                                                    <span class="input-group-btn">
+                                                        <!-- image-preview-clear button -->
+                                                        <button type="button" class="btn btn-default image-preview-clear" style="display:none;"> <span class="glyphicon glyphicon-remove"></span> Clear </button>
+                                                    <!-- image-preview-input -->
+                                                    <div class="btn btn-default image-preview-input">
+                                                        <span class="glyphicon glyphicon-folder-open"></span> <span class="image-preview-input-title">Browse</span>
+                                                        <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview" />
+                                                        <!-- rename it -->
+                                                    </div>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                Directory from which data to be Uploaded (Specific to file system type ERPs
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12"> Employee Data Load Frequency</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <input type="text" class="form-control bdr-purple">
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                Frequency to Download Employee Data. In Minutes
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12"> POU Service Frequency</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <input type="text" class="form-control bdr-purple">
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                POU Service Frequency
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">PO Generation Component Interface Name</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <input type="text" class="form-control bdr-purple">
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                Enterprise system PO Generation Component Interface name
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12"> RMA Receipt CI Name</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <input type="text" class="form-control bdr-purple" atpar-tooltip="xyz">
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                RMA Receipt CI Name
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Test Connection</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                <textarea class="form-control" id="txtAtparDatabase" name="txtAtparDatabase" style="resize: none; z-index: 3; position: relative; line-height: 20px; font-size: 14px; transition: none; background: transparent !important;"></textarea>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="industry" class="btn btn-primary col-md-3 col-sm-3 col-xs-12">Archive Test Connection</label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <textarea class="form-control" id="txtAtparDatabase1" name="txtAtparDatabase1" style="resize: none; z-index: 3; position: relative; line-height: 20px; font-size: 14px; transition: none; background: transparent !important;"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-md-offset-5 col-sm-4 col-sm-offset-4 col-xs-12">
+                                            <button type="submit" class="btn btn-purple">Submit</button>
+                                        </div>
+                                    </form>
+                                </atpar-tab>
+                                <atpar-tab tabTitle="ERP Database">
+                                    <atpar-switch></atpar-switch>
+                                    <div class="content-section implementation">
+                                        <atpar-dialog header="AtPar Angular Conformation" [(visible)]="display" modal="modal" width="350" responsive="true">
+                                            <span>
+                                                The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
+                                                His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
+                                                Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family,
+                                                kind and benevolent to those who give respect,
+                                                but given to ruthless violence whenever anything stands against the good of the family.
+                                            </span>
+                                        </atpar-dialog>
+                                        <button (click)="showDialog()" class="btn btn-danger">pop</button>
+                                        <br>
+                                        <atpar-confirmdialog header="Confirmation" icon="fa fa-question-circle" width="425"></atpar-confirmdialog>
+                                        <button (click)="confirm()" class="btn btn-danger" icon="fa-check" label="Confirm"> Alert</button>
+                                    </div>
+                                    <div class="row">
+                                        <h1>Calender</h1>
+                                        <div class="col-lg-12">
+                                            <atpar-calendar [(ngModel)]="date3" [showIcon]="true" [readonlyInput]="true"></atpar-calendar>
+                                            <br />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <h1>Double Calender</h1>
+                                        <div class="col-lg-12">
+                                            <div class="ui-g-12 ui-md-6">
+                                                <p-calendar [showIcon]="true" [id]="'FromDatePicker'" [(ngModel)]="date1" [placeholder]="'From Date'" [minDate]="minDateValue1" [readonlyInput]="true" (onSelect)="selectDate1($event)" (onFocus)="onfocusFromCalendar($event)"></p-calendar>
+                                            </div>
+                                            <div class="ui-g-12 ui-md-6">
+                                                <p-calendar [showIcon]="true" [id]="'ToDatePicker'" [(ngModel)]="date2" [placeholder]="'To Date'" [minDate]="minDateValue2" [readonlyInput]="true" (onSelect)="selectDate2($event)" (onFocus)="onfocusToCalendar($event)"></p-calendar>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="content-section implementation">
+                                        <h3 class="first">Auto Complete</h3>
+                                        <atpar-ac-client [(ngModel)]="country" [suggestions]="filteredCountriesSingle" (completeMethod)="filterCountrySingle($event,SelectedItem)" field="name" [size]="30" placeholder="Countries" [minLength]="1"></atpar-ac-client>
+                                        <span style="margin-left:10px">Country: {{country ? country.name||country : 'none'}}</span>
+                                    </div>
+                                </atpar-tab>
+                                <atpar-tab tabTitle="AtPar Database">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"><a class="btn btn-danger">Test connection</a></label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control bdr-purple">
+                                        </div>
+                                        <!--<div class="col-md-6 col-sm-6 col-xs-12">
+                                            <i class="fa fa-question tooltip_text" aria-hidden="true" data-toggle="tooltip" title="" atpar-tooltip="Check this parameter if Recall Management is implemented"></i>
+                                        </div>-->
+                                        <!--<atpar-growl [value]="msgs" sticky="sticky"></atpar-growl>
+                                        <div class="row">
+                                            <div class=" col-md-6">
+                                                <button type="button" atpar-button (click)="showSuccess()" label="Success" class="btn btn-success"></button>
+                                                <br />
+                                                <br />
+                                                <button type="button" atpar-button (click)="showInfo()" label="Info" class="btn btn-info"></button>
+                                                <br />
+                                                <button type="button" atpar-button (click)="showWarn()" label="Warn" class="btn btn-default"></button>
+                                                <br />
+                                                <button type="button" atpar-button (click)="showError()" label="Error" class="ui-button-error"></button>
+                                            </div>
+                                        </div>-->
+                                    </div>
+                                </atpar-tab>
+                                <atpar-tab tabTitle="AtPar System">
+                                    <atpar-text [(ngModel)]="newItem.COST_CENTER_CODE" [name]="txtCostCenterCode" *ngIf="!isEditMode" [isFocused]="'true'" [validations]="'mandatory,alpa_numeric_underscore_hyphen_backslash'" [id]="'costcentercode'"></atpar-text>
+                                    <!--<atpar-text [(ngModel)]="newItem.DESCRIPTION" [name]="txtDescription" (bindModelDataChange)="bindModelDataChange($event)"
+                                                [validations]="'except_less_greater_symbols'" [id]="'description'"></atpar-text>-->
+                                </atpar-tab>
+                                <atpar-tab tabTitle="Email">
+                                    <div class="form-group">
+                                        <!--<label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12"> Enterprise system RMA Component Interface Name</label>-->
+                                        <div class="col-xs-12">
+                                            <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlErpsys'" [ngModelOptions]="{standalone: true}" filter="filter" [autoWidth]="true"></atpar-select>
+                                        </div>
+                                        <!--<div class="col-md-6 col-sm-6 col-xs-12">
+                                            Enterprise system RMA Component Interface Name
+                                        </div>-->
+                                    </div>
+                                </atpar-tab>
+                                <atpar-tab tabTitle="LDAP">
+                                </atpar-tab>
+                                <atpar-tab tabTitle="SSO">
+                                </atpar-tab>
+                                <atpar-tab tabTitle="Log">
+                                </atpar-tab>
+                                <atpar-tab tabTitle="HL7">
+                                </atpar-tab>
+                            </atpar-tabs>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

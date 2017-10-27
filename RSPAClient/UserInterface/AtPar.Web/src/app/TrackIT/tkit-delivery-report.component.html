@@ -1,0 +1,197 @@
+﻿<div id="main" class="content-page">
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:10px 0px 10px 0px;">
+                        <form class="form-horizontal form-label-left">
+                            <div class="col-xs-12">
+                                <div class="pull-right" id="tdExports" *ngIf="showexport">
+                                    <ul class="list-inline">
+                                        <li class="no-padding" style="cursor:pointer">
+                                            <i class="fa fa-envelope-o fa-bg-lg bg-blue" aria-hidden="true" id="imgMail" title="Send mail"  (click)="onSendMailIconClick($event)"></i>&nbsp;
+                                        </li>
+                                        <li class="no-padding" style="cursor:pointer">
+                                            <i class="fa fa-print fa-bg-lg bg-blue" aria-hidden="true" id="imgPrint" title="Print" (click)="onPrintClick($event)"></i>&nbsp;
+                                        </li>
+                                        <li class="no-padding" style="cursor:pointer">
+                                            <i class="fa fa-file-excel-o fa-bg-lg bg-blue" aria-hidden="true" id="imgExcel" title="Excel Format" (click)="onExportToExcelClick($event)"></i>&nbsp;
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Request#</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="PoId" [id]="'Request'" [name]="'request'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Recipient</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="Recipient" [id]="'Recipient'" [name]="'recipient'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Location</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="Location" [id]="'location'" [name]="'location'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Vendor Name</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="VendorName" [id]="'OrderNo'" [name]="'vendorName'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">User ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+
+                                        <atpar-select [options]="lstUsers" [id]="'ddlUser'" [required]="false" [(ngModel)]="userId" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Requestor ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstRequestor" [id]="'ddlRequestor'" [required]="false" [(ngModel)]="selectedRequestor" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Desc</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="ItmDesc" [id]="'OrderNo'" [name]="'descr'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">ItemID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="ItemId" [id]="'OrderNo'" [name]="'itemId'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Department ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstDeptDetails" [id]="'ddlDepartment'" [required]="false" [(ngModel)]="selectedDeptID" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Status</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstStatus" [id]="'ddlStatus'" [required]="false" [(ngModel)]="selectedStatus" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">From Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <p-calendar [showIcon]="true" [id]="'fromDate'" [(ngModel)]="fromDate" [placeholder]="'From Date'" [dateFormat]="'mm/dd/yy'" [required]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2050"></p-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">To Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <p-calendar [showIcon]="true" [id]="'toDate'" [(ngModel)]="toDate" [placeholder]="'To Date'" [dateFormat]="'mm/dd/yy'" [required]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2050"></p-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="getDeliveryDetails()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+
+                        </form>
+
+                        <div class="col-xs-12 table-responsive" id="Exportdiv" *ngIf="showGrid">
+                            <atpar-datatable [value]="deliverHeaders" [paginator]="true" id="DelvTable" [pageLinks]="3" [rows]="deliverDetailRows" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true" (filteredData)="onDeliverFilterData($event)" resizableColumns="true">
+
+                                <p-column header="Transaction ID" field="TRANS_ID" *ngIf="false"></p-column>
+                                <p-column expander="true" styleClass="col-icon"  [style]="{'width':'35px'}"></p-column>
+                                <p-column header="Request# - Desc" field="ORDER_NO"  [style]="{'width':'150px'}" [sortable]="true" [filter]="true">
+                                    <template let-heddetail="rowData" pTemplate="body">
+                                        <span style="float:left">{{heddetail.ORDER_NO}}</span>
+                                        <span>-</span>
+                                        <span>{{heddetail.REPORT_DATA_8}}</span>
+                                    </template>
+                                </p-column>
+                                <p-column header="Location" field="LOCATION" [style]="{'width':'150px'}"  [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Vendor Name" field="VENDOR_NAME"  [style]="{'width':'150px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Requestor" field="DELIVERED_TO"  [style]="{'width':'150px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Status" field="STATUS"  [style]="{'width':'120px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Department ID" field="REPORT_DATA_25"  [style]="{'width':'100px'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                 <template let-header pTemplate="rowexpansion">
+                                   <atpar-datatable [value]="header.DETAILS" [paginator]="false" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                        <p-column header="Event" field="EVENT_STATUS_MESSAGE" [style]="{'width':'120px'}"></p-column>
+                                        <p-column header="Event Date" field="UPDATE_DATE" [style]="{'width':'150px'}"></p-column>
+                                        <p-column header="User" field="USERNAME" [style]="{'width':'150px'}"></p-column>
+                                        <p-column header="Recipient" field="RECEPIENT" [style]="{'width':'120px'}"></p-column>                                      
+                                        <p-column header="Signature" field="SIGNATURE_ID">
+                                            <template let-col let-ven="rowData" pTemplate="body">
+
+                                                <img src="data:image/jpg;base64,{{ven.SIGNATURE_ID}}" *ngIf="ven.EVENT_STATUS_MESSAGE=='Deliver'?true:false">
+                                            </template>
+
+                                        </p-column>
+                                    </atpar-datatable>                               
+                                   
+                                </template>
+                            </atpar-datatable>
+                        </div>
+
+                        <div class="popUp">
+                            <mail-dialog header="Enter Recipient`s Email Address" [width]="450" (onClose)="closeMailPopup()" [(visible)]="isMailDialog" [responsive]="true" showEffect="fade" [modal]="true">
+                                <div class="ui-grid ui-grid-responsive ui-fluid">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                                            <span>To : </span>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-8 col-xs-8">
+                                            <atpar-text [(ngModel)]="toMailAddr" [name]="txtToMailAddr" [id]="'txtToMailAddr'"></atpar-text>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                                            <span><button class="btn btn-purple sbtn" (click)="onSendMailClick()">Send &nbsp;<i class="fa fa-share-square-o" aria-hidden="true"></i></button> </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </mail-dialog>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+     /* [style]="{'width':'50%','position':'absolute','left':'50%','top':'50%','transform':'translate(-50%, -50%)'}"
+    */
+     img.gray-icon-img:hover {
+         filter: grayscale(0);
+         transition-property: filter;
+         transition-duration: 1s;
+         background: purple;
+         -webkit-filter: grayscale(0%) brightness(122%) contrast(478%);
+         /*-webkit-filter: sepia(100%);
+     background: transparent;*/
+     }
+
+     .popUp {
+         /*width:50%!important;
+     position: absolute !important;
+     left: 50% !important;
+     top: 0% !important;
+     transform: translate(-50%, -50%) !important;*/
+     }
+</style>
+<style>
+    .modal-content {
+        top: 50% !important;
+    }
+</style>

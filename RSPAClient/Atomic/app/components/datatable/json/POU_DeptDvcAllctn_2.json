@@ -1,0 +1,26 @@
+ [
+      {
+        "DEPARTMENT_ID": "11000",
+        "WORKSTATION_ID": "server",
+        "WORKSTATION_DESCR": "server",
+        "WORKSTATION_MAC_ADDRESS": "123456"
+      },
+      {
+        "DEPARTMENT_ID": "11000",
+        "WORKSTATION_ID": "server1",
+        "WORKSTATION_DESCR": "server1",
+        "WORKSTATION_MAC_ADDRESS": "124356"
+      },
+      {
+        "DEPARTMENT_ID": "11000",
+        "WORKSTATION_ID": "server3",
+        "WORKSTATION_DESCR": "server3",
+        "WORKSTATION_MAC_ADDRESS": "25798"
+      },
+      {
+        "DEPARTMENT_ID": "11000",
+        "WORKSTATION_ID": "server4",
+        "WORKSTATION_DESCR": "server4",
+        "WORKSTATION_MAC_ADDRESS": "124567"
+      }
+]

@@ -1,0 +1,119 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:10px 0 10px 0;">
+                        <form class="form-horizontal form-label-left" novalidate>
+
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Business Unit/Company</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstBUnits" [(ngModel)]="businessUnit" [id]="'ddlBUnit'" [required]="true" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label"> Par Location</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="parLocation" [name]="txtParLoc" [id]="'txtParLoc'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label"> Item ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="itemID" [name]="txtItemID" [id]="'txtItemID'" [validations]="'mandatory'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">From Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <p-calendar [showIcon]="true" [id]="'FromDatePicker'" [(ngModel)]="fromDate" [placeholder]="'From Date'" [dateFormat]="'mm/dd/yy'" [required]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [yearNavigator]="true"  yearRange="1950:2050"></p-calendar>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">To Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <p-calendar [showIcon]="true" [id]="'ToDatePicker'" [(ngModel)]="toDate" [placeholder]="'To Date'" [dateFormat]="'mm/dd/yy'" [required]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [yearNavigator]="true"  yearRange="1950:2050"></p-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <button class="btn btn-purple sbtn" (click)="btnGo_Click()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+
+                            </div>
+                        </form>
+                        <br />
+                        <br />
+                        <div class="col-xs-12">
+                            <div class="container" *ngIf="showGrid">
+                                <span><strong>  Item ID : <span class="text-primary">{{lstItemUsage.ITEM_ID}}</span></strong></span><br />
+                                <span><strong>  Business Unit/Company : <span class="text-primary">{{lstItemUsage.B_UNIT}}</span></strong></span>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="col-xs-12" *ngIf="showGrid">
+                            <div class="col-xs-12 col-sm-12 col-md-offset-3 col-md-6">
+                                <atpar-chart type="line" [id]="'myChart'" [data]="chartData" [options]="options" [width]="30" [height]="40"></atpar-chart>
+                            </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                        <br />
+                        <div class="col-xs-12">
+                            <!--<div class="container">
+                                <atpar-datatable [value]="products" [responsive]="true">
+
+                                    <p-column field="name" header="Product Item">
+                                        <template let-col let-product="rowData" pTemplate type="body">
+                                            <p inColSpan colSpan="2" description="{{product.price}}"></p>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="price" header="Price"></p-column>
+                                </atpar-datatable>
+                            </div>-->
+
+                            <div class="container" *ngIf="showGrid">
+
+                                <table id="tblItems" width="100%" border="1">
+                                    <tr>
+                                        <td></td>
+                                        <td><strong>Qty</strong></td>
+                                        <td><strong>Date</strong></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><strong>Min Item Usage</strong></td>
+                                        <td>{{lstItemUsage.MIN_USAGE_QTY}}</td>
+                                        <td>{{lstItemUsage.MIN_DATE}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><strong>Max  Item Usage</strong> </td>
+                                        <td>{{lstItemUsage.MAX_USAGE_QTY}}</td>
+                                        <td>{{lstItemUsage.MAX_DATE}}</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><strong>Average Item Usage</strong></td>
+                                        <td>{{lstItemUsage.AVG_ITEM_QTY}} Per Day</td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+
+<style>
+    #tblItems tr td {
+        padding: 5px;
+    }
+</style>

@@ -1,0 +1,38 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border" *ngIf="true">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px;">
+                        <div class="col-xs-12">
+                            <form class="form-horizontal form-label-left">
+                                <div class="col-xs-12 col-sm-12 col-md-5 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Select Product</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="ddlProductType" [required]="true" [id]="'ddlUId'" [(ngModel)]="selectedProduct" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-5 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <p-calendar [(ngModel)]="archiveDate" [id]="'archiveDate'" [required]="true" [defaultDate]="archiveDate"  (onChange)="formateDate()" [showIcon]="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" readonlyInput="readonlyInput" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                        <!--<atpar-calendar [(ngModel)]="archiveDate" [id]="'archiveDate'" [required]="true" [defaultDate]="archiveDate" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" (onChange)="formateDate()" [showIcon]="true" readonlyInput="readonlyInput" [ngModelOptions]="{standalone: true}"></atpar-calendar>-->
+
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-2 form-group">
+                                    <button class="btn btn-purple sbtn" (click)="confirm()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-section implementation">
+            <atpar-confirmdialog header="Confirmation" icon="fa fa-question-circle" width="425"></atpar-confirmdialog>
+        </div>
+    </div>
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+</div>

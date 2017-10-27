@@ -1,0 +1,92 @@
+﻿<!--<div>
+    <span>This is trackit Manage departments screen.</span>
+</div>-->
+<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px 0 10px 0;">
+                        <div class="container">
+                            <form class="form-horizontal form-label-left" *ngIf="showAddButton">
+                                <div class="form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <atpar-text [(ngModel)]="departmentIDSearch" [name]="txtdepartmentID" [validations]="'except_less_greater_symbols'" [id]="'departmentIdSearch'" [ngModelOptions]="{standalone: true}" [placeholder]="'Department / Description'"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <button type="button" class="btn btn-purple sbtn" name="btnGo" (click)="BindGrid()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                        <button type="button" class="btn btn-purple sbtn" name="btnAdd" (click)="adddepartment()">Add Department &nbsp;<i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-xs-12" *ngIf="table">
+                            <div class="container">
+                                <atpar-datatable [value]="lstDepts" [paginator]="true" #dt [pageLinks]="3" [rows]="pageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+
+                                    <p-column field="" header="Action" [style]="{'width':'4%','text-align':'center'}">
+                                        <template let-dept="rowData" pTemplate="body">
+                                            <i class="fa fa-pencil fa-bg bg-red" title="Edit" (click)="edit(dept)" style="cursor:pointer;"></i>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="ORG_GROUP_ID" header="Org Group ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width': '10%'}"></p-column>
+                                    <p-column field="DEPT_ID" header="Department ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width': '22%'}"></p-column>
+                                    <p-column field="DESCRIPTION" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="checkvalue" header="Status" [filter]="true" [style]="{'width': '8%','overflow':'visible','text-align':'center'}" filterMatchMode="equals">
+                                        <template pTemplate="filter" let-col>
+                                            <atpar-select [options]="ddlStatusType" [(ngModel)]="statusType" [style]="{'width':'100%'}" [id]="'ddlddlStatusType'" [required]="false" 
+                                                          
+                                                                         (onChange)="dataFilter($event.value,col.field,col.filterMatchMode)"
+                                                        ></atpar-select>
+                                            <!--(onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"-->
+                                        </template>
+                                        <template let-col let-dept="rowData" pTemplate="body">
+                                            <!--<atpar-switch name="changeStatus" [(ngModel)]="dept.checkvalue" (change)="changeStatus(dept)"></atpar-switch>-->
+                                            <atpar-switch name="changeStatus" [(ngModel)]="dept.checkvalue" [checked]=dept[col.field] (change)="changeStatus(dept)"></atpar-switch>
+                                        </template>
+                                    </p-column>
+                                </atpar-datatable> 
+                            </div>
+                            <br>
+
+                        </div>
+                        <div class="col-md-12" *ngIf="form">
+                            <form class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Org Group ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <label *ngIf="blnShowOrgGroupLabel" class="control-label lbl-left">{{orgGrpId}}</label>
+                                        <atpar-select [options]="lstOrgGroups" [id]="'ddllstOrgGroups'" [required]="true" [isfocus]="blnShowOrgGroupDD" [(ngModel)]="selectedOrgGroupId" [ngModelOptions]="{standalone: true}" filter="filter" *ngIf="blnShowOrgGroupDD" (onChange)="ddlOrgIDChanged()" [selectOnKeyPress]="true"></atpar-select>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Department ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtDeptID'" [name]="txtDeptID" [(ngModel)]="newItem.DEPT_ID" *ngIf="!blnShowOrgGroupDD && !showLable" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=50,alpha_numeric_underscore_nospace'" [title]="'Dept ID - Allows alphabets,numbers and underscore(_)'" (bindModelDataChange)="bindModelDataChange($event)" [isFocused]="'true'"></atpar-text>
+                                        <atpar-text [id]="'txtDeptID'" [name]="txtDeptID" [(ngModel)]="newItem.DEPT_ID" *ngIf="blnShowOrgGroupDD && !showLable" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=50,alpha_numeric_underscore_nospace'" [title]="'Dept ID - Allows alphabets,numbers and underscore(_)'" (bindModelDataChange)="bindModelDataChange($event)" ></atpar-text>
+                                        <label class="control-label lbl-left" *ngIf="showLable">{{newItem.DEPT_ID}}</label>
+                                    </div>
+                                </div>
+                               
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Description</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtDesc'" [name]="txtDesc" [(ngModel)]="newItem.DESCRIPTION" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=50,everything_except_space_as_fstchar'" [title]="'Dept Desc - Allows any character A-Z,a-z,0-9,!,#,$...'" (bindModelDataChange)="bindModelDataChange($event)" *ngIf="showTextBox"></atpar-text>
+                                        <atpar-text [id]="'txtDesc'" [name]="txtDesc" [(ngModel)]="newItem.DESCRIPTION" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=50,everything_except_space_as_fstchar'" [title]="'Dept Desc - Allows any character A-Z,a-z,0-9,!,#,$...'" (bindModelDataChange)="bindModelDataChange($event)" *ngIf="!showTextBox" [isFocused]="'true'"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-5 col-xs-12">
+                                    <button class="btn btn-purple sbtn" type="button" [disabled]="loading" (click)="saveOrUpdateDepartment()">{{Title}} &nbsp;<i class="fa fa-{{bindSymbal}}"></i></button>
+                                    <button class="btn btn-purple sbtn" type="button" (click)="close()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+</div>

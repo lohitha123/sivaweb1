@@ -1,0 +1,70 @@
+﻿
+<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px 0 10px 0;">
+                        <form class="form-horizontal form-label-left" novalidate>
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Select Indicator</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="indicatorType" [(ngModel)]="selectedIndicator" [id]="'ddlErpsy'" [ngModelOptions]="{standalone: true}" [required]="true"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Destruction Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <p-calendar [showIcon]="true" [id]="'destructionDatePicker'" [required]="true" (onBlur)="validateDestructionDate()" [(ngModel)]="destructionDate" [minDate]="minDateValue1" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <button class="btn btn-purple sbtn" (click)="getItemsToInActivate()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+
+                                </div>
+                            </div>
+                        </form>
+                        <div class="col-xs-12" *ngIf="isVisible">
+                            <div class="container">
+                                <atpar-datatable [value]="lstDBData" [paginator]="true" [pageLinks]="3" [rows]="pazeSize" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true" (filteredData)="filterdata($event)">
+                                    <p-column field="ITEM_TYPE" header="Equipment Type" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'12%'}"></p-column>
+                                    <p-column field="ITEM_ID" header="Item ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'12%'}"></p-column>
+                                    <p-column field="ITEM_DESCR" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'18%'}"></p-column>
+                                    <p-column field="STORAGE_LOCATION" header="Storage Location" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'10%'}"></p-column>
+                                    <p-column field="DESTRUCTION_DATE" header="Destruction Date" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'8%'}"></p-column>
+                                    <p-column field="COMMENTS" header="Comments" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'18%'}"></p-column>
+                                    <p-column [style]="{'width':'7%', 'text-align':'center'}" header="Select">
+                                        <template pTemplate="filter" let-col>
+                                            <ul class="list-inline li-all-none">
+                                                <li>
+
+                                                    <span (click)="checkAll()" style="cursor:pointer">All</span>
+                                                </li> |
+                                                <li>
+                                                    <span (click)="unCheckAll()" style="cursor:pointer">None</span>
+
+                                                </li>
+                                            </ul>
+                                        </template>
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <atpar-switch (change)="selectedRow(ven,$event)" [(ngModel)]="ven.checkvalue"></atpar-switch>
+                                        </template>
+                                    </p-column>
+                                </atpar-datatable>
+                                <br />
+                                <div class="col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-5 col-xs-12">
+                                    <button class="btn btn-purple sbtn" (click)="inactivateItems()" type="button">Update &nbsp;<i class="fa fa-check"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+
+

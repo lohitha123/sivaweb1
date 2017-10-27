@@ -1,0 +1,69 @@
+﻿
+<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br />
+            <div class="panel panel-default" style="border: 1px solid #eee;">
+                <div class="panel-body" style="padding:0px 0 10px 0;">
+                    <button class="btn btn-purple sbtn pull-right hidden-sm hidden-md hidden-lg" (click)="add()"> Add Printer &nbsp; <i class="fa fa-plus"></i></button>
+                    <br>
+                    <div class="col-xs-12">
+                         <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <atpar-text [(ngModel)]="vendorSearch" [name]="txtVendorsearch" (onEnter)="BindGrid()" [validations]="'except_less_greater_symbols'" [id]="'vendorSearch'" [ngModelOptions]="{standalone: true}" [placeholder]="'Vendor / Name'"></atpar-text>
+                          </div>
+                          <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                            <button class="btn btn-purple sbtn" name="btnBindGrid" id="BindGrid" (click)="BindGrid()">Go &nbsp;<i class="fa fa-arrow-right"></i></button>
+                            <button class="btn btn-purple sbtn" id="createNewVendor" name="btnCreateNewVendor" (click)="createNewVendor()"> Add Vendor &nbsp;<i class="fa fa-plus"></i></button>
+                          </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                    <br />
+
+                    <div class="container">
+                        <div *ngIf="isVisible" class="col-xs-12">
+                            <atpar-datatable [value]="lstVendordata" [style]="{'width':'100%'}" #dt [paginator]="true" [pageLinks]="3" [rows]="pazeSize" [rowsPerPageOptions]="[10,20, 30, 40, 50, 60, 70, 80, 90, 100]" [responsive]="true">
+                                <p-column [style]="{'width':'4%','text-align':'center'}" header="Action">
+                                    <template let-rowData="rowData" pTemplate="body">
+                                        <i class="fa fa-pencil fa-bg bg-red"  title="Edit" (click)="editVendor(rowData)" style="cursor:pointer;"></i>
+                                    </template>
+                                </p-column>
+                                <p-column header="Org Group ID" field="ORG_GROUP_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'10%'}"> </p-column>
+                                <p-column header="Vendor ID" field="VENDOR_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'18%'}"></p-column>
+                                <p-column header="Vendor Name" field="VENDOR_NAME" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Phone" field="PHONE" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'10%'}"></p-column>
+                                <p-column header="Dispatch Type" field="ORDER_DESPATCH_TYPE" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'10%'}"> </p-column>
+                                <p-column  field="STATUS"  header="Status" [filter]="true" [style]="{'width': '8%','overflow':'visible','text-align':'center'}" filterMatchMode="equals">
+
+                                    <template pTemplate="filter" let-col>
+                                        <atpar-select-grid [options]="statusList" [id]="'ddlddlStatusType'" [style]="{'width':'100%'}" [(ngModel)]="statusType"
+                                                      (onChange)="dataFilter($event.value,col.field,col.filterMatchMode)"></atpar-select-grid>
+                                    </template>
+
+
+                                    <!--<template pTemplate="filter" let-col>
+                                        <atpar-select [options]="ddlStatusType" [style]="{'width':'100%'}" [id]="'ddlddlStatusType'" [required]="false" 
+                                    (onChange)="dataFilter($event.value,col.field,col.filterMatchMode)"></atpar-select>
+                                    </template>-->
+
+
+
+                                    <template let-col let-vendor="rowData" pTemplate="body">
+                                        <atpar-switch  [(ngModel)]="vendor.STATUS" [checked]=vendor[col.field] (click)="changeStatus(vendor)" style="cursor:pointer;"></atpar-switch>
+                                    </template>
+                                </p-column>
+                            
+                              </atpar-datatable>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--old code-->
+
+
+<atpar-growl [value]="msgs" sticky="sticky"></atpar-growl>
+

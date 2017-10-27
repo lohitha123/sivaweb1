@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{063C67CD-51CC-4864-BA19-E18C2AF92A61}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AtPar.ViewModel</RootNamespace>
+    <AssemblyName>AtPar.ViewModel</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AtParKeyValuePair.cs" />
+    <Compile Include="MT_CYCLECOUNT_GET_EVENTS.cs" />
+    <Compile Include="MT_CYCLECOUNT_SUBEVENTS.cs" />
+    <Compile Include="VM_ATPAR_CART_PREV_COUNTS.cs" />
+    <Compile Include="VM_ATPAR_DEPT_USER.cs" />
+    <Compile Include="VM_ATPAR_POU_LOCATIONS.cs" />
+    <Compile Include="VM_ATPAR_PROFILE_LIST_VIEW.cs" />
+    <Compile Include="VM_ATPAR_STD_ALLOCATION.cs" />
+    <Compile Include="VM_ATPAR_UPLOADED_SUMMARY.cs" />
+    <Compile Include="VM_BACK_ORDER_REPORT.cs" />
+    <Compile Include="VM_CARTCOUNT_ORDER_DETAILS.cs" />
+    <Compile Include="VM_CART_DETAILS.cs" />
+    <Compile Include="VM_CART_HEADER.cs" />
+    <Compile Include="VM_CART_ITEMINFO_DETAILS.cs" />
+    <Compile Include="VM_CART_ITEMINFO_HEADER.cs" />
+    <Compile Include="VM_CART_OPTIMIZATION_DETAILS.cs" />
+    <Compile Include="VM_CART_PREREQDATA.cs" />
+    <Compile Include="VM_CART_SCHEDULES.cs" />
+    <Compile Include="VM_COMPLIANCEDETAILS_ISSUE_DATA.cs" />
+    <Compile Include="VM_COMPLIANCEDETAILS_UNACCT_DATA.cs" />
+    <Compile Include="VM_COMPLIANCESUMMARY_HEADER.cs" />
+    <Compile Include="VM_COMPLIANCESUMMARY_ISSUE_DATA.cs" />
+    <Compile Include="VM_COMPLIANCESUMMARY_RET_DATA.cs" />
+    <Compile Include="VM_COMPLIANCESUMMARY_UN_ACC_DATA.cs" />
+    <Compile Include="VM_COMPLIANCE_DETAILS_DEPT_HEADER_INFO.cs" />
+    <Compile Include="VM_CONSIGNMENT_ITEM_TABLE.cs" />
+    <Compile Include="VM_COST_CENTER_CODES.cs" />
+    <Compile Include="VM_CRCT_USER_ALLOCATION.cs" />
+    <Compile Include="VM_CYCT_EVENT_HEADER_OUTPUT.cs" />
+    <Compile Include="VM_DELV_DELIVERY_REPORT.cs" />
+    <Compile Include="VM_DELV_PARCELCOUNT_DETAILS.cs" />
+    <Compile Include="VM_DEPARTMENT_CART_ITEMS.cs" />
+    <Compile Include="VM_DEVIATION_TRANSACTION.cs" />
+    <Compile Include="VM_DEVIATION_USER_ALLOCATION.cs" />
+    <Compile Include="VM_GetDeptCartAllocations.cs" />
+    <Compile Include="VM_GROUP_MENUS_LIST.cs" />
+    <Compile Include="VM_INACTIVE_ITEMS.cs" />
+    <Compile Include="VM_INVENTORY_CART_ITEMS.cs" />
+    <Compile Include="VM_INVENTORY_ITEMS_TABLE.cs" />
+    <Compile Include="VM_INVENTORY_ITEM_DETAILS.cs" />
+    <Compile Include="VM_IUT_HEADER.cs" />
+    <Compile Include="VM_IUT_SEARCHHEADER.cs" />
+    <Compile Include="VM_IUT_SENDDETAILS.cs" />
+    <Compile Include="VM_IUT_SENDHEADER.cs" />
+    <Compile Include="VM_IUT_SENDTRANSACTIONS.cs" />
+    <Compile Include="VM_IZENDA_LOOKUPS.cs" />
+    <Compile Include="VM_IZENDA_QUERY_SOURCE_FIELD.cs" />
+    <Compile Include="VM_IZENDA_ROLE.cs" />
+    <Compile Include="VM_IZENDA_ROLE_DETAILS.cs" />
+    <Compile Include="VM_IZENDA_SYSTEM_SETTINGS.cs" />
+    <Compile Include="VM_MT_ATPAR_DYNAMIC_REPORT.cs" />
+    <Compile Include="VM_MT_ATPAR_FORGOT_PWD.cs" />
+    <Compile Include="MT_ATPAR_GROUP_ORG_BUNITS.cs" />
+    <Compile Include="VM_MT_USER_DETAILS.cs" />
+    <Compile Include="MT_ATPAR_MENU_PROFILE.cs" />
+    <Compile Include="MT_ATPAR_ORG_USER_GROUPS.cs" />
+    <Compile Include="VM_MT_ATPAR_INSERT_UPDATE_LOC_IDS.cs" />
+    <Compile Include="VM_MT_ATPAR_LOCATIONS.cs" />
+    <Compile Include="VM_MT_ATPAR_LOCATION_DETAILS.cs" />
+    <Compile Include="VM_MT_ATPAR_ORG_GROUP_PARAMETERS.cs" />
+    <Compile Include="VM_MT_ATPAR_PROCESS_SCHEDULER.cs" />
+    <Compile Include="VM_MT_ATPAR_PROFILE_APP_MENUS.cs" />
+    <Compile Include="VM_MT_ATPAR_PROFILE_APP_PARAMETERS.cs" />
+    <Compile Include="VM_MT_ATPAR_PROFILE_SCREEN_DISPLAY.cs" />
+    <Compile Include="VM_MT_ATPAR_PROF_USER.cs" />
+    <Compile Include="VM_MT_ATPAR_REPORT_DETAILS.cs" />
+    <Compile Include="VM_MT_ATPAR_SERIAL.cs" />
+    <Compile Include="VM_MT_ATPAR_SETUP_LOCATIONGROUPS.cs" />
+    <Compile Include="VM_MT_ATPAR_TRANSACTION.cs" />
+    <Compile Include="VM_MT_ATPAR_USER.cs" />
+    <Compile Include="VM_MT_ATPAR_USER_ACL_ADD.cs" />
+    <Compile Include="VM_MT_ATPAR_USER_ADD.cs" />
+    <Compile Include="VM_MT_ATPAR_USER_PROFILE.cs" />
+    <Compile Include="VM_MT_ATPAR_USER_PARAMS.cs" />
+    <Compile Include="MT_ATPAR_USER_PROFILE_APP_ACL.cs" />
+    <Compile Include="MT_ATPAR_USER_PROFILE_APP_ACL_ORG.cs" />
+    <Compile Include="MT_CRCT_USER_ALLOCATION_GROUPS.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SSL_CONFIG_DETAILS.cs" />
+    <Compile Include="VM_MT_ATPAR_CONFIGURATION_SECTION_DTLS.cs" />
+    <Compile Include="VM_ATPAR_IBU_ALLOCATION.cs" />
+    <Compile Include="VM_MT_CRCT_ALLOCATE_CARTS.cs" />
+    <Compile Include="VM_MT_CRCT_CRITICAL_ITEMS.cs" />
+    <Compile Include="VM_MT_CRCT_USER_ALLOCATION.cs" />
+    <Compile Include="VM_MT_CYCT_EVENT_DETAIL.cs" />
+    <Compile Include="VM_MT_CYCT_EVENT_HDR.cs" />
+    <Compile Include="VM_MT_POU_ASSIGN_LOCATIONS.cs" />
+    <Compile Include="VM_MT_POU_BILLONLY_ITEMS.cs" />
+    <Compile Include="VM_MT_POU_CART_DETAILS.cs" />
+    <Compile Include="VM_MT_POU_CASE_CART.cs" />
+    <Compile Include="VM_MT_POU_CASE_CART_DETAILS.cs" />
+    <Compile Include="VM_MT_POU_CASE_CART_HEADER.cs" />
+    <Compile Include="VM_MT_POU_CASE_CART_HEADER_TB.cs" />
+    <Compile Include="VM_MT_POU_CASE_DISCRIPTON.cs" />
+    <Compile Include="VM_MT_POU_CASE_INFO.cs" />
+    <Compile Include="VM_MT_POU_CASE_ITEMS.cs" />
+    <Compile Include="VM_MT_POU_CHARGECAPTURE_DETAILS.cs" />
+    <Compile Include="VM_MT_POU_CONSIGNEDBILLONLY_HEADERS.cs" />
+    <Compile Include="VM_MT_POU_CONSIGNEDBILLONLY_ITEMS.cs" />
+    <Compile Include="VM_MT_POU_DEPT.cs" />
+    <Compile Include="VM_MT_POU_DEPT_CARTS.cs" />
+    <Compile Include="VM_MT_POU_DEPT_CART_ALLOCATIONS.cs" />
+    <Compile Include="VM_MT_POU_DEPT_CART_ALLOCATIONS_TB.cs" />
+    <Compile Include="VM_MT_POU_DEPT_LOCATION_ALLOCATIONS.cs" />
+    <Compile Include="VM_MT_POU_ISSUED_DETAILS.cs" />
+    <Compile Include="VM_MT_POU_ITEM_ATTRIBUTES.cs" />
+    <Compile Include="VM_MT_POU_ITEM_ATTRIBUTES_OUTPUT.cs" />
+    <Compile Include="VM_MT_POU_ONHAND_DETAILS.cs" />
+    <Compile Include="VM_MT_POU_PHYSICIAN.cs" />
+    <Compile Include="VM_MT_POU_USER_DEPARTMENTS.cs" />
+    <Compile Include="VM_MT_RECV_PARCEL_COUNTS_DETAIL.cs" />
+    <Compile Include="VM_MT_RECV_PARCEL_COUNTS_HEADER.cs" />
+    <Compile Include="VM_ORDERS.cs" />
+    <Compile Include="VM_ORDER_DETAILS.cs" />
+    <Compile Include="VM_PAR_MNGT_PAR_HEADER.cs" />
+    <Compile Include="VM_PAR_MNGT_PAR_LOCATION.cs" />
+    <Compile Include="VM_PAR_MNGT_SETUP_LOCATIONS.cs" />
+    <Compile Include="VM_PAR_OPTIMIZATION_DETAILS.cs" />
+    <Compile Include="VM_PAR_SETUP_PAR_LOCATIONS.cs" />
+    <Compile Include="VM_PICKPLAN_STATUS_TRANSACTION_DETAILS.cs" />
+    <Compile Include="VM_PKPL_ORDER_PREFIX.cs" />
+    <Compile Include="VM_POU_CART_DETAILS.cs" />
+    <Compile Include="VM_POU_CART_ITEM_SUBSTITUTE.cs" />
+    <!--<Compile Include="VM_POU_CHECK_CART_ALLOCATION.cs" />-->
+    <Compile Include="VM_POU_CASE_CART_HEADER.cs" />
+    <Compile Include="VM_POU_CASE_CART_HEADER_AND_DEPT.cs" />
+    <Compile Include="VM_POU_CHECK_CART_ALLOCATION.cs" />
+    <Compile Include="VM_POU_COSTVARIANCE_BY_DIAGNOSISCODE.cs" />
+    <Compile Include="VM_POU_COSTVARIANCE_BY_SPECIALTY.cs" />
+    <Compile Include="VM_POU_COSTVARIANCE_BY_SURGEON.cs" />
+    <Compile Include="VM_POU_COSTVARIANCE_ITEMGROUPS.cs" />
+    <Compile Include="VM_POU_COSTVARIANCE_ITEMGROUP_HDR_DETAILS.cs" />
+    <Compile Include="VM_POU_COSTVARIANCE_SUPPLY_HDR_DATA.cs" />
+    <Compile Include="VM_POU_COSTVARIANCE_SURGEON_HDR_DATA.cs" />
+    <Compile Include="VM_POU_COSTVARIANCE_SURGEON_ITEMGROUP_DETAILS.cs" />
+    <Compile Include="VM_POU_CREDIT_DETAILS.cs" />
+    <Compile Include="VM_POU_CREDIT_HEADER.cs" />
+    <Compile Include="VM_POU_CREDIT_INFO.cs" />
+    <Compile Include="VM_POU_GETCASEREVIEW_RPT_CASE_HEADER_SUMMARY.cs" />
+    <Compile Include="VM_POU_GETCASEREVIEW_RPT_CASE_ITEM_INFO.cs" />
+    <Compile Include="VM_POU_GETCASEREVIEW_RPT_CASE_ITEM_LOTSERIAL_DETAILS.cs" />
+    <Compile Include="VM_POU_GETCASEREVIEW_RPT_CASE_ITEM_TOTAL_SUMMARY.cs" />
+    <Compile Include="VM_POU_GET_CASES_INFORMATION.cs" />
+    <Compile Include="VM_POU_HEADER.cs" />
+    <Compile Include="VM_POU_MNGT_ORDER_DETAILS.cs" />
+    <Compile Include="VM_POU_ORDER_DETAILS.cs" />
+    <Compile Include="VM_POU_PHYSICIANS_BY_PREF_OR_PROC.cs" />
+    <Compile Include="VM_POU_PHYSICIAN_USAGE_DETAILS.cs" />
+    <Compile Include="VM_POU_PHYSICIAN_USAGE_HEADER.cs" />
+    <Compile Include="VM_POU_PHY_RANK_DATA.cs" />
+    <Compile Include="VM_POU_PHY_SCORE_CARD_DATA.cs" />
+    <Compile Include="VM_POU_PHY_SUMMARY_BY_SPECIALTY.cs" />
+    <Compile Include="VM_POU_PREF_CARD_OPTIMIZATION.cs" />
+    <Compile Include="VM_POU_PREF_CARD_PERFORMANCE_DETAILS.cs" />
+    <Compile Include="VM_POU_PREF_CARD_PERFORMANCE_SUMMARY.cs" />
+    <Compile Include="VM_POU_PREF_OPT_BY_PHYSICIAN.cs" />
+    <Compile Include="VM_POU_PREF_OPT_BY_PREFERENCE.cs" />
+    <Compile Include="VM_POU_PREF_OPT_BY_PROCEDURE.cs" />
+    <Compile Include="VM_POU_PREF_OPT_BY_SPECIALTY.cs" />
+    <Compile Include="VM_POU_PREF_OPT_HEADER_DATA.cs" />
+    <Compile Include="VM_TKIT_DAILYACTIVITY_DETAILS.cs" />
+    <Compile Include="VM_TKIT_TRANSACTION_DETAILS.cs" />
+    <Compile Include="VM_PTWY_HEADER.cs" />
+    <Compile Include="VM_RECALL_INFO.cs" />
+    <Compile Include="VM_RECV_ALTUOM.cs" />
+    <Compile Include="VM_RECV_RECEIVER_IDS.cs" />
+    <Compile Include="VM_RECV_SEARCHHEADER.cs" />
+    <Compile Include="VM_RECV_SEARCHPOHEADER.cs" />
+    <Compile Include="VM_RECV_SENDLINEHEADER.cs" />
+    <Compile Include="VM_RECV_SENDNONPOHEADER.cs" />
+    <Compile Include="VM_RECV_SENDPODETAILS.cs" />
+    <Compile Include="VM_RECV_SENDPOHEADER.cs" />
+    <Compile Include="VM_RECV_SENDPOSUBDETAILS.cs" />
+    <Compile Include="VM_RECV_SETUPSHIPTO_ID_ALLOCATION.cs" />
+    <Compile Include="VM_POU_DEPT_CART_WORKSTATION_ALLOCATIONS.cs" />
+    <Compile Include="VM_RECV_DETAILS.cs" />
+    <Compile Include="VM_RECV_HEADER.cs" />
+    <Compile Include="VM_RECV_POHEADER.cs" />
+    <Compile Include="VM_POU_REASON_PROC_COST_CASE_SPEC_CODES.cs" />
+    <Compile Include="VM_RECV_TRANSACTIONS.cs" />
+    <Compile Include="VM_RELEASEPACKAGES.cs" />
+    <Compile Include="VM_REPORTS_MENUS_LIST.cs" />
+    <Compile Include="VM_REVIEW_COUNTS_EVENT_DATA.cs" />
+    <Compile Include="VM_SEARCHITEM_DETAILS.cs" />
+    <Compile Include="VM_SETUP_PAR_AUDIT.cs" />
+    <Compile Include="VM_STOCKISSUE_USERDETAILS.cs" />
+    <Compile Include="VM_TKIT_EQPITEMS.cs" />
+    <Compile Include="VM_TKIT_ITEM_DETAILS.cs" />
+    <Compile Include="VM_TKIT_ITEM_DEPT.cs" />
+    <Compile Include="VM_TKIT_ITEM_MASTER.cs" />
+    <Compile Include="VM_TKIT_ORDER_DETAILS.cs" />
+    <Compile Include="VM_UPDATE_REVIEWER_DATA.cs" />
+    <Compile Include="VM_USER_STATUS.cs" />
+    <Compile Include="VM_PRINTLABEL_RECEIVE_HEADER.cs" />
+    <Compile Include="VM_VIEW_CART.cs" />
+    <Compile Include="VM_TKIT_CHECK_IN_OUT_ITEM_DETAILS.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

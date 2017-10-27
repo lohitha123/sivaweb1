@@ -1,0 +1,239 @@
+﻿
+<style>
+    .ui-datatable tbody tr td .form-control, table tbody tr td .form-control {
+        height: auto !important;
+        margin-top: -10px;
+    }
+
+    input[type=number].form-control {
+        line-height: 34px;
+    }
+
+    .table-condensed > thead > tr > th {
+        text-align: center;
+    }
+
+    .new-ht td .input-group .input-group-addon {
+        line-height: 0 !important;
+    }
+
+    .btn-lg {
+        padding: 6px 10px !important;
+    }
+
+    .action-icon-fa {
+        font-size: 1.2em !important;
+    }
+
+    .btn-width {
+        width: 38px !important;
+    }
+
+    .foot-align {
+        top: 6px !important;
+    }
+
+    .cart {
+        display: block;
+        font-size: 18px;
+        /*margin-top: 24px;
+        text-align: center;*/
+    }
+/*@media screen and (min-width:768px) and (max-width:1160px){
+    * >>> .ui-calendar{
+        width:173px;
+    }
+    .time-ctrl input[type='text']{
+        font-size:12px;
+        width:100px!important;
+    }
+}
+@media screen and (min-width:320px) and (max-width:425px){
+    * >>> .ui-calendar{
+        width:100%!important;
+    }
+}*/
+
+</style>
+<div id="main" class="">
+
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:20px 0px 10px 0px;">
+                        <div class="col-xs-12" *ngIf="blnShowCard">
+                            
+                            <br>
+                            <div class="col-sm-12 col-md-12">
+                                <span *ngIf="blnShowEmpty" class="text-primary cart">Your Cart is Empty </span>
+                            </div>
+                            <div class="container table-responsive" >
+                                <table id="cart" class="table table-hover">
+                                    <thead *ngIf="container">
+                                        <tr>
+                                            <th width="7%">Image</th>
+                                            <th width="20%">Product</th>
+                                            <th width="20%">Due Date / Time</th>
+                                            <th width="20%">Return Date / Time</th>
+                                            <th width="6%">Quantity</th>
+                                            <th width="6%">Select Quantity</th>
+                                            <th width="16%">Delivery Location</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <!-- Begin Table Body-->
+                                    <tbody *ngIf="container">
+
+                                        <tr class="new-ht" *ngFor="let item of lstCartItemDetails">
+                                            <td data-th="Image">
+                                                <img *ngIf="item.IMAGE != '' && item.IMAGE != undefined" (mouseover)="onImageEnter(item.IMAGE);VIEWIMAGE.show('tkitviewcart')" (mouseout)="VIEWIMAGE.hideImage()"  src="{{item.IMAGE}}" class="img-responsive" style="height:35px;width:35px;cursor:crosshair" />
+                                            </td>
+
+                                            <td data-th="Product">
+                                                <div class="row">
+
+                                                    <div class="col-sm-8">
+                                                        <p><strong>Item ID: </strong>{{item.ITEM_ID}}</p>
+                                                        <p><strong>Description: </strong>{{item.ITEM_DESCR}}</p>
+                                                        <!--<p><strong>Comments: </strong>{{item.COMMENTS}}</p>-->
+
+                                                        <p *ngIf="blnShowPatientCharge"><strong>Assigned To : </strong>{{item.PATIENT_LAST_NAME}}</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <!--Due Date / Time-->
+                                            <td data-th="Due">
+
+                                                <div class="col-xs-12" *ngIf="item.blnShowDueDateTime">
+                                                    <p-calendar [showIcon]="true" [id]="'FromDatePicker'" [(ngModel)]="item.DUE_DATE" [placeholder]="'Due Date'" [readonlyInput]="true" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                                </div>
+                                                <div class="clear"></div>
+                                                <br>
+                                                <div class="col-xs-12 col-md-8 time-ctrl" *ngIf="item.blnShowDueDateTime">
+                                                    <atpar-calendar [(ngModel)]="item.DUE_TIME" [timeOnly]="true" [hourFormat]="12" [ngModelOptions]="{standalone: true}" ></atpar-calendar>
+
+                                                </div>
+
+                                            </td>
+
+                                            <!--Return Date / Time-->
+                                            <td data-th="Return">
+
+                                                <div class="col-xs-12">
+                                                    <p-calendar [showIcon]="true" [id]="'FromDatePicker'" [(ngModel)]="item.RETURN_DATE" [placeholder]="'Return Date'" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" *ngIf="item.blnShowReturnDateTime"></p-calendar>
+                                                </div>
+                                                <div class="clear"></div>
+                                                <br>
+                                                <div class="col-xs-12 col-md-8">
+                                                    <atpar-calendar [(ngModel)]="item.RETURN_TIME" [timeOnly]="true" [hourFormat]="12" [ngModelOptions]="{standalone: true}" *ngIf="item.blnShowReturnDateTime"></atpar-calendar>
+
+                                                </div>
+                                            </td>
+
+
+                                            <td data-th="Qty">
+                                                <div class="input-group" style="width:150px;text-align: center;">
+                                                    {{item.ITEM_QTY}}
+
+                                                </div>
+                                            </td>
+                                            <td data-th="SQty">
+                                                <atpar-text *ngIf="!item.blnShowSelectQty" [disabled]="true" [id]="'txtSelectQty'" [(ngModel)]="item.REQUEST_QTY" ></atpar-text>
+                                                <atpar-text *ngIf="item.blnShowSelectQty" [id]="'txtSelectQty'" [(ngModel)]="item.REQUEST_QTY" [validations]="'numeric'" [title]="'use only numbers (0-9)'"></atpar-text>
+                                            </td>
+                                            <td data-th="Delivery Location">
+                                                <atpar-select [options]="lstLocations" [(ngModel)]="item.LOCATION_ID" [id]="'ddDeliverLocation'" filter="filter" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                            </td>
+
+                                            <td class="actions" data-th="Cart">
+                                                <button class="btn btn-purple btn-lg" (click)="patientClick(item)" title="Select Patient" *ngIf="blnShowPatientCharge"><i class="fa fa-user-plus action-icon-fa"></i></button>
+
+                                                <button class="btn btn-purple btn-lg btn-width" title="Do you want to Delete?" (click)="deleteCartItem(item)"><i class="fa fa-trash action-icon-fa"></i></button>
+                                            </td>
+                                        </tr>
+
+
+                                    </tbody>
+                                    <!-- End Table Body-->
+                                    <!--Table Footer Begins-->
+                                    <tfoot>
+                                        <tr class="foot-align">
+                                            <td colspan="3" class="less-border">
+                                                <div *ngIf="container">
+                                                    <label  class="col-md-3 col-sm-12 col-xs-12" style="margin-top:13px!important">Order Comments</label>
+                                                    <div class="col-md-9 col-sm-12 col-xs-12">
+                                                        <atpar-text [name]="txtOrderComments" [(ngModel)]="orderComments" [validations]="'except_less_greater_symbols'" [id]="'Item'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td colspan="5" class="less-border">
+                                                <div class="col-md-9 col-md-offset-3 col-sm-12 col-xs-12">
+                                                        <button (click)="clearCartItems()" *ngIf="container" class="btn btn-purple sbtn">Clear Cart &nbsp;<i class="fa fa-trash-o"></i></button>
+                                                        <button class="btn btn-purple sbtn" *ngIf="container" (click)="submitCartClick($event)">Submit Request &nbsp;<i class="fa fa-check"></i></button>
+                                                        <button class="btn btn-purple sbtn pull-right" *ngIf="blnShowCard" (click)="continueClick()">Continue &nbsp; <i class="fa fa-angle-right"></i></button>
+                                                 </div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                    <!--Table Footer Ends-->
+
+                                </table>
+                            </div>
+                        </div>
+
+                       
+                        <!-- Patient Pop up Begin -->
+
+                        <div class="col-xs-12 table-responsive " *ngIf="blnShowPatientsPopup">
+                            <div class="container">
+                                <atpar-datatable [value]="lstPatients" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+
+                                    <p-column header="Select" field="PATIENT_MRC" [style]="{'text-align':'center','width':'46px'}">
+                                        <template let-col let-poLineRowData="rowData" pTemplate type="body">
+
+                                            <atpar-radioButton name="linedata" [(ngModel)]="selectedAccountNumber" [disabled]="poLineRowData.ITEM_ID!=null" value={{poLineRowData.PATIENT_MRC}} (onClick)="grdRdbtnChanged($event)"></atpar-radioButton>
+                                        </template>
+                                    </p-column>
+
+                                    <p-column field="PATIENT_DEPARTMENT" header="Department" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'15%'}"></p-column>
+                                    <p-column field="PATIENT_NAME" header="Patient Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="PATIENT_MRC" header="Patient MRC" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'14%'}"></p-column>
+                                    <p-column field="PATIENT_ACCNUMBER" header="Patient Account #" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'14%'}"></p-column>
+                                    <p-column field="PATIENT_BEDNUMBER" header="Bed / Room #" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'12%'}"></p-column>
+                                </atpar-datatable>
+                            </div>
+                            <br>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5 form-group">
+                                <button class="btn btn-purple sbtn" (click)="patientPopupClose()">Save & Close &nbsp; <i class="fa fa-check"></i></button>
+                                <button class="btn btn-purple sbtn" (click)="clearPatientSelection()">Clear Selection &nbsp; <i class="fa fa-close"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Patient Pop up End -->
+                        <div class="content-section implementation">
+                            <atpar-confirmdialog header="Confirmation" icon="fa fa-question-circle" width="425"></atpar-confirmdialog>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+
+    <atpar-modal #VIEWIMAGE>
+        <div class="atpar-modal-body">
+            <div class="row container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="viewImgPath!=''">
+                        <img src="{{viewImgPath}}" class="img-responsive" style="max-height:600px;max-width:650px" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </atpar-modal>
+
+</div>

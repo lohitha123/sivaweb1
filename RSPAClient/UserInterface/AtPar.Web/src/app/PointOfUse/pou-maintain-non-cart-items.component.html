@@ -1,0 +1,416 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:10px 0 10px 0;">
+
+                        <!--***Main Page***-->
+                        <div class="col-xs-12 table-responsive" *ngIf="showFirstPage">
+                            <div class="container">
+                                <atpar-datatable *ngIf="showGrid"  [value]="lstDepartmentCarts" [paginator]="true" [pageLinks]="3" [rows]="pazeSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column header="Action" [style]="{'width': '4%','overflow':'visible','text-align':'center'}">
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <i class="fa fa-plus fa-bg bg-blue" style="cursor:pointer" title="Add" (click)="btnAdd_Click(ven)"></i>&nbsp;
+                                        </template>
+                                    </p-column>
+                                    <p-column field="BUSINESS_UNIT" header="Business Unit" [filter]="true" filterPlaceholder="Search" [style]="{'width': '16%'}">
+                                    </p-column>
+                                    <p-column field="CART_ID" header="Par Location" [filter]="true" filterPlaceholder="Search">
+                                    </p-column>
+                                    <p-column field="DEPARTMENT_ID" header="Dept" [filter]="true" filterPlaceholder="Search">
+                                    </p-column>                            
+                                </atpar-datatable>
+                            </div>
+                        </div>
+
+                        <!--***Second Page***-->
+                        <form class="form-horizontal form-label-left" *ngIf="showSecondPage">
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Item ID </label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-text [(ngModel)]="itemID" [name]="txtitemID" [id]="'OrgId1'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Description</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-text [(ngModel)]="itemDescription" [name]="txtitemDesc" [id]="'OrgId'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-2 col-md-4 form-group">
+                                <button class="btn btn-purple sbtn" (click)="btnGo_Click()">Go &nbsp;<i class="fa fa-arrow-right"></i></button>
+                            </div>
+                        </form>
+
+                        <div class="col-xs-12 table-responsive" *ngIf="showSecondPage">
+                            <div class="container">
+                                <atpar-datatable [value]="lstConsignmentItems" [style]="{'width': '100%'}" *ngIf="lstConsignmentItems.length>0" [paginator]="true" [pageLinks]="3" [rows]="pazeSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column header="Action" [style]="{'width': '4%','overflow':'visible','text-align':'center'}">
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <i class="fa fa-pencil fa-bg bg-blue" style="cursor:pointer" title="Edit" (click)="btnEditItem_Click(ven)"></i>&nbsp;
+                                        </template>
+                                    </p-column>                                       
+                                    <p-column field="ITEM_ID" header="Item ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width': '14%'}"></p-column>
+                                    <p-column field="ITEM_DESCRIPTION" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width': '25%'}"></p-column>
+                                    <p-column field="CART_ID" header="Par Location" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="BUSINESS_UNIT" header="Business Unit" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width': '10%'}"></p-column>
+                                    <p-column field="ISSUE_UOM" header="Issue UOM" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width': '8%'}"></p-column>
+                                    <p-column field="CONV_RATE_PAR_TO_ISSUE" header="Conversion Rate (Par)" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="" [style]="{'color': 'purple','width':'12%'}" >
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <span class="grid-link" (click)="btnAdjustQty_Click('editInventory',ven)"> Adjust Item Quantity </span>
+                                        </template>
+                                    </p-column>                                   
+                                </atpar-datatable>
+                            </div>
+                            <br>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="btnAddItem_Click()"> Add Item &nbsp;<i class="fa fa-plus"></i> </button>
+                                <button class="btn btn-purple sbtn" (click)="btnGoBack_Click()"> <i class="fa fa-arrow-left"></i> &nbsp;Go Back </button>
+                            </div>
+                        </div>
+                        <!--***Third Page***-->
+                        <form class="form-horizontal form-label-left" *ngIf="form">
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Business Unit</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3 control-label lbl-left">
+                                    {{conItem.BUSINESS_UNIT}}
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Par Location</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3 control-label lbl-left">
+                                    {{conItem.CART_ID}}
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Item ID</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <label *ngIf="showLabelItemID" class="control-label lbl-left">{{conItem.ITEM_ID}}</label>
+                                    <atpar-text *ngIf="!showLabelItemID" [(ngModel)]="conItem.ITEM_ID" [name]="txtItemID" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace,max=30'" [title]="'Allows only Letters(a-z) numbers(0-9) Underscore(_) Hyphen(-) Backslash(\) and NoSpace'" [id]="'txtItemID'" [ngModelOptions]="{standalone: true}" (focusout)="txtItemID_TextChanged()" (bindModelDataChange)="bindModelDataChange($event)" [isFocused]="'true'"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt" *ngIf="!showLabelItemID">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Item Description</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="conItem.ITEM_DESCRIPTION" [name]="txtItemDescr" [validations]="'mandatory,max=100'" [title]="'Allows Any Characters'" [id]="'txtItemDescr'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" [isFocused]="isEditMode"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Manufacturer</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="conItem.MANUFACTURER" [name]="txtManufacturer" [validations]="'alpha_numeric_underscore_hyphen_backslash,max=100'" [title]="'Allows Only Letters(a-z) Numbers(0-9) Underscore(_) Hyphen(-) and Backslash(\)'" [id]="'Manufacturer'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Manufacturer Item ID</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="conItem.MANUFACTURE_ITEM_ID" [name]="txtManufactureID" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace,max=30'" [title]="'Allows OnlyLetters(a-z) Numbers(0-9) Underscore(_) Hyphen(-) Backslash(\) and NoSpace'" [id]="'ManufactureItemID'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Vendor</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="conItem.VENDOR" [name]="txtVendor" [validations]="'alpha_numeric_underscore_hyphen_backslash,max=100'" [title]="'Allows Only Letters(a-z) Numbers(0-9) Underscore(_) Hyphen(-) and Backslash(\)'" [id]="'Vendor'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Custom Item ID</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="conItem.CUST_ITEM_ID" [name]="txtCustItemID" [validations]="'max=30'" [title]="'Allows Any Characters'" [id]="'CustomItemID'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Vendor Item ID</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="conItem.VENDOR_ITEM_ID" [name]="txtVendorItemID" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace,,max=30'" [title]="'Allows Only Letters(a-z) Numbers(0-9) Underscore(_) Hyphen(-) Backslash(\) and NoSpace'" [id]="'VendorItemID'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Count Order</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="conItem.COUNT_ORDER" [name]="txtCountOrder" [validations]="'numeric,max=10'" [title]="'Allows Only Numbers'" [id]="'CountOrder'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Optimum Quantity</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="conItem.OPTIMUM_QTY" [name]="txtOptimumQty" [validations]="'number,max=10'" [title]="'Allows Only Numbers'" [id]="'OptimumQuantity'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">UOM (Par)</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="conItem.UOM" [name]="txtUOM" [validations]="'caps_alpha_nospace,,max=5,mandatory'" [title]="'Allows Only CAPS Letters(A-Z) and NoSpace'" [id]="'UOM'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">UOM (Issue)</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="conItem.ISSUE_UOM" [name]="txtIssueUOM" [validations]="'caps_alpha_nospace,,max=5'" [title]="'Allows Only CAPS Letters(A-Z) and NoSpace'" [id]="'txtIssueUOM'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Conversion Rate (Par)</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="conItem.CONV_RATE_PAR_TO_ISSUE" [name]="txtCRate" [validations]="'number,max=8'" [title]="'Allows Only Numbers'" [id]="'CRate'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">UPC ID</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="conItem.UPC_ID" [name]="txtUpcID" [validations]="'alpha_numerics_nospace,max=20'" [title]="'Allows Only Letters(a-z) Numbers(0-9) and NoSpace'" [id]="'UPCID'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">GTIN</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="conItem.GTIN" [name]="txtGtin" [validations]="'alpha_numerics_nospace,max=20'" [title]="'Allows Only Letters(a-z) Numbers(0-9) and NoSpace'" [id]="'GTIN'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Sample</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-switch [(ngModel)]="conItem.ISSAMPLE" [ngModelOptions]="{standalone: true}"></atpar-switch>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Patient Chargeable</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-switch [(ngModel)]="conItem.ISPATIENTCHARGEABLE" [ngModelOptions]="{standalone: true}" (click)="swtPatient_Click()"></atpar-switch>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Item Price($)</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text *ngIf="!conItem.ISPATIENTCHARGEABLE" [(ngModel)]="conItem.ITEM_PRICE" [name]="txtItemPrice" [validations]="'number,max=8'" [title]="'Allows Only Numbers'" [id]="'ItemPrice'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                    <atpar-text *ngIf="conItem.ISPATIENTCHARGEABLE" [(ngModel)]="conItem.ITEM_PRICE" [name]="txtItemPrice" [title]="'Allows Only Numbers'" [validations]="'number,max=8,mandatory'" [id]="'ItemPrice'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Charge Code</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text *ngIf="!conItem.ISPATIENTCHARGEABLE" [(ngModel)]="conItem.CHARGE_CODE" [name]="txtChargeCode" [validations]="'alpha_numerics_nospace,max=50'" [title]="'Allows Only Numbers alpha_numerics_nospace'" [id]="'ChargeCode'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                    <atpar-text *ngIf="conItem.ISPATIENTCHARGEABLE" [(ngModel)]="conItem.CHARGE_CODE" [name]="txtChargeCode" [validations]="'alpha_numerics_nospace,max=50,mandatory'" [title]="'Allows Only Numbers alpha_numerics_nospace'" [id]="'ChargeCode'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Lot Controlled</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-switch [(ngModel)]="conItem.ISLOTCONTROLLED" [ngModelOptions]="{standalone: true}"></atpar-switch>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Serialized</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-switch [(ngModel)]="conItem.ISSERIALIZED" [ngModelOptions]="{standalone: true}"></atpar-switch>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Compartment</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="conItem.COMPARTMENT" [name]="txtCompartment" [validations]="'alpha_numeric_underscore_hyphen_backslash,max=50'" [title]="'Allows Only alpha_numeric_underscore_hyphen_backslash'" [id]="'Compartment'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Status</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-radioButton name="groupname" label="Active" value="Active" [(ngModel)]="conItem.STATUSVALUE" [ngModelOptions]="{standalone: true}"></atpar-radioButton>
+                                    <atpar-radioButton name="groupname" label="InActive" value="InActive" [(ngModel)]="conItem.STATUSVALUE" [ngModelOptions]="{standalone: true}"></atpar-radioButton>
+                                    <atpar-radioButton name="groupname" label="Pending" value="Pending" [(ngModel)]="conItem.STATUSVALUE" [ngModelOptions]="{standalone: true}"></atpar-radioButton>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="btnSave_Click()" [disabled]="disableFormBtn">Save &nbsp; <i class="fa fa-floppy-o"></i></button>
+                                <button class="btn btn-purple sbtn" (click)="btnGoBack_Click()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back </button>
+                            </div>
+                        </form>
+                        <div style="clear:both;"></div>
+
+
+                        <!--***Fourth Page***-->
+                        <form class="form-horizontal form-label-left" *ngIf="editform">
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Business Unit</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <label class="control-label lbl-left">{{inventoryItem.BUSINESS_UNIT}}</label>
+                                    <!--<atpar-text [(ngModel)]="inventoryItem.BUSINESS_UNIT" [name]="txtBusinessUnit" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'BusinessUnit'" [ngModelOptions]="{standalone: true}" [readonly]="true"></atpar-text>-->
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Par Location</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <label class="control-label lbl-left">{{inventoryItem.CART_ID}}</label>
+                                    <!--<atpar-select [options]="lstCartInventoryItems" [style]="{'width':'100%'}" [id]="'ddCartid'" [(ngModel)]="inventoryItem.CART_ID" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>-->
+                                    <!--<atpar-text [(ngModel)]="inventoryItem.CART_ID" [name]="txLocation" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'ParLocation'" [ngModelOptions]="{standalone: true}" [readonly]="true"></atpar-text>-->
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Item ID</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <label *ngIf="!showtxtItemID" class="control-label lbl-left">
+                                        {{inventoryItem.ITEM_ID}}
+                                    </label>
+                                    <atpar-text *ngIf="showtxtItemID" [(ngModel)]="inventoryItem.ITEM_ID" [name]="txtItemID" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace,,max=30'" [id]="'ItemID'" [ngModelOptions]="{standalone: true}" [readonly]="true"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                    <span *ngIf="showtxtItemID">Enter Item ID Here</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Item Description</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <label class="control-label lbl-left">{{inventoryItem.ITEM_DESCRIPTION}}</label>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Lot Number</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <span class="text-danger mandatory" *ngIf="enableLotControl">*</span>
+                                    <atpar-text [(ngModel)]="inventoryItem.LOTNUMBER" [name]="txtLotNum" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace,max = 30'" [id]="'LotNum'" [disabled]="!enableLotControl" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange1($event)"></atpar-text>
+
+                                    <!--<atpar-text [(ngModel)]="inventoryItem.LOTNUMBER" [name]="txtLotNumDis" [id]="'LotNumDis'" [readonly]="true" [ngModelOptions]="{standalone: true}"  *ngIf="!enableLotControl"></atpar-text>
+                                    <atpar-text [(ngModel)]="inventoryItem.LOTNUMBER" [name]="txtLotNum" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace,max = 30,mandatory'" [id]="'LotNum'" *ngIf="enableLotControl" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange1($event)" [ngStyle]="{ 'background': lightgoldenrodyellow }"></atpar-text>-->
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Serial Number</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <span class="text-danger mandatory" *ngIf="enableSerial">*</span>
+                                    <atpar-text [(ngModel)]="inventoryItem.SERIALNUMBER" [name]="txtSerialNum" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace,max=30'" [id]="'SerialNum'" [disabled]="!enableSerial" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange1($event)"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Quantity</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="inventoryItem.QUANTITY" [name]="txtQuantity" [validations]="'mandatory,number'" [id]="'Quantity'" [ngModelOptions]="{standalone: true}" [disabled]="!enableQuantity" (bindModelDataChange)="bindModelDataChange1($event)" title="Allow only numbers"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Expiry Date</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <!--<p-calendar [showIcon]="true" [id]="'ExpiryDatePicker'" [(ngModel)]="inventoryItem.EXPIRYDATE" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2050" [placeholder]="'Expiry Date'" [required]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" (onSelect)="selectDate($event)"></p-calendar>-->
+                                    <p-calendar [(ngModel)]="inventoryItem.EXPIRYDATE" [id]="'ExpiryDatePicker'" [required]="true" [placeholder]="'Expiry Date'" [showIcon]="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" readonlyInput="true" [ngModelOptions]="{standalone: true}" (onSelect)="selectDate($event)">
+                                    </p-calendar>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="btnSaveItemQuantity_Click()" [disabled]="disableInvBtn">Save &nbsp; <i class="fa fa-floppy-o"></i></button>
+                                <button class="btn btn-purple sbtn" (click)="btnGoBack_Click()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back </button>
+                            </div>
+                        </form>
+                        <div style="clear:both;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+<style>
+    /*.x-label {
+        padding-top: 8px !important;
+    }*/
+
+    .grid-link {
+        color: #6c276a;
+        transition: all 0.2s;
+    }
+
+        .grid-link:hover {
+            color: #8a48bc !important;
+            cursor: pointer !important;
+        }
+</style>

@@ -1,0 +1,588 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0 0 10px 0;">
+                        <!--<div *ngIf="pageForm">-->
+                        <div [hidden]="!pageForm">
+                            <form class="form-horizontal form-label-left">
+                                <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12">
+                                    <br />
+                                    <div class="pull-right" id="tdExports" *ngIf="tdExports">
+                                        <ul class="list-inline">
+                                            <li class="no-padding" style="cursor:pointer">
+                                                <!--<img class="fa-bg-lg bg-blue gray-icon-img" src="../../assets/images/icons/common/mail.png" (click)="onSendMailIconClick($event)" style="width:30px" title="Send Mail" />-->&nbsp;
+                                                <i class="fa fa-envelope-o fa-bg-lg bg-blue" aria-hidden="true" id="imgMail" title="Send Mail" (click)="onSendMailIconClick($event)"></i>&nbsp;
+                                            </li>
+                                            <li class="no-padding" style="cursor:pointer">
+                                                <!--<img class="fa-bg-lg bg-blue gray-icon-img" src="../../assets/images/icons/common/print.png" (click)="onPrintClick($event)" style="width:30px" title="Print" />-->&nbsp;
+                                                <i class="fa fa-print fa-bg-lg bg-blue" aria-hidden="true" id="imgPrint" title="Print" (click)="onPrintClick($event)"></i>&nbsp;
+                                            </li>
+                                            <li class="no-padding" style="cursor:pointer">
+                                                <!--<img class="fa-bg-lg bg-blue gray-icon-img" src="../../assets/images/icons/common/XL.png" (click)="onExportToExcelClick($event)" style="width:30px" title="Excel Format" />-->&nbsp;
+                                                <i class="fa fa-file-excel-o fa-bg-lg bg-blue" aria-hidden="true" id="imgExcel" title="Excel Format" (click)="onExportToExcelClick($event)"></i>&nbsp;
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-lg-12 col-md-12 col-xs-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Patient ID</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                            <atpar-text [(ngModel)]="patientID" [name]="txtPatientID" [id]="'qry_PatientID'" [validations]="'max=50'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Account ID</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                            <atpar-text [(ngModel)]="accountID" [name]="txtAccountID" [id]="'qry_AccountID'" [validations]="'max=50'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Exam ID</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                            <atpar-text [(ngModel)]="examID" [name]="txtStatus" [id]="'qry_ExamID'" [validations]="'max=50'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div style="clear:both;"></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Comments</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                            <atpar-text [(ngModel)]="comments" [name]="txtComments" [id]="'qry_Comments'" [validations]="'max=50'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Department</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                            <atpar-select [options]="lstDeptId" [(ngModel)]="selectedDept" [id]="'dd_deptId'" [ngModelOptions]="{standalone: true}" filter="filter" [required]="true"></atpar-select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-4 col-sm-6" *ngIf="showDDStatus">Status</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-8" *ngIf="showDDStatus">
+                                            <atpar-select [options]="lstStatus" [(ngModel)]="selectedStatus" [id]="'ddStatus'" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                        </div>
+                                    </div>
+                                    <div style="clear:both;"></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">From Date</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                            <p-calendar [showIcon]="true" [id]="'FromDatePicker'" [(ngModel)]="fromDate" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2050"  [placeholder]="'From Date'" [dateFormat]="'mm/dd/yy'" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [required]="true"></p-calendar>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">To Date</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                            <p-calendar [showIcon]="true" [id]="'ToDatePicker'" [(ngModel)]="toDate" [placeholder]="'To Date'" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2050" [readonlyInput]="true" [dateFormat]="'mm/dd/yy'" [ngModelOptions]="{standalone: true}" [required]="true"></p-calendar>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group">
+                                        <button class="btn btn-purple sbtn" (click)="onGoClick()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="clearfix"></div>
+                            <atpar-tabs *ngIf="tbReviewCharges" id="tbReviewCharges" [selectedTab]="activeTab" (enableSelectedTab)="selectedTabIndexChanged($event)">
+                                <atpar-tab tabTitle="Charges">
+                                    <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12" *ngIf="gvCharges">
+                                        <div class="container">
+                                            <ul class="list-inline">
+                                                <li class="pull-right no-padding">
+                                                    <span class="text-primary">{{lblResultCount}} Record(s) Found</span>
+                                                </li>
+                                            </ul>
+
+                                            <atpar-datatable [value]="dvChargesHeaders" [paginator]="true" [pageLinks]="3" [rows]="reviewChargesRows" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true" (filteredData)="onChargesFilterData($event)">
+                                                <p-column header="Transaction ID" field="TRANSACTION_ID" *ngIf="false"></p-column>
+                                                <p-column expander="true" styleClass="col-icon" [style]="{'text-align':'center','width':'35px'}"></p-column>
+                                                <p-column header="Action" [style]="{'text-align':'center','width':'6%'}">
+                                                    <template let-col let-ven="rowData" pTemplate type="body">
+                                                        <i class="fa fa-plus fa-bg bg-blue" (click)="addCharge(ven)" style="cursor:pointer" title="Add"></i>
+                                                        <i class="fa fa-pencil fa-bg bg-blue" (click)="editCharge(ven)" style="cursor:pointer" title="Edit"></i>
+                                                    </template>
+                                                </p-column>
+                                                <p-column [style]="{'text-align':'center','width':'7%'}">
+                                                    <template pTemplate="filter" let-col type="header">
+                                                        <label style="color:#555555;">Review</label>
+                                                        <ul class="list-inline li-all-none">
+                                                            <li><span (click)="checkAllCharges()">All</span></li> |
+                                                            <li><span (click)="unCheckAllCharges()">None</span></li>
+                                                        </ul>
+                                                    </template>
+                                                    <template let-charge="rowData" pTemplate type="body">
+                                                        <atpar-switch [id]="charge.TRANSACTION_ID" [(ngModel)]="charge.REVIEWED" (click)="checkSelectedRow(charge,$event)"></atpar-switch>
+                                                    </template>
+                                                </p-column>
+
+                                                <p-column header="Date Of Service (MM/DD/YYYY)" field="CAPTURE_DATE_TIME" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column header="Patient ID / Name" field="PATIENT_NAME" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column header="User ID" field="USER_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column header="Account ID" field="ACCOUNT_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column header="Exam ID" field="EXAM_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column header="Comments" field="COMMENTS" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column header="Department" field="DEPARTMENT_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+
+                                                <template let-header pTemplate="rowexpansion">
+                                                    <atpar-datatable [value]="header.DETAILS" [style]="{'width':'100%'}" [paginator]="false" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                                        <p-column header="Item ID" field="ITEM_ID" [style]="{'width':'16%','height':'30px'}"></p-column>
+                                                        <p-column field="LINE_NO" [style]="{'text-align':'center','width':'4%','height':'30px'}">
+                                                            <template pTemplate="filter" let-col type="header">
+                                                                <label style="color:#555555;">LineNo</label>
+                                                            </template>
+                                                            <template let-chargeitemdetail="rowData" pTemplate type="body">
+                                                                <span style="float:right">{{chargeitemdetail.LINE_NO}}</span>
+                                                            </template>
+                                                        </p-column>
+                                                        <p-column header="Description" field="ITEM_DESCRIPTION" [style]="{'width':'25%','height':'30px'}"></p-column>
+                                                        <p-column field="ITEM_COUNT" [style]="{'text-align':'center','width':'6%','height':'30px'}">
+                                                            <template pTemplate="filter" let-col type="header">
+                                                                <label style="color:#555555;">Quantity</label>
+                                                            </template>
+                                                            <template let-chargeitemdetail="rowData" pTemplate type="body">
+                                                                <span style="float:right">{{chargeitemdetail.ITEM_COUNT}}</span>
+                                                            </template>
+                                                        </p-column>
+                                                        <p-column header="Lot Number" field="ITEM_LOTNUMBER" [style]="{'text-align':'center','width':'12%','height':'30px'}"></p-column>
+                                                        <p-column header="Serial Number" field="ITEM_SRNUMBER" [style]="{'text-align':'center','width':'16%','height':'30px'}"></p-column>
+                                                        <p-column header="Charge Code" field="CHARGE_CODE" [style]="{'width':'12%','height':'30px'}"></p-column>
+                                                        <p-column field="ITEM_PRICE" [style]="{'width':'14%','height':'30px','text-align':'center'}">
+                                                            <template pTemplate="filter" let-col type="header">
+                                                                <label style="color:#555555;">Price</label>
+                                                            </template>
+                                                            <template let-chargeitemdetail="rowData" pTemplate type="body">
+                                                                <span style="float:right">{{chargeitemdetail.ITEM_PRICE}}</span>
+                                                            </template>
+                                                        </p-column>
+                                                    </atpar-datatable>
+                                                </template>
+                                            </atpar-datatable>
+                                        </div>
+                                        <br>
+                                        <div class="col-xs-12 col-sm-6 col-sm-offset-5  col-md-4 col-md-offset-5">
+                                            <button class="btn btn-purple sbtn" (click)="onSaveReviewsClick()">Save Reviews &nbsp;<i class="fa fa-floppy-o"></i></button>
+                                        </div>
+                                    </div>
+                                </atpar-tab>
+                                <atpar-tab tabTitle="Credits">
+                                    <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12" *ngIf="grdCredits">
+                                        <div class="container">
+                                            <span class="text-primary pull-right">{{lblResultCount}} Record(s) Found</span>
+                                            <atpar-datatable [value]="dvCreditHeaders" [paginator]="true" [pageLinks]="3" [rows]="creditsRows" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                                <p-column header="Transaction ID" field="TRANSACTION_ID" *ngIf="false"></p-column>
+                                                <p-column expander="true" styleClass="col-icon" [style]="{'text-align':'center','width':'35px'}"></p-column>
+                                                <p-column header="Action" [style]="{'text-align':'center','width':'4%'}">
+                                                    <template let-col let-ven="rowData" pTemplate type="body">
+                                                        <i class="fa fa-pencil fa-bg bg-blue" (click)="editCredit(ven)" style="cursor:pointer" title="Edit"></i>
+                                                    </template>
+                                                </p-column>
+                                                <p-column header="Date Of Service (MM/DD/YYYY)" field="CAPTURE_DATE_TIME" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column header="Patient ID / Name" field="PATIENT_NAME" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column header="User ID" field="USER_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column header="Account ID" field="ACCOUNT_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column header="Exam ID" field="EXAM_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column header="Comments" field="COMMENTS" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <p-column header="Department" field="DEPARTMENT_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                <template let-header pTemplate="rowexpansion">
+                                                    <atpar-datatable [value]="header.DETAILS" [paginator]="false" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                                        <p-column header="Item ID" field="ITEM_ID" [style]="{'width':'18%'}"></p-column>
+                                                        <p-column field="LINE_NO" [style]="{'text-align':'center','width':'5%'}">
+                                                            <template pTemplate="filter" let-col type="header">
+                                                                <label style="color:#555555;">LineNo</label>
+                                                            </template>
+                                                            <template let-creditdetail="rowData" pTemplate type="body">
+                                                                <span style="float:right">{{creditdetail.LINE_NO}}</span>
+                                                            </template>
+                                                        </p-column>
+                                                        <p-column header="Description" field="ITEM_DESCRIPTION" [style]="{'width':'20%'}"></p-column>
+                                                        <p-column [style]="{'text-align':'center','width':'26%'}">
+                                                            <template pTemplate="filter" let-col type="header">
+                                                                <label style="color:#555555;">Quantity</label>
+                                                                <br />
+                                                                <span style="float:left">Issue</span>
+                                                                <span>Charge </span>
+                                                                <span style="float:right">Credit</span>
+                                                                <br />
+                                                            </template>
+                                                            <template let-creditdetail="rowData" pTemplate type="body">
+                                                                <span style="float:left">{{creditdetail.ITEM_COUNT}}</span>
+                                                                <span>{{creditdetail.BILLED_QTY}}</span>
+                                                                <span style="float:right">{{creditdetail.CREDIT_QTY}}</span>
+                                                            </template>
+                                                        </p-column>
+                                                        <p-column header="Lot Number" field="ITEM_LOTNUMBER" [style]="{'text-align':'center','width':'12%'}"></p-column>
+                                                        <p-column header="Serial Number" field="ITEM_SRNUMBER" [style]="{'text-align':'center','width':'16%'}"></p-column>
+                                                        <p-column header="Charge Code" field="CHARGE_CODE" [style]="{'width':'10%'}"></p-column>
+                                                        <p-column field="ITEM_PRICE" [style]="{'width':'14%'}">
+                                                            <template pTemplate="filter" let-col type="header">
+                                                                <label style="color:#555555;">Price</label>
+                                                            </template>
+                                                            <template let-creditdetail="rowData" pTemplate type="body">
+                                                                <span style="float:right">{{creditdetail.ITEM_PRICE}}</span>
+                                                            </template>
+                                                        </p-column>
+                                                    </atpar-datatable>
+                                                </template>
+                                            </atpar-datatable>
+                                        </div>
+                                    </div>
+                                </atpar-tab>
+
+                            </atpar-tabs>
+                        </div>
+                        <div *ngIf="addChargeForm">
+                            <!--<div [hidden]="!addChargeForm">-->
+                            <form class="form-horizontal form-label-left">
+                                <div class="col-xs-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group" *ngIf="false">
+                                        <label for="editLblUserID" class="control-label col-md-6 col-sm-6 col-xs-12">Transaction ID</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label id="editLblUserID" class="control-label lbl-left">{{addChargeData.TRANSACTION_ID}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="editLblUserID" class="control-label col-md-6 col-sm-6 col-xs-12">Department ID</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label id="editLblUserID" class="control-label lbl-left">{{addChargeData.DEPARTMENT_ID}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="" class="control-label col-md-6 col-sm-6 col-xs-12">Date of Service(DD/MM/YYYY)</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label id="editLblUserID" class="control-label lbl-left">{{addChargeData.CAPTURE_DATE_TIME}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="txtPatientID" class="control-label col-md-6 col-sm-6 col-xs-12">Patient ID</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label id="editLblUserID" class="control-label lbl-left">{{addChargeData.PATIENT_ID}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="txtAccountID" class="control-label col-md-6 col-sm-6 col-xs-12">Account ID</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label id="editLblUserID" class="control-label lbl-left">{{addChargeData.ACCOUNT_ID}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="form-group">
+                                        <label for="ddItemID" class="control-label col-md-3 col-sm-3 col-xs-12">Item ID</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-select [options]="lstItemIDs" [(ngModel)]="selectedItemID" [id]="'ddItemID'" [ngModelOptions]="{standalone: true}" (onChange)="ddItemIDChanged($event)" [required]="true"></atpar-select>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txtIAddCC" class="control-label col-md-3 col-sm-3 col-xs-12">Charge Code</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="chargeNewItem.CHARGE_CODE" [name]="txtIAddCC" [id]="'txtIAddCC'" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'max=50,ALPHA_NUMERIC_UNDERSCORE_HYPHEN_NOSPACE'" [title]="'Allows only Letters(A-Z) Numbers(0-9) Underscore(_) Hyphen(-) and NoSpace'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            <!-- [Use only letters(A-Z),(a-z), numbers (0-9),the underscore (_),hyphen (-) and no spaces]-->
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txtLNum" class="control-label col-md-3 col-sm-3 col-xs-12">Lot Number</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12" *ngIf="showTxtLotNumber">
+                                            <atpar-text [(ngModel)]="chargeNewItem.ITEM_LOTNUMBER" [name]="txtLNum" [id]="'txtLNum'" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'max=50,ALPHA_NUMERIC_UNDERSCORE_HYPHEN_NOSPACE'" [title]="'Allows only Letters(a-z) Numbers(0-9) Underscore(_) Hyphen(-) and NoSpace'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            <!--  [Use only letters(A-Z),(a-z), numbers (0-9),the underscore (_),hyphen (-) and no spaces]-->
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txtISNum" class="control-label col-md-3 col-sm-3 col-xs-12">Serial number</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12" *ngIf="showTxtSerNumber">
+                                            <atpar-text [(ngModel)]="chargeNewItem.ITEM_SRNUMBER" [name]="txtISNum" [id]="'txtISNum'" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'max=50,ALPHA_NUMERIC_UNDERSCORE_HYPHEN_NOSPACE'" [title]="'Allows only Letters(a-z) Numbers(0-9) Underscore(_) Hyphen(-) and NoSpace'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            <!-- [Use only letters(A-Z),(a-z), numbers (0-9),the underscore (_),hyphen (-) and no spaces]-->
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txtQty" class="control-label col-md-3 col-sm-3 col-xs-12">Quantity</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="chargeNewItem.ITEM_COUNT" [name]="txtQty" [id]="'txtQty'" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'max=50,numeric_dot'" [title]="'Allows only Numbers(0-9) and Dot(.)'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            <!--[Use only letters(A-Z),(a-z), numbers (0-9),the underscore (_),hyphen (-) and no spaces]-->
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txtIPrice" class="control-label col-md-3 col-sm-3 col-xs-12">Price</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <atpar-text [(ngModel)]="chargeNewItem.ITEM_PRICE" [name]="txtIPrice" [id]="'txtIPrice'" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'max=50,numeric_dot'" [title]="'Allows only Numbers(0-9) and Dot(.)'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                            <!--[Use only letters(A-Z),(a-z), numbers (0-9),the underscore (_),hyphen (-) and no spaces]-->
+                                        </div>
+                                    </div>
+                                    <div class="clear:both;"></div>
+                                    <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-5">
+                                        <button class="btn btn-purple sbtn" [disabled]="disableButton" (click)="onChargeItemSaveClick()">Save &nbsp;<i class="fa fa-floppy-o"></i></button>
+                                        <button class="btn btn-purple sbtn" (click)="onChargeItemGoBackClick()"><i class="fa fa-arrow-left"> &nbsp;</i>Go Back</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div *ngIf="editChargeForm">
+                            <!--<div [hidden]="!editChargeForm">-->
+                            <form class="form-horizontal form-label-left">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="" class="control-label col-md-6 col-sm-6 col-xs-12">Date of Service(DD/MM/YYYY)</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <p-calendar [showIcon]="true" [id]="'editDateOfService'" [(ngModel)]="editChargeData.CAPTURE_DATE_TIME" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2050" [dateFormat]="'mm/dd/yy'" [readonlyInput]="true" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="txtPatientID" class="control-label col-md-6 col-sm-6 col-xs-12">Patient ID</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <atpar-text [(ngModel)]="editChargeData.PATIENT_ID" [name]="txtPatientID" [id]="'txtPatientID'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="editLblUserID" class="control-label col-md-6 col-sm-6 col-xs-12">User ID</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label id="editLblUserID" class="control-label lbl-left">{{editChargeData.USER_ID}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="txtAccountID" class="control-label col-md-6 col-sm-6 col-xs-12">Account ID</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <atpar-text [(ngModel)]="editChargeData.ACCOUNT_ID" [name]="txtAccountID" [id]="'txtAccountID'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="txtExamID" class="control-label col-md-6 col-sm-6 col-xs-12">Exam ID</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <atpar-text [(ngModel)]="editChargeData.EXAM_ID" [name]="txtExamID" [id]="'txtExamID'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="txtComments" class="control-label col-md-6 col-sm-6 col-xs-12">Comments</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <atpar-text [(ngModel)]="editChargeData.COMMENTS" [name]="txtComments" [id]="'txtComments'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="editLblDept" class="control-label col-md-6 col-sm-6 col-xs-12">Department</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label id="editLblDept" class="control-label lbl-left">{{editChargeData.DEPARTMENT_ID}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-6 form-group" *ngIf="false">
+                                        <label for="editLblDept" class="control-label col-md-6 col-sm-6 col-xs-12">Transaction ID</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label id="editLblDept">{{editChargeData.TRANSACTION_ID}}</label>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="col-xs-12 table-responsive">
+                                        <div class="container">
+                                            <atpar-datatable [value]="editChargeData.DETAILS" [paginator]="false" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                                <p-column header="Item ID" field="ITEM_ID" [style]="{'width':'16%','height':'30px'}"></p-column>
+                                                <p-column field="LINE_NO" [style]="{'text-align':'center','width':'4%','height':'30px'}">
+                                                    <template pTemplate="filter" let-col type="header">
+                                                        <label style="color:#555555;">LineNo</label>
+                                                    </template>
+                                                    <template let-chargedetail="rowData" pTemplate type="body">
+                                                        <span style="float:right">{{chargedetail.LINE_NO}}</span>
+                                                    </template>
+                                                </p-column>
+                                                <p-column header="Description" field="ITEM_DESCRIPTION" [style]="{'width':'20%','height':'30px'}"></p-column>
+                                                <p-column header="Quantity" [style]="{'text-align':'center','width':'6%','height':'30px'}">
+                                                    <template let-col let-detail="rowData" pTemplate type="body">
+                                                        <atpar-text-grid [(ngModel)]="detail.ITEM_COUNT" [name]="txtItemCount" [id]="'txtEditItemCount'" [style]="{'text-align':'right','padding-right':'6px'}" [ngModelOptions]="{standalone: true}" [validations]="'numeric_dot'"></atpar-text-grid>
+                                                    </template>
+                                                </p-column>
+                                                <p-column header="Lot Number" field="ITEM_LOTNUMBER" [style]="{'text-align':'center','height':'30px'}"></p-column>
+                                                <p-column header="Serial Number" field="ITEM_SRNUMBER" [style]="{'text-align':'center','width':'16%','height':'30px'}"></p-column>
+                                                <p-column header="Charge Code" [style]="{'width':'10%','height':'30px'}">
+                                                    <template let-col let-detail="rowData" pTemplate type="body">
+                                                        <atpar-text-grid [(ngModel)]="detail.CHARGE_CODE" [name]="txtChargeCode" [id]="'txtEditChargeCode'" [ngModelOptions]="{standalone: true}"></atpar-text-grid>
+                                                    </template>
+                                                </p-column>
+                                                <p-column header="Price" field="ITEM_PRICE" [style]="{'text-align':'center','width':'10%','height':'30px'}">
+                                                    <template let-col let-detail="rowData" pTemplate type="body">
+                                                        <atpar-text-grid [(ngModel)]="detail.ITEM_PRICE" [name]="txtItemPrice" [id]="'txtEditItemPrice'" [style]="{'text-align':'right','padding-right':'5px'}" [ngModelOptions]="{standalone: true}"></atpar-text-grid>
+                                                    </template>
+                                                </p-column>
+                                            </atpar-datatable>
+                                        </div>
+                                    </div>
+                                    <div class="clear:both;"></div>
+                                    <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-5">
+                                        <button class="btn btn-purple sbtn" (click)="onChargeUpdateClick()">Update &nbsp;<i class="fa fa-check"></i></button>
+                                        <button class="btn btn-purple sbtn" (click)="onChargeGoBackClick()"><i class="fa fa-arrow-left"></i>&nbsp; Go Back</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div *ngIf="editCreditForm">
+                            <!--<div [hidden]="!editCreditForm">-->
+                            <form class="form-horizontal form-label-left">
+                                <div class="col-xs-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="" class="control-label col-md-6 col-sm-6 col-xs-12">Date of Service(MM/DD/YYYY)</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <p-calendar [showIcon]="true" [id]="'editCreditDateOfService'" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2050" [(ngModel)]="editCreditData.CAPTURE_DATE_TIME" [dateFormat]="'mm/dd/yy'" [readonlyInput]="true" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="txtCPatientID" class="control-label col-md-6 col-sm-6 col-xs-12">Patient ID</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <atpar-text [(ngModel)]="editCreditData.PATIENT_ID" [name]="txtCPatientID" [id]="'txtCPatientID'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="editCLblUserID" class="control-label col-md-6 col-sm-6 col-xs-12">User ID</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label id="editCLblUserID" class="control-label lbl-left">{{editCreditData.USER_ID}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="txtCAccountID" class="control-label col-md-6 col-sm-6 col-xs-12">Account ID</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <atpar-text [(ngModel)]="editCreditData.ACCOUNT_ID" [name]="txtCAccountID" [id]="'txtCAccountID'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="txtCExamID" class="control-label col-md-6 col-sm-6 col-xs-12">Exam ID</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <atpar-text [(ngModel)]="editCreditData.EXAM_ID" [name]="txtCExamID" [id]="'txtCExamID'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="txtCComments" class="control-label col-md-6 col-sm-6 col-xs-12">Comments</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <atpar-text [(ngModel)]="editCreditData.COMMENTS" [name]="txtCComments" [id]="'txtCComments'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="editCLblDept" class="control-label col-md-6 col-sm-6 col-xs-12">Department</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label id="editCLblDept" class="control-label lbl-left">{{editCreditData.DEPARTMENT_ID}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group" *ngIf="false">
+                                        <label for="editCLblDept" class="control-label col-md-6 col-sm-6 col-xs-12">Transaction ID</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <label id="editCLblDept" class="control-label lbl-left">{{editCreditData.TRANSACTION_ID}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 table-responsive">
+                                        <div class="container">
+                                            <atpar-datatable [value]="editCreditData.DETAILS" [paginator]="false" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                                <p-column header="Item ID" field="ITEM_ID" [style]="{'width':'16%'}"></p-column>
+                                                <p-column field="LINE_NO" [style]="{'text-align':'center','width':'5%'}">
+                                                    <template pTemplate="filter" let-col type="header">
+                                                        <label style="color:#555555;">LineNo</label>
+                                                    </template>
+                                                    <template let-creditdetail="rowData" pTemplate type="body">
+                                                        <span style="float:right">{{creditdetail.LINE_NO}}</span>
+                                                    </template>
+                                                </p-column>
+                                                <p-column header="Description" field="ITEM_DESCRIPTION" [style]="{'width':'20%'}"></p-column>
+                                                <p-column header="Quantity" [style]="{'text-align':'center','width':'20%'}">
+                                                    <template pTemplate="filter" let-col type="header">
+                                                        <ul class="list-unstyled">
+                                                            <li><u>Quantity</u></li>
+                                                            <br />
+                                                            <li>
+                                                                <ul class="list-inline">
+                                                                    <li style="float:left;"><u>Issue</u></li>
+                                                                    <li class="text-center"><u>Charge</u></li>
+                                                                    <li class="pull-right"><u>Credit</u></li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </template>
+                                                    <template let-creditdetail="rowData" pTemplate type="body">
+                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding:0">
+                                                            <span style="float:left">{{creditdetail.ITEM_COUNT}}</span>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                            <span>{{creditdetail.BILLED_QTY}}</span>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 pull-right" style="padding-right:0">
+                                                            <atpar-text-grid [(ngModel)]="creditdetail.CREDIT_QTY" [style]="{'text-align':'right','padding-right':'2px','width':'60px','margin-left':'12px'}" [name]="txtCItemCount" [id]="'txtCEditItemCount'" [ngModelOptions]="{standalone: true}" [validations]="'numeric_dot'"></atpar-text-grid>
+                                                        </div>
+                                                    </template>
+                                                </p-column>
+                                                <p-column header="Lot Number" field="ITEM_LOTNUMBER" [style]="{'width':'12%','text-align':'center'}"></p-column>
+                                                <p-column header="Serial Number" field="ITEM_SRNUMBER" [style]="{'text-align':'center','width':'16%'}"></p-column>
+                                                <p-column header="Charge Code" [style]="{'width':'10%'}">
+                                                    <template let-col let-detail="rowData" pTemplate type="body">
+                                                        <atpar-text-grid [(ngModel)]="detail.CHARGE_CODE" [name]="txtChargeCode" [id]="'txtEditChargeCode'" [style]="{'padding-right':'3px'}" [ngModelOptions]="{standalone: true}"></atpar-text-grid>
+                                                    </template>
+                                                </p-column>
+                                                <p-column header="Price" field="ITEM_PRICE" [style]="{'text-align':'center','width':'10%'}">
+                                                    <template let-col let-detail="rowData" pTemplate type="body">
+                                                        <atpar-text-grid [(ngModel)]="detail.ITEM_PRICE" [name]="txtItemPrice" [id]="'txtEditItemPrice'" [validations]="'max=50,numeric_dot'" [style]="{'text-align':'right','padding-right':'3px'}" [ngModelOptions]="{standalone: true}" [title]="'Please Enter Valid Price'"></atpar-text-grid>
+                                                    </template>
+                                                </p-column>
+                                            </atpar-datatable>
+                                        </div>
+                                    </div>
+                                    <div class="clear:both;"></div>
+                                    <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-5">
+                                        <button class="btn btn-purple sbtn" (click)="onCreditUpdateClick()">Update &nbsp;<i class="fa fa-check"></i></button>
+                                        <button class="btn btn-purple sbtn" (click)="onCreditGoBackClick()"><i class="fa fa-arrow-left"> &nbsp;</i>Go Back</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <atpar-growl [value]="msgs" sticky="sticky"></atpar-growl>
+    <div class="popUp">
+        <atpar-dialog header="Enter Recipient`s Email Address" [(visible)]="isMailDialog" [width]="450" [responsive]="true" showEffect="fade" [modal]="true" >
+            <div class="ui-grid ui-grid-responsive ui-fluid container">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                        <span>To : </span>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-8 col-xs-8">
+                        <atpar-text [(ngModel)]="toMailAddr" [validations]="'EMAIL'" [name]="txtToMailAddr" [id]="'txtToMailAddr'"></atpar-text>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                        <span><button class="btn btn-purple sbtn" (click)="onSendMailClick()">Send &nbsp;<i class="fa fa-share-square-o" aria-hidden="true"></i></button> </span>
+                    </div>
+                </div>
+            </div>
+        </atpar-dialog>
+    </div>
+</div>
+<style>
+    
+   /* [style]="{'width':'50%','position':'absolute','left':'50%','top':'50%','transform':'translate(-50%, -50%)'}"
+   */ 
+    img.gray-icon-img:hover{
+    filter: grayscale(0); 
+    transition-property: filter;
+    transition-duration: 1s;
+    background: purple;
+    -webkit-filter: grayscale(0%) brightness(122%) contrast(478%);
+    /*-webkit-filter: sepia(100%);
+    background: transparent;*/
+    }
+   .popUp{
+    /*width:50%!important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 0% !important;
+    transform: translate(-50%, -50%) !important;*/
+    }
+</style>

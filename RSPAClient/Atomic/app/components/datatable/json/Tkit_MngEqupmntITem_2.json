@@ -1,0 +1,18 @@
+ [
+      {
+        "ITEM_ID": "boxtypeitem1",
+        "ITEM_DESCR": "itemdesc",
+        "STORAGE_LOCATION": "LtestOrg1",
+        "DESTRUCTION/MAX_STORAGE_DATE": "07/19/2017",
+        "OWNER": "dept1",
+        "DEPARTMENTS": "dept1"
+      }, 
+      {
+        "ITEM_ID": "boxtypeitem2",
+        "ITEM_DESCR": "itemdesc2",
+        "STORAGE_LOCATION": "LtestOrg1",
+        "DESTRUCTION/MAX_STORAGE_DATE": "07/18/2017",
+        "OWNER": "dept1",
+        "DEPARTMENTS": "dept2"
+      }     
+    ]

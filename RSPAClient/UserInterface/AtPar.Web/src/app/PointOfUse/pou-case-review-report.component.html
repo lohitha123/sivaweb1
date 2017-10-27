@@ -1,0 +1,210 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:10px 0 0 0;">
+                        <form class="form-horizontal form-label-left" novalidate>
+                            <div class="col-xs-12">
+                                <div class="pull-right" *ngIf="showGrid">
+                                    <ul class="list-inline">
+                                        <li class="no-padding">
+                                            <i class="fa fa-envelope-o fa-bg-lg bg-blue" aria-hidden="true" style="cursor:pointer" id="imgMail" title="Send mail" (click)="onSendMailIconClick($event)"></i>&nbsp;
+                                        </li>
+                                        <li class="no-padding">
+                                            <i class="fa fa-print fa-bg-lg bg-blue" aria-hidden="true" style="cursor:pointer" id="imgPrint" title="Print" (click)="onPrintClick($event)"></i>&nbsp;
+                                        </li>
+                                        <li class="no-padding">
+                                            <i class="fa fa-file-excel-o fa-bg-lg bg-blue" aria-hidden="true" style="cursor:pointer" id="imgExcel" title="Excel Format" (click)="onExportToExcelClick($event)"></i>&nbsp;
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Dept ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <!--(onSelect)="SelectRoute(Menu)" (onEnter)="onEnterPress($event,Menu)"-->
+                                        <atpar-ac-server [(ngModel)]="selectedDept" (onSelect)="selectDepartment()" [suggestions]="lstFilterdDept" [minLength]="1" (completeMethod)="filterDepartments($event)" [mandatory]="true" [id]="'acDept'" field="FILTERED_DEPT" [ngModelOptions]="{standalone: true}"></atpar-ac-server>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Case Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <label class="control-label lbl-left">{{caseDate}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Case</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-ac-server [(ngModel)]="selectedCase" (onSelect)="selectCase()" [suggestions]="lstFilterdCase" [minLength]="1" (completeMethod)="filterCases($event)" [mandatory]="true" [id]="'acCase'" field="FILTERED_CASE" [ngModelOptions]="{standalone: true}"></atpar-ac-server>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Procedure</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <label class="control-label lbl-left" [innerHtml]="procedure"></label>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Physician</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <label class="control-label lbl-left" [innerHtml]="physician"></label>
+                                    </div>
+
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <button class="btn btn-purple sbtn" (click)="btnGo_Click()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+
+                            </div>
+                        </form>
+
+                        <div class="col-xs-12" *ngIf="showGrid">
+                            <div class="container">
+                                <table id="tblLabels" width="100%" border="1">
+                                    <tr>
+                                        <td>CaseOpen</td>
+                                        <td><label class="control-label lbl-left">{{lstCasesHeaderSummary[0].CASE_PERFORM_DATE}}</label></td>
+                                        <td>Total Qty Items Picked & Issued </td>
+                                        <td><label class="control-label lbl-left">{{lstCaseItemTotalSummary[0].TOTAL_QTY_ITEMS_PICKED_ISSUED.toFixed(2)}}</label></td>
+                                        <td colspan="2"> &nbsp; </td>
+                                    </tr>
+                                    <tr>
+                                        <td>CaseClosed</td>
+                                        <td><label class="control-label lbl-left">{{lstCasesHeaderSummary[0].CASE_CLOSED_DATE}}</label></td>
+                                        <td>Total Qty Items Consumed</td>
+                                        <td><label class="control-label lbl-left">{{lstCaseItemTotalSummary[0].TOTAL_QTY_ITEMS_CONSUMED.toFixed(2)}}</label></td>
+                                        <td>Consumed</td>
+                                        <td><label class="control-label lbl-left">{{lstCaseItemTotalSummary[0].CONSUMED_PERCENTAGE.toFixed(2)}}%</label> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Time Elapsed </td>
+                                        <td><label class="control-label lbl-left">{{lstCasesHeaderSummary[0].ELAPSEDTIME}}</label></td>
+                                        <td>Total Qty Items Returned</td>
+                                        <td> <label class="control-label lbl-left">{{lstCaseItemTotalSummary[0].TOTAL_QTY_ITEMS_RETURNED.toFixed(2)}}</label></td>
+                                        <td> Returned </td>
+                                        <td><label class="control-label lbl-left">{{lstCaseItemTotalSummary[0].RETURNED_PERCENTAGE.toFixed(2)}}%</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td> Total # Items for Case </td>
+                                        <td><label class="control-label lbl-left">{{lstCaseItemInfo.length}}</label></td>
+                                        <td>  Total Qty Items Wasted </td>
+                                        <td> <label class="control-label lbl-left">{{lstCaseItemTotalSummary[0].TOTAL_QTY_ITEMS_WASTED.toFixed(2)}}</label></td>
+                                        <td>Wasted</td>
+                                        <td> <label class="control-label lbl-left">{{lstCaseItemTotalSummary[0].WASTED_PERCENTAGE.toFixed(2)}}%</label></td>
+                                    </tr>
+                                </table>
+                                <br />
+                            </div>
+                        </div>
+                        <br />
+                        <div style="clear:both;"></div>
+
+                        <div class="col-xs-12">
+                            <div class="container" *ngIf="showGrid">
+                                <atpar-datatable [value]="lstCaseItemInfo" scrollable="true" [paginator]="true" [pageLinks]="3" rowGroupMode="subheader" [rows]="pageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column field="ITEM" header="Item" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width': '15%'}"></p-column>
+                                    <p-column field="ITEM_DESCRIPTION" header="Item Description" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width': '10%'}"></p-column>
+                                    <p-column field="ITEM_COST" header="Item Cost ($)" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right','width': '8%'}"></p-column>
+                                    <p-column field="PICKED" header="Picked" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right','width': '8%'}"></p-column>
+                                    <p-column field="ISSUED_DURING_PROCEDURE" header="Issued during Procedure" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right','width': '15%'}"></p-column>
+                                    <p-column field="RETURNED" header="Returned" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right','width': '8%'}"></p-column>
+                                    <p-column field="WASTED" header="Wasted" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right','width': '6%'}"></p-column>
+                                    <p-column field="CONSUMED" header="Consumed" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right','width': '8%'}"></p-column>
+                                    <p-column field="CONSUMED_COST" header="Consumed Cost ($)" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right' ,'width': '11%'}"></p-column>
+                                    <p-column header="Transaction Details" [style]="{'width': '6%','overflow':'visible','text-align':'center'}" expander="true">
+                                        <!--<template let-ven="rowData" pTemplate="body">
+                                            <i class="fa fa-plus fa-bg bg-blue" style="cursor:pointer"></i>&nbsp;
+                                        </template>-->
+                                    </p-column>
+                                    
+
+                                    <template let-expandRow pTemplate="rowexpansion">
+                                        <atpar-datatable [value]="expandRow.ITEMDETAILS" [paginator]="true" [pageLinks]="3" rowGroupMode="subheader" [rows]="pageSize" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                       
+                                            <p-column header="Item" field="ITEM_ID" filterPlaceholder="Search"></p-column>
+                                            <p-column header="Transaction Date" field="TRANSACTION_DATE" filterPlaceholder="Search"></p-column>
+                                            <p-column header="Transaction Time" field="TRANSACTION_TIME" filterPlaceholder="Search"></p-column>
+                                            <p-column header="User ID" field="USER_ID" filterPlaceholder="Search"></p-column>
+                                            <p-column header="Serial No" field="SERIAL_NUMBER" filterPlaceholder="Search"></p-column>
+                                            <p-column header="Lot No" field="LOT_NUMBER" filterPlaceholder="Search"></p-column>
+                                            <p-column header="Expiry Date" field="EXPIRY_DATE" filterPlaceholder="Search"></p-column>
+                                            <p-column header="Pref Qty" field="OPEN_QTY" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+                                            <p-column header="Hold Qty" field="HOLD_QTY" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+                                            <p-column header="Added PrePick QA" field="ADDED_PREPICK_QA" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+                                            <p-column header="Added during Pick" field="ADDED_DURING_PICK" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+                                            <p-column header="Total Picked" field="TOTAL_PICKED" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+                                            <p-column header="Issued after Pick" field="ISSUED_AFTER_PICK" filterPlaceholder="Search" [style]="{'text-align':'right','width': '6%'}"></p-column>
+                                            <p-column header="Returned" field="RETURNED" filterPlaceholder="Search" [style]="{'text-align':'right','width': '6%'}"></p-column>
+                                            <p-column header="Wasted" field="WASTED" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+                                            <p-column header="Consumed" field="CONSUMED" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+                                            <template pTemplate="rowgroupfooter" let-item>
+                                                <td colspan="12" style="text-align:right;font-weight:bold;">{{(calculatePickedTotal(expandRow.ITEMDETAILS[0].ITEM)).toFixed(2)}}</td>
+                                                <td style="text-align:right;font-weight:bold;">{{(calculateIssuedTotal(expandRow.ITEMDETAILS[0].ITEM)).toFixed(2)}}</td>
+                                                <td style="text-align:right;font-weight:bold;">{{(calculateReturnedTotal(expandRow.ITEMDETAILS[0].ITEM)).toFixed(2)}}</td>
+                                                <td style="text-align:right;font-weight:bold;">{{(calculateWastedTotal(expandRow.ITEMDETAILS[0].ITEM)).toFixed(2)}}</td>
+                                                <td style="text-align:right;font-weight:bold;">{{(calculateConsumedTotal(expandRow.ITEMDETAILS[0].ITEM)).toFixed(2)}}</td>
+                                            </template>
+                                        </atpar-datatable>
+                                    </template>
+
+                                    <!--<template pTemplate="rowgroupfooter">
+                                        <td style="font-weight:bold;">Totals</td>
+                                        <td colspan="3" style="text-align:right;font-weight:bold;">{{pickedTotal.toFixed(2)}}</td>
+                                        <td style="text-align:right;font-weight:bold;">{{issuedTotal.toFixed(2)}}</td>
+                                        <td style="text-align:right;font-weight:bold;">{{returnedTotal.toFixed(2)}}</td>
+                                        <td style="text-align:right;font-weight:bold;">{{wastedTotal.toFixed(2)}}</td>
+                                        <td style="text-align:right;font-weight:bold;">{{consumedTotal.toFixed(2)}}</td>
+                                        <td style="text-align:right;font-weight:bold;">{{consumedCostTotal.toFixed(2)}}</td>
+                                        <td> &nbsp; </td>
+                                    </template>-->
+
+                                    <p-footerColumnGroup>
+                                        <p-row>
+                                                <p-column footer="Totals" [style]="{'font-weight':'bold'}"></p-column>
+                                                <p-column footer="{{pickedTotal}}" colspan="3" [style]="{'text-align':'right','font-weight':'bold','padding':'5px 0'}"></p-column>
+                                                <p-column footer="{{issuedTotal}}" [style]="{'text-align':'right','font-weight':'bold'}"></p-column>
+                                                <p-column footer="{{returnedTotal}}" [style]="{'text-align':'right','font-weight':'bold'}"></p-column>
+                                                <p-column footer="{{wastedTotal}}" [style]="{'text-align':'right','font-weight':'bold'}"></p-column>
+                                                <p-column footer="{{consumedTotal}}" [style]="{'text-align':'right','font-weight':'bold'}"></p-column>
+                                                <p-column footer="{{consumedCostTotal}}" [style]="{'text-align':'right','font-weight':'bold'}"></p-column>
+                                                <p-column footer=""></p-column>
+                                        </p-row>
+                                    </p-footerColumnGroup>
+                                </atpar-datatable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+<mail-dialog header="Enter Recipient`s Email Address" [width]="450" (onClose)="closeMailPopup()" [(visible)]="isMailDialog" [responsive]="true" showEffect="fade" [modal]="true">
+    <div class="ui-grid ui-grid-responsive ui-fluid">
+        <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="margin-top:2%;margin-right:-2%">
+                <span style="font-weight:600">To : </span>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <atpar-text [(ngModel)]="toMailAddr" [name]="txtToMailAddr" [id]="'txtToMailAddr'"></atpar-text>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                <span><button class="btn btn-purple sbtn" (click)="onSendMailClick()">Send &nbsp;<i class="fa fa-share-square-o" aria-hidden="true"></i></button> </span>
+            </div>
+        </div>
+    </div>
+</mail-dialog>
+<style>
+    #tblLabels tr td{
+        padding:5px 0;
+    }
+    .ui-datatable-tfoot tr th{
+         padding:5px 0!important;
+    }
+</style>

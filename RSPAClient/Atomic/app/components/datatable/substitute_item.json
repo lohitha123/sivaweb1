@@ -1,0 +1,26 @@
+[
+      {
+        "PRIORITY": "1",
+        "ITEM_DESCR": "phaitem1",
+        "SUBSTITUTE_ITEM_ID": "phaitem1",
+        "STATUS": "true"
+      },
+      {
+        "PRIORITY": "2",
+        "ITEM_DESCR": "pharmacnyitem1",
+        "SUBSTITUTE_ITEM_ID": "pharmacnyitem1",
+        "STATUS": "false"
+      },
+      {
+        "PRIORITY": "3",
+        "ITEM_DESCR": "pharmy33",
+        "SUBSTITUTE_ITEM_ID": "pharmy33",
+        "STATUS": "true"
+      },
+      {
+        "PRIORITY": "4",
+        "ITEM_DESCR": "pharmy34",
+        "SUBSTITUTE_ITEM_ID": "pharmy34",
+        "STATUS": "false"
+      }
+    ]

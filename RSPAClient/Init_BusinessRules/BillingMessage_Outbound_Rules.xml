@@ -1,0 +1,116 @@
+<ROOT>
+<BILLING_MESSAGE_DATA>
+<field name="FILE_FIELD_SEPARATOR" segment="FHS" field_no="1" maxlength="50" value_type="DEFAULT"  value="|" data_type="STRING" mandatory="N"/>
+<field name="FILE_ENCODING_CHARACTERS" segment="FHS" field_no="2" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FILE_SENDING_APPLICATION" segment="FHS" field_no="3" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FILE_SENDING_FACILITY" segment="FHS" field_no="4" maxlength="10" value_type="DEFAULT" value="" data_type="STRING"  mandatory="Y"/>
+<field name="FILE_RECEIVING_APPLICATION" segment="FHS" field_no="5" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FILE_RECEIVING_FACILITY" segment="FHS" field_no="6" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FILE_CREATION_DATE_TIME" segment="FHS" field_no="7" maxlength="50" value_type="DEFAULT"  value="" format="yyyyMMddHHmm" data_type="DATETIME" mandatory="N"/>
+<field name="BATCH_FIELD_SEPARATOR" segment="BHS" field_no="1" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="BATCH_ENCODING_CHARACTERS" segment="BHS" field_no="2" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="BATCH_SENDING_APPLICATION" segment="BHS" field_no="3" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="BHS_FIELD_4" segment="BHS" field_no="4" maxlength="10" value_type="DEFAULT" value="" data_type="STRING"  mandatory="Y"/>
+<field name="BHS_FIELD_5" segment="BHS" field_no="5" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="BHS_FIELD_6" segment="BHS" field_no="6" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="BATCH_CREATION_DATE_TIME" segment="BHS" field_no="7" maxlength="50" value_type="DEFAULT"  value="" format="yyyyMMddHHmm" data_type="DATETIME" mandatory="N"/>
+<field name="FIELD_SEPARATOR" segment="MSH" field_no="1" maxlength="1" value_type="ATPAR_CONDITION" value="|" data_type="STRING" mandatory="Y"/>
+<field name="ENCODING_CHARACTERS" segment="MSH" field_no="2" maxlength="4" value_type="ATPAR_CONDITION"  value="" data_type="STRING" mandatory="Y"/>
+<field name="SENDING_APPLICATION" segment="MSH" field_no="3" maxlength="180" value_type="ATPAR_CONDITION" value="CONFIG" data_type="STRING" mandatory="Y"/>
+<field name="SENDING_FACILITY" segment="MSH" field_no="4" maxlength="180" value_type="ATPAR_CONDITION"  value="CONFIG"  data_type="STRING" mandatory="Y"/>
+<field name="RECEIVING_APPLICATION" segment="MSH"  field_no="5" maxlength="180"  value_type="ATPAR_CONDITION" value="CONFIG" data_type="STRING" mandatory="Y"/>
+<field name="RECEIVING_FACILITY" segment="MSH" field_no="6"  maxlength="180" value_type="ATPAR_CONDITION" value="CONFIG" data_type="STRING" mandatory="Y"/>
+<field name="DATE_TIME_OF_MESSAGE" segment="MSH"  field_no="7" maxlength="14" value_type="DEFAULT" value="" format="yyyyMMddHHmm" data_type="DATETIME" mandatory="Y"/>
+<field name="SECURITY" segment="MSH" field_no="8" maxlength="50" value_type="DEFAULT" value="" data_type="STRING" mandatory="N"/>
+<field name="MESSAGE_TYPE" segment="MSH" field_no="9"  maxlength="7" value_type="DEFAULT" value="DFT^P03" data_type="STRING" mandatory="Y"/>
+<field name="MESSAGE_CONTROL_ID" segment="MSH" field_no="10" maxlength="20" value_type="DEFAULT" value="123"  data_type="STRING" mandatory="Y"/>
+<field name="PROCESSING_ID" segment="MSH" field_no="11" maxlength="50" value_type="DEFAULT" value="T"  data_type="STRING" mandatory="N"/>
+<field name="VERSION_ID" segment="MSH" field_no="12" maxlength="3"  value_type="ATPAR_CONDITION" value="CONFIG" data_type="STRING" mandatory="Y"/>
+<field name="SEQUENCE_NUMBER" segment="MSH" field_no="13" maxlength="50" value_type="DEFAULT" value="" data_type="STRING" mandatory="N"/>
+<field name="CONTINUATION_POINTER" segment="MSH" field_no="14" maxlength="50" value_type="DEFAULT" value="" data_type="STRING" mandatory="Y"/>
+<field name="EVENT_TYPE_CODE" segment="EVN" field_no="1" maxlength="50" value_type="DEFAULT"  value="P01" data_type="STRING" mandatory="Y"/>
+<field name="EVENT_DATE_TIME" segment="EVN" field_no="2" maxlength="50" value_type="DEFAULT" value="" format="yyyyMMddHHmm" data_type="DATETIME" mandatory="Y"/>
+<field name="SET_ID_PID" segment="PID" field_no="1" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="PATIENT_ID" segment="PID" field_no="2" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="Y"/>
+<field name="PATIENT_MEDICAL_RECORD_NUMBER" segment="PID" field_no="3" maxlength="50" value_type="ATPAR_HEADER"  value="PATIENT_ID" data_type="STRING" mandatory="N"/>
+<field name="ALTERNATE_PATIENT_ID" segment="PID" field_no="4" maxlength="50" value_type="ATPAR_HEADER" value="PATIENT_VISIT_NUMBER" data_type="STRING" mandatory="Y"/>
+<field name="PATIENT_NAME" segment="PID" field_no="5" maxlength="50" value_type="ATPAR_HEADER" value="PATIENT_NAME"  data_type="STRING" mandatory="Y"/>
+<field name="MOTHERS_MAIDEN_NAME" segment="PID" field_no="6" maxlength="1" value_type="DEFAULT" value="" data_type="STRING" mandatory="Y"/>
+<field name="DATE_TIME_OF_BIRTH" segment="PID" field_no="7" maxlength="50"  value_type="DEFAULT" value=""  data_type="STRING" mandatory="Y"/>
+<field name="ADMINISTRATIVE_SEX" segment="PID" field_no="8" maxlength="50" value_type="ATPAR_HEADER"  value="PATIENT_SEX" data_type="STRING" mandatory="N"/>
+<field name="PATIENT_ALIAS" segment="PID" field_no="9" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="RACE" segment="PID" field_no="10" maxlength="10" value_type="DEFAULT" value="" data_type="STRING"  mandatory="Y"/>
+<field name="PATIENT_ADDRESS" segment="PID" field_no="11" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="COUNTRY_CODE" segment="PID" field_no="12" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="PHONE_NUMBER_HOME" segment="PID" field_no="13" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="PHONE_NUMBER_BUSINESS" segment="PID" field_no="14" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="PRIMARY_LANGUAGE" segment="PID" field_no="15" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="MARITAL_STATUS" segment="PID" field_no="16" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="RELIGION" segment="PID" field_no="17" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="PATIENT_ACCOUNT_NUMBER" segment="PID" field_no="18" maxlength="50" value_type="ATPAR_HEADER"  value="PATIENT_ACCOUNT_NUMBER" data_type="STRING" mandatory="N"/>
+<field name="SET_ID_FINANCIAL_TRANSACTION" segment="FT1" field_no="1" maxlength="50" value_type="ATPAR_CONDITION"  value="COUNTER" data_type="STRING" mandatory="N"/>
+<field name="TRANSACTION_ID" segment="FT1" field_no="2" maxlength="50" value_type="ATPAR_DETAILS"  value="TRANSACTION_ID" data_type="STRING" mandatory="Y"/>
+<field name="TRANSACTION_BATCH_ID" segment="FT1" field_no="3" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="TRANSACTION_DATE" segment="FT1" field_no="4" maxlength="50" value_type="ATPAR_DETAILS" value="CAPTURE_DATE_TIME" format="yyyyMMddHHmm" data_type="DATETIME" mandatory="Y"/>
+<field name="TRANSACTION_POSTING_DATE" segment="FT1" field_no="5" maxlength="50" value_type="DEFAULT" value="" format="yyyyMMddHHmm" data_type="DATETIME" mandatory="Y"/>
+<field name="TRANSACTION_TYPE" segment="FT1" field_no="6" maxlength="1" value_type="ATPAR_DETAILS" value="TRANSACTION_TYPE" data_type="STRING" mandatory="Y"/>
+<field name="TRANSACTION_CODE" segment="FT1" field_no="7" maxlength="50"  value_type="DEFAULT" value="" data_type="STRING" mandatory="Y"/>
+<field name="FT1_FIELD_8" segment="FT1" field_no="8" maxlength="50" value_type="ATPAR_DETAILS"  value="ITEM_ID" data_type="STRING" mandatory="N"/>
+<field name="FT1_FIELD_9" segment="FT1" field_no="9" maxlength="50" value_type="ATPAR_DETAILS"  value="ITEM_DESCRIPTION" data_type="STRING" mandatory="N"/>
+<field name="TRANSACTION_QUANTITY" segment="FT1" field_no="10" maxlength="50" value_type="ATPAR_DETAILS"  value="ITEM_COUNT" data_type="STRING" mandatory="N"/>
+<field name="TRANSACTION_AMOUNT_EXT" segment="FT1" field_no="11" maxlength="50" value_type="ATPAR_DETAILS"  value="AMOUNT" data_type="STRING" mandatory="N"/>
+<field name="FT1_FIELD_12" segment="FT1" field_no="12" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="DEPARTMENT_CODE" segment="FT1" field_no="13" maxlength="50" value_type="ATPAR_DETAILS"  value="DEPARTMENT_ID" data_type="STRING" mandatory="N"/>
+<field name="FT1_FIELD_14" segment="FT1" field_no="14" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FT1_FIELD_15" segment="FT1" field_no="15" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FT1_FIELD_16" segment="FT1" field_no="16" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FT1_FIELD_17" segment="FT1" field_no="17" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="PATIENT_TYPE" segment="FT1" field_no="18" maxlength="10" value_type="ATPAR_DETAILS" value="PATIENT_TYPE" data_type="STRING"  mandatory="Y"/>
+<field name="FT1_FIELD_19" segment="FT1" field_no="19" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="PERFORMING_PHYSICIAN" segment="FT1" field_no="20" maxlength="50" value_type="ATPAR_DETAILS"  value="PHYSICIAN_ID" data_type="STRING" mandatory="N"/>
+<field name="ORDERING_PHYSICIAN" segment="FT1" field_no="21" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="UNIT_COST" segment="FT1" field_no="22" maxlength="50" value_type="ATPAR_DETAILS"  value="ITEM_PRICE" data_type="STRING" mandatory="N"/>
+<field name="FILLER_ORDER_NUMBER" segment="FT1" field_no="23" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="ENTERED_BY_CODE" segment="FT1" field_no="24" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="PROCEDURE_CODE" segment="FT1" field_no="25" maxlength="50" value_type="ATPAR_DETAILS"  value="TRANSACTION_CODE" data_type="STRING" mandatory="N"/>
+<field name="CHARGE_ENTRY_CODER" segment="ZFT" field_no="1" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="RECEIVED_DATE" segment="ZFT" field_no="2" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="Y"/>
+<field name="CODED_DATE" segment="ZFT" field_no="3" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="REVENUE_CODE" segment="ZFT" field_no="4" maxlength="50" value_type="DEFAULT" value="" data_type="STRING" mandatory="Y"/>
+<field name="NDC_CODE" segment="ZFT" field_no="5" maxlength="50" value_type="DEFAULT" value="" data_type="STRING" mandatory="Y"/>
+<field name="NDC_QUANTITY" segment="ZFT" field_no="6" maxlength="1" value_type="DEFAULT" value="" data_type="STRING" mandatory="Y"/>
+<field name="NDC_ADMIN_UNIT_FOR_CHARGE" segment="ZFT" field_no="7" maxlength="50"  value_type="DEFAULT" value="" data_type="STRING" mandatory="Y"/>
+<field name="INSTITUTIONAL_CHARGE_PATIENT_NAME" segment="ZFT" field_no="8" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="INSTITUTIONAL_CHARGE_SOCIAL_SECURITY_NUMBER" segment="ZFT" field_no="9" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="INSTITUTIONAL_CHARGE_DATE_OF_BIRTH" segment="ZFT" field_no="10" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="INSTITUTIONAL_CHARGE_EMPLOYEE_NUMBER" segment="ZFT" field_no="11" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="INSTITUTIONAL_CHARGE_SEX" segment="ZFT" field_no="12" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="INSTITUTIONAL_CHARGE_COMMENT" segment="ZFT" field_no="13" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="INSTITUTIONAL_CHARGE_LINKED_PATIENT_ID" segment="ZFT" field_no="14" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="BILL_AREA" segment="ZFT" field_no="15" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="PRICING_CONTRACT" segment="ZFT" field_no="16" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="RESEARCH_STUDY" segment="ZFT" field_no="17" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_18" segment="ZFT" field_no="18" maxlength="10" value_type="DEFAULT" value="" data_type="STRING"  mandatory="Y"/>
+<field name="COST_CENTER_CODE" segment="ZFT" field_no="19" maxlength="50" value_type="ATPAR_DETAILS"  value="DEPARTMENT_ID" data_type="STRING" mandatory="N"/>
+<field name="DENTAL_TOOTH_NUMBER" segment="ZFT" field_no="20" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="DENTAL_SURFACE" segment="ZFT" field_no="21" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="DENTAL_ARCH" segment="ZFT" field_no="22" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="DENTAL_QUADRANT" segment="ZFT" field_no="23" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="DENTAL_AREA" segment="ZFT" field_no="24" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="DENTAL_SUPERNUMERARY" segment="ZFT" field_no="25" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="DENTAL_MONTHS_TO_RECALL" segment="ZFT" field_no="26" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="DENTAL_HYGIENIST" segment="ZFT" field_no="27" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_28" segment="ZFT" field_no="28" maxlength="10" value_type="DEFAULT" value="" data_type="STRING"  mandatory="Y"/>
+<field name="FIELD_29" segment="ZFT" field_no="29" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_30" segment="ZFT" field_no="30" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_31" segment="ZFT" field_no="31" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="END_OF_TREATMENT" segment="ZFT" field_no="32" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_33" segment="ZFT" field_no="33" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_34" segment="ZFT" field_no="34" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_35" segment="ZFT" field_no="35" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="RESULTING_DEPARTMENT" segment="ZFT" field_no="36" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+ </BILLING_MESSAGE_DATA>
+  <BILLING_SUCCESS_CODES>
+    <field name="BILLING_RETURN_CODES" value="AA" data_type="STRING" />
+  </BILLING_SUCCESS_CODES>
+</ROOT>

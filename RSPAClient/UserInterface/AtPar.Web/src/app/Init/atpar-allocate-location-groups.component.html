@@ -1,0 +1,107 @@
+﻿<div id="main" class="content-page">
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border" *ngIf="true">
+            <br>
+            <div class="panel panel-default" style="border: 1px solid #eee;">
+                <div class="panel-body" style="padding:0px;">
+                    <div class="form-horizontal form-label-left">
+                        <div class="col-xs-12">
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Org Group ID </label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <label *ngIf="blnShowOrgGroupLabel" class="control-label lbl-left">{{orgGrpId}}</label>
+                                    <atpar-select [options]="lstOrgGroups" [id]="'ddllstOrgGroups'" [required]="true" [(ngModel)]="selectedOrgGroupId" [ngModelOptions]="{standalone: true}" filter="filter" *ngIf="blnShowOrgGroupDD" (onChange)="ddlOrgGrpIdChanged()"></atpar-select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">User ID</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-select [options]="lstUsers" [id]="'ddllstUsers'" [required]="true" [(ngModel)]="selectedDropDownUserId" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlChange()"></atpar-select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Location Group ID</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-text [(ngModel)]="selectedLocGrpId" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" [validations]="''" [id]="'txtdescription'"></atpar-text>
+                                </div>
+                            </div>
+                            <div style="clear:both;"></div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Display</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-select [options]="lstDisplay" [id]="'ddllstDisplay'" [required]="false" [(ngModel)]="selectedDropDownDisplay" [ngModelOptions]="{standalone: true}" (onChange)="ddlChange()"></atpar-select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <button class="btn btn-purple sbtn" (click)="getAllLocationGroups()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12" *ngIf="showGrid">
+                        <div class="container">
+                            <div>
+                                <span class="text-primary">{{allocatedCount}} Out Of {{totalCount}} Allocated Groups For User</span>
+                            </div>
+                            <atpar-datatable [value]="lstDBData" [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" [globalFilter]="gb" [rowsPerPageOptions]="[10,20, 30, 40, 50, 60, 70, 80, 90, 100]" (filteredData)="filterdata($event)" [responsive]="true">
+
+                                <p-column [style]="{'width':'8%', 'text-align':'center'}" header="Select">
+                                    <template pTemplate="filter" let-col>
+                                        <ul class="list-inline li-all-none">
+                                            <li>
+                                                <span (click)="checkAll()" style="cursor:pointer">All</span>
+                                            </li> |
+                                            <li>
+                                                <span (click)="unCheckAll()" style="cursor:pointer">None</span>
+                                            </li>
+                                        </ul>
+                                    </template>
+                                    <template let-ven="rowData" pTemplate="body">
+                                        <atpar-switch (change)="selectedRow(ven,$event)" [(ngModel)]="ven.checkvalue"></atpar-switch>
+                                    </template>
+                                </p-column>
+                                <p-column [style]="{'width':'15%'}" field="LOC_GROUP_ID" header="Location Group" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column [style]="{'width':'48%'}" field="LOC_DESCR" header="Description" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column [style]="{'width':'35%'}" field="USER_ID" header="Users" sortable="custom" (sortFunction)="customSort($event)"> </p-column>
+                            </atpar-datatable>
+                        </div>
+                        <br>
+                        <div class="col-xs-12 col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-5">
+                            <button class="btn btn-purple sbtn" id="btnsubmitForGrid" (click)="allocateLocationGroups()">Submit &nbsp;<i class="fa fa-check"></i></button>
+                        </div>
+                        <br />
+                        <div class="col-xs-12" *ngIf="showAllocGroup">
+                            <div class="container">
+                                <ul class="list-inline well well-sm">
+                                    <li>Copy / </li>
+                                    <li>Move / </li>
+                                    <li>Delete Locations</li>
+                                </ul>
+                            </div>
+                            <div class="form-horizontal form-label-left">
+                                <div class="col-xs-12 col-sm-12 col-md-12 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-5 col-sm-6">Location Group Allocations to UserID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-3">
+                                        <atpar-select [options]="lstUsersForCopyMoveDelete" [id]="'ddllstUsersForCopyMoveDelete'" [required]="true" [(ngModel)]="selectedDropDownUserIdOp" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4">
+                                        <i class="fa fa-files-o fa-2x fa-bg fa-bg-lg bg-blue" (click)="copyAllocateLocationGroups()" value="Copy" title="copy" style="cursor:pointer"></i>
+                                        <i class="fa fa-arrows fa-2x fa-bg fa-bg-lg bg-green" (click)="moveAllocateLocationGroups()" value="Move" title="move" style="cursor:pointer"></i>
+                                        <i class="fa fa-trash fa-2x fa-bg fa-bg-lg bg-red" (click)="confirm()" value="Delete" title="delete" style="cursor:pointer"></i>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-section implementation">
+                        <atpar-confirmdialog header="Confirmation" icon="fa fa-question-circle" width="425"></atpar-confirmdialog>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

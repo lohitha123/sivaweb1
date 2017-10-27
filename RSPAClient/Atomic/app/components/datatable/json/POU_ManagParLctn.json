@@ -1,0 +1,25 @@
+[
+      {
+        "COST_CENTER_CODE": "costcenter",
+        "PAR_LOC_ID": "par1",
+        "LOCATION_NAME": "parLocation1",
+        "BUSINESS_UNIT": "US015",
+        "CART_TYPE": "01",
+        "POU_CART": "Y"
+      },
+      {
+        "COST_CENTER_CODE": "costcenter",
+        "PAR_LOC_ID": "par2",
+        "LOCATION_NAME": "Parlocation2",
+        "BUSINESS_UNIT": "US015",
+        "CART_TYPE": "01",
+        "POU_CART": "Y"
+      },
+      {
+        "COST_CENTER_CODE": "costcenter",
+        "PAR_LOC_ID": "parloc2",
+        "BUSINESS_UNIT": "US015",
+        "CART_TYPE": "01",
+        "POU_CART": "Y"
+      }
+]

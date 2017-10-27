@@ -1,0 +1,41 @@
+﻿
+<div id="wrapper" class="enlarged forced" (click)="divClick()">  
+    
+    
+    <topbar-cmp [activeddName]="activeddName" [Menu]="Menu" (click)="onHomeClick()"  (change)="profileClickChanged($event)" (filteredData)="filteredData($event)"></topbar-cmp>
+
+    <span class="mobile-menu-icon" (click)="mobileDisplay()" id="menu-icon" [style.display]="getMenu()" title="Click to Hide and Show">
+        <i class="fa fa-bars"></i>
+    </span>
+    <div class="left side-menu" style="width:150px;" [style.display]="getMenu()" id="leftsidebar">
+
+        <leftbar-cmp [style.display]="getMenu()"
+                     [groupModules]="groupModules" 
+                     [moduleName]="moduleName"
+                     [isModuleActive]="isModuleActive" 
+                     [moduleMenus]="moduleMenus" 
+                     (appModuleChange)="appModuleChange($event)"
+                     [lstSubGrpMenus]="lstSubGrpMenus"
+                     [isSubGroupMenu]="isSubGroupMenu"
+                     [subMenuGroupName]="subMenuGroupName"
+                     [activeSubMenuGroupName]="activeSubMenuGroupName" 
+                     [repModuleName]="repModuleName" 
+                     [isReportEnable]="isReportEnable" 
+                     [newreportsMenus]="newreportsMenus" 
+                     [activeReportMenu]="activeReportMenu" 
+                     [isReportMenuActive]="isReportMenuActive" 
+                     [activeReportModule]="activeReportModule" 
+                     [reportSubGroupMenus]="reportSubGroupMenus"
+                     [isSubRepMenusEnable]="isSubRepMenusEnable"
+                     [activeReportSubCategory]="activeReportSubCategory"
+                     [activeSubReportMenu]="activeSubReportMenu"
+                     [userReportsMenus]="userReportsMenus"
+                     (click)="onHomeClick()"
+                     ></leftbar-cmp>
+    </div>
+
+    <section id="main-section" class="main-container" [ngClass]="{sidebarPushRight: isActive}" style="height:100%;overflow-y:scroll" (click)="onHomeClick()">
+        <router-outlet (navigateTo)="navigateToMessagePart($event)"></router-outlet>
+    </section>
+
+</div>

@@ -1,0 +1,243 @@
+ [
+      {
+        "ACCESS_TOKEN": "+c52sSiocLwjGP1xc9YasX5ZeyFhc2Zhc2Zhc3NhZmFzZmFzZmE=",
+        "USER_ID": "SUPPORT",
+        "DEVICE_ID": "192.168.177.171",
+        "EXPIRY_TIME": "2017-03-30T08:13:58.66+05:30",
+        "REQUEST_TIME": "2017-03-23T09:34:58.66+05:30",
+        "PROFILE_ID": "SER",
+        "IDLE_TIME": "9999",
+        "PRODUCTS_ACCESS": "Cart Count,Cycle Count,Receiving,Pick,Deliver,Putaway,TrackIT,Stock Issue,AssetManagement,Bin To Bin,Point Of Use,AtPaRx",
+        "ISPROC": "true"
+      },
+      {
+        "ACCESS_TOKEN": "0CQd98t0F4DFmSmG8ZPZS82tSZ9hc2Zhc2Zhc3NhZmFzZmFzZmE=",
+        "USER_ID": "SUPPORT",
+        "DEVICE_ID": "192.168.177.171",
+        "EXPIRY_TIME": "2017-03-29T04:16:00.31+05:30",
+        "REQUEST_TIME": "2017-03-22T05:37:00.31+05:30",
+        "PROFILE_ID": "SER",
+        "IDLE_TIME": "9999",
+        "PRODUCTS_ACCESS": "Cart Count,Cycle Count,Receiving,Pick,Deliver,Putaway,TrackIT,Stock Issue,AssetManagement,Bin To Bin,Point Of Use,AtPaRx",
+        "ISPROC": "true"
+      },
+      {
+        "ACCESS_TOKEN": "4trpQ50tfzVvv1bC8JQ5m1JsSMlhc2Zhc2Zhc3NhZmFzZmFzZmE=",
+        "USER_ID": "SUPPORT",
+        "DEVICE_ID": "192.168.177.171",
+        "EXPIRY_TIME": "2017-03-29T08:13:41.503+05:30",
+        "REQUEST_TIME": "2017-03-22T09:34:41.503+05:30",
+        "PROFILE_ID": "SER",
+        "IDLE_TIME": "9999",
+        "PRODUCTS_ACCESS": "Cart Count,Cycle Count,Receiving,Pick,Deliver,Putaway,TrackIT,Stock Issue,AssetManagement,Bin To Bin,Point Of Use,AtPaRx",
+        "ISPROC": "true"
+      },
+      {
+        "ACCESS_TOKEN": "7AlTe5RVAFy2YIdfYPmh8Z6GWaNhc2Zhc2Zhc3NhZmFzZmFzZmE=",
+        "USER_ID": "SUPPORT",
+        "DEVICE_ID": "::1",
+        "EXPIRY_TIME": "2017-03-30T11:54:37.777+05:30",
+        "REQUEST_TIME": "2017-03-23T13:15:37.777+05:30",
+        "PROFILE_ID": "SER",
+        "IDLE_TIME": "9999",
+        "PRODUCTS_ACCESS": "Cart Count,Cycle Count,Receiving,Pick,Deliver,Putaway,TrackIT,Stock Issue,AssetManagement,Bin To Bin,Point Of Use,AtPaRx",
+        "ISPROC": "true"
+      },
+      {
+        "ACCESS_TOKEN": "8t+9cxLTKiVO1JceTnkMvZWTMtlhc2Zhc2Zhc3NhZmFzZmFzZmE=",
+        "USER_ID": "SUPPORT",
+        "DEVICE_ID": "192.168.177.171",
+        "EXPIRY_TIME": "2017-03-30T04:48:02.167+05:30",
+        "REQUEST_TIME": "2017-03-23T06:09:02.167+05:30",
+        "PROFILE_ID": "SER",
+        "IDLE_TIME": "9999",
+        "PRODUCTS_ACCESS": "Cart Count,Cycle Count,Receiving,Pick,Deliver,Putaway,TrackIT,Stock Issue,AssetManagement,Bin To Bin,Point Of Use,AtPaRx",
+        "ISPROC": "true"
+      },
+      {
+        "ACCESS_TOKEN": "8tgDqyPv8f7o6c66tP+1R/fAbK9hc2Zhc2Zhc3NhZmFzZmFzZmE=",
+        "USER_ID": "ADMIN",
+        "DEVICE_ID": "192.168.177.171",
+        "EXPIRY_TIME": "2017-03-23T22:46:20.987+05:30",
+        "REQUEST_TIME": "2017-03-23T06:07:20.987+05:30",
+        "PROFILE_ID": "ADMIN",
+        "IDLE_TIME": "30",
+        "ISPROC": "true"
+      },
+      {
+        "ACCESS_TOKEN": "b6GC/wfaW6LZldEvmCjgQl9dJllhc2Zhc2Zhc3NhZmFzZmFzZmE=",
+        "USER_ID": "SUPPORT",
+        "DEVICE_ID": "192.168.177.171",
+        "EXPIRY_TIME": "2017-03-29T04:29:05.7+05:30",
+        "REQUEST_TIME": "2017-03-22T05:50:05.7+05:30",
+        "PROFILE_ID": "SER",
+        "IDLE_TIME": "9999",
+        "PRODUCTS_ACCESS": "Cart Count,Cycle Count,Receiving,Pick,Deliver,Putaway,TrackIT,Stock Issue,AssetManagement,Bin To Bin,Point Of Use,AtPaRx",
+        "ISPROC": "true"
+      },
+      {
+        "ACCESS_TOKEN": "Ca4z7+E+0MIrjeOu6PkiJna+8yRhc2Zhc2Zhc3NhZmFzZmFzZmE=",
+        "USER_ID": "SUPPORT",
+        "DEVICE_ID": "183.82.110.130",
+        "EXPIRY_TIME": "2017-03-27T09:02:06.713+05:30",
+        "REQUEST_TIME": "2017-03-20T10:23:06.713+05:30",
+        "PROFILE_ID": "SER",
+        "IDLE_TIME": "9999",
+        "PRODUCTS_ACCESS": "Cart Count,Cycle Count,Receiving,Pick,Deliver,Putaway,TrackIT,Stock Issue,AssetManagement,Bin To Bin,Point Of Use,AtPaRx",
+        "ISPROC": "true"
+      },
+      {
+        "ACCESS_TOKEN": "dRkfbsGIAtZqyh+f7I5nZ+TCtiZhc2Zhc2Zhc3NhZmFzZmFzZmE=",
+        "USER_ID": "SUPPORT",
+        "DEVICE_ID": "::1",
+        "EXPIRY_TIME": "2017-03-30T12:07:18.813+05:30",
+        "REQUEST_TIME": "2017-03-23T13:28:18.813+05:30",
+        "PROFILE_ID": "SER",
+        "IDLE_TIME": "9999",
+        "PRODUCTS_ACCESS": "Cart Count,Cycle Count,Receiving,Pick,Deliver,Putaway,TrackIT,Stock Issue,AssetManagement,Bin To Bin,Point Of Use,AtPaRx",
+        "ISPROC": "true"
+      },
+      {
+        "ACCESS_TOKEN": "eKGsjZCiLVIE5B80mrei6Y8wRGhhc2Zhc2Zhc3NhZmFzZmFzZmE=",
+        "USER_ID": "SUPPORT",
+        "DEVICE_ID": "::1",
+        "EXPIRY_TIME": "2017-03-30T12:45:55.13+05:30",
+        "REQUEST_TIME": "2017-03-23T14:06:55.13+05:30",
+        "PROFILE_ID": "SER",
+        "IDLE_TIME": "9999",
+        "PRODUCTS_ACCESS": "Cart Count,Cycle Count,Receiving,Pick,Deliver,Putaway,TrackIT,Stock Issue,AssetManagement,Bin To Bin,Point Of Use,AtPaRx",
+        "ISPROC": "true"
+      },
+      {
+        "ACCESS_TOKEN": "GpBbFpdEomaJ+rRuM0ZBCjhcDgBhc2Zhc2Zhc3NhZmFzZmFzZmE=",
+        "USER_ID": "SUPPORT",
+        "DEVICE_ID": "192.168.177.171",
+        "EXPIRY_TIME": "2017-03-30T10:24:25.96+05:30",
+        "REQUEST_TIME": "2017-03-23T11:45:25.96+05:30",
+        "PROFILE_ID": "SER",
+        "IDLE_TIME": "9999",
+        "PRODUCTS_ACCESS": "Cart Count,Cycle Count,Receiving,Pick,Deliver,Putaway,TrackIT,Stock Issue,AssetManagement,Bin To Bin,Point Of Use,AtPaRx",
+        "ISPROC": "true"
+      },
+      {
+        "ACCESS_TOKEN": "IV+pC2bbwpWJScWmd8+VwLt2dSxhc2Zhc2Zhc3NhZmFzZmFzZmE=",
+        "USER_ID": "SUPPORT",
+        "DEVICE_ID": "192.168.177.171",
+        "EXPIRY_TIME": "2017-03-30T04:21:25.223+05:30",
+        "REQUEST_TIME": "2017-03-23T05:42:25.223+05:30",
+        "PROFILE_ID": "SER",
+        "IDLE_TIME": "9999",
+        "PRODUCTS_ACCESS": "Cart Count,Cycle Count,Receiving,Pick,Deliver,Putaway,TrackIT,Stock Issue,AssetManagement,Bin To Bin,Point Of Use,AtPaRx",
+        "ISPROC": "true"
+      },
+      {
+        "ACCESS_TOKEN": "K6TKBvcWmIZ2xgmKGMLpVXnHirVhc2Zhc2Zhc3NhZmFzZmFzZmE=",
+        "USER_ID": "SUPPORT",
+        "DEVICE_ID": "192.168.177.171",
+        "EXPIRY_TIME": "2017-03-29T06:07:57.86+05:30",
+        "REQUEST_TIME": "2017-03-22T07:28:57.86+05:30",
+        "PROFILE_ID": "SER",
+        "IDLE_TIME": "9999",
+        "PRODUCTS_ACCESS": "Cart Count,Cycle Count,Receiving,Pick,Deliver,Putaway,TrackIT,Stock Issue,AssetManagement,Bin To Bin,Point Of Use,AtPaRx",
+        "ISPROC": "true"
+      },
+      {
+        "ACCESS_TOKEN": "NxwEUvtFJ+Nu46eYHUss0ptGhKxhc2Zhc2Zhc3NhZmFzZmFzZmE=",
+        "USER_ID": "SUPPORT",
+        "DEVICE_ID": "183.82.110.130",
+        "EXPIRY_TIME": "2017-03-27T04:34:37.723+05:30",
+        "REQUEST_TIME": "2017-03-20T05:55:37.723+05:30",
+        "PROFILE_ID": "SER",
+        "IDLE_TIME": "9999",
+        "PRODUCTS_ACCESS": "Cart Count,Cycle Count,Receiving,Pick,Deliver,Putaway,TrackIT,Stock Issue,AssetManagement,Bin To Bin,Point Of Use,AtPaRx",
+        "ISPROC": "true"
+      },
+      {
+        "ACCESS_TOKEN": "nzxw5LaaHKUwHk+UY6T6EE9XEfNhc2Zhc2Zhc3NhZmFzZmFzZmE=",
+        "USER_ID": "SUPPORT",
+        "DEVICE_ID": "::1",
+        "EXPIRY_TIME": "2017-03-30T03:24:45.293+05:30",
+        "REQUEST_TIME": "2017-03-23T04:45:45.293+05:30",
+        "PROFILE_ID": "SER",
+        "IDLE_TIME": "9999",
+        "PRODUCTS_ACCESS": "Cart Count,Cycle Count,Receiving,Pick,Deliver,Putaway,TrackIT,Stock Issue,AssetManagement,Bin To Bin,Point Of Use,AtPaRx",
+        "ISPROC": "true"
+      },
+      {
+        "ACCESS_TOKEN": "Oydsti92jtSEU4DVNoyPHKBasSVhc2Zhc2Zhc3NhZmFzZmFzZmE=",
+        "USER_ID": "SUPPORT",
+        "DEVICE_ID": "::1",
+        "EXPIRY_TIME": "2017-03-24T04:33:57.623+05:30",
+        "REQUEST_TIME": "2017-03-17T05:54:57.66+05:30",
+        "PROFILE_ID": "SER",
+        "IDLE_TIME": "9999",
+        "PRODUCTS_ACCESS": "Cart Count,Cycle Count,Receiving,Pick,Deliver,Putaway,TrackIT,Stock Issue,AssetManagement,Bin To Bin,Point Of Use,AtPaRx",
+        "ISPROC": "true"
+      },
+      {
+        "ACCESS_TOKEN": "PezzYQCK2/smG3dlDYbQN3Q/fqthc2Zhc2Zhc3NhZmFzZmFzZmE=",
+        "USER_ID": "SUPPORT",
+        "DEVICE_ID": "::1",
+        "EXPIRY_TIME": "2017-03-27T03:57:51.113+05:30",
+        "REQUEST_TIME": "2017-03-20T05:18:51.113+05:30",
+        "PROFILE_ID": "SER",
+        "IDLE_TIME": "9999",
+        "PRODUCTS_ACCESS": "Cart Count,Cycle Count,Receiving,Pick,Deliver,Putaway,TrackIT,Stock Issue,AssetManagement,Bin To Bin,Point Of Use,AtPaRx",
+        "ISPROC": "true"
+      },
+      {
+        "ACCESS_TOKEN": "q2p5r/7H+TGDUfeRd3c1sfiseo1hc2Zhc2Zhc3NhZmFzZmFzZmE=",
+        "USER_ID": "SUPPORT",
+        "DEVICE_ID": "::1",
+        "EXPIRY_TIME": "2017-03-27T12:08:52.12+05:30",
+        "REQUEST_TIME": "2017-03-20T13:29:52.12+05:30",
+        "PROFILE_ID": "SER",
+        "IDLE_TIME": "9999",
+        "PRODUCTS_ACCESS": "Cart Count,Cycle Count,Receiving,Pick,Deliver,Putaway,TrackIT,Stock Issue,AssetManagement,Bin To Bin,Point Of Use,AtPaRx",
+        "ISPROC": "true"
+      },
+      {
+        "ACCESS_TOKEN": "qweJcnXvO+/dHPNRKKsHUl9FEQ9hc2Zhc2Zhc3NhZmFzZmFzZmE=",
+        "USER_ID": "SUPPORT",
+        "DEVICE_ID": "192.168.177.171",
+        "EXPIRY_TIME": "2017-03-30T09:49:07.267+05:30",
+        "REQUEST_TIME": "2017-03-23T11:10:07.267+05:30",
+        "PROFILE_ID": "SER",
+        "IDLE_TIME": "9999",
+        "PRODUCTS_ACCESS": "Cart Count,Cycle Count,Receiving,Pick,Deliver,Putaway,TrackIT,Stock Issue,AssetManagement,Bin To Bin,Point Of Use,AtPaRx",
+        "ISPROC": "true"
+      },
+      {
+        "ACCESS_TOKEN": "RVfKrYmcnU1rRi8+U71TYVD8zj9hc2Zhc2Zhc3NhZmFzZmFzZmE=",
+        "USER_ID": "SUPPORT",
+        "DEVICE_ID": "192.168.177.171",
+        "EXPIRY_TIME": "2017-03-30T07:33:58.84+05:30",
+        "REQUEST_TIME": "2017-03-23T08:54:58.84+05:30",
+        "PROFILE_ID": "SER",
+        "IDLE_TIME": "9999",
+        "PRODUCTS_ACCESS": "Cart Count,Cycle Count,Receiving,Pick,Deliver,Putaway,TrackIT,Stock Issue,AssetManagement,Bin To Bin,Point Of Use,AtPaRx",
+        "ISPROC": "true"
+      },
+      {
+        "ACCESS_TOKEN": "SCvJQHn9AShsFNg+rCeeBQdjDl1hc2Zhc2Zhc3NhZmFzZmFzZmE=",
+        "USER_ID": "SUPPORT",
+        "DEVICE_ID": "183.82.110.130",
+        "EXPIRY_TIME": "2017-03-28T09:54:29.847+05:30",
+        "REQUEST_TIME": "2017-03-21T11:15:29.847+05:30",
+        "PROFILE_ID": "SER",
+        "IDLE_TIME": "9999",
+        "PRODUCTS_ACCESS": "Cart Count,Cycle Count,Receiving,Pick,Deliver,Putaway,TrackIT,Stock Issue,AssetManagement,Bin To Bin,Point Of Use,AtPaRx",
+        "ISPROC": "true"
+      },
+      {
+        "ACCESS_TOKEN": "TZgoyG2nhw5SgnarfvNjuU9M1INhc2Zhc2Zhc3NhZmFzZmFzZmE=",
+        "USER_ID": "SUPPORT",
+        "DEVICE_ID": "183.82.110.130",
+        "EXPIRY_TIME": "2017-03-27T09:00:45.217+05:30",
+        "REQUEST_TIME": "2017-03-20T10:21:45.217+05:30",
+        "PROFILE_ID": "SER",
+        "IDLE_TIME": "9999",
+        "PRODUCTS_ACCESS": "Cart Count,Cycle Count,Receiving,Pick,Deliver,Putaway,TrackIT,Stock Issue,AssetManagement,Bin To Bin,Point Of Use,AtPaRx",
+        "ISPROC": "true"
+      }
+    ]

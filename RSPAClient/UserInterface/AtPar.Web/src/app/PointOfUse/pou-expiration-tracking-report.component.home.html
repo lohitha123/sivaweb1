@@ -1,0 +1,324 @@
+﻿
+<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:10px 0 0 0;">
+                        <form class="form-horizontal form-label-left" novalidate>
+
+                            <div class="col-xs-12">
+                                <table id="tblExpire" width="100%" border="1">
+                                    <tr><td colspan="2" class="textBold">Expired / Expiring Items</td></tr>
+                                    <tr><td>Expired Items</td><td class="textBold">There are {{expiredCnt}} Expired Items </td></tr>
+                                    <tr>
+                                        <td>Expiring Items</td>
+                                        <td class="textBold">
+                                            <span *ngIf="durationTrackExp==0">{{durationTrackExp}} Items are going to expire Today</span>
+                                            <span *ngIf="durationTrackExp!=0">{{expiringCnt}} Items are going to expire in the next {{durationTrackExp}} days</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="col-md-12 tab-btn">
+                                    <h3 class="title-hero"> </h3>
+                                    <div class="example-box-wrapper">
+                                        <atpar-tabs [selectedTab]="activeTab" (enableSelectedTab)="enableSelectedTab($event)">
+
+                                            <atpar-tab tabTitle="Expired" [active]="expiredTab" (SelectedTab)="SelectedTab(tab)">
+
+                                                <div class="col-xs-12">
+                                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                                        <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Department</label>
+                                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                                            <atpar-select [options]="lstDept" [(ngModel)]="Department" [id]="'ddlDept'" [ngModelOptions]="{standalone: true}" (onChange)="ddlDept_SelectedIndexChanged(Department)"></atpar-select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                                        <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Par Location</label>
+                                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                                            <atpar-select [options]="lstParLoc" [(ngModel)]="ParLoc" [id]="'ddlParLoc'" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                                        </div>
+                                                    </div>
+                                                    <div style="clear:both;"></div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                                        <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">From Date</label>
+                                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                                            <p-calendar [showIcon]="true" [id]="'FromDatePicker'" [(ngModel)]="fromDate" [placeholder]="'From Date'" [dateFormat]="'mm/dd/yy'" [required]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [yearNavigator]="true"  yearRange="1950:2050"></p-calendar>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                                        <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">To Date</label>
+                                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                                            <p-calendar [showIcon]="true" [id]="'ToDatePicker'" [(ngModel)]="toDate" [placeholder]="'To Date'" [dateFormat]="'mm/dd/yy'" [required]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [yearNavigator]="true"  yearRange="1950:2050"></p-calendar>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                                        <button class="btn btn-purple sbtn" (click)="btnGo_Click()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                                    </div>
+
+                                                </div>
+                                                <div style="clear:both;"></div>
+                                                <br />
+                                                <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10">
+                                                    <atpar-chart type="bar" [id]="'myChart'" [data]="chartData" [options]="options" [width]="30" [height]="40" *ngIf="showGrid"></atpar-chart>
+
+                                                </div>
+
+                                                <div style="clear:both;"></div>
+                                                <br />
+                                                <div class="container help_txt" *ngIf="showGrid">
+                                                    <span class="text-primary">{{lstExpiredItems.length}} Record(s) Found</span>
+                                                </div>
+                                                <div class="">
+                                                    <div class="container" *ngIf="showGrid">
+                                                        <!--<atpar-datatable [value]="lstExpiredItems" [paginator]="true" [pageLinks]="3" [rows]="pageSize" sortField="CART_ID" rowGroupMode="rowspan" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                                            <p-column field="BUSINESS_UNIT" header="Business Unit" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="CART_ID" header="Par Location" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="ITEM_ID" header="Item ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="DESCRIPTION" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="LOT_NO" header="Lot#" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="SR_NO" header="Serial#" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="COMPARTMENT" header="Bin Location" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="EXPIRY_DATE" header="Date Of Expiry" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+                                                            <p-column field="UNIT_COST" header="Unit Cost ($)" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+                                                            <p-column field="QUANTITY_ON_HAND" header="Quantity On Hand" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+                                                            <p-column field="TOTAL_COST" header="Total Cost ($)" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+                                                        </atpar-datatable>-->
+                                                        <!--<atpar-datatable [value]="ExpiredGroupItem" [paginator]="true" [pageLinks]="3" [rows]="pageSize" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" rowGroupMode="subheader" [globalFilter]="gb" [responsive]="true" [style]="{'width':'100%'}">
+                                                            <p-column field="BUNIT" header="Business Unit" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'10%'}"></p-column>
+                                                            <p-column field="PAR_LOCATION" header="Par Location" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'10%'}"></p-column>
+
+
+                                                            <p-column header="" [style]="{'width':'80%'}">
+                                                                <template let-ven="rowData" pTemplate="body">
+                                                                    <atpar-datatable [value]="ven.ExpiredItems" [paginator]="true" [pageLinks]="3" [rows]="pageSize" rowGroupMode="subheader" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+
+
+                                                                        <p-column field="ITEM_ID" header="Item ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                                        <p-column field="DESCRIPTION" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                                        <p-column field="LOT_NO" header="Lot#" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                                        <p-column field="SR_NO" header="Serial#" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                                        <p-column field="COMPARTMENT" header="Bin Location" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                                        <p-column field="EXPIRY_DATE" header="Date Of Expiry" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+                                                                        <p-column field="UNIT_COST" header="Unit Cost ($)" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+                                                                        <p-column field="QUANTITY_ON_HAND" header="Quantity On Hand" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+                                                                        <p-column field="TOTAL_COST" header="Total Cost ($)" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+
+
+                                                                        <template pTemplate="rowgroupfooter">
+                                                                            <td colspan="8" style="text-align:right;font-weight:bold;">Total Cost of Expired Items at Location {{ven.PAR_LOCATION}}</td>
+                                                                            <td style="text-align:right;font-weight:bold;">{{ven.TotalAmount}}</td>
+                                                                        </template>
+
+                                                                        <p-footerColumnGroup>//It is repeating for outer table also
+                                                                            <p-row>
+                                                                                <p-column footer="Total Cost of Expired Items at Location {{ven.PAR_LOCATION}}" colspan="9" [style]="{'font-weight':'bold','text-align':'right','padding':'5px 0'}"></p-column>
+                                                                                <p-column footer="{{ven.TotalAmount}}"  [style]="{'text-align':'right','font-weight':'bold'}"></p-column>
+                                                                            </p-row>
+                                                                        </p-footerColumnGroup>
+
+
+                                                                    </atpar-datatable>
+                                                                </template>
+                                                            </p-column>
+
+                                                        </atpar-datatable>-->
+                                                        <atpar-datatable [value]="ExpiredGroupItem" [paginator]="true" [pageLinks]="3" [rows]="pageSize" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" rowGroupMode="subheader" expandableRows="true" [globalFilter]="gb" [responsive]="true" [style]="{'width':'100%'}">
+                                                            <p-column field="" header="" expander="true" [style]="{'width':'8%'}"></p-column>
+                                                            <p-column field="PAR_LOCATION" header="Par Location" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="BUNIT" header="Business Unit" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+
+                                                            <template let-ven pTemplate="rowexpansion">
+                                                                <atpar-datatable [value]="ven.ExpiredItems" [paginator]="true" [pageLinks]="3" [rows]="pageSize" rowGroupMode="subheader" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                                                    <p-column field="ITEM_ID" header="Item ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"  [style]="{'width':'15%'}"></p-column>
+                                                                    <p-column field="DESCRIPTION" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                                    <p-column field="LOT_NO" header="Lot#" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                                    <p-column field="SR_NO" header="Serial#" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                                    <p-column field="COMPARTMENT" header="Bin Location" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                                    <p-column field="EXPIRY_DATE" header="Date Of Expiry" [sortable]="true" [filter]="true" filterPlaceholder="Search" styleClass="text-right"></p-column>
+                                                                    <p-column field="UNIT_COST" header="Unit Cost ($)" [sortable]="true" [filter]="true" filterPlaceholder="Search" styleClass="text-right"></p-column>
+                                                                    <p-column field="QUANTITY_ON_HAND" header="Quantity On Hand" [sortable]="true" [filter]="true" filterPlaceholder="Search" styleClass="text-right"></p-column>
+                                                                    <p-column field="TOTAL_COST" header="Total Cost ($)" [sortable]="true" [filter]="true" filterPlaceholder="Search" styleClass="text-right"></p-column>
+                                                                    <template pTemplate="rowgroupfooter">
+                                                                        <td colspan="8" style="text-align:right;font-weight:bold;">Total Cost of Expired Items at Location {{ven.PAR_LOCATION}}</td>
+                                                                        <td style="text-align:right;font-weight:bold;">{{ven.TotalAmount}}</td>
+                                                                    </template>
+                                                                </atpar-datatable>
+                                                            </template>
+                                                        </atpar-datatable>
+                                                    </div>
+                                                </div>
+
+                                            </atpar-tab>
+
+                                            <atpar-tab tabTitle="Expiring" [active]="expiringTab" (SelectedTab)="SelectedTab(tab)">
+
+                                                <div class="col-xs-12">
+                                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                                        <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Department</label>
+                                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                                            <atpar-select [options]="lstDept" [(ngModel)]="ExpDepartment" [id]="'ddlExpDept'" [ngModelOptions]="{standalone: true}" (onChange)="ddlExpDept_SelectedIndexChanged(ExpDepartment)"></atpar-select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                                        <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Par Location</label>
+                                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                                            <atpar-select [options]="lstExpParLoc" [(ngModel)]="ExpParLoc" [id]="'ddlExpParLoc'" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                                        <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Duration</label>
+                                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                                            <atpar-select [options]="lstDuration" [(ngModel)]="Duration" [id]="'ddlDuration'" [ngModelOptions]="{standalone: true}" [required]="true"></atpar-select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div style="clear:both;"></div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                                        <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">From Date</label>
+                                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                                            <p-calendar [showIcon]="true" [id]="'FromExpDatePicker'" [(ngModel)]="fromExpDate" [placeholder]="'From Date'" [dateFormat]="'mm/dd/yy'" [required]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [yearNavigator]="true"  yearRange="1950:2050"></p-calendar>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                                        <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">To Date</label>
+                                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                                            <p-calendar [showIcon]="true" [id]="'ToExpDatePicker'" [(ngModel)]="toExpDate" [placeholder]="'To Date'" [dateFormat]="'mm/dd/yy'" [required]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [yearNavigator]="true"  yearRange="1950:2050"></p-calendar>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                                        <button class="btn btn-purple sbtn" (click)="btnExpGo_Click()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-xs-12 help_txt" style="margin:14px;">
+                                                    <span style="color:red">*</span>  Either from & to dates or duration is Mandatory
+                                                </div>
+
+                                                <div style="clear:both;"></div>
+                                                <br />
+                                                <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10">
+                                                    <atpar-chart type="bar" [id]="'myChart'" [data]="chartData" [options]="options" [width]="30" [height]="40" *ngIf="showExpGrid"></atpar-chart>
+
+                                                </div>
+                                                <div style="clear:both;"></div>
+                                                <br />
+                                                <div class="container help_txt" *ngIf="showExpGrid">
+                                                    <span class="text-primary">{{lstExpiringItems.length}} Record(s) Found</span>
+                                                </div>
+                                                <div class="">
+                                                    <div class="container" *ngIf="showExpGrid">
+                                                        <!--<atpar-datatable [value]="lstExpiringItems" [paginator]="true" [pageLinks]="3" [rows]="pageSize" sortField="CART_ID" rowGroupMode="subheader" groupField="CART_ID" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+
+                                                            <template pTemplate="rowgroupheader" let-rowData>
+                                                                {{rowData['CART_ID']}}
+                                                            </template>
+                                                            <template pTemplate="rowgroupfooter">
+                                                                <td colspan="9" style="font-weight:bold;text-align:right;">Total Cost of Expiring Items at Location TEST</td>
+                                                                <td style="text-align:right;font-weight:bold;">50000</td>
+                                                            </template>
+                                                            <p-column field="BUSINESS_UNIT" header="Business Unit" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="CART_ID" header="Par Location" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="ITEM_ID" header="Item ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="DESCRIPTION" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="LOT_NO" header="Lot#" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="SR_NO" header="Serial#" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="COMPARTMENT" header="Bin Location" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="EXPIRY_DATE" header="Date Of Expiry" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+                                                            <p-column field="UNIT_COST" header="Unit Cost ($)" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+                                                            <p-column field="QUANTITY_ON_HAND" header="Quantity On Hand" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+                                                            <p-column field="TOTAL_COST" header="Total Cost ($)" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+
+                                                            <p-column header="" [style]="{'color': 'purple','width':'12%'}">
+                                                                <template let-ven="rowData" pTemplate="body">
+                                                                    <span class="grid-link" (click)="btnUsage_Click(ven)">Usage</span>
+                                                                </template>
+                                                            </p-column>
+                                                        </atpar-datatable>-->
+                                                        <!--<atpar-datatable [value]="ExpiringGroupItem" [paginator]="true" [pageLinks]="3" [rows]="pageSize" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" rowGroupMode="subheader" [globalFilter]="gb" [responsive]="true" [style]="{'width':'100%'}">
+                                                            <p-column field="BUNIT" header="Business Unit" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'10%'}"></p-column>
+                                                            <p-column field="PAR_LOCATION" header="Par Location" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'10%'}"></p-column>
+                                                            <p-column header="" [style]="{'width':'80%'}">
+                                                                <template let-ven="rowData" pTemplate="body">
+                                                                    <atpar-datatable [value]="ven.ExpiredItems" [paginator]="true" [pageLinks]="3" [rows]="pageSize" rowGroupMode="subheader" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                                                        <p-column field="ITEM_ID" header="Item ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                                        <p-column field="DESCRIPTION" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                                        <p-column field="LOT_NO" header="Lot#" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                                        <p-column field="SR_NO" header="Serial#" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                                        <p-column field="COMPARTMENT" header="Bin Location" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                                        <p-column field="EXPIRY_DATE" header="Date Of Expiry" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+                                                                        <p-column field="UNIT_COST" header="Unit Cost ($)" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+                                                                        <p-column field="QUANTITY_ON_HAND" header="Quantity On Hand" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+                                                                        <p-column field="TOTAL_COST" header="Total Cost ($)" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right'}"></p-column>
+                                                                        <template pTemplate="rowgroupfooter">
+                                                                            <td colspan="8" style="text-align:right;font-weight:bold;">Total Cost of Expiring Items at Location {{ven.PAR_LOCATION}}</td>
+                                                                            <td style="text-align:right;font-weight:bold;">{{ven.TotalAmount}}</td>
+                                                                        </template>
+
+                                                                    </atpar-datatable>
+                                                                </template>
+                                                            </p-column>
+
+                                                        </atpar-datatable>-->
+                                                        <atpar-datatable [value]="ExpiringGroupItem" [paginator]="true" [pageLinks]="3" [rows]="pageSize" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" rowGroupMode="subheader" expandableRows="true" [globalFilter]="gb" [responsive]="true" [style]="{'width':'100%'}">
+                                                            <p-column field="" header="" expander="true" [style]="{'width':'8%'}"></p-column>
+                                                            <p-column field="PAR_LOCATION" header="Par Location" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                            <p-column field="BUNIT" header="Business Unit" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+
+                                                            <template let-ven pTemplate="rowexpansion">
+                                                                <atpar-datatable [value]="ven.ExpiredItems" [paginator]="true" [pageLinks]="3" [rows]="pageSize" rowGroupMode="subheader" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                                                    <p-column field="ITEM_ID" header="Item ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'15%'}"></p-column>
+                                                                    <p-column field="DESCRIPTION" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                                    <p-column field="LOT_NO" header="Lot#" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                                    <p-column field="SR_NO" header="Serial#" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                                    <p-column field="COMPARTMENT" header="Bin Location" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                                                    <p-column field="EXPIRY_DATE" header="Date Of Expiry" [sortable]="true" [filter]="true" filterPlaceholder="Search" styleClass="text-right"></p-column>
+                                                                    <p-column field="UNIT_COST" header="Unit Cost ($)" [sortable]="true" [filter]="true" filterPlaceholder="Search" styleClass="text-right"></p-column>
+                                                                    <p-column field="QUANTITY_ON_HAND" header="Quantity On Hand" [sortable]="true" [filter]="true" filterPlaceholder="Search" styleClass="text-right"></p-column>
+                                                                    <p-column field="TOTAL_COST" header="Total Cost ($)" [sortable]="true" [filter]="true" filterPlaceholder="Search" styleClass="text-right"></p-column>
+                                                                    <p-column header="" [style]="{'color': 'purple','width':'6%'}">
+                                                                        <template let-ven="rowData" pTemplate="body">
+                                                                            <span class="grid-link" (click)="btnUsage_Click(ven)">Usage</span>
+                                                                        </template>
+                                                                    </p-column>
+                                                                    
+                                                                     <template pTemplate="rowgroupfooter">
+                                                                        <td colspan="8" style="text-align:right;font-weight:bold;">Total Cost of Expiring Items at Location {{ven.PAR_LOCATION}}</td>
+                                                                        <td style="text-align:right;font-weight:bold;">{{ven.TotalAmount}}</td>
+                                                                    </template>
+                                                                </atpar-datatable>
+                                                            </template>
+                                                        </atpar-datatable>
+                                                    </div>
+                                                </div>
+                                            </atpar-tab>
+                                        </atpar-tabs>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+
+<style>
+    #tblExpire tr td {
+        padding: 5px;
+    }
+
+    .textBold {
+        font-weight: bold;
+    }
+
+    .ui-datatable .ui-datatable-data > tr > td {
+        border: 1px solid red !important;
+    }
+</style>

@@ -1,0 +1,1 @@
+D:\SVN_Checkout\3.0_Web_Checkout2\RSPAClient\UserInterface\AtPar.Web\obj\Debug\AtPar.Web.csprojResolveAssemblyReference.cache

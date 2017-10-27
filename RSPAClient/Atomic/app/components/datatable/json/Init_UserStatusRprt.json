@@ -1,0 +1,29 @@
+ [
+      {
+        "USER_ID": "C",
+        "FIRST_NAME": "client",
+        "LAST_NAME": "c",
+        "CREATE_DATE": "2017-04-26T14:32:50.807+05:30",
+        "ACCOUNT_DISABLED": "false",
+        "PROFILE_ID": "client",
+        "ORG_GROUP_ID": "NOI"
+      },
+      {
+        "USER_ID": "S",
+        "FIRST_NAME": "server",
+        "LAST_NAME": "s",
+        "CREATE_DATE": "2017-04-26T13:07:53.903+05:30",
+        "ACCOUNT_DISABLED": "false",
+        "PROFILE_ID": "ServerProfile",
+        "ORG_GROUP_ID": "NOI"
+      },
+      {
+        "USER_ID": "SUPPORT",
+        "FIRST_NAME": "server",
+        "LAST_NAME": "server",
+        "CREATE_DATE": "2017-04-19T17:04:48.683+05:30",
+        "ACCOUNT_DISABLED": "false",
+        "PROFILE_ID": "server",
+        "ORG_GROUP_ID": "NOI"
+      }
+    ]

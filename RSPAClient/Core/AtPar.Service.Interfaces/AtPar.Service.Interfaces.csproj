@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2DCFC75B-61BB-4FB7-ACB4-B18DA5C3726B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AtPar.Service.Interfaces</RootNamespace>
+    <AssemblyName>AtPar.Service.Interfaces</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssetManagement\IAccessPermissionsService.cs" />
+    <Compile Include="BinToBin\IBBAllocBUService.cs" />
+    <Compile Include="CartCount\IActivityReportService.cs" />
+    <Compile Include="CartCount\IAllocateCartsService.cs" />
+    <Compile Include="CartCount\IGetDetailsService.cs" />
+    <Compile Include="CartCount\IGetHeaderService.cs" />
+    <Compile Include="CartCount\ICreateOrdersService.cs" />
+    <Compile Include="CartCount\ICriticalItemsService.cs" />
+    <Compile Include="CartCount\IItemUsageReportService.cs" />
+    <Compile Include="CartCount\IManageOrdersService.cs" />
+    <Compile Include="CartCount\IOptimizationReportService.cs" />
+    <Compile Include="CartCount\IOrderHistoryReportService.cs" />
+    <Compile Include="CartCount\IScheduleComplianceReportService.cs" />
+    <Compile Include="CartCount\ITwoBinAlloService.cs" />
+    <Compile Include="CycleCount\IAllocateEventsService.cs" />
+    <Compile Include="CycleCount\IGetDetailsService.cs" />
+    <Compile Include="CycleCount\IGetHeaderService.cs" />
+    <Compile Include="CycleCount\IItemExceptionReportService.cs" />
+    <Compile Include="CycleCount\IProcessCountsService.cs" />
+    <Compile Include="CycleCount\IReviewCountsService.cs" />
+    <Compile Include="CycleCount\ISplitEventsService.cs" />
+    <Compile Include="Deliver\IAssignSignatoriesService.cs" />
+    <Compile Include="Deliver\IDeliverAllocBUService.cs" />
+    <Compile Include="Deliver\IDeliverShiptoIDsService.cs" />
+    <Compile Include="Deliver\IDeliverTrackService.cs" />
+    <Compile Include="Deliver\IDeliveryReportService.cs" />
+    <Compile Include="Deliver\IDropOffLocsService.cs" />
+    <Compile Include="Deliver\IExcludeLocsService.cs" />
+    <Compile Include="Deliver\IProductivityReportService.cs" />
+    <Compile Include="Deliver\IReleasePackagesService.cs" />
+    <Compile Include="Init\IAddUserService.cs" />
+    <Compile Include="Init\IAllocateLocationGroupsService.cs" />
+    <Compile Include="Common\IAllocateBUnitsService.cs" />
+    <Compile Include="Common\ICommonService.cs" />
+    <Compile Include="Init\IAllocatePickingZonesService.cs" />
+    <Compile Include="Init\IAssignProfileService.cs" />
+    <Compile Include="Init\IAuditSetupService.cs" />
+    <Compile Include="Init\ICarrierInformationService.cs" />
+    <Compile Include="Init\IChangePasswordService.cs" />
+    <Compile Include="Init\IDataArchivalService.cs" />
+    <Compile Include="Init\IErrorReportServics.cs" />
+    <Compile Include="Init\IMaintainPrintersService.cs" />
+    <Compile Include="Init\IManageOrgGroupsService.cs" />
+    <Compile Include="Init\IManageOrgParmsService.cs" />
+    <Compile Include="Init\IManageProfilesService.cs" />
+    <Compile Include="Init\IManageUsersService.cs" />
+    <Compile Include="Init\IBarcodeTranslationService.cs" />
+    <Compile Include="Init\IConfigurationManagerService.cs" />
+    <Compile Include="Init\IForgotPasswordService.cs" />
+    <Compile Include="Init\ILoginService.cs" />
+    <Compile Include="Init\IManageDevicesService.cs" />
+    <Compile Include="Init\IManageOrgIDService.cs" />
+    <Compile Include="Init\IProcessSchedulerService.cs" />
+    <Compile Include="Init\IReleaseOrdersService.cs" />
+    <Compile Include="Init\IReportsAdHocExtensionService.cs" />
+    <Compile Include="Init\IRouteService.cs" />
+    <Compile Include="Init\ISecurityConfigurationService.cs" />
+    <Compile Include="Init\ISetupLocationGroupsService.cs" />
+    <Compile Include="Init\ISetupLocationsService.cs" />
+    <Compile Include="Init\ISetupStorageLocationGroupsService.cs" />
+    <Compile Include="Init\IStationaryPrintDesignService.cs" />
+    <Compile Include="Init\ITokenService.cs" />
+    <Compile Include="Init\IUserParamsService.cs" />
+    <Compile Include="Init\IUserService.cs" />
+    <Compile Include="CartCount\IProcessParametersService.cs" />
+    <Compile Include="Init\IUserUploadAutomationService.cs" />
+    <Compile Include="ParManagement\ICostCenterService.cs" />
+    <Compile Include="ParManagement\IManageParLocationsService.cs" />
+    <Compile Include="ParManagement\ISetupInventoryService.cs" />
+    <Compile Include="ParManagement\ISetupItemsService.cs" />
+    <Compile Include="ParManagement\ISetupParLocationsService.cs" />
+    <Compile Include="ParManagement\IVendorService.cs" />
+    <Compile Include="PickPlan\IAllocatePriorityService.cs" />
+    <Compile Include="PickPlan\IOrderPrefixService.cs" />
+    <Compile Include="PickPlan\IPickStatusReportService.cs" />
+    <Compile Include="POU\IBackOrderReportService.cs" />
+    <Compile Include="POU\IBillonlyAndConsignedItemsService.cs" />
+    <!--<Compile Include="POU\IManageCasesService.cs" />-->
+    <Compile Include="POU\ICaseReviewReportService.cs" />
+    <Compile Include="POU\ICostVarianceAnalysisService.cs" />
+    <Compile Include="POU\IDailyUserActivityReportService.cs" />
+    <Compile Include="POU\IExpirationTrackingReportService.cs" />
+    <Compile Include="POU\IItemUsageReportService.cs" />
+    <Compile Include="POU\ILotSerialTrackingReportService.cs" />
+    <Compile Include="POU\ILowStockReportService.cs" />
+    <Compile Include="POU\IManageCasesService.cs" />
+    <Compile Include="POU\IParLocationComplianceDetailsReportService.cs" />
+    <Compile Include="POU\IParLocationComplianceSummaryReportService.cs" />
+    <Compile Include="POU\IParOptimizationReportService.cs" />
+    <Compile Include="POU\IPhysicianBenchMarkService.cs" />
+    <Compile Include="POU\IPhysicianUsageReportService.cs" />
+    <Compile Include="POU\IPrefCardOptimizationReportService.cs" />
+    <Compile Include="POU\IPrefCardPerformanceDetailsService.cs" />
+    <Compile Include="POU\IPrefCardPerformanceSummaryService.cs" />
+    <Compile Include="POU\IPreferenceCardOptService.cs" />
+    <Compile Include="POU\IQuantityOnHandReportService.cs" />
+    <Compile Include="POU\ISetupCriticalItemsService.cs" />
+    <Compile Include="POU\IDeptLocWrkStationAllocationService.cs" />
+    <Compile Include="POU\IBillOnlyItemMaintenanceService.cs" />
+    <Compile Include="POU\ICommonPOUService.cs" />
+    <Compile Include="POU\IConsignmentItemsService.cs" />
+    <Compile Include="POU\IDepartmentLocationAllocationService.cs" />
+    <Compile Include="POU\IDepartmentService.cs" />
+    <Compile Include="PickPlan\IPickAllocBUService.cs" />
+    <Compile Include="POU\ICreateOrdersService.cs" />
+    <Compile Include="POU\IDepartmentUserAllocationService.cs" />
+    <Compile Include="POU\IManageOrdersService.cs" />
+    <Compile Include="POU\IPhysicianService.cs" />
+    <Compile Include="POU\IDepartmentDeviceAllocationService.cs" />
+    <Compile Include="POU\IPostPickQAService.cs" />
+    <Compile Include="POU\IProcedureCodeService.cs" />
+    <Compile Include="POU\IProcessParameterService.cs" />
+    <Compile Include="POU\IReleaseCasesService.cs" />
+    <Compile Include="POU\IReasonCodeService.cs" />
+    <Compile Include="POU\IReviewCharges-CreditsService.cs" />
+    <Compile Include="POU\ISetupCaseService.cs" />
+    <Compile Include="POU\ISetupItemAttributesService.cs" />
+    <Compile Include="POU\ISpecialtyCodeService.cs" />
+    <Compile Include="POU\IPreferenceListService.cs" />
+    <Compile Include="POU\ITransactionHistoryReportService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Putaway\IPAAllocBUService.cs" />
+    <Compile Include="Receiving\IManageCarriersService.cs" />
+    <Compile Include="Receiving\IParcelCountReportService.cs" />
+    <Compile Include="Receiving\IPOorNONPOReceiptsService.cs" />
+    <Compile Include="Receiving\IRcvAllocBUService.cs" />
+    <Compile Include="Receiving\IShipToIDsService.cs" />
+    <Compile Include="RFID\IRFIDConfigService.cs" />
+    <Compile Include="RFID\IRFIDEncodeService.cs" />
+    <Compile Include="RFID\IRFIDUtilsService.cs" />
+    <Compile Include="StockIssue\IAllocateDestinationLocationsService.cs" />
+    <Compile Include="StockIssue\IDistributionTypesService.cs" />
+    <Compile Include="StockIssue\IIssueReportService.cs" />
+    <Compile Include="StockIssue\ISIAllocBUService.cs" />
+    <Compile Include="TrackIT\ICheckInCheckOutItemsService.cs" />
+    <Compile Include="TrackIT\ICommonTrackITService.cs" />
+    <Compile Include="TrackIT\ICreateRequestService.cs" />
+    <Compile Include="TrackIT\IDailyActivityReportService.cs" />
+    <Compile Include="TrackIT\IInactivateItemsService.cs" />
+    <Compile Include="TrackIT\IDeliveryReportService.cs" />
+    <Compile Include="TrackIT\IManageDepartmentsService.cs" />
+    <Compile Include="TrackIT\IManageEquipmentItemsService.cs" />
+    <Compile Include="TrackIT\IManageEquipmentTypeService.cs" />
+    <Compile Include="TrackIT\IManageRequestorService.cs" />
+    <Compile Include="TrackIT\IRequestStatusService.cs" />
+    <Compile Include="TrackIT\ISetupReasonCodesService.cs" />
+    <Compile Include="TrackIT\ITrackITLoginService.cs" />
+    <Compile Include="TrackIT\ITransactionReportService.cs" />
+    <Compile Include="TrackIT\IViewCartService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pharmacy\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\AtPar.Common\AtPar.Common.csproj">
+      <Project>{818012EF-D097-4D49-82E5-942BF9DFA79E}</Project>
+      <Name>AtPar.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtPar.POCOEntities\AtPar.POCOEntities.csproj">
+      <Project>{1b4a130c-2757-4b57-9db3-542732572656}</Project>
+      <Name>AtPar.POCOEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtPar.ViewModel\AtPar.ViewModel.csproj">
+      <Project>{063c67cd-51cc-4864-ba19-e18c2af92a61}</Project>
+      <Name>AtPar.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="AtPar.Service.Interfaces.build" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

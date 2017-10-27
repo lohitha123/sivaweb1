@@ -1,0 +1,124 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px;">
+                        <div class="col-xs-12">
+                            <form class="form-horizontal form-label-left">
+                                <div class="col-xs-12 col-sm-5 col-md-5 form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-6 col-md-4"> Org Group ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <label id="lblOrgGrpId" class="control-label lbl-left" *ngIf="blnddlOrgGrpID==true">{{selectedOrgGrpName}}</label>
+                                        <atpar-select [options]="ddOrgGroupdata" [required]="true" name="'ddlOrgGroup'" [id]="'ddlOrgGroup'" [(ngModel)]="selectedOrgGrpId" [ngModelOptions]="{standalone: true}" filter="filter" *ngIf="blnddlOrgGrpID==false" (onChange)="ddlChnage()"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-5 col-md-5 form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-6 col-md-4"> Product</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="ddlApps" [required]="true" name="'ddlProduct'" [id]="'ddlProduct'" [(ngModel)]="strAppId" [ngModelOptions]="{standalone: true}" (onChange)="ddlChnage()"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-2 col-md-2 form-group">
+                                    <button class="btn btn-purple sbtn" (click)="btnGo_Click()">Go &nbsp;<i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="isShow">
+                    <div class="panel panel-default" style="border:1px solid #eee;">
+                        <div class="panel-body" style="padding:10px 0 0 0;">
+                            <div class="col-xs-12 table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" style="width:25%;">Parameter</th>
+                                            <th class="text-center" style="width:18%;">Value <span></span></th>
+                                            <th class="text-center">Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let orgParameter of atParOrgGrpParametersLst">
+                                            <td>
+                                                <span [innerHTML]="orgParameter.SHORT_DESCR"></span>
+                                            </td>
+                                            <td class="more_pd">
+                                                <div [ngSwitch]="orgParameter.PARAMETER_TYPE" style="float:left;">
+                                                    <div *ngSwitchCase="'TEXTBOX'">
+                                                        <div id="new_Er">
+                                                            <atpar-text [(ngModel)]="orgParameter.PARAMETER_VALUE" [title]="orgParameter.Title" [ngModelOptions]="{standalone: true}" [name]="orgParameter.PARAMETER_ID" [validations]="orgParameter.VALIDATION" [id]="orgParameter.PARAMETER_ID" [style]="{'width':'auto!important'}" (bindModelDataChange)="bindModelDataChange(orgParameter,$event)"></atpar-text>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngSwitchCase="'TEXT'">
+                                                        <div id="new_Er">
+                                                            <atpar-text [(ngModel)]="orgParameter.PARAMETER_VALUE" [title]="orgParameter.Title" [ngModelOptions]="{standalone: true}" [name]="orgParameter.PARAMETER_ID" [validations]="orgParameter.VALIDATION" [id]="orgParameter.PARAMETER_ID" [style]="{'width':'auto!important'}" (bindModelDataChange)="bindModelDataChange(orgParameter,$event)"></atpar-text>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngSwitchCase="'TEXTAREA'">
+                                                        <div id="new_Er">
+                                                            <textarea id="orgParameter.PARAMETER_ID" class="form-control " [ngModelOptions]="{standalone: true}" [(ngModel)]="orgParameter.PARAMETER_VALUE" name="orgParameter.PARAMETER_ID" rows="3" cols="200" style="resize:none;height:auto!important;margin-bottom:7px;"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngSwitchCase="'COMBOBOX'">
+                                                        <atpar-select [options]="tblCmbList" [ngModelOptions]="{standalone: true}" name="orgParameter.PARAMETER_ID" [SelectedLabel]="orgParameter.PARAMETER_VALUE" [(ngModel)]="orgParameter.PARAMETER_VALUE" [id]="'orgParameter.PARAMETER_ID'" [style]="{'width':'100%'}"></atpar-select>
+                                                        <!-- [required]="true" filter="filter" (onChange)="app_selectChanged(ddlApps,$event)" (onChange)="onChange(orgParameter,$event)"-->
+                                                    </div>
+                                                    <div *ngSwitchCase="'CHECKBOX'">
+                                                        <atpar-switch [(ngModel)]="orgParameter.PARAMETER_VALUE" [disabled]="orgParameter.BLN_DISABLE" [ngModelOptions]="{standalone: true}" name="orgParameter.PARAMETER_ID" [checked]="orgParameter.PARAMETER_VALUE" change="change(orgParameter,$event)"></atpar-switch>
+                                                        <!--(click)="ChkBoxChanged(orgParameter.PARAMETER_VALUE)"-->
+                                                    </div>
+                                                    <div *ngSwitchCase="'RADIO'">
+                                                        <div class="form-group">
+                                                            <ul class="list-unstyled" *ngFor="let val of orgParameter.MULTIPLE_VALUES.split(',')">
+                                                                <li *ngIf="val != ''">
+                                                                    <atpar-radioButton [ngModelOptions]="{standalone: true}" name={{orgParameter.PARAMETER_ID}} [(ngModel)]="orgParameter.PARAMETER_VALUE" (onClick)="onClick(orgParameter,$event)" value="{{val}}" label="{{val}}">
+                                                                    </atpar-radioButton>
+                                                                </li>
+                                                            </ul>
+                                                            <!--<table>
+                                                                <tr *ngFor="let val of orgParameter.MULTIPLE_VALUES.split(',')">
+                                                                    <td *ngIf="val != ''">
+                                                                        <div class="col-md-6 col-sm-6 col-xs-11">
+                                                                            <atpar-radioButton [ngModelOptions]="{standalone: true}" name={{orgParameter.PARAMETER_ID}} [(ngModel)]="orgParameter.PARAMETER_VALUE" (onClick)="onClick(orgParameter,$event)" value="{{val}}" label="{{val}}">
+                                                                            </atpar-radioButton>
+                                                                            (onClick)="onClick(atpardata,$event)"
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span id="{{orgParameter.PARAMETER_ID}}" [innerHTML]="orgParameter.LONG_DESCR">  </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="btnSaveParams_Click()" [disabled]="disableButton">Save &nbsp;<i class="fa fa-floppy-o"></i></button>
+                                    <!--  <button class="btn btn-purple sbtn" (click)="hideDialog()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <atpar-growl [value]="statusMsgs" sticky="sticky"></atpar-growl>
+</div>
+<style>
+    #new_Er {
+        position: relative;
+        top: 1.3em;
+        font-size: 12px;
+    }
+
+    .more_pd {
+        padding: 8px 8px 15px 8px !important;
+    }
+</style>

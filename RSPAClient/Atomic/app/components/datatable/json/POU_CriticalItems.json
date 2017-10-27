@@ -1,0 +1,134 @@
+[
+      {
+        "INDEX": "0",
+        "ITEM_ID": "000000000000020011",
+        "ITEM_DESCRIPTION": "Tomato, Pe",
+        "PAR_VALUE": "54-HUN",
+        "ITEM_TYPE": "01",
+        "ITEM_PRICE": "0.92",
+        "CRITICAL_ITEM": "N",
+        "LOT_CONTROLLED": "N",
+        "SERIAL_CONTROLLED": "N"
+      },
+      {
+        "INDEX": "1",
+        "ITEM_ID": "000000000000020017",
+        "ITEM_DESCRIPTION": "Water",
+        "PAR_VALUE": "5-HUN",
+        "ITEM_TYPE": "01",
+        "ITEM_PRICE": "1.29",
+        "CRITICAL_ITEM": "N",
+        "LOT_CONTROLLED": "N",
+        "SERIAL_CONTROLLED": "N"
+      },
+      {
+        "INDEX": "2",
+        "ITEM_ID": "000000000000020019",
+        "ITEM_DESCRIPTION": "Waste Wate",
+        "PAR_VALUE": "5-HUN",
+        "ITEM_TYPE": "01",
+        "ITEM_PRICE": "0.75",
+        "CRITICAL_ITEM": "N",
+        "LOT_CONTROLLED": "N",
+        "SERIAL_CONTROLLED": "N"
+      },
+      {
+        "INDEX": "3",
+        "ITEM_ID": "000000000000020027",
+        "ITEM_DESCRIPTION": "Bottle, 32",
+        "PAR_VALUE": "11-HUN",
+        "ITEM_TYPE": "01",
+        "ITEM_PRICE": "0.43",
+        "CRITICAL_ITEM": "N",
+        "LOT_CONTROLLED": "N",
+        "SERIAL_CONTROLLED": "N"
+      },
+      {
+        "INDEX": "4",
+        "ITEM_ID": "000000000000020032",
+        "ITEM_DESCRIPTION": "Label, 32",
+        "PAR_VALUE": "126-EA",
+        "ITEM_TYPE": "01",
+        "ITEM_PRICE": "0.01",
+        "CRITICAL_ITEM": "N",
+        "LOT_CONTROLLED": "N",
+        "SERIAL_CONTROLLED": "N"
+      },
+      {
+        "INDEX": "5",
+        "ITEM_ID": "000000000000020036",
+        "ITEM_DESCRIPTION": "MM Sauce B",
+        "PAR_VALUE": "15.8-EA",
+        "ITEM_TYPE": "01",
+        "ITEM_PRICE": "14.25",
+        "CRITICAL_ITEM": "N",
+        "LOT_CONTROLLED": "Y",
+        "SERIAL_CONTROLLED": "N"
+      },
+      {
+        "INDEX": "6",
+        "ITEM_ID": "000000000000020038",
+        "ITEM_DESCRIPTION": "MM Sauce B",
+        "PAR_VALUE": "43-HUN",
+        "ITEM_TYPE": "01",
+        "ITEM_PRICE": "17.25",
+        "CRITICAL_ITEM": "N",
+        "LOT_CONTROLLED": "N",
+        "SERIAL_CONTROLLED": "N"
+      },
+      {
+        "INDEX": "7",
+        "ITEM_ID": "000000000000020039",
+        "ITEM_DESCRIPTION": "Canned Tom",
+        "PAR_VALUE": "5-EA",
+        "ITEM_TYPE": "01",
+        "ITEM_PRICE": "14.65",
+        "CRITICAL_ITEM": "N",
+        "LOT_CONTROLLED": "Y",
+        "SERIAL_CONTROLLED": "N"
+      },
+      {
+        "INDEX": "8",
+        "ITEM_ID": "000000000000020041",
+        "ITEM_DESCRIPTION": "Lid",
+        "PAR_VALUE": "34-EA",
+        "ITEM_TYPE": "01",
+        "ITEM_PRICE": "0.02",
+        "CRITICAL_ITEM": "N",
+        "LOT_CONTROLLED": "N",
+        "SERIAL_CONTROLLED": "N"
+      },
+      {
+        "INDEX": "9",
+        "ITEM_ID": "000000000000020042",
+        "ITEM_DESCRIPTION": "Label, Can",
+        "PAR_VALUE": "5-HUN",
+        "ITEM_TYPE": "01",
+        "ITEM_PRICE": "0.01",
+        "CRITICAL_ITEM": "N",
+        "LOT_CONTROLLED": "N",
+        "SERIAL_CONTROLLED": "N"
+      },
+      {
+        "INDEX": "10",
+        "ITEM_ID": "000000000000020062",
+        "ITEM_DESCRIPTION": "Creamy Tom",
+        "PAR_VALUE": "335-EA",
+        "ITEM_TYPE": "01",
+        "ITEM_PRICE": "3.21",
+        "CRITICAL_ITEM": "N",
+        "LOT_CONTROLLED": "N",
+        "SERIAL_CONTROLLED": "N"
+      },
+      {
+        "INDEX": "11",
+        "ITEM_ID": "000000000000020063",
+        "ITEM_DESCRIPTION": "Tomato Pas",
+        "PAR_VALUE": "5-EA",
+        "ITEM_TYPE": "02",
+        "ITEM_PRICE": "4.67",
+        "CRITICAL_ITEM": "N",
+        "LOT_CONTROLLED": "N",
+        "SERIAL_CONTROLLED": "N"
+      }
+]

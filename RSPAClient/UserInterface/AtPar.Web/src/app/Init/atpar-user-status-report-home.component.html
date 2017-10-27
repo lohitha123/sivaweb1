@@ -1,0 +1,65 @@
+﻿<div id="main" class="content-page">
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border" *ngIf="true">
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0 0 10px 0;">
+                        <form class="form-horizontal form-label-left">
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">User ID </label>
+
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-text [(ngModel)]="userID" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" [validations]="''" [id]="'txtUserID'"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">First Name </label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-text [(ngModel)]="firstName" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" [validations]="''" [id]="'txtFirstName'"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Last Name </label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-text [(ngModel)]="lastName" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" [validations]="''" [id]="'txtLastName'"></atpar-text>
+                                </div>
+                            </div>
+                            <div style="clear:both;"></div>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                <button type="submit" class="btn btn-purple sbtn" (click)="btnGo_Click()">Go &nbsp;<i class="fa fa-arrow-right"></i></button>
+                            </div>
+                        </form>
+                        <div class="col-xs-12" *ngIf="showGrid">
+                            <div class="container">
+                                <atpar-datatable [value]="lstDBData" [paginator]="true" [pageLinks]="3" #dt [rows]="recordsPerPageSize" [rowsPerPageOptions]="[10,20, 30, 40, 50, 60, 70, 80, 90, 100]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column header="Action" [style]="{'width':'4%','text-align':'center'}">
+                                        <template pTemplate="body" let-user="rowData">
+                                            <i class="fa fa-pencil fa-bg bg-red" title="Edit" (click)="btnEdit_Click(user)" style="cursor:pointer"></i>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="USER_ID" header="User ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                    <p-column field="FIRST_NAME" header="First Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                    <p-column field="LAST_NAME" header="Last Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                    <p-column field="CREATE_DATE" header="Create Date" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                    <p-column field="ACCOUNT_DISABLED" header="Action" [filter]="true" [style]="{'width': '8%','overflow':'visible','text-align':'center'}" filterMatchMode="equals">
+                                        <template pTemplate="filter" let-col>
+                                            <atpar-select-grid [options]="statusList" [style]="{'width':'100%'}" [id]="'ddlOrgGroup'" [required]="false" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"></atpar-select-grid>
+                                        </template>
+
+                                        <template let-col let-user="rowData" pTemplate="body">
+                                            <atpar-switch [(ngModel)]="user.ACCOUNT_DISABLED" [hidden]="user.isHidden" [disabled]="user.isDisabled" (click)="changeStatus(user)" style="cursor:pointer;"></atpar-switch>
+                                        </template>
+                                    </p-column>
+                                </atpar-datatable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

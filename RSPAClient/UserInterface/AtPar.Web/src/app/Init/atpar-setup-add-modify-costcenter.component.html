@@ -1,0 +1,64 @@
+﻿<div id="main" class="content-page">
+    <div class="content">
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px;">
+                        <div class="col-md-12">
+                            <div class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Org Group ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select  [id]="'ddlOrgGroup'" [required]="true" [options]="orgGroupData" [style]="{'width':'100%'}" [(ngModel)]="newItem.ORG_ID" (onChange)="ddlOrgGrpIdChanged($event)" filter="filter" *ngIf="hasMultipleOrgGroups && !isEditMode" [isfocus]="hasMultipleOrgGroups">
+                                        </atpar-select>
+                                        <label *ngIf="!hasMultipleOrgGroups || isEditMode" class="control-label lbl-left">{{orgGroupId}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Cost Center Code</label>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <atpar-text [(ngModel)]="newItem.COST_CENTER_CODE" [name]="txtCostCenterCode" *ngIf="!isEditMode" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'mandatory,alpha_numeric_underscore_dot_hyphen_forward_backward_nospace,max=20'" [title]="'Use only letters(a-z),(A-Z),numbers(0-9),the underscore(_), dot(.), special characters(_, -, /,\\) and spaces are not allowed'" [id]="'costcentercode'"></atpar-text>
+                                        <label class="control-label" *ngIf="isEditMode">{{newItem.COST_CENTER_CODE}}</label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                      
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Description</label>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <atpar-text [(ngModel)]="newItem.DESCRIPTION" [name]="txtDescription" [isFocused]="'isEditMode'" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'everything,max=50'" [title]="'Any character A-Z,a-z,0-9,!,#,$...'" [id]="'description'"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                      
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Dept ID</label>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <atpar-ac-server *ngIf="!isEditMode" [(ngModel)]="department.DEPT_ID" [suggestions]="filteredDepartments" (completeMethod)="filterDepartment($event)" fileld="DEPARTMENT">
+                                        </atpar-ac-server>
+                                        <atpar-ac-server [disabled]="isEditMode" *ngIf="isEditMode" [(ngModel)]="department.DEPTNAME" [suggestions]="filteredDepartments" (completeMethod)="filterDepartment($event)" fileld="DEPARTMENT">
+                                        </atpar-ac-server>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" [disabled]="loading" (click)="submitCostCenterData()">{{submitButtonTitle}} &nbsp; <i class="fa fa-{{bindSymbal}}"></i></button>
+                                    <button class="btn btn-purple sbtn" (click)="navigateToCostCenterHome();"> <i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-growl [value]="msgs" sticky="sticky"></atpar-growl>
+<!--<style>
+    #main .ui-autocomplete > input {
+        margin-left: 0 !important;
+    }
+</style>-->

@@ -1,0 +1,884 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FF8947C7-7FCC-48B4-8D6B-E72F3FE182D6}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AtPar.WebApi</RootNamespace>
+    <AssemblyName>AtPar.WebApi</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.1.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.1.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.1.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.Web.2.1.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.WindowsServer.2.1.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.2.1.0\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.1.0.0, Culture=neutral, PublicKeyToken=e44a2bc38ed2c13c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonLibs\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.Mvc.4.0.1\lib\net45\Microsoft.Practices.Unity.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System-Web-Helpers.dll.1.0.0\lib\Net40\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc.Extensions, Version=1.1.0.6, Culture=neutral, PublicKeyToken=d631f4e4b226a032, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Web.Mvc.Extensions.1.1.1.2\lib\net45\System.Web.Mvc.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Unity.WebApi, Version=5.2.3.0, Culture=neutral, PublicKeyToken=43da31bc42a85347, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.WebAPI.5.2.3\lib\net45\Unity.WebApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="UnityLog4NetExtension, Version=2.0.1.0, Culture=neutral, PublicKeyToken=4f2e406647ebdbb7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\UnityLog4NetExtension.2.0.1.0\lib\net45\UnityLog4NetExtension.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\css\atparcomponents.css" />
+    <Content Include="assets\css\BlueViolet.css" />
+    <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\css\default.css" />
+    <Content Include="assets\css\font-awesome.min.css" />
+    <Content Include="assets\css\icons.css" />
+    <Content Include="assets\css\jquery.mCustomScrollbar.css" />
+    <Content Include="assets\css\omega\theme.css" />
+    <Content Include="assets\css\style.css" />
+    <Content Include="assets\css\style1.css" />
+    <Content Include="assets\css\style2.css" />
+    <Content Include="assets\css\style4.css" />
+    <Content Include="assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\fonts\fontawesome-webfont5b62.svg" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\fonts\ioniconsaa26.svg" />
+    <Content Include="assets\fonts\materialdesignicons-webfont6c9c.svg" />
+    <Content Include="assets\fonts\roboto-v15-latin-regular.svg" />
+    <Content Include="assets\fonts\themify9f24.svg" />
+    <Content Include="assets\images\Admin.png" />
+    <Content Include="assets\images\bg.png" />
+    <Content Include="assets\images\bg1.png" />
+    <Content Include="assets\images\bg_.png" />
+    <Content Include="assets\images\customerlogo\logo.png" />
+    <Content Include="assets\images\distribution.png" />
+    <Content Include="assets\images\icons\app_icon.png" />
+    <Content Include="assets\images\icons\app_icon_.png" />
+    <Content Include="assets\images\icons\common\admin.png" />
+    <Content Include="assets\images\icons\common\app_icon.png" />
+    <Content Include="assets\images\icons\common\assetManagement.png" />
+    <Content Include="assets\images\icons\common\atparx.png" />
+    <Content Include="assets\images\icons\common\atPar_.png" />
+    <Content Include="assets\images\icons\common\binToBin.png" />
+    <Content Include="assets\images\icons\common\cartCount.png" />
+    <Content Include="assets\images\icons\common\casecost.png" />
+    <Content Include="assets\images\icons\common\cc360.png" />
+    <Content Include="assets\images\icons\common\configuration-1.png" />
+    <Content Include="assets\images\icons\common\configuration.png" />
+    <Content Include="assets\images\icons\common\cycleCount.png" />
+    <Content Include="assets\images\icons\common\deliver.png" />
+    <Content Include="assets\images\icons\common\distribution.png" />
+    <Content Include="assets\images\icons\common\folder-Icon-1.png" />
+    <Content Include="assets\images\icons\common\folder-Icon.png" />
+    <Content Include="assets\images\icons\common\gatparx.png" />
+    <Content Include="assets\images\icons\common\manageUsers-1.png" />
+    <Content Include="assets\images\icons\common\manageUsers.png" />
+    <Content Include="assets\images\icons\common\pick.png" />
+    <Content Include="assets\images\icons\common\pointOfUse.png" />
+    <Content Include="assets\images\icons\common\putAway.png" />
+    <Content Include="assets\images\icons\common\recieve.png" />
+    <Content Include="assets\images\icons\common\reports&amp;dashboards.png" />
+    <Content Include="assets\images\icons\common\reports-1.png" />
+    <Content Include="assets\images\icons\common\reports-db.png" />
+    <Content Include="assets\images\icons\common\reports.png" />
+    <Content Include="assets\images\icons\common\reportsdashboards.png" />
+    <Content Include="assets\images\icons\common\stockIssue.png" />
+    <Content Include="assets\images\icons\common\tools-1.png" />
+    <Content Include="assets\images\icons\common\tools.png" />
+    <Content Include="assets\images\icons\common\trackIt.png" />
+    <Content Include="assets\images\icons\common\warehouse.png" />
+    <Content Include="assets\images\loader-preview.svg" />
+    <Content Include="assets\images\logo-admin-black.png" />
+    <Content Include="assets\images\logo-admin-black_.png" />
+    <Content Include="assets\images\logo-dh.png" />
+    <Content Include="assets\images\logo-white.png" />
+    <Content Include="assets\images\MHSAtpar.png" />
+    <Content Include="assets\images\reports.png" />
+    <Content Include="assets\images\restaurant.png" />
+    <Content Include="assets\images\users\default.png" />
+    <Content Include="assets\images\wareHouse.png" />
+    <Content Include="assets\img\app_icon.png" />
+    <Content Include="assets\img\app_icon_.png" />
+    <Content Include="assets\img\assetManagement.png" />
+    <Content Include="assets\img\atparx.png" />
+    <Content Include="assets\img\atPar_.png" />
+    <Content Include="assets\img\binToBin.png" />
+    <Content Include="assets\img\cartCount.png" />
+    <Content Include="assets\img\cycleCount.png" />
+    <Content Include="assets\img\deliver.png" />
+    <Content Include="assets\img\instructor.png" />
+    <Content Include="assets\img\pick.png" />
+    <Content Include="assets\img\play.png" />
+    <Content Include="assets\img\pointOfUse.png" />
+    <Content Include="assets\img\putAway.png" />
+    <Content Include="assets\img\question.png" />
+    <Content Include="assets\img\recieve.png" />
+    <Content Include="assets\img\stockIssue.png" />
+    <Content Include="assets\img\trackIt.png" />
+    <Content Include="assets\Izenda\assets\fontello.svg" />
+    <Content Include="assets\Izenda\assets\loader-big.gif" />
+    <Content Include="assets\Izenda\assets\logo-white.png" />
+    <Content Include="assets\Izenda\assets\logo.png" />
+    <Content Include="assets\Izenda\assets\Roboto-Black.svg" />
+    <Content Include="assets\Izenda\assets\Roboto-BlackItalic.svg" />
+    <Content Include="assets\Izenda\assets\Roboto-Bold.svg" />
+    <Content Include="assets\Izenda\assets\Roboto-BoldItalic.svg" />
+    <Content Include="assets\Izenda\assets\Roboto-Light.svg" />
+    <Content Include="assets\Izenda\assets\Roboto-LightItalic.svg" />
+    <Content Include="assets\Izenda\assets\Roboto-Medium.svg" />
+    <Content Include="assets\Izenda\assets\Roboto-MediumItalic.svg" />
+    <Content Include="assets\Izenda\assets\Roboto-Regular.svg" />
+    <Content Include="assets\Izenda\assets\Roboto-RegularItalic.svg" />
+    <Content Include="assets\Izenda\assets\Roboto-Thin.svg" />
+    <Content Include="assets\Izenda\assets\Roboto-ThinItalic.svg" />
+    <Content Include="assets\Izenda\assets\styles.png" />
+    <Content Include="assets\Izenda\izenda-ui-blessed1.css" />
+    <Content Include="assets\Izenda\izenda-ui.css" />
+    <Content Include="assets\Izenda\izenda_common.js" />
+    <Content Include="assets\Izenda\izenda_locales.js" />
+    <Content Include="assets\Izenda\izenda_locales.nomin.js" />
+    <Content Include="assets\Izenda\izenda_ui.js" />
+    <Content Include="assets\Izenda\izenda_vendors.js" />
+    <Content Include="assets\Izenda\plugins\advlist\index.js" />
+    <Content Include="assets\Izenda\plugins\advlist\plugin.js" />
+    <Content Include="assets\Izenda\plugins\advlist\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\anchor\index.js" />
+    <Content Include="assets\Izenda\plugins\anchor\plugin.js" />
+    <Content Include="assets\Izenda\plugins\anchor\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\autolink\index.js" />
+    <Content Include="assets\Izenda\plugins\autolink\plugin.js" />
+    <Content Include="assets\Izenda\plugins\autolink\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\autoresize\index.js" />
+    <Content Include="assets\Izenda\plugins\autoresize\plugin.js" />
+    <Content Include="assets\Izenda\plugins\autoresize\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\autosave\index.js" />
+    <Content Include="assets\Izenda\plugins\autosave\plugin.js" />
+    <Content Include="assets\Izenda\plugins\autosave\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\bbcode\index.js" />
+    <Content Include="assets\Izenda\plugins\bbcode\plugin.js" />
+    <Content Include="assets\Izenda\plugins\bbcode\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\charmap\index.js" />
+    <Content Include="assets\Izenda\plugins\charmap\plugin.js" />
+    <Content Include="assets\Izenda\plugins\charmap\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\codesample\css\prism.css" />
+    <Content Include="assets\Izenda\plugins\codesample\index.js" />
+    <Content Include="assets\Izenda\plugins\codesample\plugin.js" />
+    <Content Include="assets\Izenda\plugins\codesample\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\code\index.js" />
+    <Content Include="assets\Izenda\plugins\code\plugin.js" />
+    <Content Include="assets\Izenda\plugins\code\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\colorpicker\index.js" />
+    <Content Include="assets\Izenda\plugins\colorpicker\plugin.js" />
+    <Content Include="assets\Izenda\plugins\colorpicker\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\contextmenu\index.js" />
+    <Content Include="assets\Izenda\plugins\contextmenu\plugin.js" />
+    <Content Include="assets\Izenda\plugins\contextmenu\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\directionality\index.js" />
+    <Content Include="assets\Izenda\plugins\directionality\plugin.js" />
+    <Content Include="assets\Izenda\plugins\directionality\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="assets\Izenda\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="assets\Izenda\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="assets\Izenda\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="assets\Izenda\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="assets\Izenda\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="assets\Izenda\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="assets\Izenda\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="assets\Izenda\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="assets\Izenda\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="assets\Izenda\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="assets\Izenda\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="assets\Izenda\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="assets\Izenda\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="assets\Izenda\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="assets\Izenda\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="assets\Izenda\plugins\emoticons\index.js" />
+    <Content Include="assets\Izenda\plugins\emoticons\plugin.js" />
+    <Content Include="assets\Izenda\plugins\emoticons\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\fullpage\index.js" />
+    <Content Include="assets\Izenda\plugins\fullpage\plugin.js" />
+    <Content Include="assets\Izenda\plugins\fullpage\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\fullscreen\index.js" />
+    <Content Include="assets\Izenda\plugins\fullscreen\plugin.js" />
+    <Content Include="assets\Izenda\plugins\fullscreen\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\hr\index.js" />
+    <Content Include="assets\Izenda\plugins\hr\plugin.js" />
+    <Content Include="assets\Izenda\plugins\hr\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\imagetools\index.js" />
+    <Content Include="assets\Izenda\plugins\imagetools\plugin.js" />
+    <Content Include="assets\Izenda\plugins\imagetools\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\image\index.js" />
+    <Content Include="assets\Izenda\plugins\image\plugin.js" />
+    <Content Include="assets\Izenda\plugins\image\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\importcss\index.js" />
+    <Content Include="assets\Izenda\plugins\importcss\plugin.js" />
+    <Content Include="assets\Izenda\plugins\importcss\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\insertdatetime\index.js" />
+    <Content Include="assets\Izenda\plugins\insertdatetime\plugin.js" />
+    <Content Include="assets\Izenda\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\legacyoutput\index.js" />
+    <Content Include="assets\Izenda\plugins\legacyoutput\plugin.js" />
+    <Content Include="assets\Izenda\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\link\index.js" />
+    <Content Include="assets\Izenda\plugins\link\plugin.js" />
+    <Content Include="assets\Izenda\plugins\link\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\lists\index.js" />
+    <Content Include="assets\Izenda\plugins\lists\plugin.js" />
+    <Content Include="assets\Izenda\plugins\lists\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\media\index.js" />
+    <Content Include="assets\Izenda\plugins\media\plugin.js" />
+    <Content Include="assets\Izenda\plugins\media\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\nonbreaking\index.js" />
+    <Content Include="assets\Izenda\plugins\nonbreaking\plugin.js" />
+    <Content Include="assets\Izenda\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\noneditable\index.js" />
+    <Content Include="assets\Izenda\plugins\noneditable\plugin.js" />
+    <Content Include="assets\Izenda\plugins\noneditable\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\pagebreak\index.js" />
+    <Content Include="assets\Izenda\plugins\pagebreak\plugin.js" />
+    <Content Include="assets\Izenda\plugins\pagebreak\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\paste\index.js" />
+    <Content Include="assets\Izenda\plugins\paste\plugin.js" />
+    <Content Include="assets\Izenda\plugins\paste\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\preview\index.js" />
+    <Content Include="assets\Izenda\plugins\preview\plugin.js" />
+    <Content Include="assets\Izenda\plugins\preview\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\print\index.js" />
+    <Content Include="assets\Izenda\plugins\print\plugin.js" />
+    <Content Include="assets\Izenda\plugins\print\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\save\index.js" />
+    <Content Include="assets\Izenda\plugins\save\plugin.js" />
+    <Content Include="assets\Izenda\plugins\save\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\searchreplace\index.js" />
+    <Content Include="assets\Izenda\plugins\searchreplace\plugin.js" />
+    <Content Include="assets\Izenda\plugins\searchreplace\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\spellchecker\index.js" />
+    <Content Include="assets\Izenda\plugins\spellchecker\plugin.js" />
+    <Content Include="assets\Izenda\plugins\spellchecker\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\tabfocus\index.js" />
+    <Content Include="assets\Izenda\plugins\tabfocus\plugin.js" />
+    <Content Include="assets\Izenda\plugins\tabfocus\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\table\index.js" />
+    <Content Include="assets\Izenda\plugins\table\plugin.js" />
+    <Content Include="assets\Izenda\plugins\table\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\template\index.js" />
+    <Content Include="assets\Izenda\plugins\template\plugin.js" />
+    <Content Include="assets\Izenda\plugins\template\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\textcolor\index.js" />
+    <Content Include="assets\Izenda\plugins\textcolor\plugin.js" />
+    <Content Include="assets\Izenda\plugins\textcolor\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\textpattern\index.js" />
+    <Content Include="assets\Izenda\plugins\textpattern\plugin.js" />
+    <Content Include="assets\Izenda\plugins\textpattern\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\toc\index.js" />
+    <Content Include="assets\Izenda\plugins\toc\plugin.js" />
+    <Content Include="assets\Izenda\plugins\toc\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="assets\Izenda\plugins\visualblocks\index.js" />
+    <Content Include="assets\Izenda\plugins\visualblocks\plugin.js" />
+    <Content Include="assets\Izenda\plugins\visualblocks\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\visualchars\index.js" />
+    <Content Include="assets\Izenda\plugins\visualchars\plugin.js" />
+    <Content Include="assets\Izenda\plugins\visualchars\plugin.min.js" />
+    <Content Include="assets\Izenda\plugins\wordcount\index.js" />
+    <Content Include="assets\Izenda\plugins\wordcount\plugin.js" />
+    <Content Include="assets\Izenda\plugins\wordcount\plugin.min.js" />
+    <Content Include="assets\Izenda\Reportsapp.css" />
+    <Content Include="assets\Izenda\skins\lightgray\content.inline.min.css" />
+    <Content Include="assets\Izenda\skins\lightgray\content.min.css" />
+    <Content Include="assets\Izenda\skins\lightgray\fonts\tinymce-small.svg" />
+    <Content Include="assets\Izenda\skins\lightgray\fonts\tinymce.svg" />
+    <Content Include="assets\Izenda\skins\lightgray\img\anchor.gif" />
+    <Content Include="assets\Izenda\skins\lightgray\img\loader.gif" />
+    <Content Include="assets\Izenda\skins\lightgray\img\object.gif" />
+    <Content Include="assets\Izenda\skins\lightgray\img\trans.gif" />
+    <Content Include="assets\Izenda\skins\lightgray\skin.ie7.min.css" />
+    <Content Include="assets\Izenda\skins\lightgray\skin.min.css" />
+    <Content Include="assets\Izenda\themes\inlite\index.js" />
+    <Content Include="assets\Izenda\themes\inlite\theme.js" />
+    <Content Include="assets\Izenda\themes\inlite\theme.min.js" />
+    <Content Include="assets\Izenda\themes\modern\index.js" />
+    <Content Include="assets\Izenda\themes\modern\theme.js" />
+    <Content Include="assets\Izenda\themes\modern\theme.min.js" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="LogSystemAtribute.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Log4Net.config" />
+    <Content Include="assets\docs\AtParClientUserGuide-BinToBin.pdf" />
+    <Content Include="assets\docs\AtParClientUserGuide-CartCount.pdf" />
+    <Content Include="assets\docs\AtParClientUserGuide-CycleCount.pdf" />
+    <Content Include="assets\docs\AtParClientUserGuide-Deliver.pdf" />
+    <Content Include="assets\docs\AtParClientUserGuide-MAgent.pdf" />
+    <Content Include="assets\docs\AtParClientUserGuide-Pick.pdf" />
+    <Content Include="assets\docs\AtParClientUserGuide-PointOfUse.pdf" />
+    <Content Include="assets\docs\AtParClientUserGuide-Putaway.pdf" />
+    <Content Include="assets\docs\AtParClientUserGuide-Receiving.pdf" />
+    <Content Include="assets\docs\AtParClientUserGuide-StockIssue.pdf" />
+    <Content Include="assets\docs\AtParClientUserGuide-TrackIT.pdf" />
+    <Content Include="assets\docs\AtParHandHeldUserGuide.pdf" />
+    <Content Include="assets\docs\AtParRequestorUserGuide-TrackIT.pdf" />
+    <Content Include="assets\docs\AtParServerUserGuide-BinToBin.pdf" />
+    <Content Include="assets\docs\AtParServerUserGuide-CartCount.pdf" />
+    <Content Include="assets\docs\AtParServerUserGuide-CycleCount.pdf" />
+    <Content Include="assets\docs\AtParServerUserGuide-Deliver.pdf" />
+    <Content Include="assets\docs\AtParServerUserGuide-MAgent.pdf" />
+    <Content Include="assets\docs\AtParServerUserGuide-ParManagement.pdf" />
+    <Content Include="assets\docs\AtParServerUserGuide-Pick.pdf" />
+    <Content Include="assets\docs\AtParServerUserGuide-PointOfUse.pdf" />
+    <Content Include="assets\docs\AtParServerUserGuide-Putaway.pdf" />
+    <Content Include="assets\docs\AtParServerUserGuide-Receiving.pdf" />
+    <Content Include="assets\docs\AtParServerUserGuide-StockIssue.pdf" />
+    <Content Include="assets\docs\AtParServerUserGuide-TrackIT.pdf" />
+    <Content Include="assets\docs\AtParServerUserGuide.pdf" />
+    <Content Include="assets\docs\Captuvo Emulator Controller User Guide.pdf" />
+    <Content Include="assets\docs\Captuvo SDK Getting Started.pdf" />
+    <Content Include="assets\docs\CAPTUVOSL22-UG Rev B.pdf" />
+    <Content Include="assets\docs\first.pdf" />
+    <Content Include="assets\docs\InstallingAtParServer.pdf" />
+    <Content Include="assets\docs\second.pdf" />
+    <Content Include="assets\docs\SecureHead MSR User Manual %2880101502-001-E%29.pdf" />
+    <Content Include="assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="assets\fonts\fontawesome-webfont5b62.eot" />
+    <Content Include="assets\fonts\fontawesome-webfont5b62.ttf" />
+    <Content Include="assets\fonts\fontawesome-webfont5b62.woff" />
+    <Content Include="assets\fonts\fontawesome-webfont5b62.woff2" />
+    <Content Include="assets\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="assets\fonts\FontAwesome.otf" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="assets\fonts\glyphicons-halflings-regulard41d.eot" />
+    <Content Include="assets\fonts\ioniconsaa26.eot" />
+    <Content Include="assets\fonts\ioniconsaa26.ttf" />
+    <Content Include="assets\fonts\ioniconsaa26.woff" />
+    <Content Include="assets\fonts\materialdesignicons-webfont6c9c.eot" />
+    <Content Include="assets\fonts\materialdesignicons-webfont6c9c.ttf" />
+    <Content Include="assets\fonts\materialdesignicons-webfont6c9c.woff" />
+    <Content Include="assets\fonts\materialdesignicons-webfont6c9c.woff2" />
+    <Content Include="assets\fonts\materialdesignicons-webfontd41d.eot" />
+    <Content Include="assets\fonts\roboto-v15-latin-regular.eot" />
+    <Content Include="assets\fonts\roboto-v15-latin-regular.ttf" />
+    <Content Include="assets\fonts\roboto-v15-latin-regular.woff" />
+    <Content Include="assets\fonts\roboto-v15-latin-regular.woff2" />
+    <Content Include="assets\fonts\themify9f24.eot" />
+    <Content Include="assets\fonts\themify9f24.ttf" />
+    <Content Include="assets\fonts\themify9f24.woff" />
+    <Content Include="assets\fonts\themifyd41d.eot" />
+    <Content Include="assets\Izenda\assets\fontello.eot" />
+    <Content Include="assets\Izenda\assets\fontello.ttf" />
+    <Content Include="assets\Izenda\assets\fontello.woff" />
+    <Content Include="assets\Izenda\assets\Roboto-Black.eot" />
+    <Content Include="assets\Izenda\assets\Roboto-Black.ttf" />
+    <Content Include="assets\Izenda\assets\Roboto-Black.woff" />
+    <Content Include="assets\Izenda\assets\Roboto-Black.woff2" />
+    <Content Include="assets\Izenda\assets\Roboto-BlackItalic.eot" />
+    <Content Include="assets\Izenda\assets\Roboto-BlackItalic.ttf" />
+    <Content Include="assets\Izenda\assets\Roboto-BlackItalic.woff" />
+    <Content Include="assets\Izenda\assets\Roboto-BlackItalic.woff2" />
+    <Content Include="assets\Izenda\assets\Roboto-Bold.eot" />
+    <Content Include="assets\Izenda\assets\Roboto-Bold.ttf" />
+    <Content Include="assets\Izenda\assets\Roboto-Bold.woff" />
+    <Content Include="assets\Izenda\assets\Roboto-Bold.woff2" />
+    <Content Include="assets\Izenda\assets\Roboto-BoldItalic.eot" />
+    <Content Include="assets\Izenda\assets\Roboto-BoldItalic.ttf" />
+    <Content Include="assets\Izenda\assets\Roboto-BoldItalic.woff" />
+    <Content Include="assets\Izenda\assets\Roboto-BoldItalic.woff2" />
+    <Content Include="assets\Izenda\assets\Roboto-Light.eot" />
+    <Content Include="assets\Izenda\assets\Roboto-Light.ttf" />
+    <Content Include="assets\Izenda\assets\Roboto-Light.woff" />
+    <Content Include="assets\Izenda\assets\Roboto-Light.woff2" />
+    <Content Include="assets\Izenda\assets\Roboto-LightItalic.eot" />
+    <Content Include="assets\Izenda\assets\Roboto-LightItalic.ttf" />
+    <Content Include="assets\Izenda\assets\Roboto-LightItalic.woff" />
+    <Content Include="assets\Izenda\assets\Roboto-LightItalic.woff2" />
+    <Content Include="assets\Izenda\assets\Roboto-Medium.eot" />
+    <Content Include="assets\Izenda\assets\Roboto-Medium.ttf" />
+    <Content Include="assets\Izenda\assets\Roboto-Medium.woff" />
+    <Content Include="assets\Izenda\assets\Roboto-Medium.woff2" />
+    <Content Include="assets\Izenda\assets\Roboto-MediumItalic.eot" />
+    <Content Include="assets\Izenda\assets\Roboto-MediumItalic.ttf" />
+    <Content Include="assets\Izenda\assets\Roboto-MediumItalic.woff" />
+    <Content Include="assets\Izenda\assets\Roboto-MediumItalic.woff2" />
+    <Content Include="assets\Izenda\assets\Roboto-Regular.eot" />
+    <Content Include="assets\Izenda\assets\Roboto-Regular.ttf" />
+    <Content Include="assets\Izenda\assets\Roboto-Regular.woff" />
+    <Content Include="assets\Izenda\assets\Roboto-Regular.woff2" />
+    <Content Include="assets\Izenda\assets\Roboto-RegularItalic.eot" />
+    <Content Include="assets\Izenda\assets\Roboto-RegularItalic.ttf" />
+    <Content Include="assets\Izenda\assets\Roboto-RegularItalic.woff" />
+    <Content Include="assets\Izenda\assets\Roboto-RegularItalic.woff2" />
+    <Content Include="assets\Izenda\assets\Roboto-Thin.eot" />
+    <Content Include="assets\Izenda\assets\Roboto-Thin.ttf" />
+    <Content Include="assets\Izenda\assets\Roboto-Thin.woff" />
+    <Content Include="assets\Izenda\assets\Roboto-Thin.woff2" />
+    <Content Include="assets\Izenda\assets\Roboto-ThinItalic.eot" />
+    <Content Include="assets\Izenda\assets\Roboto-ThinItalic.ttf" />
+    <Content Include="assets\Izenda\assets\Roboto-ThinItalic.woff" />
+    <Content Include="assets\Izenda\assets\Roboto-ThinItalic.woff2" />
+    <Content Include="assets\Izenda\izenda-ui.css.map" />
+    <Content Include="assets\Izenda\izenda_common.js.map" />
+    <Content Include="assets\Izenda\izenda_locales.js.map" />
+    <Content Include="assets\Izenda\izenda_ui.js.map" />
+    <Content Include="assets\Izenda\izenda_vendors.js.map" />
+    <Content Include="assets\Izenda\skins\lightgray\fonts\tinymce-small.eot" />
+    <Content Include="assets\Izenda\skins\lightgray\fonts\tinymce-small.ttf" />
+    <Content Include="assets\Izenda\skins\lightgray\fonts\tinymce-small.woff" />
+    <Content Include="assets\Izenda\skins\lightgray\fonts\tinymce.eot" />
+    <Content Include="assets\Izenda\skins\lightgray\fonts\tinymce.ttf" />
+    <Content Include="assets\Izenda\skins\lightgray\fonts\tinymce.woff" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="assets\images\Uploaded\" />
+    <Folder Include="assets\images\userprofileimage\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Business\AtPar.AssetManagement.Service\AtPar.AssetManagement.Service.csproj">
+      <Project>{c677acae-d203-47e3-8ff8-0f2b3c461694}</Project>
+      <Name>AtPar.AssetManagement.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.BinToBin.Service\AtPar.BinToBin.Service.csproj">
+      <Project>{5b712a42-83ff-41cc-8c7d-870c2e8f9316}</Project>
+      <Name>AtPar.BinToBin.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.CartCount.Service\AtPar.CartCount.Service.csproj">
+      <Project>{1c9d4a09-5b59-4ba4-bad5-7824c64fc7d2}</Project>
+      <Name>AtPar.CartCount.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.Common.Service\AtPar.Common.Service.csproj">
+      <Project>{95316591-8009-4a44-b2cf-41101bb8df63}</Project>
+      <Name>AtPar.Common.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.CycleCount.Service\AtPar.CycleCount.Service.csproj">
+      <Project>{5484eaf6-130c-47f9-9478-f451176869d0}</Project>
+      <Name>AtPar.CycleCount.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.Deliver.Service\AtPar.Deliver.Service.csproj">
+      <Project>{35a2e882-cfa4-44d4-9d73-8df4d2179e93}</Project>
+      <Name>AtPar.Deliver.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.ParManagement.Service\AtPar.ParManagement.Service.csproj">
+      <Project>{00a91b8b-cbc8-4c33-9392-ebcba4d67123}</Project>
+      <Name>AtPar.ParManagement.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.Pharmacy.Service\AtPar.Pharmacy.Service.csproj">
+      <Project>{618d6ac4-f50c-4e86-8277-75ff922396d1}</Project>
+      <Name>AtPar.Pharmacy.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.PickPlan.Service\AtPar.PickPlan.Service.csproj">
+      <Project>{1d800a32-5deb-43d9-9921-9b4bdb771815}</Project>
+      <Name>AtPar.PickPlan.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.POU.Service\AtPar.POU.Service.csproj">
+      <Project>{159c4499-c24a-497a-bcb9-f469564b6954}</Project>
+      <Name>AtPar.POU.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.Putaway.Service\AtPar.Putaway.Service.csproj">
+      <Project>{d93cfdde-9068-4701-bea1-71c0c687c1f8}</Project>
+      <Name>AtPar.Putaway.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.Receiving.Service\AtPar.Receiving.Service.csproj">
+      <Project>{a287afc1-2fe5-4720-85ff-e9caead935ce}</Project>
+      <Name>AtPar.Receiving.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.RFID.Service\AtPar.RFID.Service.csproj">
+      <Project>{ca021a7b-3b7f-4e80-b080-c9c5f6c2c4eb}</Project>
+      <Name>AtPar.RFID.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.StockIssue.Service\AtPar.StockIssue.Service.csproj">
+      <Project>{89f1348e-4056-4962-b543-39df7cecc865}</Project>
+      <Name>AtPar.StockIssue.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.TrackIT.Service\AtPar.TrackIT.Service.csproj">
+      <Project>{b95ec24c-c6a7-401c-81f2-8b8f4997a73d}</Project>
+      <Name>AtPar.TrackIT.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\AtPar.Common\AtPar.Common.csproj">
+      <Project>{818012ef-d097-4d49-82e5-942bf9dfa79e}</Project>
+      <Name>AtPar.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\AtPar.POCOEntities\AtPar.POCOEntities.csproj">
+      <Project>{1b4a130c-2757-4b57-9db3-542732572656}</Project>
+      <Name>AtPar.POCOEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\AtPar.Repository.Interfaces\AtPar.Repository.Interfaces.csproj">
+      <Project>{5869ec8e-84bf-4b97-aa69-ef86af0508c1}</Project>
+      <Name>AtPar.Repository.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\AtPar.Service.Interfaces\AtPar.Service.Interfaces.csproj">
+      <Project>{2dcfc75b-61bb-4fb7-acb4-b18da5c3726b}</Project>
+      <Name>AtPar.Service.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.AssetManagement.Repos\AtPar.AssetManagement.Repos.csproj">
+      <Project>{9d481065-1612-4522-aaaa-9ed78a720dda}</Project>
+      <Name>AtPar.AssetManagement.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.BinToBin.Repos\AtPar.BinToBin.Repos.csproj">
+      <Project>{4fd8bc67-28a4-4518-99e9-a66b65d99cf8}</Project>
+      <Name>AtPar.BinToBin.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.CartCount.Repos\AtPar.CartCount.Repos.csproj">
+      <Project>{95a514ef-ed25-4213-b688-5e396aa4a212}</Project>
+      <Name>AtPar.CartCount.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.Common.Repos\AtPar.Common.Repos.csproj">
+      <Project>{1e94efcf-1315-4f1c-b109-a0bb9bc956ab}</Project>
+      <Name>AtPar.Common.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.CycleCount.Repos\AtPar.CycleCount.Repos.csproj">
+      <Project>{e5d76425-b865-4651-8a3c-d9aead2b3488}</Project>
+      <Name>AtPar.CycleCount.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.Data\AtPar.Data.csproj">
+      <Project>{d5da1a56-3932-4797-8acc-4e6f7356e74a}</Project>
+      <Name>AtPar.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.Deliver.Repos\AtPar.Deliver.Repos.csproj">
+      <Project>{106b12da-d065-45f4-beb9-dbc62ebc34a4}</Project>
+      <Name>AtPar.Deliver.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.Init.Repos\AtPar.Init.Repos.csproj">
+      <Project>{22a49164-66c9-486d-a7ce-dbee0fdff2a6}</Project>
+      <Name>AtPar.Init.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.Init.Service\AtPar.Init.Service.csproj">
+      <Project>{508d4d8a-8d3c-4025-ac2d-adfecc0cd4f4}</Project>
+      <Name>AtPar.Init.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.ParManagement.Repos\AtPar.ParManagement.Repos.csproj">
+      <Project>{763f5740-8a07-49a3-93f5-50eccfb9a5be}</Project>
+      <Name>AtPar.ParManagement.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.Pharmacy.Repos\AtPar.Pharmacy.Repos.csproj">
+      <Project>{75d937de-0b21-4c03-b2c5-e6a72a00264e}</Project>
+      <Name>AtPar.Pharmacy.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.PickPlan.Repos\AtPar.PickPlan.Repos.csproj">
+      <Project>{8d579056-2e95-4a48-97e7-3750055a9207}</Project>
+      <Name>AtPar.PickPlan.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.POU.Repos\AtPar.POU.Repos.csproj">
+      <Project>{61547f70-c888-4144-9d4f-dc7bb05d0623}</Project>
+      <Name>AtPar.POU.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.Putaway.Repos\AtPar.Putaway.Repos.csproj">
+      <Project>{346b1dbf-c9ab-4046-9a0c-ff95fd343293}</Project>
+      <Name>AtPar.Putaway.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.Receiving.Repos\AtPar.Receiving.Repos.csproj">
+      <Project>{61446246-aa8e-4a39-8e0d-fc01ddbc9e8a}</Project>
+      <Name>AtPar.Receiving.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.RFID.Repos\AtPar.RFID.Repos.csproj">
+      <Project>{4ff99ec2-0d9c-4a8a-a191-fd572ae920c6}</Project>
+      <Name>AtPar.RFID.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.StockIssue.Repos\AtPar.StockIssue.Repos.csproj">
+      <Project>{179aa53e-ecc9-4437-b35b-d3cbc355d786}</Project>
+      <Name>AtPar.StockIssue.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.TrackIT.Repos\AtPar.TrackIT.Repos.csproj">
+      <Project>{f67fc5f4-81e3-4aca-b3e6-dd6d9958325c}</Project>
+      <Name>AtPar.TrackIT.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtPar.AssetManagement.WebApi\AtPar.AssetManagement.WebApi.csproj">
+      <Project>{9a17439c-fb6d-4a52-ba90-8e057a8bae15}</Project>
+      <Name>AtPar.AssetManagement.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtPar.BinToBin.WebApi\AtPar.BinToBin.WebApi.csproj">
+      <Project>{29fe5696-7c2d-4077-b867-8ca72ebabfb4}</Project>
+      <Name>AtPar.BinToBin.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtPar.CartCount.WebApi\AtPar.CartCount.WebApi.csproj">
+      <Project>{179c37b4-92fb-468f-a4df-8d1e6f47a0e7}</Project>
+      <Name>AtPar.CartCount.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtPar.Common.WebApi\AtPar.Common.WebApi.csproj">
+      <Project>{d4ad460a-41ce-4a1c-a5a5-9a713d78ee7e}</Project>
+      <Name>AtPar.Common.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtPar.CycleCount.WebApi\AtPar.CycleCount.WebApi.csproj">
+      <Project>{5693c5e2-87df-41ac-b243-84fa394c4b27}</Project>
+      <Name>AtPar.CycleCount.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtPar.Deliver.WebApi\AtPar.Deliver.WebApi.csproj">
+      <Project>{7573c3a2-b394-4da7-b008-500fb7599dff}</Project>
+      <Name>AtPar.Deliver.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtPar.Init.WebApi\AtPar.Init.WebApi.csproj">
+      <Project>{f3a5b66c-6ea6-416c-af59-175b104e0297}</Project>
+      <Name>AtPar.Init.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtPar.ParManagement.WebApi\AtPar.ParManagement.WebApi.csproj">
+      <Project>{550a68eb-0591-4887-8ae2-40c5a09958d4}</Project>
+      <Name>AtPar.ParManagement.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtPar.Pharmacy.WebApi\AtPar.Pharmacy.WebApi.csproj">
+      <Project>{1dce1aec-0016-4136-aa25-bd8cff7ac352}</Project>
+      <Name>AtPar.Pharmacy.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtPar.PickPlan.WebApi\AtPar.PickPlan.WebApi.csproj">
+      <Project>{f87342f1-0fde-4c7c-a88c-22e55a96b914}</Project>
+      <Name>AtPar.PickPlan.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtPar.POU.WebApi\AtPar.POU.WebApi.csproj">
+      <Project>{2fbe1444-593a-420d-9b80-b180acf97923}</Project>
+      <Name>AtPar.POU.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtPar.Putaway.WebApi\AtPar.Putaway.WebApi.csproj">
+      <Project>{77ec0923-26c1-4c0e-8a17-70aaca416f8e}</Project>
+      <Name>AtPar.Putaway.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtPar.Receiving.WebApi\AtPar.Receiving.WebApi.csproj">
+      <Project>{0b5c6a37-435d-477c-96d0-c35393310a1f}</Project>
+      <Name>AtPar.Receiving.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtPar.RFID.WebApi\AtPar.RFID.WebApi.csproj">
+      <Project>{d27d9aa6-c761-4726-8070-bc8e00572b29}</Project>
+      <Name>AtPar.RFID.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtPar.StockIssue.WebApi\AtPar.StockIssue.WebApi.csproj">
+      <Project>{0faa9c8d-4f3e-46c6-a9ba-797a8c5fd544}</Project>
+      <Name>AtPar.StockIssue.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtPar.TrackIT.WebApi\AtPar.TrackIT.WebApi.csproj">
+      <Project>{c5303776-78ce-48ed-8f53-b8eca2e04d87}</Project>
+      <Name>AtPar.TrackIT.WebApi</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>56773</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:56773/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,132 @@
+﻿<div id="main" class="content-page">
+       <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="panel panel-default" style="border: 1px solid #eee;">
+                <div class="panel-body" style="padding:0px;">
+                    <form class="form-horizontal form-label-left">
+                       
+                        <div class="col-xs-12">
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Procedure</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-ac-server [(ngModel)]="selectedProcedure" [id]="'ProcedureCode'" [ngModelOptions]="{standalone: true}" [suggestions]="lstFilteredProcedures" [mandatory]="'true'" (completeMethod)="fillProceduresAuto($event)"></atpar-ac-server>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4"> Physician</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-ac-server [(ngModel)]="selectedPhysician" [ngModelOptions]="{standalone: true}" [suggestions]="lstFilteredPhysicians" (completeMethod)="fillPhysiciansAuto($event)"></atpar-ac-server>
+                                </div>
+                            </div>
+
+                            <!--<div class="clear:both"></div>-->
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4"> From Date</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <p-calendar [showIcon]="true" [id]="'FromDatePicker'" [(ngModel)]="fromDate" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2050" [required]="true" [placeholder]="'From Date'" [readonlyInput]="true" (onFocus)="onfocusFromCalendar($event)" [ngModelOptions]="{standalone: true}" [dateFormat]="'mm/dd/yy'"></p-calendar>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">To Date</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <p-calendar [showIcon]="true" [id]="'ToDatePicker'" [(ngModel)]="toDate" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2050" [required]="true" [placeholder]="'To Date'" [readonlyInput]="true" (onFocus)="onfocusToCalendar($event)" [ngModelOptions]="{standalone: true}" [dateFormat]="'mm/dd/yy'"></p-calendar>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <button class="btn btn-purple sbtn" (click)="getPrefCardPerformanceDetailsRpt()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="col-xs-12">
+                        <br />
+                        <div class="pull-right" id="tdExports" *ngIf="tdExports">
+                            <ul class="list-inline">
+                                <li class="no-padding">
+                                    <i class="fa fa-envelope-o fa-bg-lg bg-blue" aria-hidden="true" id="imgMail" title="Send mail" style="cursor:pointer;" (click)="onSendMailIconClick($event)"></i>&nbsp;
+                                </li>
+                                <li class="no-padding">
+                                    <i class="fa fa-print fa-bg-lg bg-blue" aria-hidden="true" id="imgPrint" title="Print" style="cursor:pointer;" (click)="onPrintClick($event)"></i>&nbsp;
+                                </li>
+                                <li class="no-padding">
+                                    <i class="fa fa-file-excel-o fa-bg-lg bg-blue" aria-hidden="true" id="imgExcel" style="cursor:pointer;" title="Excel Format" (click)="onExportToExcelClick($event)"></i>&nbsp;
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 table-responsive" *ngIf="showGrid">
+                        <div class="container">
+                            <br />
+                            <atpar-datatable [value]="lstDBData" [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="pazeSize" rowGroupMode="subheader" [globalFilter]="gb" [rowsPerPageOptions]="[10,20, 30, 40, 50, 60, 70, 80, 90, 100]" (filteredData)="filterdata($event)" [responsive]="true">
+
+                                <template pTemplate="rowgroupfooter">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><span style="float:right;"><b>{{lblAvgusedcost}}</b></span></td>
+                                </template>
+
+
+
+                                <p-headerColumnGroup type="header">
+                                    <p-row>
+                                        <p-column [style]="{'width':'150px'}" rowspan="2" field="ITEM" header="Item" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                        <p-column [style]="{'width':'150px'}" rowspan="2" field="DESCRIPTION" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                        <p-column [style]="{'width':'120px'}" rowspan="2" field="CURRENTITEMCOST" header="Current Item Cost($)" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                        <p-column [style]="{'width':'120px'}" rowspan="2" field="AVGQTYSUPPLIED" header="Avg Qty Supplied" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                        <p-column [style]="{'width':'120px'}" rowspan="2" field="AVGQTYRETURNED" header="Avg Qty Returned" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                        <p-column [style]="{'width':'120px'}" rowspan="2" field="AVGQTYUSED" header="Avg Qty Used" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                        <p-column [style]="{'width':'120px'}" rowspan="2" field="AVGUSEDCOST" header="Avg Used Cost($)" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                    </p-row>
+                                </p-headerColumnGroup>
+
+                                <p-column  field="ITEM"></p-column>
+                                <p-column  field="DESCRIPTION"></p-column>
+                                <p-column [style]="{'text-align':'right'}" field="CURRENTITEMCOST"></p-column>
+                                <p-column [style]="{'text-align':'right'}" field="AVGQTYSUPPLIED"></p-column>
+                                <p-column [style]="{'text-align':'right'}" field="AVGQTYRETURNED"></p-column>
+                                <p-column [style]="{'text-align':'right'}" field="AVGQTYUSED"></p-column>
+                                <p-column [style]="{'text-align':'right'}" field="AVGUSEDCOST"></p-column>
+
+
+                            </atpar-datatable>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+
+<mail-dialog header="Enter Recipient`s Email Address" [width]="450" (onClose)="closeMailPopup()" [(visible)]="isMailDialog" [responsive]="true" showEffect="fade" [modal]="true">
+    <div class="ui-grid ui-grid-responsive ui-fluid">
+        <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="margin-top:2%;margin-right:-2%">
+                <span style="font-weight:600">To : </span>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <atpar-text [(ngModel)]="toMailAddr" [name]="txtToMailAddr" [id]="'txtToMailAddr'"></atpar-text>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                <span><button class="btn btn-purple sbtn" (click)="onSendMailClick()">Send &nbsp;<i class="fa fa-share-square-o" aria-hidden="true"></i></button> </span>
+            </div>
+        </div>
+    </div>
+</mail-dialog>
+
+<style>
+    .modal-content {
+        top: 50% !important;
+    }
+</style>
+
+
+
+
+
+

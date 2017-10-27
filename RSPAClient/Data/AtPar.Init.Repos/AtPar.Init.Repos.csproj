@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{22A49164-66C9-486D-A7CE-DBEE0FDFF2A6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AtPar.Init.Repos</RootNamespace>
+    <AssemblyName>AtPar.Init.Repos</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AtParEncryptionServices, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonLibs\AtParEncryptionServices.dll</HintPath>
+    </Reference>
+    <Reference Include="AtPar_BusinessRules">
+      <HintPath>..\..\CommonLibs\AtPar_BusinessRules.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddUserRepository.cs" />
+    <Compile Include="AllocateLocationGroupsRepository.cs" />
+    <Compile Include="AllocatePickingZonesRepository.cs" />
+    <Compile Include="AssignProfileRepository.cs" />
+    <Compile Include="AuditSetupRepository.cs" />
+    <Compile Include="BarcodeTranslationRepository.cs" />
+    <Compile Include="CarrierInformationRepository.cs" />
+    <Compile Include="ChangePasswordRepository.cs" />
+    <Compile Include="ConfigRepository.cs" />
+    <Compile Include="ConfigurationManagerRepository.cs" />
+    <Compile Include="DataArchivalRepository.cs" />
+    <Compile Include="ErrorReportRepository.cs" />
+    <Compile Include="ForgotPasswordRepository.cs" />
+    <Compile Include="LoginRepository.cs" />
+    <Compile Include="MaintainPrintersRepository.cs" />
+    <Compile Include="ManageDevicesRepository.cs" />
+    <Compile Include="ManageOrgGroupsRepository.cs" />
+    <Compile Include="ManageOrgIDRepository.cs" />
+    <Compile Include="ManageOrgParmsRepository.cs" />
+    <Compile Include="ManageProfilesRepository.cs" />
+    <Compile Include="ManageUsersRepository.cs" />
+    <Compile Include="ProcessSchedulerRepository .cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReleaseOrdersRepository.cs" />
+    <Compile Include="ReportsAdHocExtensionRepository.cs" />
+    <Compile Include="RouteRepository.cs" />
+    <Compile Include="SecurityConfigurationRepository.cs" />
+    <Compile Include="SetupLocationGroupsRepository.cs" />
+    <Compile Include="SetupStorageLocationGroupsRepository.cs" />
+    <Compile Include="StationaryPrintDesignRepository.cs" />
+    <Compile Include="TokensRepository.cs" />
+    <Compile Include="UserParamsRepository.cs" />
+    <Compile Include="UserRepository.cs" />
+    <Compile Include="UserUploadAutomationRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\AtPar.Common\AtPar.Common.csproj">
+      <Project>{818012ef-d097-4d49-82e5-942bf9dfa79e}</Project>
+      <Name>AtPar.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\AtPar.POCOEntities\AtPar.POCOEntities.csproj">
+      <Project>{1b4a130c-2757-4b57-9db3-542732572656}</Project>
+      <Name>AtPar.POCOEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\AtPar.ViewModel\AtPar.ViewModel.csproj">
+      <Project>{063c67cd-51cc-4864-ba19-e18c2af92a61}</Project>
+      <Name>AtPar.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AtPar.Data\AtPar.Data.csproj">
+      <Project>{d5da1a56-3932-4797-8acc-4e6f7356e74a}</Project>
+      <Name>AtPar.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\AtPar.Repository.Interfaces\AtPar.Repository.Interfaces.csproj">
+      <Project>{5869EC8E-84BF-4B97-AA69-EF86AF0508C1}</Project>
+      <Name>AtPar.Repository.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

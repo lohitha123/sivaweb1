@@ -1,0 +1,79 @@
+﻿<div id="main" class="content-page">
+    <div class="content">
+        <div class="page-content-wrapper">
+            <br>
+            <div class="container x_panel no-border">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:10px 0px 10px 0;">
+                        <button class="btn btn-purple sbtn pull-right" (click)="addItem()" style="margin-right:10px;">Add Items &nbsp;<i class="fa fa-plus"></i></button>
+                        <br>
+                        <div class="form-horizontal form-label-left">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">                                    
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Org Group ID </label>                                
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <label *ngIf="!hasMulipleOrgGoups" class="control-label lbl-left">{{orgGroupName}} </label>
+                                        <atpar-select *ngIf="hasMulipleOrgGoups" filter="filter" [options]="orgGroupData" [id]="'ddlOrgGroup'" (onChange)="onOrgroupChange()" [required]="true" [(ngModel)]="newItem.ORG_GROUP_ID" [style]="{'width':'100%'}"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">                                  
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Org ID </label>                                   
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="orgData" filter="filter" [required]="true" [id]="'ddlOrgid'" [(ngModel)]="newItem.BUSINESS_UNIT"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">                                    
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Item ID</label>                                    
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-ac-server [(ngModel)]="selectedItemId" [suggestions]="filteredItems" (completeMethod)="filterItems($event)">
+                                        </atpar-ac-server>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="btnGO()">Go &nbsp;<i class="fa fa-arrow-right"></i></button>
+                                </div>
+                                <div style="clear:both;"></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12" *ngIf="isVisible">
+                            <div class="container">
+                                <atpar-datatable [value]="inventoryDataGrid" #dt [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="pazeSize" [rowsPerPageOptions]="[10,20, 30, 40, 50, 60, 70, 80, 90, 100]" [responsive]="true">
+                                    <p-column header="Action" [style]="{'width': '4%','overflow':'visible','text-align':'center'}">
+                                        <template pTemplate="filter" let-col>
+
+                                        </template>
+                                        <template let-col let-inventoryItem="rowData" pTemplate="body">
+                                            <i class="fa fa-pencil fa-bg bg-red" (click)="editinventoryItem(inventoryItem)" style="cursor:pointer;" title="Edit"></i>
+                                        </template>
+                                    </p-column>
+                                    <p-column header="Item ID" field="INV_ITEM_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'8%'}"> </p-column>
+                                    <p-column header="Description" field="SHORT_DESCR" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'22%'}"></p-column>
+                                    <p-column header="UOM" field="UOM" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'6%'}"></p-column>
+                                    <p-column header="Def Stor Loc" field="STOR_LOC" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="Alt Stor Loc 1" field="ALT_STOR_LOC1" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="Alt Stor Loc 2" field="ALT_STOR_LOC2" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="Charge Code" field="CHARGE_CODE" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="QOH" field="QUANTITY_ON_HAND" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'6%'}"></p-column>
+                                    <p-column header="Replenishment Type" field="REPLENISHMENT_TYPE"  [filter]="true" [sortable]="true"  [style]="{'width':'130px','overflow':'visible'}" filterMatchMode="equals">
+                                        <template pTemplate="filter" let-col>
+                                            <atpar-select-grid [options]="replenishmentList" [id]="'replenishmentType'" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)" [(ngModel)]="replType"></atpar-select-grid>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="STATUS_VALUE" header="Status" [filter]="true" [style]="{'width': '8%','overflow':'visible','text-align':'center'}" filterMatchMode="equals">
+                                        <template pTemplate="filter" let-col>
+                                            <atpar-select-grid [options]="statusList" [id]="'inventoryStaus'" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)" [(ngModel)]="statusType"></atpar-select-grid>
+                                        </template>
+                                        <template let-col let-inventory="rowData" pTemplate="body">
+                                            <atpar-switch [checked]="!inventory[col.field]" (click)="UpdateOrgItemStatus(inventory)"></atpar-switch>
+                                        </template>
+                                    </p-column>
+                                </atpar-datatable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-growl [value]="msgs" sticky="sticky"></atpar-growl>

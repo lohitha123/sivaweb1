@@ -1,0 +1,74 @@
+[
+      {
+        "SETCNTRLVALUE": "US015",
+        "SETID": "SHR03",
+        "LOCATION": "COR-1",
+        "DESCR": "Coronary Care",
+        "CHK_VALUE": "0",
+        "CHK_ALLOCATED": "0",
+        "ROWINDEX": "0"
+      },
+      {
+        "SETCNTRLVALUE": "US015",
+        "SETID": "SHR03",
+        "LOCATION": "COR1",
+        "DESCR": "Coronary Care",
+        "CHK_VALUE": "0",
+        "CHK_ALLOCATED": "0",
+        "ROWINDEX": "1"
+      },
+      {
+        "SETCNTRLVALUE": "US015",
+        "SETID": "SHR03",
+        "LOCATION": "DEL-1",
+        "DESCR": "Labor/Delivery",
+        "CHK_VALUE": "0",
+        "CHK_ALLOCATED": "0",
+        "ROWINDEX": "2"
+      },
+      {
+        "SETCNTRLVALUE": "US015",
+        "SETID": "SHR03",
+        "LOCATION": "ICU-1",
+        "DESCR": "Intensive Care Unit - East",
+        "CHK_VALUE": "0",
+        "CHK_ALLOCATED": "0",
+        "ROWINDEX": "3"
+      },
+      {
+        "SETCNTRLVALUE": "US015",
+        "SETID": "SHR03",
+        "LOCATION": "ICU-2",
+        "DESCR": "Intesive Care Unit - West",
+        "CHK_VALUE": "0",
+        "CHK_ALLOCATED": "0",
+        "ROWINDEX": "4"
+      },
+      {
+        "SETCNTRLVALUE": "US015",
+        "SETID": "SHR03",
+        "LOCATION": "MS-1",
+        "DESCR": "Med/Surg - 1 Floor East",
+        "CHK_VALUE": "0",
+        "CHK_ALLOCATED": "0",
+        "ROWINDEX": "5"
+      },
+      {
+        "SETCNTRLVALUE": "US015",
+        "SETID": "SHR03",
+        "LOCATION": "MS-2",
+        "DESCR": "Med/Surg - 1 Floor West",
+        "CHK_VALUE": "0",
+        "CHK_ALLOCATED": "0",
+        "ROWINDEX": "6"
+      },
+      {
+        "SETCNTRLVALUE": "US015",
+        "SETID": "SHR03",
+        "LOCATION": "US015",
+        "DESCR": "USA - Pleasanton",
+        "CHK_VALUE": "0",
+        "CHK_ALLOCATED": "0",
+        "ROWINDEX": "7"
+      }
+    ]

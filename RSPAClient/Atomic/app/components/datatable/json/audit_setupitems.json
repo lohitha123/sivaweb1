@@ -1,0 +1,138 @@
+[
+      {
+        "APP_ID": "0",
+        "APP_NAME": "AtPar",
+        "MENU_ID": "mt_atpar_add_user.aspx",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_NAME": "Add User",
+        "UPDATE_DELETE": "False"
+      },
+      {
+        "APP_ID": "0",
+        "APP_NAME": "AtPar",
+        "MENU_ID": "mt_atpar_assign_profiles.aspx",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_NAME": "Assign Profiles",
+        "UPDATE_DELETE": "False"
+      },
+      {
+        "APP_ID": "0",
+        "APP_NAME": "AtPar",
+        "MENU_ID": "mt_atpar_audit_setup.aspx",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_NAME": "Audit Setup",
+        "UPDATE_DELETE": "False"
+      },
+      {
+        "APP_ID": "0",
+        "APP_NAME": "AtPar",
+        "MENU_ID": "mt_atpar_barcode_translation.aspx",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_NAME": "Manage Barcode Translations",
+        "UPDATE_DELETE": "False"
+      },
+      {
+        "APP_ID": "0",
+        "APP_NAME": "AtPar",
+        "MENU_ID": "mt_atpar_configure_system_from_db.aspx",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_NAME": "Configuration Manager",
+        "UPDATE_DELETE": "False"
+      },
+      {
+        "APP_ID": "0",
+        "APP_NAME": "AtPar",
+        "MENU_ID": "mt_atpar_definegroups.aspx",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_NAME": "Define User Groups",
+        "UPDATE_DELETE": "False"
+      },
+      {
+        "APP_ID": "0",
+        "APP_NAME": "AtPar",
+        "MENU_ID": "mt_atpar_import_users.aspx",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_NAME": "Import Users",
+        "UPDATE_DELETE": "False"
+      },
+      {
+        "APP_ID": "0",
+        "APP_NAME": "AtPar",
+        "MENU_ID": "mt_atpar_manage_devices.aspx",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_NAME": "Manage Devices",
+        "UPDATE_DELETE": "False"
+      },
+      {
+        "APP_ID": "0",
+        "APP_NAME": "AtPar",
+        "MENU_ID": "mt_atpar_manage_org_groups.aspx",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_NAME": "Manage Org Groups",
+        "UPDATE_DELETE": "False"
+      },
+      {
+        "APP_ID": "0",
+        "APP_NAME": "AtPar",
+        "MENU_ID": "mt_atpar_manage_profiles.aspx",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_NAME": "Manage Profiles",
+        "UPDATE_DELETE": "False"
+      },
+      {
+        "APP_ID": "0",
+        "APP_NAME": "AtPar",
+        "MENU_ID": "mt_atpar_org_parameters.aspx",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_NAME": "Org Parameters",
+        "UPDATE_DELETE": "False"
+      },
+      {
+        "APP_ID": "0",
+        "APP_NAME": "AtPar",
+        "MENU_ID": "mt_atpar_printers.aspx",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_NAME": "Maintain Printers",
+        "UPDATE_DELETE": "False"
+      },
+      {
+        "APP_ID": "0",
+        "APP_NAME": "AtPar",
+        "MENU_ID": "mt_atpar_users.aspx",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_NAME": "Manage Users",
+        "UPDATE_DELETE": "False"
+      },
+      {
+        "APP_ID": "0",
+        "APP_NAME": "AtPar",
+        "MENU_ID": "mt_par_setup_cost_center.aspx",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_NAME": "Setup Cost Centers",
+        "UPDATE_DELETE": "False"
+      },
+      {
+        "APP_ID": "0",
+        "APP_NAME": "AtPar",
+        "MENU_ID": "mt_par_setup_items.aspx",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_NAME": "Setup Items",
+        "UPDATE_DELETE": "False"
+      },
+      {
+        "APP_ID": "0",
+        "APP_NAME": "AtPar",
+        "MENU_ID": "mt_par_setup_vendors.aspx",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_NAME": "Setup Vendors",
+        "UPDATE_DELETE": "False"
+      },
+      {
+        "APP_ID": "0",
+        "APP_NAME": "AtPar",
+        "MENU_ID": "mt_user_upload_automation.aspx",
+        "MENU_SUB_GROUP": "Setup",
+        "MENU_NAME": "User Upload Automation",
+        "UPDATE_DELETE": "False"
+      }
+    ]

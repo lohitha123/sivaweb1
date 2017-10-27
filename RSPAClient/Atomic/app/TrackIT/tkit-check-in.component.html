@@ -1,0 +1,352 @@
+﻿<style>
+    .no-shadow {
+        box-shadow: none !important;
+    }
+
+    .bdr-1 {
+        border: 1px solid #eee !important;
+    }
+
+    .panel-green {
+        box-shadow: 0 0 6px 0 hsla(0,0%,66%,.5) !important;
+        border: 1px solid #e1e1e1 !important;
+    }
+
+        .panel-green > .panel-body {
+            border-left: 10px solid #7cb82f;
+        }
+
+    .panel-blue {
+        /*border-color: #79ebfd !important;*/
+        box-shadow: 0 0 6px 0 hsla(0,0%,66%,.5) !important;
+        border: 1px solid #e1e1e1 !important;
+    }
+
+        .panel-blue > .panel-body {
+            border-left: 10px solid #00aeb3;
+        }
+
+    .panel-pink {
+        /*border-color: #de60f5 !important;*/
+        box-shadow: 0 0 6px 0 hsla(0,0%,66%,.5) !important;
+        border: 1px solid #e1e1e1 !important;
+    }
+
+        .panel-pink > .panel-body {
+            border-left: 10px solid #de60f5;
+        }
+
+    .scrl-pnl {
+        height: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+        max-height: 411px;
+    }
+
+    .ui-datatable tbody tr td .form-control, table tbody tr td .form-control {
+        height: auto !important;
+        margin-top: -10px;
+    }
+
+    .table-inner-style, tbody tr td {
+        padding: 12px;
+    }
+
+    .col-md-6 .border-panel > .row {
+        border-bottom: 1px solid #e1e1e1;
+    }
+
+    .ten-padding {
+        padding: 10px;
+    }
+
+    .thirty-padding {
+        padding: 25px;
+    }
+
+    .margin-border {
+        border-bottom: 1px solid #e1e1e1;
+        padding: 4px;
+    }
+
+    .new-ht td .input-group .input-group-addon {
+         line-height:0!important;
+    }
+</style>
+<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border" *ngIf="true">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px;">
+                        <form class="form-horizontal form-label-left">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Item ID/ Assets ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <div class="input-group">
+                                            <atpar-text [(ngModel)]="newItem.ORGI1" [name]="txtORGI1" [id]="'ORGI1'" [ngModelOptions]="{standalone: true}" [validations]="'alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Serial #</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <div class="input-group">
+                                            <atpar-text [(ngModel)]="newItem.ORGI1s" [name]="txtORGI1s" [id]="'ORGI1s'" [ngModelOptions]="{standalone: true}" [validations]="'alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <button class="btn btn-purple sbtn" (click)="go()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="col-xs-12" *ngIf="pop">
+                            <ul class="list-inline">
+                                <li><i class="fa fa-square" style="color:#7cb82f;"></i> &nbsp; Box Item</li>
+                                <li><i class="fa fa-square" style="color:#00aeb3;"></i>  &nbsp; Equipment Item</li>
+                                <li><i class="fa fa-square" style="color:#de60f5;"></i>  &nbsp; Furniture Item</li>
+                            </ul>
+                            <div class="panel panel-default no-shadow bdr-1">
+                                <div class="panel-body">
+                                    <div class="col-xs-12 col-md-5 col-sm-12">
+                                        <table class="table table-bordered table-inner-style qty-table">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Item ID</td>
+                                                    <td>Item-1</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Asset ID</td>
+                                                    <td>Asset-1</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Description</td>
+                                                    <td>Item gloves</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Storage Location</td>
+                                                    <td>Area12</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Manufacturer</td>
+                                                    <td>Manf1</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Vendor</td>
+                                                    <td>Vendor1</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>System Qty</td>
+                                                    <td>90</td>
+                                                </tr>
+                                                <tr class="new-ht">
+                                                    <td>Checkin Qty</td>
+                                                    <td>
+                                                        <div class="input-group" style="width:150px;">
+                                                            <span class="input-group-addon"> <a class="text-default"> - </a></span>
+                                                            <atpar-text [id]="'txtDf'" [name]="txtDf" [style]="{'height':'34px'}" [(ngModel)]="newItem.Df" [ngModelOptions]="{standalone: true}" [validations]="'alpha_numeric_underscore_nospace'" [title]="'Use only letters (a-z), numbers (0-9), the underscore (_), and no spaces'"></atpar-text>
+                                                            <span class="input-group-addon"> <a class="text-default"> + </a> </span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <button class="btn btn-purple sbtn pull-right" (click)="go()">Add &nbsp; <i class="fa fa-plus"></i></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-xs-12 col-md-7 col-sm-12">
+                                        <div class="panel panel-default no-shadow bdr-1 scrl-pnl">
+                                            <div class="panel-body" style="padding:8px;">
+                                                <div class="col-xs-12" style="padding:0px">
+                                                    <div class="panel panel-green no-shadow bdr-1">
+                                                        <div class="panel-body no-padding">
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <div class="row text-center thirty-padding">
+                                                                        <p>Item ID-Serial#</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 border-panel">
+                                                                    <div class="row margin-border">
+                                                                        <p>Item Description</p>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6 ten-padding">
+                                                                            <p>Assets Id</p>
+                                                                        </div>
+                                                                        <div class="col-md-6 ten-padding" style="border-left: 1px solid #e1e1e1;">
+                                                                            <p>Storage Location</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="row text-center thirty-padding">
+                                                                        <p>Checkin qty</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-1" style="margin-top: 25px;">
+                                                                    <i class="fa fa-close fa-bg bg-red danger"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 no-padding">
+                                                    <div class="panel panel-blue no-shadow bdr-1">
+                                                        <div class="panel-body no-padding">
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <div class="row text-center thirty-padding">
+                                                                        <p>Item ID-Serial#</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 border-panel">
+                                                                    <div class="row margin-border">
+                                                                        <p>Item Description</p>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6 ten-padding">
+                                                                            <p>Assets Id</p>
+                                                                        </div>
+                                                                        <div class="col-md-6 ten-padding" style="border-left: 1px solid #e1e1e1;">
+                                                                            <p>Storage Location</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="row text-center thirty-padding">
+                                                                        <p>Checkin qty</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-1" style="margin-top: 25px;">
+                                                                    <i class="fa fa-close fa-bg bg-red danger"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 no-padding">
+                                                    <div class="panel panel-pink no-shadow bdr-1">
+                                                        <div class="panel-body no-padding">
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <div class="row text-center thirty-padding">
+                                                                        <p>Item ID-Serial#</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 border-panel">
+                                                                    <div class="row margin-border">
+                                                                        <p>Item Description</p>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6 ten-padding">
+                                                                            <p>Assets Id</p>
+                                                                        </div>
+                                                                        <div class="col-md-6 ten-padding" style="border-left: 1px solid #e1e1e1;">
+                                                                            <p>Storage Location</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="row text-center thirty-padding">
+                                                                        <p>Checkin qty</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-1" style="margin-top: 25px;">
+                                                                    <i class="fa fa-close fa-bg bg-red danger"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 no-padding">
+                                                    <div class="panel panel-green no-shadow bdr-1">
+                                                        <div class="panel-body no-padding">
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <div class="row text-center thirty-padding">
+                                                                        <p>Item ID-Serial#</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 border-panel">
+                                                                    <div class="row margin-border">
+                                                                        <p>Item Description</p>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6 ten-padding">
+                                                                            <p>Assets Id</p>
+                                                                        </div>
+                                                                        <div class="col-md-6 ten-padding" style="border-left: 1px solid #e1e1e1;">
+                                                                            <p>Storage Location</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="row text-center thirty-padding">
+                                                                        <p>Checkin qty</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-1" style="margin-top: 25px;">
+                                                                    <i class="fa fa-close fa-bg bg-red danger"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 no-padding">
+                                                    <div class="panel panel-green no-shadow bdr-1">
+                                                        <div class="panel-body no-padding">
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <div class="row text-center thirty-padding">
+                                                                        <p>Item ID-Serial#</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 border-panel">
+                                                                    <div class="row margin-border">
+                                                                        <p>Item Description</p>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6 ten-padding">
+                                                                            <p>Assets Id</p>
+                                                                        </div>
+                                                                        <div class="col-md-6 ten-padding" style="border-left: 1px solid #e1e1e1;">
+                                                                            <p>Storage Location</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="row text-center thirty-padding">
+                                                                        <p>Checkin qty</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-1" style="margin-top: 25px;">
+                                                                    <i class="fa fa-close fa-bg bg-red danger"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <button class="btn btn-purple sbtn pull-right" (click)="go()">Check In &nbsp; <i class="fa fa-check"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

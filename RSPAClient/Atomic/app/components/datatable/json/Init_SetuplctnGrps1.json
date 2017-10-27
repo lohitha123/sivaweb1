@@ -1,0 +1,20 @@
+[
+      {
+        "LOC_GROUP_ID": "anil",
+        "ORG_GROUP_ID": "NOI",
+        "LOC_DESCR": "r",
+        "STATUS": "true"
+      },
+      {
+        "LOC_GROUP_ID": "kkk",
+        "ORG_GROUP_ID": "NOI",
+        "LOC_DESCR": "oio9oo",
+        "STATUS": "true"
+      },
+      {
+        "LOC_GROUP_ID": "TestLocGrp1",
+        "ORG_GROUP_ID": "NOI",
+        "LOC_DESCR": "Test Location Group1",
+        "STATUS": "true"
+      }
+]

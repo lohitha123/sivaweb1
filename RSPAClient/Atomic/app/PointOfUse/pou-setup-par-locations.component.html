@@ -1,0 +1,498 @@
+﻿<style>
+.parloc-well {
+    margin-bottom: -10px;
+}
+
+@media screen and (max-width:767px) {
+    .parloc-well {
+        margin-bottom: 15px;
+    }
+}
+</style>
+<div id="main" class="content-page">
+    <div class="page-header-title">
+        <h4 class="page-title"><a (click)="homeurl()">Administration ></a>Setup Par Locations</h4>
+    </div>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:20px;">
+                        <form class="form-horizontal form-label-left" *ngIf="page">
+                            <button class="btn btn-purple sbtn pull-right" (click)="add()"><i class="fa fa-plus"></i> Add Location</button>
+                            <br>
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Org ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-select [options]="cities" [id]="'ddlOrg'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Par Location</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-select [options]="cities" [id]="'ddlParLoc'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Par Location Name</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-text [(ngModel)]="newItem.ParLocName" [name]="txtParLocName" [validations]="'except_less_greater_symbols'" [id]="'ParLocName'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <br>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-4 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="go()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <br>
+                        <div style="clear:both;"></div>
+                        <div class="col-xs-12 table-responsive" *ngIf="pop">
+                            <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                <p-column field="COST_CENTER_CODE" header="Cost Center Code" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="PAR_LOC_ID" header="Par Location ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="LOCATION_NAME" header="Par Location Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="CART_ID" header="Org ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="CART_ID" header="Quantity Option" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="POU_CART" header="POU Cart" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="PARLOC_TYPE" header="Location Type" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column header="">
+                                    <template let-ven="rowData" pTemplate="body">
+                                        <i class="fa fa-plus bg-green fa-bg" (click)="med()"></i>
+                                    </template>
+                                </p-column>
+                                <<p-column header="Edit">
+                                    <template let-ven="rowData" pTemplate="body">
+                                        <i class="fa fa-pencil bg-blue fa-bg" (click)="add()"></i>
+                                    </template>
+                                    </p-column>
+                            </atpar-datatable>
+                        </div>
+                        <form action="" class="form-horizontal form-label-left" *ngIf="form">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12"> Org ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [options]="cities" [required]="true" [id]="'ddlOrgId'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 ">Par Location ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.ParLocId" [name]="txtParLocId" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'ParLocId'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Use only letters (a-z), numbers (0-9), special characters (_, -, /) and no spaces]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 ">Par Location Name</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.ParLocName" [name]="txtParLocName" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'ParLocName'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Any character A-Z, a-z,0-9, !, ', #, $... ]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Cost Center Code</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [options]="cities" [required]="true" [id]="'ddlCostCenterCode'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Quantity Option</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [options]="cities" [required]="true" [id]="'ddlQuantityOpt'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 ">Asset Account</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.AssetAcc" [name]="txtAssetAcc" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'ParAssetAcc'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Ship To</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [options]="cities" [id]="'ddlShipTo'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 ">Delivery Location ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.DeliveryLocId" [name]="txtDeliveryLocId" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'DeliveryLocId'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 "> Address 1</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.Address1" [name]="txtAddress1" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Address1'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Use only letters (a-z), numbers (0-9), special characters (_, -, /)]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 "> Address 2</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.Address2" [name]="txtAddress2" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Address2'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Use only letters (a-z), numbers (0-9), special characters (_, -, /)]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 "> City</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.City" [name]="txtCity" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'City'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Use only letters (a-z), numbers (0-9), (_) and no spaces]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 "> State</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.State" [name]="txtState" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'State'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Use only letters (a-z), and no spaces]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 "> Zip</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.Zip" [name]="txtZip" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Zip'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Use only (a-z),numbers(0-9),the underscore(_),and no spaces]
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12 "> Country</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.Country" [name]="txtCountry" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Country'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Location Type</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [options]="cities" [required]="true" [id]="'ddlLocType'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Perpectual in MMIS</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-switch></atpar-switch>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        [Checking this parameter will generate counts files for the Par Location otherwise it will generate orders file]
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="col-xs-12 col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-3">
+                                    <button class="btn btn-purple sbtn" (click)="go()"> <i class="fa fa-plus"></i>&nbsp; Add </button>
+                                    <button class="btn btn-purple sbtn" (click)="close()"><i class="fa fa-arrow-left"></i>&nbsp; Go Back &nbsp; </button>
+                                </div>
+                            </div>
+                        </form>
+                        <form class="form-horizontal form-label-left" *ngIf="page2">
+                            <div class="col-xs-12 col-sm-8 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Item</label>
+                                <div class="col-xs-8 col-sm-6 col-md-8">
+                                    <atpar-text [(ngModel)]="newItem.Item" [name]="txtItem" [validations]="'except_less_greater_symbols'" [id]="'Item'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-2 col-md-2 form-group">
+                                <button class="btn btn-purple sbtn">Search &nbsp; <i class="fa fa-search"></i></button>
+                            </div>
+                            <div class="form-group pull-right">
+                                <button class="btn btn-purple sbtn" (click)="add2()"> <i class="fa fa-plus"></i>&nbsp;Add Item </button>
+                                <button class="btn btn-purple sbtn" (click)="close2()"><i class="fa fa-arrow-left"></i>&nbsp;Go Back</button>
+                            </div>
+                        </form>
+                        <div style="clear:both;"></div>
+                        <div class="text-primary well parloc-well" *ngIf="page2">
+                            <ul class="list-inline">
+                                <li>
+                                    <h5><strong>Organization Code : US015 (US015) | </strong></h5>
+                                </li>
+                                <li>
+                                    <h5><strong>Par Location : PARLCOATION1   | </strong></h5>
+                                </li>
+                                <li>
+                                    <h5><strong>Par Location Name : PARLOCATION1 | </strong></h5>
+                                </li>
+                                <li>
+                                    <h5><strong>Cost Center : csr  | </strong></h5>
+                                </li>
+                                <li>
+                                    <h5><strong>Quantity Option : Count | </strong></h5>
+                                </li>
+                            </ul>
+                        </div>
+                        <div style="clear:both;"></div>
+                        <div class="table-responsive" *ngIf="pop2">
+                            <atpar-datatable [value]="medic" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                <p-column field="" header="Item ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="" header="Compartment" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="" header="Opt Qty" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="" header="Ordering Type" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="" header="Foq Qty" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="" header="Maximum Quantity" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="" header="Stock" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="" header="Issue" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="" header="Conversion Rate(Par UOM)" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="" header="Count Req" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="" header="Lot Controlled" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="" header="Serial Controlled" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="" header="Replenishment Type" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="" header="Fill/Kill Flag" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="" header="Count Order" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="" header="Status" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                            </atpar-datatable>
+                        </div>
+                        <form action="" class="form-horizontal form-label-left" *ngIf="form2">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-3 col-sm-3">Item</label>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <atpar-text [(ngModel)]="newItem.ItemId" [name]="txtItemId" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'ItemId'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <button class="btn btn-purple sbtn" (click)="search()">Search &nbsp; <i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                                <div *ngIf="fdata">
+                                    <div class="form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-3 col-sm-3">Item Description</label>
+                                        <div class="col-xs-8 col-sm-3 col-md-3">
+                                            <atpar-text [(ngModel)]="newItem.ItemDesc" [name]="txtItemDesc" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'ItemDesc'" [ngModelOptions]="{standalone: true}" [readonly]="true"></atpar-text>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-3 col-sm-3">Compartment</label>
+                                        <div class="col-xs-12 col-sm-3 col-md-3">
+                                            <atpar-text [(ngModel)]="newItem.Compartment" [name]="txtCompartment" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Compartment'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                            [Any character A-Z,a-z,0-9,!,',#,$...]
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-3 col-sm-3">Optimal Quantity</label>
+                                        <div class="col-xs-12 col-sm-3 col-md-3">
+                                            <atpar-text [(ngModel)]="newItem.OptimalQuant " [name]="txtOptimalQuant " *ngIf="!isEditMode " [validations]=" 'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace' " [id]=" 'OptimalQuant' " [ngModelOptions]="{standalone: true} "></atpar-text>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 help_txt ">
+                                            [Use only numbers 0-9]
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="test_step_element_id " class="control-label col-md-3 col-sm-3 col-xs-12 ">Ordering Type</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12 ">
+                                            <atpar-select [options]="cities " [required]="true " [id]=" 'ddlOrdType' " [(ngModel)]="selectedCity " [ngModelOptions]="{standalone: true} " filter="filter "></atpar-select>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt ">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="test_step_element_id " class="control-label col-md-3 col-sm-3 col-xs-12 ">Foq Qty</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12 ">
+                                            <atpar-text [(ngModel)]="newItem.FoqQty " [name]="txtFoqQty " *ngIf="!isEditMode " [validations]=" 'alpha_numeric_underscore_hyphen_backslash_nospace' " [id]=" 'FoqQty' " [ngModelOptions]="{standalone: true} "></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt ">
+                                            [Use only numbers 0-9]
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="test_step_element_id " class="control-label col-md-3 col-sm-3 col-xs-12 ">Maximum Quantity</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12 ">
+                                            <atpar-text [(ngModel)]="newItem.MaxQty " [name]="txtMaxQty " *ngIf="!isEditMode " [validations]=" 'alpha_numeric_underscore_hyphen_backslash_nospace' " [id]=" 'MaxQty' " [ngModelOptions]="{standalone: true} "></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt ">
+                                            [Use only numbers 0-9]
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="test_step_element_id " class="control-label col-md-3 col-sm-3 col-xs-12 ">UOM(Procurement)</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12 ">
+                                            <atpar-text [(ngModel)]="newItem.UomProc " [name]="txtUomProc " *ngIf="!isEditMode " [validations]=" 'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace' " [id]=" 'UomProc' " [ngModelOptions]="{standalone: true} "></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt ">
+                                            [Use only letters (A-Z) and no spaces]
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="test_step_element_id " class="control-label col-md-3 col-sm-3 col-xs-12 ">Unit of Issue</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12 ">
+                                            <atpar-text [(ngModel)]="newItem.UnitOfIssue " [name]="txtUnitOfIssue " *ngIf="!isEditMode " [validations]=" 'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace' " [id]=" 'UnitOfIssue' " [ngModelOptions]="{standalone: true} "></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt ">
+                                            [Use only letters (A-Z) and no spaces]
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="test_step_element_id " class="control-label col-md-3 col-sm-3 col-xs-12 ">Par UOM</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12 ">
+                                            <atpar-text [(ngModel)]="newItem.ParUom " [name]="txtParUom " *ngIf="!isEditMode " [validations]=" 'alpha_numeric_underscore_hyphen_backslash_nospace' " [id]=" 'ParUom' " [ngModelOptions]="{standalone: true} "></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt ">
+                                            [Use only letters (A-Z) and no spaces]
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="test_step_element_id " class="control-label col-md-3 col-sm-3 col-xs-12 ">Conversion Rate(Par UOM)</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12 ">
+                                            <atpar-text [(ngModel)]="newItem.ConversionRateParUom " [name]="txtConversionRateParUom " *ngIf="!isEditMode " [validations]=" 'alpha_numeric_underscore_hyphen_backslash_nospace' " [id]=" 'ConversionRateParUom' " [ngModelOptions]="{standalone: true} "></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt ">
+                                            [Use only numbers (0-9) and dot(.)]
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="test_step_element_id " class="control-label col-md-3 col-sm-3 col-xs-12 ">Conversion Rate(Procurement)</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12 ">
+                                            <atpar-text [(ngModel)]="newItem.ConversionRateProcure " [name]="txtConversionRateProcure " *ngIf="!isEditMode " [validations]=" 'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace' " [id]=" 'ConversionRateProcure' " [ngModelOptions]="{standalone: true} "></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt ">
+                                            [Use only numbers (0-9) and dot(.)]
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="test_step_element_id " class="control-label col-md-3 col-sm-3 col-xs-12 ">Count Required</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12 ">
+                                            <atpar-switch></atpar-switch>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt ">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="test_step_element_id " class="control-label col-md-3 col-sm-3 col-xs-12 ">Lot Controlled</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12 ">
+                                            <atpar-switch></atpar-switch>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt ">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="test_step_element_id " class="control-label col-md-3 col-sm-3 col-xs-12 ">Serail Controlled</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12 ">
+                                            <atpar-switch></atpar-switch>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt ">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="test_step_element_id " class="control-label col-md-3 col-sm-3 col-xs-12 ">Charge Code</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12 ">
+                                            <atpar-text [(ngModel)]="newItem.ChargeCode " [name]="txtChargeCode " *ngIf="!isEditMode " [validations]=" 'alpha_numeric_underscore_hyphen_backslash_nospace' " [id]=" 'ChargeCode' " [ngModelOptions]="{standalone: true} "></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt ">
+                                            [Use only letters (a-z),(A-Z), numbers (0-9), the underscoreL) and no spaces]
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="test_step_element_id " class="control-label col-md-3 col-sm-3 col-xs-12 ">Replenishment Type</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12 ">
+                                            <atpar-select [options]="cities " [required]="true " [id]=" 'ddlReplenishType' " [(ngModel)]="selectedCity " [ngModelOptions]="{standalone: true} " filter="filter "></atpar-select>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="test_step_element_id " class="control-label col-md-3 col-sm-3 col-xs-12 ">Fill/Kill Flag</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12 ">
+                                            <atpar-select [options]="cities " [id]=" 'ddlOrdType' " [(ngModel)]="selectedCity " [ngModelOptions]="{standalone: true} " filter="filter "></atpar-select>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt ">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="test_step_element_id " class="control-label col-md-3 col-sm-3 col-xs-12 ">Count Order</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12 ">
+                                            <atpar-text [(ngModel)]="newItem.ChargeCode " [name]="txtChargeCode " *ngIf="!isEditMode " [validations]=" 'alpha_numeric_underscore_hyphen_backslash_nospace' " [id]=" 'ChargeCode' " [ngModelOptions]="{standalone: true} "></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt ">
+                                            [Use only (0-9)]
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="test_step_element_id " class="control-label col-md-3 col-sm-3 col-xs-12 ">Cost Center</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12 ">
+                                            <atpar-select [options]="cities " [required]="true " [id]=" 'ddlCostCenter' " [(ngModel)]="selectedCity " [ngModelOptions]="{standalone: true} " filter="filter "></atpar-select>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt ">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="test_step_element_id " class="control-label col-md-3 col-sm-3 col-xs-12 ">Inventory Business Unit</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12 ">
+                                            <atpar-select [options]="cities " [id]=" 'ddlInventoryBusinessUnit' " [(ngModel)]="selectedCity " [ngModelOptions]="{standalone: true} " filter="filter "></atpar-select>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt ">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="test_step_element_id " class="control-label col-md-3 col-sm-3 col-xs-12 ">User Field1</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12 ">
+                                            <atpar-text [(ngModel)]="newItem.UserField1 " [name]="txtUserField1 " *ngIf="!isEditMode " [validations]=" 'alpha_numeric_underscore_hyphen_backslash_nospace' " [id]=" 'UserField1' " [ngModelOptions]="{standalone: true} "></atpar-text>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt ">
+                                            [Any character A-Z,a-z,0-9,!,',#,$...]
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="test_step_element_id " class="control-label col-md-3 col-sm-3 col-xs-12 ">Requesition Type</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12 ">
+                                            <atpar-select [options]="cities " [required]="true " [id]=" 'ddlReqType' " [(ngModel)]="selectedCity " [ngModelOptions]="{standalone: true} " filter="filter "></atpar-select>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12 help_txt ">
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="test_step_element_id " class="control-label col-md-3 col-sm-3 col-xs-12 ">Status</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12 ">
+                                            <atpar-radioButton name="groupname" value="" label="Active"></atpar-radioButton>
+                                            <atpar-radioButton name="groupname" value="" label="InActive"></atpar-radioButton>
+                                            <atpar-radioButton name="groupname" value="" label="Pending"></atpar-radioButton>
+                                        </div>
+                                        <div class="col-md-3 col-sm-3 col-xs-12 help_txt ">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-3">
+                                        <button class="btn btn-purple sbtn" (click)="go()"> <i class="fa fa-check"></i>&nbsp; Save </button>
+                                        <button class="btn btn-purple sbtn" (click)="close2()"><i class="fa fa-arrow-left"></i>&nbsp; Go Back &nbsp; </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,95 @@
+<ROOT>
+<HEADER>
+	<field name="HDR" segment="MESSAGE_HEADER" value="MSH" field_no="1" mandatory="Y" />
+	<field name="HDR" segment="PATIENT_IDENTIFICATION" value="PID" field_no="2" mandatory="N" />
+	<field name="HDR" segment="PATIENT_VISIT_IDENTIFICATION" value="PV1" field_no="3" mandatory="N" />
+	<field name="HDR" segment="FINANCIAL_TRANSACTION" value="FT1" field_no="4" mandatory="Y" />
+	<field name="HDR" segment="ADDL_SUPPLY_USAGE" value="ZPM" field_no="5" mandatory="Y" />
+</HEADER>
+<NET_ITEM_USAGE_DATA>
+<field name="FIELD_SEPARATOR" segment="MESSAGE_HEADER" field_no="1" maxlength="1" value_type="DEFAULT" value="" data_type="STRING" mandatory="Y"/>
+<field name="ENCODING_CHARACTERS" segment="MESSAGE_HEADER" field_no="2" maxlength="4" value_type="ATPAR_CONDITION"  value="" data_type="STRING" mandatory="Y"/>
+<field name="SENDING_APPLICATION" segment="MESSAGE_HEADER" field_no="3" maxlength="180" value_type="ATPAR_CONDITION" value="CONFIG" data_type="STRING" mandatory="Y"/>
+<field name="SENDING_FACILITY" segment="MESSAGE_HEADER" field_no="4" maxlength="180" value_type="ATPAR_CONDITION"  value="CONFIG"  data_type="STRING" mandatory="Y"/>
+<field name="RECEIVING_APPLICATION" segment="MESSAGE_HEADER"  field_no="5" maxlength="180"  value_type="ATPAR_CONDITION" value="CONFIG" data_type="STRING" mandatory="Y"/>
+<field name="RECEIVING_FACILITY" segment="MESSAGE_HEADER" field_no="6"  maxlength="180" value_type="ATPAR_CONDITION" value="CONFIG" data_type="STRING" mandatory="Y"/>
+<field name="DATE_TIME_OF_MESSAGE" segment="MESSAGE_HEADER"  field_no="7" maxlength="14" value_type="DEFAULT" value=" " format="yyyyMMddHHmm" data_type="DATETIME" mandatory="Y"/>
+<field name="SECURITY" segment="MESSAGE_HEADER" field_no="8" maxlength="50" value_type="DEFAULT" value=" " data_type="STRING" mandatory="N"/>
+<field name="MESSAGE_TYPE" segment="MESSAGE_HEADER" field_no="9"  maxlength="7" value_type="DEFAULT" value="DFT^PO3" data_type="STRING" mandatory="Y"/>
+<field name="MESSAGE_CONTROL_ID" segment="MESSAGE_HEADER" field_no="10" maxlength="20" value_type="DEFAULT" value=" " format="hhmmss" data_type="DATETIME" mandatory="Y"/>
+<field name="PROCESSING_ID" segment="MESSAGE_HEADER" field_no="11" maxlength="50" value_type="DEFAULT" value=" "  data_type="STRING" mandatory="N"/>
+<field name="VERSION_ID" segment="MESSAGE_HEADER" field_no="12" maxlength="3"  value_type="ATPAR_CONDITION" value="CONFIG" data_type="STRING" mandatory="Y"/>
+<field name="SEQUENCE_NUMBER" segment="MESSAGE_HEADER" field_no="13" maxlength="50" value_type="DEFAULT" value=" " data_type="STRING" mandatory="N"/>
+<field name="CONTINUATION_POINTER" segment="MESSAGE_HEADER" field_no="14" maxlength="50" value_type="DEFAULT" value="" data_type="STRING" mandatory="Y"/>
+<field name="SET_ID_FINANCIAL_TRANSACTION" segment="FINANCIAL_TRANSACTION" field_no="1" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="TRANSACTION_ID" segment="FINANCIAL_TRANSACTION" field_no="2" maxlength="50" value_type="ATPAR_DETAILS"  value="TRANSACTION_ID" data_type="STRING" mandatory="Y"/>
+<field name="TRANSACTION_BATCH_ID" segment="FINANCIAL_TRANSACTION" field_no="3" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="TRANSACTION_DATE" segment="FINANCIAL_TRANSACTION" field_no="4" maxlength="50" value_type="DEFAULT" value=" " format="yyyyMMddHHmm" data_type="DATETIME" mandatory="Y"/>
+<field name="TRANSACTION_POSTING_DATE" segment="FINANCIAL_TRANSACTION" field_no="5" maxlength="50" value_type="DEFAULT" value=" " format="yyyyMMddHHmm" data_type="DATETIME" mandatory="Y"/>
+<field name="TRANSACTION_TYPE" segment="FINANCIAL_TRANSACTION" field_no="6" maxlength="1" value_type="ATPAR_CONDITION" value=" " data_type="STRING" mandatory="Y"/>
+<field name="TRANSACTION_CODE" segment="FINANCIAL_TRANSACTION" field_no="7" maxlength="50"  value_type="ATPAR_DETAILS" value="ITEM_ID" data_type="STRING" mandatory="Y"/>
+<field name="FT1_FIELD_8" segment="FINANCIAL_TRANSACTION" field_no="8" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FT1_FIELD_9" segment="FINANCIAL_TRANSACTION" field_no="9" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="TRANSACTION_QUANTITY" segment="FINANCIAL_TRANSACTION" field_no="10" maxlength="10" value_type="ATPAR_CONDITION" value=" " data_type="NUMBER"  mandatory="Y"/>
+<field name="TRANSACTION_AMOUNT_EXT" segment="FINANCIAL_TRANSACTION" field_no="11" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FT1_FIELD_12" segment="FINANCIAL_TRANSACTION" field_no="12" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="DEPARTMENT_CODE" segment="FINANCIAL_TRANSACTION" field_no="13" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FT1_FIELD_14" segment="FINANCIAL_TRANSACTION" field_no="14" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FT1_FIELD_15" segment="FINANCIAL_TRANSACTION" field_no="15" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FT1_FIELD_16" segment="FINANCIAL_TRANSACTION" field_no="16" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FT1_FIELD_17" segment="FINANCIAL_TRANSACTION" field_no="17" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="PATIENT_TYPE" segment="FINANCIAL_TRANSACTION" field_no="18" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FT1_FIELD_19" segment="FINANCIAL_TRANSACTION" field_no="19" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="PERFORMING_PHYSICIAN" segment="FINANCIAL_TRANSACTION" field_no="20" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="ORDERING_PHYSICIAN" segment="FINANCIAL_TRANSACTION" field_no="21" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="UNIT_COST" segment="FINANCIAL_TRANSACTION" field_no="22" maxlength="50" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FILLER_ORDER_NUMBER" segment="FINANCIAL_TRANSACTION" field_no="23" maxlength="10" value_type="ATPAR_DETAILS"  value="CASE_ID" data_type="STRING" mandatory="Y"/>
+<field name="FIELD_1" segment="ADDL_SUPPLY_USAGE" field_no="1" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_2" segment="ADDL_SUPPLY_USAGE" field_no="2" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="STATION_NAME" segment="ADDL_SUPPLY_USAGE" field_no="3" maxlength="10" value_type="ATPAR_CONDITION" default_value= "OR" value="ITEM_INVENTORY" data_type="STRING" mandatory="Y"/>
+<field name="FIELD_4" segment="ADDL_SUPPLY_USAGE" field_no="4" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_5" segment="ADDL_SUPPLY_USAGE" field_no="5" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_6" segment="ADDL_SUPPLY_USAGE" field_no="6" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_7" segment="ADDL_SUPPLY_USAGE" field_no="7" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_8" segment="ADDL_SUPPLY_USAGE" field_no="8" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_9" segment="ADDL_SUPPLY_USAGE" field_no="9" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_10" segment="ADDL_SUPPLY_USAGE" field_no="10" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_11" segment="ADDL_SUPPLY_USAGE" field_no="11" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_12" segment="ADDL_SUPPLY_USAGE" field_no="12" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_13" segment="ADDL_SUPPLY_USAGE" field_no="13" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_14" segment="ADDL_SUPPLY_USAGE" field_no="14" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_15" segment="ADDL_SUPPLY_USAGE" field_no="15" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_16" segment="ADDL_SUPPLY_USAGE" field_no="16" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_17" segment="ADDL_SUPPLY_USAGE" field_no="17" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_18" segment="ADDL_SUPPLY_USAGE" field_no="18" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_19" segment="ADDL_SUPPLY_USAGE" field_no="19" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_20" segment="ADDL_SUPPLY_USAGE" field_no="20" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_21" segment="ADDL_SUPPLY_USAGE" field_no="21" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_22" segment="ADDL_SUPPLY_USAGE" field_no="22" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_23" segment="ADDL_SUPPLY_USAGE" field_no="23" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_24" segment="ADDL_SUPPLY_USAGE" field_no="24" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_25" segment="ADDL_SUPPLY_USAGE" field_no="25" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_26" segment="ADDL_SUPPLY_USAGE" field_no="26" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_27" segment="ADDL_SUPPLY_USAGE" field_no="27" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_28" segment="ADDL_SUPPLY_USAGE" field_no="28" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_29" segment="ADDL_SUPPLY_USAGE" field_no="29" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_30" segment="ADDL_SUPPLY_USAGE" field_no="30" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_31" segment="ADDL_SUPPLY_USAGE" field_no="31" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_32" segment="ADDL_SUPPLY_USAGE" field_no="32" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_33" segment="ADDL_SUPPLY_USAGE" field_no="33" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_34" segment="ADDL_SUPPLY_USAGE" field_no="34" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_35" segment="ADDL_SUPPLY_USAGE" field_no="35" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_36" segment="ADDL_SUPPLY_USAGE" field_no="36" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_37" segment="ADDL_SUPPLY_USAGE" field_no="37" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_38" segment="ADDL_SUPPLY_USAGE" field_no="38" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_39" segment="ADDL_SUPPLY_USAGE" field_no="39" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_40" segment="ADDL_SUPPLY_USAGE" field_no="40" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_41" segment="ADDL_SUPPLY_USAGE" field_no="41" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_42" segment="ADDL_SUPPLY_USAGE" field_no="42" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_43" segment="ADDL_SUPPLY_USAGE" field_no="43" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_44" segment="ADDL_SUPPLY_USAGE" field_no="44" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="FIELD_45" segment="ADDL_SUPPLY_USAGE" field_no="45" maxlength="10" value_type="DEFAULT"  value="" data_type="STRING" mandatory="N"/>
+<field name="LOT_NUMBER" segment="ADDL_SUPPLY_USAGE" field_no="46" maxlength="30" value_type="ATPAR_DETAILS"  value="LOT_ID" data_type="STRING" mandatory="Y"/>
+<field name="SERIAL_NUMBER" segment="ADDL_SUPPLY_USAGE" field_no="47" maxlength="30" value_type="ATPAR_DETAILS"  value="SERIAL_ID" data_type="STRING" mandatory="Y"/>
+ </NET_ITEM_USAGE_DATA>
+</ROOT>

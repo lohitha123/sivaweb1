@@ -1,0 +1,42 @@
+﻿<!--<span class="mobile-menu-icon" (click)="mobileDisplay()" [ngClass]="{'mobile-menu-close': display === true }">
+    <i class="fa fa-bars fa-2x"></i>
+</span>  [ngClass]="{'mobile-menu-open': display === true }"
+<style>
+    #sidebar-menu > ul > li > a.active {
+        background-color:#fe7500 !important;
+        color:#fff !important;        
+    }
+    #sidebar-menu > ul > li > a.active:hover  {
+        background-color:#b200ff;
+        color:#fff !important;        
+    }
+    #wrapper.enlarged .left.side-menu #sidebar-menu ul > li:hover > a.active {
+        background-color:#fe7500 !important;
+    }
+    #sidebar-menu > ul > li > a.active:hover p {
+        color:#fff !important;
+    }
+    #sidebar-menu > ul > li > a.active > img
+     {
+        filter: brightness(0) invert(1);
+    }    
+</style>
+<div>
+    <div class="sidebar-inner slimscrollleft">
+        <div id="sidebar-menu" class="sidenav">
+            <ul class="mobile-menu-lio" [ngClass]="{'mobile-menu-li': display === true }">
+                <li class="has_sub" (click)="configDown()">
+                    <a [routerLinkActive]="['active']" [routerLink]="['createrequest']" class="waves-effect dropdown-toggle"><img src="../../../assets/images/trackit/createReq.png" width="20"><p> Create Request </p></a>                    
+                </li>                
+                <li class="has_sub" (click)="manguserDown()">
+                    <a [routerLinkActive]="['active']" [routerLink]="['requestorstatus']" class="waves-effect dropdown-toggle"><img src="../../../assets/images/trackit/reqStatus.png" width="20"><p> Request Status</p></a>                                       
+                </li>
+                
+                <li class="has_sub" (click)="toolDown()">
+                    <a [routerLinkActive]="['active']" [routerLink]="['xyz']" class="waves-effect dropdown-toggle"><img src="../../../assets/images/trackit/report.png" width="20"><p>Reuestor Item Visibility Report</p></a>                   
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>-->

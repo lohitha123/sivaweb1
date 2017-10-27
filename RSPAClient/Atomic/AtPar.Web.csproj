@@ -1,0 +1,373 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{51603252-DA39-44BE-B5D1-330DE9575055}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AtPar.Web</RootNamespace>
+    <AssemblyName>AtPar.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.1</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="package.json" />
+    <Content Include="tsconfig.json" />
+    <Content Include="assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="assets\fonts\fontawesome-webfont5b62.eot" />
+    <Content Include="assets\fonts\fontawesome-webfont5b62.ttf" />
+    <Content Include="assets\fonts\fontawesome-webfont5b62.woff" />
+    <Content Include="assets\fonts\fontawesome-webfont5b62.woff2" />
+    <Content Include="assets\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="assets\fonts\FontAwesome.otf" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="assets\fonts\glyphicons-halflings-regulard41d.eot" />
+    <Content Include="assets\fonts\ioniconsaa26.eot" />
+    <Content Include="assets\fonts\ioniconsaa26.ttf" />
+    <Content Include="assets\fonts\ioniconsaa26.woff" />
+    <Content Include="assets\fonts\materialdesignicons-webfont6c9c.eot" />
+    <Content Include="assets\fonts\materialdesignicons-webfont6c9c.ttf" />
+    <Content Include="assets\fonts\materialdesignicons-webfont6c9c.woff" />
+    <Content Include="assets\fonts\materialdesignicons-webfont6c9c.woff2" />
+    <Content Include="assets\fonts\materialdesignicons-webfontd41d.eot" />
+    <Content Include="assets\fonts\roboto-v15-latin-regular.eot" />
+    <Content Include="assets\fonts\roboto-v15-latin-regular.ttf" />
+    <Content Include="assets\fonts\roboto-v15-latin-regular.woff" />
+    <Content Include="assets\fonts\roboto-v15-latin-regular.woff2" />
+    <Content Include="assets\fonts\themify9f24.eot" />
+    <Content Include="assets\fonts\themify9f24.ttf" />
+    <Content Include="assets\fonts\themify9f24.woff" />
+    <Content Include="assets\fonts\themifyd41d.eot" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app\app.component.html" />
+    <Content Include="app\components\button\button.css" />
+    <Content Include="app\components\calendar\calendar.css" />
+    <Content Include="app\components\common\common.css" />
+    <Content Include="app\components\datatable\datatable.css" />
+    <Content Include="app\components\dialog\dialog.css" />
+    <Content Include="app\components\dropdown\dropdown.css" />
+    <Content Include="app\components\growl\growl.css" />
+    <Content Include="app\components\inputtext\inputtext.css" />
+    <Content Include="app\components\paginator\paginator.css" />
+    <Content Include="app\components\radiobutton\radiobutton.css" />
+    <Content Include="app\components\spinner\atpar-spinner.css" />
+    <Content Include="app\components\spinner\blockui.css" />
+    <Content Include="app\components\spinner\sample.css" />
+    <Content Include="app\components\spinner\temp.css" />
+    <Content Include="app\components\spinner\theme.css" />
+    <Content Include="app\components\switch\switch.css" />
+    <Content Include="app\Home\Body\body.component.html" />
+    <Content Include="app\Home\Body\warehouse.component.html" />
+    <Content Include="app\Home\home.component.html" />
+    <Content Include="app\Home\Left\leftbar.component.html" />
+    <Content Include="app\Home\Left\leftbarcc.component.html" />
+    <Content Include="app\Home\Left\leftbard.component.html" />
+    <Content Include="app\Home\Left\leftbarr.component.html" />
+    <Content Include="app\Home\Left\leftbarw.component.html" />
+    <Content Include="app\Home\Top\topbar.component.html" />
+    <Content Include="app\Init\atpar-configuration-manager.component.html" />
+    <Content Include="app\Init\atpar-init.component.html" />
+    <Content Include="app\Init\atpar-setup-cost-centers.component.html" />
+    <Content Include="app\Init\atpar-setup-vendors.component.html" />
+    <Content Include="app\Login\login.component.html" />
+    <Content Include="assets\css\BlueViolet.css" />
+    <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\css\default.css" />
+    <Content Include="assets\css\font-awesome.min.css" />
+    <Content Include="assets\css\icons.css" />
+    <Content Include="assets\css\jquery.mCustomScrollbar.css" />
+    <Content Include="assets\css\omega\theme.css" />
+    <Content Include="assets\css\primeng.css" />
+    <Content Include="assets\css\prism.css" />
+    <Content Include="assets\css\site.css" />
+    <Content Include="assets\css\style.css" />
+    <Content Include="assets\css\style1.css" />
+    <Content Include="assets\css\style2.css" />
+    <Content Include="assets\css\style4.css" />
+    <Content Include="assets\css\theme.css" />
+    <Content Include="assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\fonts\fontawesome-webfont5b62.svg" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\fonts\ioniconsaa26.svg" />
+    <Content Include="assets\fonts\materialdesignicons-webfont6c9c.svg" />
+    <Content Include="assets\fonts\roboto-v15-latin-regular.svg" />
+    <Content Include="assets\fonts\themify9f24.svg" />
+    <Content Include="assets\images\bg.png" />
+    <Content Include="assets\images\bg1.png" />
+    <Content Include="assets\images\bg_.png" />
+    <Content Include="assets\images\icons\app_icon.png" />
+    <Content Include="assets\images\icons\app_icon_.png" />
+    <Content Include="assets\images\icons\common\app_icon.png" />
+    <Content Include="assets\images\icons\common\assetManagement.png" />
+    <Content Include="assets\images\icons\common\atparx.png" />
+    <Content Include="assets\images\icons\common\atPar_.png" />
+    <Content Include="assets\images\icons\common\binToBin.png" />
+    <Content Include="assets\images\icons\common\cartCount.png" />
+    <Content Include="assets\images\icons\common\configuration-1.png" />
+    <Content Include="assets\images\icons\common\configuration.png" />
+    <Content Include="assets\images\icons\common\cycleCount.png" />
+    <Content Include="assets\images\icons\common\deliver.png" />
+    <Content Include="assets\images\icons\common\folder-Icon-1.png" />
+    <Content Include="assets\images\icons\common\folder-Icon.png" />
+    <Content Include="assets\images\icons\common\manageUsers-1.png" />
+    <Content Include="assets\images\icons\common\manageUsers.png" />
+    <Content Include="assets\images\icons\common\pick.png" />
+    <Content Include="assets\images\icons\common\pointOfUse.png" />
+    <Content Include="assets\images\icons\common\putAway.png" />
+    <Content Include="assets\images\icons\common\recieve.png" />
+    <Content Include="assets\images\icons\common\reports-1.png" />
+    <Content Include="assets\images\icons\common\reports.png" />
+    <Content Include="assets\images\icons\common\stockIssue.png" />
+    <Content Include="assets\images\icons\common\tools-1.png" />
+    <Content Include="assets\images\icons\common\tools.png" />
+    <Content Include="assets\images\icons\common\trackIt.png" />
+    <Content Include="assets\images\loader-preview.svg" />
+    <Content Include="assets\images\logo-admin-black.png" />
+    <Content Include="assets\images\logo-admin-black_.png" />
+    <Content Include="assets\images\logo-dh.png" />
+    <Content Include="assets\images\logo-white.png" />
+    <Content Include="assets\images\MHSAtpar.png" />
+    <Content Include="assets\images\restaurant.png" />
+    <Content Include="assets\images\users\default.png" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Images\logo_y.jpg" />
+    <Content Include="index.html" />
+    <Content Include="systemjs.config.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <TypeScriptCompile Include="app\app-routing.module.ts" />
+    <TypeScriptCompile Include="app\app.component.ts" />
+    <TypeScriptCompile Include="app\app.module.ts" />
+    <TypeScriptCompile Include="app\Common\dom\domhandler.ts" />
+    <TypeScriptCompile Include="app\Common\DropDown\app.Dropdowncomponent.ts" />
+    <TypeScriptCompile Include="app\Common\DynamicControls\CheckboxControl.ts" />
+    <TypeScriptCompile Include="app\Common\DynamicControls\ControlBase.ts" />
+    <TypeScriptCompile Include="app\Common\DynamicControls\DropDownControl.ts" />
+    <TypeScriptCompile Include="app\Common\DynamicControls\ModelControl.ts" />
+    <TypeScriptCompile Include="app\Common\DynamicControls\SpanControl.ts" />
+    <TypeScriptCompile Include="app\Common\DynamicControls\TextboxControl.ts" />
+    <TypeScriptCompile Include="app\Common\RadioGroup\app.RadioGroupComponent.ts" />
+    <TypeScriptCompile Include="app\Common\TextBox\Custom-Validators.ts" />
+    <TypeScriptCompile Include="app\Common\TextBox\CustomTextBoxModule.ts" />
+    <TypeScriptCompile Include="app\Common\TextBox\date.ts" />
+    <TypeScriptCompile Include="app\Common\TextBox\email.ts" />
+    <TypeScriptCompile Include="app\Common\TextBox\equal-to.ts" />
+    <TypeScriptCompile Include="app\Common\TextBox\equal.ts" />
+    <TypeScriptCompile Include="app\Common\TextBox\index.ts" />
+    <TypeScriptCompile Include="app\Common\TextBox\lang.ts" />
+    <TypeScriptCompile Include="app\Common\TextBox\max-date.ts" />
+    <TypeScriptCompile Include="app\Common\TextBox\max.ts" />
+    <TypeScriptCompile Include="app\Common\TextBox\min-date.ts" />
+    <TypeScriptCompile Include="app\Common\TextBox\min.ts" />
+    <TypeScriptCompile Include="app\Common\TextBox\myValidate onlynumbers.ts" />
+    <TypeScriptCompile Include="app\Common\TextBox\number.ts" />
+    <TypeScriptCompile Include="app\Common\TextBox\phone.ts" />
+    <TypeScriptCompile Include="app\Common\TextBox\range-length.ts" />
+    <TypeScriptCompile Include="app\Common\TextBox\range.ts" />
+    <TypeScriptCompile Include="app\components\button\button.ts" />
+    <TypeScriptCompile Include="app\components\calendar\calendar.ts" />
+    <TypeScriptCompile Include="app\components\common\api.ts" />
+    <TypeScriptCompile Include="app\components\common\shared.ts" />
+    <TypeScriptCompile Include="app\components\confirmdialog\confirmdialog.ts" />
+    <TypeScriptCompile Include="app\components\datatable\datatable.ts" />
+    <TypeScriptCompile Include="app\components\datatable\datatableservice.ts" />
+    <TypeScriptCompile Include="app\components\datatable\Employee.ts" />
+    <TypeScriptCompile Include="app\components\dialog\dialog.ts" />
+    <TypeScriptCompile Include="app\components\dropdown\dropdown.ts" />
+    <TypeScriptCompile Include="app\components\growl\growl.ts" />
+    <TypeScriptCompile Include="app\components\inputtext\inputtext.ts" />
+    <TypeScriptCompile Include="app\components\paginator\paginator.ts" />
+    <TypeScriptCompile Include="app\components\radiobutton\radiobutton.ts" />
+    <TypeScriptCompile Include="app\components\spinner\blockui.ts" />
+    <TypeScriptCompile Include="app\components\spinner\spinner-component.ts" />
+    <TypeScriptCompile Include="app\components\spinner\spinner-service.ts" />
+    <TypeScriptCompile Include="app\components\switch\switch.ts" />
+    <TypeScriptCompile Include="app\components\tabcomponent\tab.ts" />
+    <TypeScriptCompile Include="app\components\tabcomponent\tabs.ts" />
+    <TypeScriptCompile Include="app\Home\Body\body.component.ts" />
+    <TypeScriptCompile Include="app\Home\Body\body.module.ts" />
+    <TypeScriptCompile Include="app\Home\Body\body.routes.ts" />
+    <TypeScriptCompile Include="app\Home\Body\warehouse.component.ts" />
+    <TypeScriptCompile Include="app\Home\home.component.ts" />
+    <TypeScriptCompile Include="app\Home\home.module.ts" />
+    <TypeScriptCompile Include="app\Home\home.routes.ts" />
+    <TypeScriptCompile Include="app\Home\index.ts" />
+    <TypeScriptCompile Include="app\Home\leftbar-animation.service.ts" />
+    <TypeScriptCompile Include="app\Home\Left\leftbar.component.ts" />
+    <TypeScriptCompile Include="app\Home\Left\leftbarcc.component.ts" />
+    <TypeScriptCompile Include="app\Home\Left\leftbard.component.ts" />
+    <TypeScriptCompile Include="app\Home\Left\leftbarr.component.ts" />
+    <TypeScriptCompile Include="app\Home\Left\leftbarw.component.ts" />
+    <TypeScriptCompile Include="app\Home\Top\topbar.component.ts" />
+    <TypeScriptCompile Include="app\Init\atpar-configuration-manager.component.ts" />
+    <TypeScriptCompile Include="app\Init\atpar-init-routing.module.ts" />
+    <TypeScriptCompile Include="app\Init\atpar-init.component.ts" />
+    <TypeScriptCompile Include="app\Init\atpar-init.module.ts" />
+    <TypeScriptCompile Include="app\Init\atpar-setup-cost-centers.component.ts" />
+    <TypeScriptCompile Include="app\Init\atpar-setup-vendors.component.ts" />
+    <TypeScriptCompile Include="app\Login\index.ts" />
+    <TypeScriptCompile Include="app\Login\login.component.ts" />
+    <TypeScriptCompile Include="app\Login\login.module.ts" />
+    <TypeScriptCompile Include="app\Login\login.routes.ts" />
+    <TypeScriptCompile Include="app\Login\login.service.ts" />
+    <TypeScriptCompile Include="app\main.ts" />
+    <TypeScriptCompile Include="app\Shared\AtParEnums.ts" />
+    <TypeScriptCompile Include="app\Shared\AtParHttpUtilityService.ts" />
+    <TypeScriptCompile Include="app\Shared\AtParStatusCodes.ts" />
+    <TypeScriptCompile Include="app\Shared\AtParWebApiResponse.ts" />
+    <TypeScriptCompile Include="app\Shared\AtParWebEnums.ts" />
+    <TypeScriptCompile Include="app\Shared\HttpService.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>56294</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:56294/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,435 @@
+﻿<div id="main" class="content-page">
+    <div class="page-header-title">
+        <h4 class="page-title"><a (click)="homeurl()">Administration ></a>Manage Par Locations</h4>
+    </div>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:20px;">
+                        <form class="form-horizontal form-label-left col-xs-12" *ngIf="page">
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-md-4 col-sm-4">Org Group ID</label>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-text [(ngModel)]="newItem.OrgID" [name]="txtOrgID" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'OrgID'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-md-4 col-sm-4">Org ID</label>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlProfiles'" [ngModelOptions]="{standalone: true}" filter="filter" [required]="true"></atpar-select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-md-4 col-sm-4">Dept ID</label>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-text [(ngModel)]="newItem.DepID" [name]="txtDepID" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'DepID'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div style="clear:both;"></div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-md-4 col-sm-4">Dept Name</label>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-text [(ngModel)]="newItem.DepNA" [name]="txtDepNA" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'DepNA'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-md-4 col-sm-4"> Par Location ID </label>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-text [(ngModel)]="newItem.LocationID1" [name]="txtLocationID1" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'LocationID1'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-md-4 col-sm-4"> Par Location Name </label>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-text [(ngModel)]="newItem.LocationI1" [name]="txtLocationI1" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'LocationI1'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div style="clear:both;"></div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-md-4 col-sm-4"> Item ID</label>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-text [(ngModel)]="newItem.LocationI" [name]="txtLocationI" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'LocationI'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-md-4 col-sm-4"> Item ID - Description </label>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-text [(ngModel)]="newItem.LocationID" [name]="txtLocationID" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'LocationID'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-md-4 col-sm-4">Item Price Between</label>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bdr-purple" placeholder="" />
+                                        <span class="input-group-addon" style="border-left: 0; border-right: 0;">and</span>
+                                        <input type="text" class="form-control bdr-purple" placeholder="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="clear:both;"></div>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="go()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                            </div>
+                        </form>
+                        <div class="col-xs-12 table-responsive" *ngIf="pop">
+                            <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                <!--<p-column expander="true" styleClass="col-icon"></p-column>-->
+                                <p-column field="LOCATION_NAME" header="Location" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="FIRST_NAME" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Action" [style]="{'width':'100px'}">
+                                    <template pTemplate="filter" let-col>
+                                        <ul class="list-inline">
+                                            <li>
+                                                <a href="">All</a>
+                                            </li> |
+                                            <li>
+                                                <a href="">None</a>
+                                            </li>
+                                        </ul>
+                                    </template>
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-switch></atpar-switch>
+                                    </template>
+                                </p-column>
+                            </atpar-datatable>
+                            <form class="form-horizontal form-label-left">
+                                <div class="col-xs-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Item ID</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-6">
+                                            <atpar-text [(ngModel)]="newItem.ID" [name]="txtID" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'ID'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <button class="btn btn-purple sbtn m-t-0" (click)="add()"><i class="fa fa-plus"></i>&nbsp; Add Item</button>
+                                        <button class="btn btn-purple sbtn m-t-0" (click)="add()"><i class="fa fa-check"></i>&nbsp; Update Item </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="table" *ngIf="table">
+                            <!--<table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center display-middle">ORGID</th>
+                                        <th class="text-center display-middle">Par Location - Description</th>
+                                        <th class="text-center display-middle">Item ID Description</th>
+                                        <th class="text-center display-middle">Count Order</th>
+                                        <th class="text-center display-middle"><span class="label-red">*</span>Comp</th>
+                                        <th class="text-center display-middle"><span class="label-red">*</span>Ordering Type</th>
+                                        <th class="text-center display-middle">
+                                            <ul class="list-unstyled">
+                                                <li><span class="label-red">*</span>Opt Qty</li>
+                                                <li>Foq Qty</li>
+                                                <li>Max Qty</li>
+                                            </ul>
+                                        </th>
+                                        <th class="text-center display-middle">
+                                            <ul class="list-unstyled">
+                                                <li><span class="label-red">*</span>UOM Proc</li>
+                                                <li><span class="label-red">*</span>UOM Issue</li>
+                                                <li><span class="label-red">*</span>Conv Rate</li>
+                                                <li>Par UOM</li>
+                                                <li>Conversion Rate (Par UOM)</li>
+                                            </ul>
+                                        </th>
+                                        <th class="text-center display-middle">Count Req</th>
+                                        <th class="text-center display-middle">Lot Serial</th>
+                                        <th class="text-center display-middle">Charge Code</th>
+                                        <th class="text-center display-middle"><span class="label-red">*</span>Replen Type</th>
+                                        <th class="text-center display-middle">Fill/Kill Flag</th>
+                                        <th class="text-center display-middle"><span class="label-red">*</span>Cost Center</th>
+                                        <th class="text-center display-middle">InvBUnit</th>
+                                        <th class="text-center display-middle"><span class="label-red">*</span>Requisition Type</th>
+                                        <th class="text-center display-middle">Status</th>
+                                        <th class="text-center display-middle">Select</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>US015</td>
+                                        <td>AAPAR - DAAPAR</td>
+                                        <td>1item - D1item</td>
+                                        <td>
+                                            <atpar-text [(ngModel)]="newItem.co" [name]="txtco" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'co'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </td>
+                                        <td>
+                                            <atpar-text [(ngModel)]="newItem.comp" [name]="txtcomp" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'comp'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </td>
+                                        <td>
+                                            <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlProfiles'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                        </td>
+                                        <td>
+                                            <atpar-text [(ngModel)]="newItem.Op" [name]="txtOp" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Op'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                            <br>
+                                            <atpar-text [(ngModel)]="newItem.comp1" [name]="txtcomp1" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'comp1'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                            <br>
+                                            <atpar-text [(ngModel)]="newItem.comp2" [name]="txtcomp2" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'comp2'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </td>
+                                        <td>
+                                            <atpar-text [(ngModel)]="newItem.uom" [name]="txtuom" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'uom'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                            <br>
+                                            <atpar-text [(ngModel)]="newItem.uom1" [name]="txtuom1" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'uom1'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                            <br>
+                                            <atpar-text [(ngModel)]="newItem.uom2" [name]="txtuom2" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'uom2'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                            <br>
+                                            <atpar-text [(ngModel)]="newItem.uom3" [name]="txtuom3" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'uom3'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                            <br>
+                                            <atpar-text [(ngModel)]="newItem.uom4" [name]="txtuom4" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'uom4'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </td>
+                                        <td>
+                                            <atpar-switch></atpar-switch>
+                                        </td>
+                                        <td>
+                                            <atpar-switch></atpar-switch>
+                                            <br><br>
+                                            <atpar-switch></atpar-switch>
+                                        </td>
+                                        <td>
+                                            <atpar-text [(ngModel)]="newItem.cc" [name]="txtcc" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'cc'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </td>
+                                        <td>
+                                            <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlErpsys1'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                        </td>
+                                        <td>
+                                            <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlErpsys2'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                        </td>
+                                        <td>
+                                            <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlErpsys3'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                        </td>
+                                        <td>
+                                            <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlErpsys4'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                        </td>
+                                        <td>
+                                            <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlErpsys5'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                        </td>
+                                        <td>
+                                            <atpar-radioButton name="groupname" value="" label="Active"></atpar-radioButton>
+                                            <br>
+                                            <atpar-radioButton name="groupname" value="" label="Inactive"></atpar-radioButton>
+                                            <br>
+                                            <atpar-radioButton name="groupname" value="" label="Pending"></atpar-radioButton>
+                                            <br>
+                                        </td>
+                                        <td>
+                                            <atpar-switch></atpar-switch>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>US015</td>
+                                        <td>APAR - DAPAR</td>
+                                        <td>1item - D1item</td>
+                                        <td>
+                                            <atpar-text [(ngModel)]="newItem.co1" [name]="txtco1" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'co1'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </td>
+                                        <td>
+                                            <atpar-text [(ngModel)]="newItem.comp11" [name]="txtcomp11" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'comp11'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </td>
+                                        <td>
+                                            <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlProfiles1'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                        </td> 
+                                        <td>
+                                            <atpar-text [(ngModel)]="newItem.Op1" [name]="txtOp1" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Op1'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                            <br>
+                                            <atpar-text [(ngModel)]="newItem.comp112" [name]="txtcomp112" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'comp112'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                            <br>
+                                            <atpar-text [(ngModel)]="newItem.comp21" [name]="txtcomp21" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'comp21'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </td>
+                                        <td>
+                                            <atpar-text [(ngModel)]="newItem.uom10" [name]="txtuom10" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'uom10'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                            <br>
+                                            <atpar-text [(ngModel)]="newItem.uom12" [name]="txtuom12" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'uom12'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                            <br>
+                                            <atpar-text [(ngModel)]="newItem.uom21" [name]="txtuom21" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'uom21'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                            <br>
+                                            <atpar-text [(ngModel)]="newItem.uom31" [name]="txtuom31" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'uom31'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                            <br>
+                                            <atpar-text [(ngModel)]="newItem.uom41" [name]="txtuom41" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'uom41'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </td>
+                                        <td>
+                                            <atpar-switch></atpar-switch>
+                                        </td>
+                                        <td>
+                                            <atpar-switch></atpar-switch>
+                                            <br><br>
+                                            <atpar-switch></atpar-switch>
+                                        </td>
+                                        <td>
+                                            <atpar-text [(ngModel)]="newItem.cc1" [name]="txtcc1" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'cc1'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </td>
+                                        <td>
+                                            <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlErpsys12'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                        </td>
+                                        <td>
+                                            <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlErpsys22'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                        </td>
+                                        <td>
+                                            <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlErpsys33'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                        </td>
+                                        <td>
+                                            <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlErpsys44'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                        </td>
+                                        <td>
+                                            <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlErpsys55'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                        </td>
+                                        <td>
+                                            <atpar-radioButton name="groupname1" value="" label="Active"></atpar-radioButton>
+                                            <br>
+                                            <atpar-radioButton name="groupname1" value="" label="Inactive"></atpar-radioButton>
+                                            <br>
+                                            <atpar-radioButton name="groupname1" value="" label="Pending"></atpar-radioButton>
+                                            <br>
+                                        </td>
+                                        <td>
+                                            <atpar-switch></atpar-switch>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>-->  
+                            <div class="table-responsive scrollbar-horz">
+                            <div style="width:350%;">
+                            <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true" [stacked]="false" resizableColumns="true" columnResizeMode="expand">
+                                <!--<p-column expander="true" styleClass="col-icon"></p-column>-->
+                                <p-column field="ORG_GROUP_ID" header="OrgID" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="LOCATION_NAME" header="Par Location-Description " [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="ITEMDESC" header="Item ID -Description" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="" header="Count Order">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-text [(ngModel)]="newItem.co" [name]="txtco" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'co'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </template>
+                                </p-column>
+                                <p-column field="" header="Comp ">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-text [(ngModel)]="newItem.comp" [name]="txtcomp" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'comp'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </template>
+                                </p-column>
+                                <p-column field="" header="Ordering Type">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-text [(ngModel)]="newItem.compx" [name]="txtcompx" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'compx'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </template>
+                                </p-column>
+                                <p-column field="" header="Opt Qty">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-text [(ngModel)]="newItem.Op" [name]="txtOp" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Op'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </template>
+                                </p-column>
+                                <p-column field="" header="Foq Qty">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-text [(ngModel)]="newItem.comp1" [name]="txtcomp1" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'comp1'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </template>
+                                </p-column>
+                                <p-column field="" header="Max Qty">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-text [(ngModel)]="newItem.comp2" [name]="txtcomp2" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'comp2'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </template>
+                                </p-column>
+                                <p-column field="" header="UOM PROC">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-text [(ngModel)]="newItem.uom" [name]="txtuom" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'uom'" [ngModelOptions]="{standalone: true}"></atpar-text>                                       
+                                        
+                                    </template>
+                                </p-column>
+                                <p-column field="" header="UOM Issue">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-text [(ngModel)]="newItem.uom1" [name]="txtuom1" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'uom1'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </template>
+                                </p-column>
+                                <p-column field="" header="Conv Rate">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-text [(ngModel)]="newItem.uom2" [name]="txtuom2" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'uom2'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </template>
+                                </p-column>
+                                <p-column field="" header="Par UOM">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-text [(ngModel)]="newItem.uom3" [name]="txtuom3" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'uom3'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </template>
+                                </p-column>
+                                <p-column field="" header="Conversion Rate (Par UOM)">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-text [(ngModel)]="newItem.uom4" [name]="txtuom4" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'uom4'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </template>
+                                </p-column>
+                                <p-column field="" header="Count Reg" [style]="{'width':'100px'}">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <input type="checkbox" class="form-group" />
+                                    </template>
+                                </p-column>
+                                <p-column field="" header="Lot Serial" [style]="{'width':'100px'}">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <input type="checkbox" class="form-group" />
+                                        <input type="checkbox" class="form-group" />
+                                    </template>
+                                </p-column>
+                                <p-column field="" header="Charge Code">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-text [(ngModel)]="newItem.cc" [name]="txtcc" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'cc'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </template>
+                                </p-column>
+                                <p-column field="" header="Replen Type ">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlErpsys'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </template>
+                                </p-column>
+                                <p-column field="" header="Fill/Kill Flag ">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlfill'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </template>
+                                </p-column>
+                                <p-column field="FIRST_NAME" header="Cost Center">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlcos'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </template>
+                                </p-column>
+                                <p-column field="" header="InvBUnit">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlInv'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </template>
+                                </p-column>
+                                <p-column field="" header="Requisition Type ">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlReq'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </template>
+                                </p-column>
+                                <p-column field="" header="Status " [style]="{'width':'100px'}">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-radioButton name="groupname" value="" label="Active"></atpar-radioButton>
+                                        <br>
+                                        <atpar-radioButton name="groupname" value="" label="Inactive"></atpar-radioButton>
+                                        <br>
+                                        <atpar-radioButton name="groupname" value="" label="Pending"></atpar-radioButton>
+                                        <br>
+                                    </template>
+                                </p-column>
+                                <p-column header="Select" [style]="{'width':'100px'}">
+                                    <template pTemplate="filter" let-col>
+                                        <ul class="list-inline">
+                                            <li>
+                                                <a href="">All</a>
+                                            </li> |
+                                            <li>
+                                                <a href="">None</a>
+                                            </li>
+                                        </ul>
+                                    </template>
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <atpar-switch></atpar-switch>
+                                    </template>
+                                </p-column>
+                            </atpar-datatable>
+                            </div>
+                           </div>
+                            <br>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-5">
+                                <button class="btn btn-purple sbtn"><i class="fa fa-check"></i> &nbsp;Save</button>
+                                <button class="btn btn-purple sbtn" (click)="close()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

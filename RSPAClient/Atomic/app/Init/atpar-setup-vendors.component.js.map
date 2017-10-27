@@ -1,0 +1,1 @@
+{"version":3,"file":"atpar-setup-vendors.component.js","sourceRoot":"","sources":["atpar-setup-vendors.component.ts"],"names":[],"mappings":";;;;;;;AAAA,sCAA0C;AAY1C,IAAa,qBAAqB;IAAlC;IAWA,CAAC;IAAD,4BAAC;AAAD,CAAC,AAXD,IAWC;AAXY,qBAAqB;IANjC,gBAAS,CAAC;QACP,QAAQ,EAAE,MAAM,CAAC,EAAE;QACnB,QAAQ,EAAE,QAAQ;QAClB,WAAW,EAAE,sCAAsC;KACtD,CAAC;GAEW,qBAAqB,CAWjC;AAXY,sDAAqB"}

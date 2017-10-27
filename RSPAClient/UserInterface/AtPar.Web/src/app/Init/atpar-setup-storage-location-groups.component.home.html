@@ -1,0 +1,164 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px 0 10px 0;">
+                        <div class="col-xs-12">
+                            <form class="form-horizontal form-label-left" novalidate>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Org Group ID </label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <label *ngIf="blnShowOrgGroupLabel" class="control-label lbl-left">{{orgGrpId}}</label>
+                                        <atpar-select [options]="lstOrgGroups" [id]="'ddllstOrgGroups'" [required]="true" [(ngModel)]="selectedOrgGroupId" (onChange)="ddlChnage()" [ngModelOptions]="{standalone: true}" filter="filter" *ngIf="blnShowOrgGroupDD"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Zone</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="selectedZone" [name]="txtZone" [id]="'Zone'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Description</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="selectedDescription" [name]="txtDescription" [id]="'Description'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="GetData($event)" id="go">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                    <button class="btn btn-purple sbtn" (click)="createZones($event)" id="create">Create &nbsp;<i class="fa fa-plus"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-xs-12" *ngIf="showGrid">
+                            <div>
+                                <span>
+                                    {{cartsAllocatedMsg}}
+                                </span>
+                            </div>
+                            <div class="container">
+                                <atpar-datatable [value]="lstDBData" [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column [style]="{'width':'4%','text-align':'center'}" header="Action">
+                                        <template let-ven="rowData" pTemplate type="body">
+                                            <a (click)="deleteZones(ven,$event)" id="delete" style="cursor:pointer;"><i class="fa fa-trash-o fa-bg bg-red" title="Delete"></i></a>
+                                        </template>
+                                    </p-column>
+                                    
+                                     <p-column field="ORG_GROUP_ID" header="Org Group ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'10%'}"></p-column>
+                                      <p-column field="STORAGE_ZONE_ID" header="Zone" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'16%'}"></p-column>
+                                    <p-column field="STORAGE_ZONE_DESCR" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'40%'}"></p-column>
+                                    <p-column header="Locations" filterPlaceholder="Search" [style]="{'width':'16%'}">
+                                        <template let-zoneRowData="rowData" pTemplate type="body" >
+                                            <a (click)="AssignStorageLocation(zoneRowData)" id="location-val" class="grid-link">Assign Storage Location</a>
+                                        </template>
+                                    </p-column>
+                                    
+                                </atpar-datatable>
+                            </div>
+                        </div>
+                        <div class="col-xs-12" *ngIf="formdata">
+                            <form class="form-horizontal form-label-left">
+                                <div class="col-xs-12 col-sm-12 col-md-12 form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Zone</label>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <atpar-text [(ngModel)]="newItem.zone" [name]="txtzone" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numerics_nospace'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'zone'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                        Please Enter Zone
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-6 col-md-3">Description</label>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <atpar-text [(ngModel)]="newItem.Description" [name]="txtDescription" *ngIf="!isEditMode" [validations]="'alpha_numeric_space'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'Description'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                        Please Enter Description
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" [disabled]="loading">Save &nbsp; <i class="fa fa-floppy-o"></i></button>
+                                    <button class="btn btn-purple sbtn" (click)="close()"><i class="fa fa-arrow-left"></i>&nbsp;Go Back</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-xs-12" *ngIf="form">
+                            <form class="form-horizontal form-label-left">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Org Group ID </label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="newItem.ORGIDx" [name]="txtORGIDx" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'ORGIDx'" [ngModelOptions]="{standalone: true}" [readonly]="true"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Zone</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="newItem.Zonex" [name]="txtZonex" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Zonex'" [ngModelOptions]="{standalone: true}" [readonly]="true"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Org Id</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="newItem.OrgID" [name]="txtOrgID" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'OrgID'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Area</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="newItem.Areax" [name]="txtAreax" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Areax'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="gotable()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                    <button class="btn btn-purple sbtn" (click)="back()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-xs-12 table-responsive" *ngIf="table">
+                            <div class="container">
+                                <atpar-datatable [value]="sales" [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column header="Select" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'7%'}">
+                                        <template pTemplate="filter" let-col>
+                                            <ul class="list-inline li-all-none">
+                                                <li>
+                                                    <a href="">All</a>
+                                                </li> |
+                                                <li>
+                                                    <a href="">None</a>
+                                                </li>
+                                            </ul>
+                                        </template>
+                                        <template let-ven="rowData" pTemplate type="body">
+                                            <atpar-switch></atpar-switch>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="BUSINESS_UNIT" header="Org Id" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'10%'}"></p-column>
+                                    <p-column field="STORAGE_AREA" header="Zone" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="STORAGE_AREA" header="Area" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="STOR_LEVEL_1" header="Level 1" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="STOR_LEVEL_2" header="Level 2" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="STOR_LEVEL_3" header="Level 3" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="STOR_LEVEL_4" header="Level 4" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+
+                                    <!--<p-footer></p-footer>-->
+                                </atpar-datatable>
+                            </div>
+                            <br>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn">Assign &nbsp;<i class="fa fa-check"></i></button>
+                            </div>
+                        </div>
+                        <div class="content-section implementation">
+                            <atpar-confirmdialog header="Confirmation" icon="fa fa-question-circle" width="425"></atpar-confirmdialog>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>

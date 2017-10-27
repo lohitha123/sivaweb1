@@ -1,0 +1,91 @@
+﻿
+<div id="main" class="content-page"> 
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="panel panel-default" style="border:1px solid #eee;" *ngIf="table">
+                    <div class="panel-body" style="padding:10px 0;">
+                        <div class="col-md-4 col-md-offset-5 col-sm-4 col-sm-offset-4 col-xs-12">
+                            <button class="btn btn-purple sbtn" id="btnGetCarriers" (click)="btnGetCarriers_Click()" *ngIf="btnGetCarrierVisible">Get Carriers &nbsp;<i class="fa fa-arrow-right"></i></button>
+                            <button class="btn btn-purple sbtn" id="btnAdd" (click)="add()">Add  &nbsp;<i class="fa fa-plus"></i>  </button>&nbsp;
+                        </div>
+                        <br>
+                        <div class="col-xs-12"  *ngIf="grdGetCarrier">
+                            <div class="container">
+                            <atpar-datatable [value]="carriersDataLst" [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                <!--<p-column expander="true" styleClass="col-icon"></p-column>-->
+                                <p-column header="Action" [style]="{'width':'4%','text-align':'center'}" field="LOCAL_FLAG">
+                                    <template pTemplate="filter" let-col>
+                                        <!--<br>
+                                        <i class="fa fa-trash-o fa-bg bg-blue" (click)="deleteall()"></i>-->
+                                    </template>
+                                    <template let-col let-ven="rowData" pTemplate type="body">
+                                        <!--<i class="fa fa-pencil fa-bg bg-blue" (click)="add()"></i>-->
+                                        <i class="fa fa-trash fa-bg bg-red" title="Delete"  style="cursor:pointer;"  (click)="deleteCarriers_Data(ven)" *ngIf="ven[col.field]"></i>
+                                    </template>
+                                </p-column>
+                                <p-column [style]="{'width':'40%'}" header="Carrier ID" field="CARRIER_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column [style]="{'width':'60%'}" header="Description" field="DESCR" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+
+                                <template let-employee pTemplate="rowexpansion">
+                                    <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
+                                        <div class="ui-grid-row">
+                                            <div class="ui-grid-col-3" style="text-align:center">
+                                                <i class="fa fa-search" (click)="showCar(employee)" style="cursor:pointer;float:left;margin-top:40px"></i>
+                                            </div>
+                                            <div class="ui-grid-col-9">
+                                                <div class="ui-grid ui-grid-responsive ui-grid-pad">
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Carrier id</span> </div>
+                                                        <div class="ui-grid-col-10">{{employee.CARRIER_ID}}</div>
+                                                    </div>
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Description</span> </div>
+                                                        <div class="ui-grid-col-10">{{employee.DESCR}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                                <!--<p-footer></p-footer>-->
+                            </atpar-datatable>
+                            </div>
+                        </div>
+                        <div class="content-section implementation">
+                            <atpar-confirmdialog header="Confirmation" icon="fa fa-question-circle" width="425"></atpar-confirmdialog>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default" style="border:1px solid #eee;" *ngIf="form">
+                    <div class="panel-body" style="padding:0px;">
+                     
+                        <form class="form-horizontal form-label-left">
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Carrier ID</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-text [(ngModel)]="txtCarrier" [name]="'txtCarrier'" [validations]="'mandatory,alpha_numeric_underscore_hyphen_nospace,max=10'" (bindModelDataChange)="bindModelDataChange($event)" [isFocused]="'true'" [id]="'Carrier'" [title]="'Use only letters(a-z)(A-Z), numbers (0-9), the underscore(_), hyphen (-), and other Special Characters are not allowed'"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-md-3 col-sm-3 col-xs-12">Description</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">                                   
+                                    <atpar-text [(ngModel)]="txtDescription" [name]="'txtDescription'" [validations]="'mandatory,alpha_numeric_dot_underscore_hyphen_space,max=30'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'Description'" [title]="'Use only letters(a-z)(A-Z),numbers (0-9), the underscore(_), hyphen (-), space, and other Special Characters are not allowed'"></atpar-text>
+                                </div>                                
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="saveCarriers_Info()" [disabled]="buttonEnableDisable">Save &nbsp;<i class="fa fa-floppy-o"></i></button>
+                                <button class="btn btn-purple sbtn" (click)="close()"><i class="fa fa-arrow-left"></i> &nbsp; Go Back </button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <atpar-growl [value]="statusMsgs" sticky="sticky"></atpar-growl>
+</div>

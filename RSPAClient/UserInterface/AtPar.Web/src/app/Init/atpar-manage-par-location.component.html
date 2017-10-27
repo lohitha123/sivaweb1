@@ -1,0 +1,260 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:10px 0 0 0;">
+                        <form class="form-horizontal form-label-left" *ngIf="page" novalidate>
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Org Group ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <label class="control-label lbl-left" *ngIf="!showOrgDropdown">{{ORG_GROUP_ID}}</label>
+                                        <atpar-select [options]="lstOrgGroups" *ngIf="showOrgDropdown" [required]="true" [id]="'ddlMasterOrgGrp'" [(ngModel)]="ORG_GROUP_ID" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlOrgGroup_SelectedIndexChanged($event)"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Org ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstOrgIds" [(ngModel)]="ORG_ID" [id]="'ddlOrg'" [required]="true" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlBUnit_SelectedIndexChanged($event)"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Dept ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="DEPT_ID" [name]="txtDepID" [id]="'txtDepID'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Dept Name</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="DEPT_NAME" [name]="txtDepName" [id]="'txtDepName'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label"> Par Location ID </label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="PAR_LOC_ID" [name]="txtLocationID" [id]="'txtLocationID'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label"> Par Location Name </label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="PAR_LOC_NAME" [name]="txtLocation" [id]="'txtLocation'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label"> Item ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="ITEM_ID" [name]="txtItemID" [id]="'txtItemID'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label"> Item ID - Description </label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="ITEM_DESC" [name]="txtItemDesc" [id]="'txtItemDesc'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Item Price Between</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <div class="input-group">
+                                            <!--<input type="text" [(ngModel)]="PRICE_FROM" class="form-control bdr-purple" placeholder="" [ngModelOptions]="{standalone: true}" />-->
+                                            <atpar-text [(ngModel)]="PRICE_FROM" [name]="txtPriceFrom" [id]="'txtPriceFrom'" [validations]="'numeric_dot'"  [ngModelOptions]="{standalone: true}"></atpar-text>
+                                            <span class="input-group-addon" style="border-left: 0; border-right: 0;">and</span>
+                                            <atpar-text [(ngModel)]="PRICE_TO" [name]="txtPriceTo" [id]="'txtPriceTo'" [validations]="'numeric_dot'"  [ngModelOptions]="{standalone: true}"></atpar-text>
+                                            <!--<input type="text" [(ngModel)]="PRICE_TO" class="form-control bdr-purple" placeholder="" [ngModelOptions]="{standalone: true}" />-->
+                                            <!--(bindModelDataChange)="bindModelDataChange($event)"-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="btnGo_Click()" [disabled]="loading">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="col-xs-12" *ngIf="lstParLocations.length>0 && page">
+                            <div class="container">
+                                <atpar-datatable [value]="lstParLocations" (filteredData)="myfirstfilterdata($event)" [paginator]="true" [pageLinks]="3" [rows]="pageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column field="PAR_LOC_ID" header="Location" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="LOCATION_NAME" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="Select" field="SELECTED_LOCATION" [style]="{'width': '8%','overflow':'visible','text-align':'center'}">
+                                        <template pTemplate="filter" let-col>
+                                            <ul class="list-inline li-all-none">
+                                                <li>
+                                                    <span (click)="chkAll_Click()" style="cursor:pointer">All</span>
+                                                </li> |
+                                                <li>
+                                                    <span (click)="chkNone_Click()" style="cursor:pointer">None</span>
+                                                </li>
+                                            </ul>
+                                        </template>
+                                        <template let-col let-ven="rowData" pTemplate="body">
+                                            <atpar-switch [checked]="ven[col.field]" (change)="switch_Click($event,ven)" [(ngModel)]="ven[col.field]"></atpar-switch>
+                                        </template>
+                                    </p-column>
+                                </atpar-datatable>
+                            </div>
+                            <div class="clear"></div>
+                            <form class="form-horizontal form-label-left">
+                                <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
+                                    <div class="col-xs-12 col-sm-12 col-md-8 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Item ID</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                            <atpar-ac-server [(ngModel)]="selectedItem" [suggestions]="filteredLstItems" [minLength]="1" (completeMethod)="filterItemID($event)" field="FILTERED_STRING" [ngModelOptions]="{standalone: true}"></atpar-ac-server>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <button class="btn btn-purple sbtn" (click)="btnAdd_Click('N')"> Add Item &nbsp;<i class="fa fa-plus"></i></button>
+                                        <button class="btn btn-purple sbtn" (click)="btnUpdate_Click('U')"> Update Item &nbsp;<i class="fa fa-check"></i> </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="col-xs-12 table-responsive" *ngIf="table">
+                            <div class="container no-scrl" *ngIf="lstAllocLocations.length>0">                         
+                                    <atpar-datatable [value]="lstAllocLocations" (filteredData)="myfilterdata($event)" scrollable="true" [paginator]="true" [pageLinks]="3" [rows]="pageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true" [style]="{'width':'100%'}">
+                                        <!--[rowStyleClass]="lookupRowStyleClass"-->
+                                        <p-column field="ORG_ID" header="ORGID" [filter]="true" filterPlaceholder="Search" [style]="{'width':'94px'}"></p-column>
+                                        <p-column field="PARDESC" header="Par Location - Description "  [filter]="true" filterPlaceholder="Search" [style]="{'width':'300px'}"></p-column>
+                                        <p-column field="ITEMDESC" header="Item ID - Description" [filter]="true" filterPlaceholder="Search" [style]="{'width':'200px'}"></p-column>
+                                        <p-column header="Count Order" [style]="{'width':'68px'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <atpar-text-grid [(ngModel)]="ven.COUNT_ORDER" [name]="ven.COUNT_ID" [id]="ven.COUNT_ID" [validations]="'numeric'" [ngModelOptions]="{standalone: true}" [title]="'Use only numbers (0-9)'"></atpar-text-grid>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="" header="Comp" [style]="{'width':'100px'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <atpar-text-grid [(ngModel)]="ven.BIN_LOC" [name]="ven.COMP_ID" [validations]="'mandatory,max=29'" [id]="ven.COMP_ID" [ngModelOptions]="{standalone: true}" ></atpar-text-grid>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="" header="Ordering Type" [style]="{'width':'105px'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <atpar-select-grid [options]="lstOrderingTypes" [(ngModel)]="ven.ORDERING_TYPE" [id]="ven.ORDTYPE_ID" [ngModelOptions]="{standalone: true}" [required]="true" (onChange)="lstOrdType_Change($event,ven.ORDERING_TYPE)"></atpar-select-grid><!--dropdown_Change-->
+                                            </template>
+                                        </p-column>
+                                        <p-column field="" header="" [style]="{'width':'68px'}">
+                                            <template pTemplate="filter" let-col>
+                                                <p>Opt Qty</p>
+                                                <p>Foq Qty</p>
+                                                <p>Max Qty</p>
+                                            </template>
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <atpar-text-grid [(ngModel)]="ven.OPTIMAL_QTY" [name]="ven.OPTQTY_ID" [validations]="'numeric_dot,max=16,mandatory'" [id]="ven.OPTQTY_ID" [ngModelOptions]="{standalone: true}"  [title]="'Use only numbers (0-9) and decimal numbers'"></atpar-text-grid>
+                                                <atpar-text-grid [(ngModel)]="ven.FOQ_QTY" [name]="ven.FOQTY_ID" *ngIf="isFOQMandatory" [validations]="'numeric_dot,mandatory'" [id]="ven.FOQTY_ID" [ngModelOptions]="{standalone: true}" [title]="'Use only numbers (0-9) and decimal numbers'"></atpar-text-grid>
+                                                <atpar-text-grid [(ngModel)]="ven.FOQ_QTY" [name]="ven.FOQTY_ID" *ngIf="!isFOQMandatory" [validations]="'numeric_dot'" [id]="ven.FOQTY_ID" [ngModelOptions]="{standalone: true}"  [title]="'Use only numbers (0-9) and decimal numbers'"></atpar-text-grid>
+                                                <atpar-text-grid [(ngModel)]="ven.MAX_QTY" [name]="ven.MAXQTY_ID" *ngIf="isMaxMandatory" [validations]="'numeric_dot,max=16,mandatory'" [id]="ven.MAXQTY_ID" [ngModelOptions]="{standalone: true}"  [title]="'Use only numbers (0-9) and decimal numbers'"></atpar-text-grid>
+                                                <atpar-text-grid [(ngModel)]="ven.MAX_QTY" [name]="ven.MAXQTY_ID" *ngIf="!isMaxMandatory" [validations]="'numeric_dot,max=16'" [id]="ven.MAXQTY_ID" [ngModelOptions]="{standalone: true}" [title]="'Use only numbers (0-9) and decimal numbers'"></atpar-text-grid>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="" header="" [style]="{'width':'68px'}">
+                                            <template pTemplate="filter" let-col>
+                                                <p>UOM (PROC) </p>
+                                                <p>UOM (Par)</p>
+                                                <p>UOM (Issue) </p>
+                                                <p>Conv Rate (Proc)</p>
+                                                <p>Conversion Rate (Par)</p>
+                                            </template>
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <atpar-text-grid [(ngModel)]="ven.UNIT_OF_PROCUREMENT" [name]="ven.PROC_ID" [validations]="'caps_only_key_res,max=5,mandatory'" [id]="ven.PROC_ID" [ngModelOptions]="{standalone: true}" (keypress)="txtbox_KeyPress($event)" [title]="'Use only capital Alphabets (A-Z)'"></atpar-text-grid>
+                                                <atpar-text-grid [(ngModel)]="ven.PAR_UOM" [name]="ven.PARUOM_ID" [validations]="'caps_only_key_res,max=8'" [id]="ven.PARUOM_ID" [ngModelOptions]="{standalone: true}" (keypress)="txtbox_KeyPress($event)" [title]="'Use only capital Alphabets (A-Z)'"></atpar-text-grid>
+                                                <atpar-text-grid [(ngModel)]="ven.UNIT_OF_ISSUE" [name]="ven.UNITISSUE_ID" [validations]="'caps_only_key_res,max=5,mandatory'" [id]="ven.UNITISSUE_ID" [ngModelOptions]="{standalone: true}" (keypress)="txtbox_KeyPress($event)" [title]="'Use only capital Alphabets (A-Z)'"></atpar-text-grid>
+                                                <atpar-text-grid [(ngModel)]="ven.CONVERSION_RATE" [name]="ven.CONVRATE_ID" [validations]="'numeric_dot,max=5,mandatory'" [id]="ven.CONVRATE_ID" [ngModelOptions]="{standalone: true}"  [title]="'Use only numbers (0-9) and decimal numbers'"></atpar-text-grid>
+                                                <atpar-text-grid [(ngModel)]="ven.CONV_RATE_PAR_UOM" [name]="ven.CONVRATE_PARUOM_ID" [validations]="'numeric_dot,max=8'" [id]="ven.CONVRATE_PARUOM_ID" [ngModelOptions]="{standalone: true}" [title]="'Use only numbers (0-9) and decimal numbers'"></atpar-text-grid>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="" header="Count Req" [style]="{'width':'50px','text-align':'center'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <input type="checkbox" class="form-group" style="margin: 12px 0 0 !important;" [(ngModel)]="ven.ISCOUNT_REQUIRED" [ngModelOptions]="{standalone: true}" />
+                                            </template>
+                                        </p-column>
+                                        <p-column field="" header="Lot Serial" [style]="{'width':'60px','text-align':'center'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <input type="checkbox" class="form-group" style="margin: 12px 0 0!important;" [(ngModel)]="ven.ISLOT_CONTROLLED" [ngModelOptions]="{standalone: true}" />
+                                                <input type="checkbox" class="form-group" style="margin: 12px 0 0 !important;" [(ngModel)]="ven.ISSERIAL_CONTROLLED" [ngModelOptions]="{standalone: true}" />
+                                            </template>
+                                        </p-column>
+                                        <p-column field="" header="Charge Code" [style]="{'width':'55px'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <atpar-text-grid [(ngModel)]="ven.CHARGE_CODE" [name]="ven.CHARGE_ID" [validations]="'max=50,alpha_numeric_underscore_nospace'" [id]="ven.CHARGE_ID" [ngModelOptions]="{standalone: true}" ></atpar-text-grid>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="" header="Replen Type" [style]="{'width':'105px'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <atpar-select-grid [options]="lstReplishmentTypes" [(ngModel)]="ven.REPLENISHMENT_TYPE" [id]="ven.REPL_ID" [ngModelOptions]="{standalone: true}" [required]="true" (onChange)="dropdown_Change($event)"></atpar-select-grid>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="" header="Fill/Kill Flag" [style]="{'width':'105px'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <atpar-select-grid [options]="lstFKFlags" [(ngModel)]="ven.FILL_KILL_FLAG" [id]="ven.FILLKILL_ID" [ngModelOptions]="{standalone: true}"></atpar-select-grid>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="" header="Cost Center" [style]="{'width':'115px'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <atpar-select-grid [options]="lstCostCenters" [(ngModel)]="ven.COST_CENTER" [id]="ven.COSTCENTER_ID" [ngModelOptions]="{standalone: true}" filter="filter" [required]="true" (onChange)="dropdown_Change($event)"></atpar-select-grid>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="" header="InvBUnit" [style]="{'width':'105px'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <atpar-select-grid [options]="lstInvBunits" [(ngModel)]="ven.INV_BUSINESS_UNIT" [id]="ven.INV_BUS_ID" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select-grid>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="" header="Requisition Type " [style]="{'width':'105px'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <atpar-select-grid [options]="lstRequisitionTypes" [(ngModel)]="ven.REQUISITION_TYPE" [id]="ven.REQ_ID" [ngModelOptions]="{standalone: true}" [required]="true" (onChange)="dropdown_Change($event)"></atpar-select-grid>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="" header="Status" [style]="{'width':'80px'}">
+                                            <template let-ven="rowData" pTemplate="body">
+                                                <atpar-radioButton [name]="ven.STATUS_NAME" value="Y" label="Active" [(ngModel)]="ven.STATUS" [ngModelOptions]="{standalone: true}"></atpar-radioButton>
+                                                <br>
+                                                <atpar-radioButton [name]="ven.STATUS_NAME" value="N" label="Inactive" [(ngModel)]="ven.STATUS" [ngModelOptions]="{standalone: true}"></atpar-radioButton>
+                                                <br>
+                                                <atpar-radioButton [name]="ven.STATUS_NAME" value="P" label="Pending" [(ngModel)]="ven.STATUS" [ngModelOptions]="{standalone: true}"></atpar-radioButton>
+                                                <br>
+                                            </template>
+                                        </p-column>
+                                        <p-column header="Select" field="SELECTED_PARITEM" [style]="{'text-align':'center','width':'115px'}">
+                                            <template>
+                                                <ul class="list-inline li-all-none">
+                                                    <li>
+                                                        <span (click)="chkAllPar_Click()" style="cursor:pointer">All</span>
+                                                    </li> |
+                                                    <li>
+                                                        <span (click)="chkNonePar_Click()" style="cursor:pointer">None</span>
+                                                    </li>
+                                                </ul>
+                                            </template>
+                                            <template let-col let-ven="rowData" pTemplate="body">
+                                                <atpar-switch [checked]="ven[col.field]" (change)="switchPar_Click($event,ven)" [(ngModel)]="ven[col.field]"></atpar-switch>
+                                            </template>
+                                        </p-column>
+                                    </atpar-datatable>                                
+                            </div>
+                            <div class="col-xs-12 col-md-8 col-md-offset-2 col-sm-12" *ngIf="showTrSubItem && lstAllocLocations.length>0">
+                                <div class="form-group">
+                                    <label for="" class="col-xs-12 col-sm-6 col-md-4 control-label">Substitute Item ID :</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-select [options]="lstSubItems" [(ngModel)]="subItemID" [id]="'ddlSubItm'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-6 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="btnSave_Click()" *ngIf="showSaveBtn && lstAllocLocations.length>0">Save &nbsp;<i class="fa fa-floppy-o"></i></button>
+                                <button class="btn btn-purple sbtn" (click)="btnGoBack_Click()"><i class="fa fa-arrow-left"></i>&nbsp;Go Back </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+<atpar-confirmdialog header="Confirmation" icon="fa fa-question-circle" width="425"></atpar-confirmdialog>

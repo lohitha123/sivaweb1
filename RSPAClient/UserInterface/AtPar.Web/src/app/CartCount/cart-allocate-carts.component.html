@@ -1,0 +1,252 @@
+﻿<style>
+    #checkAll-val:hover {
+        color: #ff0000 !important;
+    }
+
+    #UncheckAll-val:hover {
+        color: #ff0000 !important;
+    }
+</style>
+<div id="main" class="content-page">   
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px 0px 10px 0px;">
+                        <form class="form-horizontal form-label-left" novalidate>
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Org Group ID </label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <label *ngIf="blnShowOrgGroupLabel" class="control-label lbl-left">{{orgGrpId}}</label>
+                                        <atpar-select [options]="lstOrgGroups" [id]="'ddllstOrgGroups'" [required]="true" [(ngModel)]="selectedOrgGroupId" [ngModelOptions]="{standalone: true}" filter="filter" *ngIf="blnShowOrgGroupDD" (onChange)="ddlOrgGrpIdChanged()"></atpar-select>
+                                        <!--<atpar-text [(ngModel)]="newItem.ORGID" [name]="txtORGID" [validations]="'except_less_greater_symbols'" [id]="'ORGID'" [ngModelOptions]="{standalone: true}" [readonly]="true"></atpar-text>-->
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">User ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstUsers" [id]="'ddllstUsers'" [required]="true" [(ngModel)]="selectedDropDownUserId" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlUsersIdChanged()"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Business Unit / Company</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <!--<atpar-ac-server [(ngModel)]="selectedBunit" [ngModelOptions]="{standalone: true}" [suggestions]="lstFilteredBUnits" (completeMethod)="fillBUnitsAuto($event)"></atpar-ac-server>-->
+                                        <atpar-select [options]="lstFilteredBUnits" [id]="'ddlOrg'" [(ngModel)]="selectedBunit" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlBUnitChanged()"></atpar-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Cart ID / Par Location</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="selectedParlocation" [id]="'ParlocationId'" [name]="'ParlocationId'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        <!--<atpar-select [options]="cities" [id]="'ddlcartId'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>-->
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Display</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstFilteredDisplay" [id]="'ddldisplay'" [(ngModel)]="selectedDisplay" [ngModelOptions]="{standalone: true}" (onChange)="ddlDisplayChanged()"></atpar-select>
+                                        <!--<atpar-select [options]="cities" [id]="'ddldisplay'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>-->
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <button class="btn btn-purple sbtn" (click)="getAllocateCarts()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                        <!--<atpar-select [options]="cities" [id]="'ddldisplay'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>-->
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="text-center">
+                                <span> Note: Red color cart(s) is/are Orphans</span>
+                            </div>
+                            <br>
+                        </form>
+                        <div class="col-xs-12 table-responsive" *ngIf="showGrid">
+                            <div class="container">
+                                <div>
+                                    <span class="text-primary">
+                                        {{cartsAllocatedMsg}}
+                                    </span>
+                                </div>
+                                <br>
+                                <atpar-datatable [value]="lstDBData" [paginator]="true" [pageLinks]="3" [style]="{'width':'100%'}" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20, 30, 40, 50, 60, 70, 80, 90, 100]" (filteredData)="filterdata($event)" [globalFilter]="gb" [responsive]="true">
+
+                                    <p-headerColumnGroup type="header">
+                                        <p-row>
+                                            <p-column rowspan="3" [style]="{'width':'9%'}" header="Select">
+                                                <template pTemplate="filter" let-col>
+                                                    <ul class="list-inline li-all-none">
+                                                        <li>
+                                                            <span (click)="checkAll()" style="cursor:pointer">All</span>
+                                                        </li> |
+                                                        <li>
+                                                            <span (click)="unCheckAll()" style="cursor:pointer">None</span>
+                                                        </li>
+                                                    </ul>
+                                                </template>
+                                            </p-column>
+                                            <p-column colspan="7" [style]="{'width':'30%', 'text-align':'center'}" header="Day">
+                                            </p-column>
+                                            <p-column [style]="{'width':'14%', 'text-align':'center'}" header="Time" rowspan="3">
+
+                                            </p-column>
+                                            <p-column field="BUSINESS_UNIT" header="Business Unit / Company" rowspan="3" sortable="custom" (sortFunction)="customSort($event,'BUSINESS_UNIT')" [filter]="true" filterPlaceholder="Search" [style]="{'width':'12%'}">
+
+                                            </p-column>
+                                            <p-column field="CART_ID" header="Cart ID / Par Location" rowspan="3" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search" [style]="{'width':'15%'}">
+
+                                            </p-column>
+                                            <p-column field="DESCR" header="Description" rowspan="3" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search" [style]="{'width':'25%'}">
+
+                                            </p-column>
+
+                                            <p-column field="USERS" header="User" rowspan="3" sortable="custom" (sortFunction)="customSort($event)" [style]="{'width':'14%'}"> </p-column>
+                                            <p-column field="CART_COUNT_ORDER" header="Sort Order" rowspan="3" [style]="{'width':'10%'}" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search"  >
+
+                                            </p-column>
+
+                                        </p-row>
+
+                                        <p-row>
+                                            <p-column field="MON" header="Mon" [style]="{'width':'6%', 'text-align':'center'}">
+
+                                            </p-column>
+                                            <p-column field="TUE" header="Tue" [style]="{'width':'6%', 'text-align':'center'}">
+
+                                            </p-column>
+                                            <p-column field="WED" header="Wed" [style]="{'width':'6%', 'text-align':'center'}">
+
+                                            </p-column>
+                                            <p-column field="THU" header="Thr" [style]="{'width':'6%', 'text-align':'center'}">
+
+                                            </p-column>
+                                            <p-column field="FRI" header="Fri" [style]="{'width':'6%', 'text-align':'center'}">
+
+                                            </p-column>
+                                            <p-column field="SAT" header="Sat" [style]="{'width':'6%', 'text-align':'center'}">
+
+                                            </p-column>
+                                            <p-column field="SUN" header="Sun" [style]="{'width':'6%', 'text-align':'center'}">
+
+                                            </p-column>
+                                        </p-row>
+                                    </p-headerColumnGroup>
+                                    <p-column>
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <input type="checkbox" class="checkbox" [checked]="ven.ALL"  (click)="selectedRow($event,ven)" style="margin-left:40%;"/>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="MON">
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <input type="checkbox" value="" [(ngModel)]="ven.MON" name="MON" (click)="DaySelected($event,ven,'MON')" [ngModelOptions]="{standalone: true}" style="margin-left:20%;" />
+                                        </template>
+                                    </p-column>
+                                    <p-column field="TUE">
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <input type="checkbox" value="" name="TUE" (click)="DaySelected($event,ven,'TUE')" [(ngModel)]="ven.TUE" [ngModelOptions]="{standalone: true}" style="margin-left:20%;" />
+                                        </template>
+                                    </p-column>
+                                    <p-column field="WED">
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <input type="checkbox" value="" (click)="DaySelected($event,ven,'WED')" [(ngModel)]="ven.WED" [ngModelOptions]="{standalone: true}" style="margin-left:20%;" />
+                                        </template>
+                                    </p-column>
+                                    <p-column field="THU">
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <input type="checkbox" value="" (click)="DaySelected($event,ven,'THU')" [(ngModel)]="ven.THU" [ngModelOptions]="{standalone: true}" style="margin-left:20%;" />
+                                        </template>
+                                    </p-column>
+                                    <p-column field="FRI">
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <input type="checkbox" value="" (click)="DaySelected($event,ven,'FRI')" [(ngModel)]="ven.FRI" [ngModelOptions]="{standalone: true}" style="margin-left:20%;" />
+                                        </template>
+                                    </p-column>
+                                    <p-column field="SAT">
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <input type="checkbox" value="" (click)="DaySelected($event,ven,'SAT')" [(ngModel)]="ven.SAT" [ngModelOptions]="{standalone: true}" style="margin-left:20%;" />
+                                        </template>
+                                    </p-column>
+                                    <p-column field="SUN">
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <input type="checkbox" value="" (click)="DaySelected($event,ven,'SUN')" [(ngModel)]="ven.SUN" [ngModelOptions]="{standalone: true}" style="margin-left:20%;" />
+                                        </template>
+                                    </p-column>
+
+                                    <p-column field="" [style]="{'width':'15%'}">
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <atpar-calendar  name="'SCHEDULE_TIME'"   [timeOnly]="true"  [ngModelOptions]="{standalone: true}"  [hourFormat]="'12'" [(ngModel)]="ven.COUNT_BEFORE"></atpar-calendar >
+                                            <!--<atpar-calendar  name="'SCHEDULE_TIME'" (onSelect)="TimeChange($event)" [readonlyInput]="true"  [timeOnly]="true"  [ngModelOptions]="{standalone: true}"  hourFormat="12" [(ngModel)]="strStartTime"></atpar-calendar >-->
+                                            <!--<input type="time" class="form-control  time-fld without" placeholder="HH:mm:ss" [(ngModel)]="ven.COUNT_BEFORE" [ngModelOptions]="{standalone: true}" />-->
+                                         
+                                        </template>
+                                    </p-column>
+                                    <p-column field="BUSINESS_UNIT">
+                                        <template let-col let-car="rowData" pTemplate="body">
+                                            <span [style.color]="car['CartColor']">{{car.BUSINESS_UNIT}}</span>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="CART_ID">
+
+                                        <template let-col let-car="rowData" pTemplate="body">
+                                            <span [style.color]="car['CartColor']">{{car.CART_ID}}</span>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="DESCR">
+                                        <template let-col let-car="rowData" pTemplate="body">
+                                            <span [style.color]="car['CartColor']">{{car.DESCR}}</span>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="USERS"> </p-column>
+                                    <p-column field="CART_COUNT_ORDER">
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <atpar-text [(ngModel)]="ven.CART_COUNT_ORDER" [id]="ven.ID" [name]="CartCounterId" [ngModelOptions]="{standalone: true}" [validations]="'numeric,max=4'"></atpar-text>
+                                        </template>
+                                    </p-column>
+                                </atpar-datatable>
+                            </div>
+                            <br>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="UpdateGridData()">Submit &nbsp;<i class="fa fa-check"></i></button>
+                            </div>
+                        </div>
+                        <div class="col-xs-12" *ngIf="showOnAllocateSelection">
+                            <div class="container">
+                                <ul class="list-inline well well-sm">
+                                    <li>Copy / </li>
+                                    <li>Move / </li>
+                                    <li>Delete Carts</li>
+                                </ul>
+                            </div>
+                            <div class="form-horizontal form-label-left">
+                                <div class="col-xs-12 col-sm-12 col-md-12 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-5 col-sm-6">Cart Allocations to UserID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-3">
+                                        <atpar-select [options]="lstUsersForCopyMoveDelete" [id]="'ddllstUsersForCopyMoveDelete'" [required]="true" [(ngModel)]="selectedDropDownUserId1" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <i class="fa fa-files-o fa-2x fa-bg fa-bg-lg bg-blue" style="cursor:pointer" (click)="CopyCarts()" title="Copy"></i>
+                                        <i class="fa fa-arrows fa-2x fa-bg fa-bg-lg bg-green" style="cursor:pointer" (click)="MoveCarts()" title="Move"></i>
+                                        <i class="fa fa-trash fa-2x fa-bg fa-bg-lg bg-red" style="cursor:pointer" (click)="DeleteCarts()" title="Delete"></i>
+                                    </div>
+
+                                </div>
+                              <!--  <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                    <i class="fa fa-files-o fa-2x fa-bg bg-blue" style="cursor:pointer" (click)="CopyCarts()" title="copy"></i>
+                                    <i class="fa fa-arrows fa-2x fa-bg bg-green" style="cursor:pointer" (click)="MoveCarts()" title="move"></i>
+                                    <i class="fa fa-trash fa-2x fa-bg bg-red" style="cursor:pointer" (click)="DeleteCarts()" title="delete"></i>
+                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

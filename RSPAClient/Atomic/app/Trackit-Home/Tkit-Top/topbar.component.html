@@ -1,0 +1,160 @@
+﻿<style>
+.navbar-collapse>ul>li>a {
+    /*         padding: 10px;
+color: #fff !important;
+font: bold 12px;
+background-color: #5f0a5c; */
+    padding: 5px 10px;
+    color: #6c276a !important;
+    font: bold 12px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 0;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    margin-left: 3px;
+}
+
+.nav>li {
+    border-radius: 0!important;
+}
+
+.navbar-collapse>.nav>li>a {
+    text-decoration: none;
+    border-bottom: 2px solid #6c276a;
+    background-color: #fff;
+    padding-bottom: 8px;
+    color: #6c276a !important;
+}
+
+.navbar-collapse>.nav>li>a:hover {
+    text-decoration: none;
+    border-bottom: 2px solid #fe7500;
+    /* padding-bottom: 8px; */
+    background: #fe7500;
+    color: #fff!important;
+}
+
+.navbar-collapse>.nav>li>a:hover>img {
+    filter: brightness(0) invert(1) !important;
+}
+
+.img-white {
+    filter: brightness(0) invert(1) !important;
+}
+
+.img-default {
+    filter: brightness(100%) invert(0);
+}
+
+.navbar-collapse>.nav>.active>a {
+    /* text-decoration: none;
+    border-bottom: 2px solid #fe7500;
+    background-color: #fff;
+    padding-bottom: 8px;
+    color: #6c276a !important; */
+    text-decoration: none;
+    border-bottom: 2px solid #fe7500;
+    /* padding-bottom: 8px; */
+    background: #fe7500;
+    color: #fff!important;
+}
+.navbar-collapse>.nav>.active>a>img {
+    filter: brightness(0) invert(1) !important;
+}
+.navbar-collapse>.nav>li>a>img {
+    /*  filter: brightness(0) invert(1); */
+}
+
+.navbar-collapse>.nav>.active>a>img {
+    filter: brightness(100%) invert(0);
+}
+
+.navbar-collapse>.nav>li>a i {
+    font-size: 14px;
+    margin-top: 0px;
+}
+
+@media screen and (max-width: 767px) {
+    .navbar-collapse>ul>li>a {
+        margin: 0 3px 3px 3px;
+    }
+}
+</style>
+<div class="topbar">
+    <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <a class="logo pull-left" (click)="AtPar()"><img src="assets/images/MHSAtpar.png" width="210" height="auto"></a>
+            <div class="pull-left">
+                <span class="clearfix"></span>
+            </div>
+            <ul class="nav navbar-nav navbar-right pull-right">
+                <li class="hidden-xs">
+                    <form class="navbar-form" role="search">
+                        <div class="form-group">
+                            <!-- <input type="text" class="form-control search-bar search_top" placeholder=" &nbsp; Search..."> -->
+                            <input type="text" class="form-control search-bar search_top" placeholder="">
+                        </div>
+                        <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+                    </form>
+                </li>
+                <li class="hidden-xs"> <a class="waves-effect waves-light notification-icon-box text-default"><i class="fa fa-header" aria-hidden="true"></i></a></li>
+                <li class="dropdown hidden-xs" [ngClass]="{open : smallMenu === 'notify'}" (click)="dropdownMenu('notify')">
+                    <a class="dropdown-toggle waves-effect waves-light notification-icon-box"> <i class="fa fa-bell"></i> <span class="badge badge-xs badge-danger"></span> </a>
+                    <ul class="dropdown-menu dropdown-menu-lg">
+                        <li class="text-center notifi-title">Notification <span class="badge badge-xs badge-success">3</span></li>
+                        <li class="list-group">
+                            <a href="javascript:void(0);" class="list-group-item">
+                                <div class="media">
+                                    <div class="media-heading">Your order is placed</div>
+                                    <p class="m-0"> <small>Dummy text of the printing and typesetting industry.</small></p>
+                                </div>
+                            </a>
+                            <a href="javascript:void(0);" class="list-group-item">
+                                <div class="media">
+                                    <div class="media-body clearfix">
+                                        <div class="media-heading">New Message received</div>
+                                        <p class="m-0"> <small>You have 87 unread messages</small></p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="javascript:void(0);" class="list-group-item">
+                                <div class="media">
+                                    <div class="media-body clearfix">
+                                        <div class="media-heading">Your item is shipped.</div>
+                                        <p class="m-0"> <small>It is a long established fact that a reader will</small></p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="javascript:void(0);" class="list-group-item"> <small class="text-primary">See all notifications</small> </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown hidden-xs" [ngClass]="{open : smallMenu === 'cart'}" (click)="dropdownMenu('cart')">
+                    <a [routerLink]="['viewcart']" class="dropdown-toggle waves-effect waves-light notification-icon-box"> <i class="fa fa-shopping-cart"></i> <span class="badge badge-xs badge-danger">3</span> </a>
+                </li>
+                <li class="dropdown prof-img" [ngClass]="{open : smallMenu === 'profile'}" (click)="dropdownMenu('profile')">
+                    <a class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
+                        <img src="assets/images/users/default.png" alt="user-img" class="img-circle"> <span class="profile-username">
+                            Welcome <br />
+                            <small>{{currentUser.firstName}}</small>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:void(0)"> Profile</a></li>
+                        <li><a href="javascript:void(0)"> About Atpar</a></li>
+                        <li><a href="javascript:void(0)"><span class="badge badge-success pull-right">5</span> Settings </a></li>
+                        <li><a href="javascript:void(0"> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="navbar-collapse" style="margin-top:75px; background-color:#6c276a;padding:5px 0px 0px 0px;">
+    <ul class="nav navbar-nav">
+        <li id="create" [routerLinkActive]="['active']"><a class="before-img" [routerLink]="['createrequest']"><img [ngClass]="color1" src="../../../assets/images/trackit/createReq-P.png" width="30" /> &nbsp; Create Request</a></li>
+        <li id="request" [routerLinkActive]="['active']"><a class="before-img" [routerLink]="['requestorstatus']"><img [ngClass]="color2" src="../../../assets/images/trackit/reqStatus-P.png" width="30" /> &nbsp; Request Status</a></li>
+        <li id="xyz" [routerLinkActive]="['active']"><a class="before-img" [routerLink]="['xyz']"><img [ngClass]="color3" src="../../../assets/images/trackit/itemReport-P.png" width="30" /> &nbsp; Requestor Item Visibility Report</a></li>
+        <!--<li (mouseover)="changeStyle($event)" (mouseout)="changeStyle($event)" [routerLinkActive]="['active']"><a [routerLink]="['viewcart']"><i class="fa fa-shopping-cart"></i> &nbsp; View Cart </a></li>-->
+    </ul>
+</div>

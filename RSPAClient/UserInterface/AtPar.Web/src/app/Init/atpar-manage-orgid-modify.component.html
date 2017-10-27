@@ -1,0 +1,130 @@
+﻿<style>
+    .lbl-left{
+        text-align:left!important;
+    }
+</style>
+<div id="main" class="content-page">
+    <div class="content">
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px;">
+                        <div class="col-md-12">
+                            <div class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Org ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.ORG_ID" [id]="'txtORG_ID'" *ngIf="!isEditMode" [name]="txtORG_ID" [title]="'Use only letters(a-z)(A-Z),numbers (0-9),the underscore(_) and Dot(.)'" [isFocused]="'true'" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'mandatory,alpha_numeric_dot_underscore_nospace,max=10'"></atpar-text>
+                                        <label *ngIf="isEditMode" class="control-label lbl-left">{{newItem.ORG_ID}}</label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                        Use only letters(a-z)(A-Z),numbers (0-9),the underscore(_) and Dot(.)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Org Type</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [options]="orgTypes"  [(ngModel)]="newItem.ORG_TYPE" name="ddlORG_TYPE" [id]="'ddlorgTypes'" [required]="true"   (onChange)="ddlOrgIdChanged($event)" *ngIf="!isEditMode"  [ngModelOptions]="{standalone: true}" [selectOnKeyPress]="true"></atpar-select>
+                                        <label *ngIf="isEditMode" class="control-label lbl-left">{{orgType}}</label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 help_txt help_txt">
+                                        Select Org Type
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Org Name</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.ORG_NAME" [id]="'txtORG_NAME'" [name]="txtORG_NAME" [title]="'Any character A-Z,a-z,0-9,!,#,$...'" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'mandatory,everything_except_space_as_fstchar,max=50'" *ngIf="isEditMode" [isFocused]="'true'"></atpar-text>
+                                        <atpar-text [(ngModel)]="newItem.ORG_NAME" [id]="'txtORG_NAME'" [name]="txtORG_NAME" [title]="'Any character A-Z,a-z,0-9,!,#,$...'" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'mandatory,everything_except_space_as_fstchar,max=50'" *ngIf="!isEditMode"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                        Any character A-Z,a-z,0-9,!,', #,$...
+                                    </div>
+                                </div>
+                                <div class="form-group" *ngIf="ddlRequireddata">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Master Data Group ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [options]="orgGroupData" [style]="{'width':'100%'}" [id]="'ddlorgGroupData'" [required]="true" [(ngModel)]="newItem.MASTER_GROUP_ID" (bindModelDataChange)="bindModelDataChange($event)" name="ddlMASTER_GROUP_ID" *ngIf="drpDwnGrpId"  (onChange)="ddlMasterGroupIdChanged($event)" filter="filter" [selectOnKeyPress]="true">
+                                        </atpar-select>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                        Select Org Group ID
+                                    </div>
+                                </div>
+                                <div class="form-group" *ngIf="!ddlRequireddata">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Master Data Group ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [options]="orgGroupData" [style]="{'width':'100%'}" [id]="'ddlorgGroupData'" [required]="false" [(ngModel)]="newItem.MASTER_GROUP_ID" (bindModelDataChange)="bindModelDataChange($event)" name="ddlMASTER_GROUP_ID" *ngIf="drpDwnGrpId" (onChange)="ddlMasterGroupIdChanged($event)" filter="filter" [selectOnKeyPress]="true">
+                                        </atpar-select>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                        Select Org Group ID
+                                    </div>
+                                </div>   
+
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"><span class="asterisk"></span> Address1 </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.ADDRESS_1" [id]="'txtADDRESS1'" [name]="txtADDRESS1" [title]="'Any character A-Z,a-z,0-9,!,#,$...'"  [validations]="'everything'"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                        Any character A-Z,a-z,0-9,!,', #,$...
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> Address2 </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.ADDRESS_2" [id]="'txtADDRESS2'" [name]="txtADDRESS2" [title]="'Any character A-Z,a-z,0-9,!,#,$...'" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'everything'"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                        Any character A-Z,a-z,0-9,!,', #,$...
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> City </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.CITY" [id]="'txtCITY'" [name]="txtCITY" [title]="'Use only letters(a-z),numbers (0-9),the underscore(_) and spaces are allowed'" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'alpha_numeric_underscore_space'"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                        Use only letters(a-z),numbers (0-9),the underscore(_) and Space
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> State</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.STATE" [id]="'txtSTATE'" [name]="txtSTATE" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'everything'"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> ZIP</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.ZIP" [id]="'txtZIP'" [name]="txtZIP" [title]="'Use the format 1231231234'" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'numeric,max=6,zipcode'"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                        Use the format 1231231234
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"> Phone </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.PHONE_NO" [id]="'txtPHONE_NO'" [name]="txtPHONE_NO" [title]="'Use the format 1231231234'" (bindModelDataChange)="bindModelDataChange($event)" [validations]="'numeric,max=10,phone'"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                        Use the format 1231231234
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-5 col-xs-12">
+                                    <button class="btn btn-purple sbtn" [disabled]="btnEnableDisable" (click)="createOrgId()" name="btnCreateOrgId">{{submitButtonTitle}} &nbsp;<i class="fa fa-{{bindSymbol}}"></i> </button>
+                                    <button class="btn btn-purple sbtn" (click)="navigatOrgIdHome();" name="btnNavigateOrgIdHome"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-growl [value]="msgs" sticky="sticky"></atpar-growl>

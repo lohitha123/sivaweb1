@@ -1,0 +1,80 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border:1px #eee">
+                    <div class="panel-body" style="padding:0px 0 0 0">
+                        <form class="form-horizontal form-label-left" novalidate>
+                            <div class="col-xs-12">
+                                <br />
+                                <div class="pull-right" id="tdExports" *ngIf="tdExports">
+                                    <ul class="list-inline">
+                                        <li class="no-padding">
+                                            <i class="fa fa-envelope-o fa-bg-lg bg-blue" aria-hidden="true" id="imgMail" title="Send mail" style="cursor:pointer;" (click)="onSendMailIconClick($event)"></i>&nbsp;
+                                        </li>
+                                        <li class="no-padding">
+                                            <i class="fa fa-print fa-bg-lg bg-blue" aria-hidden="true" id="imgPrint" title="Print" style="cursor:pointer;" (click)="onPrintClick($event)"></i>&nbsp;
+                                        </li>
+                                        <li class="no-padding">
+                                            <i class="fa fa-file-excel-o fa-bg-lg bg-blue" aria-hidden="true" id="imgExcel" style="cursor:pointer;" title="Excel Format" (click)="onExportToExcelClick($event)"></i>&nbsp;
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-4">Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <p-calendar [showIcon]="true" [id]="'DatePicker'" [(ngModel)]="SelectedDate" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2050" [placeholder]="'From Date'" [dateFormat]="'mm/dd/yy'" [readonlyInput]="true" [required]="true" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6  form-group">
+                                    <button class="btn btn-purple sbtn" (click)="btnGo_Click()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>   
+                            </div>
+                        </form>
+                        <br />
+                        <div class="col-xs-12 table-responsive" *ngIf="isVisible">
+                            <div class="container">
+                                <atpar-datatable [value]="lstDailyActivityDetails"  [pageLinks]="3" [rows]="rowsPerPage" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true" (filteredData)="onChargesFilterData($event)">                                    
+                                    <p-column header="User" field="USERNAME"  [style]="{'width':'25px','text-align':'center'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="No Of Locations Delivered To" field="NO_LOCATIONS_DELIVERED" [style]="{'width':'25px','text-align':'center'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="No Of Items Delivered" field="NO_ITEMS_DELIVERED" [style]="{'width':'25px','text-align':'center'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="Avg. Time Taken For An Item (Secs)" field="AVG_DELIVER_TIME"  [style]="{'width':'50px','text-align':'center'}" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>                                    
+                                    <p-column header="" [style]="{'width':'10px'}">
+                                        <template let-details="rowData" pTemplate type="body">
+                                            <a class="grid-link" id="lnkbtnDetails" (click)="onDetailsClick(details)" style="cursor:pointer;color:#6c276a;">Details</a>
+                                        </template>
+                                    </p-column>                                    
+                                </atpar-datatable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+</div>
+
+<atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+
+<mail-dialog header="Enter Recipient`s Email Address" [width]="450" (onClose)="closeMailPopup()" [(visible)]="isMailDialog" [responsive]="true" showEffect="fade" [modal]="true">
+    <div class="ui-grid ui-grid-responsive ui-fluid">
+        <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="margin-top:2%;margin-right:-2%">
+                <span style="font-weight:600">To : </span>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <atpar-text [(ngModel)]="toMailAddr" [name]="txtToMailAddr" [id]="'txtToMailAddr'"></atpar-text>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                <span><button class="btn btn-purple sbtn" (click)="onSendMailClick()">Send &nbsp;<i class="fa fa-share-square-o" aria-hidden="true"></i></button> </span>
+            </div>
+        </div>
+    </div>
+</mail-dialog>
+
+<style>
+    .modal-content {
+        top: 50% !important;
+    }
+</style>

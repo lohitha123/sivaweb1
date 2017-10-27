@@ -1,0 +1,643 @@
+/*  --------------------------------------------------------------------------------------------
+	
+	Author  : P.Kranthi 
+	Date    : 05/04/2017
+	Purpose : Tables creation for AtPar Reporting 
+ 	
+--------------------------------------------------------------------------------------------------	
+*/	
+
+
+IF object_id('ATPAR_SP_ATPAR_REPORTING_TABLES_PATCH30') IS NOT NULL
+DROP PROCEDURE ATPAR_SP_ATPAR_REPORTING_TABLES_PATCH30
+GO
+
+CREATE PROCEDURE ATPAR_SP_ATPAR_REPORTING_TABLES_PATCH30
+AS
+
+BEGIN
+
+	DECLARE @intReturn int
+	SET @intReturn =0
+
+SET ANSI_NULLS ON
+
+SET QUOTED_IDENTIFIER ON
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'MT_RPT_CRCT_SETUP_DETAIL') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+BEGIN
+
+CREATE TABLE [MT_RPT_CRCT_SETUP_DETAIL](
+	[BUSINESS_UNIT] [nvarchar](10) NULL,
+	[CART_ID] [nvarchar](50) NULL,
+	[ITEM_ID] [nvarchar](32) NULL
+) ON [PRIMARY]
+
+END
+
+SET ANSI_NULLS ON
+
+SET QUOTED_IDENTIFIER ON
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'MT_RPT_CRCT_SETUP_HEADER') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+BEGIN
+CREATE TABLE [MT_RPT_CRCT_SETUP_HEADER](
+	[USER_ID] [nvarchar](50) NULL,
+	[FIRST_NAME] [nvarchar](50) NULL,
+	[LAST_NAME] [nvarchar](50) NULL,
+	[MIDDLE_INITIAL] [nvarchar](50) NULL,
+	[EMAIL_ID] [nvarchar](50) NULL,
+	[CREATE_DATE] [nvarchar](50) NULL,
+	[PROFILE_ID] [nvarchar](255) NULL,
+	[LDAP_USER] [nvarchar](50) NULL,
+	[LAST_UPDATE_DATE] [nvarchar](50) NULL,
+	[ORG_GROUP_ID] [nvarchar](50) NULL,
+	[BUSINESS_UNIT] [nvarchar](50) NULL,
+	[CART_ID] [nvarchar](50) NULL,
+	[DAY1] [nvarchar](50) NULL,
+	[DAY2] [nvarchar](50) NULL,
+	[DAY3] [nvarchar](50) NULL,
+	[DAY4] [nvarchar](50) NULL,
+	[DAY5] [nvarchar](50) NULL,
+	[DAY6] [nvarchar](50) NULL,
+	[DAY7] [nvarchar](50) NULL,
+	[DESCR] [nvarchar](255) NULL,
+	[CART_COUNT_ORDER] [smallint] NULL,
+	[SHADOW_FLAG] [nvarchar](50) NULL,
+	[COUNT_BEFORE] [nvarchar](50) NULL
+) ON [PRIMARY]
+END
+
+SET ANSI_NULLS ON
+
+SET QUOTED_IDENTIFIER ON
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'MT_RPT_CRCT_TRANS_DETAILS') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+BEGIN
+CREATE TABLE [MT_RPT_CRCT_TRANS_DETAILS](
+	[TRANSACTION_ID] [int] NOT NULL,
+	[APP_ID] [smallint] NULL,
+	[BUSINESS_UNIT] [nvarchar](10) NULL,
+	[KEY_1] [float] NULL,
+	[KEY_2] [int] NULL,
+	[KEY_3] [int] NULL,
+	[KEY_4] [nvarchar](32) NULL,
+	[KEY_5] [nvarchar](50) NOT NULL,
+	[KEY_6] [nvarchar](32) NULL,
+	[UPDATE_DATE] [datetime] NULL,
+	[REPORT_DATA_1] [float] NULL,
+	[REPORT_DATA_2] [float] NULL,
+	[REPORT_DATA_3] [float] NULL,
+	[REPORT_DATA_4] [int] NULL,
+	[REPORT_DATA_5] [float] NULL,
+	[REPORT_DATA_6] [nvarchar](50) NULL,
+	[REPORT_DATA_7] [nvarchar](50) NULL,
+	[REPORT_DATA_8] [nvarchar](50) NULL,
+	[REPORT_DATA_9] [nvarchar](50) NULL,
+	[REPORT_DATA_10] [nvarchar](50) NULL,
+	[REPORT_DATA_11] [datetime] NULL,
+	[PREVCOUNTUSER_ID] [nvarchar](50) NULL,
+	[REPORT_DATA_12] [nvarchar](50) NULL,
+	[REPORT_DATA_13] [nvarchar](500) NULL,
+	[REPORT_DATA_14] [nvarchar](50) NULL,
+	[REPORT_DATA_15] [nvarchar](50) NULL,
+	[PARKEY_1] [nvarchar](50) NULL,
+	[PARKEY_2] [nvarchar](50) NULL,
+	[PARKEY_3] [nvarchar](30) NULL,
+	[PARKEY_4] [nvarchar](32) NULL,
+	[PARUPDATE_DATE] [datetime] NULL,
+	[OLD_PAR_VALUE] [float] NULL,
+	[NEW_PAR_VALUE] [float] NULL,
+	[USER_ID] [nvarchar](15) NULL,
+	[UOM] [nvarchar](5) NULL,
+	[PARKEY_5] [nvarchar](254) NULL,
+	[PREVCOUNTTRANSACTION_ID] [int] NULL,
+	[ITEM_ID] [nvarchar](32) NOT NULL,
+	[COMPARTMENT] [nvarchar](50) NOT NULL,
+	[COUNT_QTY] [float] NULL,
+ CONSTRAINT [DENORMALIZEDCRCT_C1] PRIMARY KEY NONCLUSTERED 
+(
+	[TRANSACTION_ID] ASC,
+	[ITEM_ID] ASC,
+	[KEY_5] ASC,
+	[COMPARTMENT] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+END
+
+SET ANSI_NULLS ON
+
+SET QUOTED_IDENTIFIER ON
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'MT_RPT_CRCT_TRANS_HEADER') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+BEGIN
+
+CREATE TABLE [MT_RPT_CRCT_TRANS_HEADER](
+	[TRANSACTION_ID] [int] NULL,
+	[APP_ID] [smallint] NULL,
+	[UPDATE_DT_TIME] [datetime] NULL,
+	[USER_ID] [nvarchar](50) NULL,
+	[FIRST_NAME] [nvarchar](100) NULL,
+	[LAST_NAME] [nvarchar](100) NULL,
+	[ORG_GROUP_ID] [nvarchar](100) NULL,
+	[ID] [nvarchar](50) NULL,
+	[REPORT_DATA_8] [nvarchar](50) NULL,
+	[END_DT_TIME] [datetime] NULL,
+	[TOTAL_REC_SENT] [smallint] NULL,
+	[TOTAL_REC_DOWNLOADED] [smallint] NULL,
+	[REPORT_DATA_9] [real] NULL,
+	[START_DT_TIME] [datetime] NULL,
+	[STATUS] [smallint] NULL,
+	[DOWNLOAD_DT_TIME] [datetime] NULL,
+	[SCANS_COUNT] [smallint] NULL,
+	[REPORT_DATA_3] [nvarchar](50) NULL,
+	[DEVICE_ID] [nvarchar](150) NULL
+) ON [PRIMARY]
+
+END
+SET ANSI_NULLS ON
+
+SET QUOTED_IDENTIFIER ON
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'MT_RPT_FIELDS_LIST') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+BEGIN
+
+CREATE TABLE [MT_RPT_FIELDS_LIST](
+	[APP_ID] [int] NOT NULL,
+	[REPORT_TABLE_NAME] [nvarchar](100) NULL,
+	[ATPAR_APPLICATION_TABLE] [nvarchar](100) NULL,
+	[ATPAR_TABLE_COLUMN] [nvarchar](100) NULL,
+	[REPORT_FRIENDLY_COLUMN_NAME] [nvarchar](100) NULL,
+	[DATA_TYPE] [nvarchar](100) NULL,
+	[ERP_TYPE] [nvarchar](50) NULL
+) ON [PRIMARY]
+END
+	
+/*POU*/
+
+SET ANSI_NULLS ON
+SET QUOTED_IDENTIFIER ON
+SET ANSI_PADDING OFF
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'MT_RPT_POU_TRANS_CASEHEADER') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+BEGIN
+CREATE TABLE [MT_RPT_POU_TRANS_CASEHEADER](
+	[CAPTURE_DATE_TIME] [datetime] NULL,
+	[ACCOUNT_ID] [nvarchar](50) NULL,
+	[EXAM_ID] [nvarchar](50) NULL,
+	[COMMENTS] [nvarchar](1024) NULL,
+	[REVIEWED] [bit] NULL,
+	[MM_LAST_STATUS_DATE] [datetime] NULL,
+	[MM_STATUS] [nvarchar](50) NULL,
+	[CHARGE_LAST_STATUS_DATE] [datetime] NULL,
+	[CHARGE_STATUS] [nvarchar](50) NULL,
+	[REVIEW_USER_ID] [nvarchar](50) NULL,
+	[REVIEW_DATE] [datetime] NULL,
+	[PHYSICIAN_ID] [nvarchar](35) NULL,
+	[REASON_CODE] [nvarchar](20) NULL,
+	[OTHER_DEPTID] [nvarchar](50) NULL,
+	[BED_NO] [nvarchar](50) NULL,
+	[TRANSACTION_TYPE] [smallint] NULL,
+	[HHT_TRANSACTION_ID] [bigint] NULL,
+	[CASE_ID] [nvarchar](20) NOT NULL,
+	[PATIENT_ID] [nvarchar](50) NULL,
+	[DESCRIPTION] [nvarchar](254) NULL,
+	[PREF_LIST_ID] [nvarchar](50) NOT NULL,
+	[CCH_STATUS] [smallint] NULL,
+	[UPDATE_DATE] [datetime] NULL,
+	[UPDATE_USER_ID] [nvarchar](20) NULL,
+	[CREATE_DATE] [datetime] NULL,
+	[CREATE_USER_ID] [nvarchar](20) NULL,
+	[ROOM_NO] [nvarchar](25) NOT NULL,
+	[PERFORM_DATE] [datetime] NULL,
+	[PROCEDURE_CODE] [nvarchar](50) NOT NULL,
+	[EMERGENCY_CASE] [char](1) NOT NULL,
+	[MERGED_CASE_ID] [nvarchar](20) NULL,
+	[DEPT_ID] [nvarchar](50) NULL,
+	[COST_CENTER_CODE] [nvarchar](20) NULL,
+	[SERVICE_CODE] [nvarchar](20) NULL,
+	[PROCESSED_FILE_TYPE] [smallint] NULL,
+	[ENCOUNTER_ID] [bigint] NULL,
+	[TRANSACTION_ID] [int] NOT NULL,
+	[APP_ID] [smallint] NOT NULL,
+	[ID] [nvarchar](50) NULL,
+	[BUSINESS_UNIT] [nvarchar](50) NULL,
+	[DESCR] [nvarchar](30) NULL,
+	[STATUS] [smallint] NULL,
+	[TOTAL_REC_DOWNLOADED] [smallint] NULL,
+	[TOTAL_REC_SENT] [smallint] NULL,
+	[STATUS_CODE] [int] NULL,
+	[DOWNLOAD_DT_TIME] [datetime] NULL,
+	[START_DT_TIME] [datetime] NULL,
+	[END_DT_TIME] [datetime] NULL,
+	[UPDATE_DT_TIME] [datetime] NULL,
+	[USER_ID] [nvarchar](32) NULL,
+	[DOWNLOAD_USERID] [nvarchar](20) NULL,
+	[DEVICE_ID] [nvarchar](150) NULL,
+	[SCANS_COUNT] [smallint] NULL,
+	[REPORT_DATA_1] [nvarchar](20) NULL,
+	[REPORT_DATA_2] [nvarchar](50) NULL,
+	[REPORT_DATA_3] [nvarchar](20) NULL,
+	[REPORT_DATA_4] [nvarchar](20) NULL,
+	[REPORT_DATA_5] [nvarchar](20) NULL,
+	[REPORT_DATA_6] [datetime] NULL,
+	[REPORT_DATA_7] [datetime] NULL,
+	[REPORT_DATA_8] [nvarchar](20) NULL,
+	[REPORT_DATA_9] [real] NULL,
+	[REPORT_DATA_10] [real] NULL,
+	[REPORT_DATA_11] [real] NULL,
+	[REPORT_DATA_12] [nvarchar](50) NULL,
+	[CTH_ID] [bigint] NULL,
+	[CTH_PREF_LIST_ID] [nvarchar](50) NULL,
+	[CASE_STATUS] [smallint] NULL,
+	[CTH_UPDATE_USER_ID] [nvarchar](50) NULL,
+	[WORKSTATION_MAC_ADDRESS] [nvarchar](100) NULL,
+	[CTH_UPDATE_DT_TIME] [datetime] NULL,
+	[CASE_PICK_STATUS] [smallint] NULL,
+	[CTH_TRANSACTION_ID] [int] NULL,
+	[CHARGE_CAPTURE_TRANS_ID] [int] NULL,
+	[CTH_COMMENTS] [nvarchar](250) NULL,
+	[REASON_DESCRIPTION] [nvarchar](50) NULL,
+	[PATIENT_ACCNUMBER] [nvarchar](20) NULL,
+	[PATIENT_NAME] [nvarchar](150) NULL,
+	[PATIENT_BEDNUMBER] [nvarchar](50) NULL
+) ON [PRIMARY]
+END
+
+SET ANSI_PADDING OFF
+SET ANSI_NULLS ON
+SET QUOTED_IDENTIFIER ON
+SET ANSI_PADDING OFF
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'MT_RPT_POU_TRANS_ISSUERETURNHEADER') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+BEGIN
+CREATE TABLE [MT_RPT_POU_TRANS_ISSUERETURNHEADER](
+	[CAPTURE_DATE_TIME] [datetime] NULL,
+	[ACCOUNT_ID] [nvarchar](50) NULL,
+	[EXAM_ID] [nvarchar](50) NULL,
+	[COMMENTS] [nvarchar](1024) NULL,
+	[REVIEWED] [bit] NULL,
+	[MM_LAST_STATUS_DATE] [datetime] NULL,
+	[MM_STATUS] [nvarchar](50) NULL,
+	[CHARGE_LAST_STATUS_DATE] [datetime] NULL,
+	[CHARGE_STATUS] [nvarchar](50) NULL,
+	[REVIEW_USER_ID] [nvarchar](50) NULL,
+	[REVIEW_DATE] [datetime] NULL,
+	[PHYSICIAN_ID] [nvarchar](35) NULL,
+	[REASON_CODE] [nvarchar](20) NULL,
+	[OTHER_DEPTID] [nvarchar](50) NULL,
+	[BED_NO] [nvarchar](50) NULL,
+	[TRANSACTION_TYPE] [smallint] NULL,
+	[HHT_TRANSACTION_ID] [bigint] NULL,
+	[TRANSACTION_ID] [int] NOT NULL,
+	[APP_ID] [smallint] NOT NULL,
+	[ID] [nvarchar](50) NULL,
+	[BUSINESS_UNIT] [nvarchar](50) NULL,
+	[DESCR] [nvarchar](30) NULL,
+	[STATUS] [smallint] NULL,
+	[TOTAL_REC_DOWNLOADED] [smallint] NULL,
+	[TOTAL_REC_SENT] [smallint] NULL,
+	[STATUS_CODE] [int] NULL,
+	[DOWNLOAD_DT_TIME] [datetime] NULL,
+	[START_DT_TIME] [datetime] NULL,
+	[END_DT_TIME] [datetime] NULL,
+	[UPDATE_DT_TIME] [datetime] NULL,
+	[USER_ID] [nvarchar](32) NULL,
+	[DOWNLOAD_USERID] [nvarchar](20) NULL,
+	[DEVICE_ID] [nvarchar](150) NULL,
+	[SCANS_COUNT] [smallint] NULL,
+	[REPORT_DATA_1] [nvarchar](20) NULL,
+	[REPORT_DATA_2] [nvarchar](50) NULL,
+	[REPORT_DATA_3] [nvarchar](20) NULL,
+	[REPORT_DATA_4] [nvarchar](20) NULL,
+	[REPORT_DATA_5] [nvarchar](20) NULL,
+	[REPORT_DATA_6] [datetime] NULL,
+	[REPORT_DATA_7] [datetime] NULL,
+	[REPORT_DATA_8] [nvarchar](20) NULL,
+	[REPORT_DATA_9] [real] NULL,
+	[REPORT_DATA_10] [real] NULL,
+	[REPORT_DATA_11] [real] NULL,
+	[REPORT_DATA_12] [nvarchar](50) NULL,
+	[CTH_ID] [bigint] NULL,
+	[CTH_PREF_LIST_ID] [nvarchar](50) NULL,
+	[CASE_STATUS] [smallint] NULL,
+	[CTH_UPDATE_USER_ID] [nvarchar](50) NULL,
+	[WORKSTATION_MAC_ADDRESS] [nvarchar](100) NULL,
+	[CTH_UPDATE_DT_TIME] [datetime] NULL,
+	[CASE_PICK_STATUS] [smallint] NULL,
+	[CTH_TRANSACTION_ID] [int] NULL,
+	[CHARGE_CAPTURE_TRANS_ID] [int] NULL,
+	[CTH_COMMENTS] [nvarchar](250) NULL,
+	[REASON_DESCRIPTION] [nvarchar](50) NULL,
+	[PATIENT_ACCNUMBER] [nvarchar](20) NULL,
+	[PATIENT_NAME] [nvarchar](150) NULL,
+	[PATIENT_BEDNUMBER] [nvarchar](50) NULL
+) ON [PRIMARY]
+END
+SET ANSI_PADDING OFF
+SET ANSI_NULLS ON
+SET QUOTED_IDENTIFIER ON
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'MT_RPT_POU_PROCEDURE_PREF_SETUP_DETAIL') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+BEGIN
+CREATE TABLE [MT_RPT_POU_PROCEDURE_PREF_SETUP_DETAIL](
+	[PREF_LIST_ID] [nvarchar](50) NOT NULL,
+	[ITEM_ID] [nvarchar](50) NOT NULL,
+	[ITEM_DESCR] [nvarchar](255) NULL,
+	[QUANTITY] [float] NULL,
+	[STATUS] [bit] NULL,
+	[UPDATE_DATE] [smalldatetime] NOT NULL,
+	[UPDATE_USERID] [nvarchar](20) NOT NULL,
+	[HOLD_QTY] [float] NOT NULL,
+	[PROCEDURE_ID] [nvarchar](50) NOT NULL,
+	[CUST_ITEM_NO] [nvarchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[PREF_LIST_ID] ASC,
+	[ITEM_ID] ASC,
+	[PROCEDURE_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+END
+SET ANSI_NULLS ON
+SET QUOTED_IDENTIFIER ON
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'MT_RPT_POU_PROCEDURE_PREF_SETUP_HEADER') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+BEGIN
+CREATE TABLE [MT_RPT_POU_PROCEDURE_PREF_SETUP_HEADER](
+	[PREF_LIST_ID] [nvarchar](50) NOT NULL,
+	[PREF_LIST_DESCR] [nvarchar](50) NULL,
+	[DEPARTMENT_ID] [nvarchar](50) NULL,
+	[STATUS] [bit] NULL,
+	[PROCEDURE_ID] [nvarchar](50) NOT NULL,
+	[PHYSICIAN_ID] [nvarchar](30) NULL,
+	[PROCEDURE_CODE] [nvarchar](20) NULL,
+	[DESCRIPTION] [nvarchar](254) NOT NULL,
+	[PC_STATUS] [bit] NOT NULL,
+	[SPECIALTY_CODE] [nvarchar](20) NOT NULL,
+	[SC_DESCRIPTION] [nvarchar](50) NOT NULL,
+	[SC_STATUS] [bit] NOT NULL,
+	[FIRST_NAME] [nvarchar](50) NULL,
+	[LAST_NAME] [nvarchar](50) NULL,
+	[MIDDLE_INITIAL] [nvarchar](20) NULL,
+	[P_STATUS] [bit] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[PREF_LIST_ID] ASC,
+	[PROCEDURE_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+END
+SET ANSI_NULLS ON
+SET QUOTED_IDENTIFIER ON
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'MT_RPT_POU_SETUP_DETAIL') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+BEGIN
+CREATE TABLE [MT_RPT_POU_SETUP_DETAIL](
+	[CART_ID] [nvarchar](50) NOT NULL,
+	[DEPARTMENT_ID] [nvarchar](50) NOT NULL,
+	[WORKSTATION_ID] [nvarchar](100) NOT NULL,
+	[BUSINESS_UNIT] [nvarchar](50) NOT NULL,
+	[ORG_GROUP_ID] [nvarchar](50) NOT NULL,
+	[LOCATION_TYPE] [nvarchar](1) NOT NULL DEFAULT (''),
+	[PRIORITY] [int] NOT NULL,
+ CONSTRAINT [PK_MT_RPT_POU_SETUP_DETAIL] PRIMARY KEY CLUSTERED 
+(
+	[CART_ID] ASC,
+	[DEPARTMENT_ID] ASC,
+	[WORKSTATION_ID] ASC,
+	[BUSINESS_UNIT] ASC,
+	[ORG_GROUP_ID] ASC,
+	[LOCATION_TYPE] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+END
+SET ANSI_NULLS ON
+SET QUOTED_IDENTIFIER ON
+SET ANSI_PADDING ON
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'MT_RPT_POU_SETUP_HEADER') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+BEGIN
+CREATE TABLE [MT_RPT_POU_SETUP_HEADER](
+	[ORG_GROUP_ID] [nvarchar](20) NOT NULL,
+	[BUSINESS_UNIT] [nvarchar](50) NOT NULL,
+	[BU_TYPE] [nvarchar](1) NOT NULL,
+	[USER_ID] [nvarchar](20) NOT NULL,
+	[PASSHASH] [nvarchar](64) NULL,
+	[FIRST_NAME] [nvarchar](20) NULL,
+	[LAST_NAME] [nvarchar](20) NULL,
+	[MIDDLE_INITIAL] [nvarchar](2) NULL,
+	[EMAIL_ID] [nvarchar](50) NULL,
+	[PHONE1] [nvarchar](15) NULL,
+	[PHONE2] [nvarchar](15) NULL,
+	[FAX] [nvarchar](15) NULL,
+	[PAGER] [nvarchar](15) NULL,
+	[HINT_QUESTION] [nvarchar](255) NULL,
+	[HINT_ANSWER] [nvarchar](255) NULL,
+	[CREATE_USER_ID] [nvarchar](20) NULL,
+	[CREATE_DATE] [datetime] NULL,
+	[PROFILE_ID] [nvarchar](30) NULL,
+	[LDAP_USER] [nvarchar](1) NULL,
+	[LDAP_ROLE] [nvarchar](50) NULL,
+	[LDAP_ORG] [nvarchar](50) NULL,
+	[USERDN] [nvarchar](512) NULL,
+	[DEPT_ID] [nvarchar](50) NOT NULL,
+	[DEPT_NAME] [nvarchar](50) NULL,
+	[ATTN_TO] [nvarchar](30) NULL,
+	[ADDRESS1] [nvarchar](55) NULL,
+	[ADDRESS2] [nvarchar](55) NULL,
+	[CITY] [nvarchar](30) NULL,
+	[STATE] [nvarchar](20) NULL,
+	[ZIP] [nvarchar](10) NULL,
+	[COUNTRY] [nvarchar](50) NULL,
+	[PHONE] [nvarchar](20) NULL,
+	[E_MAIL] [nvarchar](300) NULL,
+	[STATUS] [bit] NULL,
+	[EXCP_APPROVAL_REQ] [char](1) NOT NULL,
+	[INV_COORD_EMAIL] [nvarchar](300) NULL,
+	[EXCP_APPROVER_EMAIL] [nvarchar](300) NULL,
+	[REMINDER_FREQ] [smallint] NOT NULL,
+	[RECALL_NOTIFICATION_EMAIL] [nvarchar](300) NULL,
+	[INV_INTERFACE_ENABLE] [char](1) NULL,
+	[BILLING_ENABLE] [char](1) NULL,
+	[DEFAULT_PRINTER] [nvarchar](100) NULL,
+	[DEFAULT_DISTRIBUTION_TYPE] [nvarchar](30) NULL,
+	[DEFAULT_DESTINATION_LOCATION] [nvarchar](30) NULL,
+	[ALERT_NOTIFY_REQ] [char](1) NOT NULL,
+	[EMAIL_NOTIFY] [nvarchar](300) NULL,
+	[CATEGORY_CODE] [nvarchar](50) NULL,
+	[BILLONLY_BUSINESS_UNIT] [nvarchar](50) NULL,
+	[BILLONLY_LOCATION] [nvarchar](50) NULL,
+	[NO_OF_CASES_DOWNLOAD] [smallint] NOT NULL,
+	[SEND_LOWSTOCK_EMAIL_ALERTS] [char](1) NOT NULL,
+	[EMAILID_FOR_LOWSTOCK_ALERTS] [nvarchar](300) NULL,
+	[SEND_PRODUCT_EXP_EMAIL_ALERTS] [char](1) NOT NULL,
+	[EMAILID_FOR_PRODUCT_EXP_ALERTS] [nvarchar](300) NULL,
+	[DURATION_TRACKING_EXP] [smallint] NULL,
+	[PERCENTAGE_OPTIMUM_QTY] [smallint] NULL,
+	[PREPICK_QA_PROCESS_REQUIRED] [bit] NOT NULL,
+	[BUYER_ID] [nvarchar](100) NULL,
+	[AUTO_PUTAWAY_ENABLED] [char](1) NOT NULL,
+	[ALLOW_LOC_SELECT] [bit] NOT NULL,
+	[CASE_PICK_STATUS] [smallint] NOT NULL,
+	[HOME_DEPARTMENT] [bit] NULL,
+ CONSTRAINT [PK_MT_RPT_POU_SETUP_HEADER] PRIMARY KEY CLUSTERED 
+(
+	[ORG_GROUP_ID] ASC,
+	[BUSINESS_UNIT] ASC,
+	[USER_ID] ASC,
+	[DEPT_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+END
+SET ANSI_PADDING OFF
+SET ANSI_NULLS ON
+SET QUOTED_IDENTIFIER ON
+SET ANSI_PADDING OFF
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'MT_RPT_POU_TRANS_DETAIL') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+BEGIN
+CREATE TABLE [MT_RPT_POU_TRANS_DETAIL](
+	[ITEM_ID] [nvarchar](50) NOT NULL DEFAULT (' '),
+	[LINE_NO] [int] NOT NULL DEFAULT (' '),
+	[ITEM_DESCRIPTION] [nvarchar](255) NULL,
+	[ITEM_LOTNUMBER] [nvarchar](30) NULL,
+	[ITEM_SRNUMBER] [nvarchar](30) NULL,
+	[ITEM_COUNT] [float] NULL,
+	[WASTAGE_QTY] [float] NULL,
+	[TRANSACTION_ID] [bigint] NOT NULL DEFAULT (' '),
+	[CART_ID] [nvarchar](50) NULL,
+	[ITEM_COUNT_MM] [float] NULL,
+	[UPDATE_USER_ID] [nvarchar](50) NULL,
+	[UPDATE_DATE] [datetime] NULL,
+	[ITEM_PRICE] [float] NULL,
+	[CHARGE_CODE] [nvarchar](50) NULL,
+	[BUSINESS_UNIT] [nvarchar](50) NULL,
+	[COMPARTMENT] [nvarchar](50) NULL,
+	[CART_NONCART_FLAG] [char](2) NULL,
+	[UOM] [nvarchar](20) NULL,
+	[BILL_STATUS] [char](1) NULL,
+	[MM_STATUS] [char](2) NULL,
+	[ORDERING_TYPE] [char](2) NULL,
+	[ORDER_NO] [int] NULL,
+	[BILLED_QTY] [float] NULL,
+	[HOLD_QTY] [int] NOT NULL,
+	[ITEM_INVENTORY] [nvarchar](10) NULL,
+	[STORAGE_AREA] [nvarchar](50) NULL,
+	[STORAGE_LEVEL_1] [nvarchar](4) NULL,
+	[STORAGE_LEVEL_2] [nvarchar](4) NULL,
+	[STORAGE_LEVEL_3] [nvarchar](4) NULL,
+	[STORAGE_LEVEL_4] [nvarchar](4) NULL,
+	[MFG_ITEM_ID] [nvarchar](50) NULL,
+	[UPC_ID] [nvarchar](50) NULL,
+	[GTIN] [nvarchar](50) NULL,
+	[VEND_ITEM_ID] [nvarchar](50) NULL,
+	[CUST_ITEM_NO] [nvarchar](50) NULL,
+	[ISSUE_QTY] [float] NULL,
+	[TOTE_NO] [nvarchar](50) NULL,
+	[ITEM_TYPE] [smallint] NULL,
+	[EXPIRY_DATE] [datetime] NULL,
+	[CREATE_DATE_TIME] [datetime] NULL,
+	[MANUFACTURER] [nvarchar](50) NULL,
+	[VENDOR_ID] [nvarchar](50) NULL,
+	[PHY_ID] [nvarchar](60) NULL,
+	[PREF_ID] [nvarchar](100) NULL,
+	[PROC_ID] [nvarchar](100) NULL,
+	[ADJUSTED_QTY] [float] NULL,
+	[TYPE_OF_ITEM] [int] NULL,
+	[ISSUE_ADJ_QTY] [float] NULL,
+	[RETURN_ID] [bigint] NULL DEFAULT ((1)),
+	[REASON_CODE] [nvarchar](20) NULL,
+	[COMMENTS] [nvarchar](1024) NULL,
+	[RETURN_QTY] [float] NULL,
+	[CCR_WASTAGE_QTY] [float] NULL,
+	[CCR_UPDATE_DATE] [datetime] NULL,
+	[USER_ID] [nvarchar](50) NULL,
+	[CASE_ID] [nvarchar](20) NULL DEFAULT (' '),
+	[ITEM_DESCR] [varchar](255) NULL,
+	[PICK_QTY] [float] NULL,
+	[CSCD_HOLD_QTY] [float] NULL,
+	[CSCD_ITEM_INVENTORY] [nvarchar](50) NULL,
+	[ITEM_UOM] [nvarchar](20) NULL,
+	[STATUS] [smallint] NULL,
+	[ACT_OPEN_QTY] [float] NULL,
+	[ACT_HOLD_QTY] [float] NULL,
+	[QTY] [float] NULL,
+	[CSCD_CUST_ITEM_NO] [nvarchar](50) NULL,
+	[ITEM_SOURCE] [smallint] NULL,
+	[ITEM_STATUS] [nvarchar](1) NULL
+) ON [PRIMARY]
+END
+
+SET ANSI_PADDING OFF
+SET ANSI_NULLS ON
+SET QUOTED_IDENTIFIER ON
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'MT_RPT_POU_TRANS_DETAIL2') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+BEGIN
+CREATE TABLE [MT_RPT_POU_TRANS_DETAIL2](
+	[CART_ID] [nvarchar](50) NULL,
+	[ITEM_ID] [nvarchar](50) NULL,
+	[ITEM_QUANTITY_PAR] [float] NULL,
+	[ITEM_QUANTITY_ON_HAND] [float] NULL,
+	[BUSINESS_UNIT] [nvarchar](50) NULL,
+	[LOT_NUMBER] [nvarchar](50) NULL,
+	[SERIAL_NUMBER] [nvarchar](50) NULL,
+	[EXPIRY_DATE] [datetime] NULL,
+	[ACTUAL_QUANTITY] [float] NULL,
+	[COMPARTMENT] [nvarchar](50) NULL DEFAULT (''),
+	[ID] [bigint] NULL,
+	[EVENT_TYPE] [smallint] NULL,
+	[UPDATE_DATE] [datetime] NULL,
+	[QTY] [float] NULL,
+	[ON_HAND_QTY] [float] NULL,
+	[TRANSACTION_ID] [int] NOT NULL,
+	[ADJUSTMENT_TYPE] [int] NULL,
+	[CHARGE_CAPTURE_TRANS_ID] [int] NULL,
+	[CYCT_DATE_TIME] [datetime] NULL,
+	[ORIGINAL_QUANTITY] [float] NULL,
+	[NEW_QUANTITY] [float] NULL,
+	[ITEM_PRICE] [float] NULL,
+	[UOM] [nvarchar](20) NULL,
+	[ORDER_ID] [bigint] NULL,
+	[PTWY_DATE_TIME] [datetime] NULL,
+	[QUANTITY_ORDERED] [float] NULL,
+	[QUANTITY_RECEIVED] [float] NULL
+) ON [PRIMARY]
+END
+SET ANSI_NULLS ON
+SET QUOTED_IDENTIFIER ON
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'MT_RPT_POU_TRANS_HEADER2') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+BEGIN
+CREATE TABLE [MT_RPT_POU_TRANS_HEADER2](
+	[ORDER_NO] [int] NOT NULL,
+	[ORG_ID] [nvarchar](10) NOT NULL,
+	[PAR_LOC_ID] [nvarchar](50) NOT NULL,
+	[ORDER_DATE] [datetime] NOT NULL,
+	[CREATE_USER] [nvarchar](50) NULL,
+	[VENDOR_ID] [nvarchar](20) NOT NULL,
+	[ERP_ORDER_NO] [nvarchar](30) NULL,
+	[APP_ID] [int] NOT NULL,
+	[COMMENTS] [nvarchar](4000) NULL,
+	[INVENTORYORDER_FLAG] [nvarchar](1) NULL,
+	[PTWY_DATE_TIME] [datetime] NULL,
+	[CYCT_DATE_TIME] [datetime] NULL,
+) ON [PRIMARY]
+END
+
+SET ANSI_NULLS ON
+SET QUOTED_IDENTIFIER ON
+	
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'MT_RPT_POU_FIELDS_LIST') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+BEGIN
+CREATE TABLE [MT_RPT_POU_FIELDS_LIST](
+	[APP_ID] [int] NOT NULL,
+	[REPORT_TABLE_NAME] [nvarchar](100) NULL,
+	[ATPAR_APPLICATION_TABLE] [nvarchar](100) NULL,
+	[ATPAR_TABLE_COLUMN] [nvarchar](100) NULL,
+	[REPORT_FRIENDLY_COLUMN_NAME] [nvarchar](100) NULL,
+	[DATA_TYPE] [nvarchar](100) NULL,
+	[ERP_TYPE] [nvarchar](50) NULL
+) ON [PRIMARY]
+END
+	
+RETURN @intReturn
+
+ERR_HANDLER:
+	SET @intReturn = 1
+	PRINT 'Failed in ATPAR_SP_ATPAR_REPORTING_TABLES_PATCH30 stored procedure returning non zero value ' 
+	RETURN @intReturn
+END
+GO

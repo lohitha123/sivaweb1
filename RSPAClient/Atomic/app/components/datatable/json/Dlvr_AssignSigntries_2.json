@@ -1,0 +1,20 @@
+[
+      {
+        "UID": "user1",
+        "FNAME": "userfirstname",
+        "LNAME": "userlastname",
+        "MNAME": "u"
+      },
+      {
+        "UID": "user2",
+        "FNAME": "anil",
+        "LNAME": "anil rachuri",
+        "MNAME": "r"
+      },
+      {
+        "UID": "user3",
+        "FNAME": "akhil",
+        "LNAME": "akhil rachuri",
+        "MNAME": "t"
+      }
+]

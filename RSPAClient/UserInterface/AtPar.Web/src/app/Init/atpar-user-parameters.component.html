@@ -1,0 +1,115 @@
+﻿<style>
+    table tbody tr .pdt-0{
+        padding-top:0px!important;
+    }
+    table tbody tr td .mb-10{
+        margin-bottom:0!important;
+    }
+</style>
+<div id="main" class="content-page">
+    <div class="content">
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border">
+                <br />
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px;">
+                        <div class="col-md-12">
+                            <form class="form-horizontal form-label-left">
+                                <div class="form-group col-md-5 col-sm-12 col-xs-12">
+                                    <div style="clear:both;"></div>
+                                    <label for="test_step_element_id" class="control-label col-md-4 col-sm-6 col-xs-12">Org Group ID</label><!--*ngIf="blnlblStar" [ngClass]="{'': blnlblOrgGrpId == true}"  class="form-control-static"       [ngClass]="(blnlblOrgGrpId == true)?'form-control-static':'display'" -->
+                                    <div class="col-md-8 col-sm-6 col-xs-12">
+                                        <label id="lblOrgGrpId" class="control-label lbl-left" *ngIf="blnlblOrgGrpId">{{lblOrgGrpId}}</label>
+                                        <atpar-select [style]="{'width':'100%'}" [id]="'ddlOrgGrpID'" [(ngModel)]="selectedOrgGrpID" [options]="ddlOrgGrpID" (onChange)="bindModelDataChange($event)" [ngModelOptions]="{standalone: true}" [required]="true" *ngIf="blnddlOrgGrpID"  filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-5 col-sm-12 col-xs-12">
+                                    <label for="test_step_element_id" class="control-label col-md-4 col-sm-6 col-xs-12">User ID</label>
+                                    <div class="col-md-8 col-sm-6 col-xs-12">
+                                        <atpar-select [style]="{'width':'100%'}" [id]="'ddlUserList'" [required]="true" [options]="ddlUserList" [(ngModel)]="ddUser"  [selectOnKeyPress]="true" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlUserListChange($event)" ></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-2 form-group">
+                                    <button class="btn btn-purple sbtn btn-sm" type="button" id="btnGo" (click)="GOClick()">Go &nbsp;<i class="fa fa-arrow-right"></i></button>
+
+                                </div>
+                            </form>
+                            <br />
+
+                            <table class="table table-bordered user-para-table" *ngIf="blntblGrid">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width:25%;">Parameter</th>
+                                        <th class="text-center" style="width:18%;">Value</th>
+                                        <th class="text-center">Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let userLst of user_Parameter_Details">
+                                        <td class="pdt-0">
+                                            {{userLst.SHORT_DESCR}}
+                                        </td>
+                                        <td class="no-margin">
+                                            <div [ngSwitch]="userLst.PARAMETER_TYPE" style="float:left;">
+
+                                                <div *ngSwitchCase="'TEXTBOX'">
+                                                    <div>
+                                                        <atpar-text [(ngModel)]="userLst.PARAMETER_VALUE" [title]="userLst.TITLE" [validations]="userLst.validationRules" [id]="userLst.PARAMETER_ID" (bindModelDataChange)="txtChanged($event)"></atpar-text>
+                                                    </div>
+                                                </div>
+                                                <div *ngSwitchCase="'TEXT'">
+                                                    <div>
+                                                        <atpar-text [(ngModel)]="userLst.PARAMETER_VALUE" [title]="userLst.TITLE" [validations]="userLst.validationRules" [id]="userLst.PARAMETER_ID" (bindModelDataChange)="txtChanged($event)"></atpar-text>
+                                                    </div>
+                                                </div>
+                                                
+
+                                                <div *ngSwitchCase="'COMBOBOX'" class="table-dropdown">
+                                                        <atpar-select [options]="userLst.DDLLIST" [(ngModel)]="userLst.PARAMETER_VALUE" [SelectedLabel]="userLst.PARAMETER_VALUE" (onChange)="tblCmbListChanged(userLst,$event)" [id]="userLst.PARAMETER_ID" [style]="{'width':'100%'}" filter="filter"></atpar-select>
+                                                </div>
+
+                                                <div *ngSwitchCase="'CHECKBOX'">
+                                                    <atpar-switch [(ngModel)]="userLst.PARAMETER_VALUE" [checked]="userLst.PARAMETER_VALUE" (click)="ChkBoxChanged(userLst.PARAMETER_VALUE)"></atpar-switch>
+                                                </div>
+
+                                                <div *ngSwitchCase="'RADIO'">
+                                                    <atpar-radioButton name={{userLst.PARAMETER_ID}} value="value1" label="{{value}}"></atpar-radioButton>
+                                                </div>
+
+                                            </div>
+
+                                            
+
+                                        </td>
+                                        <td class="pdt-0">
+                                            <span id="{{userLst.PARAMETER_ID}}"> {{userLst.LONG_DESCR}} </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-5 form-group" *ngIf="blntblGrid">
+                                <button class="btn btn-purple sbtn btn-sm" type="button" id="btnSave" (click)="btnSave_Click()">Submit &nbsp;<i class="fa fa-check"></i></button>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <atpar-growl [value]="statusMsgs" sticky="sticky"></atpar-growl>
+</div>
+
+
+<style>
+    /*table.table.table-bordered.user-para-table .ui-dropdown{
+        width:180px!important;
+    }
+    table.table.table-bordered.user-para-table .ui-dropdown .ui-dropdown-label{
+        width:250px!important
+    }*/
+</style>

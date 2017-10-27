@@ -1,0 +1,61 @@
+﻿<div id="main" class="content-page">
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-default" [ngClass]="{'border-panel': page === true}" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px;">
+                        <div class="col-md-12">
+                            <form class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-2">Application</label>
+                                    <div class="col-xs-12 col-md-4">
+                                        <atpar-select [options]="lstApps" [(ngModel)]="selectedApp" [id]="'ddlAppIDs'"  [ngModelOptions]="{standalone: true}" (onChange)="ddlChnage()"></atpar-select>
+                                    </div>
+                                    <div class="col-xs-12 col-md-2 hidden-sm hidden-xs" style="margin-top: 0px;">
+                                        <button class="btn btn-purple sbtn " (click)="go()">Go &nbsp;<i class="fa fa-arrow-right"></i></button>
+                                    </div>
+                                    <div class="col-xs-12 col-md-2 hidden-lg hidden-md" style="margin-top: 10px;">
+                                        <button class="btn btn-purple sbtn " (click)="go()">Go &nbsp;<i class="fa fa-arrow-right"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-xs-12 table-responsive" *ngIf="isVisible">
+                            <div class="container">
+                                <atpar-datatable [value]="lstDBData" [style]="{'width':'100%'}" (filteredData)="filterdata($event)" [paginator]="true" [pageLinks]="3" [rows]="pazeSize" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [responsive]="true">
+                                    <p-column field="APP_NAME" [style]="{'width':'180px'}" header="Application" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                    <p-column field="MENU_NAME" header="Menu Name" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                    <p-column field="MENU_SUB_GROUP" [style]="{'width':'180px'}" header="Sub Group" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                    <p-column [style]="{'width':'7%', 'text-align':'center'}" header="Select">
+                                        <template pTemplate="filter" let-col>
+                                            <ul class="list-inline li-all-none">
+                                                <li>
+
+                                                    <span (click)="checkAll()" style="cursor:pointer">All</span>
+                                                </li> |
+                                                <li>
+                                                    <span (click)="unCheckAll()" style="cursor:pointer">None</span>
+
+                                                </li>
+                                            </ul>
+                                        </template>
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <atpar-switch (change)="selectedRow(ven,$event)" [(ngModel)]="ven.checkvalue"></atpar-switch>
+                                        </template>
+                                    </p-column>
+                                    <!--<p-footer></p-footer>-->
+                                </atpar-datatable>
+                                <br>
+                                <div class="col-xs-12 col-md-6 col-md-offset-5 col-sm-6 col-sm-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="save() ">Save &nbsp;<i class="fa fa-floppy-o"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

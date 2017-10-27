@@ -1,0 +1,29 @@
+[
+      {
+        "ORG_ID": "US001",
+        "SHIPTO_ID": "shiptoid1",
+        "CURRENTSTATUS": "Active",
+        "ACTIVESTATUS": "InActive",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "US001",
+        "SHIPTO_ID": "shiptoid2",
+        "CURRENTSTATUS": "Active",
+        "ACTIVESTATUS": "InActive",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      },
+      {
+        "ORG_ID": "US001",
+        "SHIPTO_ID": "shiptoid3",
+        "CURRENTSTATUS": "Active",
+        "ACTIVESTATUS": "InActive",
+        "CHK_VALUE": "0",
+        "ROWINDEX": "0",
+        "CHK_ALLOCATED": "0"
+      }
+]

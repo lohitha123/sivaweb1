@@ -1,0 +1,3809 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+AtPar_BusinessRules
+</name>
+</assembly>
+<members>
+<member name="T:AtPar_BusinessRules.AtPar_ADTParser">
+ -----------------------------------------------------------------------------
+ <summary>
+ 
+ </summary>
+ <remarks>
+ This class invoked by ADTListener_WinService after it receives the message(HL7)
+ from ADT system. The message buffer is passed to this class as input
+ This class takes the input message buffer, apply rules for the buffer
+ validates the message. If the message received is valid populates the appropriate
+ tables Point Of Use Middle Tier(using POU_BusinessRules) and it returns back the
+ Message Acknowledgement string 
+ HL7 VERSION
+ This parser is in accordance with 
+ HL7 MEDITECH Admissions System 2.1 specifications
+
+ </remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ADTParser.ValidateInputMessage(System.String,System.String@,System.String)">
+ <summary>
+ Validate Input Message
+ </summary>
+ <param name="inputMessageString"></param>
+ <param name="pSystemID"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ADTParser.LoadADTRulesFile(System.Xml.XmlNodeList@)">
+ <summary>
+ Validates the xml file 
+ </summary>
+ <param name="pXmlNodeList"></param>
+ <param name="pADTFileExist"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ADTParser.LoadSIURulesFile(System.Xml.XmlNodeList@)">
+ <summary>
+ Validates the xml file 
+ </summary>
+ <param name="pXmlNodeList"></param>
+ <param name="pSIUFileExist"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ADTParser.CheckSegmentExistInMsg(System.String[],System.String,System.String)">
+ <summary>
+ validates whether the segment from xml is existing in the message
+ </summary>
+ <param name="pSegmentArr"></param>
+ <param name="pXmlSegmentVal"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ADTParser.ValidateFieldPositionValue(System.String,System.String,System.String,System.Boolean@,System.String,System.String@)">
+ <summary>
+ validates if field position exist in the message
+ </summary>
+ <param name="pSegment"></param>
+ <param name="pXmlFieldNo"></param>
+ <param name="pFieldPositionValue"></param>
+ <param name="pFieldSeparator"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ADTParser.ValidateFieldValue(System.String,System.Int32,System.String@,System.String,System.Boolean@,System.String)">
+ <summary>
+ Validates for the field value at the corresponding position in the message with repsect to the position mentioned in the XML file
+ </summary>
+ <param name="pSegment"></param>
+ <param name="pFieldPos"></param>
+ <param name="pFieldSeparator"></param>
+ <param name="pFieldValue"></param>
+ <param name="pFieldValueExist"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ADTParser.ValidateCompositeValues(System.String,System.String,System.String,System.String@,System.Boolean@,System.String)">
+ <summary>
+ Validates for the composite field value corresponding to the component field value in the XML
+ </summary>
+ <param name="pFieldVal"></param>
+ <param name="pCompositeFieldValue"></param>
+ <param name="pComponentSeparator"></param>
+ <param name="pXmlcompositeFieldNoValue"></param>
+ <param name="pCompositeValueExist"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ADTParser.BuildMessageAckHdr(System.String[])">
+ <summary>
+ Build Message Ack Hdr
+ </summary>
+ <param name="inputArr"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ADTParser.BuildMessageACk(System.Boolean,System.String,System.String)">
+ <summary>
+ Build Message Ack
+ </summary>
+ <param name="isValidMessage"></param>
+ <param name="messageControlID"></param>
+ <returns></returns>
+ <remarks></remarks>    
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ADTParser.ProcessHSMData(System.String,System.String,System.String,System.String,System.Data.DataTable,System.String)">
+ <summary>
+ ProcessHSMData
+ </summary>
+ <param name="pCaseId"></param>
+ <param name="pDsHLMsgItemData"></param>
+ <param name="pDsHLMsgCaseHdr"></param>
+ <param name="pSystemID"></param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ADTParser.ProcessSpecialtyInfo(System.Data.DataSet,System.Data.SqlClient.SqlTransaction)">
+ <summary>
+ ProcessSpecialtyInfo
+ </summary>
+ <param name="pDsHsmData"></param>
+ <param name="pSqlTrans"></param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ADTParser.ProcessPhysicianInfo(System.Data.DataSet,System.Data.SqlClient.SqlTransaction)">
+ <summary>
+ ProcessPhysicianInfo
+ </summary>
+ <param name="pDsHsmData"></param>
+ <param name="pSqlTrans"></param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ADTParser.ProcessProcedureInfo(System.Data.DataSet,System.Data.SqlClient.SqlTransaction)">
+ <summary>
+ ProcessProcedureInfo
+ </summary>
+ <param name="pDsHsmData"></param>
+ <param name="pSqlTrans"></param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ADTParser.ProcessPrefListInfo(System.String,System.Data.DataSet@,System.Data.SqlClient.SqlTransaction)">
+ <summary>
+ ProcessPrefListInfo
+ </summary>
+ <param name="pCaseId"></param>
+ <param name="pDsHsmData"></param>
+ <param name="pSqlTrans"></param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ADTParser.InsertPrefListDetails(System.String,System.String,System.String,System.Double,System.Double,System.String,System.Data.SqlClient.SqlTransaction)">
+ <summary>
+ InsertPrefListDetails
+ </summary>
+ <param name="pPrefID"></param>
+ <param name="pProcCode"></param>
+ <param name="pItemDescr"></param>
+ <param name="pOpenQty"></param>
+ <param name="pHoldQty"></param>
+ <param name="pCustItemNo"></param>
+ <param name="pSqlTrans"></param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ADTParser.InActivePrefListItems(System.Data.DataRow[],System.Data.SqlClient.SqlTransaction)">
+ <summary>
+ InActivePrefListItems
+ </summary>
+ <param name="pDrItems"></param>
+ <param name="pSqlTrans"></param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ADTParser.InsertPerfListHeader(System.Data.DataSet,System.Data.SqlClient.SqlTransaction)">
+ <summary>
+ InsertPerfListHeader
+ </summary>
+ <param name="pDsHsmData"></param>
+ <param name="pSqlTrans"></param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ADTParser.ProcessCaseInfo(System.String,System.String,System.String,System.String,System.Data.DataSet,System.Data.DataTable,System.String,System.Data.SqlClient.SqlTransaction)">
+ <summary>
+ ProcessCaseInfo
+ </summary>
+ <param name="pCaseId"></param>
+ <param name="pCaseDescr"></param>
+ <param name="pPatientMrc"></param>
+ <param name="pRoomNo"></param>
+ <param name="pCasePerformDate"></param>
+ <param name="pDsHsmData"></param>
+ <param name="pDtHLMsgItemData"></param>
+ <param name="pSystemID"></param>
+ <param name="pSqlTrans"></param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ADTParser.InsertCaseItems(System.String,System.String,System.String,System.String,System.String,System.Double,System.Double,System.Data.SqlClient.SqlTransaction)">
+ <summary>
+ InsertCaseItems
+ </summary>
+ <param name="pCaseID"></param>
+ <param name="pPrefID"></param>
+ <param name="pProc"></param>
+ <param name="pCustItemNo"></param>
+ <param name="pItemDescr"></param>
+ <param name="pOpenQty"></param>
+ <param name="pHoldQty"></param>
+ <param name="pSqlTrans"></param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ADTParser.InsertCaseHeader(System.String,System.String,System.String,System.String,System.Data.DataSet,System.Data.DataTable,System.String,System.Data.SqlClient.SqlTransaction)">
+ <summary>
+ InsertCaseHeader
+ </summary>
+ <param name="pCaseID"></param>
+ <param name="pCaseDescr"></param>
+ <param name="pPatientMrc"></param>
+ <param name="pRoomNo"></param>
+ <param name="pCasePerformDate"></param>
+ <param name="pDsHsmData"></param>
+ <param name="pDtCaseHdr"></param>
+ <param name="pSystemID"></param>
+ <param name="pSqlTrans"></param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ADTParser.GetCaseStatusDetails(System.String,System.Data.DataSet@,System.Data.SqlClient.SqlTransaction)">
+ <summary>
+ GetCaseStatusDetails
+ </summary>
+ <param name="pCaseID"></param>
+ <param name="pDsCaseStatusDtls"></param>
+ <param name="pSqlTrans"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ADTParser.GetDeptOrCostCenterCode(System.String,System.String,System.String,System.String@)">
+ <summary>
+ GetDeptOrCostCenterCode
+ </summary>
+ <param name="pId"></param>
+ <param name="pFilter"></param>
+ <param name="pDeptOrCostCenterId"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ADTParser.GetPrefID(System.String,System.String,System.String@,System.String@,System.String)">
+ <summary>
+ GetPrefID
+ </summary>
+ <param name="pProcId"></param>
+ <param name="pPhyID"></param>
+ <param name="pPrefId"></param>
+ <param name="pPrefDescr"></param>
+ <param name="pSystemID"></param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.ApplicationDataSetDefns.CreateAtParTableDefn(System.String[0:,0:],System.String)">
+ <summary>
+ Create a Table definition for transporting data between client and server, typically HEADERS/OUTPUT/PREREQ etc
+ </summary>
+ <param name="pTableDefn">A 2-D string array defining the rules for the table (e.g. SendPO_Receive_Header_Defns) </param>
+ <param name="pTableType">Name of the datatable (Should be DataTypes_Enum.tablename.Tostring)</param>
+ <returns>A new DataTable</returns>
+ <example>
+ <code>
+ Dim receive_header_dt As DataTable
+ Try
+ receive_header_dt = CreateAtParTableDefn(SendPO_Receive_Header_Defns, DataSet_Type.HEADERS.ToString)
+ Catch ex As Exception
+ Fatal Log Message
+ if log.IsFataEnabled then log.Fatal("Failed to Create Header Ds")
+ Return E_SERVERERROR
+ End Try
+ </code>
+ </example>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.ApplicationDataSetDefns.AddDataColumn(System.String,System.String,System.String,System.String,System.String)">
+ <summary>
+ Create a new data column based on the given inputs
+ </summary>
+ <param name="FriendlyName">Sets Friendly Name to the Caption Property of the Column</param>
+ <param name="XMLTagID">Column name (referenced by the enum variable)</param>
+ <param name="DataType"></param>
+ <param name="Unique">Unique - "Y", Not unique - "N" - stored internally as a bool</param>
+ <param name="AllowNull">AllowNull - "Y", don't allow null - "N" - stored internally as a bool</param>
+ <returns>a new Datacolumn</returns>
+ <remarks>This function should be called by CreateAtParTableDefn</remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtParConfigFileReader.CacheConfigData(System.String)">
+ <summary>
+ To parse the Config file and create a Collection of values
+ </summary>
+ <param name="ConfigFile">Config File path</param>
+ <returns>Collection of values read from Conf.xml</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtParConfigFileReader.GetSystemsConfigurationData(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.Dictionary{System.String,System.String}}}@,Microsoft.VisualBasic.Collection)">
+ <summary>
+ 
+ </summary>
+ <param name="pConfData"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtParConfigFileReader.GetSystems(System.Data.DataSet@)">
+ <summary>
+ Gets all the Systems from Master Database
+ </summary>
+ <param name="pConfData"></param>
+ <param name="pDsSystems"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtParConfigFileReader.GetSystemConfigurationData(System.String,System.Boolean)">
+ <summary>
+ 
+ </summary>
+ <param name="pSystemId"></param>
+ <param name="pUpdateConfig"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtParConfigFileReader.GetSystemConnectionString(System.Data.DataRow,System.String@)">
+ <summary>
+ 
+ </summary>
+ <param name="pDrSystemInfo"></param>
+ <param name="pConnectionString"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtParConfigFileReader.ReadSystemConfigurationData(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.Dictionary{System.String,System.String}}@)">
+ <summary>
+ 
+ </summary>
+ <param name="pDrySystemConfig"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtParConfigFileReader.GetMasterDBConnectionString(Microsoft.VisualBasic.Collection)">
+ <summary>
+ Gets the connection string of Master Database
+ </summary>
+ <param name="pCol"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtParConfigFileReader.ReadConfig(System.String)">
+ <summary>
+ To read the Config file
+ </summary>
+ <param name="ConfigFile">Config File path</param>
+ <returns>Collection of values read from Conf.xml</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtParConfigFileReader.Decrypt(System.String)">
+ <summary>
+ To decrypt the Password that has been encrypted
+ </summary>
+ <param name="Encrypted">Encrypted Password</param>
+ <returns>Decrypted Password</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtParConfigFileReader.TrimSpaces(System.String)">
+ <summary>
+ To trim extra white spaces from any String
+ </summary>
+ <param name="strstring">Input String</param>
+ <returns>Formatted String</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtParDefns.substituteString(System.String,System.Boolean)">
+ <summary>
+ To substitute escape character for special characters
+ </summary>
+ <param name="pSource"></param>
+ <param name="pIsDbRelated"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtParDefns.GetDatabaseString(System.String)">
+ <summary>
+ Called when we need to insert into the middle tier tables before substitute string is called
+ Restores the values for ',less than , greater than
+ </summary>
+ <param name="pSource"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtParDefns.tagGetAppVersionInfo">
+ <summary>
+ tagGetAppVersionInfo - Print an applications version info
+ </summary>
+ <returns>Version information</returns>
+ <remarks>All Applications.GetAppVersionInfo Methods.</remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtParDefns.Process_XML_SpecialChars(System.Int64,System.String,System.String,System.String[],System.Int64)">
+ <summary>
+ This function can be used to replace the special chars in XML file
+ </summary>
+ <param name="linenumber">exception line number</param>
+ <param name="strFilePath">File Path</param>
+ <param name="pStrApplication">Application type</param>
+ <param name="lngCount">Line count of Xml File</param>
+ <returns>Error/Success Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtParDefns.ReadAndValidateInventaryConf(System.String,System.Collections.Hashtable@)">
+ <summary>
+ This function can be used to read Inventoty config XML file
+ </summary>
+ <param name="pJobType">Job type</param>
+ <param name="pHashTblInvConfDetails">Hash table to store details</param>
+ <returns>Error/Success Code</returns>
+ <remarks></remarks>
+</member>
+<member name="T:AtPar_BusinessRules.AtparEnums.DataSet_Type">
+ <summary>
+ Used to define table names when passing data between client and server
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.HEADERS">
+ <summary>
+ Header tables (cart_id, po_id etc)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.DETAILS">
+ <summary>
+ line items etc
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.SUBDETAILS">
+ <summary>
+ lot number, serial numbers etc
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.PREREQDATA">
+ <summary>
+ data gathered (parameters) in the businessrules
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.OUTPUT">
+ <summary>
+ data sent back by the server to the client
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.TRANSACTIONS">
+ <summary>
+ TODO
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.BUSINESSUNITS">
+ <summary>
+ multiple businessunits sent to the server
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.PREREQLISTVIEWPARAMS">
+ <summary>
+ List View Required Fields for CartItems
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.USER">
+ <summary>
+ Type of DataSet used for uploading in user upload automation
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.PROFILE">
+ <summary>
+ Type of DataSet used for uploading in user upload automation
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.ORG">
+ <summary>
+ Type of DataSet used for uploading in user upload automation
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.RECEIVERIDS">
+ <summary>
+ Receiver IDs sent back from the ERP
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.LOCATIONS">
+ <summary>
+ Locations sent back from the ERP
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.ALTERNATEUOMS">
+ <summary>
+ Alternate UOMS
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.ORDER_DETAILS">
+ <summary>
+ Cart count Atpar Order Details
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.PODETAILS">
+ <summary>
+ Deliver PO details
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.NONPODETAILS">
+ <summary>
+ Deliver NONPO details
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.ORDER_PREFIX">
+ <summary>
+ PICK PLAN ORDER PREFIX
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.LOCATION_BUSINESSUNIT">
+ <summary>
+ PICK PLAN LOCATION BUSINESSUNIT
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.EXCLUDE_ORDERS">
+ <summary>
+ PICK PLAN EXCLUDE ORDERS
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.ALTERNATELOCATIONS">
+ <summary>
+ ALTERNATE LOCATIONS
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.INVENTORY_BUSINESSUNITS">
+ <summary>
+ INVENTORY BUSINESS UNITS
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.SUBSTITUTEITEMS">
+ <summary>
+ Substitute Items
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.NEWDETAILS">
+ <summary>
+ New Details
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.CONFIGDETAILS">
+ <summary>
+ CONFIGDETAILS
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.RECALLITEMS">
+ <summary>
+ RECALLITEMS
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.STORAGE_LOCATION">
+ <summary>
+ PICK PLAN STORAGE LOCATION
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.LOTSERIAL_INFO">
+ <summary>
+ POU Inventory Location Lot/Serial Info
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.AUTOPUTAWAY_DETAILS">
+ <summary>
+ Auto putaway details
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.AUTOPUTAWAY_HEADER">
+ <summary>
+ Auto putaway header
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.NOTES_DETAILS">
+ <summary>
+ Notes Details
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.CASE_HEADER">
+ <summary>
+ Case Header
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DataSet_Type.CASE_DETAILS">
+ <summary>
+ Case Details
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:AtPar_BusinessRules.AtparEnums.Enum_UserData">
+ <summary>
+ Sheet Names or DataSet Names in User DataSet
+ </summary>
+</member>
+<member name="T:AtPar_BusinessRules.AtparEnums.TOGGLE">
+ <summary>
+ Enum that defines the Status Code
+ </summary>
+</member>
+<member name="T:AtPar_BusinessRules.AtparEnums.TableCols">
+ <summary>
+ Enum that defines the columns of a Header/Detail enum
+ </summary>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.TableCols.FRIENDLY_NAME">
+ <summary>
+ Friendly string representation of the table's column, used by the programmer (will match enum name)
+ </summary>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.TableCols.XML_TAG_ID">
+ <summary>
+ the string representation of the field as sent over SOAP (will match enum value)
+ </summary>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.TableCols.DATA_TYPE">
+ <summary>
+ System.Data.DataColumn.DataType (should match the database)
+ </summary>
+ <remarks>Can be one of:
+ Boolean 
+ Byte 
+ Char 
+ DateTime 
+ Decimal 
+ Double 
+ Int16 
+ Int32 
+ Int64 
+ SByte 
+ Single 
+ String 
+ TimeSpan 
+ UInt16 
+ UInt32 
+ UInt64
+</remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.TableCols.UNIQUE">
+ <summary>
+ "Y" if Unique, "N" if not
+ </summary>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.TableCols.ALLOW_NULL">
+ <summary>
+ "Y" if nulls allowed, "N" if not
+ </summary>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.TableCols.PRIMARY_KEY">
+ <summary>
+ "Y" if this field is a part of the primary key, "N" if not
+ </summary>
+</member>
+<member name="T:AtPar_BusinessRules.AtparEnums.LOGPROPERTIES">
+ <summary>
+ Enum that defines properties recognised by log4net
+ </summary>
+</member>
+<member name="T:AtPar_BusinessRules.AtparEnums.DATATYPES">
+ <summary>
+ Data types used in the data_types attribute
+ </summary>
+ <remarks>The xml parsing engine (in atpar) will perform some logic based on each entry in here</remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DATATYPES.NUMBER">
+ <summary>
+ Fields marked as Number will be substituted as is in the SQL
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DATATYPES.STRING">
+ <summary>
+ Fields marked as String will be pre/suffixed with a ' (i.e. valid string variable in all databases)
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DATATYPES.DATETIME">
+ <summary>
+ Fields marked as Datetime will be converted per REMOTE_DB_TYPE to a format acceptable by the selected db
+ </summary>
+ <remarks>SQL Server : CONVERT(DateTime, 'field value', 120); Oracle :TO_DATE('field value', 'ATPAR_ORA_DATETIME_24H')</remarks>
+</member>
+<member name="F:AtPar_BusinessRules.AtparEnums.DATATYPES.CURR_DB_DATETIME">
+ <summary>
+ Fields marked as CURR_DB_DATETIME will be converted per REMOTE_DB_TYPE to a format acceptable by the selected db
+ </summary>
+ <remarks>SQL Server : GETDATE(); Oracle :SYSDATE</remarks>
+</member>
+<member name="T:AtPar_BusinessRules.AtparEnums.YesNo_Enum">
+ <summary>
+ Enum that defines Y and N, use YesNo_Enum.Y.ToString to compare against "Y"
+ </summary>
+</member>
+<member name="T:AtPar_BusinessRules.AtparEnums.Toggle_Enum">
+ <summary>
+ Enum that defines Y ,N and I, use YesNo_Enum.Y.ToString to compare against "Y"
+ </summary>
+</member>
+<member name="T:AtPar_BusinessRules.AtparEnums.AppTransactionStatus">
+ <summary>
+ Enum that defines AtPar Application Transaction Status
+ </summary>
+</member>
+<member name="T:AtPar_BusinessRules.AtparEnums.TokenEntry_Enum">
+ <summary>
+ Fields defined in DeviceTokenEntry
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:AtPar_BusinessRules.AtparEnums.ToggleFields">
+ <summary>
+ To keep all the toggle fields together
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:AtPar_BusinessRules.AtparEnums.Send_Cart_Header_Enum">
+ <summary>
+ Header Fields sent in the InputParameters variable of SendCartDetails
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:AtPar_BusinessRules.AtparEnums.Send_Cart_BusinessRules_Enum">
+ <summary>
+ intermediate pre-requisite data required to process SendCartDetails 
+ in the BusinessRules and Data Layer
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:AtPar_BusinessRules.AtparEnums.Send_Cart_Details_Enum">
+ <summary>
+ Details Fields sent in the InputParameters variable of SendCartDetails
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:AtPar_BusinessRules.AtparEnums.Send_Cart_Output_Enum">
+ <summary>
+ Output data from SendDetails
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:AtPar_BusinessRules.AtparEnums.Send_StockIssue_Header_Enum">
+ <summary>
+ Header Fields sent in the InputParameters variable of SendStockIssue
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:AtPar_BusinessRules.AtparEnums.Send_StockIssue_Details_Enum">
+ <summary>
+ Details Fields sent in the InputParameters variable of SendStockIssue
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:AtPar_BusinessRules.AtparEnums.Send_StockIssue_Output_Enum">
+ <summary>
+ Output data from SendStockIssue
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:AtPar_BusinessRules.AtparEnums.Send_StockIssue_BusinessRules_Enum">
+ <summary>
+ intermediate pre-requisite data required to process SendCartDetails 
+ in the BusinessRules and Data Layer
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:AtPar_BusinessRules.AtPar_Application_Base">
+ <summary>
+ A base class that only AtPar_DeviceTransactions_Base and AtPar_WebTransactions_Base classes should inherit from and implement.
+ This class provides a common set of functions and objects that applications can use
+ Application DevTrans/WebTrans classes should never inherit this class directly
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Application_Base.printconfcol(Microsoft.VisualBasic.Collection@)">
+ <summary>  
+ don't use this function for any real work, just as a possible debugging tool  
+ </summary>  
+ <returns>a string representation of the config file</returns>  
+ <remarks></remarks>  
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Application_Base.PrintDatasetStatistics(System.Data.DataSet,System.String[],System.String)">
+ <summary>
+ Prints Dataset Statistics. Like Total Number of Tables, Number of Rows in each Table and Data.
+ </summary>
+ <param name="pDataset"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.Atpar_Application_Parameters.ApplicationId">
+ Gets or Sets the ApplicationId
+</member>
+<member name="P:AtPar_BusinessRules.Atpar_Application_Parameters.ParameterId">
+ Gets or Sets the ParameterId
+</member>
+<member name="P:AtPar_BusinessRules.Atpar_Application_Parameters.ParamValue">
+ Gets or Sets the ParamValue
+</member>
+<member name="P:AtPar_BusinessRules.Atpar_Application_Parameters.UserId">
+ Gets or Sets the UserId
+</member>
+<member name="P:AtPar_BusinessRules.Atpar_Application_Parameters.UserParamValue">
+ Gets or Sets the UserParamValue
+</member>
+<member name="P:AtPar_BusinessRules.Atpar_Application_Parameters.OrgGroupId">
+ Gets or Sets the OrgGroupId
+</member>
+<member name="P:AtPar_BusinessRules.Atpar_Application_Parameters.ProfileId">
+ Gets or Sets the ProfileId
+</member>
+<member name="P:AtPar_BusinessRules.Atpar_Application_Parameters.ProfileApplicationId">
+ Gets or Sets the ProfileAppId
+</member>
+<member name="M:AtPar_BusinessRules.Atpar_Application_Parameters.GetUserParamValues(System.Collections.SortedList@)">
+ <summary>
+ Get the User parameters 
+ </summary>
+ <param name="pParameters"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.Atpar_Application_Parameters.GetProfileParamValues(System.Collections.SortedList@)">
+ <summary>
+ Get one or more Profile Parameter Values
+ </summary>
+ <param name="pParameters">SortedList of Parameters (Col 1 - parameters that need to be retrieved, Col2 - Values returned by DB</param>
+ <returns>ATPAR_OK on success else Error</returns>
+ <example>
+ To get a single parameter: 
+ <pre>
+ Dim param as new SortedList
+ param("PARAM_NAME") = String.Empty
+ 
+ _StatusCode = GetProfileParamValues(_profileID, _appid, param)
+ </pre>
+ To Get multiple parameters:
+ <pre>
+ Dim param as new SortedList
+ param("PARAM_NAME1") = String.Empty
+ param("PARAM_NAME2") = String.Empty
+ param("PARAM_NAME3") = String.Empty
+ 
+ _StatusCode = GetProfileParamValues(_profileID, _appid, param)
+ </pre>
+ </example>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Application_Transactions.GetTransactionStatus(System.Int16,System.Collections.SortedList@,System.String,System.DateTime)">
+ <summary>
+ Get the status for a single or multiple transactions
+ </summary>
+ <param name="pAppId">Application ID</param>
+ <param name="pTransactions">SortedList of Transactions 
+ (Col 1 - transactions that need to be retrieved, 
+ Col2 - status of those transactions)</param>
+ <returns>AtPar Status Code</returns>
+ <example>
+ To get a single transaction status: 
+ <pre>
+ Dim _transid as new SortedList
+ _transid("transid") = 0 ' transaction status is a short int
+ 
+ _StatusCode = AtPar_Application_Transactions.GetTransactionStatus(_appid, _transid)
+ </pre>
+ To Get multiple parameters:
+ <pre>
+ Dim _transid as new SortedList
+ _transid("TRANSID1") = 0 ' transaction status is a short int
+ _transid("TRANSID2") = 0
+ _transid("TRANSID3") = 0
+ 
+ _StatusCode = AtPar_Application_Transactions.GetTransactionStatus(_appid, _transid)
+ </pre>
+ </example>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Application_Transactions.InsertDetailTransaction(AtPar_BusinessRules.AtPar_Detail_Transaction_Entity,System.Data.SqlClient.SqlTransaction)">
+ <summary>
+ To Insert a Transaction
+ </summary>
+ <param name="pDetailTransaction"></param>
+ <param name="pTrans"></param>
+ <returns>ATPAR_OK</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Application_Transactions.InsertTransaction(System.Collections.ArrayList,System.Int64@)">
+ <summary>
+ </summary>
+ <example>
+ Usage :
+ <code>
+ Dim nRet as Long = -1
+ try
+     Dim fmaps as ArrayList
+     fmaps.Add(CartCount_AppTransactions_FieldMaps.OptimalQty, "somevalue")
+     fmaps.Add(CartCount_AppTransactions_FieldMaps.CountQty, "somevalue")
+     nRet = InsertTransaction(fmaps,_transID)
+     if nRet != ATPAR_OK
+       exit
+     end if
+ catch ex as exception
+    log.IsWarnEnabled(ex.message)
+ end try
+ </code>
+ </example>
+ <param name="FieldMaps"></param>
+ <param name="TransactionID"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Application_Transactions.IsProductInstalled(System.Int16,System.Boolean@,System.Data.SqlClient.SqlTransaction,System.String[])">
+ <summary>
+ Used to check the Product installation
+ </summary>
+ <param name="pAppId">Application ID</param>
+ <param name="pResult">Result</param>
+ <param name="pTrans">Transaction</param>
+ <param name="pDeviceTokenEntry">DeviceTokenEntry</param>
+ <returns>Return Error/Success Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Application_Transactions.GetDetailTransStatus(AtPar_BusinessRules.AtPar_Detail_Transaction_Entity@,System.Data.SqlClient.SqlTransaction)">
+ <summary>
+ To get the Status from Atpar Detail Transaction table
+ </summary>
+ <param name="pTransactions"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="T:AtPar_BusinessRules.AtPar_BillingProcess">
+ -----------------------------------------------------------------------------------------------------
+ <summary>
+ Namespace AtPar_BillingProcess
+ </summary>
+ <remarks>
+ This component is used to process data according to HL7 Meditech specification for billing
+ to create a batch file to be sent to Billing system of an hospital
+ </remarks>
+ -----------------------------------------------------------------------------------------------------
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_BillingProcess.ProcessBillingData(System.Data.DataSet,System.String,System.String)">
+ <summary>
+ ProcessBillingData
+ </summary>
+ <param name="pBillingDS"></param>
+ <param name="pSystemID"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_BillingProcess.LoadBillingMessageRulesFile(System.Xml.XmlDocument@)">
+ <summary>
+ load the xml file 
+ </summary>
+ <param name="_pxmlDoc"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_BillingProcess.BuildSegmantFormatForBilling(System.Text.StringBuilder@,System.Linq.IOrderedEnumerable{System.Xml.XmlNode},System.Data.DataRow[],System.Data.DataRow,System.String,System.Int32)">
+ <summary>
+ BuildSegmantFormatForBilling will call for MSH,EVN,PID,FT1,ZFT
+ </summary>
+ <param name="pSbformat"></param>
+ <param name="_xmlNodelist"></param>
+ <param name="pHeaderRows"></param>
+ <param name="pDetailsRow"></param>
+ <param name="pSystemID"></param>
+ <param name="pCounter"></param>
+ <returns>Error/Success Status Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_BillingProcess.BuildBTS">
+ <summary>
+ To Build the Batch Trailer , Called in ProcessBillingData Function
+ </summary>
+ <returns>BillingString Batch Trailer</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_BillingProcess.BuildFTS">
+ <summary>
+ To Build the Financial Trailer, Called in ProcessBillingData Function
+ </summary>
+ <returns>BillingString Financial Trailer</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_BillingProcess.LoadNetItemUsageRulesFile(System.Xml.XmlDocument@)">
+ <summary>
+ load the xml file 
+ </summary>
+ <param name="_pxmlDoc"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_BillingProcess.PrepareNetItemUsageInfo(System.String,System.Data.DataSet,System.String[],System.Data.DataSet)">
+ <summary>
+ PrepareNetItemUsageInfo
+ </summary>
+ <param name="pSendNetItemUsgInfo"></param>
+ <param name="pDSInputParams"></param>
+ <param name="pSystemID"></param>
+ <param name="pDsLookup"></param>
+ <returns>Error/Success Status Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_BillingProcess.FileStreamWriterNetItem(System.String,System.Int32,System.Text.StringBuilder,System.String,System.Int32,System.Int64,System.String)">
+ <summary>
+ FileStreamWriter
+ </summary>
+ <param name="pFilePrimaryName"></param>
+ <param name="pFileSequenceNo"></param>
+ <param name="_sbSegment"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_BillingProcess.BuildSegmantFormat(System.Data.DataRow,System.Text.StringBuilder@,System.String,System.Linq.IOrderedEnumerable{System.Xml.XmlNode},System.Linq.IOrderedEnumerable{System.Xml.XmlNode},System.Int32,System.String,System.Double,System.String)">
+ <summary>
+ BuildSegmantFormat
+ </summary>
+ <param name="pDRInputParams"></param>
+ <param name="pSbformat"></param>
+ <param name="pSystemID"></param>
+ <param name="_xmlNodeHeaderList"></param>
+ <param name="_xmlNodelist"></param>
+ <param name="pCounter"></param>
+ <param name="pTransactionType"></param>
+ <param name="pQty"></param>
+ <returns>Error/Success Status Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_BillingProcess.SendNetItemUsageHL7PendingInfo(System.Data.DataSet,System.String[])">
+ <summary>
+ SendNetItemUsageHL7PendingInfo
+ </summary>
+ <param name="pSendNetItemUsgPendingInfo"></param>
+ <param name="pDeviceTokenEntry"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_BillingProcess.RecordHL7Message(System.Data.DataRow,System.String,System.String[],System.Int32,System.String,System.String)">
+ <summary>
+  RecordHL7Message
+ </summary>
+ <param name="_drItemDtls"></param>
+ <param name="pHL7Info"></param>
+ <param name="pDeviceTokenEntry"></param>
+ <param name="pSentstatus"></param>
+ <param name="pTransactionType"></param>
+ <param name="pErrorMessage"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_BillingProcess.HL7MessageUpdate(System.Int64,System.Int32,System.String[])">
+ <summary>
+ HL7MessageUpdate
+ </summary>
+ <param name="pUniqueId"></param>
+ <param name="pStatusUpdate"></param>
+ <param name="pDeviceTokenEntry"></param>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Billing_SocketManagement.BillingMessage(System.String,System.String@,System.Net.Sockets.Socket)">
+ <summary>
+ BillingMessage
+ </summary>
+ <param name="row"></param>
+ <param name="strBilling"></param>
+ <param name="_dtItems"></param>
+ <param name="strBillingUploadPath"></param>
+ <param name="transactionId"></param>
+ <param name="irFT1"></param>
+ <param name="m_mainSocket"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Billing_SocketManagement.SocketAddress_Connection(System.Net.Sockets.Socket,System.String)">
+ <summary>
+ SocketAddress_Connection
+ </summary>
+ <param name="m_mainSocket"></param>
+ <param name="pSystemID"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Billing_SocketManagement.SendData(System.IAsyncResult)">
+ <summary>
+ SendData
+ </summary>
+ <param name="iar"></param>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Billing_SocketManagement.Connected(System.IAsyncResult)">
+ <summary>
+ Connected
+ </summary>
+ <param name="iar"></param>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Billing_SocketManagement.ReceiveData(System.IAsyncResult)">
+ <summary>
+ ReceiveData
+ </summary>
+ <param name="iar"></param>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Billing_SocketManagement.ValidateACK(System.String)">
+ <summary>
+ ValidateACK
+ </summary>
+ <param name="pstrACK"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Billing_SocketManagement.SendToClinicalSystem(System.Text.StringBuilder,System.String,System.String[],System.Int32@,System.String@,System.Net.Sockets.Socket)">
+ <summary>
+ SendToClinicalSystem
+ </summary>
+ <param name="pHL7Info"></param>
+ <param name="m_mainSocket"></param>
+ <param name="pDeviceTokenEntry"></param>
+ <param name="ptrasmissionStatus"></param>
+ <param name="pstrErrormsg"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Detail_Transaction_Entity.Key1">
+ <summary>
+ Gets or Sets Key1
+ </summary>
+ <value></value>
+ <returns>m_Key_1</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Detail_Transaction_Entity.Key2">
+ <summary>
+ Gets or Sets Key2
+ </summary>
+ <value></value>
+ <returns>m_Key_2</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Detail_Transaction_Entity.Key3">
+ <summary>
+ Gets or Sets Key3
+ </summary>
+ <value></value>
+ <returns>m_Key_3</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Detail_Transaction_Entity.Key4">
+ <summary>
+ Gets or Sets Key4
+ </summary>
+ <value></value>
+ <returns>m_Key_4</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Detail_Transaction_Entity.Key5">
+ <summary>
+ Gets or Sets Key5
+ </summary>
+ <value></value>
+ <returns>m_Key_5</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Detail_Transaction_Entity.Key6">
+ <summary>
+ Gets or Sets Key6
+ </summary>
+ <value></value>
+ <returns>m_Key_6</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.BusinessUnit">
+ <summary>
+ Gets or Sets BusinessUnit
+ </summary>
+ <value></value>
+ <returns>m_Business_Unit</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.ApplicationId">
+ <summary>
+ Gets or Sets ApplicationId
+ </summary>
+ <value></value>
+ <returns>m_App_Id</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.UserId">
+ <summary>
+ Gets or Sets UserId
+ </summary>
+ <value></value>
+ <returns>m_User_Id</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.UpdateDate">
+ <summary>
+ Gets or Sets UpdateDate
+ </summary>
+ <value></value>
+ <returns>m_Update_Date</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.Key1">
+ <summary>
+ Gets or Sets Key1
+ </summary>
+ <value></value>
+ <returns>m_Key_1</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.Key2">
+ <summary>
+ Gets or Sets Key2
+ </summary>
+ <value></value>
+ <returns>m_Key_2</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.Key3">
+ <summary>
+ Gets or Sets Key3
+ </summary>
+ <value></value>
+ <returns>m_Key_3</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.Key4">
+ <summary>
+ Gets or Sets Key4
+ </summary>
+ <value></value>
+ <returns>m_Key_4</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.Key5">
+ <summary>
+ Gets or Sets Key5
+ </summary>
+ <value></value>
+ <returns>m_Key_5</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.Key6">
+ <summary>
+ Gets or Sets Key6
+ </summary>
+ <value></value>
+ <returns>m_Key_6</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.ReportData1">
+ <summary>
+ Gets or Sets ReportData1
+ </summary>
+ <value></value>
+ <returns>m_Report_Data_1</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.ReportData2">
+ <summary>
+ Gets or Sets ReportData2
+ </summary>
+ <value></value>
+ <returns>m_Report_Data_2</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.ReportData3">
+ <summary>
+ Gets or Sets ReportData3
+ </summary>
+ <value></value>
+ <returns>m_Report_Data_3</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.ReportData4">
+ <summary>
+ Gets or Sets ReportData4
+ </summary>
+ <value></value>
+ <returns>m_Report_Data_4</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.ReportData5">
+ <summary>
+ Gets or Sets ReportData5
+ </summary>
+ <value></value>
+ <returns>m_Report_Data_5</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.ReportData6">
+ <summary>
+ Gets or Sets ReportData6
+ </summary>
+ <value></value>
+ <returns>m_Report_Data_6</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.ReportData7">
+ <summary>
+ Gets or Sets ReportData7
+ </summary>
+ <value></value>
+ <returns>m_Report_Data_7</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.ReportData8">
+ <summary>
+ Gets or Sets ReportData8
+ </summary>
+ <value></value>
+ <returns>m_Report_Data_8</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.ReportData9">
+ <summary>
+ Gets or Sets ReportData9
+ </summary>
+ <value></value>
+ <returns>m_Report_Data_9</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.ReportData10">
+ <summary>
+ Gets or Sets ReportData10
+ </summary>
+ <value></value>
+ <returns>m_Report_Data_10</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.ReportData11">
+ <summary>
+ Gets or Sets ReportData11
+ </summary>
+ <value></value>
+ <returns>m_Report_Data_11</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.ReportData12">
+ <summary>
+ Gets or Sets ReportData12
+ </summary>
+ <value></value>
+ <returns>m_Report_Data_12</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.ReportData13">
+ <summary>
+ Gets or Sets ReportData13
+ </summary>
+ <value></value>
+ <returns>m_Report_Data_13</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.ReportData14">
+ <summary>
+ Gets or Sets ReportData14
+ </summary>
+ <value></value>
+ <returns>m_Report_Data_14</returns>
+ <remarks></remarks>
+</member>
+<member name="P:AtPar_BusinessRules.AtPar_Deviation_Entity.ReportData15">
+ <summary>
+ Gets or Sets ReportData15
+ </summary>
+ <value></value>
+ <returns>m_Report_Data_15</returns>
+ <remarks></remarks>
+</member>
+<member name="T:AtPar_BusinessRules.IGetHeader">
+ <summary>
+ An Interface that prescribes structure for all the GetHeader related tasks in any application
+ </summary>
+ <remarks>This interface should ONLY be DIRECTLY implemented by AtPar_DeviceTransactions_Base.
+ Applications should only override functions from the base class to provide implementations, they
+ should never directly implement this interface </remarks>
+</member>
+<member name="T:AtPar_BusinessRules.IGetDetails">
+ <summary>
+ An Interface that prescribes structure for all the GetDetails related tasks in any application.
+ </summary>
+ <remarks>This interface should ONLY be DIRECTLY implemented by AtPar_DeviceTransactions_Base.
+ Applications should only override functions from the base class to provide implementations, they
+ should never directly implement this interface </remarks>
+</member>
+<member name="T:AtPar_BusinessRules.ISendDetails">
+ <summary>
+ An Interface that prescribes structure for all the SendDetails related tasks in any application.
+ </summary>
+ <remarks>This interface should ONLY be DIRECTLY implemented by AtPar_DeviceTransactions_Base.
+ Applications should only override functions from the base class to provide implementations, they
+ should never directly implement this interface </remarks>
+</member>
+<member name="T:AtPar_BusinessRules.ISearchHeader">
+ <summary>
+ An Interface that prescribes structure for all the SearchPOs related tasks in any application
+ </summary>
+ <remarks>This interface should ONLY be DIRECTLY implemented by AtPar_DeviceTransactions_Base.
+ Applications should only override functions from the base class to provide implementations, they
+ should never directly implement this interface </remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.clientErrLogSynch(System.String,System.String[])">
+ <summary>
+ To insert Client Error Log into DB
+ </summary>
+ <param name="pStrXML">XML Parameter</param>
+ <returns>ATPAR_OK on success else ERROR CODE on error</returns> 
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.GetUserDefaults(System.Data.DataSet,System.String@,System.String[])">
+ <summary>
+ Called from client to fetch the parameter, business units, carrier, shipToId's info 
+ </summary>
+ <param name="InputParameters">Input dataset</param>
+ <param name="OutputParameters">output string containing the parameter, business units, carrier, shipToId's info</param>
+ <param name="DeviceTokenEntry">DeviceToken Info</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.GetProfileAppAcl(System.String,System.Data.DataSet@)">
+ <summary>
+ Gets the AppIds assigned to the profile
+ </summary>
+ <param name="pProfileId">profile ID</param>
+ <param name="pDsApps">Dataset containing the App Id's</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.BuildExecutingCalls(System.String,Microsoft.VisualBasic.Collection@)">
+ <summary>
+ Gets the products assigned to the profile
+ </summary>
+ <param name="pProfileId">profile ID</param>
+ <param name="pAclPermissions">Collection containing the calls info</param>
+ <returns>Collection containing the calls info</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.ExecutePopulate(System.Data.DataSet,System.String[],Microsoft.VisualBasic.Collection,System.String@)">
+ <summary>
+ Executes the Do_GetParameters, functions based on product access
+ </summary>
+ <param name="pInputParams">Input dataset</param>
+ <param name="pDeviceTokenEntry">DeviceToken Info</param>
+ <param name="pAclPermission">Collection containing the calls info</param>
+ <param name="pOutPutParams">output paramters</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.Do_GetParameters(System.Data.DataSet,System.String[],System.Data.DataSet@)">
+ <summary>
+ Builds the dataset conatining the parameters details
+ </summary>
+ <param name="pInputParams">Input dataset</param>
+ <param name="pDeviceTokenEntry">DeviceToken Info</param>
+ <param name="pOutPutParams">output dataset</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.Do_GetOrgParameters(System.String,System.String,System.Data.DataTable@,System.String)">
+ <summary>
+ Get the OrgParameters
+ </summary>
+ <param name="pOrgGroupId">Org ID</param>
+ <param name="pLastSyncDate">Last Sync Date</param>
+ <param name="pOutPutParams">OutPut Parameters as dataset</param>
+ <returns>Dataset containing Org Parameters</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.Do_GetProfileParameters(System.String,System.String,System.Data.DataTable@,System.String)">
+ <summary>
+ Gets the Profile ProfileParameters
+ </summary>
+ <param name="pProfileId">ProfileID</param>
+ <param name="pProfLastSyncDate">Last Sync Date</param>
+ <param name="pOutPutParams">OutPut Parameters as Dataset</param>
+ <returns>Dataset containing profile Parameters</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.Do_GetUserAppParameters(System.String,System.String,System.Data.DataTable@,System.String)">
+ <summary>
+ Gets the User parameters
+ </summary>
+ <param name="pStrUID">Logged in userID</param>
+ <param name="pLastSyncDate">Lastsynch date</param>
+ <param name="pDsOutputParams">OutPut Parameters as dataset</param>
+ <returns>Dataset containing User Parameters</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.Do_GetListView(System.String,System.String,System.Data.DataSet@,System.String)">
+ <summary>
+ To get List View for the Profile
+ </summary>
+ <param name="pProfileId">Profile ID</param>
+ <param name="pLastSynchDate">Last Synchronisation Date</param>
+ <param name="pOutPutParams">List View as Dataset</param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.Do_GetCarriers(System.String,System.Data.DataSet@)">
+ <summary>
+ To get Carriers info 
+ </summary>
+ <param name="pLastSyncDate">Last Synchronisation Date</param>
+ <param name="pOutPutParams">Carriers Data as Dataset</param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.Do_GetLocationGroups(System.String,System.String,System.String,System.Data.DataSet@)">
+ <summary>
+ To get Location groups info 
+ </summary>
+ <param name="pLastSyncDate">Last Synchronisation Date</param>
+ <param name="pOutPutParams">Location Groups Data as Dataset</param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns> 
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.Do_GetGroupUsersInfo(System.String,System.String[],System.Data.DataSet@)">
+ <summary>
+ Get the User Grouped in the logged in user group
+ </summary>
+ <param name="pLastSyncDate">Last Sync Date</param>
+ <param name="pDeviceTokenEntry">DeviceToken Info</param>
+ <param name="pOutPutParams">Dataset containing the User group info</param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.Do_GetInvBUnits(System.String,System.String,System.String,System.Data.DataSet@)">
+ <summary>
+ To get Inventory Business Units
+ </summary>
+ <param name="pLastSyncDate">Last Synchronisation Date</param>
+ <param name="pUId">User ID</param>
+ <param name="pProfileID">Profile ID</param>
+ <param name="pOutPutParams">Inventory Business Units as Dataset</param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.Do_GetBUnitsforParcel(System.String,System.String,System.Data.DataSet@)">
+ <summary>
+ To get Business Units for ParcelCOunt
+ </summary>
+ <param name="pOrgGrpID">OrgGrpID</param>
+  <param name="pLastSyncDate">Last Synchronisation Date</param>
+ <param name="pOutPutParams">Inventory Business Units as Dataset</param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.Do_GetSymbologyTypes(System.String,System.String,System.Data.DataSet@)">
+ <summary>
+ Checks, whether Symbology types are need to synch or not, if yes, gets the symbology types data and sends
+ </summary>
+ <param name="plastSyncDate">Last sync date</param>
+ <param name="pProfileId">profile ID</param>
+ <param name="pOutPutParams">Output dataset containing the Symbology Types data</param>
+ <returns>ATPAR_OK on Success, else ERROR_CODE</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.Do_GetNotes(System.String,System.String,System.String,System.Data.DataSet@)">
+ <summary>
+ Gets the notes data
+ </summary>
+ <param name="pStrUserName">Logged in user ID</param>
+ <param name="plastSyncDate">Last sync date</param>
+ <param name="pProfileId">profile ID</param>
+ <param name="pOutPutParams">Output dataset containing the notes data</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.Do_GetShipToIDs(System.String,System.String,System.Data.DataSet@)">
+ <summary>
+ Gets the Ship To Id details
+ </summary>
+ <param name="pUname">Logged in User ID</param>
+ <param name="pLastSyncDate">Last Synchronisation Date</param>
+ <param name="pOutPutParams">Output dataset containing the ship to ids</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.Do_GetDistTypes(System.String,System.String,System.Data.DataSet@)">
+ <summary>
+ To get Distribution Types
+ </summary>
+ <param name="pLastSynchDate">Last Synchronisation Date</param>
+ <param name="pUId">User ID</param>
+ <param name="pOutPutParams">Distribution Types as Dataset</param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.Do_GetIUTInvBUnits(System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To Get the Business Units allocated for Receive IUT or PutAway IUT
+ </summary>
+ <param name="pLastSyncDate">Last Sync Date</param>
+ <param name="pOutPutParams">OutPut dataset containing the IUT Bunits Info </param>
+ <param name="pDeviceTokenEntry">DeviceToken Info</param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.Do_GetDeparmentsSynch(System.String,System.Data.DataSet@)">
+ <summary>
+ Generates a list of TrackIT departments
+ </summary>
+ <param name="pLastSyncDate">Last Synched Date</param>
+ <param name="pOutPutParams">Dataset containing list of departments</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.Do_GetItemTypesSynch(System.Data.DataSet@)">
+ <summary>
+ To Get the TrackIT Item Types details
+ </summary>
+ <param name="pOutPutParams">OutPut dataset containing the TrackIT Item Types Info </param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.Do_GetUISetupSynch(System.String,System.String[],System.Data.DataSet@)">
+ <summary>
+ To Get all the UI Setup data
+ </summary>
+ <param name="pLastSyncDate">Last Synched Date</param>
+ <param name="pDeviceTokenEntry">Device Token Entry</param>
+ <param name="pOutPutParams">OutPut dataset containing the UI Setup Info </param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.GenerateParametersStruc(System.Data.DataSet)">
+ <summary>
+ Generates the Output string for the parameters
+ </summary>
+ <param name="pDsParams">Dataset containing the parameter info</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.GetBadgeDetails(System.String,System.String@,System.String[])">
+ <summary>
+ Gets the Badge Details corresponding to Recipient Name
+ </summary>
+ <param name="pRecpName">Recipient Name</param>
+ <param name="pxmlStr">XML Parameter</param>
+ <returns>ATPAR_OK on success, else ERROR CODE on error</returns>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.SaveNotesData(System.String,System.String[])">
+ <summary>
+ Saves the Notes data into DB
+ </summary>
+ <param name="pxmlStr">XML Parameter</param>
+ <returns>ATPAR_OK on success, else ERROR CODE on error</returns>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.SyncSystems(System.String,System.Data.DataSet@)">
+ <summary>
+ Syncs the systems installed on server to device
+ </summary>
+ <param name="pDeviceID">Device ID of the HHT </param>
+ <param name="pDSSystems"></param>
+ <returns>ATPAR_OK on success, else ERROR CODE on error</returns>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.CreateSystemDsForSync(System.Data.DataSet@,System.String,System.String)">
+ <summary>
+ Creates the datatable containing the systems which match the requirement like if security parameter is not checked, if checked and if registered
+ </summary>
+ <param name="pDSSystems"></param>
+ <param name="pSystemID"></param>
+ <param name="pSystemName"></param>
+ <returns>ATPAR_OK on success, else ERROR CODE on error</returns>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.Add_Edit_ADTPatientData(System.Data.DataSet,System.String,System.String)">
+ <summary>
+ Insert and Update patient records in to the data base
+ </summary>
+ <param name="pAdtDS"></param>
+ <returns>ATPAR_OK on success else ERROR CODE on error</returns> 
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.Do_GetWksAllocDepartments(System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To sync workstation departments to HHT
+ </summary>
+ <param name="pLastSyncDate"></param>
+ <param name="pOutPutParams"></param>
+ <param name="pDeviceTokenEntry"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.GetLabelsToPrint(System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get Location groups info 
+ </summary>
+ <param name="pLastSyncDate">Last Synchronisation Date</param>
+ <param name="pOutPutParams">Location Groups Data as Dataset</param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns> 
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.AutoPutaway(System.Data.DataSet,System.Data.DataSet,System.Data.SqlClient.SqlTransaction@,System.String[])">
+ <summary>
+ Handles auto putaway process
+ </summary>
+ <param name="pDsPtwyItemsHdr"></param>
+ <param name="pDsPtwyItemsDtls"></param>
+ <param name="pDeviceTokenEntry"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.SaveInventoryTrackHistory(System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.String,System.String,System.Double,System.Double,System.String,System.Data.SqlClient.SqlTransaction)">
+ <summary>
+ To track the information of every transaction done in POU modules CycleCount, Issue, Returns , 
+ Putaway and Case cart module transactions
+ </summary>
+ <param name="pTransID"></param>
+ <param name="pEventType"></param>
+ <param name="pUniqueID"></param>
+ <param name="pstrBUnit"></param>
+ <param name="pstrCartID"></param>
+ <param name="pstrItemID"></param>
+ <param name="pstrCompartment"></param>
+ <param name="pstrLotID"></param>
+ <param name="pstrSerialID"></param>
+ <param name="pqty"></param>
+ <param name="pQOH"></param>
+ <param name="pEndDate"></param>
+ <param name="pTrans"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.GetDeptLevelInfo(System.String,System.String,System.String,System.Data.DataSet@,System.Data.SqlClient.SqlTransaction@,System.String,System.String)">
+ <summary>
+ To get department level information
+ </summary>
+ <param name="pLocations"></param>
+ <param name="pBUnit"></param>
+ <param name="pOrgGroupId"></param>
+ <param name="pDsDeptInfo"></param>
+ <param name="pTrans"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.GetPtwyOrderDtls(System.String,System.String,System.String,System.String,System.Data.DataSet@,System.Data.SqlClient.SqlTransaction@)">
+ <summary>
+ To get putaway order details
+ </summary>
+ <param name="pBUnit"></param>
+ <param name="pLocation"></param>
+ <param name="pVendorId"></param>
+ <param name="pOrderDt"></param>
+ <param name="pDsPtwyOrdDtls"></param>
+ <param name="pTrans"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.InsertDeviationHeaderDtls(System.Int32,System.String,System.String,System.String,System.String,System.Data.SqlClient.SqlTransaction@,System.DateTime)">
+ <summary>
+ To insert deviation header details
+ </summary>
+ <param name="pOrdNo"></param>
+ <param name="pUserId"></param>
+ <param name="pDeviceId"></param>
+ <param name="pLocation"></param>
+ <param name="pBUnit"></param>
+ <param name="pTrans"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.InsertDeviationDtls(System.Int32,System.String,System.String,System.Double,System.Double,System.Data.SqlClient.SqlTransaction@,System.DateTime)">
+ <summary>
+ To insert deviation details
+ </summary>
+ <param name="pOrdNo"></param>
+ <param name="pItemId"></param>
+ <param name="pStorageLoc"></param>
+ <param name="pQtyOrdered"></param>
+ <param name="pQtyReceived"></param>
+ <param name="pTrans"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.UpdateParMngtOrderDtls(System.Double,System.Int32,System.Int32,System.String,System.String,System.Data.SqlClient.SqlTransaction@)">
+ <summary>
+ To update par management order details
+ </summary>
+ <param name="pQtyReceived"></param>
+ <param name="pOrderStatus"></param>
+ <param name="pOrdNo"></param>
+ <param name="pLineNo"></param>
+ <param name="pItemId"></param>
+ <param name="pTrans"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.InsertUpdateCartInventory(System.Data.DataRow[],System.String,System.String,System.Int64,System.String,System.String,System.String,System.Data.SqlClient.SqlTransaction@)">
+ <summary>
+ To insert or update cart inventory
+ </summary>
+ <param name="pDrPtwyOrdDtls"></param>
+ <param name="pBUnit"></param>
+ <param name="pQtyRound"></param>
+ <param name="pTransId"></param>
+ <param name="pLocation"></param>
+ <param name="pItmId"></param>
+ <param name="pTrans"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.Do_GetAllocLocations(System.Data.DataSet@,System.Int32,System.String,System.String,System.String[])">
+ <summary>
+ To sync allocated locations to HHT
+ </summary>
+ <param name="pOutPutParams"></param>
+ <param name="pAppID">AppId</param>
+ <param name="Location">Location</param>
+ <param name="pLastSyncDate">Last Synchronisation Date</param>
+ <param name="pDeviceTokenEntry"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.Do_GetInvBUnitsForBintoBin(System.String,System.String,System.String,System.Data.DataSet@)">
+ <summary>
+ To get Inventory Business Units For Bin To Bin Product
+ </summary>
+ <param name="pLastSyncDate">Last Synchronisation Date</param>
+ <param name="pUId">User ID</param>
+ <param name="pProfileID">Profile ID</param>
+ <param name="pOutPutParams">Inventory Business Units as Dataset</param>
+ <returns>ATPAR_OK on Success, else ERROR CODE</returns>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.GetItemAttributesCnvFact(System.String,System.String,System.String,System.Double@,System.String@,System.String)">
+ <summary>
+ GetItemAttributesCnvFact
+ </summary>
+ <param name="pstrCartId"></param>
+ <param name="pstrBusinessUnit"></param>
+ <param name="pstrItemId"></param>
+ <param name="pDblConverFact"></param>
+ <param name="pstrLowerQOH"></param>
+ <param name="pstrActualQty"></param>
+ <param name="pDeviceTokenEntry"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_DevTrans.GetLocationType(System.String,System.String,System.String@)">
+ <summary>
+ To get location type
+ </summary>
+ <param name="pStrBunit"></param>
+ <param name="pStrCartID"></param>
+ <param name="pStrLocType"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ServiceTrans.CheckForRecallSchedule(System.String,System.String,System.String,System.String)">
+ <summary>
+ To check the Recall Schedules
+ </summary>
+ <param name="pServiceName"></param>
+ <param name="pJobType"></param>
+ <param name="pDay"></param>
+ <param name="pSystemID"></param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ServiceTrans.CheckForFtpSchedule(System.String,System.String,System.String,System.String)">
+ <summary>
+ To check the FTP Schedule to upload Item Master File
+ </summary>
+ <param name="pServiceName"></param>
+ <param name="pJobType"></param>
+ <param name="pDay"></param>
+ <param name="pSystemID"></param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ServiceTrans.ProcessRecallInfo(System.Data.DataSet,System.String,System.Boolean@,System.String@)">
+ <summary>
+ To check the Range of Lot / Serial Number(s)
+ </summary>
+ <param name="pDsRecallInfo"></param>
+ <param name="pSystemID"></param>
+ <param name="pIsValidRecallItems"></param>
+ <param name="pItems"></param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ServiceTrans.CheckRecallItemsInPOU(System.String,System.String)">
+ <summary>
+ To check the Existence of Recall Item(s) in the AtPar Inventory
+ </summary>
+ <param name="pRecallItems"></param>
+ <param name="pSystemID"></param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ServiceTrans.InsertRecallItemDtls(System.Collections.Hashtable,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Boolean,System.String)">
+ <summary>
+ To insert the Recall Items into MT_ATPAR_RECALL_INFO table
+ </summary>
+ <param name="pHtLotSerialDtls"></param>
+ <param name="pItemID"></param>
+ <param name="pLotNum"></param>
+ <param name="pSerialNum"></param>
+ <param name="pMfgName"></param>
+ <param name="pMfgCatNo"></param>
+ <param name="pAlertID"></param>
+ <param name="pAlertType"></param>
+ <param name="pAlertClass"></param>
+ <param name="pAlertCategory"></param>
+ <param name="pAlertTitle"></param>
+ <param name="pAlertSynopsis"></param>
+ <param name="pAlertURL"></param>
+ <param name="pAlertDate"></param>
+ <param name="pIsLot"></param>
+ <param name="pSystemID"></param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ServiceTrans.GetCartDtlsForRecallItems(System.String,System.String,System.Data.DataSet@,System.String,System.String,System.String)">
+ <summary>
+ To get the Cart Details
+ </summary>
+ <param name="pCartId"></param>
+ <param name="pBUnit"></param>
+ <param name="pCartDetailsDS"></param>
+ <param name="pStrOrgGrpID"></param>
+ <param name="pSystemID"></param>
+ <param name="pProfileID"></param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ServiceTrans.GetProductUtilization(System.String,System.String,System.Data.DataSet@)">
+ <summary>
+ To get the Product Utilization for the Recall Items
+ </summary>
+ <param name="pItemIDs"></param>
+ <param name="pSystemID"></param>
+ <param name="pDsPrdtUtilization"></param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ServiceTrans.GetRecallNotificationEmailID(System.String,System.String,System.Int32,System.String,System.String@)">
+ <summary>
+ To get the Recall Notification EmailID
+ </summary>
+ <param name="pOrgGroupID"></param>
+ <param name="pDept"></param>
+ <param name="pSystemID"></param>
+ <param name="pEmailAddr"></param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ServiceTrans.SendRecallEmail(System.String,System.String,System.Int32,System.Text.StringBuilder,System.String)">
+ <summary>
+ To send the Email Notification for the Recall Items
+ </summary>
+ <param name="pOrgGroupID"></param>
+ <param name="pDeptID"></param>
+ <param name="pEmailText"></param>
+ <param name="pSystemID"></param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ServiceTrans.CheckRecallItemsInRecv(System.String,System.String)">
+ <summary>
+ To check the Recall Item(s) in Receive Deviation Table(s)
+ </summary>
+ <param name="pRecallItems"></param>
+ <param name="pSystemID"></param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_ServiceTrans.BuildEmailText(System.Data.DataTable,System.String,System.String,System.String,System.Int32,System.Data.DataSet,System.Data.DataSet,System.String)">
+ <summary>
+ To Build and Send Email Notification for the Recall Items
+ </summary>
+ <param name="pdtRecallData"></param>
+ <param name="pstrRecallItems"></param>
+ <param name="pOrgGroupID"></param>
+ <param name="pDeptID"></param>
+ <param name="pAppID"></param>
+ <param name="pdsCartBinLocDtls"></param>
+ <param name="pdsProdUtilDtls"></param>
+ <param name="pSystemID"></param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.GetUserAppRoleACL(System.Data.DataSet@,System.String,System.String,System.Int64)">
+ <summary>
+ To Get Roles of the User for Each Application
+ </summary>
+ <param name="dsUser">DataSet Contains Application Users Details</param>
+ <param name="userId">UserId for the Application</param>
+ <param name="roleId">RoleId of the User</param>
+ <param name="appId">Application Id</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.GetOrgBUnits(System.String,System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get the BusinessUnit of the Organisation, called by mt_atpar_manage_org_group_bunits.aspx
+ </summary>
+ <param name="pUserID">User ID</param>
+ <param name="pOrggrpID">GroupId of Organisation</param>
+ <param name="pDsOrgBUnits">Dataset containing BusinessUnit of the Organisation </param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.AddUser(System.Collections.ArrayList,System.String[])">
+ <summary>
+ To Add Users, called by mt_atpar_manage_users.aspx
+ </summary>
+ <param name="arrlstUsers">ArrayList Containing Users</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.UpdateSecurityParams(System.Data.DataSet@,System.String[])">
+ <summary>
+ To Update SecurityParameters, called by mt_atpar_security_configuration.aspx
+ </summary>
+ <param name="pDSSecurityParams">Dataset Containing Security Params</param>
+ <returns>ATPAR_OK on Success else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.CheckUser(System.String,System.String[])">
+ <summary>
+ To Check User Information, called by mt_atpar_manage_users.aspx
+ </summary>
+ <param name="pUserID">UserId to check</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.GetUserDetails(System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get the User Details, called by mt_atpar_manage_users.aspx
+ </summary>
+ <param name="pUserID">UserId of the User</param>
+ <param name="pDSUserDetails">Dataset containing UserDetails</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.UpdateUser(System.Collections.ArrayList,System.String[])">
+ <summary>
+ Function for updating user information, called by mt_atpar_manage_users.aspx
+ </summary>
+ <param name="arrlstUsers">ArrayList contains Users Information</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.CheckProfileAppACL(System.String,System.String,System.Int32,System.Boolean@,System.String[])">
+ <summary>
+ To Check Profiles of the Application, called by mt_atpar_manage_users.aspx
+ </summary>
+ <param name="pUserID">UserId of the User</param>
+ <param name="pProfileID">Id of the Profile to be Checked</param>
+ <param name="pAccessType">Type of the Access</param>
+ <param name="pResult">Result</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.GetUsers(System.String,System.Data.DataSet@,System.String,System.String,System.String,System.String[])">
+ <summary>
+ To get the Users Infomation, called by mt_atpar_users.aspx
+ </summary>
+ <param name="pUserID">UserId of the User</param>
+ <param name="pDSUsers">Dataset Contains Users information</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.GetManageUsers(System.String,System.Data.DataSet@,System.String,System.String,System.String,System.String[])">
+ <summary>
+ To get the Users Infomation, called by mt_atpar_users.aspx
+ </summary>
+ <param name="pUserID">UserId of the User</param>
+ <param name="pDSUsers">Dataset Contains Users information</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.GetServerAccessCnt(System.String,System.String,System.Int32@,System.String[])">
+ <summary>
+ To Get Count of the ServerAccess, called by mt_atpar_assign_profiles.aspx
+ </summary>
+ <param name="pUserID">UserId of the User</param>
+ <param name="pProfileID">Id of the Profile that access</param>
+ <param name="pCnt">Profiles CountNumber</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.GetClientAccessCnt(System.String,System.String,System.Int32@,System.String[])">
+ <summary>
+ To get the Count of the ClientAccess, called by mt_atpar_assign_profiles.aspx
+ </summary>
+ <param name="pUserID">UserId of the User</param>
+ <param name="pProfileID">Id of the Profile that Access</param>
+ <param name="pCnt">CountNumber</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.GetLdapUsers(System.String,System.Data.DataSet@,System.String,System.String,System.String[])">
+ <summary>
+ To get the LDAP user list
+ </summary>
+ <param name="pUserID">UserId of the User</param>
+ <param name="pDsLdapUsers">LDAP Users Dataset</param>
+ <param name="pStrSearchFilter">Search Filter</param>
+ <param name="pStrEntryLimit">Entry Limit</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.SaveLdapUsers(System.String,System.String,System.String,System.String,System.String,System.Data.DataSet,System.Collections.ArrayList,System.String[])">
+ <summary>
+ To save LdapUsers Information,called by mt_atpar_import_user.aspx
+ </summary>
+ <param name="pUserID">User ID</param>
+ <param name="pSessionTime">Session Time taken</param>
+ <param name="pIdleTime">IdleTime Taken</param>
+ <param name="pOrgGrpId">Organisation Group Id</param>
+ <param name="pProfileID">Id of the Profile</param>
+ <param name="pDsLdapUsers">Dataset contains LdapUsersData</param>
+ <param name="pUserDtlsArr">Arraylist contains Users Details</param>
+ <returns>ATPAR_OK on success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.tagGetServerTime">
+ <summary>
+ To get the Servertime
+ </summary>
+ <returns>System time</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.LocalTimeZone(AtPar_BusinessRules.AtPar_UserManagement.TimeZoneReturn)">
+ <summary>
+ To get the localtime zone
+ </summary>
+ <param name="ReturnValue">Timezone to be returned</param>
+ <returns>Timezone value</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.GetMyPreferences(System.String,System.String,System.String@,System.String[])">
+ <summary>
+ To get the Preferences
+ </summary>
+ <param name="pStrPreference">Preference name</param>
+ <param name="pStrUID">UserId</param>
+ <param name="pStrRetVal">Return value</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.GetUserStatus(System.String,System.String,System.String,System.String,System.String,System.Data.DataSet@,System.String,System.String,System.String[])">
+ <summary>
+ To get the User Status
+ </summary>
+ <param name="pSvrUserID">Server User ID</param>
+ <param name="pUserID">User ID</param>
+ <param name="pFirstName">First Name</param>
+ <param name="pLastname">Last Name</param>
+ <param name="pStatus">Status</param>
+ <param name="pdsUserStatus">User Status DataSet</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.UpdateUserStatus(System.String,System.String,System.String,System.String[])">
+ <summary>
+ To Update the User Status
+ </summary>
+ <param name="pSvrUserID">Server User ID</param>
+ <param name="pUserID">User ID</param>
+ <param name="pStatus">Status</param>
+ <returns>ATPAR_OK on Success else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.IsMenuAssigned(System.String,System.String,System.String,System.Int32@,System.String[])">
+ <summary>
+ To check whether menu is assigned for a user or not
+ </summary>
+ <param name="sqlex">SqlException object</param>
+ <returns>Exception in String format</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.GetMenus(System.String,System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get the Menus
+ </summary>
+ <param name="pAppId">AppId</param>
+ <param name="pProfileId">ProfileId</param>
+ <param name="pDSMenus">Dataset containing MenusIds of the Organisation </param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.GetAppName(System.String,System.String@,System.String[])">
+ <summary>
+ To get the Application Name
+ </summary>
+ <param name="pAppId">AppId</param>
+ <param name="pAppName">AppName</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.GetAppRoleIDs(System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get the Application Role IDs
+ </summary>
+ <param name="pUserId">pUserId</param>
+ <param name="pDSAppRoleIds">Dataset to get the App role Ids</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.GetUser(System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get the User info for given a User ID
+ </summary>
+ <param name="pUserId">pUserId</param>
+ <param name="pDSUserParam">Dataset of User Parameters</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_UserManagement.GetUserOrgGrpID(System.String,System.String@,System.String[])">
+ <summary>
+ To get the Org Group ID for a given User ID
+ </summary>
+ <param name="pUserId">pUserId</param>
+ <param name="pOrgGroupId">Org Group ID</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Utils.GetParameterValues(System.String,System.String,System.String,System.String,System.Data.DataSet@,System.String[],System.String)">
+ <summary>
+ To get User Parameter Values
+ </summary>
+ <param name="pUserID">User ID</param>
+ <param name="pStrTableName">Table Name</param>
+ <param name="pStrFieldName">Field Name</param>
+ <param name="pStrWhereCondition">Where Condition</param>
+ <param name="pDSParameterValues">Dataset Parameter Values</param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Utils.GetAtparLatestValues(System.String,System.String,System.Int64@,System.String[])">
+ <summary>
+ To get latest AtPar Values, called by mt_atpar_assign_profiles.aspx
+ </summary>
+ <param name="appId">Application Id</param>
+ <param name="fieldName">Field Name</param>
+ <param name="latestVal">Latest value</param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Utils.GetAuditAllowed(System.String,System.Int32,System.String,System.String@,System.String[])">
+ <summary>
+ To get Allowed Audit Data; called by mt_atpar_assign_profiles.aspx, mt_atpar_audit_setup.aspx
+ mt_atpar_define_groups.aspx, mt_atpar_manage_devices.aspx, mt_user_parameter.aspx, mt_atpar_manage_profiles.aspx
+ </summary>
+ <param name="pUserID">User ID</param>
+ <param name="intAppId">Application id</param>
+ <param name="strMenuCode">Menu Code</param>
+ <param name="pStrAudit">Audit Report</param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Utils.GetBUList(System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get Business Units List
+ </summary>
+ <param name="pUserId">user id</param>
+ <param name="psDSBUList">dataset contains Business Units List</param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Utils.GetBusinessUnits(System.String,System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To return distinct BusinessUnits List(Inventory or Purchasing)
+ based on Business Unit Type parameter sent to the function
+ </summary>
+ <param name="pUserId">User ID</param>
+ <param name="pBusinessUnitType">Business Unit type (Inventory/Purchasing)</param>
+ <param name="psDSBUList">dataset contains Business Units List</param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Utils.GetOrgGroupBUnits(System.String,System.String,System.Data.DataSet@,System.String[],System.String)">
+ <summary>
+ To get Business units based on Org group
+ </summary>
+ <param name="pUserId"></param>
+ <param name="pBusinessUnitType"></param>
+ <param name="psDSBUList"></param>
+ <param name="pDeviceTokenEntry"></param>
+ <param name="pOrgGroupID"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Utils.GetUserOrgGroupList(System.String,System.Data.DataSet@)">
+ <summary>
+ To get Org Group IDs allocated for a User
+ </summary>
+ <param name="pstrOrgGrpId">Org Group Id</param>
+ <param name="pDsOrgGrpList">dataset contains Distinct Org group id's List</param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Utils.GetOrgGroupParamValue(System.Object,System.Object,System.Object,System.Object@,System.String[])">
+ <summary>
+ To obtain org parameter value
+ </summary>
+ <param name="pOrgGroupId"></param>
+ <param name="pAppId"></param>
+ <param name="pParamId"></param>
+ <param name="pParamValue"></param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Utils.GetProfileParamValue(System.String,System.Int32,System.String,System.String@,System.String[])">
+ <summary>
+ To get Profile Parameter Values
+ </summary>
+ <param name="pProfileId">Profile ID</param>
+ <param name="pappId">Application ID</param>
+ <param name="pparamId">Parameter Id</param>
+ <param name="pParamValue">User Parameter value</param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Utils.GetSecurityParamVal(System.String,System.String@,System.String[])">
+ <summary>
+ To get Security Parameter values , Called mt_atpar_assign_profiles.aspx
+ </summary>
+ <param name="pUserID">User ID</param>
+ <param name="pPwdReq">Required Password</param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Utils.GetTransactionId(System.Object,System.Object@,System.String[])">
+ <summary>
+ To get Transaction Id
+ </summary>
+ <param name="appId">Application Id</param>
+ <param name="transactionId">Transaction ID</param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Utils.GetTransBUnits(System.Int32,System.Data.DataSet@,System.String)">
+ <summary>
+ To get Transaction Business Units
+ </summary>
+ <param name="pAppId">Application Id</param>
+ <param name="pDSBUnits">Dataset Containing Business Units Data</param>
+ <param name="pServerUserID">Server User Id Who logged in</param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Utils.GetTransFields(System.Int32,System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get Transaction Fields
+ </summary>
+ <param name="pAppId">Application Id</param>
+ <param name="fieldName">Name of the Fields</param>
+ <param name="pDSUsers">Dataset Containing users Data</param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Utils.GetTransUsers(System.Int32,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get Users Transactions Details
+ </summary>
+ <param name="pAppId">Application Id</param>
+ <param name="pDSUsers">Dataset Contains Users Data</param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Utils.GetUserParamValue(System.Int32,System.String,System.String,System.String@,System.String[])">
+ <summary>
+ To get user Parameter Values
+ </summary>
+ <param name="appId">Application Id</param>
+ <param name="paramId">ParameterId</param>
+ <param name="userId">UserId of the User</param>
+ <param name="usrParamValue">UserParameterValue</param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Utils.GetUsersList(System.String,System.String,System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get Users List, called by mt_atpar_user_parameter.aspx
+ </summary>
+ <param name="pUserId">Id of user</param>
+ <param name="pAppId">Application Id</param>
+ <param name="pOrgGrpId">Organisation Group id</param>
+ <param name="pDSUserList">dataset containing User List Data</param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Utils.GetHeirarchyUsersList(System.String,System.String,System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get Users List, called by mt_atpar_user_parameter.aspx
+ </summary>
+ <param name="pUserId">Id of user</param>
+ <param name="pAppId">Application Id</param>
+ <param name="pOrgGrpId">Organisation Group id</param>
+ <param name="pDSUserList">dataset containing User List Data</param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Utils.InsertAuditData(System.Data.DataSet,System.String,System.String,System.String[])">
+ <summary>
+ To Insert Audit Data; called by mt_atpar_assign_profiles.aspx,
+ mt_atpar_audit_setup.aspx, mt_atpar_define_groups.aspx, mt_atpar_manage_devices.aspx, mt_atpar_manage_org_group_bunits.aspx,
+ mt_atpar_manage_orggroups_org_parameters.aspx, mt_user_parameter.aspx, mt_atpar_manage_profiles.aspx
+ </summary>
+ <param name="dsAuditData">dataset Containing Audit Data </param>
+ <param name="pStrUser">User Name</param>
+ <param name="pStrFunction">Function Details</param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Utils.GetUserFullName(System.String,System.String@,System.String[])">
+ <summary>
+ To Get User FullName 
+ </summary>
+ <param name="userID">User Id</param>
+ <param name="strUserFullName">Full Name of the user</param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Utils.GetAllocInvBUnits(System.Int32,System.Data.DataSet@,System.String,System.String[])">
+ <summary>
+ To get Allocated  Inventory BusinessUnits 
+ </summary>
+ <param name="pAppId">Application Id</param>
+ <param name="pDSBUnits">Dataset Containing Business Units Data</param>
+ <param name="pUserID">User Id Who logged in</param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_Utils.SendEmail(System.String,System.String,System.String,System.String,System.Net.Mail.MailPriority,System.String)">
+ <summary>
+ To Send Emails from Web, HHT (if any) and Windows services 
+ </summary>
+ <param name="pSystemID">System ID</param>
+ <param name="pSubject">Subject of the Email</param>
+ <param name="pBodyText">Body of the Email</param>
+ <param name="pToAddress">Recipient(To) Email Address (Comma seperated recipients)</param>
+ <param name="pMailPriority">Mail Priority</param>
+ <param name="pAttachment">Attachments if any</param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetApps(System.Data.DataSet@,System.String,System.String[])">
+ <summary>
+ To get Applications based on User ID
+ </summary>
+ <param name="pDSApps">DataSet Contains Applications of User</param>
+ <param name="pUserID">User ID</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.SaveAuditSetUpInfo(System.Data.DataSet,System.String,System.String[])">
+ <summary>
+ To save Audit Setup Info
+ </summary>
+ <param name="pStrUser">User</param>
+ <param name="pDsAudit">Audit info as Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetOrgGrpIDs(System.String,System.String,System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get Org Group IDs
+ </summary>
+ <param name="pUserID">User ID</param>
+ <param name="pOrgGrpId">Org Group ID</param>
+ <param name="pName">Profile Name</param>
+ <param name="pDSOrgGrp">Org Group IDs as Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetProfiles(System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get all the Profile corresponding to User ID
+ </summary>
+ <param name="pUserID">User ID</param>
+ <param name="pDSProfiles">Profiles as Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetProfileUsersInfo(System.String,System.String,System.String,System.String,System.String,System.Data.DataSet@,System.String,System.String,System.String[])">
+ <summary>
+ To get Profile Users Info
+ </summary>
+ <param name="pUserID">User ID</param>
+ <param name="pUID">User ID</param>
+ <param name="pLdap">LDAP Role</param>
+ <param name="pFName">First Name</param>
+ <param name="pLOrg">LDAP Org Group ID</param>
+ <param name="pDSProfUserInfo">Profile User Info as Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.SaveProfileUsersInfo(System.Data.DataSet,System.String,System.String,System.String,System.String[])">
+ <summary>
+ To save Profile Users Info
+ </summary>
+ <param name="pDSProfUserInfo">Profile Users Info as Dataset</param>
+ <param name="pProfile">Profile ID</param>
+ <param name="pOrgGrp">Org Group ID</param>
+ <param name="pUID">User ID</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.SaveOrgGroupsInfo(System.String,System.String,System.String,System.String,System.String,System.String[])">
+ <summary>
+ To save Org Groups Info
+ </summary>
+ <param name="pOrgGrpId">Org Group ID</param>
+ <param name="pOrgGrpName">Org Group Name</param>
+ <param name="pPrvOrgId">Previous Org ID</param>
+ <param name="pUser">User ID</param>
+ <param name="pMode">Mode</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetAppParameters(System.String,System.String,System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get Application Parameters
+ </summary>
+ <param name="pUserID">User ID</param>
+ <param name="pAppId">Application ID</param>
+ <param name="pOrgGrpId">Org Group ID</param>
+ <param name="pDsAppParams">Application Parameters as Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.SaveAppParameters(System.String,System.String,System.String,System.Data.DataSet,System.String[])">
+ <summary>
+ To save Application Parameters
+ </summary>
+ <param name="pOrgGrpId">Org Group ID</param>
+ <param name="pAppId">Application ID</param>
+ <param name="pUser">User ID</param>
+ <param name="pDsAppParams">Application Parameters as Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.SaveOrgGroupsBUnits(System.String,System.String,System.Data.DataSet,System.String[])">
+ <summary>
+ To get Profile Info
+ </summary>
+ <param name="pUserID">User ID</param>
+ <param name="pOrgGrpId">Org Group ID</param>
+ <param name="pDsBUnit">Business Units as Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetProfileInfo(System.String,System.Data.DataSet@,System.String,System.String[])">
+ <summary>
+ To get Profile Info
+ </summary>
+ <param name="pUserID">User ID</param>
+ <param name="pDSProfileInfo">Profile Info as Dataset</param>
+ <param name="pProfileID">Profile ID</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.SaveProfileInfo(System.String,System.String,System.String,System.String,System.String,System.Data.DataSet,System.Boolean,System.String[],System.Boolean)">
+ <summary>
+ To save Profile Info
+ </summary>
+ <param name="pMode">Profile Mode</param>
+ <param name="pProfileID">Profile ID</param>
+ <param name="pProfileDescr">Profile Description</param>
+ <param name="pUserID">User ID</param>
+ <param name="pClientAddr">Client Address</param>
+ <param name="pDSProfile">Profile Info as Dataset</param>
+ <param name="pstrAlterProfileCtoS">Profile Alter</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetUserProducts(System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get User Products
+ </summary>
+ <param name="pUser">User ID</param>
+ <param name="pDsProducts">Products as Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetUserOrgGroups(System.String,System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get User Org Groups
+ </summary>
+ <param name="pUser">User ID</param>
+ <param name="pOrgGrpId">Org Group ID</param>
+ <param name="pDsOrgGrpIds">Org Group IDs as Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetServerUsers(System.String,System.String,System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get Server Users
+ </summary>
+ <param name="pUserID">User ID</param>
+ <param name="pOrgGrpId">Org Group ID</param>
+ <param name="pAppid">Application ID</param>
+ <param name="pDsServerUser">Server Users as Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetClientUsers(System.String,System.String,System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get Client Users
+ </summary>
+ <param name="pOrgGrpId">Org Group ID</param>
+ <param name="pAppid">Application ID</param>
+ <param name="pServerUser">Server User ID</param>
+ <param name="pDsClientUser">Clients Users as Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.AssignClientUsers(System.String,System.String,System.Data.DataSet,System.String,System.String,System.String[])">
+ <summary>
+ To assign Client Users
+ </summary>
+ <param name="pOrgGrpId">Org Group ID</param>
+ <param name="pAppId">Application ID</param>
+ <param name="pDsClients">Clients as Dataset</param>
+ <param name="pstrUser">User ID</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetUserParams(System.String,System.String,System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get User parameters
+ </summary>
+ <param name="pSvrUserID">Server User ID</param>
+ <param name="pAppId">Application ID</param>
+ <param name="pUserID">User ID</param>
+ <param name="pDsParam">Parameters as Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.SetUserParams(System.String,System.String,System.String,System.String,System.Data.DataSet,System.String[])">
+ <summary>
+ To set User parameters
+ </summary>
+ <param name="pAppId">Application ID</param>
+ <param name="pUserID">User ID</param>
+ <param name="pStrClientAddress">Client Address</param>
+ <param name="pstrUpdateUser">UpdateUser</param>
+ <param name="pDsParam">Parameters as Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetDevIDs(System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+To get Device ID based on User ID
+ </summary>
+<param name="pUserID">User ID</param>
+ <param name="pDSDev">Device IDs Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.SaveDevIDs(System.String,System.String,System.String,System.String,System.String,System.String[])">
+ <summary>
+ To save Device IDs
+ </summary>
+ <param name="pUserID">User ID</param>
+ <param name="pDevId">Device ID</param>
+ <param name="pDesc">Device description</param>
+ <param name="pMACAddr">Device MAC Address</param>
+ <param name="pMode">Device mode</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.UpdateDevStatus(System.String,System.String,System.String,System.String[])">
+ <summary>
+ To update Device status
+ </summary>
+ <param name="pUserID">User ID</param>
+ <param name="strDevID">Device ID</param>
+ <param name="pStatus">Status of Device</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetErrorReport(System.String,System.String,System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get Error Report
+ </summary>
+ <param name="pUserID">User ID</param>
+ <param name="frmdate">From Date value</param>
+ <param name="toDate">To Date value</param>
+ <param name="pdsErrorData">Error data as Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetEntrpServiceConffile(System.String,System.String@,System.Boolean,System.String[])">
+ <summary>
+ To get Enterprise Service Conf file details
+ </summary>
+ <param name="pUserID">User ID</param>
+ <param name="pConfXml">XML in String format</param>
+ <param name="pBoolRequestType">Request Type</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetLogConfigDetails(System.String,System.String@,System.String@,System.String@,System.String[])">
+ <summary>
+ To get Log.Config details
+ </summary>
+ <param name="pUserID">User ID</param>
+ <param name="pStrWPLogVal">Web Pages Log value</param>
+ <param name="pStrWSLogVal">Web Services Log value</param>
+ <param name="pStrBRLogVal">Business Rules Log value</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetSSLConfigDetails(System.String@,System.String@,System.String@,System.String[])">
+ <summary>
+ To get SSL Config file details
+ </summary>
+ <param name="pStrProtocol">Webpages Moniker Value</param>
+ <param name="pStrServerName">Webpages Server name Value</param>
+ <param name="pStrPortNo">WebPages PortNo Value</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+ 
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.SetEntrpServiceConfDtls(System.String,System.String@,System.String[])">
+ <summary>
+ To set Enterprise Service Conf details
+ </summary>
+ <param name="pUserID">User ID</param>
+ <param name="pConfXml">XML Parameter</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.UpdateLogConfigDetails(System.String,System.String,System.String,System.String,System.String[])">
+ <summary>
+ To update Log.Config details
+ </summary>
+ <param name="pStrPath">Path of Config file</param>
+ <param name="pStrVal">Value that need to be modified</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.SaveSSLConfigDetails(System.String,System.String,System.String,System.String[])">
+ <summary>
+ To Save SSL.Config details
+ </summary>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.UpdateWebConfigDetails(System.String,System.String)">
+ <summary>
+ To update Web.Config details
+ </summary>
+ <param name="pStrPath">Path of Config file</param>
+ <param name="pStrVal">Value that need to be modified</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.UpdateExeConfigDetails(System.String,System.String)">
+ <summary>
+ To update EXE.Config details
+ </summary>
+ <param name="pStrPath">Path of Config file</param>
+ <param name="pStrVal">Value that need to be modified</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetCarriers(System.String,System.String[])">
+ <summary>
+ To get Carriers based on User ID
+ </summary>
+ <param name="userId">User ID</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.substituteString(System.String)">
+ <summary>
+ To manipulate the String using delimeters
+ </summary>
+ <param name="strSource">Source String value</param>
+ <returns>Modified Source String value</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetCarriersData(System.Data.DataSet@,System.String[])">
+ <summary>
+ To get Carriers Data
+ </summary>
+ <param name="pDsCarriersData">Data Set contains Carriers Data</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.AddCarrier(System.String,System.String,System.String,System.String[])">
+ <summary>
+ To add a new Carrier into DB
+ </summary>
+ <param name="pCarrierId">Carrier ID</param>
+ <param name="pDescr">Description</param>
+ <param name="pUserId">User ID</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.DeleteCarrier(System.String,System.String,System.String[])">
+ <summary>
+ To delete a Carrier from DB based on Carrier ID
+ </summary>
+ <param name="pCarrierId">Carrier ID</param>
+ <param name="pUserId">User ID</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetOrgUnits(System.String,System.Data.DataSet@,System.String,System.String,System.String,System.String,System.String[])">
+ <summary>
+ Used to Get the Org Units
+ </summary>
+ <param name="pUserId">User ID</param>
+ <param name="_pdsOrg">Orgs Dataset</param>
+ <param name="pOrgId">Org ID</param>
+ <param name="pOrgName">Org Name</param>
+ <param name="pStatus">Status</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.UpdateOrgIDStatus(System.String,System.String,System.String,System.Boolean,System.String[])">
+ <summary>
+ Used to Updted the OrgId Status
+ </summary>
+ <param name="pUserId">User ID</param>
+ <param name="pOrgId">Org ID</param>
+ <param name="pStatus">Status</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.InsertUpdateOrgUnits(System.String,System.Data.DataSet,System.String,System.String,System.String[])">
+ <summary>
+ Used to Updte or Insert the OrgIds
+ </summary>
+ <param name="pUserId">User ID</param>
+ <param name="pDsOrgIds">OrgIds Dataset</param>
+ <param name="pStrMode">Mode</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.Do_UploadData(System.String,System.Data.DataSet@,System.Data.DataSet@,System.Data.DataSet@,System.String[])">
+ <summary>
+ Used to Upload User Data
+ </summary>
+ <param name="pSvrUserID">User ID</param>
+ <param name="pDsUserData">Parameters Dataset</param>
+ <param name="pDsOrgGroupData">Org Parameters Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.RefreshUserDN(System.String,System.String,System.String,System.String@,System.Data.DataSet@,System.String[])">
+ <summary>
+ RefreshUserDN
+ </summary>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.ValidateUserColumnNames(System.Data.DataSet)">
+ <summary>
+ Validate User Column Names
+ </summary>
+ <param name="pdsUserData">Org Parameters Dataset</param>
+ <returns>Err Message</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.Do_UploadOrgGroupData_Flow(System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ Used to Upload Org Group Data 
+ </summary>
+ <param name="pSvrUserID">User ID</param>
+ <param name="pdsOrgGroupData">Org Parameters Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.ValidateOrgColumnNames(System.Data.DataSet)">
+ <summary>
+ Validate Org Column Names
+ </summary>
+ <param name="pdsOrgGroupData">Org Parameters Dataset</param>
+ <returns>Err Message</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetOrgGroupDetails(System.String,System.String@,System.Data.DataSet,System.Data.DataSet@)">
+ <summary>
+ Used to Get Org Group Details
+ </summary>
+ <param name="pstrParameterTemplateId">ParameterTemplate Id</param>
+ <param name="pStrErrorMsg">ErrorMsg Id</param>
+ <param name="pDsOrgUploadData">Org Group details Dataset</param>
+ <param name="pdsOrgdata">Org Group data Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetOrgGroupParametersList(System.Data.DataRow,System.String,System.Data.DataTable@)">
+ <summary>
+ Used to Get Org Group Parameters List
+ </summary>
+ <param name="dr">DataRow</param>
+ <param name="pstrOrgGroupId">pstrOrgGroupId</param>
+ <param name="pdsAppID">pdsAppID</param>
+ <param name="dtOrgParameters">dtOrgParameters</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.AddUpdateOrgGroup(System.Data.SqlClient.SqlTransaction,System.String,System.Data.DataSet,System.String)">
+ <summary>
+ Used to Insert and Update Org Group Details
+ </summary>
+ <param name="ptrans">ptrans</param>
+ <param name="pUser">pUser</param>
+ <param name="pDsOrgUploadData">pDsOrgUploadData</param>
+ <param name="pMode">pMode</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.ValidateOrgParamData(System.Data.DataRow,System.Data.DataSet,System.String[])">
+ <summary>
+ To Validate the Org Group Parameters
+ </summary>
+ <param name="dr">DataRow</param>
+ <param name="pdsAppID">pdsAppID</param>
+ <returns>String Message</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.ValidateOrgData(System.Data.DataRow,System.Data.DataSet)">
+ <summary>
+ To Validate the Org Group details 
+ </summary>
+ <param name="dr">DataRow</param>
+ <returns>String Message</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetLocationGroups(System.String,System.String,System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get the Location Groups Created by the user
+ </summary>
+ <param name="pGroupId">Location Group ID</param>
+ <param name="pOrgId">Logged in User Org Group Id</param>
+ <param name="dsLocGrps">Output Dataset </param>
+ <returns>ATPAR_OK on Success, else E_SERVERERROR</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.UpdateLocationGroups(System.String,System.Int32,System.String,System.String,System.String[])">
+ <summary>
+ To update the Status of the Location group Id
+ </summary>
+ <param name="pLocGrpId">Location Group ID</param>
+ <param name="pStatus">Active Status</param>
+ <param name="pOrgGrpId">User Org Group Id</param>
+ <param name="pUserId">Group creating User - Logged in User</param>
+ <returns>ATPAR_OK on Success, else E_SERVERERROR</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetLocationDetails(System.String,System.String,System.Int32,System.String,System.String,System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get the Locations from ERP and Middle based on Location Group Ids
+ </summary>
+ <param name="pBUnit">Org Id - required Business Unit</param>
+ <param name="pLocId">required Lcation Id</param>
+ <param name="pAppId">App Id</param>
+ <param name="pUserId">Logged in User</param>
+ <param name="pOrgGroupId">Logged in User Org Group Id</param>
+ <param name="pLocGroupId">Location Group ID</param>
+ <param name="pDsLocations">Return Dataset with the required values</param>
+ <returns>ATPAR_OK on Success, else E_SERVERERROR</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetLocGrps(System.String,System.String,System.String,System.String,System.Int32,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get the Location Groups to allocate to Users
+ </summary>
+ <param name="pUserId">User Id to whom it is/should assigned</param>
+ <param name="pOrgGroupId">Logged in user org group</param>
+ <param name="pLocGroupId">Location Group to search</param>
+ <param name="pDisplayMode">Display mode </param>
+ <param name="pAppId">AppId to differentiate the Product data</param>
+ <param name="pDsLocGrps">Return dataset from DataBase</param>
+ <returns>ATPAR_OK on Success, else E_SERVERERROR</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.InsertLocGrps(System.String,System.String,System.String,System.String,System.String,System.Data.DataSet,System.Int32,System.String[])">
+ <summary>
+ To insert the Location Group details to selected user
+ </summary>
+ <param name="pOrgGroupId"></param>
+ <param name="pLocGroupId"></param>
+ <param name="pAssignedUserId"></param>
+ <param name="pUserId"></param>
+ <param name="pClientIP"></param>
+ <param name="pDsLocGrps"></param>
+ <returns>ATPAR_OK on Success, else E_SERVERERROR</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.CopyLocationDetails(System.Data.DataSet@,System.String,System.String,System.String,System.String,System.Int32,System.String,System.String[])">
+ <summary>
+ To copy the same Location Details of Logged in User to selected user
+ </summary>
+ <param name="pDsSelectedLocGrps">Selected Records Dataset to Copy to selected user</param>
+ <param name="pUserID">Logged in User</param>
+ <param name="pSeletedUserID">Selected User to which Data is being copied</param>
+ <param name="pOrgGrpId">Org Group Id of the User</param>
+ <param name="pLocGrpId">Location Group Id</param>
+ <returns>ATPAR_OK on Success, else E_SERVERERROR</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.MoveLocationDetails(System.Data.DataSet@,System.String,System.String,System.String,System.String,System.Int32,System.String,System.String,System.String[])">
+ <summary>
+ To Move the same Location Details of Logged in User to selected user
+ </summary>
+ <param name="pDsSelectedLocGrps">Selected Records Dataset to Copy to selected user</param>
+ <param name="pUserID">Logged in User</param>
+ <param name="pSeletedUserID">Selected User to which Data is being Moved</param>
+ <param name="pOrgGrpId">Org Group Id of the User</param>
+ <param name="pLocGrpId">Location Group Id</param>
+ <returns>ATPAR_OK on Success, else E_SERVERERROR</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.DeleteLocationDetails(System.Data.DataSet@,System.String,System.Int32,System.String,System.String[])">
+ <summary>
+ To Delete the selected same  Location Details of Logged in User in  selected user Records
+ </summary>
+ <param name="pDsSelectedLocGrps">Selected Records Dataset to Delete for selected user</param>
+ <param name="pUserID">Logged in User</param>
+ <returns>ATPAR_OK on Success, else E_SERVERERROR</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetOrgGroupUsers(System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get Users of selected Org Group
+ </summary> 
+ <param name="pOrgGrpId">Org Group ID</param>
+ <param name="pDsUsers">Allocated Users as Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetOrgGroupName(System.String,System.String@,System.String[])">
+ <summary>
+ To get selected Org Group Id description
+ </summary> 
+ <param name="pOrgGrpId">Org Group ID</param>
+ <param name="pOrgGrpName">Org Group Name</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.Do_UploadProfileData_Flow(System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ Used to Upload Profile Data 
+ </summary>
+ <param name="pSvrUserID">User ID</param>
+ <param name="pDSExcelProfileData">Profile Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.CheckProductAccess(System.Data.DataSet,System.String,System.String@,System.String)">
+ <summary>
+ Used to Get the Product Access  
+ </summary>
+ <param name="pDSExcelProfileData">Profile Excel Dataset</param>
+ <param name="pProfileTemplateId">ProfileTemplateId</param>
+ <param name="pAccess">Access</param>
+ <param name="pProfileId">ProfileId</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.ValidateProfileColumnNames(System.Data.DataSet)">
+ <summary>
+ Validate Profile Column Names
+ </summary>
+ <param name="pDsExcelProfileData">Profile Parameters Dataset</param>
+ <returns>Err Message</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.ValidateParameterTemplateId(System.Data.DataSet@,System.Data.DataSet@,System.String,System.String,System.String@)">
+ <summary>
+ Used to Validate ParameterTemplateId
+ </summary>
+ <param name="pDSExcelProfileData">Profile Excel Dataset</param>
+ <param name="pProfileTemplateId">ProfileTemplateId</param>
+ <param name="pParameterTemplateId">ParameterTemplateId</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.ValidateProfileParametersData(System.Data.DataSet,System.Data.DataSet,System.String,System.String@)">
+ <summary>
+ To Validate the Profile Parameters
+ </summary>
+ <param name="pDSExcelProfileData">dataset</param>
+ <param name="pParameterTemplateId">pParameterTemplateId</param>
+ <returns>String Message</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.ValidateMenuTemplateId(System.Data.DataSet,System.Data.DataSet@,System.String,System.String,System.String@,System.String)">
+ <summary>
+ Used to Validate MenuTemplateId
+ </summary>
+ <param name="pDSExcelProfileData">Profile Excel Dataset</param>
+ <param name="pProfileTemplateId">ProfileTemplateId</param>
+ <param name="pMenuTemplateId">MenuTemplateId</param>
+ <param name="pErrorMessage">ErrorMessage</param>
+ <param name="pProfileID">ProfileID</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.ValidateScreenDisplayTemplateId(System.Data.DataSet,System.Data.DataSet@,System.String,System.String,System.String@,System.String)">
+ <summary>
+ Used to Validate ScreenDisplayTemplateId
+ </summary>
+ <param name="pDSExcelProfileData">Profile Excel Dataset</param>
+ <param name="pDSProfileDefaultData">Profile Default Dataset</param>
+ <param name="pProfileTemplateId">ProfileTemplateId</param>
+ <param name="pScreenDisplayTemplateId">ScreenDisplayTemplateId</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.PopulateProfileParameters(System.Data.DataSet,System.Data.DataSet@,System.String,System.String)">
+ <summary>
+ Used to Populate ProfileParameters
+ </summary>
+ <param name="pDSExcelProfileData">Profile Excel Dataset</param>
+ <param name="pDSProfileDefaultData">Profile Default Dataset </param>
+ <param name="pProfileTemplateId">ProfileTemplateId</param>
+ <param name="pParameterTemplateId">ParameterTemplateId</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.PopulateProfileDataset(System.Data.DataSet,System.Data.DataSet,System.String,System.String,System.String,System.Data.DataSet@,System.Boolean@)">
+ <summary>
+ Used to Populate the data to be inserted/Update into dataset
+ </summary>
+ <param name="pDSExcelProfileData">Profile Excel Dataset</param>
+ <param name="pDSProfileDefaultData">Profile Default Dataset </param>
+ <param name="pProfileTemplateId">ProfileTemplateId</param>
+ <param name="pParameterTemplateId">ParameterTemplateId</param>
+ <param name="pMode">pMode</param>
+ <param name="pDSAddUpdateProfile">Add Update Profile dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetBarcodeTranslationValues(System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get Barcode Transalation values based on User ID
+ </summary>
+ <param name="pUserID">User ID</param>
+ <param name="pdsBarcodeValues">dsBarcodeValues Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.AddBarcodeTranslation(System.String,System.Data.DataSet,System.String[])">
+ <summary>
+ To Add Barcode Transalation values based on User ID
+ </summary>
+ <param name="pUserID">User ID</param>
+ <param name="pdsBarcodeValues">dsBarcodeValues Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.UpdateBarcodeTranslation(System.String,System.Data.DataSet,System.String[])">
+ <summary>
+ To Update Barcode Transalation values based on User ID
+ </summary>
+ <param name="pUserID">User ID</param>
+ <param name="pdsBarcodeValues">dsBarcodeValues Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.DeleteBarcodeTranslation(System.String,System.String,System.String,System.String[])">
+ <summary>
+ To Delete Barcode Transalation values based on SymbologyType and BarcodeLength
+ </summary>
+ <param name="pUserID">User ID</param>
+ <param name="pSymbologyType">SymbologyType </param>
+ <param name="pBarcodeLength">BarcodeLength </param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.CheckForExistingBarCodeTranslation(System.String,System.String,System.String,System.Int32@,System.String[])">
+ <summary>
+ To Check For Existing Barcode Transalation values based on SymbologyType and BarcodeLength
+ </summary>
+ <param name="pUserID">User ID</param>
+ <param name="pSymbologyType">SymbologyType </param>
+ <param name="pBarcodeLength">BarcodeLength </param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.DelStorLocDtls(System.Data.DataSet,System.String,System.String)">
+To delete the Storage Location details
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetConfigurationDetails(System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get Configuration Details
+ </summary> 
+ <param name="pSystemId">System Id</param>
+ <param name="pDsConfigDetails">Configuration Details as Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.SaveConfigurationDetails(System.String,System.String,System.Data.DataSet,System.String[])">
+ <summary>
+ To Save Configuration Details
+ </summary> 
+ <param name="pSystemId">System Id</param>
+ <param name="pUserId">User Id</param>
+ <param name="pDSSavedConfigurationDetails">Configuration Details as Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.SaveMTConfigurationDetailsToSystemDB(System.String,System.String,System.Data.DataSet)">
+ <summary>
+ To Save Atpar Database Details in Configuration Screen
+ </summary> 
+ <param name="pSystemId">System Id</param>
+ <param name="pUserId">User Id</param>
+ <param name="pDSSavedConfigurationDetails">Configuration Details as Dataset</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetEnterpriseSystem(System.String@,System.String[])">
+ <summary>
+ To Get EnterpriseSystem Value
+ </summary> 
+ <param name="pStrEnterpriseSystem">EnterpriseSystem</param>
+ <param name="pDeviceTokenEntry">DeviceTokenEntry</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.PopulateConfigData(System.Data.DataSet@,System.String[])">
+ <summary>
+ To Get ConfigData 
+ </summary> 
+ <param name="pDSConfigData">ConfigData dataset</param>
+ <param name="pDeviceTokenEntry">DeviceTokenEntry</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.SaveUserDetails(System.Collections.ArrayList,System.String[])">
+ <summary>
+ Updates the user details through My Profile screen
+ </summary> 
+ <param name="pArrlstUserDetails">User Details List</param>
+ <param name="pDeviceTokenEntry">DeviceTokenEntry</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetLiveTokens(System.Int32,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get Access tokens
+ </summary>
+ <param name="pDSLiveTokens"></param>
+ <param name="pDeviceTokenEntry"></param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.RunTokenGC(System.String[])">
+ <summary>
+ To Delete Exipred Access tokens
+ </summary>
+ <param name="pDeviceTokenEntry"></param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.DeleteTokenEntry(System.String,System.String[])">
+ <summary>
+ To delete selected access Token from the grid
+ </summary>
+ <param name="strAccessToken">user selected Token</param>
+ <param name="pDeviceTokenEntry">DeviceTokenEntry</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetStorageZoneGroups(System.String,System.String,System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get the Storage Zone Groups Created by the user
+ </summary>
+ <param name="pGroupId">Zone Group ID</param>
+ <param name="pOrgId">Logged in User Org Group Id</param>
+ <param name="dsLocGrps">Output Dataset </param>
+ <returns>ATPAR_OK on Success, else E_SERVERERROR</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetZoneStorageLevelDetails(System.String,System.String,System.Int32,System.String,System.String,System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get the Storage Levels  from ERP and Middle based on Zone Group Ids
+ </summary>
+ <param name="pBUnit">Org Id - required Business Unit</param>
+ <param name="pLocId">required Lcation Id</param>
+ <param name="pAppId">App Id</param>
+ <param name="pUserId">Logged in User</param>
+ <param name="pOrgGroupId">Logged in User Org Group Id</param>
+ <param name="pLocGroupId">Zone Group ID</param>
+ <param name="pDsLocations">Return Dataset with the required values</param>
+ <returns>ATPAR_OK on Success, else E_SERVERERROR</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.InsertZoneStorageLevels(System.String,System.String,System.Data.DataSet,System.String[])">
+ <summary>
+ To insert the Location details for the logged in user with the Location group id details
+ </summary>
+ <param name="pOrgGroupId">Logged in User Org Group Id</param>
+ <param name="pZoneGroupId">Zone Group ID</param>
+ <param name="pDsZoneStorageLevels">Dataset with details to insert </param>
+ <param name="pDeviceTokenEntry">DeviceTokenEntry Enum</param>
+ <returns>ATPAR_OK on Success, else E_SERVERERROR</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetPurgeAppIDs(System.Data.DataSet@,System.String[])">
+ <summary>
+ Getting list of products need to purge
+ </summary>
+ <param name="pDSApps"></param>
+ <param name="pDeviceTokenEntry"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.DoArchivalData(System.String,System.String,System.String[])">
+ <summary>
+ To Archive data
+ </summary>
+ <param name="pAppId">Application ID</param>
+ <param name="pArchiveDate">Archival Date</param>
+ <param name="pDeviceTokenEntry">DeviceTokenEntry</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.DoAuditData(System.String,System.String,System.String,System.Data.DataSet,System.String[])">
+ <summary>
+  Audit Implementation 
+ </summary>
+ <param name="pUserID"></param>
+ <param name="pAppId"></param>
+ <param name="pStrFunctionName"></param>
+ <param name="pDsAuditData"></param>
+ <param name="pDeviceTokenEntry"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.InsertAuditInfo(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String[])">
+ <summary>
+ To Insert data in MT_ATPAR_AUDIT_INFO
+ </summary>
+ <param name="pAppId"></param>
+ <param name="pStrFunctionName"></param>
+ <param name="pStrSubFunctionName"></param>
+ <param name="pStrkeys"></param>
+ <param name="pStrUpdateUserId"></param>
+ <param name="pStrFieldName"></param>
+ <param name="pStrOldValue"></param>
+ <param name="pStrNewValue"></param>
+ <param name="pDeviceTokenEntry"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetCartDtlsForDashBoardItems(System.String,System.String,System.Data.DataSet@,System.String,System.String,System.String,System.String)">
+ <summary>
+ To get the Cart Details
+ </summary>
+ <param name="pCartId"></param>
+ <param name="pBUnit"></param>
+ <param name="pCartDetailsDS"></param>
+ <param name="pStrOrgGrpID"></param>
+ <param name="pSystemID"></param>
+ <param name="pProfileID"></param>
+ <returns>ATPAR_OK on Success, else Error code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.UpdateDashBoardItemDetails(System.Data.DataSet@,System.String,System.String,System.String[])">
+ <summary>
+ GetDashBoardItemDetails
+ </summary>
+ <param name="pDashBoardDataDS"></param>
+ <param name="pUserId"></param>
+ <param name="pStrOrgGrpID"></param>
+ <param name="pDeviceTokenEntry"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetLocationType(System.String,System.String,System.String@)">
+ <summary>
+ To get location type
+ </summary>
+ <param name="pStrBunit"></param>
+ <param name="pStrCartID"></param>
+ <param name="pStrLocType"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetLocationDetails(System.String,System.Collections.SortedList,System.Collections.SortedList,System.Data.DataSet@,System.String[])">
+ <summary>
+ To get location details
+ </summary>
+ <param name="pStrBunit"></param>
+ <param name="pOrgParm"></param>
+ <param name="pProfileParam"></param>
+ <param name="pDsLocDetails"></param>
+ <param name="pDeviceTokenEntry"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetLowStockRep(System.Data.DataTable@,System.String,System.String[])">
+ <summary>
+ To get low stock data
+ </summary>
+ <param name="pReturnDS"></param>
+ <param name="pStrOrgGrpID"></param>
+ <param name="pDeviceTokenEntry"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetNonCartItems(System.String,System.String,System.Data.DataSet@)">
+ <summary>
+ Gets the Non cart item details for the cart
+ </summary>
+ <param name="pStrBUnit">Business unit</param>
+ <param name="pStrCartId">Cart ID</param>
+ <param name="pDsNonCartItemDetails">Dataset containing the non cart items</param>
+ <returns>Dataset containing the non cart items</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetPrinterModels(System.Data.DataSet@,System.String,System.String[])">
+ <summary>
+ This function can be used to get Printer Models
+ </summary>
+ <param name="pDSApps">DataSet Contains Printer Models</param>
+ <param name="pUserID">User ID</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetFunctionalities(System.Int32,System.Data.DataSet@,System.String[])">
+ <summary>
+ This function can be used to get functionalities for the selected product
+ </summary>
+ <param name="pDSApps">DataSet Contains Atpar Functionalities</param>
+ <returns>Return Success/Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetLinkedFunctionalities(System.Int32,System.Int32,System.Data.DataSet@,System.String[])">
+ <summary>
+ This function can be used to fetch sub labels (linked functionalities) for the selected functionality
+ </summary>
+ <param name="pAppId">Atpar Product ID</param>
+ <param name="pLabelType">Label type</param>
+ <param name="pDSApps">DataSet Contains Atpar Linked Functionalities</param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetModels(System.Int32,System.Int32,System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ This function can be used to get the modles for the selected printer type
+ </summary>
+ <param name="pAppID">App ID</param>
+ <param name="pFunctionality">Label type or Functionality</param>
+ <param name="pPrinterCode">Printer Code</param>
+ <param name="pDSApps">DS Models</param>
+ <param name="pDeviceTokenEntry">DeviceTokenEntry</param>
+ <returns>Returns Success/Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetModelImage(System.Int32,System.String,System.Int32,System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ This function can be used to get the image of the selected model
+ </summary>
+ <param name="pAppId">App ID</param>
+ <param name="pModel">Model</param>
+ <param name="pFunctionality">Label Type or Functionality</param>
+ <param name="pPrinterModelType">Printer Model</param>
+ <param name="pDSModel">DS Model</param>
+ <param name="pDeviceTokenEntry">DeviceTokenEntry</param>
+ <returns>Success/Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetPrintersData(System.String,System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ This function can be used to get printers data
+ </summary>
+ <param name="pAppID">Atpar Product ID</param>
+ <param name="pPrinterName">Printer Friendly Name</param>
+ <param name="pDsPrinterData">DataSet Contains printer data</param>
+ <param name="pDeviceTokenEntry"></param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetPrinterData(System.Int32,System.String,System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ This function can be used to get selected printer data
+ </summary>
+ <param name="pAppID">App ID</param>
+ <param name="pFriendlyName">Printer Friendly Name</param>
+ <param name="pFunctionality">Functionality type</param>
+ <param name="pDSPrinterData">DS Printer Data</param>
+ <param name="pDeviceTokenEntry">Device Token Entry</param>
+ <returns>Error/Success Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.InsertNewModel(System.Int32,System.String,System.Byte[],System.Byte[],System.Byte[],System.String,System.Double,System.Double,System.String,System.Int32,System.Int32,System.String,System.String[])">
+ <summary>
+ This function can be used to insert new model to atpar db
+ </summary>
+ <param name="pAppID">App ID</param>
+ <param name="pFileName">File Name</param>
+ <param name="pPNLData">PNL Data</param>
+ <param name="pLVXData">LVX Data</param>
+ <param name="pImage">Image</param>
+ <param name="pModel">Model</param>
+ <param name="pWidth">Width</param>
+ <param name="pHeight">Height</param>
+ <param name="pUserID">User ID</param>
+ <param name="pFunctionality">Functionality</param>
+ <param name="pLinkFunctionality">Linked Functionality</param>
+ <param name="pPrinterCode">Printer Code</param>
+ <param name="pDeviceTokenEntry">DeviceTokenEntry</param>
+ <returns>Error/Success Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.CheckPrinterAvailable(System.Int32,System.String,System.String,System.Int32@,System.String[])">
+ <summary>
+ This funciton can be used to check existance of a printer
+ </summary>
+ <param name="pAppID">APP ID</param>
+ <param name="pFriendlyName">Pritner Friendly Name</param>
+ <param name="pModel">Printer Model</param>
+ <param name="pFunctionality">Functionality Type</param>
+ <param name="pIntRecordCount">Rows Count</param>
+ <param name="pDeviceTokenEntry">Device Token Entry</param>
+ <returns>Success/Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.UpdatePrinterStatus(System.Int32,System.String,System.Int32,System.Int32,System.String[])">
+ <summary>
+ This function can be used to chagne printer status (Active/ Inactive and Delete) 
+ </summary>
+ <param name="pAppID">App ID</param>
+ <param name="pFriendlyName">Printer Friendly Name</param>
+ <param name="pFunctionality">Functionality Type</param>
+ <param name="pStatus">Status</param>
+ <param name="pDeviceTokenEntry">Device Token Entry</param>
+ <returns>Success/Error Code</returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.SavePrinterDetails(System.Data.DataSet,System.String[])">
+ <summary>
+ This function can be used to save printer details
+ </summary>
+ <param name="pAppID"></param>
+ <param name="pPrinterModel"></param>
+ <param name="pIPAddress"></param>
+ <param name="pPortNo"></param>
+ <param name="pFriendlyName"></param>
+ <param name="pStatus"></param>
+ <param name="pUpdateDate"></param>
+ <param name="pUserID"></param>
+ <param name="pLabelName"></param>
+ <param name="pPrinterType"></param>
+ <param name="pFunctionality"></param>
+ <param name="pLinkedFunctionality"></param>
+ <param name="pModel"></param>
+ <param name="pSeqNo"></param>
+ <param name="pMode"></param>
+ <param name="pOldAppid"></param>
+ <param name="pOldFriendlyName"></param>
+ <param name="pDeviceTokenEntry"></param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.AtPar_WebTrans.GetNiceLabelsPrintersData(System.Int32,System.String,System.String,System.Data.DataSet@,System.String[])">
+ <summary>
+ This function can be used to get selected printer data
+ </summary>
+ <param name="pAppID">App ID</param>
+ <param name="pFriendlyName">Printer Friendly Name</param>
+ <param name="pFunctionality">Functionality type</param>
+ <param name="pDSPrinterData">DS Printer Data</param>
+ <param name="pDeviceTokenEntry">Device Token Entry</param>
+ <returns>Error/Success Code</returns>
+ <remarks></remarks>
+</member>
+<member name="T:AtPar_BusinessRules.ConfigData.MASTERCONFIG">
+ <summary>
+ Configuration File Main Tag
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:AtPar_BusinessRules.ConfigData.MASTER_DB">
+ <summary>
+ Connection information for ATPAR_MT
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.MASTER_DB.SYSTEMID">
+ <summary>
+ System Id e.g. System1, System2 ..
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.MASTER_DB.SERVER">
+ <summary>
+ Server FQDN or IP or instance name
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.MASTER_DB.USERID">
+ <summary>
+ Userid of the DB user
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.MASTER_DB.PASSWORD">
+ <summary>
+ AtPar Encrypted Password
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.MASTER_DB.DATASOURCE">
+ <summary>
+ Database name e.g. ATPAR_MT
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:AtPar_BusinessRules.ConfigData.REMOTEDBCONNECTION">
+ <summary>
+ Connection information for ERP databases
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.REMOTEDBCONNECTION.DATABASE">
+ <summary>
+ Database Type e.g. ORACLE, PEOPLESOFT, DB2 etc
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.REMOTEDBCONNECTION.SCHEMA">
+ <summary>
+ Schema Name e.g. sysadm
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.REMOTEDBCONNECTION.DATASOURCE">
+ <summary>
+ 
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.REMOTEDBCONNECTION.SERVER">
+ <summary>
+ e.g Server/TNS name
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.REMOTEDBCONNECTION.DRIVER">
+ <summary>
+ Driver string e.g. {Microsoft ODBC for Oracle}
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.REMOTEDBCONNECTION.USERID">
+ <summary>
+ Database userid
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.REMOTEDBCONNECTION.PASSWORD">
+ <summary>
+ AtPar Encrypted Password
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:AtPar_BusinessRules.ConfigData.LOCALDBCONNECTION">
+ <summary>
+ Connection information for ATPAR_MT
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.LOCALDBCONNECTION.DATABASE">
+ <summary>
+ Database type e.g. SQLSERVER
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.LOCALDBCONNECTION.USERID">
+ <summary>
+ Userid of the DB user
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.LOCALDBCONNECTION.PASSWORD">
+ <summary>
+ AtPar Encrypted Password
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.LOCALDBCONNECTION.DATASOURCE">
+ <summary>
+ Database name e.g. ATPAR_MT
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.LOCALDBCONNECTION.SERVER">
+ <summary>
+ Server FQDN or IP or instance name
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.LOCALDBCONNECTION.DRIVER">
+ <summary>
+ Driver String e.g. {SQL Server}
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="T:AtPar_BusinessRules.ConfigData.EMAILCONFIGARATION">
+ <summary>
+ Email information for automated mails from the system
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.EMAILCONFIGARATION.SMTP_SERVER">
+ <summary>
+ FQDN or IP address of the SMTP server
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.EMAILCONFIGARATION.SMTP_SERVER_PORT">
+ <summary>
+ TCP Port the server is listening on
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.SYSTEMDBCONNECTION.DATABASE">
+ <summary>
+ Database type e.g. SQLSERVER
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.SYSTEMDBCONNECTION.USERID">
+ <summary>
+ Userid of the DB user
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.SYSTEMDBCONNECTION.PASSWORD">
+ <summary>
+ AtPar Encrypted Password
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.SYSTEMDBCONNECTION.DATASOURCE">
+ <summary>
+ Database name e.g. ATPAR_MASTER
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.SYSTEMDBCONNECTION.SERVER">
+ <summary>
+ Server FQDN or IP or instance name
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:AtPar_BusinessRules.ConfigData.SYSTEMDBCONNECTION.DRIVER">
+ <summary>
+ Driver String e.g. {SQL Server}
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:AtPar_BusinessRules.Utilities.OnConfigFileChanged(System.Object,System.IO.FileSystemEventArgs)">
+ <summary>
+ To update when config file changes
+ </summary>
+ <param name="source"></param>
+ <param name="e"></param>
+ <returns>ATPAR_OK on Success, else Error Code</returns>
+ <remarks></remarks>
+</member>
+</members>
+</doc>

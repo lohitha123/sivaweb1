@@ -1,0 +1,338 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="panel panel-default" style="border: 1px solid #eee;">
+                <div class="panel-body" style="padding:0 0 10px 0;font-weight:bold">
+                    <div class="form-horizontal form-label-left">
+                        <div class="form-group">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:right;" id="tdOptions" *ngIf="tdOptions">
+                                <img class="fa-bg-lg bg-blue gray-icon-img" src="../../assets/images/icons/common/XL.png" (click)="onExportToExcelClick($event)" style="width:30px;cursor:pointer" title="Export to Excel" />&nbsp;
+                                <!--<i class="fa fa-file-excel-o" aria-hidden="true" style="cursor:pointer;font-size:18px" title="Export to Excel" (click)="onExportToExcelClick($event)"></i>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">User</label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <div class="input-group image-preview ">
+                                    <input placeholder="No File Chosen" type="text" class="form-control  image-preview-filename" disabled="disabled" title="{{userSelectedFile}}" [(ngModel)]="userSelectedFile" />
+                                    <!-- don't give a name === doesn't send on POST/GET -->
+                                    <span class="input-group-btn">
+                                        <!-- image-preview-clear button -->
+                                        <button type="button" class="btn btn-default image-preview-clear" style="display:none;"> <span class="glyphicon glyphicon-remove"></span> Clear </button>
+                                        <!-- image-preview-input -->
+                                        <div class="btn btn-default image-preview-input">
+                                            <span class="glyphicon glyphicon-folder-open"></span> <span class="image-preview-input-title">Browse</span>
+                                            <input type="file" id="FileUser" accept="application/vnd.ms-excel"  onclick="this.value = null" (change)="fileUserChange($event)" name="input-file-preview" />
+                                            <!-- rename it -->
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-md-1 col-lg-1 col-sm-4 col-xs-4">
+                                    <atpar-switch [checked]="chkUser" [(ngModel)]="chkUser" name="chkUser" (click)="changeChkUser()"></atpar-switch>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8 text-align-center">
+                                    <a class="text-purple" (click)="onUserTemplateClick()" style="cursor:pointer">User Template</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Profile</label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <div class="input-group image-preview ">
+                                    <input placeholder="No File Chosen" type="text" class="form-control  image-preview-filename" disabled="disabled" title="{{profileSelectedFile}}" [(ngModel)]="profileSelectedFile" />
+                                    <!-- don't give a name === doesn't send on POST/GET -->
+                                    <span class="input-group-btn">
+                                        <!-- image-preview-clear button -->
+                                        <button type="button" class="btn btn-default image-preview-clear" style="display:none;"> <span class="glyphicon glyphicon-remove"></span> Clear </button>
+                                        <!-- image-preview-input -->
+                                        <div class="btn btn-default image-preview-input">
+                                            <span class="glyphicon glyphicon-folder-open"></span> <span class="image-preview-input-title">Browse</span>
+                                            <input type="file" id="FileProfile" accept="application/vnd.ms-excel" onclick="this.value = null" (change)="fileProfileChange($event)" name="input-file-preview" />
+                                            <!-- rename it -->
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-md-1 col-lg-1 col-sm-4 col-xs-4">
+                                    <atpar-switch [checked]="chkProfile" [(ngModel)]="chkProfile" name="chkProfile" (click)="changeChkProfile()"></atpar-switch>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-8 text-align-center">
+                                    <a class="text-purple" (click)="onProfileTemplateClick()" style="cursor:pointer">Profile Template</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Org Group</label>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <div class="input-group image-preview ">
+                                    <input placeholder="No File Chosen" type="text" class="form-control  image-preview-filename" disabled="disabled" title="{{orgGroupSelectedFile}}" [(ngModel)]="orgGroupSelectedFile" />
+                                    <!-- don't give a name === doesn't send on POST/GET -->
+                                    <span class="input-group-btn">
+                                        <!-- image-preview-clear button -->
+                                        <button type="button" class="btn btn-default image-preview-clear" style="display:none;"> <span class="glyphicon glyphicon-remove"></span> Clear </button>
+                                        <!-- image-preview-input -->
+                                        <div class="btn btn-default image-preview-input">
+                                            <span class="glyphicon glyphicon-folder-open"></span> <span class="image-preview-input-title">Browse</span>
+                                            <input type="file" id="FileOrgGroup" accept="application/vnd.ms-excel" onclick="this.value = null" (change)="fileOrgGroupChange($event)" name="input-file-preview" />
+                                            <!-- rename it -->
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-md-1 col-lg-1 col-sm-4 col-xs-4">
+                                    <atpar-switch [checked]="chkOrgGroup" [(ngModel)]="chkOrgGroup" name="chkOrgGroup" (click)="changeChkOrgGroup()"></atpar-switch>
+                                </div>
+                                <div class="ccol-lg-4 col-md-4 col-sm-4 col-xs-8 text-align-center">
+                                    <a class="text-purple" (click)="onOrgGroupTemplateClick()" style="cursor:pointer">Org Group Template</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12  col-md-12 col-lg-12" style="text-align:center">
+                            <button class="btn btn-purple small" (click)="onLoadNowClick()"> Load Now &nbsp;<i class="fa fa-cloud-upload"></i> </button>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <hr *ngIf="trInputFields" />
+                    <div class="col-xs-12" *ngIf="trInputFields" id="trInputFields">
+                        <div class="" *ngIf="tblGrd" id="tblGrd">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>The number of records present in the input file</span>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>{{lblTotalNoOfRec}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>The number of records loaded successfully</span>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>{{lblSuccessCnt}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>The number of records written to error file</span>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>{{lblFailureCnt}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>The number of Users added</span>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>{{lblAddedNoOfRec}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>The number of Users updated</span>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>{{lblUpdatedNoOfRec}}</span>
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+
+                            <div class="container" id="DivUserGrid">
+                                <div class="table-responsive" id="dgridErrorDtls" *ngIf="dgridErrorDtls">
+                                    <div class="">
+                                        <atpar-datatable [value]="lstUserErrData" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPage" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true" [style]="{'width':userErrDataTableWidth}">
+                                            <p-column field="{{columnHeader[0]}}" header="{{columnHeader[1]}}" *ngFor="let columnHeader of lstUserErrDataColumnHeaders" [sortable]="false" [filter]="false" [style]="{'width':'180px'}"></p-column>
+                                        </atpar-datatable>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="container" *ngIf="tblSeperator" id="tblSeperator">
+                            <div class="">
+                                <label id="lblSeperator">0</label>
+                                <button id="imgExcel" title="Excel Format">Excel</button>
+                            </div>
+                        </div>
+                        <div class="col-xs-12" *ngIf="tblOrgGrd" id="tblOrgGrd">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>The number of records present in the input file</span>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>{{lblOrgTotalNoOfRec}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>The number of records loaded successfully</span>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>{{lblOrgSuccessCnt}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>The number of records written to error file</span>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>{{lblOrgFailureCnt}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>The number of warnings written to error file</span>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>{{lblOrgWarningCnt}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>The number of Org Groups  added</span>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>{{lblOrgAddedNoOfRec}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>The number of Org Groups updated</span>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>{{lblOrgUpdatedNoOfRec}}</span>
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                            <br />
+                            <div class="container" id="DivOrgGrid">
+                                <div class="table-responsive" id="dgridOrgErrorDtls" *ngIf="dgridOrgErrorDtls">
+                                    <atpar-datatable [value]="lstOrgGroupErrData" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPage" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true" [style]="{'width':orgGroupErrDataTableWidth}">
+                                        <p-column field="{{columnHeader[0]}}" header="{{columnHeader[1]}}" *ngFor="let columnHeader of lstOrgGroupErrDataColumnHeaders" [sortable]="false" [filter]="false" [style]="{'width':'180px'}"></p-column>
+                                    </atpar-datatable>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="col-xs-12" *ngIf="tblProfileGrd" id="tblProfileGrd">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>The number of records present in the input file</span>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>{{lblProfileTotalNoOfRec}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>The number of records loaded successfully</span>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>{{lblProfileSuccessCnt}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>The number of records written to error file</span>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>{{lblProfileFailureCnt}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>The number of Profiles added</span>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>{{lblProfileAddedNoOfRec}}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>The number of Profiles updated</span>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                                        <span>{{lblprofileUpdatedNoOfRec}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="container" id="">
+                                <div class="">
+                                    <div id="DivProfileGrid">
+                                        <div class="table-responsive" id="dgridProfileErrorDtls" *ngIf="dgridProfileErrorDtls">
+                                            <atpar-datatable [value]="lstprofileTemplateRefErrData" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPage" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true" [style]="{'width':profileErrDataTableWidth}">
+                                                <p-column field="{{columnHeader[0]}}" header="{{columnHeader[1]}}" *ngFor="let columnHeader of lstprofileTemplateRefErrDataColumnHeaders" [sortable]="false" [filter]="false" [style]="{'width':'180px'}"></p-column>
+                                            </atpar-datatable>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+
+                                <div class="">
+                                    <div id="tdEmptyRowMenu" *ngIf="tdEmptyRowMenu">
+                                        <label id="lblMenu"></label>
+                                    </div>
+                                    <div id="tdMenuError" *ngIf="tdMenuError">
+                                        <label id="lblProfileMenuErrorDtls"><strong>MenuTemplate Error Table</strong></label>
+                                    </div>
+                                    <div class="table-responsive" id="dgridProfileMenuErrorDtls" *ngIf="dgridProfileMenuErrorDtls">
+                                        <atpar-datatable [value]="lstProfileMenusErrData" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPage" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true" [style]="{'width':auto}">
+                                            <p-column field="{{columnHeader[0]}}" header="{{columnHeader[1]}}" *ngFor="let columnHeader of lstProfileMenusErrDataColumnHeaders" [sortable]="false" [filter]="false" [style]="{'width':'180px'}"></p-column>
+                                        </atpar-datatable>
+                                    </div>
+                                </div>
+
+
+                                <div class="">
+                                    <div id="tdEmptyRowScreen" *ngIf="tdEmptyRowScreen">
+                                        <label id="lblScreenDisplay"></label>
+                                    </div>
+                                    <div id="tdScreenDisplay" *ngIf="tdScreenDisplay">
+                                        <label id="lblProfileScreenDisplayErrorDtls"><strong>ScreenDisplayTemplate Error Table</strong></label>
+                                    </div>
+
+                                    <div class="table-responsive" id="dgridProfileScreenDisplayErrorDtls" *ngIf="dgridProfileScreenDisplayErrorDtls">
+                                        <atpar-datatable [value]="lstprofileScreendisplayErrData" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPage" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true" [style]="{'width':auto}">
+                                            <p-column field="{{columnHeader[0]}}" header="{{columnHeader[1]}}" *ngFor="let columnHeader of lstprofileScreendisplayErrDataColumnHeaders" [sortable]="false" [filter]="false" [style]="{'width':'180px'}"></p-column>
+                                        </atpar-datatable>
+                                    </div>
+                                </div>
+
+
+                                <div class="">
+                                    <div id="tdEmptyRowParams" *ngIf="tdEmptyRowParams">
+                                        <label id="lblParams"></label>
+                                    </div>
+                                    <div id="tdParameters" *ngIf="tdParameters">
+                                        <label id="lblProfileParametersErrorDtls"><strong>ParameterTemplate Error Table</strong></label>
+                                    </div>
+                                    <div class="table-responsive" id="dgridProfileParametersErrorDtls" *ngIf="dgridProfileParametersErrorDtls">
+                                        <atpar-datatable [value]="lstprofileParametersErrData" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPage" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true" [style]="{'width':auto}">
+                                            <p-column field="{{columnHeader[0]}}" header="{{columnHeader[1]}}" *ngFor="let columnHeader of lstprofileParametersErrDataColumnHeaders" [sortable]="false" [filter]="false" [style]="{'width':'180px'}"></p-column>
+                                        </atpar-datatable>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <atpar-growl [value]="msgs" sticky="sticky"></atpar-growl>
+    <div class="content-section implementation">
+        <atpar-confirmdialog header="Confirmation" icon="fa fa-question-circle" width="425"></atpar-confirmdialog>
+    </div>
+</div>

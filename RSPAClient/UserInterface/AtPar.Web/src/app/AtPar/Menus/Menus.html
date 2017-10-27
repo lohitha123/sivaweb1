@@ -1,0 +1,25 @@
+﻿<!--<ul>
+    <li *ngFor="let menu of menudetails" style="list-style:none;">
+        <a routerLink="{{menu.ROUTE}}">{{menu.MENU_NAME}}</a>
+
+    </li>
+</ul>-->
+
+
+
+<div>
+    <ul>
+        <li *ngFor="let menu of mainMenus">
+            <span (click)="onSelect(menu.MENUCODE,menu.MENUNAME)"> {{menu.MENUNAME}}</span>
+            <ul *ngIf="menu.MENUCODE==data">
+                <li *ngFor="let submenu of subMenus" style="list-style:none;">
+                    <span>
+                        <a routerLink="{{submenu.MENUCODE}}">{{submenu.MENUNAME}}</a>
+                    </span>
+                </li>
+            </ul>
+    </ul>
+</div>
+
+
+

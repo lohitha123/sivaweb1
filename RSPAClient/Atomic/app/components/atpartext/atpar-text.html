@@ -1,0 +1,49 @@
+﻿<style>
+    .txt-focus-div {
+        background-color: black;
+        position: relative;
+        color: white;
+    }
+
+ /*.bdr-red {
+        border-left: 4px solid red;
+    }*/
+    .bdr-red::before {
+        content:"*";
+        color:red;
+    }
+    .bdr-purple {
+        border-left: 4px solid purple;
+    }
+
+    .er-label {
+        position: relative !important;
+        top: 0em !important;
+        color: #ff0000;
+        margin-top: 6px;
+    }
+
+    p {
+        padding-left:5px;
+    }
+</style>
+
+<div *ngIf="showerror">
+    <span class="text-danger er-label">
+        <i class="fa fa-exclamation-circle"  aria-hidden="true"></i>&nbsp;{{errormessage}}
+    </span>
+</div>
+            <input type="text" (focus)="focusEvent(true)" class="form-control"
+                   (focusout)="focusEvent(false)" (keyup)="onKey($event)" (keypress)="handelInput($event)" id={{id}}
+                   [(ngModel)]="value" name={{id}} required autocomplete="off" [disabled]="disabled" [readonly]="readonly"
+                   autocorrect="off" autocapitalize="off" />
+            <div id="div_id_{{id}}" class="txt-focus-div">
+                <div *ngFor="let rule of validationrules">
+                    <div *ngIf="ShowValidations">
+                        <p>
+                            <span>{{rule.ErrorMessage}}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+    

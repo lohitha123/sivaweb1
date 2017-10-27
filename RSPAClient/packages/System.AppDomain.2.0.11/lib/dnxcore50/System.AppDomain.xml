@@ -1,0 +1,240 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.AppDomain</name>
+    </assembly>
+    <members>
+        <member name="T:System.AppDomain">
+            <summary>
+                Represents an application domain, which is an isolated environment where applications execute. This class cannot be inherited.
+            </summary>
+            <remarks>
+                The AppDomain class implements a set of events that enable applications to respond when an assembly is loaded.
+            </remarks>
+            <threadsafety static="true" instance="false"/>
+        </member>
+        <member name="P:System.AppDomain.CurrentDomain">
+            <summary>
+                Gets the current application domain for the current application.
+            </summary>
+            <value>
+                The current application domain.
+            </value>
+        </member>
+        <member name="P:System.AppDomain.BaseDirectory">
+            <summary>
+                Gets the base directory that the assembly resolver uses to probe for assemblies.
+            </summary>
+            <value>
+                The base directory that the assembly resolver uses to probe for assemblies.
+            </value>
+        </member>
+        <member name="P:System.AppDomain.FriendlyName">
+            <summary>
+                Gets the friendly name of this application domain.
+            </summary>
+            <value>
+                The friendly name of this application domain.
+            </value>
+            <remarks>
+                The friendly name of the default application domain is the file name of the process executable. For example, if the executable used to start the process is "c:\MyAppDirectory\MyAssembly.exe", the friendly name of the default application domain is "MyAssembly.exe".
+            </remarks>
+        </member>
+        <member name="P:System.AppDomain.IsHomogenous">
+            <summary>
+                Gets a value that indicates whether the current application domain has a set of permissions that is granted to all assemblies that are loaded into the application domain.
+            </summary>
+            <value>
+                <see langword="true"/> if the current application domain has a homogenous set of permissions; otherwise, <see langword="false"/>.
+            </value>
+        </member>
+        <member name="P:System.AppDomain.IsFullyTrusted">
+            <summary>
+                Gets a value that indicates whether assemblies that are loaded into the current application domain execute with full trust.
+            </summary>
+            <value>
+                <see langword="true"/> if assemblies that are loaded into the current application domain execute with full trust; otherwise, <see langword="false"/>.
+            </value>
+        </member>
+        <member name="M:System.AppDomain.GetAssemblies">
+            <summary>
+                Gets the assemblies that have been loaded into the execution context of this application domain.
+            </summary>
+            <returns>An array of assemblies in this application domain.</returns>
+        </member>
+        <member name="M:System.AppDomain.GetData(System.String)">
+            <summary>
+                Gets the value stored in the current application domain for the specified name.
+            </summary>
+            <param name="name">The name of a predefined application domain property, or the name of an application domain property you have defined.</param>
+            <returns>The value of the <paramref name="name"/> property, or <see langword="null"/> if the property does not exist.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="name"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="E:System.AppDomain.AssemblyResolve">
+            <summary>
+                Occurs when the resolution of an assembly fails.
+            </summary>
+            <remarks>
+                <para>
+                    It is the responsibility of the <see cref="T:System.ResolveEventHandler"/> for this event to return the assembly that is specified by the <see cref="P:System.ResolveEventArgs.Name"/> property, or to return <see langword="null"/> if the assembly is not recognized.
+                </para>
+                <para>
+                    For guidance on the use of this event, see <see href="https://msdn.microsoft.com/en-us/library/ff527268(v=vs.110).aspx">Resolving Assembly Loads</see>.
+                </para>
+            </remarks>
+            <seealso cref="P:System.ResolveEventArgs.RequestingAssembly"/>
+        </member>
+        <member name="E:System.AppDomain.TypeResolve">
+            <summary>
+                Occurs when the resolution of a type fails.
+            </summary>
+            <remarks>
+                <para>
+                    The TypeResolve event occurs when the common language runtime is unable to determine the assembly that can create the requested type. This can occur if the type is defined in a dynamic assembly, or the type is not defined in a dynamic assembly but the runtime does not know which assembly the type is defined in. The latter situation can occur when <see cref="M:System.Type.GetType(System.String)"/> is called with a type name that is not qualified with the assembly name.
+                </para>
+                <para>
+                    The <see cref="T:System.ResolveEventHandler"/> for this event can attempt to locate and create the type.
+                </para>
+                <para>
+                    However, the TypeResolve event does not occur if the runtime knows it is not possible to find a type in certain assemblies. For example, this event does not occur if the type is not found in a static assembly because the runtime knows types cannot be added dynamically to static assemblies.
+                </para>
+            </remarks>
+            <seealso cref="P:System.ResolveEventArgs.RequestingAssembly"/>
+        </member>
+        <member name="E:System.AppDomain.ResourceResolve">
+            <summary>
+                Occurs when the resolution of a resource fails because the resource is not a valid linked or embedded resource in the assembly.
+            </summary>
+            <remarks>
+                <para>
+                    The <see cref="T:System.ResolveEventHandler"/> for this event can attempt to locate the assembly containing the resource and return it.
+                </para>
+                <note type="important">
+                    This event is not raised if resolution fails because no file can be found for a valid linked resource. It is raised if a manifest resource stream cannot be found, but it is not raised if an individual resource key cannot be found.
+                </note>
+            </remarks>
+            <seealso cref="P:System.ResolveEventArgs.RequestingAssembly"/>
+        </member>
+        <member name="E:System.AppDomain.UnhandledException">
+            <summary>
+                Occurs when an exception is not caught.
+            </summary>
+            <remarks>
+                This event provides notification of uncaught exceptions. It allows the application to log information about the exception before the system default handler reports the exception to the user and terminates the application. If sufficient information about the state of the application is available, other actions may be undertaken — such as saving program data for later recovery. Caution is advised, because program data can become corrupted when exceptions are not handled.
+            </remarks>
+        </member>
+        <member name="E:System.AppDomain.ProcessExit">
+            <summary>
+                Occurs when the default application domain's parent process exits.
+            </summary>
+            <remarks>
+                The <see cref="T:System.EventHandler"/> for this event can perform termination activities, such as closing files, releasing storage and so on, before the process ends.
+            </remarks>
+        </member>
+        <member name="T:System.ResolveEventArgs">
+            <summary>
+                Provides data for loader resolution events, such as the <see cref="E:System.AppDomain.TypeResolve"/>, <see cref="E:System.AppDomain.ResourceResolve"/>, and <see cref="E:System.AppDomain.AssemblyResolve"/> events.
+            </summary>
+            <remarks>
+                <para>
+                    When the loader cannot resolve an assembly reference and a handler has been provided for the appropriate loader resolution event, the event is raised and the <see cref="T:System.ResolveEventArgs"/> contains information about the item to be resolved.
+                </para>
+                <list type="bullet">
+                    <item>The <see cref="P:System.ResolveEventArgs.Name"/> property contains the name of the item to be resolved.</item>
+                    <item>Beginning with the .NET Framework 4, the <see cref="P:System.ResolveEventArgs.RequestingAssembly"/> property contains the assembly that requested an assembly that can provide the named item. For more information, see the <see cref="P:System.ResolveEventArgs.RequestingAssembly"/> property.</item>
+                </list>
+            </remarks>
+            <threadsafety static="true" instance="false"/>
+            <seealso cref="E:System.AppDomain.TypeResolve"/>
+            <seealso cref="E:System.AppDomain.ResourceResolve"/>
+            <seealso cref="E:System.AppDomain.AssemblyResolve"/>
+        </member>
+        <member name="P:System.ResolveEventArgs.Name">
+            <summary>
+                Gets the name of the item to resolve.
+            </summary>
+            <value>
+                The name of the item to resolve.
+            </value>
+            <remarks>
+                For the <see cref="E:System.AppDomain.AssemblyResolve"/> event, Name is the assembly name before policy is applied.
+            </remarks>
+        </member>
+        <member name="P:System.ResolveEventArgs.RequestingAssembly">
+            <summary>
+                Gets the assembly whose dependency is being resolved.
+            </summary>
+            <value>
+                The assembly that requested the item specified by the <see cref="P:System.ResolveEventArgs.Name"/> property.
+            </value>
+            <remarks>
+                The assembly that is returned by this property is an assembly that was unable to resolve the item specified by the <see cref="P:System.ResolveEventArgs.Name"/> property, because the item did not exist in that assembly, in any of its loaded dependencies, or in any dependencies the loader could find through probing.
+            </remarks>
+            <seealso cref="E:System.AppDomain.TypeResolve"/>
+            <seealso cref="E:System.AppDomain.ResourceResolve"/>
+            <seealso cref="E:System.AppDomain.AssemblyResolve"/>
+        </member>
+        <member name="T:System.ResolveEventHandler">
+            <summary>
+                Represents a method that handles the <see cref="E:System.AppDomain.TypeResolve"/>, <see cref="E:System.AppDomain.ResourceResolve"/>, or <see cref="E:System.AppDomain.AssemblyResolve"/> event of an <see cref="T:System.AppDomain"/>.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="args">The event data.</param>
+            <returns>The assembly that resolves the type, assembly, or resource; or <see langword="null"/> if the assembly cannot be resolved.</returns>
+            <remarks>If the runtime class loader cannot resolve a reference to an assembly, type, or resource, the corresponding events are raised to give the callback a chance to tell the runtime which assembly the referenced assembly, type, or resource is in. It is the responsibility of the ResolveEventHandler to return the assembly that resolves the type, assembly, or resource, or to return null if the assembly is not recognized.</remarks>
+            <seealso cref="E:System.AppDomain.ResourceResolve"/>
+            <seealso cref="E:System.AppDomain.AssemblyResolve"/>
+            <seealso cref="E:System.AppDomain.TypeResolve"/>
+        </member>
+        <member name="T:System.UnhandledExceptionEventArgs">
+            <summary>
+                Provides data for the event that is raised when there is an exception that is not handled in any application domain.
+            </summary>
+            <remarks>
+                <see cref="T:System.UnhandledExceptionEventArgs"/> provides access to the exception object and a flag indicating whether the common language runtime is terminating. The <see cref="T:System.UnhandledExceptionEventArgs"/> is one of the parameters passed into <see cref="T:System.UnhandledExceptionEventHandler"/> for the <see cref="E:System.AppDomain.UnhandledException"/> event.
+            </remarks>
+            <seealso cref="T:System.UnhandledExceptionEventHandler"/>
+            <seealso cref="E:System.AppDomain.UnhandledException"/>
+            <seealso cref="T:System.EventArgs" />
+            <threadsafety static="true" instance="false"/>
+        </member>
+        <member name="P:System.UnhandledExceptionEventArgs.ExceptionObject">
+            <summary>
+                Gets the unhandled exception object.
+            </summary>
+            <value>
+                The unhandled exception object.
+            </value>
+            <remarks>
+                <para>
+                    This property returns an object of type <see cref="T:System.Object"/> rather than one derived from <see cref="T:System.Exception"/>. Although the Common Language Specification requires that all exception types derive from <see cref="T:System.Exception"/>, it is possible for methods to throw exceptions with objects not derived from <see cref="T:System.Exception"/>. You can do the following to work with this exception:
+                </para>
+                <list type="bullet">
+                    <item>Apply the <see cref="T:System.Runtime.CompilerServices.RuntimeCompatibilityAttribute"/> attribute with a <see cref="P:System.Runtime.CompilerServices.RuntimeCompatibilityAttribute.WrapNonExceptionThrows"/> value of <see langword="true"/> to the assembly that contains the event handler. This wraps all exceptions not derived from the <see cref="T:System.Exception"/> class in a RuntimeWrappedException object. You can then safely cast (in C#) or convert (in Visual Basic) the object returned by this property to an <see cref="T:System.Exception"/> object, and retrieve the original exception object from the RuntimeWrappedException.WrappedException property. Note that some compilers, such as the C# and Visual Basic compilers, automatically apply this attribute.</item>
+                    <item>Cast the object returned by this property to an <see cref="T:System.Exception"/> object.</item>
+                </list>
+            </remarks>
+            <seealso cref="T:System.Runtime.CompilerServices.RuntimeCompatibilityAttribute"/>
+        </member>
+        <member name="P:System.UnhandledExceptionEventArgs.IsTerminating">
+            <summary>
+                Gets a value indicating whether the common language runtime is terminating.
+            </summary>
+            <value>
+                <see langword="true"/> if the runtime is terminating; otherwise, <see langword="false"/>.
+            </value>
+            <remarks>
+                Beginning with the .NET Framework version 2.0, this property returns <see langword="true"/> for most unhandled exceptions, unless an application compatibility flag is used to revert to the behavior of versions 1.0 and 1.1. The reason is that most unhandled exceptions in threads, including thread pool threads, are allowed to proceed naturally, which normally results in termination of the application.
+            </remarks>
+        </member>
+        <member name="T:System.UnhandledExceptionEventHandler">
+            <summary>
+                Represents the method that will handle the event raised by an exception that is not handled by the application domain.
+            </summary>
+            <param name="sender">The source of the unhandled exception event. </param>
+            <param name="e">An <see cref="T:System.UnhandledExceptionEventArgs"/> instance containing the event data.</param>
+            <seealso cref="T:System.UnhandledExceptionEventArgs"/>
+            <seealso cref="T:System.EventHandler"/>
+        </member>
+    </members>
+</doc>

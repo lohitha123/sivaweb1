@@ -1,0 +1,29 @@
+[
+      {
+        "USERNAME": "SIVA  c (C)",
+        "USER_ID": "C",
+        "PROFILE_ID": "CLIENT",
+        "ORG_GROUP_ID": "Mhs",
+		    "LDAP_ROLE" :"",
+        "PASSHASH": "b97c6ae5946838f6ce48ea83e97b238f189c2fb7996c98d59acbb70859e87489",
+        "PASSHASH_REQUIRED": "false"
+      },
+      {
+        "USERNAME": "c2  c2 (C2)",
+        "USER_ID": "C2",
+        "PROFILE_ID": "CLIENT",
+        "ORG_GROUP_ID": "Mhs",
+		    "LDAP_ROLE" :"",
+        "PASSHASH": "4e043a248c6dbb21e49efe16e437d8f8ddb87e05bcab83e3e10f41f956cc2ede",
+        "PASSHASH_REQUIRED": "false"
+      },
+      {
+        "USERNAME": "SIVA  S (S)",
+        "USER_ID": "S",
+        "PROFILE_ID": "xml_ser",
+        "ORG_GROUP_ID": "Mhs",
+		    "LDAP_ROLE" :"",
+        "PASSHASH": "b7f6986f3b3b3ff3f58922fc9e364d4f7fb02ae81b7fb30e6eb3b45fe9e8c4e1",
+        "PASSHASH_REQUIRED": "true"
+      }
+]

@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{95316591-8009-4A44-B2CF-41101BB8DF63}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AtPar.Common.Service</RootNamespace>
+    <AssemblyName>AtPar.Common.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AtParEncryptionServices">
+      <HintPath>..\..\CommonLibs\AtParEncryptionServices.dll</HintPath>
+    </Reference>
+    <Reference Include="AtPar_BusinessRules">
+      <HintPath>..\..\CommonLibs\AtPar_BusinessRules.dll</HintPath>
+    </Reference>
+    <Reference Include="AtPar_BusinessRules_RemotingProxy">
+      <HintPath>..\..\CommonLibs\AtPar_BusinessRules_RemotingProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommonService.cs" />
+    <Compile Include="DataSetExtensions.cs" />
+    <Compile Include="StatusHandlingExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\AtPar.Common\AtPar.Common.csproj">
+      <Project>{818012EF-D097-4D49-82E5-942BF9DFA79E}</Project>
+      <Name>AtPar.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\AtPar.POCOEntities\AtPar.POCOEntities.csproj">
+      <Project>{1B4A130C-2757-4B57-9DB3-542732572656}</Project>
+      <Name>AtPar.POCOEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\AtPar.Repository.Interfaces\AtPar.Repository.Interfaces.csproj">
+      <Project>{5869EC8E-84BF-4B97-AA69-EF86AF0508C1}</Project>
+      <Name>AtPar.Repository.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\AtPar.Service.Interfaces\AtPar.Service.Interfaces.csproj">
+      <Project>{2dcfc75b-61bb-4fb7-acb4-b18da5c3726b}</Project>
+      <Name>AtPar.Service.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\AtPar.ViewModel\AtPar.ViewModel.csproj">
+      <Project>{063C67CD-51CC-4864-BA19-E18C2AF92A61}</Project>
+      <Name>AtPar.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

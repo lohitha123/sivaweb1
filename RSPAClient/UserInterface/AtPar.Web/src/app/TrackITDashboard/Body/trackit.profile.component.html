@@ -1,0 +1,180 @@
+﻿<div id="main" class="">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border" *ngIf="true">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px;">
+                        <div class="col-md-12">    <!--*ngIf="page"-->
+                            <form class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">User ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <!--<atpar-text [id]="'txtUserID'" [name]="txtUserID" [(ngModel)]="model.REQUESTOR_ID" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)" (bindModelDataChange)="bindModelDataChange($event)" ></atpar-text>-->
+                                        <label class="control-label lbl-left">{{model.REQUESTOR_ID}}</label>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Current Password</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="password" id="txtCurrentPwd" name="txtCurrentPwd" [(ngModel)]="model.PASSWORD" [ngModelOptions]="{standalone: true}"  class="form-control mb-10">
+                                        <!--<atpar-text [id]="'txtCurrentPwd'" [name]="txtCurrentPwd" [(ngModel)]="model.PASSWORD" [ngModelOptions]="{standalone: true}" [validations]="'everything_except_space_as_fstchar,max=26'" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>-->
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">New Password</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="password" id="txtNewPwd" name="txtNewPwd" [(ngModel)]="model.NEWPASSWORD" [ngModelOptions]="{standalone: true}"  class="form-control mb-10">
+                                        <!--<atpar-text [id]="'txtNewPwd'" [name]="txtNewPwd" [(ngModel)]="model.NEWPASSWORD" [ngModelOptions]="{standalone: true}" [validations]="'everything_except_space_as_fstchar,max=26'" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>-->
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Confirm Password</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input type="password" id="txtCnfrmPwd" name="txtCnfrmPwd" [(ngModel)]="model.CNFRMPASSWORD" [ngModelOptions]="{standalone: true}"  class="form-control mb-10">
+                                        <!--<atpar-text [id]="'txtCnfrmPwd'" [name]="txtCnfrmPwd" [(ngModel)]="model.CNFRMPASSWORD" [ngModelOptions]="{standalone: true}" [validations]="'everything_except_space_as_fstchar,max=26'" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>-->
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtFirstName'" [name]="txtFirstName" [(ngModel)]="model.FIRST_NAME" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,EXCEPT_LESS_GREATER_SYMBOLS,max=20'" (bindModelDataChange)="bindModelDataChange($event)"  [title]="'First name of the user - accepts everything except for < or >'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtLastName'" [name]="txtLastName" [(ngModel)]="model.LAST_NAME" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,EXCEPT_LESS_GREATER_SYMBOLS,max=20'" (bindModelDataChange)="bindModelDataChange($event)" [title]="'Last name of the user - accepts everything except for < or >'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Middle Initial</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtMiddleName'" [name]="txtMiddleName" [(ngModel)]="model.MIDDLE_INIT" [ngModelOptions]="{standalone: true}" [validations]="'EXCEPT_LESS_GREATER_SYMBOLS,max=2'" (bindModelDataChange)="bindModelDataChange($event)" [title]="'Middle Initial of the user - accepts everything except for < or >'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Email ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtEmailID'" [name]="txtEmailID" [(ngModel)]="model.EMAIL" [ngModelOptions]="{standalone: true}" [validations]="'email,max=30'" (bindModelDataChange)="bindModelDataChange($event)" [title]="'Use the format userid@domainname.com'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Phone</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtPhone'" [name]="txtPhone" [(ngModel)]="model.PHONE" [ngModelOptions]="{standalone: true}" [validations]="'phone,numeric,max=10'" [title]="'Use the format 1231231234'" (bindModelDataChange)="bindModelDataChange($event)" ></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Fax </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtFax'" [name]="txtFax" [(ngModel)]="model.FAX" [ngModelOptions]="{standalone: true}" [validations]="'fax,numeric,max=10'" (bindModelDataChange)="bindModelDataChange($event)" [title]="'Use the format 1231231234'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Pager</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtPager'" [name]="txtPager" [(ngModel)]="model.PAGER" [ngModelOptions]="{standalone: true}" [validations]="'numeric,max=10'" [title]="'Use the format 1231231234'" (bindModelDataChange)="bindModelDataChange($event)" ></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Default Deliver Location</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [options]="lstLocations" [(ngModel)]="selectedLocation" [id]="'ddDeliverLocation'" filter="filter" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Records Per Page</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [options]="ddRecordsPerPage" [id]="'ddlddRecordsPerPage'" [required]="true" [(ngModel)]="selectedPage" [ngModelOptions]="{standalone:true}"></atpar-select>
+                                   </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Default Duration In Days</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtDuration'" [name]="txtDuration" [(ngModel)]="model.DEFAULT_REPORT_DURATION" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,numeric,min=1,max=4'" (bindModelDataChange)="bindModelDataChange($event)" [title]="'Use only numbers'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">No. of request for same EQ item</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [id]="'txtRequests'" [name]="txtRequests" [(ngModel)]="model.NO_OF_REQUESTS_FOR_SAME_EQ_ITM" [ngModelOptions]="{standalone: true}" [validations]="'mandatory,max=2,numeric'" (bindModelDataChange)="bindModelDataChange($event)" [title]="'Use only numbers'"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Upload Image</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <!--<input #file type="file" (change)="fileUpload($event)" id="btnFileUpload">-->
+                                        <div class="input-group image-preview ">
+                                            <input placeholder="No File Chosen" type="text" class="form-control image-preview-filename" disabled="disabled" title="{{trackItUserSelectedFile}}" [(ngModel)]="trackItUserSelectedFile" [ngModelOptions]="{standalone: true}" />
+                                            <!-- don't give a name === doesn't send on POST/GET -->
+                                            <span class="input-group-btn">
+                                                <!-- image-preview-clear button -->
+                                                <button type="button" class="btn btn-default image-preview-clear" style="display:none;"> <span class="glyphicon glyphicon-remove"></span> Clear </button>
+                                                <!-- image-preview-input -->
+                                                <div class="btn btn-default image-preview-input">
+                                                    <span class="glyphicon glyphicon-folder-open"></span> <span class="image-preview-input-title">Browse</span>
+                                                    <input type="file" id="TrackITFileUser" accept="image/*" (change)="fileUpload($event)" name="input-file-preview" />
+                                                    <!-- rename it -->
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <!--<div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                        Upload Image
+                                    </div>-->
+                                </div>
+                                <div class="col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-5 col-xs-12">
+                                    <button class="btn btn-purple sbtn" type="button" [disabled]="btnEnableDisable" (click)="updateUserDetails()">Submit &nbsp;<i class="fa fa-check"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+</div>

@@ -1,0 +1,374 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:10px 0 0 0;">
+                        <div class="form-horizontal form-label-left" *ngIf="page">
+                            <button class="btn btn-purple sbtn pull-right" style="margin-right:10px;" (click)="add()">Add Case &nbsp;<i class="fa fa-plus"></i></button><br>
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Case ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-ac-server [(ngModel)]="caseID" [ngModelOptions]="{standalone: true}" [suggestions]="lstCasesItems" (completeMethod)="fillCasesAuto($event)" [id]="'acprocedure'" (ngModelChange)="Validate()"></atpar-ac-server>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Dept ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-ac-server [(ngModel)]="deptID" [ngModelOptions]="{standalone: true}" [suggestions]="lstdeptItems" (completeMethod)="fillDepartmentsAuto($event)" [id]="'acdept'" (ngModelChange)="Validate()"></atpar-ac-server>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Service Code</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-ac-server [(ngModel)]="serviceCode" [ngModelOptions]="{standalone: true}" [suggestions]="lstServiceCodesItems" (completeMethod)="fillServiceCodesAuto($event)" [id]="'acprocedure'" (ngModelChange)="Validate()"></atpar-ac-server>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">From Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <p-calendar [showIcon]="true" [id]="'FromDatePicker'" [(ngModel)]="fromDate" [required]="true" [placeholder]="'From Date'" [readonlyInput]="true" (onFocus)="onfocusFromCalendar($event)" [ngModelOptions]="{standalone: true}" [dateFormat]="'mm/dd/yy'" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2050"></p-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">To Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <p-calendar [showIcon]="true" [id]="'ToDatePicker'" [(ngModel)]="toDate" [required]="true" [placeholder]="'To Date'" [readonlyInput]="true" (onFocus)="onfocusToCalendar($event)" [ngModelOptions]="{standalone: true}" [dateFormat]="'mm/dd/yy'" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2050"></p-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <button class="btn btn-purple sbtn" style="margin-top:4px;" (click)="onGoClick()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12" *ngIf="showGrid">
+                            <div class="container">
+                                <atpar-datatable #dt [value]="lstCaseInfo" [paginator]="true" [style]="{'width':'100%'}" [pageLinks]="3" [rows]="noOfRecords" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column expander="true" styleClass="col-icon" [style]="{'width':'4%'}"></p-column>
+                                    <p-column field="CASE_ID" header="Case ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="DESCRIPTION" header="Case Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="PERFORM_DATE" header="Perform Date Time" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="PROCEDURENAME" header="Procedure" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="PHYSICIAN_NAME" header="Physician" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+
+                                    <p-column field="PREFERENCENAME" header="Preference List" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                        <template let-col let-pref="rowData" pTemplate type="body">
+                                            <span>{{pref[col.field]}}</span>
+                                            <i class="fa fa-refresh text-primary" (click)="review_Case_Items(pref)" [attr.title]="pref.cursor=='pointer' ? 'Click here to replace Pref card' : ''" [style.cursor]="pref.cursor" *ngIf="pref[col.field] !== ''"></i>
+                                        </template>
+                                    </p-column>
+
+                                    <p-column field="PATIENTNAME" header="Patient" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="DEPTNAME" header="Department" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="SERVICENAME" header="Service" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="STATUS" header="Case Status" [style]="{'width':'7%'}">
+                                        <template pTemplate="filter" let-col>
+                                            <atpar-select-grid [options]="caseStatusList" [id]="'ddlstatus'" [style]="{'width':'100%'}" (onChange)="dt.filter(($event.value),col.field,col.filterMatchMode)"></atpar-select-grid>
+                                        </template>
+                                    </p-column>
+                                    <p-column header="Replace Case" [style]="{'overflow':'visible','width':'10%'}">
+                                        <template let-ven="rowData" pTemplate type="body">
+                                            <atpar-select-grid [options]="ven.repCaseData" [(ngModel)]="ven.repCaseValue" [disabled]="ven.selectCase" [id]="'ddlErpsys'" [ngModelOptions]="{standalone: true}"></atpar-select-grid>
+                                        </template>
+                                    </p-column>
+                                    <p-column header="Change Status" [style]="{'overflow':'visible','width':'10.5%'}">
+                                        <template let-ven="rowData" pTemplate type="body">
+                                            <atpar-select-grid [options]="ven.statusData" [(ngModel)]="ven.statusValue" [disabled]="ven.selectStatus" [id]="'ddlErpsy'" [ngModelOptions]="{standalone: true}"></atpar-select-grid>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="DEPT_ID" header="">
+                                        <template let-col let-ven="rowData" pTemplate type="body">
+                                            <a (click)="onCaseDetailsClick(ven,$event)" id="lnkbtnBUnit">Details</a>
+                                        </template>
+                                    </p-column>
+                                    <p-column header="Select" [style]="{'width':'5%','text-align':'center'}">
+                                        <template let-ven="rowData" pTemplate type="body">
+                                            <atpar-switch [(ngModel)]="ven.CHECKED" [disabled]="ven.selectToggle" (change)="updateItems(ven,$event)"></atpar-switch>
+                                        </template>
+                                    </p-column>
+                                    <template let-case pTemplate="rowexpansion">
+                                        
+                                        <atpar-datatable *ngIf="case.DETAILS!=null" [value]="case.DETAILS" [paginator]="false" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                            <p-column header="Procedure" field="PROCEDURENAME" [style]="{'width':'150px'}"></p-column>
+                                            <p-column header="Physician" field="PHYSICIAN_NAME" [style]="{'width':'150px'}"></p-column>
+                                            <p-column header="Preference List" field="PREFERENCENAME" [style]="{'width':'150px'}">
+                                                <template let-col let-pref="rowData" pTemplate type="body">
+                                                    <label>{{pref[col.field]}}</label>
+                                                    <i class="fa fa-refresh text-primary" (click)="review_Case_Items(pref)" [attr.title]="pref.cursor=='pointer' ? 'Click here to replace Pref card' : ''" [style.cursor]="pref.cursor" *ngIf="pref[col.field] !== ''"></i>
+                                                </template>
+                                            </p-column>
+                                            <p-column header="Patient" field="PATIENTNAME" [style]="{'width':'150px'}"></p-column>
+                                            <p-column header="Department" field="DEPTNAME" [style]="{'width':'150px'}"></p-column>
+                                            <p-column header="Service" field="SERVICENAME" [style]="{'width':'150px'}"></p-column>
+                                            <p-column field="STATUS" header="Case Status" [style]="{'width':'8%'}"></p-column>
+                                            <p-column header="Change Status" [style]="{'overflow':'visible','width':'8%'}">
+                                                <template let-ven="rowData" pTemplate type="body">
+                                                    <atpar-select-grid [options]="ven.statusData" [(ngModel)]="ven.statusValue" [disabled]="ven.selectStatus" [id]="'ddlErpsy'" [ngModelOptions]="{standalone: true}"></atpar-select-grid>
+                                                </template>
+                                            </p-column>
+                                            <p-column header="Select" [style]="{'width':'8%','text-align':'center'}">
+                                                <template let-ven="rowData" pTemplate type="body">
+                                                    <atpar-switch [(ngModel)]="ven.CHECKED"></atpar-switch>
+                                                </template>
+                                            </p-column>
+                                        </atpar-datatable>
+                                    </template>
+                                </atpar-datatable>
+                            </div>
+                            <br />
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="onSaveClick()">Save &nbsp;<i class="fa fa-floppy-o"></i></button>
+                            </div>
+                        </div>
+                        <div class="form-horizontal form-label-left" *ngIf="form">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Case ID</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="caseId" [name]="case_ID" [validations]="'mandatory,alpha_numeric_underscore_hyphen_nospace,max=20'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'txtCaseID'" [ngModelOptions]="{standalone: true}" [isFocused]="'true'" [title]="'Use only letters(A-Z),(a-z), numbers (0-9),the underscore (_),hyphen (-) and no spaces'"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Case Description</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="caseDesc" [name]="txtCaseDesc" [validations]="'mandatory,except_less_greater_symbols'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'txtCaseDesc'" [ngModelOptions]="{standalone: true}" [title]="'Case Description - accepts everything except < and >'"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Perform Date Time</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <p-calendar [showIcon]="true" [id]="'performDate'" [(ngModel)]="performDate" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [required]="true" (ngModelChange)="Validate()" [dateFormat]="'mm/dd/yy'" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2050"></p-calendar>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Procedure</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-ac-server [(ngModel)]="ProcedureItem" [ngModelOptions]="{standalone: true}" [suggestions]="lstProcedureItems" (completeMethod)="fillProceduresAuto($event)" [mandatory]="true" [id]="'acprocedure'" (ngModelChange)="Validate()"></atpar-ac-server>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Physician</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-ac-server [(ngModel)]="PhysiciansItem" [ngModelOptions]="{standalone: true}" [suggestions]="lstPhysiciansItems" (completeMethod)="fillPhysiciansAuto($event)" [mandatory]="true" [id]="'acphysician'" (ngModelChange)="Validate()"></atpar-ac-server>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Preference List</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-ac-server [(ngModel)]="Preference" [ngModelOptions]="{standalone: true}" [suggestions]="lstPreferenceItems" (completeMethod)="fillPreferenceListAuto($event)" [mandatory]="true" [id]="'acpreference'" (ngModelChange)="Validate()"></atpar-ac-server>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Patient</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="patient" [name]="txtpatient" [validations]="'mandatory,everything_except_space_as_fstchar'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'txtpatient'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Department</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-ac-server [(ngModel)]="dept" [ngModelOptions]="{standalone: true}" [suggestions]="lstdeptItems" (completeMethod)="fillDepartmentsAuto($event)" [mandatory]="true" [id]="'acdept'" (ngModelChange)="Validate()"></atpar-ac-server>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple small" [disabled]="loading" (click)="Save_Click($event)">Save &nbsp;<i class="fa fa-floppy-o"></i> </button>
+                                    <button class="btn btn-purple small" (click)="onGoBack()"><i class="fa fa-arrow-left"> &nbsp;</i>Go Back</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-horizontal form-label-left" *ngIf="replacePrefform">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Patient /MRN</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <label class="control-label lbl-left">{{replacePref_patient}}</label>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Procedure</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <label class="control-label lbl-left">{{replacePref_Procedure}}</label>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Preference List</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-ac-server [(ngModel)]="rep_Preference" [ngModelOptions]="{standalone: true}" [suggestions]="lstReplacePreferenceItems" (completeMethod)="fillReplacePreferenceListAuto($event)" [mandatory]="true" [id]="'replace_pref_list'" (ngModelChange)="Validate()"></atpar-ac-server>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-3">
+                                    <br />
+                                    <button class="btn btn-purple small" (click)="replacePref_Save($event)" [disabled]="replacePrefformSaveEnableDisable">Replace Pref Card &nbsp;<i class="fa fa-plus"></i></button>
+                                    <button class="btn btn-purple small" (click)="goReplacePref_Back()"><i class="fa fa-arrow-left"> &nbsp;</i>Go Back</button>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="form-horizontal form-label-left" *ngIf="editform">
+                            <div class="">
+                                <div class="container">
+                                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4"><span style="float:left"><strong>Case ID : </strong> <span>{{itemCaseID}}</span></span></div>
+                                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" style="text-align:center"><span><strong>Physician : </strong><span>{{physician}}</span></span></div>
+                                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4"><span style="float:right"> <strong>Patient : </strong><span>{{patID}}</span></span></div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="col-xs-12" *ngIf="showItemGrid">
+                                <div class="container">
+                                    <atpar-datatable [value]="lstCaseData" [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" #dt [rows]="noOfRecords" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                        <p-column field="PROCEDURE_CODE" header="Procedure Code" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="PREF_LIST_ID" header="Preference List" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="ITEM" header="Item" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="ITEM_DESCR" header="Item Description" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'28%'}"></p-column>
+                                        <p-column header="Open Qty" [style]="{'width':'7%'}">
+                                            <template let-ven="rowData" pTemplate type="body">
+                                                <atpar-text [(ngModel)]="ven.OLD_PICK_QTY" [name]="txtLocationx" [validations]="'numeric_dot'" [id]="'Locationx'" [ngModelOptions]="{standalone: true}" [readonly]="ven.isPickQty"></atpar-text>
+                                            </template>
+                                        </p-column>
+                                        <p-column header="Hold Qty" [style]="{'width':'7%'}">
+                                            <template let-ven="rowData" pTemplate type="body">
+                                                <atpar-text [(ngModel)]="ven.HOLD_QTY" [name]="txtLocationx1" [validations]="'numeric_dot'" [id]="'Locationx1'" [ngModelOptions]="{standalone: true}" [readonly]="ven.isHoldQty"></atpar-text>
+                                            </template>
+                                        </p-column>
+                                        <p-column header="Status" field="ITEMSTATUS" [filter]="true" [style]="{'width': '8%','overflow':'visible','text-align':'center'}" filterMatchMode="equals">
+                                            <template pTemplate="filter" let-col>
+                                                <atpar-select-grid [options]="statusList" [id]="'ddlstatus'" [style]="{'width':'100%'}" (onChange)="dt.filter(($event.value),col.field,col.filterMatchMode)"></atpar-select-grid>
+                                            </template>
+                                            <template let-col let-ven="rowData" pTemplate="body">
+                                                <atpar-switch [checked]="ven[col.field]" (change)="updateSubItems(ven,$event)" *ngIf="lnkItemStatus"></atpar-switch>
+                                            </template>
+                                        </p-column>
+                                    </atpar-datatable>
+                                </div>
+                                <div class="col-xs-12 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-4">
+                                    <button class="btn btn-purple small" (click)="SaveReviewCaseItems()">Save &nbsp;<i class="fa fa-floppy-o"></i></button>
+                                    <button class="btn btn-purple sbtn" (click)="onAddItemClick()" *ngIf="isAddItem"> Add Item &nbsp;<i class="fa fa-plus"> </i></button>
+                                    <button class="btn btn-purple small" (click)="onCaseDetailsGoBackClick()"><i class="fa fa-arrow-left"> &nbsp;</i>Go Back</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;" *ngIf="additem">
+                    <div class="panel-body" style="padding:0 0 10px 0 ;">
+                        <div class="col-md-12">
+                            <div class="form-horizontal form-label-left">
+                                <div class="col-xs-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Item # </label>
+                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                            <div class="input-group">
+                                                <atpar-text [(ngModel)]="subItem.ITEMID" [id]="'txtItemID'" [name]="lookupItem" [ngModelOptions]="{standalone: true}" [isFocused]="'true'"></atpar-text>
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-purple sbtn gbtn" type="button" (click)="lookup()"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Procedure Code</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                            <label class="control-label lbl-left" *ngIf="!isDetails">{{procedureCode}}</label>
+                                            <atpar-ac-server [(ngModel)]="subItem.PROCEDURE_CODE" *ngIf="isDetails" [ngModelOptions]="{standalone: true}" [suggestions]="lstProcedureCodes" (completeMethod)="fillProcCodeAuto($event)" [mandatory]="true" [id]="'acprocedure'" (ngModelChange)="Validate()"></atpar-ac-server>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Preference List</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                            <label class="control-label lbl-left" *ngIf="!isDetails">{{preferenceList}}</label>
+                                            <atpar-ac-server [(ngModel)]="subItem.PREF_LIST_ID" *ngIf="isDetails" [ngModelOptions]="{standalone: true}" [suggestions]="lstPrefItems" (completeMethod)="fillPreferenceAuto($event)" [mandatory]="true" [id]="'acpreference'" (ngModelChange)="Validate()"></atpar-ac-server>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Description</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                            <label class="control-label lbl-left">{{subItem.ITEM_DESCR}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Open Qty</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                            <atpar-text [(ngModel)]="subItem.OLD_PICK_QTY" [name]="txtopenqty" [validations]="'mandatory,everything,numeric_dot'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'txtpatient'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Hold Qty</label>
+                                        <div class="col-xs-12 col-sm-6 col-md-8">
+                                            <atpar-text [(ngModel)]="subItem.HOLD_QTY" [name]="txthldqty" [validations]="'mandatory,everything,numeric_dot'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'txtpatient'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="insertSubItems()">Add &nbsp; <i class="fa fa-plus"></i></button>
+                                    <button class="btn btn-purple sbtn" (click)="close()">Close &nbsp; <i class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="container" *ngIf="lookupitem">
+                                <atpar-datatable [value]="lstSubItemData" [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="noOfRecords" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column header="Select" [style]="{'width':'7%'}">
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <atpar-radioButton (click)="selectedRow(ven)" name="groupname" style="margin-left:10px"></atpar-radioButton>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="ITEMID" header="Item Id" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'20%'}"> </p-column>
+                                    <p-column field="CUST_ITEM_ID" header="Custom Item NO" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'50%'}"></p-column>
+                                    <p-column field="ITEM_DESCR" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'50%'}"></p-column>
+                                    <p-column field="MFG_ITEM_ID" header="Mfg Item ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'15%'}"> </p-column>
+                                    <p-column field="VENDOR_ITEM_ID" header="Vendor Item ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'15%'}"> </p-column>
+                                    <p-column field="UPCID" header="UPC ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'15%'}"> </p-column>
+                                    <p-column field="GTIN" header="GTIN" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'15%'}"> </p-column>
+                                </atpar-datatable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <atpar-growl [value]="statusMsgs" sticky="sticky"></atpar-growl>
+    <div class="content-section implementation">
+        <atpar-confirmdialog header="Confirmation" icon="fa fa-question-circle" width="425"></atpar-confirmdialog>
+    </div>
+</div>
+<style>
+    .text-primary {
+        color: #085ca5 !important;
+    }
+
+    .ui-inputtext {
+        color: #222222 !important;
+    }
+</style>
+
+<!--field="isExpander"-->

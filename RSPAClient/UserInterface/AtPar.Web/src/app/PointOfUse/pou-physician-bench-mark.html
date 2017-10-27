@@ -1,0 +1,344 @@
+﻿<style>
+    .clrRed {
+        color: white;
+    }
+
+    .clrGreen {
+        color: white;
+    }
+
+    .clrBlack {
+        color: black;
+    }
+
+    a:hover {
+        /*color: cornflowerblue !important;*/
+        color: rgba(108, 39, 106, 1);
+    }
+</style>
+<div id="main" class="content-page">
+    <div class="content">
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border">
+                <br />
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px 10px;">
+                        <div class="form-group">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="tdExports" *ngIf="tdExports">
+                                <i class="fa fa-file-excel-o fa-bg-lg bg-blue" aria-hidden="true" id="imgExcel" style="cursor:pointer;font-size:18px;float:right;margin-right:8px" title="Excel Format" (click)="onExportToExcelClick($event)"></i>&nbsp;
+                                <i class="fa fa-envelope-o fa-bg-lg bg-blue" aria-hidden="true" id="imgMail" style="cursor:pointer;font-size:18px;float:right;margin-right:8px" title="Send mail" (click)="onSendMailIconClick($event)"></i>&nbsp;
+                                <i class="fa fa-print fa-bg-lg bg-blue" aria-hidden="true" id="imgPrint" style="cursor:pointer;font-size:18px;float:right;margin-right:8px" title="Print" (click)="onPrintClick($event)"></i>&nbsp;
+
+                            </div>
+                        </div>
+                        <atpar-pou-tabs [selectedTab]="activeTab" (enableSelectedTab)="enableSelectedTab($event)">
+                            <atpar-tab tabTitle="Summary by Specialty" (SelectedTab)="SelectedTab(tab)" id="Summary by Specialty" (bindModelDataChange)="selectedTab($event)" [active]="SummaryBySpecialtyTab">
+                                <div class="form-horizontal form-label-left">
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-6 col-sm-6">Select Range</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                <atpar-select [options]="lstSltRnge" [filter]="true" [(ngModel)]="selectedSltRnge" [id]="'ddlSltRnge'" [ngModelOptions]="{standalone: true}" (onChange)="Yearsbind()" [required]="true"> </atpar-select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Year</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-8">
+                                                <atpar-yearviewcalender [(ngModel)]="ddltyear" [id]="DecadeView"  [showIcon]="true" [required]="true" [readonlyInput]="true" [ngModelOptions]="{standalone: true}"></atpar-yearviewcalender>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-4 form-group" *ngIf="selectedSltRnge!='Y'&& selectedSltRnge!='Y1'">
+                                            <label for="" class="control-label col-xs-12 col-md-6 col-sm-6">Select Half year/Quarter/Month</label>
+                                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                                <atpar-select [filter]="true" [options]="lstSltHQM" [(ngModel)]="selectedSltHQM" [id]="'ddlSltHQM'" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <div class="col-sm-12 col-xs-12 col-md-4 col-sm-6 col-sm-offset-5 col-md-offset-5">
+                                            <button class="btn btn-purple sbtn" id="btnSummaryBySpecialty" (click)="btn_SummaryBySpecialty()" name="btnGetSummaryBySpecialty">Go &nbsp;<i class="fa fa-arrow-right"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 table-responsive" *ngIf="gvSummaryBySpecialty">
+                                    <div class="container">
+                                        <span class="pull-right text-primary">
+                                            {{lstLength}}
+                                        </span>
+                                        <atpar-datatable [value]="lstSummaryBySpecialty" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true"
+                                                         [rowsPerPageOptions]="[10,20, 30, 40, 50, 60, 70, 80, 90, 100]"
+                                                         [globalFilter]="gb" [responsive]="true">
+                                            <p-column field="SPECIALTY_DESCRIPTION" header="Specialty" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <a (click)="onSpltyClick(ven,$event)" style='color:blue;font-style:italic;'>{{ven.SPECIALTY_DESCRIPTION}}</a>
+                                                </template>
+                                            </p-column>
+
+                                            <p-column field="NO_OF_PROCEDURES" styleClass="text-center" header="# Procedures" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <span>{{ven.NO_OF_PROCEDURES | number}}</span>
+                                                </template>
+                                            </p-column>
+                                            <p-column field="NO_OF_PHYSICIANS" styleClass="text-center" header="# Physicians" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <span>{{ven.NO_OF_PHYSICIANS | number}}</span>
+                                                </template>
+                                            </p-column>
+                                            <p-column field="TOTAL_SPEND" styleClass="text-right" header="Total Spend" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <span>{{ven.TOTAL_SPEND | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                                </template>
+                                            </p-column>
+                                            <p-column field="TOTAL_VARIANCE" styleClass="text-right" header="Extended Variance" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <span>{{ven.TOTAL_VARIANCE | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                                </template>
+                                            </p-column>
+                                            <template pTemplate="filter" let-col>
+                                                <atpar-select-grid [options]="database" [(ngModel)]="statusType" [style]="{'width':'100%'}" [id]="'ddldatabase'" [required]="false" (onChange)="dataFilter($event.value,col.field,col.filterMatchMode)"></atpar-select-grid>
+                                            </template>
+                                        </atpar-datatable>
+                                    </div>
+                                </div>
+                            </atpar-tab>
+                            <atpar-tab tabTitle="Physician Ranking" id="Physician Ranking" [active]="PhysicianRankingTab">
+                                <div class="form-horizontal form-label-left">
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">Range:<span style="font-weight:bold !important">{{selectedSltRngeLbl}}</span></label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-6 col-sm-6" style="font-weight:bold !important"></label>-->
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">Year:<span style="font-weight:bold !important">{{ddltyear}}</span></label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-6 col-sm-6" style="font-weight:bold !important"></label>-->
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-6 col-sm-6">
+                                                Specialty:<span style="font-weight:bold !important">{{VarnceSpecialityDescription}}({{VarnceSpecialityCode}})</span>
+                                            </label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-offset--2 col-md-8 col-sm-6" style="font-weight:bold !important">
+                                            </label>-->
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-3 form-group" *ngIf="showHalfyrlbl">
+                                            <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">
+                                                {{Hlfqtrmnthlbltxt}}<span style="font-weight:bold !important">{{Hlfqtrmnthlbl}}</span>
+                                            </label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-8 col-sm-6" style="font-weight:bold !important">
+                                            {{Hlfqtrmnthlbl}}
+                                             </label>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 table-responsive" *ngIf="gvPhyRanking">
+                                    <div class="container">
+                                        <span class="pull-right text-primary">
+                                            {{lstLength}}
+                                        </span>
+                                        <atpar-datatable [value]="lstPhyBnchMrkRnkData" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true"
+                                                         [rowsPerPageOptions]="[10,20, 30, 40, 50, 60, 70, 80, 90, 100]"
+                                                         [globalFilter]="gb" [responsive]="true">
+
+                                            <p-column field="PHYSICIAN_RANK" styleClass="text-center" header="Rank" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                            <p-column field="PHYSICIAN_NAME" header="Physician" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <a (click)="onPhyNameClick(ven,$event)" style='color:blue;font-style:italic;'>{{ven.PHYSICIAN_NAME}}</a>
+                                                </template>
+                                            </p-column>
+                                            <p-column field="NO_OF_PROCEDURES" styleClass="text-center" header="# Procedures" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <span>{{ven.NO_OF_PROCEDURES | number}}</span>
+                                                </template>
+                                            </p-column>
+                                            <p-column field="TOTAL_SPEND" styleClass="text-right" header="Total Spend" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <span>{{ven.TOTAL_SPEND | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                                </template>
+                                            </p-column>
+                                            <p-column field="TOTAL_VARIANCE" styleClass="text-right" header="Extended Variance" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <span>{{ven.TOTAL_VARIANCE | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                                </template>
+                                            </p-column>
+                                            <p-column field="PER_VAR_TOTAL_SPEND" styleClass="text-right" header="% Variance over Total Spend" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <span>{{ven.PER_VAR_TOTAL_SPEND | number:'1.1-1'}}%</span>
+                                                </template>
+                                            </p-column>
+                                        </atpar-datatable>
+                                    </div>
+                                </div>
+                            </atpar-tab>
+                            <atpar-tab tabTitle="Physician Score Card" (SelectedTab)="SelectedTab(tab)" [active]="PhysicianScoreCardTab">
+                                <div class="form-horizontal form-label-left">
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">Range:<span style="font-weight:bold !important">{{selectedSltRngeLbl}}</span></label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-6 col-sm-6" style="font-weight:bold !important"></label>-->
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">Year:<span style="font-weight:bold !important">{{ddltyear}}</span></label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-6 col-sm-6" style="font-weight:bold !important">{{ddltyear}}</label>-->
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-6 col-sm-6">
+                                                Specialty:<span style="font-weight:bold !important">{{VarnceSpecialityDescription}}({{VarnceSpecialityCode}})</span>
+                                            </label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-offset--2 col-md-8 col-sm-6" style="font-weight:bold !important">
+                                            {{VarnceSpecialityDescription}}({{VarnceSpecialityCode}})
+                                            </label>-->
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <!--<div class="col-xs-12 col-sm-12 col-md-3 form-group">
+                                             <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">
+                                         Specialty:
+                                         </label>
+                                         <div class="col-xs-12 col-sm-6 col-md-8">
+                                         <label class="control-label lbl-left" style="font-weight:bold !important">{{VarnceSpecialityCode}}</label>
+                                         </div>
+                                         </div>-->
+                                        <div class="col-xs-12 col-sm-12 col-md-3 form-group" *ngIf="showHalfyrlbl">
+                                            <label for="" class="control-label col-xs-12 col-md-9 col-sm-6">
+                                                {{Hlfqtrmnthlbltxt}}<span style="font-weight:bold !important">{{Hlfqtrmnthlbl}}</span>
+                                            </label>
+                                            <!--<label for="" class="control-label col-xs-12 col-md-8 col-sm-6" style="font-weight:bold !important">
+                                            </label>-->
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-5 form-group">
+                                            <label for="" class="control-label col-xs-12 col-md-7 col-sm-6">
+                                                Physician Name:<span style="font-weight:bold !important">{{Phyname}}</span>
+                                            </label>
+                                            <!--<div class="col-xs-12 col-sm-6 col-md-8">
+                                            <label class="control-label lbl-left" style="font-weight:bold !important"></label>
+                                            </div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container" *ngIf="gvPhyScoreCard">
+                                    <!--no-scrl-->
+                                    <ul class="list-inline">
+                                        <li class="pull-right no-padding">
+                                            <span class="pull-right text-primary">
+                                                {{lstLength}}
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-xs-12 table-responsive" *ngIf="gvPhyScoreCard">
+                                    <div class="container">
+                                        <atpar-datatable [value]="lstPhyScrCrdData" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true"
+                                                         [rowsPerPageOptions]="[10,20, 30, 40, 50, 60, 70, 80, 90, 100]"
+                                                         [globalFilter]="gb" [responsive]="true" styleClass="ui-dt-physcrcrd-scrl">
+                                            <p-headerColumnGroup>
+                                                <p-row>
+                                                    <p-column field="PROCEDURE_CODE" [style]="{'width':'50px'}" header="Procedure Code" rowspan="2" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                    </p-column>
+                                                    <p-column field="PROCEDURE_DESCRIPTION" [style]="{'width':'75px'}" header="Procedure Description" rowspan="2" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                    </p-column>
+                                                    <p-column field="NO_OF_PROCEDURES" [style]="{'width':'66px'}" header="# Procedures" rowspan="2" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                    </p-column>
+                                                    <p-column field="PER_PROC_PERFORMED" [style]="{'width':'80px'}" header="% Procedures Performed" rowspan="2" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                    </p-column>
+                                                    <p-column field="AVG_PROC_COST" [style]="{'width':'75px'}" header="Average Cost" rowspan="2" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                    </p-column>
+                                                    <p-column field="VAR_FROM_LOW_AVG" [style]="{'width':'80px'}" header="Variance from Low Average Cost" rowspan="2" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                    </p-column>
+                                                    <p-column field="EXTENDED_VARIANCE" [style]="{'width':'80px'}" header="Extended Variance" rowspan="2" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                    </p-column>
+                                                    <p-column field="PHYSICIAN_RANK" [style]="{'width':'75px'}" header="Rank" rowspan="2" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                    </p-column>
+                                                    <p-column field="" header="" rowspan="2" [style]="{'width':'10px'}">
+                                                    </p-column>
+                                                    <p-column field="" header="Department Totals" colspan="3" [style]="{'width':'200px'}">
+                                                    </p-column>
+                                                </p-row>
+                                                <p-row>
+                                                    <p-column field="NO_OF_PHY_DEPT" [style]="{'width':'20px'}" header="# Physicians" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                    </p-column>
+                                                    <p-column field="NO_OF_PROCS_DEPT" [style]="{'width':'100px'}" header="# Procedures" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                    </p-column>
+                                                    <p-column field="LOW_COST_AVG_DEPT" [style]="{'width':'100px'}" header="Low Cost Average" [sortable]="true" [filter]="true" filterPlaceholder="Search">
+                                                    </p-column>
+                                                </p-row>
+                                            </p-headerColumnGroup>
+                                            <p-column field="PROCEDURE_CODE" header="Procedure Code"></p-column>
+                                            <p-column field="PROCEDURE_DESCRIPTION" header="Procedure Description">
+                                            </p-column>
+                                            <p-column field="NO_OF_PROCEDURES" styleClass="text-center" header="# Procedures">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <span>{{ven.NO_OF_PROCEDURES | number}}</span>
+                                                </template>
+                                            </p-column>
+                                            <p-column field="PER_PROC_PERFORMED" styleClass="text-right" header="% Procedures Performed">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <span>{{ven.PER_PROC_PERFORMED | number:'1.1-1'}}%</span>
+                                                </template>
+                                            </p-column>
+                                            <p-column field="AVG_PROC_COST" styleClass="text-right" header="Average Cost">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <span>{{ven.AVG_PROC_COST | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                                </template>
+                                            </p-column>
+                                            <p-column field="VAR_FROM_LOW_AVG" styleClass="text-right" header="Variance from Low Average Cost">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <span>{{ven.VAR_FROM_LOW_AVG | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                                </template>
+                                            </p-column>
+                                            <p-column field="EXTENDED_VARIANCE" styleClass="text-right" header="Extended Variance">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <span>{{ven.EXTENDED_VARIANCE | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                                </template>
+                                            </p-column>
+                                            <p-column field="PHYSICIAN_RANK" styleClass="text-center" header="Rank">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <span #x [ngClass]="{clrRed: ven.PHYSICIAN_RANK===1}" *ngIf="ven.PHYSICIAN_RANK===1">{{SetPhyRnkGrnColor(x)}}{{ven.PHYSICIAN_RANK | number}}</span>
+                                                    <span #x [ngClass]="{clrRed: ven.PHYSICIAN_RANK===2}" *ngIf="ven.PHYSICIAN_RANK===2">{{SetPhyRnkGrnColor(x)}}{{ven.PHYSICIAN_RANK | number}}</span>
+                                                    <span #x [ngClass]="{clrGreen: ven.PHYSICIAN_RANK===MaxPhyRnk}" *ngIf="ven.PHYSICIAN_RANK===MaxPhyRnk&&ven.PHYSICIAN_RANK!=1&&ven.PHYSICIAN_RANK!=2">{{SetPhyRnkRdColor(x)}}{{ven.PHYSICIAN_RANK | number}}</span>
+                                                    <span #x [ngClass]="{clrBlack: ven.PHYSICIAN_RANK===ven.PHYSICIAN_RANK!=MaxPhyRnk&&ven.PHYSICIAN_RANK!=1&&ven.PHYSICIAN_RANK!=2}" *ngIf="ven.PHYSICIAN_RANK!=MaxPhyRnk&&ven.PHYSICIAN_RANK!=1&&ven.PHYSICIAN_RANK!=2">{{SetPhyRnkWhtColor(x)}}{{ven.PHYSICIAN_RANK | number}}</span>
+                                                </template>
+                                            </p-column>
+                                            <p-column>
+
+                                            </p-column>
+                                            <p-column field="NO_OF_PHY_DEPT" [style]="{'width':'100%'}" styleClass="text-center" header="#Physicians">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <span>{{ven.NO_OF_PHY_DEPT | number}}</span>
+                                                </template>
+                                            </p-column>
+                                            <p-column field="NO_OF_PROCS_DEPT" [style]="{'width':'100%'}" styleClass="text-center" header="# Procedures">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <span>{{ven.NO_OF_PROCS_DEPT | number}}</span>
+                                                </template>
+                                            </p-column>
+                                            <p-column field="LOW_COST_AVG_DEPT" [style]="{'width':'100%'}" styleClass="text-right" header="Low Cost Average">
+                                                <template let-col let-ven="rowData" pTemplate="body">
+                                                    <span>{{ven.LOW_COST_AVG_DEPT | currency:'USD':true:'1.0-0' |  minusSignToParens}}</span>
+                                                </template>
+                                            </p-column>
+                                        </atpar-datatable>
+                                    </div>
+                                </div>
+                            </atpar-tab>
+                        </atpar-pou-tabs>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+    <atpar-dialog header="Enter Recipient`s Email Address" [(visible)]="isMailDialog" [draggable]="false" [responsive]="true" width="500" showEffect="fade" [modal]="true">
+        <div class="ui-grid ui-grid-responsive ui-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    <span>To : </span>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-8 col-xs-8">
+                    <atpar-text [(ngModel)]="toMailAddr" [validations]="'EMAIL'" [name]="txtToMailAddr" [id]="'txtToMailAddr'"></atpar-text>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    <span><button class="btn btn-purple sbtn" (click)="onSendMailClick()"><i class="fa fa-check"></i> &nbsp; Send</button> </span>
+                </div>
+            </div>
+        </div>
+    </atpar-dialog>
+</div>

@@ -1,0 +1,141 @@
+﻿<div id="main" class="content-page">
+    <div class="page-header-title">
+        <h4 class="page-title"><a (click)="homeurl()">Administration ></a> Assign Signatories</h4>
+    </div>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:20px;">
+                        <form class="form-horizontal form-label-left" *ngIf="filter">
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-6">Cost Center </label>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <atpar-text [(ngModel)]="newItem.CostCenter" [name]="txtCostCenter" *ngIf="!isEditMode" [isFocused]="'true'" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'CostCenter'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-2 col-md-4 form-group">
+                                <button class="btn btn-purple sbtn" (click)="go()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                            </div>
+                        </form>
+                        <div style="clear:both;"></div>                       
+                        <div class="col-xs-12 table-responsive" *ngIf="pop">
+                            <button class="btn btn-purple sbtn pull-right" (click)="up()"> <i class="fa fa-plus"></i>&nbsp;Add </button>
+                            <br>
+                            <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                <!--<p-column expander="true" styleClass="col-icon"></p-column>-->
+                                <p-column field="CODE" header="Code" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <!--<p-column field="FIRST_NAME" header="First Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="LAST_NAME" header="Last Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>-->
+                                <p-column header="Assign Signatories">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <a (click)="add()">Assign Signatories</a>
+                                    </template>
+                                </p-column>
+                                <!--<p-column field="DEPT_ID" header="Allocated Department" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>-->
+                                <p-column header="Action">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <i class="fa fa-pencil fa-bg bg-blue" title="edit" (click)="up()"></i>&nbsp;
+                                        <!--<i class="fa fa-ban fa-bg bg-danger" title="Disable"></i>&nbsp;-->
+                                        <i class="fa fa-trash fa-bg bg-red" title="Delete"></i>
+                                    </template>
+                                </p-column>
+                            </atpar-datatable>
+                        </div>
+                        <div style="clear:both;"></div>
+                        
+                        <form class="form-horizontal form-label-left"  *ngIf="form">
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Code</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="newItem.Code" [name]="txtCode" *ngIf="!isEditMode" [isFocused]="'true'" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Code'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                    Enter Code Here
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                                <button class="btn btn-purple sbtn" (click)="save()">Save &nbsp; <i class="fa fa-check"></i></button>
+                            </div>
+                        </form>
+                        <div style="clear:both;"></div>
+                        
+                        <div class="col-xs-12 table-responsive" *ngIf="table">
+                            <button class="btn btn-purple sbtn pull-right" (click)="edit()"> <i class="fa fa-plus"></i>&nbsp;Add </button>
+                            <br>
+                            <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                <!--<p-column expander="true" styleClass="col-icon"></p-column>-->
+                                <p-column field="UID" header="User ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="FNAME" header="First Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="LNAME" header="Last Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="MNAME" header="Middle Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <!--<p-column field="FIRST_NAME" header="First Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="LAST_NAME" header="Last Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>-->
+                                <!--  <p-column header="Assign Signatories">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <a>Assign Signatories</a>
+                                    </template>
+                                </p-column>
+                                <p-column field="DEPT_ID" header="Allocated Department" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>-->
+                                <p-column header="Action">
+                                    <template let-ven="rowData" pTemplate type="body">
+                                        <!--  <i class="fa fa-pencil fa-bg bg-blue" title="edit" (click)="edit()"></i>&nbsp;
+                                        <i class="fa fa-ban fa-bg bg-danger" title="Disable"></i>&nbsp;-->
+                                        <i class="fa fa-trash fa-bg bg-red" title="Delete"></i>
+                                    </template>
+                                </p-column>
+                            </atpar-datatable><br>
+                            <div class="col-md-6 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="back()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back </button>
+                            </div>                            
+                        </div>
+                        <div style="clear:both;"></div>                        
+                        <form class="form-horizontal form-label-left"  *ngIf="form2">
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">User ID</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="newItem.OrgId1" [name]="txtOrgId1" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'OrgId1'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                    Enter User ID Here
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">First Name</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="newItem.OrgId" [name]="txtOrgId" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'OrgId'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                    Enter First Name Here
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Last Name</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="newItem.OrgI" [name]="txtOrgI" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'OrgI'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                    Enter Last Name Here
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-3 col-md-3">Middle Name</label>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <atpar-text [(ngModel)]="newItem.Org" [name]="txtOrg" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Org'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                    Enter Middle Name Here
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                                <button class="btn btn-purple sbtn">Save &nbsp; <i class="fa fa-check"></i></button>
+                                <button class="btn btn-purple sbtn" (click)="close()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

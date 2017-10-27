@@ -1,0 +1,173 @@
+﻿<style>
+    .mb-10{
+        margin-bottom:0!important;
+    }
+</style>
+<div id="main" class="content-page">
+    <div class="content">
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border">
+                <br>
+                <atpar-growl [value]="msgs" sticky="sticky"></atpar-growl>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px 0 0 0;">
+                        <div class="col-md-12">
+                            <div class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12" >
+                                        Org Group ID
+                                    </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [options]="ddlorgGroupData" (onChange)="ddlOrgGrpIdChanged($event)" [name]="ddlOrgGroupId" [id]="'ddlorgGroupData'"  [required]="true" [isfocus]="hasMultipleOrgGroups" [style]="{'width':'100%'}" [(ngModel)]="newItem.ORG_GROUP_ID" *ngIf="hasMultipleOrgGroups" [tabindex]="'0'" filter="filter">
+                                        </atpar-select>
+                                        <label *ngIf="!hasMultipleOrgGroups" class="control-label lbl-left">{{lblOrgGroupId}}</label>
+                                    </div>  
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Vendor ID </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.VENDOR_ID" [id]="'txtVendorId'" *ngIf="!isEditMode" [name]="txtVendorId" [validations]="'mandatory,alpha_numeric_dot_underscore_nospace,max=15'" (bindModelDataChange)="bindModelDataChange($event)" [title]="'Use only letters(a-z),(A-Z),numbers(0-9),the underscore(_),dot(.)and no spaces'"></atpar-text>
+                                        <label *ngIf="isEditMode" class="control-label lbl-left">{{newItem.VENDOR_ID}}</label>
+                                    </div>
+                                    <!--<div class="col-xs-12 col-sm-6 col-md-6 help_txt"> [isFocused]="'true'" [isfocus]="hasMultipleOrgGroups"
+                                        Use only letters(a-z),(A-Z),numbers (0-9),the underscore(_),dot(.)and no spaces
+                                    </div>-->
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">Vendor Name </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.VENDOR_NAME" [id]="'txtVendorName'" [validations]="'mandatory,except_less_greater_symbols,max=50'" (bindModelDataChange)="bindModelDataChange($event)" [name]="txtVendorName" [title]="'Any character A-Z,a-z,0-9,!,#,$...'"></atpar-text>
+                                    </div>
+                                   
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"><span class="text-danger"></span> Address 1 </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.ADDRESS1" [id]="'txtAddress1'" [validations]="'alpha_numeric_hash_nospace'" (bindModelDataChange)="bindModelDataChange($event)" [name]="txtAddress1" [title]="'Use only A-Z,a-z,0-9,#'"></atpar-text>
+                                    </div>
+                                   
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"><span class="text-danger"></span> Address 2 </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.ADDRESS2" [id]="'txtAddress2'" [validations]="'alpha_numeric_hash_nospace'" (bindModelDataChange)="bindModelDataChange($event)" [name]="txtAddress2" [title]="'Use only A-Z,a-z,0-9,#'"></atpar-text>
+                                    </div>                                   
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"><span class="text-danger"></span> City </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.CITY" [id]="'txtCity'" [validations]="'alpha_numeric_underscore_space'" (bindModelDataChange)="bindModelDataChange($event)" [name]="txtCity" [title]="'Use only letters(a-z),numbers(0-9),the underscore(_) and spaces'"></atpar-text>
+                                    </div>                                    
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"><span class="text-danger"></span> State</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [options]="ddlStates" [id]="'ddlStates'" [required]="false" [style]="{'width':'100%'}" [(ngModel)]="newItem.STATE" (onChange)="onChangeddlStates()">
+                                        </atpar-select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"><span class="text-danger"></span> Zip</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.ZIP" [id]="'txtZip'" [validations]="'alpha_numeric_underscore_nospace,max=9'" (bindModelDataChange)="bindModelDataChange($event)" [name]="txtZip" [title]="'Use only letters(a-z),numbers(0-9) and the underscore(_)'"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"><span class="text-danger"></span> Country</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [options]="ddlcountry" [id]="'ddlcountry'" [required]="false" [style]="{'width':'100%'}" [(ngModel)]="newItem.COUNTRY" (onChange)="onChangeddlCountry()">
+                                        </atpar-select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"><span class="text-danger"></span> Contact name</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.CONTACT_NAME" [id]="'txtContactName'" [validations]="'alpha_space'" (bindModelDataChange)="bindModelDataChange($event)" [name]="txtContactName" [title]="'Name of the user-use only letters(a-z) and spaces'"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"><span class="text-danger"></span> Phone </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.PHONE" [id]="'txtPhone'" [validations]="'numeric,max=10,phone'" (bindModelDataChange)="bindModelDataChange($event)" [name]="txtPhone" [title]="'Use the format 1231231234'"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">
+                                        <span class="text-danger"></span> FAX
+                                    </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.FAX" [id]="'txtFax'" [validations]="'numeric,max=10,fax'" (bindModelDataChange)="bindModelDataChange($event)" [name]="txtFax" [title]="'Use the format 1231231234'"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">
+                                        <span class="text-danger"></span> Email
+                                    </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.CONTACT_E_MAIL" [id]="'txtContactEmail'" [validations]="'email'" (bindModelDataChange)="bindModelDataChange($event)" [name]="txtContactEmail" [title]="'Use the format user@domainname.com'"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">
+                                        <span class="text-danger"></span> Dispatch Type
+                                    </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-select [options]="ddldispatchType" [id]="'ddldispatchType'" [required]="false" [style]="{'width':'100%'}" [(ngModel)]="newItem.ORDER_DESPATCH_TYPE">
+                                        </atpar-select>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                        Purchase order dispatch file format-File,Phone,Email or Fax
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12">
+                                        <span class="text-danger"></span> Allow Vendor Access
+                                    </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-switch [(ngModel)]="allowVendorAccessValidation"></atpar-switch>
+                                        <!--<atpar-switch [(ngModel)]="allowVendorAccessValidation" [checked]="false"></atpar-switch>-->
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                        Check this box if Vendor can access their information
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"><span class="text-danger"></span> Bill Only Email </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.BILL_ONLY_EMAIL" [id]="'txtBillOnlyEmail'" [validations]="'email'" (bindModelDataChange)="bindModelDataChange($event)" [name]="txtBillOnlyEmail" [title]="'Use the format user@domainname.com'"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"><span class="text-danger"></span> Frequency for Sending Reminders </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="newItem.REMINDER_FREQ" [id]="'txtRemainder'" [validations]="'max=4,numeric'" (bindModelDataChange)="bindModelDataChange($event)" [name]="txtRemainder" [title]="'Only numbers'"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                        Frequency specified in minutes
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_step_element_id" class="control-label col-md-3 col-sm-3 col-xs-12"><span class="text-danger"></span> User ID </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+
+
+                                        <atpar-select [options]="ddlUserIdData" [(ngModel)]="newItem.VEND_USER_ID" [style]="{'width':'100%'}" [id]="'ddlUserIdData1'" [required]="false"  [ngModelOptions]="{standalone: true}"  filter="filter">                                         
+                                        </atpar-select>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                        Select the user to be assigned to this vendor
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-5 col-xs-12">
+                                    <button class="btn btn-purple sbtn" [disabled]="loading" (click)="createNewVendor()" name="btnCreateNewVendor" style="text-transform:capitalize !important;">{{submitButtonTitle}} &nbsp;<i class="fa fa-{{bindSymbal}}"></i></button>
+                                    <button class="btn btn-purple sbtn" (click)="navigatVendorHome();" name="btnNavigatVendorHome"> <i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--old code-->
+    </div>
+</div>

@@ -1,0 +1,106 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px;">
+                        <form class="form-horizontal form-label-left" *ngIf="page">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Org Group ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <label *ngIf="blnShowOrgGroupLabel" class="control-label lbl-left">{{orgGrpId}}</label>
+                                        <atpar-select [options]="lstOrgGroups" [id]="'ddllstOrgGroups'" [required]="true" [(ngModel)]="selectedOrgGroupId" [ngModelOptions]="{standalone: true}" filter="filter" *ngIf="blnShowOrgGroupDD" (onChange)="ddlOrgGrpIdChanged()"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">User ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstUsers" [id]="'ddllstUsers'" [required]="true" [(ngModel)]="selectedDropDownUserId" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlUserIdChanged($event)"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Business Unit</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstFilteredBUnits" [id]="'ddllstBunit'" [(ngModel)]="selectedBunit" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlBUnitChanged()"></atpar-select>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Event ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="eventDescription" [name]="txtLocationID1" *ngIf="!isEditMode"  [id]="'txtEventDescription'" [ngModelOptions]="{standalone: true}"></atpar-text> <!--[validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'"-->
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Display</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstsearch" [id]="'ddlsearch'" [(ngModel)]="selectedSearch" [ngModelOptions]="{standalone: true}"  (onChange)="ddlSelectChanged()"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                        <button class="btn btn-purple sbtn" (click)="getAllBUnits()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="col-xs-12" *ngIf="showGrid">
+                            <div class="container">
+                            <span class="text-primary">{{lstLength}}</span>
+                                <atpar-datatable [value]="lstEvents" [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true"
+                                                 [rowsPerPageOptions]="[10,20, 30, 40, 50, 60, 70, 80, 90, 100]" [globalFilter]="gb" [responsive]="true" (filteredData)="filterdata($event)">
+                                    <p-column [style]="{'width':'7%', 'text-align':'center'}" header="Select">
+                                        <template pTemplate="filter" let-col>
+                                            <ul class="list-inline li-all-none">
+                                                <li>
+                                                    <span (click)="checkAll()" style="cursor:pointer">All</span>
+                                                </li> |
+                                                <li>
+                                                    <span (click)="unCheckAll()" style="cursor:pointer">None</span>
+                                                </li>
+                                            </ul>
+                                        </template>
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <atpar-switch (change)="selectedRow(ven,$event)" [(ngModel)]="ven.STATUSALLOCATED"></atpar-switch>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="BUSINESS_UNIT" header="Business Unit" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search" [style]="{'width':'10%'}">
+                                        <template let-col let-ven="rowData" pTemplate="body">
+                                            <span [style.color]="ven['CartColor']">{{ven.BUSINESS_UNIT}}</span>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="EVENT_ID" header="Event ID" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search" [style]="{'width':'8%'}">
+                                        <template let-col let-ven="rowData" pTemplate="body">
+                                            <span [style.color]="ven['CartColor']">{{ven.EVENT_ID}}</span>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="NO_RECORDS" header="No of Items" styleClass="text-right" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search" [style]="{'width':'8%'}">
+                                        <template let-col let-ven="rowData" pTemplate="body">
+                                            <span [style.color]="ven['CartColor']">{{ven.NO_RECORDS}}</span>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="FROM_STOR_LOC" header="From" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search" [style]="{'width':'20%'}">
+                                        <template let-col let-ven="rowData" pTemplate="body">
+                                            <span [style.color]="ven['CartColor']">{{ven.FROM_STOR_LOC}}</span>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="TO_STOR_LOC" header="To" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search" [style]="{'width':'20%'}">
+                                        <template let-col let-ven="rowData" pTemplate="body">
+                                            <span [style.color]="ven['CartColor']">{{ven.TO_STOR_LOC}}</span>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="USER_ID" header="User"></p-column>
+                                </atpar-datatable>
+                               </div>
+                            <br />
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="updateEvents()">Submit &nbsp;<i class="fa fa-check"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+</div>

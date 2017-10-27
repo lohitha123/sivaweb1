@@ -1,0 +1,16 @@
+
+
+
+[			
+      {
+        "PRINTER_NAME": "NonStockItemPrinter",
+        "IP_ADDERESS": "192.168.177.1811", 
+        "LABEL_DESCRIPTION": "NonStockItem"                       
+      },
+	  	  
+      {
+         "PRINTER_NAME": "NonStockItemPrinter1",
+        "IP_ADDERESS": "192.168.177.181", 
+        "LABEL_DESCRIPTION": "NonStockItem"
+      }	  	   
+]

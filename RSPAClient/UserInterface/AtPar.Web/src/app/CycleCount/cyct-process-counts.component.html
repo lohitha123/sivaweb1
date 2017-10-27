@@ -1,0 +1,182 @@
+﻿<style>
+  
+    .table-responsive {
+        overflow-x: hidden !important;
+    }
+
+    @media screen and (max-width:767px) {
+        /*.parloc-well {
+            margin-bottom: 15px;
+        }*/
+        .table-responsive {
+            overflow-x: auto !important;
+        }
+    }
+</style>
+
+<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="" *ngIf="showDropDowns">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px;">
+                        <form class="form-horizontal form-label-left">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Org Group ID </label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <label *ngIf="blnShowOrgGroupLabel" for="" class="control-label lbl-left">{{lblOrgGrpID}}</label>
+                                        <atpar-select [options]="ddlOrgGroups" [id]="'ddllstOrgGroups'" [required]="true"
+                                                      [(ngModel)]="selectedOrgGrpID" [ngModelOptions]="{standalone: true}"
+                                                      filter="filter" *ngIf="blnShowOrgGroupID" (onChange)="ddlOrgGrpIdChanged()"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Business Unit</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="ddlBunit" [id]="'ddlSts'" [(ngModel)]="selectedBUnit" (onChange)="ddlBUnitChanged()" [required]="true" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Event ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="ddlEvent" [id]="'ddlSts1'" [(ngModel)]="selectedEventID" [required]="true" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlEventChanged()"></atpar-select>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="go()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <div style="clear:both;"></div>
+                        <div class="col-xs-12 table-responsive" *ngIf="pop">
+                            <div class="container">
+                                <!--<p class="text-danger">Note:Save Changes before navigating to next pages</p>-->
+                                        <ul class="list-inline">
+                                            <li><strong>Status Legend</strong></li>
+                                            <li><i class="fa fa-square" style="color:black;"></i> &nbsp;Normal</li>
+                                            <li><i class="fa fa-square" style="color:green;"></i> &nbsp; Consigned</li>
+                                            <li><i class="fa fa-square" style="color:brown;"></i> &nbsp; Lot/Serial</li>
+                                            <li class="pull-right">
+                                                <ul class="list-inline">
+                                                    <li class="no-padding">
+                                                        <i class="fa fa-envelope-o fa-bg-lg bg-blue" aria-hidden="true" style="cursor:pointer" id="imgMail" title="Send mail" (click)="onSendMailIconClick($event)"></i>&nbsp;
+                                                    </li>
+                                                    <li class="no-padding">
+                                                        <i class="fa fa-print fa-bg-lg bg-blue" aria-hidden="true" style="cursor:pointer" id="imgPrint" title="Print" (click)="onPrintClick($event)"></i>&nbsp;
+                                                    </li>
+                                                    <li class="no-padding">
+                                                        <i class="fa fa-file-excel-o fa-bg-lg bg-blue" aria-hidden="true" style="cursor:pointer" id="imgExcel" title="Excel Format" (click)="onExportToExcelClick($event)"></i>&nbsp;
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul> 
+                                
+                                <atpar-datatable [value]="eventDetails" [paginator]="true" [pageLinks]="3" [rows]="pageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true" [scrollable]="true">
+                                    <p-column field="INV_ITEM_ID1" header="Item ID (Description)" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'200px'}"></p-column>
+                                    <p-column field="CUST_ITEM_NO" header="Custom Item No" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'111px'}"></p-column>
+                                    <p-column field="INV_LOT_ID" header="Lot #" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'85px'}"></p-column>
+                                    <p-column field="SERIAL_ID" header="Serial #" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'85px'}"></p-column>
+                                    <p-column field="MFG_ITEM_ID" header="Mfg Item ID" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'106px'}"></p-column>
+                                    <p-column field="STORAGE_LOCATION" header="Storage Location" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'120px'}"></p-column>
+                                    <p-column field="ITEM_PRICE" header="Item Price($)" sortable="custom" (sortFunction)="customSort($event,'ITEM_PRICE')" [filter]="true" filterPlaceholder="Search" [style]="{'width':'100px','text-align':'right'}"></p-column>
+                                    <p-column field="SYS_QTY1" header="Sys Qty-UOM" sortable="custom" (sortFunction)="customSort($event,'SYS_QTY')" [filter]="true" filterPlaceholder="Search" [style]="{'width':'105px','text-align':'right'}"></p-column>
+                                    <p-column *ngFor="let coldata of usersList;let Myindex=index" [style]="{'overflow':'visible','width':'135px'}">
+                                        <template pTemplate="filter">
+                                            <span> {{coldata.header}}</span>
+                                            <br />
+                                            <span *ngIf="coldata.completedDate!=null && coldata.completedDate!=''">Completed - {{coldata.completedDate}}</span>
+
+                                            <atpar-select [options]="ddlStatus" [id]="'ddlStst'" [(ngModel)]="coldata.userstatus" [ngModelOptions]="{standalone: true}"></atpar-select>
+                                            <br> Count Qty
+                                        </template>                                     
+                                        <template let-ven="rowData" let-col let-row="rowIndex" pTemplate type="body">
+                                            <atpar-radioButton name="{{ven.rowIndex}}" [(ngModel)]="ven.SELECTEDITEM" (click)="changeStatus(ven,ven['COUNT_'+Myindex],ven['COUNT'+Myindex],coldata.USER_ID,coldata.TRANSACTION_ID,Myindex)" value="{{ven['R'+ven.rowIndex+'' + Myindex]}}" label="{{ven['COUNT_'+Myindex] }}" *ngIf="ven['COUNT_'+Myindex]!='N'"></atpar-radioButton>                                            
+                                        </template>
+                                    </p-column>
+                                    <p-column field="activeCount" header="Selected Count"  [filter]="true" filterPlaceholder="Search" [style]="{'width':'90px','text-align':'right'}">
+                                        <template let-col let-ven="rowData" pTemplate type="body">
+                                            <atpar-text [(ngModel)]="ven[col.field]" name="txtLocatio" *ngIf="m_strEditCounts=='Y'?ven.showSelectedCount?true:false:false" [validations]="'numeric_dot,max=10,min=0'" [id]="'ddcntQty'"
+                                                        [ngModelOptions]="{standalone: true}"  (bindModelDataChange)="bindModelDataChange(ven)"
+                                                        [style]="{'text-align':'right','padding-right':'6px','color':(ven.rowClsStyle=='ui-datatable-brown')?'brown':(ven.rowClsStyle=='ui-datatable-green')?'green':'black'}"></atpar-text>
+                                            <span *ngIf="m_strEditCounts=='N'?ven.showSelectedCount?true:false:false">{{ven[col.field]}}</span>
+                                            <!--(focusEventEmiter)="focusEvent($event,ven)"-->
+                                            <!--<input type="number" class="form-control" [(ngModel)]="ven[col.field]==-1?'':ven[col.field]" name="txtLocatio" *ngIf="!isEditMode" max="10" min="0" id="'Locatio'" (focus)="focusEvent(ven[col.field])"  (blur)="focusOutEvent(ven)" [ngModelOptions]="{standalone: true}" [readonly]="hdnProfEditTxt=='N'?true:false" />-->
+                                        </template>
+
+                                    </p-column>
+
+                                    <p-column field="COUNT_DIFF" header="Count Diff" sortable="custom" (sortFunction)="customSort($event,'COUNT_DIFFS')" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right','width':'90px'}" >
+                                        <!--<template let-col let-ven="rowData" pTemplate type="body">
+                                           <span>{{ven.COUNT_DIFF.toLocaleString('en-IN')}}</span>
+                                         </template>-->
+                                    </p-column>
+
+                                    <p-column field="COUNT_DIFF_PER" header="Count Diff(%)" sortable="custom" (sortFunction)="customSort($event,'COUNT_DIFF_PERS')" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right','width':'100px'}"></p-column>
+                                    
+                                    <p-column field="VALUE_DIFF" header="Value Diff($)" sortable="custom" (sortFunction)="customSort($event,'VALUE_DIFFS')" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right','width':'100px'}">
+                                        <!--<template let-col let-ven="rowData" pTemplate type="body">                                          
+                                            <span>{{ven.VALUE_DIFF.toLocaleString('en-IN')}}</span>
+                                           </template>-->
+                                    </p-column>
+
+                                    <p-column field="EXT_VALUE" header="Ext $ Value" sortable="custom" (sortFunction)="customSort($event,'EXT_VALUES')" [filter]="true" filterPlaceholder="Search" [style]="{'text-align':'right','width':'85px'}">
+                                        <!--<template let-col let-ven="rowData" pTemplate type="body">
+                                            <span>{{ven.EXT_VALUE.toLocaleString('en-IN')}}</span>
+                                        </template>-->
+                                    </p-column>
+                                </atpar-datatable>
+                            </div>
+                            <br>
+                            <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn" (click)="SaveData()">Save &nbsp; <i class="fa fa-floppy-o"></i></button>
+                                <button class="btn btn-purple sbtn" (click)="confirm()" *ngIf="activateSend">Send &nbsp; <i class="fa fa-share-square-o" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-section implementation">
+            <atpar-confirmdialog header="Confirmation" icon="fa fa-question-circle" width="425"></atpar-confirmdialog>
+        </div>
+    </div>
+    <mail-dialog header="Enter Recipient`s Email Address" [width]="450" (onClose)="closeMailPopup()" [(visible)]="isMailDialog" [responsive]="true" showEffect="fade" [modal]="true">
+    <div class="ui-grid ui-grid-responsive ui-fluid">
+        <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3" style="margin-top:2%;margin-right:-2%">
+                <span style="font-weight:600">To : </span>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <atpar-text [(ngModel)]="toMailAddr" [name]="txtToMailAddr" [id]="'txtToMailAddr'"></atpar-text>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                <span><button class="btn btn-purple sbtn" (click)="onSendMailClick()">Send &nbsp;<i class="fa fa-share-square-o" aria-hidden="true"></i></button> </span>
+            </div>
+        </div>
+    </div>
+</mail-dialog>
+    <!--<mail-dialog header="Enter Recipient`s Email Address" [width]="450" (onClose)="closeMailPopup()" [(visible)]="isMailDialog" [responsive]="true" showEffect="fade" [modal]="true">
+        <div class="ui-grid ui-grid-responsive ui-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    <span>To : </span>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-8 col-xs-8">
+                    <atpar-text [(ngModel)]="toMailAddr" [name]="txtToMailAddr" [id]="'txtToMailAddr'"></atpar-text>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    <span><button class="btn btn-purple sbtn" (click)="onSendMailClick()">Send &nbsp;<i class="fa fa-share-square-o" aria-hidden="true"></i></button> </span>
+                </div>
+            </div>
+        </div>
+    </mail-dialog>-->
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+</div>
+<style>
+     span.radio-compo-label {
+        margin:2px 0 -4px 26px!important;
+    }
+</style>

@@ -1,0 +1,87 @@
+﻿<div id="main" class="content-page">
+    <div class="page-header-title">
+        <h4 class="page-title"><a (click)="homeurl()">Administration ></a>Par Optimization Report</h4>
+    </div>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:20px;">
+                        <form class="form-horizontal form-label-left" *ngIf="page">
+                            <!--<button class="btn btn-purple sbtn pull-right" (click)="add()"><i class="fa fa-plus"></i> &nbsp; Add Case</button><br>-->
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-4">Business Unit/Company</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-select [options]="cities" [(ngModel)]="selectedCity" [id]="'ddlProfiles'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Dept ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-text [(ngModel)]="newItem.Com" [name]="txtCom" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'Com'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Par Location</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-text [(ngModel)]="newItem.par" [name]="txtpar" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'par'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>                                
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">From Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <p-calendar [showIcon]="true" [id]="'FromDatePicker'" [(ngModel)]="date1" [placeholder]="'From Date'" [minDate]="minDateValue1" [readonlyInput]="true" (onSelect)="selectDate1($event)" (onFocus)="onfocusFromCalendar($event)" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">To Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <p-calendar [showIcon]="true" [id]="'ToDatePicker'" [(ngModel)]="date2" [placeholder]="'To Date'" [minDate]="minDateValue2" [readonlyInput]="true" (onSelect)="selectDate2($event)" (onFocus)="onfocusToCalendar($event)" [ngModelOptions]="{standalone: true}"></p-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Percentage Recommended Par Variation</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <atpar-text [(ngModel)]="newItem.LocationID1" [name]="txtLocationID1" *ngIf="!isEditMode" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'LocationID1'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="go()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                    <!--<button class="btn btn-purple sbtn" (click)="add()"><i class="fa fa-plus"></i> &nbsp; Add</button>-->
+                                </div>
+                            </div>
+                        </form>
+                        <div class="col-xs-12 table-responsive" *ngIf="pop">
+                            <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                <!--<p-column expander="true" styleClass="col-icon"></p-column>-->
+                                <p-column field="CART_ID" header="Par Location" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="ITEM_ID" header="Item ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="DESCR" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>                                
+                                <p-column field="COMPARTMENT" header="Compartment" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="PRICE" header="Price($)" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="UOM" header="UOM" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="PAR_VALUE" header="Par value" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="MAX_USAGE" header="Max Usage" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="MIN_USAGE" header="Min Usage" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="AVG_USAGE" header="Avg Usage" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="TOTAL_USAGE" header="Total Usage" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column field="" header="% Change" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>                                
+                                <p-column field="RECOMMENDED_PAR" header="Recommended Par" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <!--<p-footer>
+                                    <p-row>
+                                        <p-column footer="Totals:" colspan="3"></p-column>
+                                        <p-column footer="$506,202"></p-column>
+                                        <p-column footer="$531,020"></p-column>
+                                    </p-row>
+                                </p-footer>-->
+                            </atpar-datatable>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

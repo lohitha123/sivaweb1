@@ -1,0 +1,60 @@
+[
+      {
+        "IsOrphan": "N",
+        "SNO": "1",
+        "BUSINESS_UNIT": "US015",
+        "CART_ID": "COR-1",
+        "DESCR": "Coronary Care",
+        "TWO_BIN_ALLOCATION": "false"
+      },
+      {
+        "IsOrphan": "N",
+        "SNO": "2",
+        "BUSINESS_UNIT": "US015",
+        "CART_ID": "DEL-1",
+        "DESCR": "Labor/Delivery",
+        "TWO_BIN_ALLOCATION": "false"
+      },
+      {
+        "IsOrphan": "N",
+        "SNO": "3",
+        "BUSINESS_UNIT": "US015",
+        "CART_ID": "ICU-1",
+        "DESCR": "Intensive Care Unit - East",
+        "TWO_BIN_ALLOCATION": "false"
+      },
+      {
+        "IsOrphan": "N",
+        "SNO": "4",
+        "BUSINESS_UNIT": "US015",
+        "CART_ID": "ICU-2",
+        "DESCR": "Intensive Care Unit - West",
+        "TWO_BIN_ALLOCATION": "false"
+      },
+      {
+        "IsOrphan": "N",
+        "SNO": "5",
+        "BUSINESS_UNIT": "US015",
+        "CART_ID": "MS-1",
+        "DESCR": "Med/Surg - 1 Floor East",
+        "TWO_BIN_ALLOCATION": "false"
+      },
+      {
+        "IsOrphan": "N",
+        "SNO": "6",
+        "BUSINESS_UNIT": "US015",
+        "CART_ID": "MS-2",
+        "DESCR": "Med/Surg - 1 Floor West",
+        "TWO_BIN_ALLOCATION": "false"
+      },
+      {
+        "IsOrphan": "N",
+        "SNO": "7",
+        "BUSINESS_UNIT": "US015",
+        "CART_ID": "RES-1",
+        "DESCR": "ICU Stock Cart 2",
+        "TWO_BIN_ALLOCATION": "false"
+      }
+    ]
+
+

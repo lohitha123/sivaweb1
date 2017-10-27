@@ -1,0 +1,285 @@
+﻿<style>
+   .table-responsive {
+        overflow-x: hidden !important;
+    }
+    @media screen and (max-width:767px) {
+        .table-responsive {
+            overflow-x: auto !important;
+        }
+    }   
+    .span-icon{
+    cursor: pointer;
+   /* margin-top: -33.7px;
+    margin-left:10.39em;
+    padding: 10px 3.5px;
+    margin-right: 0;
+    height:34px;    
+    border-radius: 0px;
+    border-top-right-radius:4px;
+    border-bottom-right-radius:4px;*/
+    margin-top: -25px;
+    margin-left: 10.50em;
+    padding: 5px 3.5px;
+    margin-right: 0;
+    height: 25px;
+    border-radius: 0px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    position: relative!important;
+    }
+    /*IE 10 hacks*/
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .span-icon{
+    cursor: pointer !important;
+    position:relative!important;
+    top:-9px!important;   
+    }
+   }
+    .bg-danger,
+    .bg-danger:hover{
+        background:red!important;
+        color:#fff!important;
+        border:1px solid red!important;
+    }
+      .bg-success,
+      .bg-success:hover{
+        background:green!important;
+        color:#fff!important;
+        border:1px solid green!important;
+    }
+    
+</style>
+<div id="main" class="content-page">
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+    <div class="page-content-wrapper" *ngIf="mainDiv">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:10px 0 0 0;">
+                        <form class="form-horizontal form-label-left" *ngIf="page">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Company</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="txtCompanydata" [name]="txtCompny" [id]="'Compny'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Par Location</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="txtParLocdata" [name]="txtparLoc" [id]="'parLoc'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">PO #</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="txtPONOdata" [name]="txtPONO" [id]="'PONUM'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Department</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="txtDeptIDdata" [name]="txtDeptID" [id]="'DeptID'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-4">Vendor</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <label class="control-label lbl-left" *ngIf="blnShowVendorlabel">{{lblVendorData}}</label>
+                                        <atpar-select *ngIf="!blnShowVendorlabel" [options]="ddlVendorData" [(ngModel)]="selectedVendor" [id]="'ddlVendors'" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Item ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="txtItemIDdata" [name]="txtItemID" [id]="'ItemID'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">From Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <p-calendar [showIcon]="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2050" [id]="'FromDatePicker'" [(ngModel)]="fromDate" [placeholder]="'From Date'" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [required]="true" [dateFormat]="'mm/dd/yy'"></p-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">To Date</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <p-calendar [showIcon]="true" [monthNavigator]="true" [yearNavigator]="true" yearRange="1950:2050" [id]="'ToDatePicker'" [(ngModel)]="toDate" [placeholder]="'To Date'" [readonlyInput]="true" [ngModelOptions]="{standalone: true}" [required]="true" [dateFormat]="'mm/dd/yy'"></p-calendar>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <button class="btn btn-purple sbtn" (click)="btnGo_Click()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                               
+                            </div>
+                        </form>
+                        <div class="col-xs-12 table-responsive" *ngIf="mainGrid">
+                            <div class="container billonly-table">
+                                <atpar-datatable [value]="lstGridFilterHdrData" [paginator]="true" [pageLinks]="3" [rows]="pazeSize" [expandableRows]="true" [expandedRows]="expandedItems" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column expander="true" styleClass="col-icon" [style]="{'width':'6%'}"></p-column>
+
+                                    <p-column field="TRANSACTION_DATE" header="Charge Date (MM/DD/YYYY HH24:MI:SS)" [sortable]="true" [style]="{'width':'22%'}" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="DEPT_NAME" header="Department" [sortable]="true" [filter]="true" filterPlaceholder="Search" ></p-column>
+                                    <p-column field="VENDOR_ID" header="Vendor" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column field="VENDOR_NAME" header="Vendor Name" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <template let-subDetails pTemplate="rowexpansion">
+                                        <atpar-datatable [value]="subDetails.DETAILS"  scrollable="true" [paginator]="false" [pageLinks]="3" [rows]="5" expandableRows="true" [globalFilter]="gb" [responsive]="true">
+
+                                            <p-column  [style]="{'width':'82px','text-align':'center'}" header="Action">
+                                                <template let-col let-rowData="rowData" pTemplate type="body">
+                                                    <button class="fa-bg bg-red" (click)="cancelItem_click(rowData)" *ngIf="rowData.blnCancel" [disabled]="rowData.blnCancelDisable" style="cursor:pointer;" title="Cancel"><i class="fa fa-times" ></i></button>
+
+                                                    <button class="fa-bg bg-red" (click)="editItem_click(rowData)" *ngIf="rowData.blnEdit" [disabled]="rowData.blnEditDisable" style="cursor:pointer" title="Edit"><i class="fa fa-pencil" ></i></button>
+
+                                                    <button class="fa-bg bg-red" (click)="save_click(rowData)" *ngIf="rowData.blnSave" style="cursor:pointer;" title="Save"><i class="fa fa-check" ></i></button>
+                                                    <button class="fa-bg bg-red" (click)="cancel_click(rowData)" *ngIf="rowData.blnAbandon" style="cursor:pointer;" title="Abandon"><i class="fa fa-times" ></i></button>
+                                                    <button class="fa-bg bg-red bg-{{rowData.holdBGColor}}" (click)="holdItem_click(rowData)" *ngIf="rowData.blnHoldUnhold" [disabled]="rowData.blnHoldUnholdDiable" style="cursor:pointer;" title="{{rowData.titleHoldUnhold}}"><i class="fa fa-hand-paper-o " ></i></button>
+                                                 </template>
+                                            </p-column>
+
+                                            <p-column field="BUSINESS_UNIT" header="Company" [style]="{'width':'80px'}" ></p-column>
+                                            <p-column field="PAR_LOCATION_ID" header="Par Location" [style]="{'width':'100px'}"></p-column>
+                                            <p-column [style]="{'width':'160px'}">
+                                                <template pTemplate type="header">
+                                                    Item ID
+                                                </template>
+                                                <template let-subDetails="rowData" pTemplate="body">
+                                                    <span *ngIf="!subDetails.istxtItemIdVisible">{{subDetails.ITEM_ID}}</span>
+                                                    <atpar-text *ngIf="subDetails.istxtItemIdVisible" [name]="txtItemID" [id]="subDetails.TRANSACTION_ID" [(ngModel)]="subDetails.ITEM_ID" [ngModelOptions]="{standalone: true}" [style]="{'height':'25px','position':'relative'}"></atpar-text>
+                                                    <span *ngIf="subDetails.istxtItemIdVisible" class="fa fa-search fa-bg bg-blue span-icon" (click)="search_click(subDetails)" style="cursor:pointer"></span>
+                                                </template>
+
+                                            </p-column>
+                                            <p-column field="SHORT_DESCR" header="Description" [style]="{'width':'160px'}"></p-column>
+                                            <p-column [style]="{'width':'100px'}" styleClass="text-right"  header="Qty" >
+                                                <template let-subDetails="rowData" pTemplate="body">
+                                                    <span>{{subDetails.QTY}}</span>
+                                                </template>
+                                            </p-column>
+
+                                            <p-column [style]="{'width':'100px'}" styleClass="text-right">
+                                                <template pTemplate type="header">
+                                                    Price($)
+                                                </template>
+                                                <template let-subDetails="rowData" pTemplate="body">
+                                                    <atpar-text *ngIf="subDetails.isReviewStatusVisible" [name]="txtIssuePrice" [id]="subDetails.TRANSACTION_ID" [(ngModel)]="subDetails.ISSUE_PRICE" [ngModelOptions]="{standalone: true}" [validations]="'numeric_dot_initial,max=9'" [disabled]="subDetails.isReviewStatusDisable"[style]="{'text-align':'right','padding-right':'6px'}"></atpar-text>
+                                                    <span *ngIf="!subDetails.isReviewStatusVisible">{{subDetails.ISSUE_PRICE}}</span>
+
+                                                </template>
+
+                                            </p-column>
+                                            <p-column [style]="{'width':'100px'}">
+                                                <template pTemplate type="header">
+                                                    UOM
+                                                </template>
+                                                <template let-subDetails="rowData" pTemplate="body" >
+                                                    <atpar-text *ngIf="subDetails.isReviewStatusVisible" [name]="txtIssuePrice" [id]="subDetails.TRANSACTION_ID" [(ngModel)]="subDetails.UOM" (keypress)="txtbox_KeyPress($event)" [ngModelOptions]="{standalone: true}" [validations]="'caps_only_key_res,max=5'" [disabled]="subDetails.isReviewStatusDisable"></atpar-text>
+                                                    <span  *ngIf="!subDetails.isReviewStatusVisible" >{{subDetails.UOM}}</span>
+
+                                                </template>
+
+                                            </p-column>
+                                            <p-column field="CATALOG_FLG" header="Catalog" [style]="{'width':'80px'}"></p-column>
+                                            <p-column field="ITEM_LOTNUMBER" header="Lot #" [style]="{'width':'80px'}"></p-column>
+                                            <p-column field="ITEM_SRNUMBER" header="Serial #" [style]="{'width':'80px'}"></p-column>
+                                            <p-column field="PO_NO" header="PO #" [style]="{'width':'100px'}"></p-column>
+
+                                            <p-column [style]="{'width':'100px'}">
+                                                <template pTemplate type="header">
+                                                    Comments
+                                                </template>
+                                                <template let-subDetails="rowData" pTemplate="body">
+                                                    <atpar-text *ngIf="subDetails.isReviewStatusVisible" [name]="txtIssuePrice" [id]="subDetails.TRANSACTION_ID" [(ngModel)]="subDetails.LINE_COMMENTS" [ngModelOptions]="{standalone: true}" [disabled]="subDetails.isReviewStatusDisable"></atpar-text>
+                                                    <span *ngIf="!subDetails.isReviewStatusVisible">{{subDetails.LINE_COMMENTS}}</span>
+
+                                                </template>
+
+                                            </p-column>
+
+                                            <p-column [style]="{'width':'80px','text-align':'center'}">
+                                                <template pTemplate type="header">
+                                                    Vendor Review
+                                                </template>
+                                                <template let-subDetails="rowData" pTemplate="body">
+                                                    <atpar-switch [checked]="subDetails.isVerndorChecked" [(ngModel)]="subDetails.isVerndorChecked" [disabled]="subDetails.isVerndorCBDisable"></atpar-switch>   
+                                                </template>
+
+                                            </p-column>
+                                            <p-column [style]="{'width':'80px','text-align':'center'}">
+                                                <template pTemplate type="header">
+                                                    Dept Review
+                                                </template>
+                                                <template let-subDetails="rowData" pTemplate="body">
+                                                    <atpar-switch [checked]="subDetails.isDeptChecked" [(ngModel)]="subDetails.isDeptChecked" [disabled]="subDetails.isDeptCBDisable"></atpar-switch>
+                                                </template>
+
+                                            </p-column>
+                                            <p-column [style]="{'width':'80px','text-align':'center'}">
+                                                <template pTemplate type="header">
+                                                    Exception Approval
+                                                </template>
+                                                <template let-subDetails="rowData" pTemplate="body">
+                                                    <atpar-switch [checked]="subDetails.isExceptionChecked" [(ngModel)]="subDetails.isExceptionChecked" [disabled]="subDetails.isExceptionCBDisable"></atpar-switch>                                               
+                                                </template>
+
+                                            </p-column>
+                                            <p-column [style]="{'text-align':'center','width':'50px'}">
+                                                <template let-col let-rowData="rowData" pTemplate type="body">
+                                                    <button class="fa-bg bg-red" (click)="update_click(rowData)" *ngIf="rowData.blnUpdate" style="cursor:pointer;" title="Update"><i class="fa fa-check"  style="margin: 0px -1px !important;"></i></button>
+                                                </template>
+                                            </p-column>
+                                        </atpar-datatable>
+
+                                    </template>
+
+                                </atpar-datatable>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 form-horizontal form-label-left" *ngIf="lookUpPopUp">
+                            <div class="col-xs-12 col-sm-12 col-md-6 form-group">
+                                <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">ID</label>
+                                <div class="col-xs-12 col-sm-6 col-md-4">
+                                    <atpar-text [(ngModel)]="itemId" [name]="txtItemID" [validations]="'alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'itemID'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4">
+                                    <button class="btn btn-purple sbtn" (click)="btnLookUp_Click()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                    <button class="btn btn-purple sbtn" (click)="btnLookUpCancel_Click()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 table-responsive" *ngIf="lookUpGrid">
+                                <div class="container">
+                                    <atpar-datatable [value]="lstLookUpData" [paginator]="true" [pageLinks]="3" [rows]="pazeSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                        <p-column header="Select" [style]="{'width':'80px','text-align':'center'}">
+                                            <template let-data="rowData" pTemplate="body">
+                                                <atpar-radioButton name="groupname" (onClick)="rdBtnItem_Click(data)" title="Select"></atpar-radioButton>
+                                            </template>
+                                        </p-column>
+                                        <p-column field="ITEMID" header="Item ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="CUST_ITEM_ID" header="Custom Item NO" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="ITEM_DESCR" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="MFG_ITEM_ID" header="Mfg Item ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="VENDOR_ITEM_ID" header="Vendor Item ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="UPCID" header="UPC ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                        <p-column field="GTIN" header="GTIN" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    </atpar-datatable>
+                                </div>
+                                <br />
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-5">
+                                    <button class="btn btn-purple sbtn" (click)="btnLookUpSave_Click()" *ngIf="btnLookUpSaveVisble" [disabled]="btnLookUpSaveDisble">Save &nbsp;<i class="fa fa-floppy-o"></i></button>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-confirmdialog header="Confirmation" icon="fa fa-question-circle" width="425"></atpar-confirmdialog>

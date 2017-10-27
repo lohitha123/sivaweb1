@@ -1,0 +1,9 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var MT_POU_DEPT_CART_WORKSTATION_ALLOCATIONS = (function () {
+    function MT_POU_DEPT_CART_WORKSTATION_ALLOCATIONS() {
+    }
+    return MT_POU_DEPT_CART_WORKSTATION_ALLOCATIONS;
+}());
+exports.MT_POU_DEPT_CART_WORKSTATION_ALLOCATIONS = MT_POU_DEPT_CART_WORKSTATION_ALLOCATIONS;
+//# sourceMappingURL=MT_POU_DEPT_CART_WORKSTATION_ALLOCATIONS.js.map

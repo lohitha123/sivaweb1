@@ -1,0 +1,173 @@
+﻿
+<div class="sidebar-inner slimscrollleft">
+    <div id="sidebar-menu" class="sidenav">
+        <ul>
+
+            <div *ngFor="let module of groupModules._elements">
+
+                <li class="has_sub" (click)="onModuleClick(module)">
+                    <a class="waves-effect dropdown-toggle">
+                        <img src="{{module.APP_IMAGE_PATH}}" />
+                        <p> {{module.APP_NAME}} </p>
+                        <span class="caret {{module.APP_NAME}}"></span>
+                    </a>
+                </li>
+
+                <div class="drop1">
+                    <ul class="list-unstyled ax" *ngIf="module.APP_NAME==moduleName && isModuleActive">
+                        <div *ngFor="let moduleMenu of moduleMenus._elements">
+
+                            <li [routerLinkActive]="['is-active']">
+                                <a (click)="onModuleMenuClick($event,moduleMenu)" *ngIf="moduleMenu.SUB_MENU_GROUP_NAME==subGrpSetUp" [routerLink]="moduleMenu.ROUTE">
+                                    {{moduleMenu.MENU_NAME}}
+                                </a>
+                                <a (click)="onModuleMenuClick($event,moduleMenu)" *ngIf="moduleMenu.SUB_MENU_GROUP_NAME!=subGrpSetUp">
+                                    <img [src]="moduleMenu.APP_GROUP_IMAGE_PATH" style="width:20px;height:20px" />
+                                    {{moduleMenu.SUB_MENU_GROUP_NAME}}
+                                </a>
+                            </li>
+
+                            <li>
+                                <div class="list-unstyled ax" *ngIf="isSubGroupMenu && moduleMenu.SUB_MENU_GROUP_NAME==subMenuGroupName">
+                                    <div *ngFor="let subMenu of lstSubGrpMenus">
+
+                                      <li *ngIf="subMenu.SUB_MENU_GROUP_NAME==subMenuGroupName" class="active" [routerLinkActive]="['is-active']">
+                                          <a (click)="onModuleSubGroupMenuClick($event,subMenu)" [routerLink]="subMenu.ROUTE" class="menu-li-a-pdng">
+                                              {{subMenu.MENU_NAME}}
+                                          </a>
+                                      </li>
+
+                                    </div>
+                                </div>
+                           </li>
+
+                        </div>
+
+            <!-- Report Menus Binding-->
+            <div  *ngIf="module.APP_ID==reportsAppID">
+                    <div  *ngFor="let repmodule of reportAppMenus">
+
+                        <li>
+                            <a (click)="onReportModuleClick(repmodule)" *ngIf="repmodule.APP_ID !='0' && repmodule.APP_ID !=reportsAppID ">
+                                <img src={{repmodule.APP_IMAGE_PATH}} style="width:20px;height:20px" />
+                                {{repmodule.APP_NAME}}
+                            </a>
+                            <div  *ngIf="repmodule.APP_NAME==repModuleName && isReportEnable">
+
+                        <li *ngFor="let reportMenu of newreportsMenus._elements" [ngClass]="((activeReportMenu==reportMenu.MENU_NAME) && isReportMenuActive && (activeReportModule==reportMenu.APP_NAME))?'is-active':''">
+                            <a (click)="onReportMenuClick(reportMenu)" [routerLink]="[reportMenu.ROUTE]" (mousedown)="mousedown(reportMenu.REPORT_ID)">
+                                {{reportMenu.MENU_NAME}}
+                            </a>
+                        </li>
+
+                        <li *ngFor="let ireportSubMenuGrp of reportSubGroupMenus" class="atpar_reports_category">
+                            <a (click)="onSubReportMenuClick(ireportSubMenuGrp)" class="waves-effect dropdown-toggle">
+                                <i class="fa fa-flag-o atpar_reports_category_icon" aria-hidden="true"></i>
+                                <p>{{ireportSubMenuGrp.SUB_CATEGORY}}</p>
+                            </a>
+                            <div  *ngIf="isSubRepMenusEnable && (activeReportSubCategory==ireportSubMenuGrp.SUB_CATEGORY) ">
+
+                              <li *ngFor="let repsubMenus of userReportsMenus._elements"  [ngClass]="((activeReportMenu==repsubMenus.MENU_NAME) && isReportMenuActive && (activeSubReportMenu==repsubMenus.SUB_CATEGORY))?'is-active':''">
+                                  <a (click)="onReportMenuClick(repsubMenus)" [routerLink]="[repsubMenus.ROUTE]" *ngIf="ireportSubMenuGrp.SUB_CATEGORY==repsubMenus.SUB_CATEGORY" style="padding-left:15px">
+                                      {{repsubMenus.MENU_NAME}}
+                                  </a>
+                              </li>
+
+                           </div>
+                         </li>
+
+                        </div>
+                       </li>
+
+                      </div>
+                   </div>
+
+                 </ul>
+             </div>
+
+            </div>
+
+        </ul>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+
+<style>
+    #sidebar-menu > ul > div > li > a {
+        color: #2a323c;
+        display: block;
+        padding: 8px 6px;
+        background-color: #ffffff;
+        font-size: 14px;
+        height: 31px !important;
+    }
+
+    .sidenav > ul > div > li > a > img {
+        width: 22px;
+    }
+
+
+    #sidebar-menu ul > div > li > a span {
+        margin-top: -1.6em;
+        margin-left: 12.1em;
+    }
+
+    #sidebar-menu > ul > div > li > a > span {
+        vertical-align: middle;
+        font-size: 11px;
+    }
+
+    #sidebar-menu > ul > div > li > a:hover {
+        background-color: #f2f2f2;
+        text-decoration: none;
+    }
+
+
+        #sidebar-menu > ul > div > li > a:hover p {
+            font-size: 11px !important;
+            margin-left: 6.5em !important;
+            color: #6c276a !important;
+            font-weight: 700;
+            margin-top: 7px !important;
+        }
+
+        #sidebar-menu > ul > div > li > a:hover i, #sidebar-menu > ul > div > li > a:hover p {
+            display: inline-block;
+            margin: 0px !important;
+            width: 76px !important;
+        }
+
+        #sidebar-menu > ul > div > li > a:hover i, #sidebar-menu > ul > div > li > a:hover span {
+            display: inline-block;
+            margin: 0px 0 0 2.4em !important;
+        }
+
+    .menu-li-a-pdng {
+        padding-left: 20px;
+    }
+
+
+    .inner-li-reports {
+        border-bottom: 1px solid #eee !important;
+    }
+
+    #wrapper.enlarged .left.side-menu #sidebar-menu ul > li {
+        cursor: pointer !important;
+    }
+
+    #sidebar-menu ul ul ul a {
+        padding-left:10px;
+    }
+
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        #sidebar-menu ul > div > li > a span {
+            margin-top: -2.3em;
+        }
+    }
+
+    .atpar_reports_category_icon {
+        font-size:14px;
+        font-weight:bold;
+    }
+</style>

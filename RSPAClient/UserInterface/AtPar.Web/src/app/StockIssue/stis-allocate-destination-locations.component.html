@@ -1,0 +1,90 @@
+﻿<div id="main" class="content-page">
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border" *ngIf="true">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px;">
+                        <form class="form-horizontal form-label-left">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Org Group ID </label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <label *ngIf="blnShowOrgGroupLabel" class="control-label lbl-left">{{orgGrpIDData}}</label>
+                                        <atpar-select [options]="lstOrgGroups" [id]="'ddllstOrgGroups'" [required]="true" [(ngModel)]="selectedOrgGroupId" [ngModelOptions]="{standalone: true}" filter="filter" *ngIf="blnShowOrgGroupDD" (onChange)="ddlOrgGrpIdChanged()"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">User ID</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="lstUsers" [id]="'ddllstUsers'" [required]="true" [(ngModel)]="selectedDropDownUserId" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlUserChange()"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Business Unit</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="ddllBunit" [id]="'ddllBunit'" [(ngModel)]="selectedBunit" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddl_Change()"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="clear:both"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Location</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-ac-server [(ngModel)]="selectedLocation" [ngModelOptions]="{standalone: true}" [suggestions]="lstFilteredLocation" (completeMethod)="fillLocationsAuto($event)"></atpar-ac-server>
+                                    </div>
+                                </div>                            
+                                <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                    <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Display </label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="displayOptions" [id]="'ddlDisplay'" [ngModelOptions]="{standalone: true}" [(ngModel)]="seletedStatus" (onChange)="ddl_Change()"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-2 form-group">
+                                    <button class="btn btn-purple sbtn" (click)="getDesLocations()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </form>
+
+
+                        <div class="col-xs-12" *ngIf="isVisible">
+                            <div class="container">
+                                <atpar-datatable [value]="lstDBData" #dt [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="pazeSize" (filteredData)="filterdata($event)"
+                                                 [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [responsive]="true">
+
+                                    <p-column [style]="{'width':'7%', 'text-align':'center'}" header="Select">
+                                        <template pTemplate="filter" let-col>
+                                            <ul class="list-inline li-all-none">
+                                                <li>
+
+                                                    <span (click)="checkAll()" style="cursor:pointer">All</span>
+                                                </li> |
+                                                <li>
+                                                    <span (click)="unCheckAll()" style="cursor:pointer">None</span>
+
+                                                </li>
+                                            </ul>
+                                        </template>
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <atpar-switch (change)="selectedRow(ven,$event)" [(ngModel)]="ven.checkvalue"></atpar-switch>
+                                        </template>
+                                    </p-column>
+                                    <p-column [style]="{'width':'10%'}" field="BUSINESS_UNIT" header="Business Unit" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                    <p-column [style]="{'width':'20%'}" field="LOCATION_ID" header="Location" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                    <p-column [style]="{'width':'40%'}" field="LOCATION_DESC" header="Description" sortable="custom" (sortFunction)="customSort($event)" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                    <p-column [style]="{'width':'25%'}" field="USER_ID" header="User" sortable="custom" (sortFunction)="customSort($event)"> </p-column>
+                                </atpar-datatable>
+                            </div>
+                            <br>
+                            <div class="col-xs-12 col-md-4 col-md-offset-5 col-sm-6 col-sm-5">
+                                <button class="btn btn-purple sbtn" id="btnsubmitForGrid" (click)="allocateDestinationLocatons()">Submit &nbsp; <i class="fa fa-check"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

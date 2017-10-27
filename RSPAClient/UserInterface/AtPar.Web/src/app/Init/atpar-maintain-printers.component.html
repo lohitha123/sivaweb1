@@ -1,0 +1,263 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content">
+        <div class="container x_panel no-border">
+            <br />
+            <div class="panel panel-default" style="border: 1px solid #eee;">
+                <div class="panel-body" style="padding:0px 0 10px 0;" *ngIf="showMainPage">
+                    <button class="btn btn-purple sbtn pull-right hidden-sm hidden-md hidden-lg" (click)="btnAdd_Click()">Add Printers &nbsp;<i class="fa fa-plus"></i></button>
+                    <div class="col-xs-12">
+                        <div class="form-horizontal form-label-left">
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Product </label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-select [options]="lstAppsData" [id]="'ddlApp'" [(ngModel)]="selectedApp" [ngModelOptions]="{standalone: true}" (onChange)="ddlAppChnage()"></atpar-select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <label for="" class="control-label col-xs-12 col-sm-6 col-md-4">Printer Name</label>
+                                <div class="col-xs-12 col-sm-6 col-md-8">
+                                    <atpar-text [(ngModel)]="printerName" [name]="txtPrinter" [validations]="'except_less_greater_symbols'" [id]="'txtPrinter'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 form-group">
+                                <button class="btn btn-purple sbtn" (click)="btnGo_Click()">Go &nbsp;<i class="fa fa-arrow-right"></i></button>
+                                <button class="btn btn-purple sbtn hidden-xs" (click)="btnAdd_Click()"> Add Printer &nbsp;<i class="fa fa-plus"></i></button>
+                            </div>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                    <!--table-responsive-->
+                    <div class="col-xs-12" *ngIf="grdstatus">
+                        <div class="container">
+                            <atpar-datatable [value]="lstPrinters" #dt [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="pazeSize" expandableRows="true" [rowsPerPageOptions]="[10,20, 30, 40, 50, 60, 70, 80, 90, 100]" [globalFilter]="gb" [responsive]="true">
+                                <p-column header="Action" [style]="{'width':'6%','text-align':'center'}">
+                                    <template pTemplate="filter" let-col>
+                                    </template>
+                                    <template let-col let-ven="rowData" pTemplate type="body">
+                                        <i class="fa fa-pencil fa-bg bg-red" (click)="btnEditPrinter_Click(ven)" style="cursor:pointer" title="Edit"></i>
+                                        <i class="fa fa-trash-o fa-bg bg-red" (click)="btnDeletePrinter_Click(ven)" style="cursor:pointer" title="Delete"></i>
+                                    </template>
+                                </p-column>
+                                <p-column header="Product" field="APP_NAME" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column header="Printer Model" field="PRINTER_NAME" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="IP Address" field="IP_ADDRESS" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Port" field="PORT_NO" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'6%'}"></p-column>
+                                <p-column header="Printer Name" field="FRIENDLY_NAME" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'25%'}"></p-column>
+                                <p-column header="Printer Type" field="NETWORK_TYPE" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Functionality" field="FUNCTIONALITY" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                <p-column header="Model" field="MODEL" [sortable]="true" [filter]="true" filterPlaceholder="Search" [style]="{'width':'6%'}"></p-column>
+                                <!--<p-column header="Current Status" field="Status==1?'Active':'Inactive'" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>-->
+                                <p-column header="Status" field="ActiveStatus" [filter]="true" [style]="{'width': '8%','overflow':'visible','text-align':'center'}" filterMatchMode="equals">
+                                    <template pTemplate="filter" let-col let-ven="rowData">
+                                        <!--<atpar-select-grid [options]="ddlStatusType" [(ngModel)]="selectedsrpstatus" [style]="{'width':'100%'}" [id]="'ddlStatusType'" [required]="false" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"></atpar-select-grid>-->
+                                        <atpar-select-grid [options]="ddlStatusType" [(ngModel)]="selectedsrpstatus" [style]="{'width':'100%'}" [id]="'ddlStatusType'" [required]="false" (onChange)="ddlStatusOnchange($event.label,col.field,col.filterMatchMode)"></atpar-select-grid>
+                                    </template>
+                                    <template let col let-ven="rowData" pTemplate type="body">
+                                        <atpar-switch [(ngModel)]="ven.ActiveStatus" [checked]="ven.ActiveStatus" (change)="selectItemtoChangeStatus($event,ven)"></atpar-switch>
+                                    </template>
+                                </p-column>
+                            </atpar-datatable>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding:0px;" *ngIf="!showMainPage">
+                    <div class="col-md-12">
+                        <form class="form-horizontal form-label-left">
+                            <div class="form-group">
+                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Product</label>
+                                <div *ngIf="Mode=='Add'" class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-select [options]="lstAppsData" [required]="true" [(ngModel)]="PrinterData.APP_ID" [name]="ddlProduct" [id]="'ddlProduct'" [ngModelOptions]="{standalone: true}" (onChange)="ddlProduct_SelectedIndexChanged(PrinterData.APP_ID)" [isfocus]="focusdropdown"></atpar-select>
+                                </div>
+                                <label *ngIf="Mode=='Edit'" class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:left">{{PrinterData.APP_NAME}}</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    Select Product
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Printer Model</label>
+                                <div *ngIf="Mode=='Add'" class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-select [options]="lstPrinterModels" [required]="true" [name]="ddlPrinterModel" [(ngModel)]="PrinterData.PRINTER_CODE" [id]="'ddlPrinterModel'" [ngModelOptions]="{standalone: true}" (onChange)="ddlPrinterModel_SelectedIndexChanged(PrinterData.PRINTER_CODE)"></atpar-select>
+
+                                </div>
+                                <label *ngIf="Mode=='Edit'" class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:left">{{PrinterData.PRINTER_CODE}}</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    Select Printer Model
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Printer Type</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-select [options]="lstPrinterTypes" [required]="true" [(ngModel)]="PrinterData.NETWORK_TYPE" [id]="'ddlPtype'" [ngModelOptions]="{standalone: true}"  (onChange)="ddlPrinterType_SelectedIndexChanged(PrinterData.NETWORK_TYPE)" [isfocus]="!focusdropdown"></atpar-select>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    Select Printer Type
+                                </div>
+                            </div>
+                            <div class="form-group" *ngIf="showIPAddressRow">
+                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">IP Address</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-text [(ngModel)]="PrinterData.IP_ADDRESS" [name]="txtIPadd" *ngIf="!isEditMode" [validations]="'mandatory,everything_except_space_as_fstchar,max=20'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'IPadd'" [ngModelOptions]="{standalone: true}" [title]="'Server Name/IP Address'"></atpar-text>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    Server Name/IP Address
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Port</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-text [(ngModel)]="PrinterData.PORT_NO" [name]="txtPort" *ngIf="!isEditMode" [validations]="'mandatory,numeric,max=10'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'Port'" [ngModelOptions]="{standalone: true}" [title]="'Use only numbers (0-9) and no spaces'"></atpar-text>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    Use only numbers (0-9) and no spaces
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Printer Friendly Name</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-text [(ngModel)]="PrinterData.FRIENDLY_NAME" [name]="txtFriendlyName" *ngIf="!isEditMode" [validations]="'mandatory,except_less_greater_symbols,max=100'" (bindModelDataChange)="bindModelDataChange($event)" [id]="'FriendlyName'" [ngModelOptions]="{standalone: true}" [title]="'Accepts everything except < and >'"></atpar-text>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    Friendly name of the printer - accepts everything except < and >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Label Type</label>
+                                <div *ngIf="Mode=='Add'" class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-select [options]="lstFunctionalities" [required]="true" [id]="'ddlFunctionality'" [(ngModel)]="PrinterData.LABEL_TYPE" [ngModelOptions]="{standalone: true}" (onChange)="ddlFunctionality_SelectedIndexChanged($event)"></atpar-select>
+                                    <!--<span *ngIf="Mode=='Edit'">{{PrinterData.FUNCTIONALITY}}</span>-->
+                                </div>
+                                <label *ngIf="Mode=='Edit'" class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:left">{{PrinterData.FUNCTIONALITY}}</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    Select Functionality Type
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Sub Labels</label>
+                                <div class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    <span *ngFor="let lnklabel of lstLinkedFunctionalities">
+                                        {{lnklabel.LABEL_LNK_DESCRIPTION}}<br />
+                                    </span>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Model</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <atpar-select [options]="lstModels" [required]="true" [id]="'ddlmodel'" [(ngModel)]="PrinterData.MODEL" [ngModelOptions]="{standalone: true}" filter="filter" (onChange)="ddlModel_SelectedIndexChanged(PrinterData.MODEL)" [selectOnKeyPress]="true"></atpar-select>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 help_txt">
+                                    Select a model or upload a new label format, which should include .lvx, .pnl, .jpg in a zip file, Supported zip file formats are .zip, .rar, .7z
+                                </div>
+                            </div>
+                            <div *ngIf="showNewModel">
+                                <div class="form-group">
+                                    <label for="" class="control-label col-md-3 col-sm-3 col-xs-12"> Label Size (in Inches) - <span class="text-red">*</span></label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <div class="input-group">
+                                            <!--<atpar-text [(ngModel)]="labelHeight" [name]="txtHeight" [id]="'txtHeight'" [validations]="'mandatory,numeric'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>-->
+                                            <atpar-text [(ngModel)]="labelHeight" [name]="txtHeight" [id]="'txtHeight'" [validations]="'numeric'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                            <span class="input-group-addon">X</span>
+                                            <!--<atpar-text [(ngModel)]="labelWidth" [name]="txtWidth" [id]="'txtWidth'" [validations]="'mandatory,numeric'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>-->
+                                            <atpar-text [(ngModel)]="labelWidth" [name]="txtWidth" [id]="'txtWidth'" [validations]="'numeric'" [ngModelOptions]="{standalone: true}" (bindModelDataChange)="bindModelDataChange($event)"></atpar-text>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Download Path</label>
+                                    <!--<div class="col-md-3 col-sm-3 col-xs-12">                                    
+                                        <input #file type="file" (change)="selectFile($event)">                                      
+                                    </div>-->
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <div class="input-group image-preview ">
+                                            <input placeholder="No File Chosen" type="text" class="form-control image-preview-filename" disabled="disabled" title="{{selectedFile}}" [(ngModel)]="selectedFile" [ngModelOptions]="{standalone: true}" />
+                                            <!-- don't give a name === doesn't send on POST/GET -->
+                                            <span class="input-group-btn">
+                                                <!-- image-preview-clear button -->
+                                                <button type="button" class="btn btn-default image-preview-clear" style="display:none;"> <span class="glyphicon glyphicon-remove"></span> Clear </button>
+                                                <!-- image-preview-input -->
+                                                <div class="btn btn-default image-preview-input">
+                                                    <span class="glyphicon glyphicon-folder-open"></span> <span class="image-preview-input-title">Browse</span>
+                                                    <input type="file" id="FileUser" (change)="selectFile($event)" name="input-file-preview" />
+                                                    <!-- rename it -->
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-3 col-md-3 col-sm-offset-3 col-sm-3 col-xs-12">                                       
+                                        <button class="btn btn-purple sbtn" (click)="fileUpload()" [disabled]="selectedFile==''">Upload &nbsp;<i class="fa fa-upload" ></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="showMultipleModel">
+                                <div *ngFor="let lnklabel of lstLinkedFunctionalities">
+                                    <div class="form-group">
+                                        <label for="" class="control-label col-md-3 col-sm-3 col-xs-12"> Label Size (in Inches) - <span class="text-red">*</span></label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <div class="input-group">
+                                                <atpar-text [(ngModel)]="lnklabel.LABEL_WIDTH" [name]="txtHeight" [id]="lnklabel.WIDTH_ID" [validations]="'numeric'" [ngModelOptions]="{standalone: true}" (keyup)="txtLabels_Keyup($event,lstLinkedFunctionalities)"></atpar-text>
+                                                <!--<atpar-text [(ngModel)]="lnklabel.LABEL_WIDTH" [name]="txtHeight" [id]="lnklabel.WIDTH_ID" [validations]="'mandatory,numeric'" [ngModelOptions]="{standalone: true}" (keyup)="txtLabels_Keyup($event,lstLinkedFunctionalities)"></atpar-text>-->
+                                                <span class="input-group-addon" style="border-left: 0; border-right: 0;">X</span>
+                                               <!-- <atpar-text [(ngModel)]="lnklabel.LABEL_Height" [name]="txtWidth" [id]="lnklabel.HEIGHT_ID" [validations]="'mandatory,numeric'" [ngModelOptions]="{standalone: true}" (keyup)="txtLabels_Keyup($event,lstLinkedFunctionalities)"></atpar-text>-->
+                                                <atpar-text [(ngModel)]="lnklabel.LABEL_Height" [name]="txtWidth" [id]="lnklabel.HEIGHT_ID" [validations]="'numeric'" [ngModelOptions]="{standalone: true}" (keyup)="txtLabels_Keyup($event,lstLinkedFunctionalities)"></atpar-text>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Download Path</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">                                  
+                                            <!--<input #file type="file" (change)="selectMultipleFiles($event,lnklabel)">-->                                      
+                                            <div class="input-group image-preview ">
+                                                <input placeholder="No File Chosen" type="text" class="form-control image-preview-filename" disabled="disabled" title="{{lnklabel.SELECTED_FILE}}" [(ngModel)]="lnklabel.SELECTED_FILE" [ngModelOptions]="{standalone: true}" />
+                                                <!-- don't give a name === doesn't send on POST/GET -->
+                                                <span class="input-group-btn">
+                                                    <!-- image-preview-clear button -->
+                                                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;"> <span class="glyphicon glyphicon-remove"></span> Clear </button>
+                                                    <!-- image-preview-input -->
+                                                    <div class="btn btn-default image-preview-input">
+                                                        <span class="glyphicon glyphicon-folder-open"></span> <span class="image-preview-input-title">Browse</span>
+                                                        <input type="file" id="FileUser" (change)="selectMultipleFiles($event,lnklabel)" name="input-file-preview" />
+                                                        <!-- rename it -->
+                                                    </div>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-3 col-md-3 col-sm-offset-3 col-sm-3 col-xs-offset-12 col-xs-12">                                
+                                        <button class="btn btn-purple sbtn" (click)="fileUpload()">Upload &nbsp;<i class="fa fa-upload"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="showExistedImage">
+                                <div class="form-group" *ngFor="let sampleModel of lstModelImages">
+                                    <div class="col-md-offset-3 col-md-3 col-sm-offset-3 col-sm-3 col-xs-offset-12 col-xs-12" style="border: 1px solid #ddd;">
+                                        <div>
+                                            <span>Label Size - {{sampleModel.HEIGHT}} X {{sampleModel.WIDTH}} Inches </span>
+                                            <br />
+                                            <img src="data:image/jpg;base64,{{sampleModel.LABEL_IMAGE}}" style="margin-left:-8px;border-top:1px solid #ddd;">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-5 col-xs-12">
+                                <button class="btn btn-purple sbtn" (click)="btnSave_Click()" *ngIf="Mode=='Add'" [disabled]="buttonEnableDisable">Save &nbsp;<i class="fa fa-floppy-o"></i></button>&nbsp;
+                                <button class="btn btn-purple sbtn" (click)="btnUpdate_Click()" *ngIf="Mode=='Edit'" [disabled]="buttonEnableDisable">Update &nbsp;<i class="fa fa-check"></i></button>&nbsp;
+                                <button class="btn btn-purple sbtn" (click)="btnBack_Click()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<atpar-confirmdialog header="Confirmation" icon="fa fa-question-circle" width="425"></atpar-confirmdialog>
+<atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>

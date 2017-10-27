@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<project name="AtPar_BusinessRules" default="build" basedir="." xmlns="http://nant.sf.net/schemas/nant-0.85.win32.net-1.0.xsd">
+
+<description>Build File for AtPar_BusinessRules</description>
+
+<property name="basename" value="AtPar_BusinessRules"/>
+<property name="asminfo.file.name" value="${basename}.dll" />
+<property name="asminfo.file.descr" value="AtPar Business Rules Component" />
+<property name="init.server.scripts" value="Server/Init/Scripts" />
+
+
+<include buildfile="..\..\..\Headers\nantincludes.include" />
+
+<target name="copyreqdbins" description="copy required binaries">
+   <copy file="../../${CommonBinaries}/Microsoft.ApplicationBlocks.Data.dll" tofile="Microsoft.ApplicationBlocks.Data.dll"/>
+   <copy file="../../${CommonBinaries}/Microsoft.Practices.EnterpriseLibrary.Data.dll" tofile="Microsoft.Practices.EnterpriseLibrary.Data.dll"/>
+   <copy file="../../${CommonBinaries}/Microsoft.Practices.EnterpriseLibrary.Common.dll" tofile="Microsoft.Practices.EnterpriseLibrary.Common.dll"/>
+   <copy file="../../${CommonBinaries}/Atpar_EncryptionServices.dll" tofile="Atpar_EncryptionServices.dll"/>
+   <copy file="../../${CommonBinaries}/Atpar_LoggingServices.dll" tofile="Atpar_LoggingServices.dll"/>
+   <copy file="../../${CommonBinaries}/log4net.dll" tofile="log4net.dll"/>
+   <copy file="../${Bin.OutputFolder}/AtPar_BusinessRules_RemotingProxy.dll" tofile="AtPar_BusinessRules_RemotingProxy.dll" /> 
+   <copy file="../${Bin.OutputFolder}/Atpar_PeopleSoft.dll" tofile="Atpar_PeopleSoft.dll" /> 
+   <copy file="../../${CommonBinaries}/PocketNiceEngine.dll" tofile="PocketNiceEngine.dll"/>
+   <copy file="../../${CommonBinaries}/ErrorHandler.dll" tofile="ErrorHandler.dll"/>
+</target>
+
+<target name="deletereqdbins" description="delete required binaries">
+   <delete file="Microsoft.ApplicationBlocks.Data.dll" />
+   <delete file="Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+   <delete file="Microsoft.Practices.EnterpriseLibrary.Common.dll" />
+   <delete file="Atpar_EncryptionServices.dll" />
+   <delete file="Atpar_LoggingServices.dll" />
+   <delete file="log4net.dll" />
+   <delete file="AtPar_BusinessRules_RemotingProxy.dll" />
+   <delete file="Atpar_PeopleSoft.dll" />
+   	<delete file="PocketNiceEngine.dll" />
+	<delete file="ErrorHandler.dll" />
+</target>
+
+<target name="copyreqdvb" description="copy required vb source files">
+   <copy file="../../ServerCommonHeaders/AtparStatusCodes.vb" tofile="AtparStatusCodes.vb" />
+   <copy file="../../ServerCommonHeaders/AtParDBFieldSizes.vb" tofile="AtParDBFieldSizes.vb" />
+   <copy file="../../ServerCommonHeaders/AtParDefns.vb" tofile="AtParDefns.vb" />
+   <copy file="../../ServerCommonHeaders/AtParUtils.vb" tofile="AtParUtils.vb" />
+   <copy file="../../ServerCommonHeaders/ConfigData.vb" tofile="ConfigData.vb" />
+   <copy file="../../ServerCommonHeaders/AtParFilePaths.vb" tofile="AtParFilePaths.vb" />
+   <copy file="../../ServerCommonHeaders/CSHA256.vb" tofile="CSHA256.vb" />
+   <copy file="../../../Headers/AtParDateTimes.vb" tofile="AtParDateTimes.vb" />
+   <copy file="../../../Headers/AtParEnums.vb"  tofile="AtParEnums.vb" />
+   <copy file="../../ServerCommonHeaders/AtPar_Application_Base.vb" tofile="AtPar_Application_Base.vb" />
+   <copy file="../../ServerCommonHeaders/AtPar_DeviceTransactions_Base.vb" tofile="AtPar_DeviceTransactions_Base.vb" />
+   <copy file="../../ServerCommonHeaders/Atpar_Application_Parameters.vb" tofile="Atpar_Application_Parameters.vb" />
+   <copy file="../../../Headers/ApplicationDataSetDefns.vb"  tofile="ApplicationDataSetDefns.vb" />
+   <copy file="../../ServerCommonHeaders/ConfigData.vb" tofile="ConfigData.vb" />
+   <copy file="../../ServerCommonHeaders/AtPar_Application_Transactions.vb" tofile="AtPar_Application_Transactions.vb" />
+   <copy file="../../ServerCommonHeaders/AtPar_Transaction_Entity.vb" tofile="AtPar_Transaction_Entity.vb"/>
+   <copy file="../../ServerCommonHeaders/AtPar_Deviation_Entity.vb" tofile="AtPar_Deviation_Entity.vb"/>
+   <copy file="../../ServerCommonHeaders/AtPar_Detail_Transaction_Entity.vb" tofile="AtPar_Detail_Transaction_Entity.vb"/>
+   <copy file="../../ServerCommonHeaders/WindowsServiceDefns.vb" tofile="WindowsServiceDefns.vb"/>
+   <copy file="Web References/RecallService/RecallService.vb" tofile="RecallService.vb"/>
+</target>
+
+<target name="deletereqdvb" description="delete required vb">
+   <delete file="AtParDBFieldSizes.vb" />
+   <delete file="AtparStatusCodes.vb" />
+   <delete file="AtParDefns.vb" />
+   <delete file="AtParUtils.vb" />
+   <delete file="CSHA256.vb" />
+   <delete file="ConfigData.vb" />
+   <delete file="AtParFilePaths.vb" />
+   <delete file="AssemblyInfo.vb"/>
+   <delete file="AtParDateTimes.vb"/>
+   <delete file="AtParEnums.vb" />
+   <delete file="AtPar_Application_Base.vb" />
+   <delete file="AtPar_DeviceTransactions_Base.vb" /> 
+   <delete file="ApplicationDataSetDefns.vb" />  
+   <delete file="AtPar_Application_Transactions.vb" />
+   <delete file="ConfigData.vb" />
+   <delete file="AtPar_Deviation_Entity.vb"/>	
+   <delete file="AtPar_Detail_Transaction_Entity.vb"/>
+   <delete file="Atpar_Application_Parameters.vb"/>
+   <delete file="AtPar_Transaction_Entity.vb"/>
+   <delete file="WindowsServiceDefns.vb"/>
+   <delete file="RecallService.vb"/>
+</target>
+
+<target name="deploybin" description="deploy files to bin">
+  <copy todir="../${Bin.OutputFolder}">
+     <fileset basedir="${Bin.OutputFolder}">
+         <include name="${basename}.dll" />
+		 <include name="${basename}.pdb" if="${debug == 'true'}"/>
+      </fileset>
+   </copy>
+   
+<copy todir="../${Bin.OutputFolder}">
+     <fileset basedir=".">
+         <include name="*.dll" />
+		  <include name="*.xml" />
+      </fileset>
+   </copy>
+ 
+  <copy file="ADT_Inbound_Rules.xml" tofile="../${Bin.OutputFolder}/ADT_Inbound_Rules.xml"/>
+   <copy file="ADT_Inbound_Rules_TENET.xml" tofile="../${Bin.OutputFolder}/ADT_Inbound_Rules_TENET.xml"/>
+   <copy file="SIU_Inbound_Rules.xml" tofile="../${Bin.OutputFolder}/SIU_Inbound_Rules.xml"/>
+   <copy file="SIU_Inbound_Rules_WMC.xml" tofile="../${Bin.OutputFolder}/SIU_Inbound_Rules_WMC.xml"/>
+   <copy file="SIU_Inbound_Rules_HUMC.xml" tofile="../${Bin.OutputFolder}/SIU_Inbound_Rules_HUMC.xml"/>
+   <copy file="Inventory_Conf_Services.xml" tofile="../${Bin.OutputFolder}/Inventory_Conf_Services.xml"/>
+   <copy file="NetItemUsage_Outbound_Rules.xml" tofile="../${Bin.OutputFolder}/NetItemUsage_Outbound_Rules.xml"/>
+   <copy file="BillingMessage_Outbound_Rules.xml" tofile="../${Bin.OutputFolder}/BillingMessage_Outbound_Rules.xml"/>
+   <copy file="NetItemUsage_Outbound_Rules_StFrancis.xml" tofile="../${Bin.OutputFolder}/NetItemUsage_Outbound_Rules_StFrancis.xml"/>
+   <copy file="BillingMessage_Outbound_Rules_HUMC.xml" tofile="../${Bin.OutputFolder}/BillingMessage_Outbound_Rules_HUMC.xml"/>
+</target>
+
+<target name="deployweb" description="deploy files to web">
+ 
+</target>
+
+<target name="deployxml" description="deploy files to xmlbin">
+  <copy todir="../${Xml.Bin.OutputFolder}">
+     <fileset basedir="${Xml.Bin.OutputFolder}">
+         <include name="${basename}.xml" />
+      </fileset>
+   </copy>
+</target>
+
+<target name="copyscripts" description="copy script files from Server\init\scripts to Server\$scripts$" >
+   <copy todir="${Scripts.OutputFolder}">
+     <fileset basedir="../../../${init.server.scripts}">
+         <include name="*.sql" />
+      </fileset>
+   </copy>
+   <copy todir="${Scripts.OutputFolder}">
+     <fileset basedir="../Scripts">
+         <include name="*.sql" />
+      </fileset>
+   </copy>
+</target>
+
+<target name="deployscripts" description="deploy script files to $scripts$ ">
+  <copy todir="../${Scripts.OutputFolder}">
+     <fileset basedir="${Scripts.OutputFolder}">
+         <include name="*.sql" />
+      </fileset>
+   </copy>
+  </target>
+
+
+<target name="build" description="compiles the source code">
+
+	<call target="createoutfolder"/>
+	<call target="copyreqdbins"/>
+	<call target="copyreqdvb"/> 
+	<call target="CreateAssemblyInfo"/> 
+	<call target="copyscripts"/> 
+	<call target="deployscripts"/> 
+
+   
+   <vbc target="library" output="${Bin.OutputFolder}\${basename}.dll" debug="${debug}" 
+                optioncompare="text" 
+                rootnamespace="${basename}" 
+                removeintchecks="true"
+		doc="${Xml.Bin.OutputFolder}\${basename}.xml">
+		<imports>
+			<import namespace="Microsoft.VisualBasic"/>
+			<import namespace="System"/>
+			<import namespace="System.Collections"/>
+			<import namespace="System.Data"/>
+			<import namespace="System.Diagnostics"/>
+            <import namespace="System.DirectoryServices.Protocols"/>
+			
+		</imports>
+	    <sources>
+                <include name="*.vb"/>
+            </sources>
+            <references>
+				<include asis="true" name="System.dll"/>
+				<include asis="true" name="System.Data.dll"/>
+				<include asis="true" name="System.XML.dll"/>
+				<include asis="true" name="System.Web.dll"/>
+				<include asis="true" name="System.Web.Services.dll"/>
+				<include asis="true" name="Microsoft.ApplicationBlocks.Data.dll"/>
+				<include asis="true" name="AtPar_BusinessRules_RemotingProxy.dll" />
+				<include asis="true" name="Atpar_PeopleSoft.dll"/>
+				<include asis="true" name="Atpar_EncryptionServices.dll" />
+				<include asis="true" name="log4net.dll" />
+				<include asis="true" name="Atpar_LoggingServices.dll" />
+				<include asis="true" name="Microsoft.Practices.EnterpriseLibrary.Data.dll"/>
+				<include asis="true" name="Microsoft.Practices.EnterpriseLibrary.Common.dll"/>
+                <include asis="true" name="System.DirectoryServices.Protocols.dll"/>
+			
+				<include asis="true" name="PocketNiceEngine.dll"/>
+		        <include asis="true" name="ErrorHandler.dll"/>
+            </references>
+        </vbc>
+
+    <call target="deploybin" />
+    <call target="deployweb" />
+    <call target="deployxml" />
+	
+    <call target="deletereqdbins" />
+    <call target="deletereqdvb" />
+
+	<call target="clean" />
+
+    </target>
+
+
+</project>

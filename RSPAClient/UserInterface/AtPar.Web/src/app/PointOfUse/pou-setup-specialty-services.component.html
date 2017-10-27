@@ -1,0 +1,94 @@
+﻿<div id="main" class="content-page">
+    <div class="page-content-wrapper">
+        <div class="container x_panel no-border">
+            <br>
+            <div class="">
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <div class="panel-body" style="padding:0px 0 10px 0;">
+                        <form class="form-horizontal form-label-left" *ngIf="page">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-md-5 col-sm-12 form-group">
+                                    <label for="" class="control-label col-md-4 col-sm-6 col-xs-12">Specialty / Service Code</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="txtSpecialtyCode" [name]="txtSpecialtyCode" *ngIf="!isEditMode"  [validations]="'fr-FR'" [id]="'txtSpecialtyCode'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-5 col-sm-12 form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-4 col-sm-6">Description</label>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-text [(ngModel)]="txtDesc" [name]="txtDesc" *ngIf="!isEditMode" [validations]="'fr-FR'"  [id]="'txtDesc'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                </div>                          
+                                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                    <button class="btn btn-purple sbtn" id="btnGetSpecialtyCodes" (click)="btn_GetSpecialtyCodes()" name="btnGetSpecialtyCodes">Go &nbsp;<i class="fa fa-arrow-right"></i></button>
+                                    <button class="btn btn-purple sbtn" id="add" (click)="add()" name="add"> Add &nbsp;<i class="fa fa-plus"></i></button>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <span class="container pull-right text-primary"> {{noOfSpecialtyCodesMessage}}</span>
+                            </div>
+                        </form>
+                        <div class="col-xs-12 table-responsive" *ngIf="isVisible">
+                            <div class="container">
+                                <atpar-datatable [value]="lstSpecialtyCode" [style]="{'width':'100%'}" [paginator]="true" [pageLinks]="3" [rows]="recordsPerPageSize" expandableRows="true" [rowsPerPageOptions]="[10,20,30,40,50,60,70,80,90,100]" [globalFilter]="gb" [responsive]="true">
+                                    <p-column header="Action" [style]="{'width':'6%','text-align':'center'}">
+                                        <template let-rowData="rowData" pTemplate type="body">
+                                            <i class="fa fa-pencil fa-bg bg-red" title="Edit" style="cursor:pointer;" (click)="edit(rowData)"></i>&nbsp;
+                                            <i class="fa fa-trash fa-bg bg-red" title="Delete" style="cursor:pointer;" (click)="confirmDelete(rowData)"></i>
+                                        </template>
+                                    </p-column>
+                                    <p-column field="CODE" header="Specialty / Service Code" [sortable]="true" [filter]="true" filterPlaceholder="Search"[style]="{'width':'40%'}"></p-column>
+                                    <p-column field="DESCRIPTION" header="Description" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                </atpar-datatable>
+                            </div>
+                        </div>
+                        <form class="form-horizontal form-label-left" *ngIf="addForm">
+                            <div class="col-xs-12">
+                                <div class="form-group">  
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Specialty / Service Code</label>                                  
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="txtNewSpecialtyCode" [name]="txtNewSpecialtyCode"  *ngIf="!isEditMode" [title]="'Use only letters(A-Z),(a-z), numbers (0-9),Max 20 characters and no spaces'" [isFocused]="'true'" [validations]="'mandatory,alpha_numerics_nospace,max=20'" [id]="'txtNewSpecialtyCode'" (bindModelDataChange)="bindModelDataChange($event)" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>                                  
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Description</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="txtNewDesc" [name]="txtNewDesc" *ngIf="!isEditMode"  [title]="'Any character A-Z, a-z, 0-9,Max 50 characters,!,#, $ ....'"  [validations]="'fr-FR,max=50'" [id]="'txtNewDesc'" (bindModelDataChange)="bindModelDataChange($event)" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>                                    
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-sm-12 col-md-4 col-md-offset-4">
+                                    <button class="btn btn-purple small" (click)="btn_SaveSpecialtyCode($event)" *ngIf="mode=='Add'"  [disabled]="loading" >Save &nbsp; <i class="fa fa-floppy-o"></i> </button>
+                                    <button class="btn btn-purple small" (click)="close()"><i class="fa fa-arrow-left"> &nbsp;</i>Go Back</button>
+                                </div>
+                            </div>
+                        </form>
+                        <form class="form-horizontal form-label-left" *ngIf="editForm">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Specialty / Service Code</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <label id="lblSpecialtyCode" class="control-label lbl-left">{{lblSpecialtyCode}}</label>                           
+                                    </div>                                   
+                                </div>
+                                <div class="form-group">
+                                    <label for="industry" class="control-label col-md-3 col-sm-3 col-xs-12">Description</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <atpar-text [(ngModel)]="txtUpdesc" [name]="txtUpdesc"  *ngIf="!isEditMode" [isFocused]="'true'" [title]="'Any character A-Z, a-z, 0-9,Max 50 characters,!,#, $ ....'"  [validations]="'fr-FR,max=50'" [id]="'txtUpdesc'" (bindModelDataChange)="bindModelDataChange($event)" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>                                   
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-sm-offset-5 col-md-4 col-md-offset-4">
+                                    <button class="btn btn-purple small" (click)="btn_UpdateSpecialtyCode($event)" [disabled]="loading"  *ngIf="mode=='Edit'">Update &nbsp; <i class="fa fa-check"></i></button>
+                                    <button class="btn btn-purple small" (click)="close()"><i class="fa fa-arrow-left"> &nbsp;</i>Go Back</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-section implementation">
+            <atpar-confirmdialog header="Confirmation" icon="fa fa-question-circle" width="425"></atpar-confirmdialog>
+        </div>
+    </div>
+    <atpar-growl [value]="growlMessage" sticky="sticky"></atpar-growl>
+</div>

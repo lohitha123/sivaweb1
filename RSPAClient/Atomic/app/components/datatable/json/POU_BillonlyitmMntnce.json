@@ -1,0 +1,17 @@
+[
+  {
+      "ITEM_ID": "0030282",
+      "ORG_GROUP_ID": "NOI",
+      "DEPT_ID": "11000",
+      "DESCRIPTION": "Solution,Sod Chl, 1000ml",
+      "MFG_ITEM_ID": "3456789",
+      "VEND_ITEM_ID": "3456789",
+      "MANUFACTURER": "HOSPIRA",
+      "VENDOR_ID": "0000000049",
+      "CATALOG_FLG": "true",
+      "LAST_UPDATE_DATE": "2017-05-01T17:11:55.07+05:30",
+      "LAST_UPDATE_USER": "C",
+      "ITEM_PRICE": "5.09",
+      "UOM": "BG"
+    }
+]

@@ -1,0 +1,19 @@
+﻿<div id="wrapper" class="enlarged forced">
+    <Tkit-topbar-cmp></Tkit-topbar-cmp>
+    <!--left side bar menu--->
+    <!--<span class="mobile-menu-icon" (click)="mobileDisplay()" id="menu-icon" [style.display]="getSideBar()">
+        <i class="fa fa-bars"></i>
+    </span>
+    <div class="left side-menu" style="width:150px;" [style.display]="getSideBar()" id="leftsidebar">
+        <Tkit-leftbar-cmp [style.display]="getSideBar()" [inputData]="data"></Tkit-leftbar-cmp>
+    </div>-->
+    <!--end left side bar menu--->   
+    <section class="main-container" [ngClass]="{sidebarPushRight: isActive}" style="overflow-y:scroll; height:100%;" >
+        <router-outlet (navigateTo)="navigateToMessagePart($event)"></router-outlet>
+    </section>
+</div>
+
+
+<!--<div class="left side-menu" style="width:150px;" [style.display]="getSideBar()" id="leftsidebar">
+    <Tkit-leftbar-cmp [style.display]="getSideBar()" [inputData]="data"></Tkit-leftbar-cmp>
+</div>-->

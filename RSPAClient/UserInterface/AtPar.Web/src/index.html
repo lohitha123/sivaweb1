@@ -1,0 +1,157 @@
+﻿<html>
+<head>
+
+    <base href="/" />
+
+    <title>Login</title>
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <link rel="shortcut icon" id="atparfavicon" href="http://www.stackoverflow.com/favicon.ico">
+    <!--<link rel="shortcut icon" id="atparfavicon" href="/AtPar/AtParWeb/assets/images/icons/app_icon_.png">-->
+
+    <style>
+        .atpar_loader {
+            position: relative;
+            padding-top: 20%;
+            width: 40px;
+            margin: auto;
+            margin-left:46% !important;
+        }
+
+            .atpar_loader .atpar_circle {
+                position: absolute;
+                width: 60px;
+                height: 60px;
+                opacity: 0;
+                transform: rotate(225deg);
+                animation-iteration-count: infinite;
+                animation-name: orbit;
+                animation-duration: 5.5s;
+            }
+
+                .atpar_loader .atpar_circle:after {
+                    content: '';
+                    position: absolute;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 10px;
+                    background: #770f6f;
+                }
+
+                .atpar_loader .atpar_circle:nth-child(2) {
+                    animation-delay: 240ms;
+                }
+
+                .atpar_loader .atpar_circle:nth-child(3) {
+                    animation-delay: 480ms;
+                }
+
+                .atpar_loader .atpar_circle:nth-child(4) {
+                    animation-delay: 720ms;
+                }
+
+                .atpar_loader .atpar_circle:nth-child(5) {
+                    animation-delay: 960ms;
+                }
+
+                .atpar_loader .atpar_circle:nth-child(6) {
+                    animation-delay: 1200ms;
+                }
+
+        @keyframes orbit {
+            0% {
+                transform: rotate(225deg);
+                opacity: 1;
+                animation-timing-function: ease-out;
+            }
+
+            7% {
+                transform: rotate(345deg);
+                animation-timing-function: linear;
+            }
+
+            30% {
+                transform: rotate(455deg);
+                animation-timing-function: ease-in-out;
+            }
+
+            39% {
+                transform: rotate(690deg);
+                animation-timing-function: linear;
+            }
+
+            70% {
+                transform: rotate(815deg);
+                opacity: 1;
+                animation-timing-function: ease-out;
+            }
+
+            75% {
+                transform: rotate(945deg);
+                animation-timing-function: ease-out;
+            }
+
+            76% {
+                transform: rotate(945deg);
+                opacity: 0;
+            }
+
+            100% {
+                transform: rotate(945deg);
+                opacity: 0;
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+    <my-app>
+        <div class='atpar_loader'>
+            <div class='atpar_circle'></div>
+            <div class='atpar_circle'></div>
+            <div class='atpar_circle'></div>
+            <div class='atpar_circle'></div>
+            <div class='atpar_circle'></div>
+            <div class='atpar_circle'></div>
+        </div>
+    </my-app>
+
+    <link href="assets/css/atparcomponents.css" rel="stylesheet" />
+    <link href="assets/css/omega/theme.css" rel="stylesheet" />
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- application css -->
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
+
+    <!-- color change css -->
+    <link href="assets/css/default.css" rel="stylesheet" type="text/css" id="color-switcher">
+
+    <!-- 1. Load libraries -->
+    <!-- Datetimepicker, Slider, Schedule -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="../config/multizoom.js"></script>
+
+    <!-- Polyfill for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+
+    <!--<script src="Scripts/izenda.integrate.js"></script>-->
+    <link href="assets/Izenda/Reportsapp.css" rel="stylesheet" />
+    <script type="text/javascript" src="assets/Izenda/izenda_common.js"></script>
+    <script type="text/javascript" src="assets/Izenda/izenda_locales.js"></script>
+    <script type="text/javascript" src="assets/Izenda/izenda_ui.js"></script>
+    <script type="text/javascript" src="assets/Izenda/izenda_vendors.js"></script>
+
+    <!--<script type="text/javascript" src="assets/Izenda/izenda_worker.js"></script>-->
+    <link href="assets/Izenda/izenda-ui.css" rel="stylesheet" />
+    <link href="assets/Izenda/sepearetd-Izenda.css" rel="stylesheet" />
+
+</body>
+</html>

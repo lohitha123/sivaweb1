@@ -1,0 +1,29 @@
+[
+      {
+        "TRANSACTION_ID": "32",
+        "USER_ID": "C",
+        "CASE_ID": "mycase1",
+        "USERNAME": "client  c(C)",
+        "ID": "mycase1"
+      },
+      {
+        "TRANSACTION_ID": "34",
+        "USER_ID": "C",
+        "CASE_ID": "mycase1 - mycase1",
+        "PROCEDURE_CODE": "proc1 - proc1",
+        "PREF_ID": "pref1 - pref1",
+        "USERNAME": "client  c(C)",
+        "PERFORM_DATE": "2017-05-01T00:00:00+05:30",
+        "ID": "mycase1"
+      },
+      {
+        "TRANSACTION_ID": "60",
+        "USER_ID": "C",
+        "CASE_ID": "mycase2 - mycase2",
+        "PROCEDURE_CODE": "proc1 - proc1",
+        "PREF_ID": "pref1 - pref1",
+        "USERNAME": "client  c(C)",
+        "PERFORM_DATE": "2017-05-01T00:00:00+05:30",
+        "ID": "mycase2"
+      }
+    ]

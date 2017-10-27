@@ -1,0 +1,2192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Microsoft.TypeScript.MSBuild.2.0.6\build\Microsoft.TypeScript.MSBuild.props" Condition="Exists('..\..\packages\Microsoft.TypeScript.MSBuild.2.0.6\build\Microsoft.TypeScript.MSBuild.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{07F47D9D-3016-4792-B38B-BB83E8298965}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AtPar.Web</RootNamespace>
+    <AssemblyName>AtPar.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.4</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AtPar.Init.WebApi">
+      <HintPath>..\..\WebApi\AtPar.Init.WebApi\bin\Debug\AtPar.Init.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="AtPar_BusinessRules_RemotingProxy">
+      <HintPath>..\..\CommonLibs\AtPar_BusinessRules_RemotingProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.1.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.1.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.1.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.Web.2.1.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.WindowsServer.2.1.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.2.1.0\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.Mvc.4.0.1\lib\net45\Microsoft.Practices.Unity.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.WebApi, Version=5.2.3.0, Culture=neutral, PublicKeyToken=43da31bc42a85347, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.WebAPI.5.2.3\lib\net45\Unity.WebApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="UnityLog4NetExtension, Version=2.0.1.0, Culture=neutral, PublicKeyToken=4f2e406647ebdbb7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\UnityLog4NetExtension.2.0.1.0\lib\net45\UnityLog4NetExtension.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="config\helpers.js" />
+    <Content Include="config\multizoom.js" />
+    <Content Include="config\webpack.common.js" />
+    <Content Include="config\webpack.dev.js" />
+    <Content Include="config\webpack.prod.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="redist\AtPar-POU_DT.exe" />
+    <Content Include="redist\AtParClient_ARM.CAB" />
+    <Content Include="redist\NETCFv35[1].wm.armv4i.cab" />
+    <Content Include="redist\sqlce30.ppc.wce4.armv4.CAB" />
+    <Content Include="src\app\app.component.html" />
+    <Content Include="src\app\AssetManagement\asmt-access-permission.component.html" />
+    <Content Include="src\app\AssetManagement\asmt-location-groups-allocation.component.html" />
+    <Content Include="src\app\AssetManagement\asmt.component.html" />
+    <Content Include="src\app\AtParX\atparx-create-orders.component.html" />
+    <Content Include="src\app\AtParX\atparx-dept-device-alloc.component.html" />
+    <Content Include="src\app\AtParX\atparx-dept-location-alloc.component.html" />
+    <Content Include="src\app\AtParX\atparx-dept-user-alloc-assign.component.html" />
+    <Content Include="src\app\AtParX\atparx-dept-user-alloc-home.component.html" />
+    <Content Include="src\app\AtParX\atparx-dept-user-alloc.component.html" />
+    <Content Include="src\app\AtParX\atparx-manage-par-location.component.html" />
+    <Content Include="src\app\AtParX\atparx-processes.component.html" />
+    <Content Include="src\app\AtParX\atparx-setup-depts.component.html" />
+    <Content Include="src\app\AtParX\atparx-setup-dropoff-location.component.html" />
+    <Content Include="src\app\AtParX\atparx-setup-par-locations.component.html" />
+    <Content Include="src\app\AtParX\atparx-setup-reasons.component.html" />
+    <Content Include="src\app\AtParX\atparx-user-parameters.component.html" />
+    <Content Include="src\app\AtParX\atparx.component.html" />
+    <Content Include="src\app\AtPar\atpar-downloads.component.html" />
+    <Content Include="src\app\AtPar\atpar-profile.component.html" />
+    <Content Include="src\app\AtPar\Menus\Menus.html" />
+    <Content Include="src\app\BinToBin\bintobin.component.html" />
+    <Content Include="src\app\BinToBin\btbn-allocate-inventory-business-units.component.html" />
+    <Content Include="src\app\BinToBin\btbn-user-parameters.component.html" />
+    <Content Include="src\app\CartCount\cart-activity-report.component.html" />
+    <Content Include="src\app\CartCount\cart-allocate-carts.component.html" />
+    <Content Include="src\app\CartCount\cart-cart-averages-report.component.html" />
+    <Content Include="src\app\CartCount\cart-cart-detail-report.component.html" />
+    <Content Include="src\app\CartCount\cart-cart-putaway-report.component.html" />
+    <Content Include="src\app\CartCount\cart-create-orders.component.html" />
+    <Content Include="src\app\CartCount\cart-create-requisition.component.html" />
+    <Content Include="src\app\CartCount\cart-critical-items.component.html" />
+    <Content Include="src\app\CartCount\cart-daily-activity.component.html" />
+    <Content Include="src\app\CartCount\cart-daily-user-activity.component.html" />
+    <Content Include="src\app\CartCount\cart-item-exception-report.component.html" />
+    <Content Include="src\app\CartCount\cart-item-usage-report.component.html" />
+    <Content Include="src\app\CartCount\cart-manage-orders.component.html" />
+    <Content Include="src\app\CartCount\cart-manage-par-location.component.html" />
+    <Content Include="src\app\CartCount\cart-optimization-report.component.html" />
+    <Content Include="src\app\CartCount\cart-order-history-report.component.html" />
+    <Content Include="src\app\CartCount\cart-par-audit-report.component.html" />
+    <Content Include="src\app\CartCount\cart-process-parameters.component.html" />
+    <Content Include="src\app\CartCount\cart-schedule-compliance-report.component.html" />
+    <Content Include="src\app\CartCount\cart-setup-par-locations.component.html" />
+    <Content Include="src\app\CartCount\cart-twobin-allocation.component.html" />
+    <Content Include="src\app\CartCount\cart-user-parameters.component.html" />
+    <Content Include="src\app\CartCount\cart-user-productivity-report.component.html" />
+    <Content Include="src\app\CartCount\cartcount.component.html" />
+    <Content Include="src\app\components\atpardiv\atpardiv.html" />
+    <Content Include="src\app\components\atpartext\atpar-text.html" />
+    <Content Include="src\app\components\atpartext\style.css" />
+    <Content Include="src\app\components\autocomplete\autocomplete-client\autocomplete-client.html" />
+    <Content Include="src\app\components\autocomplete\autocomplete-search\autocomplete-search.html" />
+    <Content Include="src\app\components\autocomplete\autocomplete-server\autocomplete-server.html" />
+    <Content Include="src\app\components\calendar\atparcalendar.html" />
+    <Content Include="src\app\components\common\common.css" />
+    <Content Include="src\app\components\confirmdialog\confirmdialog.html" />
+    <Content Include="src\app\components\datatable\datatable.html" />
+    <Content Include="src\app\components\dialog\dialog.html" />
+    <Content Include="src\app\components\doublecalendar\doublecalendar.html" />
+    <Content Include="src\app\components\dropdown\dropdown.css" />
+    <Content Include="src\app\components\dropdown\dropdown.html" />
+    <Content Include="src\app\components\growl\growl.html" />
+    <Content Include="src\app\components\largeradiobutton\largeradiobutton.css" />
+    <Content Include="src\app\components\largeradiobutton\largeradiobutton.html" />
+    <Content Include="src\app\components\listbox\listbox.html" />
+    <Content Include="src\app\components\maildialog\maildialog.html" />
+    <Content Include="src\app\components\multiselect\multiselect.html" />
+    <Content Include="src\app\components\paginator\paginator.html" />
+    <Content Include="src\app\components\radiobutton\radiobutton.css" />
+    <Content Include="src\app\components\radiobutton\radiobutton.html" />
+    <Content Include="src\app\components\spinner\atpar-spinner.css" />
+    <Content Include="src\app\components\spinner\spinner.html" />
+    <Content Include="src\app\components\switch\switch.css" />
+    <Content Include="src\app\components\switch\switch.html" />
+    <Content Include="src\app\components\tabcomponent\tab.html" />
+    <Content Include="src\app\components\tabcomponent\tabs.html" />
+    <Content Include="src\app\components\textbox\atpar-textbox.html" />
+    <Content Include="src\app\components\textbox\style.css" />
+    <Content Include="src\app\CycleCount\cyclecount.component.html" />
+    <Content Include="src\app\CycleCount\cyct-activity-report.component.html" />
+    <Content Include="src\app\CycleCount\cyct-allocate-events.component.html" />
+    <Content Include="src\app\CycleCount\cyct-allocate-ibus-maunal-counts.component.html" />
+    <Content Include="src\app\CycleCount\cyct-daily-activity.component.html" />
+    <Content Include="src\app\CycleCount\cyct-daily-user-activity.component.html" />
+    <Content Include="src\app\CycleCount\cyct-event-summary-report.component.html" />
+    <Content Include="src\app\CycleCount\cyct-item-exception-report.component.html" />
+    <Content Include="src\app\CycleCount\cyct-process-counts.component.html" />
+    <Content Include="src\app\CycleCount\cyct-review-counts.components.html" />
+    <Content Include="src\app\CycleCount\cyct-split-events.component.html" />
+    <Content Include="src\app\CycleCount\cyct-user-parameters.component.html" />
+    <Content Include="src\app\Deliver\deliver-allocate-business-units.component.html" />
+    <Content Include="src\app\Deliver\deliver-allocate-location-groups.component.html" />
+    <Content Include="src\app\Deliver\deliver-assign-signatories.component.html" />
+    <Content Include="src\app\Deliver\deliver-carrier-information.component.html" />
+    <Content Include="src\app\Deliver\deliver-daily-activity.component.html" />
+    <Content Include="src\app\Deliver\deliver-daily-user-activity.component.html" />
+    <Content Include="src\app\Deliver\deliver-delivery-report.component.html" />
+    <Content Include="src\app\Deliver\deliver-exclude-locations.component.html" />
+    <Content Include="src\app\Deliver\deliver-productivity-report.component.html" />
+    <Content Include="src\app\Deliver\deliver-release-packages.component.html" />
+    <Content Include="src\app\Deliver\deliver-setup-drop-off-locations.component.html" />
+    <Content Include="src\app\Deliver\deliver-shiptoid-allocation-for-delivery-of-stock-items.component.html" />
+    <Content Include="src\app\Deliver\deliver-user-parameters.component.html" />
+    <Content Include="src\app\Deliver\deliver.component.html" />
+    <Content Include="src\app\export\export.component.html" />
+    <Content Include="src\app\export\export.dashboardviewer.html" />
+    <Content Include="src\app\export\export.reportviewer.html" />
+    <Content Include="src\app\ForgotPassword\forgot.component.html" />
+    <Content Include="src\app\Home\Body\body.component.html" />
+    <Content Include="src\app\Home\home.component.html" />
+    <Content Include="src\app\Home\Left\leftbar.component.html" />
+    <Content Include="src\app\Home\Top\topbar.component.html" />
+    <Content Include="src\app\Init\atpar-activity-report.component.html" />
+    <Content Include="src\app\Init\atpar-add-user.component.html" />
+    <Content Include="src\app\Init\atpar-allocate-location-groups.component.html" />
+    <Content Include="src\app\Init\atpar-assign-profiles.component.html" />
+    <Content Include="src\app\Init\atpar-audit-setup.component.html" />
+    <Content Include="src\app\Init\atpar-carrier-information.component.html" />
+    <Content Include="src\app\Init\atpar-change-password.component.html" />
+    <Content Include="src\app\Init\atpar-configuration-manager.component.html" />
+    <Content Include="src\app\Init\atpar-data-archival.component.html" />
+    <Content Include="src\app\Init\atpar-define-user-groups.component.html" />
+    <Content Include="src\app\Init\atpar-error-report.component.html" />
+    <Content Include="src\app\Init\atpar-import-users.component.html" />
+    <Content Include="src\app\Init\atpar-init.component.html" />
+    <Content Include="src\app\Init\atpar-maintain-printers.component.html" />
+    <Content Include="src\app\Init\atpar-manage-barcode-translations.component.html" />
+    <Content Include="src\app\Init\atpar-manage-devices.component.html" />
+    <Content Include="src\app\Init\atpar-manage-orders.component.html" />
+    <Content Include="src\app\Init\atpar-manage-org-groups.component.html" />
+    <Content Include="src\app\Init\atpar-manage-orgid-modify.component.html" />
+    <Content Include="src\app\Init\atpar-manage-orgid.component.html" />
+    <Content Include="src\app\Init\atpar-manage-par-location.component.html" />
+    <Content Include="src\app\Init\atpar-manage-profiles.component.html" />
+    <Content Include="src\app\Init\atpar-manage-tokens.component.html" />
+    <Content Include="src\app\Init\atpar-manage-users.component.html" />
+    <Content Include="src\app\Init\atpar-org-parameters.component.html" />
+    <Content Include="src\app\Init\atpar-process-scheduler.component.html" />
+    <Content Include="src\app\Init\atpar-release-orders.component.html" />
+    <Content Include="src\app\Init\atpar-security-configuration.component.html" />
+    <Content Include="src\app\Init\atpar-setup-add-modify-costcenter.component.html" />
+    <Content Include="src\app\Init\atpar-setup-cost-centers-home.html" />
+    <Content Include="src\app\Init\atpar-setup-cost-centers.component.html" />
+    <Content Include="src\app\Init\atpar-setup-inventory-add-modify.component.html" />
+    <Content Include="src\app\Init\atpar-setup-inventory-home.component.html" />
+    <Content Include="src\app\Init\atpar-setup-inventory.component.html" />
+    <Content Include="src\app\Init\atpar-setup-items-addmodify.component.html" />
+    <Content Include="src\app\Init\atpar-setup-items-home.component.html" />
+    <Content Include="src\app\Init\atpar-setup-items.component.html" />
+    <Content Include="src\app\Init\atpar-setup-location-groups.component.html" />
+    <Content Include="src\app\Init\atpar-setup-locations.component.html" />
+    <Content Include="src\app\Init\atpar-setup-modify-vendors.component.html" />
+    <Content Include="src\app\Init\atpar-setup-par-locations.component.html" />
+    <Content Include="src\app\Init\atpar-setup-reasons.component.html" />
+    <Content Include="src\app\Init\atpar-setup-storage-location-groups.component.addzone.html" />
+    <Content Include="src\app\Init\atpar-setup-storage-location-groups.component.Assign.html" />
+    <Content Include="src\app\Init\atpar-setup-storage-location-groups.component.home.html" />
+    <Content Include="src\app\Init\atpar-setup-storage-location-groups.component.html" />
+    <Content Include="src\app\Init\atpar-setup-substituteitems.component.html" />
+    <Content Include="src\app\Init\atpar-setup-vendors.component.html" />
+    <Content Include="src\app\Init\atpar-setup-vendorsHome.component.html" />
+    <Content Include="src\app\Init\atpar-stationary-print-design.component.html" />
+    <Content Include="src\app\Init\atpar-user-parameters.component.html" />
+    <Content Include="src\app\Init\atpar-user-status-report-home.component.html" />
+    <Content Include="src\app\Init\atpar-user-status-report.component.html" />
+    <Content Include="src\app\Init\atpar-user-upload-automation.component.html" />
+    <Content Include="src\app\Login\login.component.html" />
+    <Content Include="src\app\Pick\pick-activity-report-component.html" />
+    <Content Include="src\app\Pick\pick-allocate-inventory-business-units.component.html" />
+    <Content Include="src\app\Pick\pick-allocate-location-groups.component.html" />
+    <Content Include="src\app\Pick\pick-allocate-picking-zones.component.html" />
+    <Content Include="src\app\Pick\pick-allocate-priority.component.html" />
+    <Content Include="src\app\Pick\pick-daily-activity.component.html" />
+    <Content Include="src\app\Pick\pick-daily-user-activity.component.html" />
+    <Content Include="src\app\Pick\pick-deviation-report.component.html" />
+    <Content Include="src\app\Pick\pick-deviation-report.html" />
+    <Content Include="src\app\Pick\pick-order-prefix.component.html" />
+    <Content Include="src\app\Pick\pick-pick-status-report-component.html" />
+    <Content Include="src\app\Pick\pick-release-orders.component.html" />
+    <Content Include="src\app\Pick\pick-user-parameters.component.html" />
+    <Content Include="src\app\Pick\pick.component.html" />
+    <Content Include="src\app\PointOfUse\create-orders.component.html" />
+    <Content Include="src\app\PointOfUse\pointofuse.component.html" />
+    <Content Include="src\app\PointOfUse\pou-activity-report.component.html" />
+    <Content Include="src\app\PointOfUse\pou-back-order-report.component.html" />
+    <Content Include="src\app\PointOfUse\pou-bill-only-item-maintenance.component.html" />
+    <Content Include="src\app\PointOfUse\pou-case-review-report.component.html" />
+    <Content Include="src\app\PointOfUse\pou-case-track-report.component.html" />
+    <Content Include="src\app\PointOfUse\pou-charge-report.component.html" />
+    <Content Include="src\app\PointOfUse\pou-compilance-summary-report.component.html" />
+    <Content Include="src\app\PointOfUse\pou-compliance-detail-report.component.html" />
+    <Content Include="src\app\PointOfUse\pou-create-orders.component.html" />
+    <Content Include="src\app\PointOfUse\pou-critical-items.component.html" />
+    <Content Include="src\app\PointOfUse\pou-daily-user-activity-report.component.html" />
+    <Content Include="src\app\PointOfUse\pou-dashboard.component.html" />
+    <Content Include="src\app\PointOfUse\pou-department-cart-allocation.component.html" />
+    <Content Include="src\app\PointOfUse\pou-department-device-allocation.component.html" />
+    <Content Include="src\app\PointOfUse\pou-department-location-allocation.component.html" />
+    <Content Include="src\app\PointOfUse\pou-department-location-workstation-allocation.component.html" />
+    <Content Include="src\app\PointOfUse\pou-department-user-allocation.Assign.component.html" />
+    <Content Include="src\app\PointOfUse\pou-department-user-allocation.component.html" />
+    <Content Include="src\app\PointOfUse\pou-department-user-allocation.home.component.html" />
+    <Content Include="src\app\PointOfUse\pou-expiration-tracking-report.component.home.html" />
+    <Content Include="src\app\PointOfUse\pou-expiration-tracking-report.component.html" />
+    <Content Include="src\app\PointOfUse\pou-issues-wo-patient-report.component.html" />
+    <Content Include="src\app\PointOfUse\pou-item-usage-analysis-report.component.html" />
+    <Content Include="src\app\PointOfUse\pou-item-usage-report.component.html" />
+    <Content Include="src\app\PointOfUse\pou-lotserial-tracking-report.component.html" />
+    <Content Include="src\app\PointOfUse\pou-low-stock-report.component.html" />
+    <Content Include="src\app\PointOfUse\pou-maintain-non-cart-items.component.html" />
+    <Content Include="src\app\PointOfUse\pou-manage-cases.component.html" />
+    <Content Include="src\app\PointOfUse\pou-manage-cosigned-item-order-report.component.html" />
+    <Content Include="src\app\PointOfUse\pou-manage-orders.component.html" />
+    <Content Include="src\app\PointOfUse\pou-manage-par-location.component.html" />
+    <Content Include="src\app\PointOfUse\pou-non-catalog-purchases.component.html" />
+    <Content Include="src\app\PointOfUse\pou-par-optimization-report.component.html" />
+    <Content Include="src\app\PointOfUse\pou-physician-bench-mark.html" />
+    <Content Include="src\app\PointOfUse\pou-physician-usage-report.component.html" />
+    <Content Include="src\app\PointOfUse\pou-post-pick-qa.component.html" />
+    <Content Include="src\app\PointOfUse\pou-pref-card-optimization-report.component.html" />
+    <Content Include="src\app\PointOfUse\pou-pref-card-performance-details.component.html" />
+    <Content Include="src\app\PointOfUse\pou-pref-card-performance-management-summary.component.html" />
+    <Content Include="src\app\PointOfUse\pou-pref-card-performance-summary.component.html" />
+    <Content Include="src\app\PointOfUse\pou-preference-card-optimization.component.html" />
+    <Content Include="src\app\PointOfUse\pou-preference-lists.component.html" />
+    <Content Include="src\app\PointOfUse\pou-process-parameters.component.html" />
+    <Content Include="src\app\PointOfUse\pou-process-scheduler.component.html" />
+    <Content Include="src\app\PointOfUse\pou-quantity-on-hand-report.component.html" />
+    <Content Include="src\app\PointOfUse\pou-release-cases.component.html" />
+    <Content Include="src\app\PointOfUse\pou-review-charges-credits.component.html" />
+    <Content Include="src\app\PointOfUse\pou-review-charges.component.html" />
+    <Content Include="src\app\PointOfUse\pou-setup-case.component.html" />
+    <Content Include="src\app\PointOfUse\pou-setup-departments.component.html" />
+    <Content Include="src\app\PointOfUse\pou-setup-item-attributes.component.html" />
+    <Content Include="src\app\PointOfUse\pou-setup-par-locations.component.html" />
+    <Content Include="src\app\PointOfUse\pou-setup-physicians.component.html" />
+    <Content Include="src\app\PointOfUse\pou-setup-procedures.component.html" />
+    <Content Include="src\app\PointOfUse\pou-setup-reasons.component.html" />
+    <Content Include="src\app\PointOfUse\pou-setup-specialty-services.component.html" />
+    <Content Include="src\app\PointOfUse\pou-transaction-history-report.component.html" />
+    <Content Include="src\app\PointOfUse\pou-user-parameters.component.html" />
+    <Content Include="src\app\PointOfUse\pou_cost_variance_report.component.html" />
+    <Content Include="src\app\Putaway\ptwy-activity-report.component.html" />
+    <Content Include="src\app\Putaway\ptwy-allocate-business-units.component.html" />
+    <Content Include="src\app\Putaway\ptwy-daily-activity.component.html" />
+    <Content Include="src\app\Putaway\ptwy-daily-user-activity.component.html" />
+    <Content Include="src\app\Putaway\ptwy-deviation-report.component.html" />
+    <Content Include="src\app\Putaway\ptwy-release-orders.component.html" />
+    <Content Include="src\app\Putaway\ptwy-user-parameters.html" />
+    <Content Include="src\app\Putaway\putaway.component.html" />
+    <Content Include="src\app\Receiving\recv-activity-report.component.html" />
+    <Content Include="src\app\Receiving\recv-allocate-inventory-business-units.component.html" />
+    <Content Include="src\app\Receiving\recv-allocate-shiptoids.component.html" />
+    <Content Include="src\app\Receiving\recv-asn-discrepancy-report.component.html" />
+    <Content Include="src\app\Receiving\recv-carrier-information.component.html" />
+    <Content Include="src\app\Receiving\recv-carrier-report.component.html" />
+    <Content Include="src\app\Receiving\recv-daily-activity.component.html" />
+    <Content Include="src\app\Receiving\recv-daily-user-activity.component.html" />
+    <Content Include="src\app\Receiving\recv-deviation-report.component.html" />
+    <Content Include="src\app\Receiving\recv-lot-serial-tracking-report.component.html" />
+    <Content Include="src\app\Receiving\recv-manage-carriers.component.html" />
+    <Content Include="src\app\Receiving\recv-parcel-count-report.component.html" />
+    <Content Include="src\app\Receiving\recv-po-nonpo-receipts.component.html" />
+    <Content Include="src\app\Receiving\recv-release-orders.component.html" />
+    <Content Include="src\app\Receiving\recv-setup-shiptoids.component.html" />
+    <Content Include="src\app\Receiving\recv-user-parameters.component.html" />
+    <Content Include="src\app\Receiving\recv.component.html" />
+    <Content Include="src\app\reports\export.component.html" />
+    <Content Include="src\app\reports\reports.component.html" />
+    <Content Include="src\app\reports\rootcontainer.html" />
+    <Content Include="src\app\reports\rootreportpart.html" />
+    <Content Include="src\app\reports\ViewPouReport.html" />
+    <Content Include="src\app\DeliveryTracking\deliver-track-report.component.html" />
+    <Content Include="src\app\StockIssue\stis-allocate-destination-locations.component.html" />
+    <Content Include="src\app\StockIssue\stis-allocate-destination-types.component.html" />
+    <Content Include="src\app\StockIssue\stis-allocate-distribution-types.component.html" />
+    <Content Include="src\app\StockIssue\stis-allocate-inventory-business-units.component.html" />
+    <Content Include="src\app\StockIssue\stis-daily-activity.component.html" />
+    <Content Include="src\app\StockIssue\stis-daily-user-activity.component.html" />
+    <Content Include="src\app\StockIssue\stis-issue-report.component.html" />
+    <Content Include="src\app\StockIssue\stis-user-parameters.component.html" />
+    <Content Include="src\app\StockIssue\stockissue.component.html" />
+    <Content Include="src\app\TrackITDashboard\Body\trackit.body.component.html" />
+    <Content Include="src\app\TrackITDashboard\Body\trackit.create.request.component.html" />
+    <Content Include="src\app\TrackITDashboard\Body\trackit.profile.component.html" />
+    <Content Include="src\app\TrackITDashboard\Body\trackit.request.status.component.html" />
+    <Content Include="src\app\TrackITDashboard\Body\trackit.requestor.item.visibility.report.html" />
+    <Content Include="src\app\TrackITDashboard\Body\trackit.view.cart.html" />
+    <Content Include="src\app\TrackITDashboard\Top\trackit.topbar.component.html" />
+    <Content Include="src\app\TrackITDashboard\trackit.dashboard.component.html" />
+    <Content Include="src\app\TrackitLogin\trackit.login.component.html" />
+    <Content Include="src\app\TrackIT\tkit-allocate-location-groups.component.html" />
+    <Content Include="src\app\TrackIT\tkit-charge-report.component.html" />
+    <Content Include="src\app\TrackIT\tkit-check-in_check-out.component.html" />
+    <Content Include="src\app\TrackIT\tkit-check-out.component.html" />
+    <Content Include="src\app\TrackIT\tkit-daily-activity.component.html" />
+    <Content Include="src\app\TrackIT\tkit-daily-user-activity.component.html" />
+    <Content Include="src\app\TrackIT\tkit-delivery-report.component.html" />
+    <Content Include="src\app\TrackIT\tkit-destruction-report.component.html" />
+    <Content Include="src\app\TrackIT\tkit-destruction-report.componet.html" />
+    <Content Include="src\app\TrackIT\tkit-equipment-tracking-report.component.html" />
+    <Content Include="src\app\TrackIT\tkit-inactivate-items.component.html" />
+    <Content Include="src\app\TrackIT\tkit-item-master-report.component.html" />
+    <Content Include="src\app\TrackIT\tkit-manage-departments.component.html" />
+    <Content Include="src\app\TrackIT\tkit-manage-equipment-items.component.html" />
+    <Content Include="src\app\TrackIT\tkit-manage-equipment-type.component.html" />
+    <Content Include="src\app\TrackIT\tkit-manage-requestor.component.html" />
+    <Content Include="src\app\TrackIT\tkit-newitem-audit-report.component.html" />
+    <Content Include="src\app\TrackIT\tkit-setup-reason-codes.component.html" />
+    <Content Include="src\app\TrackIT\tkit-transaction-report.component.html" />
+    <Content Include="src\app\TrackIT\trackit.component.html" />
+    <Content Include="src\assets\css\atparcomponents.css" />
+    <Content Include="src\assets\css\BlueViolet.css" />
+    <Content Include="src\assets\css\bootstrap.min.css" />
+    <Content Include="src\assets\css\default.css" />
+    <Content Include="src\assets\css\font-awesome.min.css" />
+    <Content Include="src\assets\css\icons.css" />
+    <Content Include="src\assets\css\jquery.mCustomScrollbar.css" />
+    <Content Include="src\assets\css\omega\theme.css" />
+    <Content Include="src\assets\css\style.css" />
+    <Content Include="src\assets\css\style1.css" />
+    <Content Include="src\assets\css\style2.css" />
+    <Content Include="src\assets\css\style4.css" />
+    <Content Include="src\assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="src\assets\fonts\fontawesome-webfont5b62.svg" />
+    <Content Include="src\assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="src\assets\fonts\ioniconsaa26.svg" />
+    <Content Include="src\assets\fonts\materialdesignicons-webfont6c9c.svg" />
+    <Content Include="src\assets\fonts\roboto-v15-latin-regular.svg" />
+    <Content Include="src\assets\fonts\themify9f24.svg" />
+    <Content Include="src\assets\images\Admin.png" />
+    <Content Include="src\assets\images\bg.png" />
+    <Content Include="src\assets\images\bg1.png" />
+    <Content Include="src\assets\images\bg_.png" />
+    <Content Include="src\assets\images\customerlogo\logo.png" />
+    <Content Include="src\assets\images\distribution.png" />
+    <Content Include="src\assets\images\icons\app_icon.png" />
+    <Content Include="src\assets\images\icons\app_icon_.png" />
+    <Content Include="src\assets\images\icons\common\admin-guide.png" />
+    <Content Include="src\assets\images\icons\common\admin.png" />
+    <Content Include="src\assets\images\icons\common\AppSecurity.png" />
+    <Content Include="src\assets\images\icons\common\AppSetup.png" />
+    <Content Include="src\assets\images\icons\common\app_icon.png" />
+    <Content Include="src\assets\images\icons\common\assetManagement.png" />
+    <Content Include="src\assets\images\icons\common\atparx.png" />
+    <Content Include="src\assets\images\icons\common\atPar_.png" />
+    <Content Include="src\assets\images\icons\common\binToBin.png" />
+    <Content Include="src\assets\images\icons\common\cartCount.png" />
+    <Content Include="src\assets\images\icons\common\casecost.png" />
+    <Content Include="src\assets\images\icons\common\cc360.png" />
+    <Content Include="src\assets\images\icons\common\configuration-1.png" />
+    <Content Include="src\assets\images\icons\common\configuration.png" />
+    <Content Include="src\assets\images\icons\common\convert.png" />
+    <Content Include="src\assets\images\icons\common\cycleCount.png" />
+    <Content Include="src\assets\images\icons\common\deliver.png" />
+    <Content Include="src\assets\images\icons\common\deviceAllocation.png" />
+    <Content Include="src\assets\images\icons\common\distribution.png" />
+    <Content Include="src\assets\images\icons\common\folder-Icon-1.png" />
+    <Content Include="src\assets\images\icons\common\folder-Icon.png" />
+    <Content Include="src\assets\images\icons\common\gatparx.png" />
+    <Content Include="src\assets\images\icons\common\inventory.png" />
+    <Content Include="src\assets\images\icons\common\mail.png" />
+    <Content Include="src\assets\images\icons\common\manageUsers-1.png" />
+    <Content Include="src\assets\images\icons\common\manageUsers.png" />
+    <Content Include="src\assets\images\icons\common\pick.png" />
+    <Content Include="src\assets\images\icons\common\pointOfUse.png" />
+    <Content Include="src\assets\images\icons\common\print.png" />
+    <Content Include="src\assets\images\icons\common\putAway.png" />
+    <Content Include="src\assets\images\icons\common\recieve.png" />
+    <Content Include="src\assets\images\icons\common\reports&amp;dashboards.png" />
+    <Content Include="src\assets\images\icons\common\reports-1.png" />
+    <Content Include="src\assets\images\icons\common\reports-db.png" />
+    <Content Include="src\assets\images\icons\common\reports.png" />
+    <Content Include="src\assets\images\icons\common\reportsdashboards.png" />
+    <Content Include="src\assets\images\icons\common\reportsgroup.png" />
+    <Content Include="src\assets\images\icons\common\stockIssue.png" />
+    <Content Include="src\assets\images\icons\common\tools-1.png" />
+    <Content Include="src\assets\images\icons\common\tools.png" />
+    <Content Include="src\assets\images\icons\common\trackIt.png" />
+    <Content Include="src\assets\images\icons\common\UserAdministration.png" />
+    <Content Include="src\assets\images\icons\common\userAllocation.png" />
+    <Content Include="src\assets\images\icons\common\warehouse.png" />
+    <Content Include="src\assets\images\icons\common\XL.png" />
+    <Content Include="src\assets\images\loader-preview.svg" />
+    <Content Include="src\assets\images\logo-admin-black.png" />
+    <Content Include="src\assets\images\logo-admin-black_.png" />
+    <Content Include="src\assets\images\logo-dh.png" />
+    <Content Include="src\assets\images\logo-white.png" />
+    <Content Include="src\assets\images\MHSAtpar.png" />
+    <Content Include="src\assets\images\reports.png" />
+    <Content Include="src\assets\images\restaurant.png" />
+    <Content Include="src\assets\images\trackit\createReq-P.png" />
+    <Content Include="src\assets\images\trackit\itemReport-P.png" />
+    <Content Include="src\assets\images\trackit\reqStatus-P.png" />
+    <Content Include="src\assets\images\users\default.png" />
+    <Content Include="src\assets\images\wareHouse.png" />
+    <Content Include="src\assets\img\app_icon.png" />
+    <Content Include="src\assets\img\app_icon_.png" />
+    <Content Include="src\assets\img\assetManagement.png" />
+    <Content Include="src\assets\img\atparx.png" />
+    <Content Include="src\assets\img\atPar_.png" />
+    <Content Include="src\assets\img\binToBin.png" />
+    <Content Include="src\assets\img\cartCount.png" />
+    <Content Include="src\assets\img\cycleCount.png" />
+    <Content Include="src\assets\img\deliver.png" />
+    <Content Include="src\assets\img\instructor.png" />
+    <Content Include="src\assets\img\pick.png" />
+    <Content Include="src\assets\img\play.png" />
+    <Content Include="src\assets\img\pointOfUse.png" />
+    <Content Include="src\assets\img\putAway.png" />
+    <Content Include="src\assets\img\question.png" />
+    <Content Include="src\assets\img\recieve.png" />
+    <Content Include="src\assets\img\stockIssue.png" />
+    <Content Include="src\assets\img\trackIt.png" />
+    <Content Include="src\assets\Izenda\assets\fontello.svg" />
+    <Content Include="src\assets\Izenda\assets\loader-big.gif" />
+    <Content Include="src\assets\Izenda\assets\logo-white.png" />
+    <Content Include="src\assets\Izenda\assets\logo.png" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Black.svg" />
+    <Content Include="src\assets\Izenda\assets\Roboto-BlackItalic.svg" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Bold.svg" />
+    <Content Include="src\assets\Izenda\assets\Roboto-BoldItalic.svg" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Light.svg" />
+    <Content Include="src\assets\Izenda\assets\Roboto-LightItalic.svg" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Medium.svg" />
+    <Content Include="src\assets\Izenda\assets\Roboto-MediumItalic.svg" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Regular.svg" />
+    <Content Include="src\assets\Izenda\assets\Roboto-RegularItalic.svg" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Thin.svg" />
+    <Content Include="src\assets\Izenda\assets\Roboto-ThinItalic.svg" />
+    <Content Include="src\assets\Izenda\assets\styles.png" />
+    <Content Include="src\assets\Izenda\izenda-ui-blessed1.css" />
+    <Content Include="src\assets\Izenda\izenda-ui.css" />
+    <Content Include="src\assets\Izenda\izenda_common.js" />
+    <Content Include="src\assets\Izenda\izenda_locales.js" />
+    <Content Include="src\assets\Izenda\izenda_locales.nomin.js" />
+    <Content Include="src\assets\Izenda\izenda_ui.js" />
+    <Content Include="src\assets\Izenda\izenda_vendors.js" />
+    <Content Include="src\assets\Izenda\plugins\advlist\index.js" />
+    <Content Include="src\assets\Izenda\plugins\advlist\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\advlist\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\anchor\index.js" />
+    <Content Include="src\assets\Izenda\plugins\anchor\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\anchor\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\autolink\index.js" />
+    <Content Include="src\assets\Izenda\plugins\autolink\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\autolink\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\autoresize\index.js" />
+    <Content Include="src\assets\Izenda\plugins\autoresize\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\autoresize\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\autosave\index.js" />
+    <Content Include="src\assets\Izenda\plugins\autosave\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\autosave\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\bbcode\index.js" />
+    <Content Include="src\assets\Izenda\plugins\bbcode\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\bbcode\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\charmap\index.js" />
+    <Content Include="src\assets\Izenda\plugins\charmap\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\charmap\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\codesample\css\prism.css" />
+    <Content Include="src\assets\Izenda\plugins\codesample\index.js" />
+    <Content Include="src\assets\Izenda\plugins\codesample\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\codesample\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\code\index.js" />
+    <Content Include="src\assets\Izenda\plugins\code\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\code\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\colorpicker\index.js" />
+    <Content Include="src\assets\Izenda\plugins\colorpicker\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\colorpicker\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\contextmenu\index.js" />
+    <Content Include="src\assets\Izenda\plugins\contextmenu\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\contextmenu\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\directionality\index.js" />
+    <Content Include="src\assets\Izenda\plugins\directionality\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\directionality\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="src\assets\Izenda\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="src\assets\Izenda\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="src\assets\Izenda\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="src\assets\Izenda\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="src\assets\Izenda\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="src\assets\Izenda\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="src\assets\Izenda\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="src\assets\Izenda\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="src\assets\Izenda\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="src\assets\Izenda\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="src\assets\Izenda\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="src\assets\Izenda\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="src\assets\Izenda\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="src\assets\Izenda\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="src\assets\Izenda\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="src\assets\Izenda\plugins\emoticons\index.js" />
+    <Content Include="src\assets\Izenda\plugins\emoticons\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\emoticons\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\fullpage\index.js" />
+    <Content Include="src\assets\Izenda\plugins\fullpage\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\fullpage\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\fullscreen\index.js" />
+    <Content Include="src\assets\Izenda\plugins\fullscreen\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\fullscreen\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\hr\index.js" />
+    <Content Include="src\assets\Izenda\plugins\hr\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\hr\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\imagetools\index.js" />
+    <Content Include="src\assets\Izenda\plugins\imagetools\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\imagetools\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\image\index.js" />
+    <Content Include="src\assets\Izenda\plugins\image\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\image\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\importcss\index.js" />
+    <Content Include="src\assets\Izenda\plugins\importcss\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\importcss\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\insertdatetime\index.js" />
+    <Content Include="src\assets\Izenda\plugins\insertdatetime\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\legacyoutput\index.js" />
+    <Content Include="src\assets\Izenda\plugins\legacyoutput\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\link\index.js" />
+    <Content Include="src\assets\Izenda\plugins\link\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\link\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\lists\index.js" />
+    <Content Include="src\assets\Izenda\plugins\lists\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\lists\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\media\index.js" />
+    <Content Include="src\assets\Izenda\plugins\media\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\media\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\nonbreaking\index.js" />
+    <Content Include="src\assets\Izenda\plugins\nonbreaking\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\noneditable\index.js" />
+    <Content Include="src\assets\Izenda\plugins\noneditable\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\noneditable\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\pagebreak\index.js" />
+    <Content Include="src\assets\Izenda\plugins\pagebreak\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\pagebreak\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\paste\index.js" />
+    <Content Include="src\assets\Izenda\plugins\paste\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\paste\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\preview\index.js" />
+    <Content Include="src\assets\Izenda\plugins\preview\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\preview\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\print\index.js" />
+    <Content Include="src\assets\Izenda\plugins\print\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\print\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\save\index.js" />
+    <Content Include="src\assets\Izenda\plugins\save\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\save\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\searchreplace\index.js" />
+    <Content Include="src\assets\Izenda\plugins\searchreplace\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\searchreplace\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\spellchecker\index.js" />
+    <Content Include="src\assets\Izenda\plugins\spellchecker\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\spellchecker\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\tabfocus\index.js" />
+    <Content Include="src\assets\Izenda\plugins\tabfocus\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\tabfocus\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\table\index.js" />
+    <Content Include="src\assets\Izenda\plugins\table\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\table\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\template\index.js" />
+    <Content Include="src\assets\Izenda\plugins\template\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\template\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\textcolor\index.js" />
+    <Content Include="src\assets\Izenda\plugins\textcolor\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\textcolor\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\textpattern\index.js" />
+    <Content Include="src\assets\Izenda\plugins\textpattern\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\textpattern\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\toc\index.js" />
+    <Content Include="src\assets\Izenda\plugins\toc\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\toc\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="src\assets\Izenda\plugins\visualblocks\index.js" />
+    <Content Include="src\assets\Izenda\plugins\visualblocks\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\visualblocks\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\visualchars\index.js" />
+    <Content Include="src\assets\Izenda\plugins\visualchars\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\visualchars\plugin.min.js" />
+    <Content Include="src\assets\Izenda\plugins\wordcount\index.js" />
+    <Content Include="src\assets\Izenda\plugins\wordcount\plugin.js" />
+    <Content Include="src\assets\Izenda\plugins\wordcount\plugin.min.js" />
+    <Content Include="src\assets\Izenda\Reportsapp.css" />
+    <Content Include="src\assets\Izenda\skins\lightgray\content.inline.min.css" />
+    <Content Include="src\assets\Izenda\skins\lightgray\content.min.css" />
+    <Content Include="src\assets\Izenda\skins\lightgray\fonts\tinymce-small.svg" />
+    <Content Include="src\assets\Izenda\skins\lightgray\fonts\tinymce.svg" />
+    <Content Include="src\assets\Izenda\skins\lightgray\img\anchor.gif" />
+    <Content Include="src\assets\Izenda\skins\lightgray\img\loader.gif" />
+    <Content Include="src\assets\Izenda\skins\lightgray\img\object.gif" />
+    <Content Include="src\assets\Izenda\skins\lightgray\img\trans.gif" />
+    <Content Include="src\assets\Izenda\skins\lightgray\skin.ie7.min.css" />
+    <Content Include="src\assets\Izenda\skins\lightgray\skin.min.css" />
+    <Content Include="src\assets\Izenda\themes\inlite\index.js" />
+    <Content Include="src\assets\Izenda\themes\inlite\theme.js" />
+    <Content Include="src\assets\Izenda\themes\inlite\theme.min.js" />
+    <Content Include="src\assets\Izenda\themes\modern\index.js" />
+    <Content Include="src\assets\Izenda\themes\modern\theme.js" />
+    <Content Include="src\assets\Izenda\themes\modern\theme.min.js" />
+    <Content Include="src\Content\bootstrap.css" />
+    <Content Include="src\Content\bootstrap.min.css" />
+    <Content Include="src\Content\Site.css" />
+    <Content Include="src\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="src\Images\AtPar-FavIcon.png" />
+    <Content Include="src\Images\logo_y.jpg" />
+    <Content Include="src\index.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\CreateUser\Index.cshtml" />
+    <Content Include="webpack.config.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="src\assets\images\userprofileimage\" />
+    <Folder Include="Views\Home\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Business\AtPar.AssetManagement.Service\AtPar.AssetManagement.Service.csproj">
+      <Project>{c677acae-d203-47e3-8ff8-0f2b3c461694}</Project>
+      <Name>AtPar.AssetManagement.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.BinToBin.Service\AtPar.BinToBin.Service.csproj">
+      <Project>{5b712a42-83ff-41cc-8c7d-870c2e8f9316}</Project>
+      <Name>AtPar.BinToBin.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.CartCount.Service\AtPar.CartCount.Service.csproj">
+      <Project>{1c9d4a09-5b59-4ba4-bad5-7824c64fc7d2}</Project>
+      <Name>AtPar.CartCount.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.Common.Service\AtPar.Common.Service.csproj">
+      <Project>{95316591-8009-4a44-b2cf-41101bb8df63}</Project>
+      <Name>AtPar.Common.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.CycleCount.Service\AtPar.CycleCount.Service.csproj">
+      <Project>{5484eaf6-130c-47f9-9478-f451176869d0}</Project>
+      <Name>AtPar.CycleCount.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.Deliver.Service\AtPar.Deliver.Service.csproj">
+      <Project>{35a2e882-cfa4-44d4-9d73-8df4d2179e93}</Project>
+      <Name>AtPar.Deliver.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.ParManagement.Service\AtPar.ParManagement.Service.csproj">
+      <Project>{00a91b8b-cbc8-4c33-9392-ebcba4d67123}</Project>
+      <Name>AtPar.ParManagement.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.PickPlan.Service\AtPar.PickPlan.Service.csproj">
+      <Project>{1d800a32-5deb-43d9-9921-9b4bdb771815}</Project>
+      <Name>AtPar.PickPlan.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.POU.Service\AtPar.POU.Service.csproj">
+      <Project>{159c4499-c24a-497a-bcb9-f469564b6954}</Project>
+      <Name>AtPar.POU.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.Putaway.Service\AtPar.Putaway.Service.csproj">
+      <Project>{d93cfdde-9068-4701-bea1-71c0c687c1f8}</Project>
+      <Name>AtPar.Putaway.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.Receiving.Service\AtPar.Receiving.Service.csproj">
+      <Project>{a287afc1-2fe5-4720-85ff-e9caead935ce}</Project>
+      <Name>AtPar.Receiving.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.StockIssue.Service\AtPar.StockIssue.Service.csproj">
+      <Project>{89f1348e-4056-4962-b543-39df7cecc865}</Project>
+      <Name>AtPar.StockIssue.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.TrackIT.Service\AtPar.TrackIT.Service.csproj">
+      <Project>{b95ec24c-c6a7-401c-81f2-8b8f4997a73d}</Project>
+      <Name>AtPar.TrackIT.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\AtPar.Common\AtPar.Common.csproj">
+      <Project>{818012ef-d097-4d49-82e5-942bf9dfa79e}</Project>
+      <Name>AtPar.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.AssetManagement.Repos\AtPar.AssetManagement.Repos.csproj">
+      <Project>{9d481065-1612-4522-aaaa-9ed78a720dda}</Project>
+      <Name>AtPar.AssetManagement.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.BinToBin.Repos\AtPar.BinToBin.Repos.csproj">
+      <Project>{4fd8bc67-28a4-4518-99e9-a66b65d99cf8}</Project>
+      <Name>AtPar.BinToBin.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.CartCount.Repos\AtPar.CartCount.Repos.csproj">
+      <Project>{95a514ef-ed25-4213-b688-5e396aa4a212}</Project>
+      <Name>AtPar.CartCount.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.Common.Repos\AtPar.Common.Repos.csproj">
+      <Project>{1e94efcf-1315-4f1c-b109-a0bb9bc956ab}</Project>
+      <Name>AtPar.Common.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.CycleCount.Repos\AtPar.CycleCount.Repos.csproj">
+      <Project>{e5d76425-b865-4651-8a3c-d9aead2b3488}</Project>
+      <Name>AtPar.CycleCount.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.Data\AtPar.Data.csproj">
+      <Project>{d5da1a56-3932-4797-8acc-4e6f7356e74a}</Project>
+      <Name>AtPar.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.Deliver.Repos\AtPar.Deliver.Repos.csproj">
+      <Project>{106b12da-d065-45f4-beb9-dbc62ebc34a4}</Project>
+      <Name>AtPar.Deliver.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.Init.Repos\AtPar.Init.Repos.csproj">
+      <Project>{22a49164-66c9-486d-a7ce-dbee0fdff2a6}</Project>
+      <Name>AtPar.Init.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\AtPar.Init.Service\AtPar.Init.Service.csproj">
+      <Project>{508d4d8a-8d3c-4025-ac2d-adfecc0cd4f4}</Project>
+      <Name>AtPar.Init.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\AtPar.Repository.Interfaces\AtPar.Repository.Interfaces.csproj">
+      <Project>{5869ec8e-84bf-4b97-aa69-ef86af0508c1}</Project>
+      <Name>AtPar.Repository.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\AtPar.Service.Interfaces\AtPar.Service.Interfaces.csproj">
+      <Project>{2dcfc75b-61bb-4fb7-acb4-b18da5c3726b}</Project>
+      <Name>AtPar.Service.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.ParManagement.Repos\AtPar.ParManagement.Repos.csproj">
+      <Project>{763f5740-8a07-49a3-93f5-50eccfb9a5be}</Project>
+      <Name>AtPar.ParManagement.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.PickPlan.Repos\AtPar.PickPlan.Repos.csproj">
+      <Project>{8d579056-2e95-4a48-97e7-3750055a9207}</Project>
+      <Name>AtPar.PickPlan.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.POU.Repos\AtPar.POU.Repos.csproj">
+      <Project>{61547f70-c888-4144-9d4f-dc7bb05d0623}</Project>
+      <Name>AtPar.POU.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.Putaway.Repos\AtPar.Putaway.Repos.csproj">
+      <Project>{346b1dbf-c9ab-4046-9a0c-ff95fd343293}</Project>
+      <Name>AtPar.Putaway.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.Receiving.Repos\AtPar.Receiving.Repos.csproj">
+      <Project>{61446246-aa8e-4a39-8e0d-fc01ddbc9e8a}</Project>
+      <Name>AtPar.Receiving.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.StockIssue.Repos\AtPar.StockIssue.Repos.csproj">
+      <Project>{179aa53e-ecc9-4437-b35b-d3cbc355d786}</Project>
+      <Name>AtPar.StockIssue.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\AtPar.TrackIT.Repos\AtPar.TrackIT.Repos.csproj">
+      <Project>{f67fc5f4-81e3-4aca-b3e6-dd6d9958325c}</Project>
+      <Name>AtPar.TrackIT.Repos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WebApi\AtPar.AssetManagement.WebApi\AtPar.AssetManagement.WebApi.csproj">
+      <Project>{9a17439c-fb6d-4a52-ba90-8e057a8bae15}</Project>
+      <Name>AtPar.AssetManagement.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WebApi\AtPar.CartCount.WebApi\AtPar.CartCount.WebApi.csproj">
+      <Project>{179c37b4-92fb-468f-a4df-8d1e6f47a0e7}</Project>
+      <Name>AtPar.CartCount.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WebApi\AtPar.Common.WebApi\AtPar.Common.WebApi.csproj">
+      <Project>{d4ad460a-41ce-4a1c-a5a5-9a713d78ee7e}</Project>
+      <Name>AtPar.Common.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WebApi\AtPar.CycleCount.WebApi\AtPar.CycleCount.WebApi.csproj">
+      <Project>{5693c5e2-87df-41ac-b243-84fa394c4b27}</Project>
+      <Name>AtPar.CycleCount.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WebApi\AtPar.Deliver.WebApi\AtPar.Deliver.WebApi.csproj">
+      <Project>{7573c3a2-b394-4da7-b008-500fb7599dff}</Project>
+      <Name>AtPar.Deliver.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WebApi\AtPar.Init.WebApi\AtPar.Init.WebApi.csproj">
+      <Project>{f3a5b66c-6ea6-416c-af59-175b104e0297}</Project>
+      <Name>AtPar.Init.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WebApi\AtPar.Init.WebApi\AtPar.Init.WebApi.csproj">
+      <Project>{f3a5b66c-6ea6-416c-af59-175b104e0297}</Project>
+      <Name>AtPar.Init.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WebApi\AtPar.ParManagement.WebApi\AtPar.ParManagement.WebApi.csproj">
+      <Project>{550a68eb-0591-4887-8ae2-40c5a09958d4}</Project>
+      <Name>AtPar.ParManagement.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WebApi\AtPar.PickPlan.WebApi\AtPar.PickPlan.WebApi.csproj">
+      <Project>{f87342f1-0fde-4c7c-a88c-22e55a96b914}</Project>
+      <Name>AtPar.PickPlan.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WebApi\AtPar.POU.WebApi\AtPar.POU.WebApi.csproj">
+      <Project>{2fbe1444-593a-420d-9b80-b180acf97923}</Project>
+      <Name>AtPar.POU.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WebApi\AtPar.Putaway.WebApi\AtPar.Putaway.WebApi.csproj">
+      <Project>{77ec0923-26c1-4c0e-8a17-70aaca416f8e}</Project>
+      <Name>AtPar.Putaway.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WebApi\AtPar.Receiving.WebApi\AtPar.Receiving.WebApi.csproj">
+      <Project>{0b5c6a37-435d-477c-96d0-c35393310a1f}</Project>
+      <Name>AtPar.Receiving.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WebApi\AtPar.StockIssue.WebApi\AtPar.StockIssue.WebApi.csproj">
+      <Project>{0faa9c8d-4f3e-46c6-a9ba-797a8c5fd544}</Project>
+      <Name>AtPar.StockIssue.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WebApi\AtPar.TrackIT.WebApi\AtPar.TrackIT.WebApi.csproj">
+      <Project>{c5303776-78ce-48ed-8f53-b8eca2e04d87}</Project>
+      <Name>AtPar.TrackIT.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WebApi\AtPar.WebApi\AtPar.WebApi.csproj">
+      <Project>{ff8947c7-7fcc-48b4-8d6b-e72f3fe182d6}</Project>
+      <Name>AtPar.WebApi</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="src\app\app-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\app.component.ts" />
+    <TypeScriptCompile Include="src\app\app.module.ts" />
+    <TypeScriptCompile Include="src\app\app.service.ts" />
+    <TypeScriptCompile Include="src\app\AssetManagement\asmt-access-permission.component.ts" />
+    <TypeScriptCompile Include="src\app\AssetManagement\asmt-access-permission.service.ts" />
+    <TypeScriptCompile Include="src\app\AssetManagement\asmt-location-groups-allocation.component.ts" />
+    <TypeScriptCompile Include="src\app\AssetManagement\asmt-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\AssetManagement\asmt.component.ts" />
+    <TypeScriptCompile Include="src\app\AssetManagement\asmt.module.ts" />
+    <TypeScriptCompile Include="src\app\AtParX\atparx-create-orders.component.ts" />
+    <TypeScriptCompile Include="src\app\AtParX\atparx-dept-device-alloc.component.ts" />
+    <TypeScriptCompile Include="src\app\AtParX\atparx-dept-location-alloc.component.ts" />
+    <TypeScriptCompile Include="src\app\AtParX\atparx-dept-user-alloc-assign.component.ts" />
+    <TypeScriptCompile Include="src\app\AtParX\atparx-dept-user-alloc-home.component.ts" />
+    <TypeScriptCompile Include="src\app\AtParX\atparx-dept-user-alloc.component.ts" />
+    <TypeScriptCompile Include="src\app\AtParX\atparx-manage-par-location.component.ts" />
+    <TypeScriptCompile Include="src\app\AtParX\atparx-processes.component.ts" />
+    <TypeScriptCompile Include="src\app\AtParX\atparx-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\AtParX\atparx-setup-depts.component.ts" />
+    <TypeScriptCompile Include="src\app\AtParX\atparx-setup-dropoff-location.component.ts" />
+    <TypeScriptCompile Include="src\app\AtParX\atparx-setup-par-locations.component.ts" />
+    <TypeScriptCompile Include="src\app\AtParX\atparx-setup-reasons.component.ts" />
+    <TypeScriptCompile Include="src\app\AtParX\atparx-user-parameters.component.ts" />
+    <TypeScriptCompile Include="src\app\AtParX\atparx.component.ts" />
+    <TypeScriptCompile Include="src\app\AtParX\atparx.module.ts" />
+    <TypeScriptCompile Include="src\app\AtParX\index.ts" />
+    <TypeScriptCompile Include="src\app\AtPar\assetmanagement-bread-Crumb.component.ts" />
+    <TypeScriptCompile Include="src\app\AtPar\atpar-bread-Crumb.component.ts" />
+    <TypeScriptCompile Include="src\app\AtPar\atpar-downloads.component.ts" />
+    <TypeScriptCompile Include="src\app\AtPar\atpar-page-not-found.component.ts" />
+    <TypeScriptCompile Include="src\app\AtPar\atpar-profile.component.ts" />
+    <TypeScriptCompile Include="src\app\AtPar\atparx-bread-Crumb.component.ts" />
+    <TypeScriptCompile Include="src\app\AtPar\bintobin-bread-Crumb.component.ts" />
+    <TypeScriptCompile Include="src\app\AtPar\Cartcount-bread-Crumb.component.ts" />
+    <TypeScriptCompile Include="src\app\AtPar\cyclecount-bread-Crumb.component.ts" />
+    <TypeScriptCompile Include="src\app\AtPar\deliver-bread-Crumb.component.ts" />
+    <TypeScriptCompile Include="src\app\AtPar\Menus\MenuMapping.ts" />
+    <TypeScriptCompile Include="src\app\AtPar\Menus\MenusComponent.ts" />
+    <TypeScriptCompile Include="src\app\AtPar\Menus\MenusService.ts" />
+    <TypeScriptCompile Include="src\app\AtPar\Menus\routepath.ts" />
+    <TypeScriptCompile Include="src\app\AtPar\pick-bread-Crumb.component.ts" />
+    <TypeScriptCompile Include="src\app\AtPar\pointofuse-bread-Crumb.component.ts" />
+    <TypeScriptCompile Include="src\app\AtPar\putaway-bread-Crumb.component.ts" />
+    <TypeScriptCompile Include="src\app\AtPar\receiving-bread-Crumb.component.ts" />
+    <TypeScriptCompile Include="src\app\AtPar\stockissue-bread-Crumb.component.ts" />
+    <TypeScriptCompile Include="src\app\AtPar\trackIT-bread-Crumb.component.ts" />
+    <TypeScriptCompile Include="src\app\BinToBin\bin-allocate-business-units.services.ts" />
+    <TypeScriptCompile Include="src\app\BinToBin\bin-api-service.ts" />
+    <TypeScriptCompile Include="src\app\BinToBin\bintobin-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\BinToBin\bintobin.component.ts" />
+    <TypeScriptCompile Include="src\app\BinToBin\bintobin.module.ts" />
+    <TypeScriptCompile Include="src\app\BinToBin\btbn-allocate-inventory-business-units.component.ts" />
+    <TypeScriptCompile Include="src\app\BinToBin\btbn-user-parameters.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-activity-report.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-allocate-carts.component.service.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-allocate-carts.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-cart-averages-report.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-cart-detail-report.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-cart-putaway-report.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-create-orders.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-create-orders.service.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-create-requisition.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-critical-items.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-daily-activity.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-daily-user-activity.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-item-exception-report.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-item-usage-report.component.service.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-item-usage-report.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-manage-orders.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-manage-par-location.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-optimization-report.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-optimization-report.service.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-order-history-report.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-order-history-report.service.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-par-audit-report.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-process-parameters.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-process-parameters.service.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-schedule-compliance-report.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-schedule-compliance-report.service.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-setup-par-locations.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-twobin-allocation.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-twobin-allocation.service.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-user-parameters.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cart-user-productivity-report.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cartcount-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cartcount.component.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cartcount.module.ts" />
+    <TypeScriptCompile Include="src\app\CartCount\cartcount.service.ts" />
+    <TypeScriptCompile Include="src\app\Common\dom\domhandler.ts" />
+    <TypeScriptCompile Include="src\app\Common\DropDown\app.Dropdowncomponent.ts" />
+    <TypeScriptCompile Include="src\app\Common\DynamicControls\CheckboxControl.ts" />
+    <TypeScriptCompile Include="src\app\Common\DynamicControls\ControlBase.ts" />
+    <TypeScriptCompile Include="src\app\Common\DynamicControls\DropDownControl.ts" />
+    <TypeScriptCompile Include="src\app\Common\DynamicControls\ModelControl.ts" />
+    <TypeScriptCompile Include="src\app\Common\DynamicControls\SpanControl.ts" />
+    <TypeScriptCompile Include="src\app\Common\DynamicControls\TextboxControl.ts" />
+    <TypeScriptCompile Include="src\app\Common\RadioGroup\app.RadioGroupComponent.ts" />
+    <TypeScriptCompile Include="src\app\Common\util\ObjectUtils.ts" />
+    <TypeScriptCompile Include="src\app\Common\Validations\customvalidation.ts" />
+    <TypeScriptCompile Include="src\app\components\atpardiv\atpardiv.ts" />
+    <TypeScriptCompile Include="src\app\components\atpartext\atpartext.ts" />
+    <TypeScriptCompile Include="src\app\components\atpartext\atpartextforgrid.ts" />
+    <TypeScriptCompile Include="src\app\components\atpartext\customvalidations.ts" />
+    <TypeScriptCompile Include="src\app\components\atpartext\lang.ts" />
+    <TypeScriptCompile Include="src\app\components\atpartext\Validators.ts" />
+    <TypeScriptCompile Include="src\app\components\autocomplete\autocomplete-client\autocomplete-client.ts" />
+    <TypeScriptCompile Include="src\app\components\autocomplete\autocomplete-search\autocomplete-search.ts" />
+    <TypeScriptCompile Include="src\app\components\autocomplete\autocomplete-server\autocomplete-server.ts" />
+    <TypeScriptCompile Include="src\app\components\button\button.ts" />
+    <TypeScriptCompile Include="src\app\components\calendar\atparcalendar.ts" />
+    <TypeScriptCompile Include="src\app\components\Chart\Chart.ts" />
+    <TypeScriptCompile Include="src\app\components\common\api.ts" />
+    <TypeScriptCompile Include="src\app\components\common\sharedComponent.ts" />
+    <TypeScriptCompile Include="src\app\components\confirmdialog\confirmdialog.ts" />
+    <TypeScriptCompile Include="src\app\components\custompipes\minus-sign-to-parens.pipe.ts" />
+    <TypeScriptCompile Include="src\app\components\datatable\customerow.ts" />
+    <TypeScriptCompile Include="src\app\components\datatable\datatable.ts" />
+    <TypeScriptCompile Include="src\app\components\datatable\datatableservice.ts" />
+    <TypeScriptCompile Include="src\app\components\datatable\Employee.ts" />
+    <TypeScriptCompile Include="src\app\components\dialog\dialog.ts" />
+    <TypeScriptCompile Include="src\app\components\doublecalendar\doublecalendar.ts" />
+    <TypeScriptCompile Include="src\app\components\dragdrop\dragdrop.ts" />
+    <TypeScriptCompile Include="src\app\components\dropdown\dropdown.ts" />
+    <TypeScriptCompile Include="src\app\components\dropdown\dropdownforgrid.ts" />
+    <TypeScriptCompile Include="src\app\components\growl\growl.ts" />
+    <TypeScriptCompile Include="src\app\components\inputtext\inputtext.ts" />
+    <TypeScriptCompile Include="src\app\components\largeradiobutton\largeradiobutton.ts" />
+    <TypeScriptCompile Include="src\app\components\listbox\listbox.ts" />
+    <TypeScriptCompile Include="src\app\components\maildialog\maildialog.ts" />
+    <TypeScriptCompile Include="src\app\components\modal\modal.ts" />
+    <TypeScriptCompile Include="src\app\components\multiselect\multiselect.ts" />
+    <TypeScriptCompile Include="src\app\components\paginator\paginator.ts" />
+    <TypeScriptCompile Include="src\app\components\radiobutton\radiobutton.ts" />
+    <TypeScriptCompile Include="src\app\components\radio\radio.ts" />
+    <TypeScriptCompile Include="src\app\components\spinner\event.base.ts" />
+    <TypeScriptCompile Include="src\app\components\spinner\event.spinner.service.ts" />
+    <TypeScriptCompile Include="src\app\components\spinner\pub.sub.event.ts" />
+    <TypeScriptCompile Include="src\app\components\spinner\spinner-component.ts" />
+    <TypeScriptCompile Include="src\app\components\spinner\spinner.module.ts" />
+    <TypeScriptCompile Include="src\app\components\spinner\spinner.sent.event.ts" />
+    <TypeScriptCompile Include="src\app\components\switch\switch.ts" />
+    <TypeScriptCompile Include="src\app\components\tabcomponent\tab.ts" />
+    <TypeScriptCompile Include="src\app\components\tabcomponent\tabs.ts" />
+    <TypeScriptCompile Include="src\app\components\textbox\atpar-textbox-enable-disable.component.ts" />
+    <TypeScriptCompile Include="src\app\components\textbox\atpartextbox.ts" />
+    <TypeScriptCompile Include="src\app\components\textbox\lang.ts" />
+    <TypeScriptCompile Include="src\app\components\textbox\textboxreferece.ts" />
+    <TypeScriptCompile Include="src\app\components\textbox\Validators.ts" />
+    <TypeScriptCompile Include="src\app\components\tooltip\tooltip.ts" />
+    <TypeScriptCompile Include="src\app\CycleCount\cyclecount-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\CycleCount\cyclecount.component.ts" />
+    <TypeScriptCompile Include="src\app\CycleCount\cyclecount.module.ts" />
+    <TypeScriptCompile Include="src\app\CycleCount\cyct-activity-report.component.ts" />
+    <TypeScriptCompile Include="src\app\CycleCount\cyct-allocate-events.component.ts" />
+    <TypeScriptCompile Include="src\app\CycleCount\cyct-allocate-events.service.ts" />
+    <TypeScriptCompile Include="src\app\CycleCount\cyct-allocate-ibus-maunal-counts.component.ts" />
+    <TypeScriptCompile Include="src\app\CycleCount\cyct-daily-activity.component.ts" />
+    <TypeScriptCompile Include="src\app\CycleCount\cyct-daily-user-activity.component.ts" />
+    <TypeScriptCompile Include="src\app\CycleCount\cyct-event-summary-report.component.ts" />
+    <TypeScriptCompile Include="src\app\CycleCount\cyct-item-exception-report.component.ts" />
+    <TypeScriptCompile Include="src\app\CycleCount\cyct-item-exception-report.service.ts" />
+    <TypeScriptCompile Include="src\app\CycleCount\cyct-process-counts.component.ts" />
+    <TypeScriptCompile Include="src\app\CycleCount\cyct-process-counts.service.ts" />
+    <TypeScriptCompile Include="src\app\CycleCount\cyct-review-counts.components.ts" />
+    <TypeScriptCompile Include="src\app\CycleCount\cyct-review-counts.service.ts" />
+    <TypeScriptCompile Include="src\app\CycleCount\cyct-split-events.component.ts" />
+    <TypeScriptCompile Include="src\app\CycleCount\cyct-split-events.service.ts" />
+    <TypeScriptCompile Include="src\app\CycleCount\cyct-user-parameters.component.ts" />
+    <TypeScriptCompile Include="src\app\DeliveryTracking\deliver-track-report.index.ts" />
+    <TypeScriptCompile Include="src\app\DeliveryTracking\deliver-track-report.service.component.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver-allocate-business-units.component.services.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver-allocate-business-units.component.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver-allocate-location-groups.component.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver-assign-signatories.component.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver-assign-signatories.services.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver-carrier-information.component.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver-daily-activity.component.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver-daily-user-activity.component.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver-delivery-report.component.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver-delivery-report.service.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver-exclude-locations.component.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver-exclude-locations.services.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver-productivity-report.component.service.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver-productivity-report.component.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver-release-packages.component.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver-release-packages.service.component.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver-setup-drop-off-locations.component.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver-setup-dropoff-location-services.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver-shiptoid-allocation-for-delivery-of-stock-items.component.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver-shiptoid-allocation-for-delivery-of-stock-items.services.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver-user-parameters.component.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver.component.ts" />
+    <TypeScriptCompile Include="src\app\Deliver\deliver.module.ts" />
+    <TypeScriptCompile Include="src\app\Entities\AtParKeyValuePair.ts" />
+    <TypeScriptCompile Include="src\app\Entities\AtparUser.ts" />
+    <TypeScriptCompile Include="src\app\Entities\ATPAR_VALIDATION_RULES.ts" />
+    <TypeScriptCompile Include="src\app\Entities\CHART_DATASET.ts" />
+    <TypeScriptCompile Include="src\app\Entities\EXPIREDGROUPITEMS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_AP_INTERFACE_TYPE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_AP_ORDER_TBL_ID.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_AP_PARAMETER_PROCESS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ASMT_AUDIT_DETAIL.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ASMT_AUDIT_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_APP.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_APP_GROUP.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_APP_LABELS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_APP_LINKED_LABELS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_AUDIT.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_AUDIT_INFO.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_AUDIT_SCREEN_CONTROLS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_AUDIT_TEMP.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_BARCODE_SYMBOLOGY.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_CART_PREV_COUNTS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_CHART.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_TKIT_DAILYACTIVITY_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_BACK_ORDER_REPORT.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_CARTCOUNT_ORDER_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_CART_COMPLIANCE_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_CONFIGURATION_SECTION_DTLS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_DASHBOARD_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_DASHBOARD_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_DETAIL_TRANSACTION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_DEVIATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_DEVICE_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_ENTERPRISE_SYSTEM_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_GRIDVIEW_PARAMS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_HL7_MSGS_TRANSMISSION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_IBU_ALLOCATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_ITEM_MFG_UPN.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_JOB_SCHEDULES.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_LABELS_DATA.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_LATEST_VALUES.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_LBL_PRINTERS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_LIST_VIEW.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_LOC_GROUPS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_LOC_GROUP_ALLOCATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_LOC_GROUP_MEMBERS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_LOGIN_HISTORY.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_MENUS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_MESSAGE_TBL.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_NOTES.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_NOTES_SETUP.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_OBJECTS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_ORG_GROUPS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_ORG_GROUP_BUNITS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_ORG_GROUP_PARAMETERS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_PARAM_MASTER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_PASSWD_HISTORY.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_PATIENT_CACHE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_PHYSICAL_INVENTORY.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_PRINT_FIELD_DEFAULTS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_PRINT_LABEL_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_PRINT_LABEL_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_PRINT_OBJECTS_INFO.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_PROCESS_SCHEDULER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_PROCESS_TRANS_HISTORY.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_PROFILE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_PROFILE_APP_ACL.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_PROFILE_LIST_VIEW.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_PROFILE_MENU.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_PROFILE_PARAMETERS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_RECALL_INFO.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_ROUTES.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_SCHEDULE_DETAIL.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_SCHEDULE_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_SECURITY_AUDIT.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_SECURITY_PARAMS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_SETUP_PRO_PRINTERES.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_SIGNATURE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_STATUS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_STORAGE_ZONE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_STORAGE_ZONES_ALLOCATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_SYSTEM_DB.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_TOKENS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_TRANSACTION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_TRANSACTION_ID_TBL.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_UI_FIELDS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_UI_SETUP.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_USER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_USER_ACL.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_USER_ACL_DEFAULTS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_USER_APP_ACL.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_USER_APP_PARAMETERS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_USER_GROUPS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_USER_ORG_GROUPS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_USER_PROFILE_APP_ACL.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_USER_PROFILE_APP_ACL_ORG.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_ATPAR_ZONE_STORAGE_LEVELS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_BTBN_DTL_TRANSACTION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_BTBN_INV_SYNC_DATA.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_CRCT_CRITICAL_ITEMS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_CRCT_PAR_AUDIT.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_CRCT_PAR_LOC_SCHEDULE_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_CRCT_PUTAWAY_DETAIL.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_CRCT_TWO_BIN_ALLOCATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_CRCT_USER_ALLOCATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_CRCT_USER_SCHEDULE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_CYCT_EVENT_ALLOCATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_CYCT_EVENT_DETAIL.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_CYCT_EVENT_DETAIL_MASTER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_CYCT_EVENT_HDR.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_CYCT_EVENT_HDR_MASTER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_CYCT_EVENT_SUMMARY.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_CYCT_ITEM_UOM.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_CYCT_ITEM_UOM_MASTER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_DELV_BU_ALLOCATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_DELV_COST_CENTER_AUTH_PERSON.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_DELV_DELIVER_UPDATE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_DELV_DLVR_ATTEMPT.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_DELV_EXCLUDE_LOC.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_DELV_ITEM_TRIP.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_DELV_ITEM_TRIP_DELETE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_DELV_ITEM_TRIP_MISC_EVENT.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_DELV_LOC_ALLOCATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_DELV_LOC_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_DELV_RECV_SIGNATURE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_DELV_SHIPTO_ID_ALLOCATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_PKPL_ALLOCATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_PKPL_BU_ALLOCATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_PKPL_DEVIATION_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_PKPL_DEVIATION_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_PKPL_ORDER_PREFIX.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_PKPL_PRIORITY.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_BILLONLY_ITEMS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_CART_INVENTORY.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_CASE_CART_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_CASE_CART_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_CASE_TRACK_HISTORY.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_CHARGECAPTURE_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_CHARGECAPTURE_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_CHARGECAPTURE_RETURNS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_COST_CENTER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_COST_CENTER_ALLOCATIONS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_CRITICAL_ITEMS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_CYCT_DEVIATION_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_CYCT_DEVIATION_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_DEPT.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_DEPT_CART_ALLOCATIONS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_DEPT_CART_WORKSTATION_ALLOCATIONS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_DEPT_USER_ALLOCATIONS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_DEPT_WORKSTATIONS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_EVENTS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_INVENTORY_TRACK_HISTORY_.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_NONCART_ITEMS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_ORDER_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_ORDER_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_PAR_LOC_PROCESS_SCHEDULE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_PHYSICIAN.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_PREF_LIST_ALLOC.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_PREF_LIST_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_TRANSACTION_HISTORY_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_TRANSACTION_HISTORY_HEADERS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_PROCEDURE_CODE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_PTWY_DEVIATION_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_PTWY_DEVIATION_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_REASON_CODE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_REPLEN_SOURCE_LOCATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_SPECIALTY_CODE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_WORKFLOW_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_QTY_ONHAND_ITEM_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_POU_QTY_ONHAND_ITEM_HEADERS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_PTWY_BU_ALLOCATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_RECV_CARRIER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_RECV_DEVIATION_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_RECV_DEVIATION_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_RECV_EDI_VENDOR.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_RECV_INV_BU_ALLOCATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_RECV_MANAGE_CARRIERS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_RECV_NONPO.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_RECV_PARCEL_COUNTS_DETAIL.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_RECV_PARCEL_COUNTS_SIGNATURE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_RECV_PO_BOXES.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_RECV_SHIPTO_ID_ALLOCATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_STIS_BU_ALLOCATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_STIS_DEST_LOC_ALLOCATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_STIS_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_STIS_DISTRIB_TYPE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_STIS_SIGNATURE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\MT_STIS_UOM_SETUP.ts" />
+    <TypeScriptCompile Include="src\app\Entities\PAR_MNGT_COST_CENTER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\PAR_MNGT_INVENTORY_ITEM_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\PAR_MNGT_ITEM.ts" />
+    <TypeScriptCompile Include="src\app\Entities\PAR_MNGT_ITEM_STAGED.ts" />
+    <TypeScriptCompile Include="src\app\Entities\PAR_MNGT_ITEM_SUBSTITUTE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\PAR_MNGT_ORDER_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\PAR_MNGT_ORDER_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\PAR_MNGT_PAR_LOC_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\PAR_MNGT_PAR_LOC_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\PAR_MNGT_VENDOR.ts" />
+    <TypeScriptCompile Include="src\app\Entities\RF_BIN_LOC_MONITOR.ts" />
+    <TypeScriptCompile Include="src\app\Entities\RF_BIN_MAPPING.ts" />
+    <TypeScriptCompile Include="src\app\Entities\RF_EMPTY_BIN_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\RF_ITEM_LEVEL_MONITOR.ts" />
+    <TypeScriptCompile Include="src\app\Entities\RF_ITEM_MAPPING.ts" />
+    <TypeScriptCompile Include="src\app\Entities\RF_ITEM_USAGE_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\RF_READER_CONFIGURATION_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\RF_TAG_LATEST_VALUES.ts" />
+    <TypeScriptCompile Include="src\app\Entities\RM_ORG_UNITS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\RM_PICK_ALT_LOCATIONS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\RM_PKPL_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\RM_PKPL_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\RM_RECV_PO_DETAIL.ts" />
+    <TypeScriptCompile Include="src\app\Entities\RM_RECV_PO_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\RM_SHIPTO_IDS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\RM_SHIP_TO_LOCACTION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\RM_STIS_ALT_UOMS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\RM_STIS_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\RM_STIS_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\RM_USER_LOCATIONS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\RouterPath.ts" />
+    <TypeScriptCompile Include="src\app\Entities\SSL_CONFIG_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\TKIT_CART_MANAGER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\TKIT_DEPT.ts" />
+    <TypeScriptCompile Include="src\app\Entities\TKIT_EQ_INDICATOR.ts" />
+    <TypeScriptCompile Include="src\app\Entities\TKIT_EQ_LOCATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\TKIT_ITEM_DEPT.ts" />
+    <TypeScriptCompile Include="src\app\Entities\TKIT_ITEM_INVENTORY.ts" />
+    <TypeScriptCompile Include="src\app\Entities\TKIT_ITEM_MASTER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\TKIT_ITEM_TYPE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\TKIT_ORDER_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\TKIT_ORDER_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\TKIT_REASON_CODES.ts" />
+    <TypeScriptCompile Include="src\app\Entities\TKIT_REQUESTOR.ts" />
+    <TypeScriptCompile Include="src\app\Entities\TKIT_REQUESTOR_DEPT.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_ATPAR_DEPT_USER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_ATPAR_IBU_ALLOCATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_ATPAR_POU_LOCATIONS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_ATPAR_PROFILE_LIST_VIEW.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_CART_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_CART_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_CART_ITEMINFO_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_CART_ITEMINFO_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_CART_ORDER_HISTORY_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_CART_SCHEDULES.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_COMPLIANCE_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_CONSIGNMENT_ITEM_TABLE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_COST_CENTER_CODES.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_CYCLETIME_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_DELV_PO_COMMENTS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_DELV_PROD.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_DEPARTMENT_CART_ITEMS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_GETCYCLEEXCEPTIONREPORTDATA.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_TKIT_CHECK_IN_OUT_ITEM_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_TKIT_INACTIVE_ITEMS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_INVENTORY_CART_ITEMS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_INVENTORY_ITEMS_TABLE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_ISSUEREPORT.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_ITEM_PAR_LOCATIONS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_IUT_SEARCHHEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_IUT_SENDHEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_ATPAR_DYNAMIC_REPORT.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_ATPAR_INSERT_UPDATE_LOC_IDS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_ATPAR_LOCATIONS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_ATPAR_LOCATION_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_ATPAR_ORG_GROUP_PARAMETERS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_ATPAR_PROFILE_APP_MENUS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_ATPAR_PROFILE_APP_PARAMETERS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_ATPAR_PROFILE_SCREEN_DISPLAY.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_ATPAR_PROF_USER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_ATPAR_TRANSACTION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_ATPAR_USER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_ATPAR_USER_ADD.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_ATPAR_USER_PARAMS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_ATPAR_USER_PROFILE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_CRCT_CRITICAL_ITEMS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_POU_ASSIGN_LOCATIONS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_POU_BILLONLY_ITEMS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_POU_CASE_CART.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_POU_CASE_CART_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_POU_CASE_CART_HEADER_TB.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_POU_CASE_DISCRIPTON.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_POU_CASE_INFO.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_POU_CONSIGNEDBILLONLY_HEADERS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_POU_CONSIGNEDBILLONLY_ITEMS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_POU_DEPT.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_POU_DEPT_CARTS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_POU_DEPT_LOCATION_ALLOCATIONS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_POU_ITEM_ATTRIBUTES.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_POU_ITEM_ATTRIBUTES_OUTPUT.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_POU_USER_DEPARTMENTS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_RECV_PARCEL_COUNTS_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_MT_RECV_PARCEL_COUNTS_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_PAR_OPTIMIZATION_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_PAR_MNGT_PAR_LOCATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_PAR_MNGT_SETUP_LOCATIONS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_PAR_SETUP_PAR_LOCATIONS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_PKPL_ORDER_PREFIX.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_CART_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_CASE_CART_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_COSTVARIANCE_BY_DIAGNOSISCODE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_COSTVARIANCE_BY_SPECIALTY.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_COSTVARIANCE_BY_SURGEON.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_COSTVARIANCE_ITEMGROUPS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_COSTVARIANCE_ITEMGROUP_HDR_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_COSTVARIANCE_SURGEON_HDR_DATA.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_CREDIT_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_CREDIT_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_DEPT_CART_WORKSTATION_ALLOCATIONS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_GETCASEREVIEW_RPT_CASE_HEADER_SUMMARY.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_GETCASEREVIEW_RPT_CASE_ITEM_INFO.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_GETCASEREVIEW_RPT_CASE_ITEM_LOTSERIAL_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_GETCASEREVIEW_RPT_CASE_ITEM_TOTAL_SUMMARY.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_GET_CASES_INFORMATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_LOW_STOCK_REPORT.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_MNGT_ORDER_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_ORDER_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_PARLOCATION_COMPLIANCE_SUMMARY.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_PHYSICIAN_USAGE_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_PHYSICIAN_USAGE_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_PHY_RANK_DATA.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_PHY_SCORE_CARD_DATA.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_PHY_SUMMARY_BY_SPECIALTY.TS" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_PREF_CARD_OPTIMIZATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_PREF_CARD_PERFORMANCE_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_PHYSICIANS_BY_PREF_OR_PROC.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_PREF_CARD_PERFORMANCE_SUMMARY.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_PREF_OPT_BY_PHYSICIAN.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_PREF_OPT_BY_PREFERENCE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_PREF_OPT_BY_PROCEDURE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_PREF_OPT_BY_SPECIALTY.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_PREF_OPT_HEADER_DATA.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_POU_REASON_PROC_COST_CASE_SPEC_CODES.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_PRINTLABEL_RECEIVE_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_PTWY_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_RECVDELV_EMPLOYEE.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_RECV_ALTUOM.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_RECV_ITEMS_INFO.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_RECV_IUTGETPOS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_RECV_IUT_ITEMS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_RECV_LOTSERIAL.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_RECV_NONPO_PRINTERDETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_RECV_POHEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_RECV_PRINTER_HEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_RECV_RECALL_INFO.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_RECV_RECEIVER_IDS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_RECV_SEARCHHEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_RECV_SENDLINEHEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_RECV_SENDPOHEADER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_RECV_SETUPSHIPTO_ID_ALLOCATION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_REPORTS_MENUS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_RESULTS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_REVIEW_COUNTS_EVENT_DATA.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_SEARCHITEM_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_SETUP_PAR_AUDIT.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_TKIT_DEPT.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_TKIT_EQPITEMS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_TABLE_AVG.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_TKIT_ITEM_DEPT.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_TKIT_ITEM_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_TKIT_ITEM_MASTER.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_TKIT_ORDER_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_TRANSACTION.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_UPDATE_REVIEWER_DATA.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_USER_REPORT_MENUS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_USER_STATUS.ts" />
+    <TypeScriptCompile Include="src\app\Entities\VM_CART_OPTIMIZATION_DETAILS.ts" />
+    <TypeScriptCompile Include="src\app\export\export.component.ts" />
+    <TypeScriptCompile Include="src\app\export\export.dashboardviewercomponent.ts" />
+    <TypeScriptCompile Include="src\app\export\export.reportviewercomponent.ts" />
+    <TypeScriptCompile Include="src\app\export\index.ts" />
+    <TypeScriptCompile Include="src\app\export\screenFull.d.ts" />
+    <TypeScriptCompile Include="src\app\ForgotPassword\forgot-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\ForgotPassword\forgot.component.ts" />
+    <TypeScriptCompile Include="src\app\ForgotPassword\forgot.module.ts" />
+    <TypeScriptCompile Include="src\app\ForgotPassword\index.ts" />
+    <TypeScriptCompile Include="src\app\Home\Body\body.component.ts" />
+    <TypeScriptCompile Include="src\app\Home\Body\body.module.ts" />
+    <TypeScriptCompile Include="src\app\Home\Body\body.routes.ts" />
+    <TypeScriptCompile Include="src\app\Home\home.component.ts" />
+    <TypeScriptCompile Include="src\app\Home\home.module.ts" />
+    <TypeScriptCompile Include="src\app\Home\home.routes.ts" />
+    <TypeScriptCompile Include="src\app\Home\index.ts" />
+    <TypeScriptCompile Include="src\app\Home\leftbar-animation.service.ts" />
+    <TypeScriptCompile Include="src\app\Home\Left\leftbar.component.ts" />
+    <TypeScriptCompile Include="src\app\Home\Top\topbar.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-activity-report.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-activity-report.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-add-user.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-add-user.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-allocate-location-groups.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-allocate-location-groups.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-assign-profiles.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-assign-profiles.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-audit-setup.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-audit-setup.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-carrier-information.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-carrier-information.services.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-change-password.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-change-password.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-configuration-manager.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-configuration-manager.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-data-archival.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-data-archival.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-define-user-groups.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-error-report.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-error-report.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-import-users.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-init-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-init.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-init.module.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-maintain-printers.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-maintain-printers.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-manage-barcode-translations.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-manage-devices.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-manage-devices.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-manage-orders.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-manage-org-groups.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-manage-org-groups.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-manage-orgid-home.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-manage-orgid-modify.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-manage-orgid.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-manage-orgid.services.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-manage-par-location.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-manage-par-location.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-manage-profiles.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-manage-tokens.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-manage-tokens.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-manage-users-home.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-manage-users.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-manage-users.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-org-parameters.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-process-scheduler.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-process-scheduler.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-release -orders.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-release-oder.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-security-configuration.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-security-configuration.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-add-modify-inventory.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-cost-centers-crud.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-cost-centers-home.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-cost-centers.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-cost-centers.services.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-inventory-home.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-inventory.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-inventory.services.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-items-addmodify.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-items-home.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-items-service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-items.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-location-groups.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-location-groups.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-locations.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-locations.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-modify-vendors.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-par-locations.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-par-locations.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-reasons.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-reasons.services.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-storage-location-groups.component.addzone.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-storage-location-groups.component.Assign.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-storage-location-groups.component.home.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-storage-location-groups.component.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-storage-location-groups.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-substituteitems.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-vendors.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-vendors.services.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-setup-vendorsHome.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-stationary-print-design.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-stationary-print-design.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-user-parameters.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-user-parameters.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-user-status-report-home.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-user-status-report.component.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-user-status-report.component.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-user-upload-automation.component.service.ts" />
+    <TypeScriptCompile Include="src\app\Init\atpar-user-upload-automation.component.ts" />
+    <TypeScriptCompile Include="src\app\Login\index.ts" />
+    <TypeScriptCompile Include="src\app\Login\login.component.ts" />
+    <TypeScriptCompile Include="src\app\Login\login.module.ts" />
+    <TypeScriptCompile Include="src\app\Login\login.routes.ts" />
+    <TypeScriptCompile Include="src\app\Login\login.service.ts" />
+    <TypeScriptCompile Include="src\app\Pick\pick-activity-report.component.ts" />
+    <TypeScriptCompile Include="src\app\Pick\pick-allocate-business-units.service.ts" />
+    <TypeScriptCompile Include="src\app\Pick\pick-allocate-inventory-business-units.componet.ts" />
+    <TypeScriptCompile Include="src\app\Pick\pick-allocate-location-groups.component.ts" />
+    <TypeScriptCompile Include="src\app\Pick\pick-allocate-picking-zones.component.ts" />
+    <TypeScriptCompile Include="src\app\Pick\pick-allocate-priority.component.ts" />
+    <TypeScriptCompile Include="src\app\Pick\pick-allocate-priority.service.ts" />
+    <TypeScriptCompile Include="src\app\Pick\pick-daily-activity.component.ts" />
+    <TypeScriptCompile Include="src\app\Pick\pick-daily-user-activity.component.ts" />
+    <TypeScriptCompile Include="src\app\Pick\pick-deviation-report.component.ts" />
+    <TypeScriptCompile Include="src\app\Pick\pick-deviation-report.ts" />
+    <TypeScriptCompile Include="src\app\Pick\pick-order-prefix.component.ts" />
+    <TypeScriptCompile Include="src\app\Pick\pick-pick-status-report-component.service.ts" />
+    <TypeScriptCompile Include="src\app\Pick\pick-pick-status-report-component.ts" />
+    <TypeScriptCompile Include="src\app\Pick\pick-release-orders.component.ts" />
+    <TypeScriptCompile Include="src\app\Pick\pick-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\Pick\pick-user-parameters.component.ts" />
+    <TypeScriptCompile Include="src\app\Pick\pick.component.ts" />
+    <TypeScriptCompile Include="src\app\Pick\pick.module.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\BillOnlyItemMaintainService.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\create-orders.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pointofuse-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pointofuse.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pointofuse.module.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-activity-report.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-back-order-report.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-back-order-report.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-bill-only-item-maintenance.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-case-review-report.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-case-review-report.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-case-track-report.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-charge-report.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-compilance-summary-report.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-compilance-summary-report.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-compliance-detail-report.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-compliance-detail-report.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-create-orders.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-create-orders.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-critical-items.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-daily-user-activity-report.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-dashboard.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-department-cart-allocation.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-department-device-allocation.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-department-device-allocation.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-department-location-allocation.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-department-location-allocation.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-department-location-workstation-allocation.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-department-location-workstation-allocation.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-department-user-allocation.Assign.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-department-user-allocation.component.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-department-user-allocation.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-department-user-allocation.home.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-expiration-tracking-report.component.home.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-expiration-tracking-report.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-expiration-tracking-report.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-issues-wo-patient-report.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-item-usage-analysis-report.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-item-usage-report.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-item-usage-report.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-lotserial-tracking-report.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-low-stock-report.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-low-stock-report.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-maintain-non-cart-items.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-maintain-non-cart-items.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-manage-cases.component.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-manage-cases.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-manage-cosigned-item-order-report.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-manage-cosigned-item-order-report.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-manage-orders.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-manage-par-location.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-manage-par-location.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-non-catalog-purchases.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-par-optimization-report.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-par-optimization-report.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-physician-bench-mark.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-physician-bench-mark.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-physician-usage-report.component.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-physician-usage-report.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-post-pick-qa.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-post-pick-qa.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-pref-card-optimization-report.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-pref-card-optimization-report.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-pref-card-performance-details.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-pref-card-performance-details.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-pref-card-performance-management-summary.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-pref-card-performance-summary.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-pref-card-performance-summary.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-preference-card-optimization.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-preference-card-optimization.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-preference-lists.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-preference-lists.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-process-parameters.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-process-parameters.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-process-scheduler.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-quantity-on-hand-report.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-quantity-on-hand-report.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-release-cases.component.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-release-cases.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-review-charges-credits.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-review-charges-credits.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-review-charges.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-setup-case.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-setup-case.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-setup-departments.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-setup-departments.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-setup-item-attributes.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-setup-item-attributes.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-setup-par-locations.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-setup-physicians.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-setup-physicians.services.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-setup-procedures.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-setup-procedures.services.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-setup-reasons.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-setup-specialty-services.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-setup-specialty-services.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-transaction-history-report.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-transaction-history-report.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou-user-parameters.component.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou_cost_variance-service.service.ts" />
+    <TypeScriptCompile Include="src\app\PointOfUse\pou_cost_variance_report.component.ts" />
+    <TypeScriptCompile Include="src\app\Putaway\ptwy-activity-report.component.ts" />
+    <TypeScriptCompile Include="src\app\Putaway\ptwy-allocate-business-units.component.ts" />
+    <TypeScriptCompile Include="src\app\Putaway\ptwy-allocate-business-units.services.ts" />
+    <TypeScriptCompile Include="src\app\Putaway\ptwy-daily-activity.component.ts" />
+    <TypeScriptCompile Include="src\app\Putaway\ptwy-daily-user-activity.component.ts" />
+    <TypeScriptCompile Include="src\app\Putaway\ptwy-deviation-report.component.ts" />
+    <TypeScriptCompile Include="src\app\Putaway\ptwy-release-orders.component.ts" />
+    <TypeScriptCompile Include="src\app\Putaway\ptwy-user-parameters.ts" />
+    <TypeScriptCompile Include="src\app\Putaway\putaway-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\Putaway\putaway.component.ts" />
+    <TypeScriptCompile Include="src\app\Putaway\putaway.module.ts" />
+    <TypeScriptCompile Include="src\app\Receiving\recv-activity-report.component.ts" />
+    <TypeScriptCompile Include="src\app\Receiving\recv-allocate-inventory-business-units.component.ts" />
+    <TypeScriptCompile Include="src\app\Receiving\recv-allocate-shiptoids.component.ts" />
+    <TypeScriptCompile Include="src\app\Receiving\recv-asn-discrepancy-report.component.ts" />
+    <TypeScriptCompile Include="src\app\Receiving\recv-carrier-information.component.ts" />
+    <TypeScriptCompile Include="src\app\Receiving\recv-carrier-report.component.ts" />
+    <TypeScriptCompile Include="src\app\Receiving\recv-daily-activity.component.ts" />
+    <TypeScriptCompile Include="src\app\Receiving\recv-daily-user-activity.component.ts" />
+    <TypeScriptCompile Include="src\app\Receiving\recv-deviation-report.component.ts" />
+    <TypeScriptCompile Include="src\app\Receiving\recv-lot-serial-tracking-report.component.ts" />
+    <TypeScriptCompile Include="src\app\Receiving\recv-manage-carriers.component.ts" />
+    <TypeScriptCompile Include="src\app\Receiving\recv-manage-carriers.service.ts" />
+    <TypeScriptCompile Include="src\app\Receiving\recv-parcel-count-report.component.ts" />
+    <TypeScriptCompile Include="src\app\Receiving\recv-parcel-count-report.service.ts" />
+    <TypeScriptCompile Include="src\app\Receiving\recv-po-nonpo-receipts.component.ts" />
+    <TypeScriptCompile Include="src\app\Receiving\recv-po-nonpo-receipts.service.ts" />
+    <TypeScriptCompile Include="src\app\Receiving\recv-release-orders.component.ts" />
+    <TypeScriptCompile Include="src\app\Receiving\recv-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\Receiving\recv-setup-shiptoids.component.ts" />
+    <TypeScriptCompile Include="src\app\Receiving\recv-setup-shiptoids.service.ts" />
+    <TypeScriptCompile Include="src\app\Receiving\recv-user-parameters.component.ts" />
+    <TypeScriptCompile Include="src\app\Receiving\recv.component.ts" />
+    <TypeScriptCompile Include="src\app\Receiving\recv.module.ts" />
+    <TypeScriptCompile Include="src\app\reports\config.ts" />
+    <TypeScriptCompile Include="src\app\reports\customreport.ts" />
+    <TypeScriptCompile Include="src\app\reports\dashboard.component.ts" />
+    <TypeScriptCompile Include="src\app\reports\dashboarddesigner.component.ts" />
+    <TypeScriptCompile Include="src\app\reports\dashboardviewer.component.ts" />
+    <TypeScriptCompile Include="src\app\reports\export.component.ts" />
+    <TypeScriptCompile Include="src\app\reports\index.ts" />
+    <TypeScriptCompile Include="src\app\reports\izendahome.component.ts" />
+    <TypeScriptCompile Include="src\app\reports\reportcustomfilter.component.ts" />
+    <TypeScriptCompile Include="src\app\reports\reportdesigner.component.ts" />
+    <TypeScriptCompile Include="src\app\reports\reportlist.component.ts" />
+    <TypeScriptCompile Include="src\app\reports\reportpart.component.ts" />
+    <TypeScriptCompile Include="src\app\reports\reports-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\reports\reports.component.ts" />
+    <TypeScriptCompile Include="src\app\reports\reports.module.ts" />
+    <TypeScriptCompile Include="src\app\reports\reportsetting.component.ts" />
+    <TypeScriptCompile Include="src\app\reports\reportsindex.ts" />
+    <TypeScriptCompile Include="src\app\reports\reportviewer.component.ts" />
+    <TypeScriptCompile Include="src\app\reports\viewDashboard.ts" />
+    <TypeScriptCompile Include="src\app\reports\ViewPouReport.ts" />
+    <TypeScriptCompile Include="src\app\reports\viewreport.ts" />
+    <TypeScriptCompile Include="src\app\DeliveryTracking\deliver-track-report.component.ts" />
+    <TypeScriptCompile Include="src\app\DeliveryTracking\deliver-track-report.module.ts" />
+    <TypeScriptCompile Include="src\app\DeliveryTracking\deliver-track-report.routes.ts" />
+    <TypeScriptCompile Include="src\app\Shared\atpar-common.service.ts" />
+    <TypeScriptCompile Include="src\app\Shared\atpar-trackit-common.service.ts" />
+    <TypeScriptCompile Include="src\app\Shared\AtParConstants.ts" />
+    <TypeScriptCompile Include="src\app\Shared\AtParEnums.ts" />
+    <TypeScriptCompile Include="src\app\Shared\AtParHttpUtilityService.ts" />
+    <TypeScriptCompile Include="src\app\Shared\AtParSharedDataService.ts" />
+    <TypeScriptCompile Include="src\app\Shared\AtParStatusCodes.ts" />
+    <TypeScriptCompile Include="src\app\Shared\AtParWebApiResponse.ts" />
+    <TypeScriptCompile Include="src\app\Shared\ConfigData.ts" />
+    <TypeScriptCompile Include="src\app\Shared\HttpService.ts" />
+    <TypeScriptCompile Include="src\app\Shared\shared.module.ts" />
+    <TypeScriptCompile Include="src\app\Shared\sharedData.ts" />
+    <TypeScriptCompile Include="src\app\Shared\tkitHttpService.ts" />
+    <TypeScriptCompile Include="src\app\StockIssue\stis-allocate-destination-locations.component.ts" />
+    <TypeScriptCompile Include="src\app\StockIssue\stis-allocate-destination-locations.services.ts" />
+    <TypeScriptCompile Include="src\app\StockIssue\stis-allocate-destination-types.component.ts" />
+    <TypeScriptCompile Include="src\app\StockIssue\stis-allocate-distribution-types.component.ts" />
+    <TypeScriptCompile Include="src\app\StockIssue\stis-allocate-distribution-types.service.ts" />
+    <TypeScriptCompile Include="src\app\StockIssue\stis-allocate-inventory-business-units.component.ts" />
+    <TypeScriptCompile Include="src\app\StockIssue\stis-daily-activity.component.ts" />
+    <TypeScriptCompile Include="src\app\StockIssue\stis-daily-user-activity.component.ts" />
+    <TypeScriptCompile Include="src\app\StockIssue\stis-issue-report.component.ts" />
+    <TypeScriptCompile Include="src\app\StockIssue\stis-issue-report.service.ts" />
+    <TypeScriptCompile Include="src\app\StockIssue\stis-user-parameters.component.ts" />
+    <TypeScriptCompile Include="src\app\StockIssue\stockissue-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\StockIssue\stockissue.component.ts" />
+    <TypeScriptCompile Include="src\app\StockIssue\stockissue.module.ts" />
+    <TypeScriptCompile Include="src\app\TrackITDashboard\Body\trackit-create-request.service.ts" />
+    <TypeScriptCompile Include="src\app\TrackITDashboard\Body\trackit-dashboard.service.ts" />
+    <TypeScriptCompile Include="src\app\TrackITDashboard\Body\trackit-profile.service.ts" />
+    <TypeScriptCompile Include="src\app\TrackITDashboard\Body\trackit-view-cart.service.ts" />
+    <TypeScriptCompile Include="src\app\TrackITDashboard\Body\trackit.body.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackITDashboard\Body\trackit.body.module.ts" />
+    <TypeScriptCompile Include="src\app\TrackITDashboard\Body\trackit.body.routes.ts" />
+    <TypeScriptCompile Include="src\app\TrackITDashboard\Body\trackit.profile.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackITDashboard\Body\trackit.request.status.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackITDashboard\Body\trackit.request.status.service.ts" />
+    <TypeScriptCompile Include="src\app\TrackITDashboard\Body\trackit.requestor.item.visibility.report.ts" />
+    <TypeScriptCompile Include="src\app\TrackITDashboard\Body\trackit.view.cart.ts" />
+    <TypeScriptCompile Include="src\app\TrackITDashboard\Top\trackit.topbar.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackITDashboard\trackit.dashboard.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackITDashboard\Body\trackit.create.request.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackITDashboard\trackit.dashboard.module.ts" />
+    <TypeScriptCompile Include="src\app\TrackITDashboard\trackit.dashboard.routing.module.ts" />
+    <TypeScriptCompile Include="src\app\TrackitLogin\trackit.login.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackitLogin\trackit.login.index.ts" />
+    <TypeScriptCompile Include="src\app\TrackitLogin\trackit.login.module.ts" />
+    <TypeScriptCompile Include="src\app\TrackitLogin\trackit.login.routes.ts" />
+    <TypeScriptCompile Include="src\app\TrackitLogin\Trackit.Login.Service.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-allocate-location-groups.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-charge-report.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-check-in_check-out-services.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-check-in_check-out.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-check-out.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-daily-activity.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-daily-user-activity.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-delivery-report.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-delivery-report.service.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-destruction-report.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-destruction-report.componet.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-equipment-tracking-report.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-inactivate-items.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-inactivate-items.service.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-item-master-report.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-manage-departments.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-manage-departments.service.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-manage-equipment-items.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-manage-equipment-items.service.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-manage-equipment-type.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-manage-equipment-type.service.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-manage-requestor-home.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-manage-requestor-modify.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-manage-requestor.services.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-manage-requestor.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-newitem-audit-report.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-setup-reason-codes.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-setup-reason-codes.service.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\tkit-transaction-report.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\trackit-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\trackit.component.ts" />
+    <TypeScriptCompile Include="src\app\TrackIT\trackit.module.ts" />
+    <TypeScriptCompile Include="src\app\_helpers\customurlserializer.ts" />
+    <TypeScriptCompile Include="src\app\_helpers\izendaintegrate.ts" />
+    <TypeScriptCompile Include="src\app\_models\index.ts" />
+    <TypeScriptCompile Include="src\app\_models\user.ts" />
+    <TypeScriptCompile Include="src\app\_services\authentication.service.ts" />
+    <TypeScriptCompile Include="src\app\_services\index.ts" />
+    <TypeScriptCompile Include="src\app\_services\user.service.ts" />
+    <TypeScriptCompile Include="src\main.ts" />
+    <TypeScriptCompile Include="src\polyfills.ts" />
+    <TypeScriptCompile Include="src\typings.d.ts" />
+    <TypeScriptCompile Include="src\vendor.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="redist\AtPar.Droid-Signed.apk" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\app\components\autocomplete\countries.json" />
+    <Content Include="src\app\components\datatable\Employee.json" />
+    <Content Include="src\assets\docs\AtParClientUserGuide-BinToBin.pdf" />
+    <Content Include="src\assets\docs\AtParClientUserGuide-CartCount.pdf" />
+    <Content Include="src\assets\docs\AtParClientUserGuide-CycleCount.pdf" />
+    <Content Include="src\assets\docs\AtParClientUserGuide-Deliver.pdf" />
+    <Content Include="src\assets\docs\AtParClientUserGuide-MAgent.pdf" />
+    <Content Include="src\assets\docs\AtParClientUserGuide-Pick.pdf" />
+    <Content Include="src\assets\docs\AtParClientUserGuide-PointOfUse.pdf" />
+    <Content Include="src\assets\docs\AtParClientUserGuide-Putaway.pdf" />
+    <Content Include="src\assets\docs\AtParClientUserGuide-Receiving.pdf" />
+    <Content Include="src\assets\docs\AtParClientUserGuide-StockIssue.pdf" />
+    <Content Include="src\assets\docs\AtParClientUserGuide-TrackIT.pdf" />
+    <Content Include="src\assets\docs\AtParHandHeldUserGuide.pdf" />
+    <Content Include="src\assets\docs\AtParRequestorUserGuide-TrackIT.pdf" />
+    <Content Include="src\assets\docs\AtParServerUserGuide-BinToBin.pdf" />
+    <Content Include="src\assets\docs\AtParServerUserGuide-CartCount.pdf" />
+    <Content Include="src\assets\docs\AtParServerUserGuide-CycleCount.pdf" />
+    <Content Include="src\assets\docs\AtParServerUserGuide-Deliver.pdf" />
+    <Content Include="src\assets\docs\AtParServerUserGuide-MAgent.pdf" />
+    <Content Include="src\assets\docs\AtParServerUserGuide-ParManagement.pdf" />
+    <Content Include="src\assets\docs\AtParServerUserGuide-Pick.pdf" />
+    <Content Include="src\assets\docs\AtParServerUserGuide-PointOfUse.pdf" />
+    <Content Include="src\assets\docs\AtParServerUserGuide-Putaway.pdf" />
+    <Content Include="src\assets\docs\AtParServerUserGuide-Receiving.pdf" />
+    <Content Include="src\assets\docs\AtParServerUserGuide-StockIssue.pdf" />
+    <Content Include="src\assets\docs\AtParServerUserGuide-TrackIT.pdf" />
+    <Content Include="src\assets\docs\AtParServerUserGuide.pdf" />
+    <Content Include="src\assets\docs\Captuvo Emulator Controller User Guide.pdf" />
+    <Content Include="src\assets\docs\Captuvo SDK Getting Started.pdf" />
+    <Content Include="src\assets\docs\CAPTUVOSL22-UG Rev B.pdf" />
+    <Content Include="src\assets\docs\first.pdf" />
+    <Content Include="src\assets\docs\InstallingAtParServer.pdf" />
+    <Content Include="src\assets\docs\second.pdf" />
+    <Content Include="src\assets\docs\SecureHead MSR User Manual %2880101502-001-E%29.pdf" />
+    <Content Include="src\assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="src\assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="src\assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="src\assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="src\assets\fonts\fontawesome-webfont5b62.eot" />
+    <Content Include="src\assets\fonts\fontawesome-webfont5b62.ttf" />
+    <Content Include="src\assets\fonts\fontawesome-webfont5b62.woff" />
+    <Content Include="src\assets\fonts\fontawesome-webfont5b62.woff2" />
+    <Content Include="src\assets\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="src\assets\fonts\FontAwesome.otf" />
+    <Content Include="src\assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="src\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="src\assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="src\assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="src\assets\fonts\glyphicons-halflings-regulard41d.eot" />
+    <Content Include="src\assets\fonts\ioniconsaa26.eot" />
+    <Content Include="src\assets\fonts\ioniconsaa26.ttf" />
+    <Content Include="src\assets\fonts\ioniconsaa26.woff" />
+    <Content Include="src\assets\fonts\materialdesignicons-webfont6c9c.eot" />
+    <Content Include="src\assets\fonts\materialdesignicons-webfont6c9c.ttf" />
+    <Content Include="src\assets\fonts\materialdesignicons-webfont6c9c.woff" />
+    <Content Include="src\assets\fonts\materialdesignicons-webfont6c9c.woff2" />
+    <Content Include="src\assets\fonts\materialdesignicons-webfontd41d.eot" />
+    <Content Include="src\assets\fonts\roboto-v15-latin-regular.eot" />
+    <Content Include="src\assets\fonts\roboto-v15-latin-regular.ttf" />
+    <Content Include="src\assets\fonts\roboto-v15-latin-regular.woff" />
+    <Content Include="src\assets\fonts\roboto-v15-latin-regular.woff2" />
+    <Content Include="src\assets\fonts\themify9f24.eot" />
+    <Content Include="src\assets\fonts\themify9f24.ttf" />
+    <Content Include="src\assets\fonts\themify9f24.woff" />
+    <Content Include="src\assets\fonts\themifyd41d.eot" />
+    <Content Include="src\assets\Izenda\assets\fontello.eot" />
+    <Content Include="src\assets\Izenda\assets\fontello.ttf" />
+    <Content Include="src\assets\Izenda\assets\fontello.woff" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Black.eot" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Black.ttf" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Black.woff" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Black.woff2" />
+    <Content Include="src\assets\Izenda\assets\Roboto-BlackItalic.eot" />
+    <Content Include="src\assets\Izenda\assets\Roboto-BlackItalic.ttf" />
+    <Content Include="src\assets\Izenda\assets\Roboto-BlackItalic.woff" />
+    <Content Include="src\assets\Izenda\assets\Roboto-BlackItalic.woff2" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Bold.eot" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Bold.ttf" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Bold.woff" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Bold.woff2" />
+    <Content Include="src\assets\Izenda\assets\Roboto-BoldItalic.eot" />
+    <Content Include="src\assets\Izenda\assets\Roboto-BoldItalic.ttf" />
+    <Content Include="src\assets\Izenda\assets\Roboto-BoldItalic.woff" />
+    <Content Include="src\assets\Izenda\assets\Roboto-BoldItalic.woff2" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Light.eot" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Light.ttf" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Light.woff" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Light.woff2" />
+    <Content Include="src\assets\Izenda\assets\Roboto-LightItalic.eot" />
+    <Content Include="src\assets\Izenda\assets\Roboto-LightItalic.ttf" />
+    <Content Include="src\assets\Izenda\assets\Roboto-LightItalic.woff" />
+    <Content Include="src\assets\Izenda\assets\Roboto-LightItalic.woff2" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Medium.eot" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Medium.ttf" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Medium.woff" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Medium.woff2" />
+    <Content Include="src\assets\Izenda\assets\Roboto-MediumItalic.eot" />
+    <Content Include="src\assets\Izenda\assets\Roboto-MediumItalic.ttf" />
+    <Content Include="src\assets\Izenda\assets\Roboto-MediumItalic.woff" />
+    <Content Include="src\assets\Izenda\assets\Roboto-MediumItalic.woff2" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Regular.eot" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Regular.ttf" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Regular.woff" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Regular.woff2" />
+    <Content Include="src\assets\Izenda\assets\Roboto-RegularItalic.eot" />
+    <Content Include="src\assets\Izenda\assets\Roboto-RegularItalic.ttf" />
+    <Content Include="src\assets\Izenda\assets\Roboto-RegularItalic.woff" />
+    <Content Include="src\assets\Izenda\assets\Roboto-RegularItalic.woff2" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Thin.eot" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Thin.ttf" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Thin.woff" />
+    <Content Include="src\assets\Izenda\assets\Roboto-Thin.woff2" />
+    <Content Include="src\assets\Izenda\assets\Roboto-ThinItalic.eot" />
+    <Content Include="src\assets\Izenda\assets\Roboto-ThinItalic.ttf" />
+    <Content Include="src\assets\Izenda\assets\Roboto-ThinItalic.woff" />
+    <Content Include="src\assets\Izenda\assets\Roboto-ThinItalic.woff2" />
+    <Content Include="src\assets\Izenda\izenda-ui.css.map" />
+    <Content Include="src\assets\Izenda\izenda_common.js.map" />
+    <Content Include="src\assets\Izenda\izenda_locales.js.map" />
+    <Content Include="src\assets\Izenda\izenda_ui.js.map" />
+    <Content Include="src\assets\Izenda\izenda_vendors.js.map" />
+    <Content Include="src\assets\Izenda\skins\lightgray\fonts\tinymce-small.eot" />
+    <Content Include="src\assets\Izenda\skins\lightgray\fonts\tinymce-small.ttf" />
+    <Content Include="src\assets\Izenda\skins\lightgray\fonts\tinymce-small.woff" />
+    <Content Include="src\assets\Izenda\skins\lightgray\fonts\tinymce.eot" />
+    <Content Include="src\assets\Izenda\skins\lightgray\fonts\tinymce.ttf" />
+    <Content Include="src\assets\Izenda\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="src\tsconfig.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\app\TrackIT\tkit-manage-requestor-modify.component.html" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51985</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:51986/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.TypeScript.MSBuild.2.0.6\build\Microsoft.TypeScript.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.TypeScript.MSBuild.2.0.6\build\Microsoft.TypeScript.MSBuild.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.TypeScript.MSBuild.2.0.6\build\Microsoft.TypeScript.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.TypeScript.MSBuild.2.0.6\build\Microsoft.TypeScript.MSBuild.targets'))" />
+  </Target>
+  <Import Project="..\..\packages\Microsoft.TypeScript.MSBuild.2.0.6\build\Microsoft.TypeScript.MSBuild.targets" Condition="Exists('..\..\packages\Microsoft.TypeScript.MSBuild.2.0.6\build\Microsoft.TypeScript.MSBuild.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

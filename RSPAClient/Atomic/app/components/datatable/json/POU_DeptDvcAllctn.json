@@ -1,0 +1,22 @@
+[
+      {
+        "DEPT_ID": "11000",
+        "DEPT_NAME": "11000",
+        "ORG_GROUP_ID": "NOI"
+      },
+      {
+        "DEPT_ID": "dept1",
+        "DEPT_NAME": "dept1",
+        "ORG_GROUP_ID": "NOI"
+      },
+      {
+        "DEPT_ID": "dept2",
+        "DEPT_NAME": "dept2",
+        "ORG_GROUP_ID": "NOI"
+      },
+      {
+        "DEPT_ID": "dept3",
+        "DEPT_NAME": "dept3",
+        "ORG_GROUP_ID": "NOI"
+      }
+]

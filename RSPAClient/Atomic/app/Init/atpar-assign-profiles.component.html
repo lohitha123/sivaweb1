@@ -1,0 +1,147 @@
+﻿<div id="main" class="content-page">
+    <div class="content">
+        <div class="">
+            <div class="page-header-title">
+                <h4 class="page-title"><a (click)="homeurl()">Administration ></a> Assign Profiles</h4>
+            </div>
+        </div>
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border">
+                <br>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="panel panel-default" style="border:1px solid #eee;">
+                        <!-- <div class="panel-heading" style="background:#f5f5f5;">
+                            <p><img src="assets/images/icons/app_icon_.png" alt="" height="25" width="29">&nbsp;&nbsp;Assign Profiles</p>
+                        </div> -->
+                        <div class="panel-body" style="padding:20px;">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-5 form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <label for="">Org Group ID</label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <atpar-select [options]="cities" [required]="true" [id]="'ddlOrggroupid'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-5 form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <label for="" >Profile</label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                           <atpar-select [options]="cities" [required]="true" [id]="'ddlProfile'" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}" filter="filter"></atpar-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-5 form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <label for="">User ID</label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <input type="text" name="" id="input" class="form-control bdr-purple" value="" required="required" pattern="" title="">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-5 form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <label for="">Name</label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <input type="text" name="" id="input" class="form-control bdr-purple" value="" required="required" pattern="" title="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 col-sm-12 col-md-5 form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <label for="">Ldap Role</label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <input type="text" name="" id="input" class="form-control bdr-purple" value="" required="required" pattern="" title="">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-5 form-group">
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <label for="">Organization</label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-8">
+                                        <input type="text" name="" id="input" class="form-control bdr-purple" value="" required="required" pattern="" title="">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-1 pull-right">
+                                    <button class="btn btn-purple sbtn" style="margin-right:4px;" (click)="table()">Go &nbsp; <i class="fa fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                            <div style="clear:both;"></div>
+                            <br>
+                            <br>
+                            <!-- <p class="text-danger">Note:Org Group or Profile is mandatory</p>
+                            <hr>-->
+                            <div class="container" *ngIf="content">
+                                <div style="clear:both;"></div>
+                                <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true" resizableColumns="true">
+                                    <p-column expander="true" styleClass="col-icon"></p-column>
+                                    <p-column field="USER_ID" header="User ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                    <p-column header="Profile" field="PROFILE_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="Org" field="ORG_GROUP_ID" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="LDAP Role" field="LDAP_ROLE" [sortable]="true" [filter]="true" filterPlaceholder="Search"></p-column>
+                                    <p-column header="Assign" [filter]="true" [style]="">
+                                        <template pTemplate="filter" let-col>
+                                            <ul class="list-inline">
+                                                <li>
+                                                    <a href="">All</a>
+                                                </li> |
+                                                <li>
+                                                    <a href="">None</a>
+                                                </li>
+                                            </ul>
+                                        </template>
+                                        <template let-ven="rowData" pTemplate="body">
+                                            <atpar-switch></atpar-switch>
+                                        </template>
+                                    </p-column>
+                                    <template let-employee pTemplate="rowexpansion">
+                                        <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
+                                            <div class="ui-grid-row">
+                                                <div class="ui-grid-col-3" style="text-align:center">
+                                                    <i class="fa fa-search" (click)="showCar(employee)" style="cursor:pointer;float:left;margin-top:40px"></i>
+                                                </div>
+                                                <div class="ui-grid-col-9">
+                                                    <div class="ui-grid ui-grid-responsive ui-grid-pad">
+                                                        <div class="ui-grid-row">
+                                                            <div class="ui-grid-col-2"><span class="datatablespan">User ID</span></div>
+                                                            <div class="ui-grid-col-10">{{employee.USER_ID}}</div>
+                                                        </div>
+                                                        <div class="ui-grid-row">
+                                                            <div class="ui-grid-col-2"><span class="datatablespan">Profile</span> </div>
+                                                            <div class="ui-grid-col-10">{{employee.PROFILE_ID}}</div>
+                                                        </div>
+                                                        <div class="ui-grid-row">
+                                                            <div class="ui-grid-col-2"><span class="datatablespan">Org</span> </div>
+                                                            <div class="ui-grid-col-10">{{employee.ORG_GROUP_ID}}</div>
+                                                        </div>
+                                                        <div class="ui-grid-row">
+                                                            <div class="ui-grid-col-2"><span class="datatablespan">LDAP Role</span> </div>
+                                                            <div class="ui-grid-col-10">{{employee.LDAP_ROLE}}</div>
+                                                        </div>
+                                                        <div class="ui-grid-row">
+                                                            <div class="ui-grid-col-2"><span class="datatablespan">Assign</span> </div>
+                                                            <div class="ui-grid-col-10">{{employee.PASSHASH_REQUIRED}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
+                                    <!--<p-footer></p-footer>-->
+                                </atpar-datatable>
+                                <div class="col-xs-12 col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-5">
+                                    <button class="btn btn-purple">Assign</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

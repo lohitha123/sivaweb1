@@ -1,0 +1,16 @@
+[
+      {
+        "PREF_LIST_ID": "pref1",
+        "PREF_LIST_DESCR": "pref1",
+        "STATUS": "false",
+        "PROCEDURE_ID": "proc1",
+        "PHYSICIAN_ID": "phy1"
+      },
+      {
+        "PREF_LIST_ID": "pref2",
+        "PREF_LIST_DESCR": "pref2",
+        "STATUS": "false",
+        "PROCEDURE_ID": "proc2",
+        "PHYSICIAN_ID": "phy2"
+      }
+]

@@ -1,0 +1,105 @@
+﻿<div id="main" class="content-page">
+    <div class="content">
+        <div class="page-header-title">
+            <h4 class="page-title"><a (click)="homeurl()">Administration ></a> Manage Carriers</h4>
+        </div>
+        <div class="page-content-wrapper">
+            <div class="container x_panel no-border" *ngIf="!import">
+                <br>
+                <div class="panel panel-default" style="border: 1px solid #eee;">
+                    <!--  <div class="panel-heading" style="background:#f5f5f5;">
+                        <p><img src="assets/images/icons/app_icon_.png" alt="" height="25" width="29">&nbsp;&nbsp;Add Users</p>
+                    </div> -->
+                    <div class="panel-body" style="padding:20px;">
+                        <div class="col-xs-12" *ngIf="form">
+                            <div class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-3 col-sm-3">Search String </label>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <atpar-text [(ngModel)]="newItem.SEARCHSTRNG" [name]="txtSEARCHSTRNG" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'SEARCHSTRNG'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                        Please Enter Search String
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="control-label col-xs-12 col-md-3 col-sm-3">Start Position</label>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <atpar-text [(ngModel)]="newItem.STARTPOS" [name]="txtSTARTPOS" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'STARTPOS'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                        Please Enter Start Position
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label for="" class="control-label col-xs-12 col-md-3 col-sm-3">Carrier</label>
+                                    <div class="col-xs-12 col-sm-3 col-md-3">
+                                        <atpar-text [(ngModel)]="newItem.CARRIER" [name]="txtCARRIER" *ngIf="!isEditMode" [validations]="'mandatory,alpha_numeric_underscore_hyphen_backslash_nospace'" [id]="'CARRIER'" [ngModelOptions]="{standalone: true}"></atpar-text>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6 help_txt">
+                                        Please Enter Carrier
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-4 ">
+                                    <button class="btn btn-purple small">Save &nbsp; <i class="fa fa-check"></i></button>
+                                    <button class="btn btn-purple small" (click)="close()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 table-responsive" *ngIf="table">
+                            <button class="btn btn-purple sbtn pull-right" (click)="add()"><i class="fa fa-plus"></i>&nbsp; Add</button>
+                            <br>
+                            <atpar-datatable [value]="sales" [paginator]="true" [pageLinks]="3" [rows]="5" expandableRows="true" [rowsPerPageOptions]="[5,10,20]" [globalFilter]="gb" [responsive]="true">
+                                <p-column expander="true" styleClass="col-icon"></p-column>
+                                <p-column field="SEARCH_STRING" header="Search String" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="START_POSITION" header="Start" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column field="CARRIER" header="Carrier" [sortable]="true" [filter]="true" filterPlaceholder="Search"> </p-column>
+                                <p-column header="Status">
+                                    <template let-ven="rowData" pTemplate="body">
+                                        <atpar-switch></atpar-switch>
+                                    </template>
+                                </p-column>
+                                <p-column header="Edit">
+                                    <template let-ven="rowData" pTemplate="body">
+                                        <i class="fa fa-pencil fa-bg bg-blue" (click)="add()"></i>
+                                    </template>
+                                </p-column>
+                                <template let-employee pTemplate="rowexpansion">
+                                    <div class="ui-grid ui-grid-responsive ui-fluid" style="font-size:16px;padding:20px">
+                                        <div class="ui-grid-row">
+                                            <div class="ui-grid-col-3" style="text-align:center">
+                                                <i class="fa fa-search" (click)="showCar(employee)" style="cursor:pointer;float:left;margin-top:40px"></i>
+                                            </div>
+                                            <div class="ui-grid-col-9">
+                                                <div class="ui-grid ui-grid-responsive ui-grid-pad">
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Search</span></div>
+                                                        <div class="ui-grid-col-10">{{employee.SEARCH_STRING}}</div>
+                                                    </div>
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Start</span></div>
+                                                        <div class="ui-grid-col-10">{{employee.START_POSITION}}</div>
+                                                    </div>
+                                                    <div class="ui-grid-row">
+                                                        <div class="ui-grid-col-2"><span class="datatablespan">Carrier</span></div>
+                                                        <div class="ui-grid-col-10">{{employee.CARRIER}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                                <!--<p-footer></p-footer>-->
+                            </atpar-datatable>
+                            <div class="col-xs-12 col-md-4 col-md-offset-5">
+                                <button class="btn btn-purple sbtn">Submit &nbsp;<i class="fa fa-check"></i></button>
+                                <!--  <button class="btn btn-purple sbtn" (click)="hideDialog()"><i class="fa fa-arrow-left"></i> &nbsp;Go Back</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

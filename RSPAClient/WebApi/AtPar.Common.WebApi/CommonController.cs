@@ -1,0 +1,826 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web.Http;
+using AtPar.Service.Interfaces.Common;
+using AtPar.ViewModel;
+using log4net;
+using AtPar.POCOEntities;
+using System.IO;
+using System.Web;
+
+namespace AtPar.Common.WebApi
+{
+    [RoutePrefix("api/Common")]
+    public class CommonController : ApiController
+    {
+        private ICommonService _commonService;
+        private ILog _log;
+
+        public CommonController(ICommonService commonService, ILog log)
+        {
+            _commonService = commonService;
+            _log = log;
+            //Utils.SetProductLog(AtParWebEnums.EnumApps.Init);
+            _log.SetLoggerType(typeof(CommonController));
+        }
+
+        [HttpGet]
+        public AtParWebApiResponse<MT_ATPAR_SYSTEM_DB> GetSystemIDS(string systemID, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetSystemIDs(systemID);
+            return result;
+        }
+
+        [HttpGet]
+        public AtParWebApiResponse<MT_ATPAR_SECURITY_PARAMS> GetSecurityParams([FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetSecurityParams();
+            return result;
+        }
+
+        /// <summary>
+        /// Inserting data into MT_ATPAR_SECURITY_AUDIT table
+        /// </summary>
+        /// <param name="audit"></param>
+        /// <param name="pStrUser"></param>
+        /// <param name="pStrFunction"></param>
+        /// <param name="deviceTokenEntry"></param>
+        /// <returns></returns>
+        [Route("InsertAuditData")]
+        [HttpPost]
+        public AtParWebApiResponse<MT_ATPAR_SECURITY_AUDIT> InsertAuditData([FromBody] List<MT_ATPAR_SECURITY_AUDIT> audit, string pStrUser, string pStrFunction, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.InsertAuditData(audit, pStrUser, pStrFunction, deviceTokenEntry);
+            return result;
+
+        }
+
+        //UserID from token,AppId and MenuCode from query string
+
+        [Route("GetAuditAllowed")]
+        [HttpGet]
+        public AtParWebApiResponse<string> GetAuditAllowed(int appId, string menuCode, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetAuditAllowed(deviceTokenEntry[(int)AtParWebEnums.TokenEntry_Enum.UserID].ToString(), appId, menuCode, deviceTokenEntry);
+            return result;
+
+        }
+
+        /// <summary>
+        /// Getting users list from MT_ATPAR_USER,MT_ATPAR_USER_GROUPS and MT_ATPAR_USER_ACL tables
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="appID"></param>
+        /// <param name="orgGrpID"></param>
+        /// <param name="deviceTokenEntry"></param>
+        /// <returns></returns>
+        [Route("GetUsersList")]
+        [HttpGet]
+        public AtParWebApiResponse<MT_ATPAR_USER> GetUsersList(string userID, string appID, string orgGrpID, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetUsersList(userID, appID, orgGrpID, deviceTokenEntry);
+            return result;
+        }
+
+        /// <summary>
+        /// Getting UserOrgGroups from MT_ATPAR_USER_ORG_GROUPS
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="orgGrpID"></param>
+        /// <param name="deviceTokenEntry"></param>
+        /// <returns></returns>
+        [Route("GetUserOrgGroups")]
+        [HttpGet]
+        public AtParWebApiResponse<MT_ATPAR_ORG_GROUPS> GetUserOrgGroups(string user, string orgGrpID, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetUserOrgGroups(user, orgGrpID, deviceTokenEntry);
+            return result;
+        }
+
+        /// <summary>
+        /// Getting preferences from MT_ATPAR_USER_ACL
+        /// </summary>
+        /// <param name="preference"></param>
+        /// <param name="uId"></param>
+        /// <param name="deviceTokenEntry"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public AtParWebApiResponse<string> GetMyPreferences(string preference, string uId, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetMyPreferences(preference, uId, deviceTokenEntry);
+            return result;
+        }
+
+        /// <summary>
+        /// Gettings APP_ID and APP_NAME from MT_ATPAR_APP
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="deviceTokenEntry"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public AtParWebApiResponse<MT_ATPAR_APP> GetApps(string userID, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetApps(userID, deviceTokenEntry);
+            return result;
+        }
+
+        /// <summary>
+        /// Getting OrgGroupIds
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="orgGrpID"></param>
+        /// <param name="name"></param>
+        /// <param name="deviceTokenEntry"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetOrgGrpIDs")]
+        public AtParWebApiResponse<MT_ATPAR_ORG_GROUPS> GetOrgGrpIDs(string userID, string orgGrpID, string name, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetOrgGrpIDs(userID, orgGrpID, name);
+            return result;
+        }
+
+        /// <summary>
+        /// Getting  PROFILE_ID and PROFILE_DESCRIPTION from MT_ATPAR_PROFILE table
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="deviceTokenEntry"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public AtParWebApiResponse<MT_ATPAR_PROFILE> GetProfiles(string userID, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetProfiles(userID, deviceTokenEntry);
+            return result;
+        }
+
+        /// <summary>
+        /// Getting Server Access Count from MT_ATPAR_PROFILE_APP_ACL
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="profileID"></param>
+        /// <param name="deviceTokenEntry"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public AtParWebApiResponse<int> GetServerAccessCnt(string userID, string profileID, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetServerAccessCnt(userID, profileID, deviceTokenEntry);
+            return result;
+
+        }
+
+        /// <summary>
+        /// Getting Client Access Count from MT_ATPAR_PROFILE_APP_ACL
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="profileID"></param>
+        /// <param name="deviceTokenEntry"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public AtParWebApiResponse<int> GetClientAccessCnt(string userID, string profileID, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetClientAccessCnt(userID, profileID, deviceTokenEntry);
+            return result;
+        }
+
+        [HttpGet]
+        public AtParWebApiResponse<VM_ATPAR_IBU_ALLOCATION> GetBUnits([FromUri] string[] bArray, string appId, string userID, string bUnit, string description, string serverUserID, [FromUri] string[] deviceTokenEntry)
+        {
+            string[] array = bArray.OfType<object>().Select(x => x.ToString()).ToArray();
+            var result = _commonService.GetBUnits(array, appId, userID, bUnit, description, serverUserID, deviceTokenEntry);
+            return result;
+        }
+
+        /// <summary>
+        /// Getting AppParameters from SP_GetProductParameters
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="orgGrpID"></param>
+        /// <param name="appID"></param>
+        /// <param name="deviceTokenEntry"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public AtParWebApiResponse<VM_MT_ATPAR_ORG_GROUP_PARAMETERS> GetAppParameters(string userID, string orgGrpID, string appID, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetAppParameters(userID, orgGrpID, appID, deviceTokenEntry);
+            return result;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public AtParWebApiResponse<bool> CheckRecall([FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.CheckRecall();
+            return result;
+        }
+
+        /// <summary>
+        /// Saving AppParameters to MT_ATPAR_ORG_GROUP_PARAMETERS
+        /// </summary>
+        /// <param name="orgGrpID"></param>
+        /// <param name="appID"></param>
+        /// <param name="user"></param>
+        /// <param name="lstAppParams"></param>
+        /// <param name="deviceTokenEntry"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public AtParWebApiResponse<MT_ATPAR_ORG_GROUP_PARAMETERS> SaveAppParameters(string orgGrpID, string appID, string user, [FromBody] List<MT_ATPAR_ORG_GROUP_PARAMETERS> lstAppParams, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.SaveAppParameters(orgGrpID, appID, user, lstAppParams, deviceTokenEntry);
+            return result;
+        }
+
+        /// <summary>
+        /// Getting Printers Data From Stored Procedure GetPrinterData
+        /// </summary>
+        /// <param name="appID"></param>
+        /// <param name="printerName"></param>
+        /// <param name="deviceTokenEntry"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public AtParWebApiResponse<MT_ATPAR_SETUP_PRO_PRINTERES> GetPrintersData(string appID, string printerName, [FromUri] string[] deviceTokenEntry)
+        {
+            if (printerName == null)
+            {
+                printerName = string.Empty;
+            }
+            if (appID == null)
+            {
+                appID = string.Empty;
+            }
+            var result = _commonService.GetPrintersData(appID, printerName, deviceTokenEntry);
+            return result;
+        }
+
+        [HttpGet]
+        public AtParWebApiResponse<SSL_CONFIG_DETAILS> GetSSLConfigDetails([FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetSSLConfigDetails();
+            return result;
+        }
+
+        [HttpPost]
+        public AtParWebApiResponse<SSL_CONFIG_DETAILS> DoAuditData(string userID, short appId, string strFunctionName, [FromBody]List<VM_MT_ATPAR_CONFIGURATION_SECTION_DTLS> listAuditData, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.DoAuditData(userID, appId, strFunctionName, listAuditData);
+            return result;
+        }
+
+        [HttpPost]
+        public AtParWebApiResponse<MT_ATPAR_IBU_ALLOCATION> AllocateBUnits(string appId, string userId, string serverUserId,
+                  List<VM_ATPAR_IBU_ALLOCATION> lstbunitsAllocation, bool searched, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.AllocateBUnits(appId, userId, serverUserId, lstbunitsAllocation, searched, deviceTokenEntry);
+            return result;
+
+        }
+
+        [HttpGet]
+        public AtParWebApiResponse<string> GetOrgBusinessUnits(string orgGrpId, int businessUnitType, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetOrgBusinessUnits(orgGrpId, businessUnitType, deviceTokenEntry);
+            return result;
+        }
+
+        /// <summary>
+        /// Getting OrgGroupIds from  MT_ATPAR_ORG_GROUPS
+        /// </summary>
+        /// <param name="deviceTokenEntry"></param>
+        /// <returns></returns>
+        [Route("GetOrgGroupIDS")]
+        [HttpGet]
+        public AtParWebApiResponse<MT_ATPAR_ORG_GROUPS> GetOrgGroupIDS([FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetOrgGroupIDS(deviceTokenEntry);
+            return result;
+        }
+
+        /// <summary>
+        /// Getting OrgBUnits from MT_ATPAR_ORG_GROUP_BUNITS
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="orgGrpID"></param>
+        /// <param name="deviceTokenEntry"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public AtParWebApiResponse<MT_ATPAR_ORG_GROUP_BUNITS> GetOrgBUnits(string userID, string orgGrpID, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetOrgBUnits(userID, orgGrpID, deviceTokenEntry);
+            return result;
+        }
+
+        [HttpGet]
+        public AtParWebApiResponse<string> GetOrgGroupBUnits(string userId, string orgGrpId, string businessUnitType, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetOrgGroupBUnits(userId, orgGrpId, businessUnitType);
+            return result;
+        }
+
+        [HttpGet]
+        public List<string> GetAtParVersions([FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetAtParVesrions(deviceTokenEntry);
+            return result;
+        }
+
+        [HttpGet]
+        public AtParWebApiResponse<MT_ATPAR_ORG_GROUPS> GetOrgDetails(string userID, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetOrgDetails(userID);
+            return result;
+        }
+
+        [HttpGet]
+        public AtParWebApiResponse<MT_ATPAR_USER_ORG_GROUPS> GetUserOrgGrpID(string userID, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetUserOrgGrpID(userID);
+            return result;
+        }
+
+        [HttpGet]
+        public AtParWebApiResponse<long> GetAtparLatestValues(int appID, string fieldName, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetAtparLatestValues(appID, fieldName);
+            return result;
+        }
+
+        /// <summary>
+        /// Getting Locations
+        /// </summary>
+        /// <param name="orgGrpID"></param>
+        /// <param name="status"></param>
+        /// <param name="locID"></param>
+        /// <param name="locName"></param>
+        /// <param name="deviceTokenEntry"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public AtParWebApiResponse<VM_MT_ATPAR_LOCATIONS> GetLocations(string orgGrpID, string status, string locID, string locName, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetLocations(orgGrpID, status, locID, locName, deviceTokenEntry);
+            return result;
+        }
+
+        /// <summary>
+        /// Updating Location ID Status
+        /// </summary>
+        /// <param name="orgGrpID"></param>
+        /// <param name="status"></param>
+        /// <param name="locID"></param>
+        /// <param name="deviceTokenEntry"></param>
+        /// <returns></returns>
+        [HttpPut]
+        public AtParWebApiResponse<long> UpdateLocIDStatus(string orgGrpID, bool status, string locID, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.UpdateLocIDStatus(orgGrpID, status, locID, deviceTokenEntry);
+            return result;
+
+        }
+
+        /// <summary>
+        /// Getting Business Units
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="busineesUnitType"></param>
+        /// <param name="orgGroupID"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public AtParWebApiResponse<string> GetBusinessUnits(string userID, string busineesUnitType, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetBusinessUnits(userID, busineesUnitType);
+            return result;
+        }
+
+        [HttpGet]
+        public AtParWebApiResponse<long> GetCartItemInfo(string orgGroupID, string businessUnit,
+                                                        string cartID, string serverUser, string profileID,
+                                                           [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetCartItemsInfo(orgGroupID, businessUnit, cartID, serverUser, deviceTokenEntry);
+            return result;
+        }
+
+        [HttpGet]
+        public AtParWebApiResponse<string> GetOrgGroupParamValue(string orgParamName, int appID, string orgGroupID, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetOrgGroupParamValue(orgParamName, appID, orgGroupID);
+            return result;
+        }
+
+        [HttpGet]
+        public AtParWebApiResponse<MT_ATPAR_TRANSACTION> GetReleaseOrders(int appID, string userID, string bUnit, string ordNO,
+            [FromUri] string[] deviceTokenEntry, string orgGroupID, string lFlag = "", string transID = "")
+        {
+            var result = _commonService.GetReleaseOrders(appID, userID, bUnit.HandleNull(), ordNO.HandleNull(), deviceTokenEntry, orgGroupID, lFlag, transID);
+            return result;
+        }
+
+        /// <summary>
+        /// Getting Org Group Name
+        /// </summary>
+        /// <param name="orgGrpID"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public AtParWebApiResponse<string> GetOrgGroupName(string orgGrpID, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetOrgGroupName(orgGrpID);
+            return result;
+        }
+
+        /// <summary>
+        /// To get an enterprise system
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public AtParWebApiResponse<string> GetEnterpriseSystem([FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetEnterpriseSystem();
+            return result;
+        }
+
+        [HttpGet]
+        public AtParWebApiResponse<string> GetProfileParamValue(string profileID, int appID, string parameterID, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetProfileParamValue(profileID, appID, parameterID);
+            return result;
+        }
+
+        [HttpGet]
+        public AtParWebApiResponse<PAR_MNGT_PAR_LOC_HEADER> GetLocByOrgId(string orgID, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetLocByOrgId(orgID);
+            return result;
+        }
+
+        [HttpGet]
+        public AtParWebApiResponse<string> GetOrgIds(string userID, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetOrgIds(userID);
+            return result;
+        }
+
+        [HttpGet]
+        public AtParWebApiResponse<MT_POU_DEPT> GetDepartment(string departmentID, string deptDescr, string orgGrpID, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetDepartment(departmentID, deptDescr, orgGrpID);
+            return result;
+        }
+
+
+
+
+
+        [HttpGet]
+        public AtParWebApiResponse<VM_MT_POU_USER_DEPARTMENTS> GetUserDepartments(string userID, string orgGrpID, [FromUri] string[] deviceTokenEntry)
+        {
+            var response = _commonService.GetUserDepartments(userID, orgGrpID);
+            return response;
+        }
+
+
+
+
+        [HttpGet]
+        public AtParWebApiResponse<VM_POU_PHYSICIANS_BY_PREF_OR_PROC> GetPhysiciansByPrefOrProc(int flag, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetPhysiciansByPrefOrProc(flag);
+            return result;
+        }
+
+        [ActionName("GetPhysicians")]
+        [HttpGet]
+        public AtParWebApiResponse<MT_POU_PHYSICIAN> GetPhysicians([FromUri] string[] deviceTokenEntry)
+        {
+            var response = _commonService.GetPhysicians();
+            return response;
+        }
+
+        [ActionName("GetPrefList")]
+        [HttpGet]
+        public AtParWebApiResponse<MT_POU_PREF_LIST_HEADER> GetPrefList(string id, string descr, string deptID, string procCode, string physicians, [FromUri] string[] deviceTokenEntry, int statusFlag = 0)
+        {
+            var response = _commonService.GetPrefList(id, descr, deptID, procCode, physicians, statusFlag);
+            return response;
+        }
+
+        [ActionName("GetCodes")]
+        [HttpGet]
+        public AtParWebApiResponse<VM_POU_REASON_PROC_COST_CASE_SPEC_CODES> GetCodes(string codeType, string code, string descr, [FromUri] string[] deviceTokenEntry)
+        {
+            var response = _commonService.GetCodes(codeType, code, descr);
+            return response;
+        }
+
+        public AtParWebApiResponse<string> GetServerIP()
+        {
+            var response = _commonService.GetServerIP();
+            return response;
+        }
+        [HttpGet]
+        public AtParWebApiResponse<MT_ATPAR_SETUP_PRO_PRINTERES> GetNiceLabelsPrintersData(int appID, string status, string printerType, [FromUri] string[] deviceTokenEntry)
+        {
+            if (printerType == null)
+            {
+                printerType = "";
+            }
+            var result = _commonService.GetNiceLabelsPrintersData(appID, status, printerType);
+            return result;
+        }
+
+        [HttpPut]
+        public AtParWebApiResponse<long> UpdateOrderDetails(List<VM_POU_ORDER_DETAILS> lstOrderDetails, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.UpdateOrderDetails(lstOrderDetails, deviceTokenEntry);
+            return result;
+        }
+        [HttpGet]
+        public AtParWebApiResponse<PAR_MNGT_ITEM> GetItems(string ItemID, string OrgId, string AppID)
+        {
+            try
+            {
+                var result = _commonService.GetItems(ItemID, OrgId, AppID);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        [HttpGet]
+        public AtParWebApiResponse<string> GetCostCenterOrgIds(string userID)
+        {
+            try
+            {
+                var result = _commonService.GetCostCenterOrgIds(userID);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [HttpGet]
+        public AtParWebApiResponse<PAR_MNGT_VENDOR> GetAtparVendors(string OrgGrpID)
+        {
+
+            string methodBaseName = string.Format("{0}.{1}:", this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            if (_log.IsDebugEnabled) { _log.Debug(methodBaseName); }
+
+            try
+            {
+                if (_log.IsDebugEnabled) { _log.Debug(methodBaseName + "Before Calling Business Service GetAtparVendors Method"); }
+                var response = _commonService.GetAtparVendors(OrgGrpID);
+                if (_log.IsDebugEnabled) { _log.Debug(methodBaseName + "After Calling Business Service GetAtparVendors Method"); }
+                return response;
+            }
+            catch (Exception ex)
+            {
+                if (_log.IsFatalEnabled) { _log.Fatal(methodBaseName + Globals.EXCEPTION + ex.ToString()); }
+                throw ex;
+            }
+        }
+
+
+
+        #region UpdateDepts
+        [HttpPost]
+        public AtParWebApiResponse<long> InsertPouDept(List<MT_POU_DEPT> lstDept, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.InsertPouDept(lstDept);
+            return result;
+        }
+
+
+        [HttpPut]
+        public AtParWebApiResponse<long> UpdatePouDept(List<MT_POU_DEPT> lstDept, int appID, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.UpdatePouDept(lstDept, appID);
+            return result;
+        }
+        #endregion
+
+        #region GetBUs
+
+        [HttpGet]
+        public AtParWebApiResponse<VM_ATPAR_IBU_ALLOCATION> GetBUs(string userID, [FromUri] string[] bArray, string appID, string selectedUserID, string bUnit, string descr,
+         [FromUri] string[] deviceTokenEntry)
+        {
+            string methodBaseName = string.Format("{0}.{1}:", this.GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            if (_log.IsDebugEnabled) { _log.Debug(methodBaseName); }
+
+            try
+            {
+                if (_log.IsDebugEnabled) { _log.Debug(methodBaseName + "Before Calling Business Service GetBUs Method"); }
+                var response = _commonService.GetBUs(userID, bArray, appID, selectedUserID, deviceTokenEntry, bUnit, descr);
+                if (_log.IsDebugEnabled) { _log.Debug(methodBaseName + "After Calling Business Service GetBUs Method"); }
+                return response;
+            }
+            catch (Exception ex)
+            {
+                if (_log.IsFatalEnabled) { _log.Fatal(methodBaseName + Globals.EXCEPTION + ex.ToString()); }
+                throw ex;
+            }
+
+        }
+
+        #endregion
+
+        #region SendEmbeddedEmail
+
+        [HttpPost]
+        public AtParWebApiResponse<long> SendEmbeddedEmail([FromBody]Dictionary<string, dynamic> bodyTextDic, string systemID, string subject, string toAddress, string imageName, string deliverSign, string mailPriority, string attachment)
+        {
+            string bodyText = string.Empty;
+            foreach (var keyValuePair in bodyTextDic)
+            {
+                switch (keyValuePair.Key)
+                {
+                    case "bodyText":
+
+                        bodyText = bodyTextDic[keyValuePair.Key];
+                        break;
+                }
+            }
+
+            var result = _commonService.SendEmbeddedEmail(systemID, subject, bodyText.TrimStart('"').TrimEnd('"'), toAddress, imageName, deliverSign, mailPriority, attachment);
+            return result;
+
+        }
+        #endregion
+
+
+        #region SendEmail
+
+        [HttpPost]
+        public AtParWebApiResponse<long> SendEmail([FromBody]Dictionary<string, dynamic> bodyTextDic, string systemID, string subject, string toAddress, string mailPriority, string attachment)
+        {
+            string bodyText = string.Empty;
+            foreach (var keyValuePair in bodyTextDic)
+            {
+                switch (keyValuePair.Key)
+                {
+                    case "bodyText":
+
+                        bodyText = bodyTextDic[keyValuePair.Key];
+                        break;
+                }
+            }
+
+            var result = _commonService.SendEmail(systemID, subject, bodyText.TrimStart('"').TrimEnd('"'), toAddress, mailPriority, attachment);
+            return result;
+
+        }
+        #endregion
+
+        #region ExportToExcel
+
+        [HttpPost]
+        public AtParWebApiResponse<long> ExportToExcel([FromBody]Dictionary<string, dynamic> dicData, string screenName, string excelName, [FromUri] string[] deviceTokenEntry)
+        {
+            try
+            {
+                StringBuilder sb = new StringBuilder();
+                string html = string.Empty;
+
+                foreach (var keyValuePair in dicData)
+                {
+                    switch (keyValuePair.Key)
+                    {
+                        case "html":
+
+                            html = dicData[keyValuePair.Key];
+                            break;
+                    }
+                }
+
+                html = html.Replace("%%%", "&nbsp;");
+
+                sb.Append("");
+                sb.Append(html);
+
+                string folderName = string.Empty;
+                folderName = screenName + DateTime.Now.ToString("yyyyMMddHHmmss");
+
+                var filePath = HttpContext.Current.Server.MapPath(@"~/Uploaded/" + folderName + "/");
+
+                if (!Directory.Exists(filePath))
+                {
+                    Directory.CreateDirectory(filePath);
+                }
+                filePath = HttpContext.Current.Server.MapPath(@"~/Uploaded/" + folderName + "/" + excelName + ".xls");
+
+                System.IO.StreamWriter oExcelWriter = System.IO.File.CreateText(filePath);
+                oExcelWriter.WriteLine(sb);
+                oExcelWriter.Close();
+
+                var response = new AtParWebApiResponse<long>();
+                response.StatusCode = 0;
+
+                response.DataVariable = folderName;
+
+                return response;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        [HttpGet]
+
+        public AtParWebApiResponse<long> DeleteExcel(string folderName, string excelName)
+        {
+            Dictionary<string, object> dict = new Dictionary<string, object>();
+            try
+            {
+                var filePath = HttpContext.Current.Server.MapPath(@"~/Uploaded/" + folderName + "/");
+                if (Directory.Exists(filePath))
+                {
+                    var pathFiles = Directory.GetFiles(filePath);
+                    foreach (var file in pathFiles)
+                    {
+                        if (file.ToString() == filePath + excelName + ".xls")
+                        {
+                            File.Delete(file.ToString());
+                        }
+                    }
+                    Directory.Delete(filePath.ToString());
+                }
+
+                var response = new AtParWebApiResponse<long>();
+                response.StatusCode = 0;
+                response.DataVariable = filePath;
+
+                return response;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        #endregion
+        [HttpGet]
+        public AtParWebApiResponse<MT_CYCT_EVENT_HDR> GetEventIds(string bUnit, string userID, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetEventIds(bUnit, userID, deviceTokenEntry);
+            return result;
+        }
+
+        [HttpPost]
+        public bool SaveImage([FromBody] Dictionary<string, dynamic> bodyTextDic, string ImgName)
+        {
+            try
+            {
+                string path = HttpContext.Current.Server.MapPath(@"~/Uploaded"); //Path
+                                                                                 //Check if directory exist
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path); //Create directory if it doesn't exist
+                }
+
+                string imageName = ImgName + ".png";
+
+                if (File.Exists(path + "\\" + imageName))
+                {
+                    File.Delete(path + "\\" + imageName);
+                }
+                //set the image path
+                string imgPath = Path.Combine(path, imageName);
+
+                byte[] imageBytes = Convert.FromBase64String(bodyTextDic["bodyText"]);
+
+                File.WriteAllBytes(imgPath, imageBytes);
+             
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [HttpGet]
+        public AtParWebApiResponse<string> GetUserFullName(string userID)
+        {
+            var response = _commonService.GetUserFullName(userID);
+            return response;
+        }
+        [HttpGet]
+        public AtParWebApiResponse<long> GetHeirarchyUsersList(string orgGrpID, string appID, string userID, [FromUri] string[] deviceTokenEntry)
+        {
+            var result = _commonService.GetHeirarchyUsersList(orgGrpID, appID, userID);
+            return result;
+        }
+    }
+    }
